@@ -1,0 +1,79 @@
+package bottools.main
+
+import BotTools.main.Parser
+import bottools.main.EventAction.*
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
+import net.dv8tion.jda.api.events.Event
+import net.dv8tion.jda.api.events.guild.GuildJoinEvent
+import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
+import net.dv8tion.jda.api.events.guild.update.GuildUpdateNameEvent
+import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent
+import net.dv8tion.jda.api.events.message.MessageDeleteEvent
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent
+import net.dv8tion.jda.api.events.user.update.UserUpdateOnlineStatusEvent
+import net.dv8tion.jda.api.hooks.ListenerAdapter
+import org.slf4j.LoggerFactory
+import java.io.File
+
+
+internal class BotListener : ListenerAdapter() {
+    private final val log = LoggerFactory.getLogger(BotListener::class.java)
+    private val ignoredChannels = ArrayList<MessageChannel>()
+    internal val responder = Responder()
+
+    init {
+        Parser addTrigger "/"
+        responder newGuildJoinAction                this::defaultOnGuildJoinAction
+        responder newGuildUpdateNameAction          this::defaultOnGuildUpdateNameAction
+        responder newGuildMemberJoinAction          this::defaultOnGuildMemberJoinAction
+        responder newMessageReceivedAction          this::defaultOnMessageReceivedAction
+        responder newSlashCommandInteractionAction  Botmain::handleCommand
+        responder newUserContextInteractionAction   Botmain::handleCommand
+        responder newMessageContextInteractionAction Botmain::handleCommand
+    }
+
+    internal infix fun addTrigger(newTrigger: String) = Parser.addTrigger(newTrigger)
+    private infix fun defaultOnGuildJoinAction(event: GuildJoinEvent) {
+        val joinedServer = event.guild
+        val serverName = joinedServer.name
+
+        log.info("Successfully joined the server: {}", serverName)
+    }
+
+    private fun defaultOnGuildMemberJoinAction(event: GuildMemberJoinEvent) {
+        log.info("The user {} has joined the guild {}", event.user.name, event.guild.name)
+
+        //Botmain.gdp updateServerDatabase
+        log.info("Guild member database has been updated")
+
+        // Gives the new guild member the specified default role
+        log.info("Adding the default role to the new member")
+        //event.guild.addRoleToMember(event.member, Botmain.gdp.getDefaultRole(event.guild)).complete()
+    }
+
+    private fun defaultOnGuildUpdateNameAction(event: GuildUpdateNameEvent) =
+        File("guildData/${event.oldName}").renameTo(File("guildData/${event.newName}"))
+
+    private fun defaultOnMessageReceivedAction(event: MessageReceivedEvent) {
+        val message = event.message.contentRaw
+        val isCommand = Parser.startsWithTrigger(message)
+        if (!isCommand) return
+        if (ignoredChannels.contains(event.channel)) return
+        //Botmain.handleCommand(Parser.parse(message), event)
+    }
+
+    fun ignoreChannel(channel: MessageChannel) = ignoredChannels.add(channel)
+    override fun onGuildJoin(event: GuildJoinEvent) {                                   responder reactTo event }
+    override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {                       responder reactTo event }
+    override fun onGuildUpdateName(event: GuildUpdateNameEvent) {                       responder reactTo event }
+    override fun onMessageReceived(event: MessageReceivedEvent) {                       responder reactTo event }
+    override fun onMessageReactionAdd(event: MessageReactionAddEvent) {                 responder reactTo event }
+    override fun onMessageDelete(event: MessageDeleteEvent) {                           responder reactTo event }
+    override fun onUserUpdateOnlineStatus(event: UserUpdateOnlineStatusEvent) {         responder reactTo event }
+    override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {       responder reactTo event }
+    override fun onMessageContextInteraction(event: MessageContextInteractionEvent) {   responder reactTo event }
+    override fun onUserContextInteraction(event: UserContextInteractionEvent) {         responder reactTo event }
+}
