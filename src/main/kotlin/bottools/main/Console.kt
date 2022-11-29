@@ -1,16 +1,14 @@
-package BotTools.main
+package bottools.main
 
-import BotTools.main.Parser.CommandContainer
+import bottools.main.Parser.CommandContainer
 import net.dv8tion.jda.api.OnlineStatus
-import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Member
-import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
-import java.io.ByteArrayInputStream
+import org.slf4j.LoggerFactory
 import java.io.IOException
-import java.io.InputStream
 import java.util.*
 
 class Console : Thread() {
+    private val log = LoggerFactory.getLogger(Console::class.java)
     private lateinit var commandInfo: CommandContainer
     private var args = ArrayList<String>()
     private lateinit var commandName : String
@@ -21,13 +19,13 @@ class Console : Thread() {
     private var running = false
     override fun run() {
         running = true
-        Botmain.out("The console is active")
+        log.info("The console is active")
         while (running) try {
             scan()
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        Botmain.out("Console thread has terminated")
+        log.info("Console thread has terminated")
     }
 
     @Throws(IOException::class, ImproperConsoleCommandUseException::class, InterruptedException::class)
@@ -42,20 +40,20 @@ class Console : Thread() {
     @Throws(IOException::class, ImproperConsoleCommandUseException::class)
     private fun parse(command: String): Boolean {
         commandInfo = Parser.parse(command)
-        args = commandInfo.args
+        args.addAll(commandInfo.args)
         name = commandInfo!!.commandName
         return when (name) {
             "set" -> {
-                if (commandInfo!!.args == null || args.size == 0) Botmain.out("Invalid command arguments") else if (args[0] == "channel") if (args.size < 2 || args[1] == null || args[1] == "") Botmain.out(
-                    "No channel type specified"
-                ) else if (commandInfo!!.args[1] == "text") if (commandInfo!!.args.size < 3 || commandInfo!!.args[2] == null || commandInfo!!.args[2] == "") Botmain.out(
-                    "No text channel specified"
-                ) else channel =
-                    commandInfo!!.args[2] else if (commandInfo!!.args[1] == "voice") Botmain.jda!!.getVoiceChannelsByName(
-                    commandInfo!!.args[2]!!, true
-                )[0] else Botmain.out("Improper channel type") else if (commandInfo!!.args[0] == "points" || commandInfo!!.args[0] == "promotionpoints") if (commandInfo!!.args.size < 2) Botmain.out(
-                    "Invalid arguments"
-                )
+                if (commandInfo!!.args == null || args.size == 0) log.info("Invalid command arguments")
+                else if (args[0] == "channel")
+                    if (args.size < 2 || args[1] == null || args[1] == "") log.info("No channel type specified")
+                    else if (commandInfo!!.args[1] == "text")
+                        if (commandInfo!!.args.size < 3 || commandInfo!!.args[2] == null || commandInfo!!.args[2] == "") log.info("No text channel specified")
+                        else channel = commandInfo!!.args[2]
+                    else if (commandInfo!!.args[1] == "voice") Bot.jda!!.getVoiceChannelsByName(commandInfo!!.args[2]!!, true)[0]
+                    else log.info("Improper channel type")
+                else if (commandInfo!!.args[0] == "points" || commandInfo!!.args[0] == "promotionpoints")
+                    if (commandInfo!!.args.size < 2) log.info("Invalid arguments")
                 true
             }
 
@@ -70,58 +68,59 @@ class Console : Thread() {
                 val messages = history.retrievePast(size).complete()
                 var i = messages.size
                 while (i > 0) {
-                    Botmain.out(messages[i - 1].contentRaw)
+                    log.info(messages[i - 1].contentRaw)
                     i--
                 }
                 true
             }
 
             "update" -> {
-                Botmain.gdp.updateServerDatabase()
+                Bot.data.updateServerDatabase()
                 true
             }
 
             "listservers" -> {
-                for (g in Botmain.jda!!.guilds) Botmain.out(g.name)
+                for (g in Bot.jda!!.guilds) log.info(g.name)
                 true
             }
 
             "test" -> {
-                Botmain.jda!!.presence.setStatus(OnlineStatus.IDLE)
+                Bot.jda!!.presence.setStatus(OnlineStatus.IDLE)
                 //TODO Botmain.jda.getPresence().setGame(Game.playing("with himself"));;
-                Botmain.jda!!.presence.setStatus(OnlineStatus.ONLINE)
+                Bot.jda!!.presence.setStatus(OnlineStatus.ONLINE)
                 true
             }
 
             "addtag" -> {
-                if (args.size == 3) Botmain.gdp.addTag(
+                if (args.size == 3) Bot.data.addTag(
                     args[0],
                     args[1],
                     args[2]
-                ) else if (args.size == 2) Botmain.gdp.addTag(
+                ) else if (args.size == 2) Bot.data.addTag(
                     args[0], args[1], ""
                 )
                 true
             }
 
             "removetag" -> {
-                Botmain.gdp.removeTag(args[0], args[1])
+                Bot.data.removeTag(args[0], args[1])
                 true
             }
 
             "print" -> {
-                Botmain.out(args[0])
+                log.info(args[0])
                 true
             }
 
             "checkpersoncontents" -> {
-                for (s in Botmain.gdp.getContents(guild, args[0])) out(s)
+                val guild = Bot.jda!!.getGuildsByName(this.guild, true)[0]
+                for (s in Bot.data.getContents(guild, args[0])) out(s)
                 true
             }
 
             "sayemoji" -> {
                 val emoji =  //guild.getEmotesByName(args[0], true).get(0).getAsMention();
-                    Botmain.jda!!.getEmojisByName("dota", true)[0].asMention
+                    Bot.jda!!.getEmojisByName("dota", true)[0].asMention
                 //TODO guild.getDefaultChannel().sendMessage(emoji).complete();
                 true
             }
@@ -133,7 +132,7 @@ class Console : Thread() {
     internal inner class ImproperConsoleCommandUseException(var commandName: String, var issue: String) :
         Exception() {
         override fun printStackTrace() {
-            Botmain.out("The command " + commandName + "was used incorrectly")
+            log.info("The command " + commandName + "was used incorrectly")
             System.err.println(issue)
             super.printStackTrace()
         }
@@ -144,7 +143,7 @@ class Console : Thread() {
     }
 
     private fun commandNotFoundMessage(): Boolean {
-        Botmain.out("The entered data was not a generic console command")
+        log.info("The entered data was not a generic console command")
         return false
     }
 }

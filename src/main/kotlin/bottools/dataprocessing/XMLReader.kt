@@ -1,32 +1,33 @@
 package bottools.dataprocessing
 
-import BotTools.main.Botmain
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
+import org.w3c.dom.NodeList
 import org.xml.sax.SAXException
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.*
 import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.parsers.ParserConfigurationException
 import javax.xml.transform.*
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.stream.StreamResult
+import kotlin.collections.ArrayList
 
 /**
  * A wrapper around an existing XML reading library
  * @author Spartak
  */
-internal class XMLReader {
+open class XMLReader {
     private val dbf = DocumentBuilderFactory.newInstance()
     private lateinit var db: DocumentBuilder
     private var doc: Document? = null
     private lateinit var docName: String
     private lateinit var tr: Transformer
     private val debug = false
+    private lateinit var currentNode : Node
 
     /**
      * Creates the XML reader
@@ -55,13 +56,13 @@ internal class XMLReader {
      *
      * @param pathName the name of the document including the file path from the root folder (project folder)
      */
-    internal infix fun setDocument(pathName: String) {
+    internal open infix fun setDocument(pathName: String) {
         docName = pathName
         try {
             db = dbf.newDocumentBuilder()
             doc = db.parse(pathName)
         } catch (e: FileNotFoundException) {
-            Botmain.out("A document with this filepath:\n$pathName\ncould not be found")
+            //Botmain.out("A document with this filepath:\n$pathName\ncould not be found")
         } catch (e: SAXException) {
             // TODO Auto-generated catch block
             e.printStackTrace()
@@ -94,7 +95,7 @@ internal class XMLReader {
      * @param node - the current node
      * @return the next node
      */
-   internal infix fun stepOver(node: Node): Node {
+    internal infix fun stepOver(node: Node): Node {
         var node = node
         if (debug) println("Starting stepOver with: $node")
         var i = 0
@@ -111,7 +112,7 @@ internal class XMLReader {
         return node
     }
 
-   internal fun stepOver(node: Node, times: Int): Node {
+    internal fun stepOver(node: Node, times: Int): Node {
         var times = times
         return if (times == 0) node else stepOver(stepOver(node), --times)
     }
@@ -121,9 +122,9 @@ internal class XMLReader {
      * @param node - the current node
      * @return the parent node
      */
-   internal infix fun stepOut(node: Node): Node = node.parentNode
+    internal infix fun stepOut(node: Node): Node = node.parentNode
 
-   internal infix fun getValue(node: Node): String  = try {
+    internal infix fun getValue(node: Node): String = try {
         node.firstChild.nodeValue
     } catch (e: NullPointerException) {
         println(node.nodeName + ", " + node.nodeValue)
@@ -155,8 +156,16 @@ internal class XMLReader {
         write()
         return addition
     }
+    infix fun at(node : Node) : XMLReader{
+        currentNode = node
+        return this
+    }
+    infix fun create(node : String) : Node = newChild(currentNode, node )
+    infix fun createCategory(node :String){
+        currentNode = this create node
+    }
     @JvmOverloads
-   private fun removeTag(root: Node = this.root, child: Node) {
+    private fun removeTag(root: Node = this.root, child: Node) {
         root.removeChild(child)
         write()
     }
@@ -166,9 +175,11 @@ internal class XMLReader {
         if (root == null || child == null) return
         removeTag(root, child)
     }
+
     @JvmOverloads
     fun removeTag(root: Node = this.root, child: String) =
         removeTag(root, getChild(root, child)!!)
+
     @JvmOverloads
     fun removeTagByText(root: Node = this.root, textValue: String) {
         for (node in getChildren(root)) if (getValue(node) == textValue) removeTag(root, node)
@@ -180,7 +191,7 @@ internal class XMLReader {
             nodes[i].appendChild(nodes[i - 1])
     }
 
-    fun setValue(node: Node, value: String): Node {
+    fun setValue(node: Node, value: String?): Node {
         if (debug) println("setValue() start node value: " + node.textContent)
         node.textContent = value
         if (debug) println("setValue() end node value: " + node.textContent)
@@ -213,10 +224,9 @@ internal class XMLReader {
             if (debug) println("The first child is: " + child!!.nodeName)
         } catch (e: NullPointerException) {
             System.err.println("node: $parent does not exist")
-            return null
         }
         try {
-            while (child!!.nodeName.lowercase(Locale.getDefault()) != name.lowercase(Locale.getDefault())) {
+            while (child!!.nodeName.lowercase() != name.lowercase()) {
                 if (debug) println("Found child name: " + child!!.nodeName)
                 child = child!!.nextSibling
             }
@@ -227,7 +237,6 @@ internal class XMLReader {
                 n.printStackTrace()
                 System.err.println("Parent node is null")
             }
-            return null
         }
         return child
     }
@@ -242,9 +251,25 @@ internal class XMLReader {
         }
     }
 
-    fun nodeHasChild(parentNode: Node, childName: String): Boolean {
-        val children = parentNode.childNodes
-        for (i in 0 until children.length) if (children.item(i).nodeName == childName) return true
-        return false
-    }
+    fun nodeHasChild(parentNode: Node, child: String): Boolean = parentNode has child
 }
+infix fun Node.has(childName : String) : Boolean {
+    for (i in 0 until childNodes.length) if (childNodes.item(i).nodeName == childName) return true
+    return false
+}
+infix fun Node.getChild(name :String) : Node {
+    var child = firstChild.nextSibling
+    while(child.nodeName.lowercase() != name.lowercase())
+        child = child.nextSibling
+    return child
+}
+infix fun Node.then(nextFunction : (Node) -> String)    = nextFunction.invoke(this)
+infix fun Node.then(nextFunction: (Node) -> NodeList) = nextFunction.invoke(this)
+fun Node.getValue(): String = firstChild.nodeValue
+infix fun Node.setValue(newValue : String) = firstChild.setNodeValue(newValue)
+infix fun Node.containing(content : String) = this setValue content
+operator fun Node.get(childName : String) = this getChild childName
+operator fun Node.div(childName: String) = this getChild childName
+
+operator fun Node.minus(childWithValue: String) = (this getChild childWithValue).getValue()
+operator fun Node.set(childNode:String, newValue: String) = this[childNode] setValue newValue

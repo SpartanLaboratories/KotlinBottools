@@ -1,13 +1,14 @@
 package bottools.dataprocessing
 
-import BotTools.main.Botmain
+import bottools.main.Bot
 import net.dv8tion.jda.api.entities.*
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
 import net.dv8tion.jda.api.entities.emoji.Emoji
 import net.dv8tion.jda.internal.utils.tuple.ImmutablePair
 import net.dv8tion.jda.internal.utils.tuple.Pair
-import org.w3c.dom.Element
+import org.slf4j.LoggerFactory
 import org.w3c.dom.Node
+import org.w3c.dom.NodeList
 import java.io.File
 import java.io.IOException
 import java.nio.charset.Charset
@@ -16,30 +17,56 @@ import java.nio.file.Paths
 import java.util.*
 import java.util.function.Consumer
 
+@Suppress("unused")
 class GuildDataParser {
-    private val reader: XMLReader = XMLReader()
-    private var guildPath: String? = null
+    val log = LoggerFactory.getLogger(GuildDataParser::class.java)
+    private val reader = XMLReader()
+    private lateinit var guildPath : String
     private val playlistDecoder = PlaylistDecoder()
-    private val debug = false
-    fun getPromotionPoints(guild: Guild, memberName: String): Double {
-        setGuildString(guild)
-        reader.setDocument(guildPath + "MemberData.xml")
-        val person = getPersonNode(memberName)
-        //Botmain.debug("The retrived person node is: " + (if (person == null) "" else "not ") + "null")
-        val points = getPointsNode(person)
-        //Botmain.debug("Retrieved the points node: $points")
-        return reader.getValue(points).toDouble()
+    private lateinit var member : Member
+    operator fun div(guild: Guild) = this inServer guild
+    operator fun div(person : Member) : Node {
+        this forMember person
+        return reader.root
     }
+    infix fun inServer(guild : Guild) : GuildDataParser {
+        this setPathTo guild
+        reader setDocument guildPath + "GuildData.xml"
+        return this
+    }
+    infix fun forMember(member: Member) : GuildDataParser{
+        reader setDocument guildPath + "MemberData.xml"
+        this.member = member
+        return this
+    }
+    infix fun read(dataValue : String) : String = when(dataValue.lowercase().replace(" ", "")){
+        "promotionpoints"   ->  this getPromotionPoints member
+        "dsttrackingstate"  ->  this isDSTTrackingOn    member
+        "timezone"          ->  this getTimeZone        member
+        else -> {
+            val idNode = this goTo member getChild "IDs"
+            if(idNode has dataValue)
+                this getValue idNode
+            else ""
+        }
+    }
+
+
+    private infix fun getPromotionPoints(member : Member): String = this goTo member getChild "nPoints" then ::getValue
+
+    private infix fun getValue(node :Node) = node.getValue()
+    private infix fun getChildren(node: Node) = node.getChildNodes()
 
     @Synchronized
     fun updateServerDatabase() {
         // DO NOT DELETE    use if the infinite whitespace in xml files bug occurs again
         //for(Guild g: Botmain.jda.getGuilds())Trimmer.trim("%USERPROFILE%\\OneDrive\\Documents\\Programming\\workspace\\TrumpBotTest\\guildData\\" + g.getName() + "\\MemberData.xml");
-        Botmain.jda!!.guilds.forEach(Consumer { guild: Guild ->
+        Bot.jda!!.guilds.forEach(Consumer { guild: Guild ->
             updateServerDatabase(
                 guild
             )
         })
+
         //Botmain.out("Finished updating server member database")
     }
 
@@ -48,46 +75,40 @@ class GuildDataParser {
         val actualMembers = guild.loadMembers().get()
         for (m in actualMembers) {
             val personName = m.user.name
-            //Botmain.debug("Found guild member named: $personName")
-            val isInSystem = filedMembers.contains(personName)
-            //Botmain.debug("This member is " + (if (isInSystem) "" else "not ") + "in the system")
+            log.debug("Found guild member named: $personName")
+            val isInSystem = personName in filedMembers
+            log.debug("This member is " + (if (isInSystem) "" else "not ") + "in the system")
             if (!isInSystem) {
-                val personTag: Element = reader.newChild(reader.root, "Person")
-                reader.newChild(personTag, "tName", personName)
-                reader.newChild(personTag, "keyid")
-                reader.newChild(personTag, "nPoints", "0.0")
-                reader.newChild(personTag, "time", "")
-                val timeNode: Node = reader.getChild(personTag, "time")!!
-                reader.newChild(timeNode, "timezone", "none")
-                reader.newChild(timeNode, "dston", "false")
-                reader.newChild(timeNode, "dststart", "none")
-                reader.newChild(timeNode, "dstend", "none")
-                reader.newChild(personTag, "match", "none")
-                reader.newChild(personTag, "requestedby", "none")
-                reader.newChild(personTag, "money", "1000")
-                reader.newChild(personTag, "IDs")
+            reader at reader.root createCategory "Person"
+                reader create "tName"       containing personName
+                reader create "keyid"
+                reader create "nPoints"     containing "0.0"
+                reader create "match"       containing "none"
+                reader create "requestedby" containing "none"
+                reader create "money"       containing "1000"
+                reader create "IDs"
+
+                reader createCategory "time"
+                    reader create "timezone"    containing "none"
+                    reader create "dston"       containing "false"
+                    reader create "dststart"    containing "none"
+                    reader create "dstend"      containing "none"
             }
         }
     }
 
     fun setDSTon(guild: Guild, member: Member, on: Boolean) {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val person = getPersonNode(member.user.name)
         val dston: Node = reader.getChild(reader.getChild(person, "time"), "dston")
         reader.setValue(dston, if (on) "on" else "off")
     }
 
-    fun isDSTTrackingOn(guild: Guild, member: Member): Boolean {
-        setGuildString(guild)
-        reader.setDocument(guildPath + "MemberData.xml")
-        val person = getPersonNode(member.user.name)
-        val dston: Node = reader.getChild(reader.getChild(person, "time"), "dston")
-        return reader.getValue(dston).toLowerCase().equals("on")
-    }
+    private infix fun isDSTTrackingOn(member: Member): String = this goTo member getChild "time" getChild "dston" then ::getValue
 
     private infix fun attemptRetrieveNames(guild: Guild): ArrayList<String> {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         return try {
             retriveNames()
@@ -99,7 +120,7 @@ class GuildDataParser {
     }
 
     fun getRankReqs(guild: Guild): HashMap<Int, ImmutablePair<String, Double>> {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "autopromotionranks.xml")
         val reqs = HashMap<Int, ImmutablePair<String, Double>>()
         var rank: Node = reader.stepDown(reader.root) ?: return reqs
@@ -112,22 +133,22 @@ class GuildDataParser {
             nameNode = reader.stepDown(rank)
             rankName = reader.getValue(nameNode)
             pointReq = reader.getValue(reader.stepOver(nameNode)).toDouble()
-            Botmain.debug("Putting: $rankName, $pointReq")
+            log.debug("Putting: $rankName, $pointReq")
             reqs[i++] = ImmutablePair(rankName, pointReq)
         } while (reader.stepOver(rank).also { rank = it } != null)
         return reqs
     }
 
     fun addPoints(user: User, amount: Double): Double {
-        Botmain.debug("Starting addPoints() with: " + user.name)
+        log.debug("Starting addPoints() with: " + user.name)
         val person = getPersonNode(user.name)
-        Botmain.debug("Person: " + person!!.nodeName)
+        log.debug("Person: " + person!!.nodeName)
         val pointsNode = getPointsNode(person)
         val currentAmount: Double = reader.getValue(pointsNode).toDouble()
-        Botmain.debug("Points: $currentAmount")
+        log.debug("Points: $currentAmount")
         reader.setValue(pointsNode, (amount + currentAmount).toString())
         val finalValue: Double = reader.getValue(pointsNode).toDouble()
-        Botmain.debug("Final value: $finalValue")
+        log.debug("Final value: $finalValue")
         return finalValue
     }
 
@@ -139,14 +160,14 @@ class GuildDataParser {
     }
 
     fun getDefaultRole(guild: Guild): Role {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
         val roleList = guild.getRolesByName(reader.getValue(reader.stepDown(reader.root)), true)
         return if (roleList.size > 0) roleList[0] else guild.publicRole
     }
 
     fun getWelcomeMessage(guild: Guild): String {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
         val root: Node = reader.root
         val defaultRole: Node = reader.stepDown(root)
@@ -155,7 +176,7 @@ class GuildDataParser {
     }
 
     fun getWelcomeMessageChannel(guild: Guild): String {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
         val index = 3
         var node: Node = reader.stepDown(reader.root)
@@ -164,7 +185,7 @@ class GuildDataParser {
     }
 
     fun setWelcomeMessage(guild: Guild, message: String) {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
         var node: Node = reader.stepDown(reader.root)
         node = reader.stepOver(node, 2)
@@ -174,67 +195,63 @@ class GuildDataParser {
     private fun retriveNames(): ArrayList<String> {
         val names = ArrayList<String>()
         val root: Node = reader.root // The top level element in the document
-        Botmain.debug("Root: " + root.nodeName) // Debug info
+        log.debug("Root: " + root.nodeName) // Debug info
         var person: Node = reader.stepDown(root)
         var memberName: Node
         do {
             memberName = reader.stepDown(person) // Gets the <name> tag
             val nodeValue: String = reader.getValue(memberName) // Gets the name text value
             names.add(nodeValue) // Adds the name to the list of names
-            if (debug) println("Found person: $nodeValue in the database")
+            log.debug("Found person: $nodeValue in the database")
         } while (reader.stepOver(person).also { person = it } != null)
         return names
     }
 
-    private fun getPersonNode(username: String): Node {
+    private infix fun goTo(member : Member) : Node = this getPersonNode member.user.name
+    private infix fun getPersonNode(username: String): Node {
         var username = username
         username = username.lowercase(Locale.getDefault())
-        Botmain.debug(31.toChar().toString() + "Starting getPersonNode function with: " + username)
+        log.debug(31.toChar().toString() + "Starting getPersonNode function with: " + username)
         reader.setDocument(guildPath + "MemberData.xml")
         var person = firstPerson
-        Botmain.debug(32.toChar().toString() + "First person is: " + reader.getValue(reader.stepDown(person)))
+        log.debug(32.toChar().toString() + "First person is: " + reader.getValue(reader.stepDown(person)))
         while (person != null) {
             val nameNode: Node = reader.stepDown(person)
             val name: String = reader.getValue(nameNode).toLowerCase()
-            Botmain.debug("Found person: $name")
+            log.debug("Found person: $name")
             if (name.lowercase(Locale.getDefault()) == username) break
             person = reader.stepOver(person)
         }
-        Botmain.debug("Ending getPersonNode function with: $username")
+        log.debug("Ending getPersonNode function with: $username")
         return person
     }
 
     private val firstPerson: Node
         private get() = reader.stepDown(reader.root)
 
-    private fun getPointsNode(personNode: Node): Node {
-        Botmain.debug("Starting getPointsNode function with: $personNode")
+    private infix fun getPointsNode(personNode: Node): Node {
+        log.debug("Starting getPointsNode function with: $personNode")
         val nameTag: Node = reader.stepDown(personNode)
-        Botmain.debug("getPointsNode() Teh naem of the person is: " + reader.getValue(nameTag))
+        log.debug("getPointsNode() Teh name of the person is: " + reader.getValue(nameTag))
         val pointsNode: Node = reader.stepOver(nameTag)
-        Botmain.debug("getPointsNode() returning $pointsNode")
+        log.debug("getPointsNode() returning $pointsNode")
         return pointsNode
     }
 
-    private fun setGuildString(guild: Guild) {
+    private infix fun setPathTo(guild: Guild) : GuildDataParser{
         guildPath = "guildData/" + guild.name + "/"
+        return this
     }
 
     fun setPlaylist(guild: Guild, playlistName: String?) {
         playlistDecoder.setPlayList(guild, playlistName)
     }
 
-    fun nextSong(): String? {
-        return playlistDecoder.nextSong
-    }
+    fun nextSong(): String? = playlistDecoder.nextSong
 
-    fun makePlaylist(guild: Guild, playlistName: String?) {
-        playlistDecoder.makePlaylist(guild, playlistName)
-    }
+    fun makePlaylist(guild: Guild, playlistName: String) = playlistDecoder.makePlaylist(guild, playlistName)
 
-    fun addSong(guild: Guild, name: String?) {
-        playlistDecoder.addSong(guild, name)
-    }
+    fun addSong(guild: Guild, name: String) = playlistDecoder.addSong(guild, name)
 
     internal inner class PlaylistDecoder {
         private var playlist: String? = null
@@ -280,14 +297,14 @@ class GuildDataParser {
             name = name!!.lowercase(Locale.getDefault())
             node = reader.stepDown(reader.root)
             while (node != null && !reader.getValue(node).toLowerCase().startsWith(name)) {
-                Botmain.debug("Found playlist: " + reader.getValue(node))
+                log.debug("Found playlist: " + reader.getValue(node))
                 node = reader.stepOver(node)
             }
             return node
         }
 
         private fun setDoc(guild: Guild) {
-            setGuildString(guild)
+            setPathTo(guild)
             reader.setDocument(guildPath + "Playlists.xml")
         }
 
@@ -312,17 +329,10 @@ class GuildDataParser {
         return playlistDecoder.listSongs(guild, string)
     }
 
-    fun getTimeZone(guild: Guild, member: Member): String {
-        setGuildString(guild)
-        reader.setDocument(guildPath + "MemberData.xml")
-        val personNode = getPersonNode(member.user.name)
-        val timeNode: Node = reader.getChild(personNode, "time")
-        val timezone: Node = reader.getChild(timeNode, "timezone")
-        return reader.getValue(timezone)
-    }
+    infix fun getTimeZone(member : Member): String = this goTo member getChild "time" getChild "timezone" then ::getValue
 
     fun setTimeZone(guild: Guild, member: Member, timezone: Int) {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val personNode = getPersonNode(member.user.name)
         val timeNode: Node = reader.getChild(personNode, "time")
@@ -331,7 +341,7 @@ class GuildDataParser {
     }
 
     fun setDST(guild: Guild, member: Member, start: Boolean, rawInput: String) {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val personNode = getPersonNode(member.user.name)
         val timeNode: Node = reader.getChild(personNode, "time")
@@ -340,7 +350,7 @@ class GuildDataParser {
     }
 
     fun getDST(guild: Guild, member: Member, start: Boolean): String {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val personNode = getPersonNode(member.user.name)
         val timeNode: Node = reader.getChild(personNode, "time")
@@ -349,7 +359,7 @@ class GuildDataParser {
     }
 
     fun addDuplicatedChannel(own: Guild, source: Guild, channel: TextChannel) {
-        setGuildString(own)
+        setPathTo(own)
         reader.setDocument(guildPath + "DuplicatedChannels.xml")
         val root: Node = reader.root
         val id = source.id.replace("\n".toRegex(), "")
@@ -367,29 +377,29 @@ class GuildDataParser {
     val duplicates: HashMap<Guild, HashMap<Guild, ArrayList<TextChannel>>>
         get() {
             val duplicates = HashMap<Guild, HashMap<Guild, ArrayList<TextChannel>>>()
-            for (g in Botmain.jda!!.guilds) {
+            for (g in Bot.jda!!.guilds) {
                 duplicates[g] = HashMap()
-                setGuildString(g)
+                setPathTo(g)
                 reader.setDocument(guildPath + "DuplicatedChannels.xml")
                 for (n in reader.getChildren(reader.root)) {
-                    val sourceGuild: Guild = Botmain.jda.getGuildById(reader.getValue(n).replace("\n", "").trim())!!
+                    val sourceGuild: Guild = Bot.jda!!.getGuildById(reader.getValue(n).replace("\n", "").trim())!!
                     duplicates[g]!![sourceGuild] = ArrayList()
-                    for (channelNode in reader.getChildren(n)) {
-                        duplicates[g]!![sourceGuild]!!.add(sourceGuild.getTextChannelById(reader.getValue(channelNode)))
-                    }
+                    for (channelNode in reader.getChildren(n))
+                        sourceGuild.getTextChannelById(reader.getValue(channelNode))
+                            ?.let { duplicates[g]!![sourceGuild]!!.add(it) }
                 }
             }
             return duplicates
         }
 
-    fun addTag(fileName: String, name: String?, value: String?) {
-        for (guild in Botmain.jda!!.guilds) {
-            setGuildString(guild)
+    fun addTag(fileName: String, name: String, value: String) {
+        for (guild in Bot.jda!!.guilds) {
+            setPathTo(guild)
             reader.setDocument("$guildPath$fileName.xml")
-            var parentNode: Node? = null
+            lateinit var parentNode: Node
             parentNode = when (fileName.lowercase(Locale.getDefault())) {
-                "memberdata" -> reader.stepDown(reader.getRoot())
-                "guilddata" -> reader.getRoot()
+                "memberdata" -> reader.stepDown(reader.root)
+                "guilddata" -> reader.root
                 else -> throw IllegalArgumentException("invalid file name")
             }
             do {
@@ -398,32 +408,30 @@ class GuildDataParser {
         }
     }
 
-    fun removeTag(fileName: String, tag: String?) {
-        for (guild in Botmain.jda!!.guilds) {
-            setGuildString(guild)
+    fun removeTag(fileName: String, tag: String) {
+        for (guild in Bot.jda!!.guilds) {
+            setPathTo(guild)
             reader.setDocument("$guildPath$fileName.xml")
-            var parentNode: Node? = null
-            parentNode = when (fileName.lowercase(Locale.getDefault())) {
-                "memberdata" -> reader.stepDown(reader.getRoot())
-                "guilddata" -> reader.getRoot()
+            var parentNode: Node = when (fileName.lowercase()) {
+                "memberdata" -> reader.stepDown(reader.root)
+                "guilddata" -> reader.root
                 else -> throw IllegalArgumentException("invalid file name")
             }
-            do {
-                reader.removeTag(parentNode, tag)
-            } while (reader.stepOver(parentNode).also { parentNode = it } != null)
+            do reader.removeTag(parentNode, tag)
+            while (reader.stepOver(parentNode).also { parentNode = it } != null)
         }
     }
 
     fun getLastMatchID(guild: Guild, member: Member): String {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val person = getPersonNode(member.user.name)
         val id: Node = reader.getChild(person, "match")
         return reader.getValue(id)
     }
 
-    fun setMatch(guild: Guild, member: Member, newID: String?) {
-        setGuildString(guild)
+    fun setMatch(guild: Guild, member: Member, newID: String) {
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val person = getPersonNode(member.user.name)
         val id: Node = reader.getChild(person, "match")
@@ -431,36 +439,36 @@ class GuildDataParser {
     }
 
     fun getD2MatchChannel(guild: Guild): String {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
-        val channelIDNode: Node = reader.getChild(reader.getRoot(), "d2matchinfochannel")
+        val channelIDNode: Node = reader.getChild(reader.root, "d2matchinfochannel")
         return reader.getValue(channelIDNode)
     }
 
-    fun setD2MatchChannel(guild: Guild, channelName: String?) {
-        setGuildString(guild)
+    fun setD2MatchChannel(guild: Guild, channelName: String) {
+        setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
-        val channelIDNode: Node = reader.getChild(reader.getRoot(), "d2matchinfochannel")
+        val channelIDNode: Node = reader.getChild(reader.root, "d2matchinfochannel")
         System.out.println("Before: " + reader.getValue(channelIDNode))
         reader.setValue(channelIDNode, channelName)
         System.out.println("After: " + reader.getValue(channelIDNode))
     }
 
     fun addRequest(guild: Guild, requested: Member, requester: Member) {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val requestedName = requested.user.name
         val requesterName = requester.user.name
         val requestedPersonNode = getPersonNode(requestedName)
-        val requestedby: Node = reader.getChild(requestedPersonNode, "requestedby")
-        if (reader.getValue(requestedby).equals("none") || reader.getValue(requestedby).equals("")) reader.setValue(
-            requestedby,
+        val requestedBy: Node = reader.getChild(requestedPersonNode, "requestedby")
+        if (reader.getValue(requestedBy).equals("none") || reader.getValue(requestedBy).equals("")) reader.setValue(
+            requestedBy,
             "$requesterName "
-        ) else reader.setValue(requestedby, reader.getValue(requestedby).concat("$requesterName "))
+        ) else reader.setValue(requestedBy, reader.getValue(requestedBy) + "$requesterName ")
     }
 
     fun removeRequest(guild: Guild, requested: Member, requester: Member) {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val requestedName = requested.user.name
         val requesterName = requester.user.name
@@ -471,57 +479,55 @@ class GuildDataParser {
     }
 
     fun getRequesters(guild: Guild, requested: User): String {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val personNode = getPersonNode(requested.name)
         return reader.getValue(reader.getChild(personNode, "requestedby"))
     }
 
-    fun getContents(guild: Guild, person: String): Array<String?> {
-        setGuildString(guild)
+    fun getContents(guild: Guild, person: String): Array<String> {
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val personNode = getPersonNode(person)
-        val contents = personNode!!.childNodes
-        val names = arrayOfNulls<String>(contents.length)
-        for (i in 0 until contents.length) names[i] = contents.item(i).nodeName
-        return names
+        val contents = personNode.childNodes
+        return Array(contents.length, contents::getNodeNameAt)
     }
 
-    fun removeSongFromPlaylist(guild: Guild, song: String?, playlist: String?) {
-        setGuildString(guild)
+    fun removeSongFromPlaylist(guild: Guild, song: String, playlist: String) {
+        setPathTo(guild)
         reader.setDocument(guildPath + "Playlists.xml")
-        val root: Node = reader.getRoot()
-        var playlistNode: Node? = null
-        for (node in reader.getChildren(root)) if (reader.getValue(node).equals(playlist)) playlistNode = node
+        val root: Node = reader.root
+        lateinit var playlistNode: Node
+        for (node in reader.getChildren(root)) if (reader.getValue(node) == playlist) playlistNode = node
         reader.removeTagByText(playlistNode, song)
     }
 
-    var recordedPatch: String?
+    var recordedPatch: String
         get() {
             reader.setDocument("BotData.xml")
-            val root: Node = reader.getRoot()
+            val root: Node = reader.root
             val patchNode: Node = reader.getChild(root, "dotapatch")
             return reader.getValue(patchNode)
         }
         set(patch) {
             reader.setDocument("BotData.xml")
-            val root: Node = reader.getRoot()
+            val root: Node = reader.root
             val patchNode: Node = reader.getChild(root, "dotapatch")
             reader.setValue(patchNode, patch)
         }
 
     fun getDotaPatchNotesChannel(guild: Guild): String {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
-        val root: Node = reader.getRoot()
+        val root: Node = reader.root
         val channel: Node = reader.getChild(root, "dotapatchnoteschannel")
         return reader.getValue(channel)
     }
 
-    fun setDotaPatchNotesChannel(guild: Guild, channelName: String?) {
-        setGuildString(guild)
+    fun setDotaPatchNotesChannel(guild: Guild, channelName: String) {
+        setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
-        val root: Node = reader.getRoot()
+        val root: Node = reader.root
         val channel: Node = reader.getChild(root, "dotapatchnoteschannel")
         reader.setValue(channel, channelName)
     }
@@ -529,46 +535,42 @@ class GuildDataParser {
     val catCounter: String
         get() {
             reader.setDocument("Botdata.xml")
-            val counterNode: Node = reader.getChild(reader.getRoot(), "catcounter")
+            val counterNode: Node = reader.getChild(reader.root, "catcounter")
             val counterText: String = reader.getValue(counterNode)
             val counter = counterText.toInt() + 1
             reader.setValue(counterNode, counter.toString())
             return counterText
         }
 
-    fun setGreetActive(guild: Guild, valueOf: String?) {
-        setGuildString(guild)
+    fun setGreetActive(guild: Guild, valueOf: String) {
+        setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
         var greetingActive: Node
     }
 
-    fun setGameID(guild: Guild, member: Member, gameName: String?, memberID: String?) {
-        setGuildString(guild)
+    fun setGameID(guild: Guild, member: Member, gameName: String, memberID: String) {
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val personNode = getPersonNode(member.user.name)
-        val id: Node = reader.getChild(personNode, "IDs")
-        val gameNode: Node = reader.getChild(id, gameName)
-        if (gameNode == null) reader.newChild(id, gameName, memberID) else reader.setValue(gameNode, memberID)
+        val idNode = reader.getChild(personNode, "IDs")
+        if (idNode has gameName) idNode getChild gameName setValue memberID
+        else reader.newChild(idNode, gameName, memberID)
     }
 
-    fun getID(guild: Guild, member: Member, gameName: String?): String? {
-        setGuildString(guild)
-        reader.setDocument(guildPath + "MemberData.xml")
-        val personNode = getPersonNode(member.user.name)
-        val id: Node = reader.getChild(personNode, "IDs")
-        val gameNode: Node = reader.getChild(id, gameName)
-        return if (gameNode == null) null else reader.getValue(gameNode)
+    infix fun getID(gameName: String): String? {
+        reader setDocument guildPath + "MemberData.xml"
+        return this goTo member getChild "IDs" getChild gameName then ::getValue
     }
 
     fun setMoney(guild: Guild, member: Member, value: Int) {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val personNode = getPersonNode(member.user.name)
         reader.setValue(reader.getChild(personNode, "money"), value.toString())
     }
 
     fun getMoney(guild: Guild, member: Member): Int {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + "MemberData.xml")
         val personNode = getPersonNode(member.user.name)
         if (!reader.nodeHasChild(personNode, "money")) reader.newChild(personNode, "money", "1000")
@@ -577,7 +579,7 @@ class GuildDataParser {
 
     fun setWelcomeMessageID(guild: Guild, channel: TextChannel, message: Message) {
         setDocument(guild, "GuildData.xml")
-        val parent: Node = reader.getChild(reader.getRoot(), "welcomeMessages")
+        val parent: Node = reader.getChild(reader.root, "welcomeMessages")
         val id: Node = reader.newChild(parent, "welcomeMessage")
         reader.newChild(id, "channel", channel.id)
         reader.newChild(id, "message", message.id)
@@ -586,7 +588,7 @@ class GuildDataParser {
     fun getWelcomeMessageIDs(guild: Guild): List<Pair<String, String>> {
         setDocument(guild, "GuildData.xml")
         val welcomeMessageIDs = ArrayList<Pair<String, String>>()
-        reader.getChildren(reader.getChild(reader.getRoot(), "welcomeMessages")).forEach { parent ->
+        reader.getChildren(reader.getChild(reader.root, "welcomeMessages")).forEach { parent ->
             val channel: Node = reader.getChild(parent, "channel")
             val message: Node = reader.getChild(parent, "message")
             welcomeMessageIDs.add(
@@ -601,7 +603,7 @@ class GuildDataParser {
 
     fun addReactionRole(guild: Guild, emote: Emoji, role: Role) {
         setDocument(guild, "GuildData.xml")
-        val rrsNode: Node = reader.getChild(reader.getRoot(), "reactionRoles")
+        val rrsNode: Node = reader.getChild(reader.root, "reactionRoles")
         val rrNode: Node = reader.newChild(rrsNode, "reactionRole")
         reader.newChild(rrNode, "emote", emote.name)
         reader.newChild(rrNode, "role", role.id)
@@ -609,7 +611,7 @@ class GuildDataParser {
 
     fun getGameEmoteIDs(guild: Guild): List<String> {
         setDocument(guild, "GuildData.xml")
-        val rrsNode: Node = reader.getChild(reader.getRoot(), "reactionRoles")
+        val rrsNode: Node = reader.getChild(reader.root, "reactionRoles")
         val emoteIDs = ArrayList<String>()
         reader.getChildren(rrsNode).forEach { combination ->
             emoteIDs.add(
@@ -624,9 +626,8 @@ class GuildDataParser {
         return emoteIDs
     }
 
-    fun getCorrespondingRoleID(guild: Guild, emote: Emoji): String? {
-        setDocument(guild, "GuildData.xml")
-        val rrsNode: Node = reader.getChild(reader.getRoot(), "reactionRoles")
+    fun getCorrespondingRoleID(emote: Emoji): String? {
+        val rrsNode: Node = reader.getChild(reader.root, "reactionRoles")
         for (n in reader.getChildren(rrsNode)) if (reader.getValue(reader.getChild(n, "emote"))
                 .equals(emote.name)
         ) return reader.getValue(reader.getChild(n, "role"))
@@ -634,12 +635,12 @@ class GuildDataParser {
     }
 
     protected fun setDocument(guild: Guild, docName: String) {
-        setGuildString(guild)
+        setPathTo(guild)
         reader.setDocument(guildPath + docName)
     }
 
     fun createGuildDatabase(guild: Guild) {
-        setGuildString(guild)
+        setPathTo(guild)
         File(guildPath).mkdirs()
         val guildData = Arrays.asList(
             "<data>",
@@ -689,35 +690,20 @@ class GuildDataParser {
         return getCurrentDocValue(name)
     }
 
-    fun getUserValue(guild: Guild, member: Member, name: String?): String {
-        val person = goToPerson(guild, member)
-        return reader.getValue(reader.getChild(person, name))
-    }
-
-    fun setUserValue(guild: Guild, member: Member, name: String?, value: String?) {
-        val person = goToPerson(guild, member)
-        reader.setValue(reader.getChild(person, name), value)
-    }
-
-    private fun goToPerson(guild: Guild, member: Member): Node? {
-        setDocument(guild, "MemberData.xml")
-        return getPersonNode(member.user.name)
-    }
-
     private fun modCurrentDocValue(name: String, value: String) {
-        val node: Node = reader.getChild(reader.getRoot(), name)
+        val node: Node = reader.getChild(reader.root, name)
         reader.setValue(node, value)
     }
 
     private fun getCurrentDocValue(name: String): String {
-        val node: Node = reader.getChild(reader.getRoot(), name)
+        val node: Node = reader.getChild(reader.root, name)
         return reader.getValue(node)
     }
 
     fun removeWelcomeMessage(guild: Guild, messageId: String) {
         setDocument(guild, "GuildData.xml")
-        val welcomeMessages: Node = reader.getChild(reader.getRoot(), "welcomeMessages")
-        var deletedMessage: Node? = null
+        val welcomeMessages: Node = reader.getChild(reader.root, "welcomeMessages")
+        lateinit var deletedMessage: Node
         for (welcomeMessage in reader.getChildren(welcomeMessages)) {
             val messageNode: Node = reader.getChild(welcomeMessage, "message")
             val messageID: String = reader.getValue(messageNode)
@@ -729,3 +715,5 @@ class GuildDataParser {
         reader.removePossibleTag(welcomeMessages, deletedMessage)
     }
 }
+
+fun NodeList.getNodeNameAt(i : Int) : String = this.item(i).nodeName

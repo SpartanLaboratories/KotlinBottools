@@ -1,9 +1,6 @@
 package bottools.main
 
-import BotTools.main.Parser
-import bottools.main.EventAction.*
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
-import net.dv8tion.jda.api.events.Event
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.guild.update.GuildUpdateNameEvent
@@ -17,6 +14,7 @@ import net.dv8tion.jda.api.events.user.update.UserUpdateOnlineStatusEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.slf4j.LoggerFactory
 import java.io.File
+import bottools.main.Responder
 
 
 internal class BotListener : ListenerAdapter() {
@@ -30,9 +28,9 @@ internal class BotListener : ListenerAdapter() {
         responder newGuildUpdateNameAction          this::defaultOnGuildUpdateNameAction
         responder newGuildMemberJoinAction          this::defaultOnGuildMemberJoinAction
         responder newMessageReceivedAction          this::defaultOnMessageReceivedAction
-        responder newSlashCommandInteractionAction  Botmain::handleCommand
-        responder newUserContextInteractionAction   Botmain::handleCommand
-        responder newMessageContextInteractionAction Botmain::handleCommand
+        responder newSlashCommandInteractionAction  Bot::handleCommand
+        responder newUserContextInteractionAction   Bot::handleCommand
+        responder newMessageContextInteractionAction Bot::handleCommand
     }
 
     internal infix fun addTrigger(newTrigger: String) = Parser.addTrigger(newTrigger)
@@ -62,7 +60,7 @@ internal class BotListener : ListenerAdapter() {
         val isCommand = Parser.startsWithTrigger(message)
         if (!isCommand) return
         if (ignoredChannels.contains(event.channel)) return
-        //Botmain.handleCommand(Parser.parse(message), event)
+        Bot.handleCommand(Parser.parse(message), event)
     }
 
     fun ignoreChannel(channel: MessageChannel) = ignoredChannels.add(channel)

@@ -48,10 +48,14 @@ class SourceKeyParser {
     }
 
     inner class KeySet internal constructor() {
-        internal var initial = ArrayList<String>()
-        internal var validation = ArrayList<String>()
-        internal var alternative = ArrayList<String>()
-        internal var terminal = ""
+        @JvmField
+        var initial = ArrayList<String>()
+        @JvmField
+        var validation = ArrayList<String>()
+        @JvmField
+        var alternative = ArrayList<String>()
+        @JvmField
+        var terminal = ""
         internal infix fun addInitial(initial: String) =
             this.initial.add(initial)
 

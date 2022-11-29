@@ -1,7 +1,5 @@
 package bottools.dataprocessing
 
-import com.spartanlaboratories.util.Date
-
 class DateTimeParser {
     fun readDateMMDD(rawDate: String): Date {
         val month = rawDate.substring(0, 2)

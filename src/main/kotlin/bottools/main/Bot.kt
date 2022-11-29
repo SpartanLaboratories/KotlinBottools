@@ -1,22 +1,18 @@
-package BotTools.main
+package bottools.main
 
-import BotTools.botactions.BotAction
-import BotTools.commands.HelpCommand
+import bottools.botactions.BotAction
+import bottools.commands.Command
 import bottools.dataprocessing.GuildDataParser
 import bottools.dataprocessing.XMLReader
-import BotTools.main.Parser.CommandContainer
-import BotTools.plugins.Plugin
-import bottools.main.BotListener
-import bottools.main.Responder
+import bottools.main.Parser.CommandContainer
+import bottools.plugins.Plugin
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
-import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
-import net.dv8tion.jda.api.interactions.commands.Command
 import net.dv8tion.jda.api.interactions.commands.build.CommandData
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.utils.MemberCachePolicy
@@ -31,8 +27,8 @@ import java.time.Instant
 import java.time.ZoneOffset
 import java.util.*
 
-abstract class Botmain : Runnable {
-    var log = LoggerFactory.getLogger(Botmain::class.java)
+abstract class Bot : Runnable {
+    var log = LoggerFactory.getLogger(Bot::class.java)
     init {
         /* In case I want to see logger status messages
 		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
@@ -43,16 +39,16 @@ abstract class Botmain : Runnable {
         debug = false
         startTime = System.currentTimeMillis() + 18 * 3600000
         // My systems
-        gdp = createGuildDataParser()
+        data = createGuildDataParser()
         console = Console()
         console!!.start()
         // Bot setup
         initializeBotExistence() //Initial bot setup
-        createCommand(HelpCommand())
+        //createCommand(HelpCommand())
         listCommands() //Old school commands setup
         createAllSlashCommands()
         // My Systems again
-        gdp!!.updateServerDatabase() //Must be after bot and console initialization
+        data!!.updateServerDatabase() //Must be after bot and console initialization
         reader.setDocument("BotData.xml")
         //new Thread(this).start();
     }
@@ -124,25 +120,25 @@ abstract class Botmain : Runnable {
         return GuildDataParser()
     }
 
-    protected fun addPlugin(plugin: Plugin) {
-        plugin.activate()
-    }
+    protected infix fun addPlugin(plugin: Plugin) = plugin()
 
     companion object {
+        @JvmField
         var jda: JDA? = null
         var commands = HashMap<String, Command>()
             protected set
         private val interactions = ArrayList<CommandData>()
+        @JvmField
         var responder: Responder? = null
-        var gdp: GuildDataParser? = null
+        lateinit var data: GuildDataParser
         //var guildManager: GuildManager = GuildManager
         var commandNameList = ArrayList<String>()
         var keys = arrayOfNulls<String>(3)
-        private var console: Console? = null
+        private lateinit var console: Console
 
         //private static Console guiConsole = new GuiConsole();
-        protected val reader: XMLReader = XMLReader()
-        private var listener: BotListener? = null
+        protected val reader = XMLReader()
+        private lateinit var listener: BotListener
         private var running = false
         private var debug = false
         private var startTime: Long = 0
@@ -154,12 +150,10 @@ abstract class Botmain : Runnable {
 
         fun handleCommand(commandText: CommandContainer, event: MessageReceivedEvent) {
             val commandName = commandText.commandName
-            val command = commands[commandName]
-            val channel: MessageChannel = event.channel
-            val isValid = commands.containsKey(commandName)
-            if (isValid) {
+            if(commands.containsKey(commandName)){
+                val channel = event.channel
                 try {
-                    command.setEvent(event).handle(commandText)
+                    commands[commandName]!!.setEvent(event).invoke(commandText)
                 } catch (ipe: InsufficientPermissionException) {
                     ipe.printStackTrace()
                     BotAction.say(channel, "Insufficient permissions to perform this command")
@@ -168,7 +162,7 @@ abstract class Botmain : Runnable {
                     BotAction.say(channel, "An error occured while trying to execute this command")
                 }
             } else {
-                BotAction.say(channel, "This command does not exist")
+                BotAction.say(event.channel, "This command does not exist")
             }
         }
 
@@ -181,25 +175,18 @@ abstract class Botmain : Runnable {
         val uptime: Long
             get() = if (running) System.currentTimeMillis() - startTime else -18 * 3600000
 
-        fun handleCommand(event: SlashCommandInteractionEvent) {
-            commands[event.name].handle(event)
-        }
+        infix fun handleCommand(event: SlashCommandInteractionEvent) = commands[event.name]!!(event)
 
-        fun handleCommand(event: UserContextInteractionEvent) {
-            commands[event.name].handle(event)
-        }
+        infix fun handleCommand(event: UserContextInteractionEvent) = commands[event.name]!!(event)
 
         fun handleCommand(event: MessageContextInteractionEvent) {
             val name = event.name.lowercase(Locale.getDefault()).replace(" ".toRegex(), "")
-            commands[name].handle(event)
+            commands[name]!!(event)
         }
 
-        fun createCommand(command: Command) {
-            for (alias in command.getAliasList()) {
-                commands[alias] = command
-                if (!commandNameList.contains(command.name)) commandNameList.add(command.name)
-            }
-            if (command.isInteractible()) interactions.add(command.getCommandData())
+        infix fun createCommand(command: Command) {
+            commands[command.name] = command
+            if (command.isInteractible) interactions.add(command.commandData!!)
         }
 
         fun getCommand(name: String): Command? {
