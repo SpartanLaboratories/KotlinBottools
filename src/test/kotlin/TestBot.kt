@@ -7,7 +7,7 @@ fun main() {
 }
 class KotBot : Bot() {
     override fun listCommands() {
-        //Plugins.REACTIONROLES()
+        Plugins.REACTIONROLES()
     }
 
     override fun applyDailyUpdate(currentDate: String?) {

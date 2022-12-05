@@ -2,12 +2,15 @@ package bottools.main
 
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.interactions.commands.OptionMapping
 import java.util.*
 import java.util.function.Consumer
 
 object Parser {
     private val triggers = ArrayList<String>()
+    @JvmStatic
+    internal infix fun parse(event: MessageReceivedEvent) : CommandContainer = parse(event.message.contentRaw)
     @JvmStatic
     internal infix fun parse(raw: String): CommandContainer {
         var beheaded = raw

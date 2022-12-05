@@ -5,10 +5,7 @@ import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.util.function.Consumer
 
-abstract class CheckValueService internal constructor(private val packetName: String) : OnlineCommand(
-    packetName
-),
-    Runnable {
+abstract class CheckValueService protected constructor(private val packetName: String) : OnlineCommand(packetName), Runnable {
     private var interval = 0
     private var onChange: Consumer<String>? = null
     protected var packet: ServicePacketReader
@@ -22,9 +19,8 @@ abstract class CheckValueService internal constructor(private val packetName: St
         this.interval = interval
     }
 
-    private fun triggerResponce(newValue: String) {
-        onChange!!.accept(newValue)
-    }
+    private fun triggerResponce(newValue: String) = onChange!!.accept(newValue)
+
 
     private fun sleep(seconds: Int = interval) {
         try {
@@ -68,7 +64,7 @@ abstract class CheckValueService internal constructor(private val packetName: St
         if (valueChanged()) {
             log.debug("$name found a new value: $data")
             packet.writeValue(data)
-            triggerResponce(data)
+            triggerResponce(data!!)
         } else log.debug("$name detected no changes")
     }
 
@@ -94,7 +90,9 @@ abstract class CheckValueService internal constructor(private val packetName: St
         }
 
     companion object {
+        @JvmStatic
         protected fun createService(service: CheckValueService, triggerAction: Consumer<String>, interval: Int) =
             (service respondWith triggerAction setInterval interval)()
     }
+    override fun invoke(args: Array<String>){}
 }

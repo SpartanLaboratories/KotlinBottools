@@ -79,7 +79,7 @@ abstract class Bot : Runnable {
                 .enableCache(CacheFlag.FORUM_TAGS)
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
                 .build()
-            responder = listener!!.responder
+            responder = listener.responder
             //jda.getPresence().setGame(Game.of(Game.GameType.DEFAULT, "/help for info"));
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()

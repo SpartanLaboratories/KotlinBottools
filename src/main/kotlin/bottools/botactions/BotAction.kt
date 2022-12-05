@@ -3,6 +3,7 @@ package bottools.botactions
 import bottools.main.Bot
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
+import net.dv8tion.jda.api.entities.emoji.Emoji
 import net.dv8tion.jda.api.utils.FileUpload
 import net.dv8tion.jda.api.utils.messages.MessageCreateData
 import org.slf4j.LoggerFactory
@@ -78,6 +79,8 @@ open class BotAction {
             checkAndLog(channel, message)
             return channel.sendMessage(message).setTTS(true).complete()
         }
+
+        fun addReactionToMessage(emoji: Emoji, message: Message) = message.addReaction(emoji).complete()
 
         private fun channelCheck(channel: MessageChannel?) {
             if (channel == null) {

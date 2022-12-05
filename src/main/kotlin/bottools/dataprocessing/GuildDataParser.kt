@@ -17,6 +17,9 @@ import java.nio.file.Paths
 import java.util.*
 import java.util.function.Consumer
 
+val D = GuildDataParser()
+val B = GuildDataParser()
+
 @Suppress("unused")
 class GuildDataParser {
     val log = LoggerFactory.getLogger(GuildDataParser::class.java)
@@ -62,37 +65,32 @@ class GuildDataParser {
         // DO NOT DELETE    use if the infinite whitespace in xml files bug occurs again
         //for(Guild g: Botmain.jda.getGuilds())Trimmer.trim("%USERPROFILE%\\OneDrive\\Documents\\Programming\\workspace\\TrumpBotTest\\guildData\\" + g.getName() + "\\MemberData.xml");
         Bot.jda!!.guilds.forEach(Consumer { guild: Guild ->
-            updateServerDatabase(
-                guild
-            )
+            updateServerDatabase(guild)
         })
-
         //Botmain.out("Finished updating server member database")
     }
 
     private fun updateServerDatabase(guild: Guild) {
         val filedMembers = attemptRetrieveNames(guild)
         val actualMembers = guild.loadMembers().get()
-        for (m in actualMembers) {
-            val personName = m.user.name
-            log.debug("Found guild member named: $personName")
-            val isInSystem = personName in filedMembers
-            log.debug("This member is " + (if (isInSystem) "" else "not ") + "in the system")
-            if (!isInSystem) {
-            reader at reader.root createCategory "Person"
-                reader create "tName"       containing personName
-                reader create "keyid"
-                reader create "nPoints"     containing "0.0"
-                reader create "match"       containing "none"
-                reader create "requestedby" containing "none"
-                reader create "money"       containing "1000"
-                reader create "IDs"
+        for (member in actualMembers) {
+            log.debug("Found guild member named: ${member.user.name}")
+            if(member.user.name !in filedMembers){
+                log.debug("This member is not yet in the database. Creating new data node...")
+                reader at reader.root createCategory "Person"
+                    reader create "tName"       containing member.user.name
+                    reader create "keyid"
+                    reader create "nPoints"     containing "0.0"
+                    reader create "match"       containing "none"
+                    reader create "requestedby" containing "none"
+                    reader create "money"       containing "1000"
+                    reader create "IDs"
 
-                reader createCategory "time"
-                    reader create "timezone"    containing "none"
-                    reader create "dston"       containing "false"
-                    reader create "dststart"    containing "none"
-                    reader create "dstend"      containing "none"
+                    reader createCategory "time"
+                        reader create "timezone"    containing "none"
+                        reader create "dston"       containing "false"
+                        reader create "dststart"    containing "none"
+                        reader create "dstend"      containing "none"
             }
         }
     }
@@ -109,13 +107,13 @@ class GuildDataParser {
 
     private infix fun attemptRetrieveNames(guild: Guild): ArrayList<String> {
         setPathTo(guild)
-        reader.setDocument(guildPath + "MemberData.xml")
+        reader setDocument (guildPath + "MemberData.xml")
         return try {
             retriveNames()
         } catch (e: Exception) {
             println("Could not retrieve names for the guild " + guild.name)
             e.printStackTrace()
-            ArrayList(1)
+            ArrayList(0)
         }
     }
 
@@ -139,10 +137,10 @@ class GuildDataParser {
         return reqs
     }
 
-    fun addPoints(user: User, amount: Double): Double {
-        log.debug("Starting addPoints() with: " + user.name)
-        val person = getPersonNode(user.name)
-        log.debug("Person: " + person!!.nodeName)
+    fun addPoints(member: Member, amount: Double): Double {
+        log.debug("Starting addPoints() with: " + member.user.name)
+        val person = getPersonNode(member.user.name)
+        log.debug("Person: " + person.nodeName)
         val pointsNode = getPointsNode(person)
         val currentAmount: Double = reader.getValue(pointsNode).toDouble()
         log.debug("Points: $currentAmount")
@@ -174,16 +172,6 @@ class GuildDataParser {
         val welcomeMessage: Node = reader.stepOver(defaultRole)
         return reader.getValue(welcomeMessage)
     }
-
-    fun getWelcomeMessageChannel(guild: Guild): String {
-        setPathTo(guild)
-        reader.setDocument(guildPath + "GuildData.xml")
-        val index = 3
-        var node: Node = reader.stepDown(reader.root)
-        for (i in 1 until index) node = reader.stepOver(node)
-        return reader.getValue(node)
-    }
-
     fun setWelcomeMessage(guild: Guild, message: String) {
         setPathTo(guild)
         reader.setDocument(guildPath + "GuildData.xml")
@@ -191,7 +179,6 @@ class GuildDataParser {
         node = reader.stepOver(node, 2)
         reader.setValue(node, message)
     }
-
     private fun retriveNames(): ArrayList<String> {
         val names = ArrayList<String>()
         val root: Node = reader.root // The top level element in the document
@@ -397,7 +384,9 @@ class GuildDataParser {
             setPathTo(guild)
             reader.setDocument("$guildPath$fileName.xml")
             lateinit var parentNode: Node
-            parentNode = when (fileName.lowercase(Locale.getDefault())) {
+            parentNode = when (fileName.lowercase(
+
+            )) {
                 "memberdata" -> reader.stepDown(reader.root)
                 "guilddata" -> reader.root
                 else -> throw IllegalArgumentException("invalid file name")

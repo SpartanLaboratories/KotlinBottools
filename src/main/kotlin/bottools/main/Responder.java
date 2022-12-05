@@ -18,17 +18,21 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.events.user.update.UserUpdateOnlineStatusEvent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.*;
 import org.springframework.core.type.filter.AssignableTypeFilter;
 
 public class Responder {
+	Logger log = LoggerFactory.getLogger(this.getClass());
 	@SuppressWarnings("rawtypes")
 	private HashMap<Class, List<EventAction>> actionMap = new HashMap<Class, List<EventAction>>();
 	
 	Responder(){
 		getSubclasses(Event.class).forEach(subclass -> actionMap.put(subclass, new ArrayList<EventAction>()));
 		int x = 1;
+		log.info("Created Responder");
 	}
 	
 	void actOn(Event event) {

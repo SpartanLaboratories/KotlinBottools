@@ -1,0 +1,1 @@
+infix fun Boolean.and(compareTo: Boolean) = this && compareTo

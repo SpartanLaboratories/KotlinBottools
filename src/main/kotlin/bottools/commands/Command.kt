@@ -17,6 +17,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.*
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction
+import org.slf4j.LoggerFactory
 import java.io.File
 import java.time.Instant
 import java.util.*
@@ -47,6 +48,7 @@ import java.util.concurrent.TimeUnit
  * @author spartak
  */
 abstract class Command protected constructor(val name: String) {
+    private val log = LoggerFactory.getLogger(this::class.java)
 
     /**
      * Should this command display messages describing the actions that it is taking.
@@ -57,7 +59,6 @@ abstract class Command protected constructor(val name: String) {
     open lateinit var guild: Guild
     //protected infix fun setGuild(guild:Guild) = this.also { this.guild = guild }
     protected lateinit var member: Member
-        private set
     protected lateinit var user: User
         private set
     open lateinit var channel: MessageChannel
@@ -67,7 +68,7 @@ abstract class Command protected constructor(val name: String) {
     protected var jda = Bot.jda
     protected var terminalArg = 0
     protected var eb = EmbedBuilder()
-    protected lateinit var args: Array<String>
+    protected var args = Array<String>(0){""}
         private set
     protected var reply: ReplyCallbackAction? = null
     private var taggedMember: Member? = null
@@ -163,21 +164,23 @@ abstract class Command protected constructor(val name: String) {
      */
     private fun setHelpMessage() {
         helpMessage = if (subCommands.size == 0) String.format(
-            "Command name: %s\nParameters: %s\nAliases: %s\n",
+            "Command name: %s\nParameters: %s\n",
             name,
             this.args
         ) else """The command "${name}" ${if (subCommandRequired) "has to" else "can"} be followed by a sub-command
-${if (subCommandRequired) "" else "When used without a subcommand $noSubCommandDescription"}
-The possible sub-commands are: 
-${subCommands.keys}
-To show a help message for a specific sub-command use: /help ${name} [sub-command name]"""
+                ${if (subCommandRequired) "" else "When used without a subcommand $noSubCommandDescription"}
+                The possible sub-commands are: 
+                ${subCommands.keys}
+                To show a help message for a specific sub-command use: /help ${name} [sub-command name]""".trimIndent()
     }
 
     protected fun checkTreatAsSubCommand(args: Array<String>): Boolean =
-        if(args.isEmpty() && subCommandRequired)
-            false.also{showSCErrorMessage(scRequiredErrMsg)} //Tell the user that an arg is required
-        else isValidSubCommand(args[0]).also { showSCErrorMessage(args[0] + invalidSCErrMsg) }
+        if(args.isEmpty()) isSubCommandRequired()
+        else isValidSubCommand(args[0])
 
+    private fun isSubCommandRequired() =
+        if(subCommandRequired) true.also{showSCErrorMessage(scRequiredErrMsg)} //Tell the user that an arg is required
+        else false
     private val subcommandNames: String
         private get() {
             var subcommandNames = ""
@@ -213,7 +216,10 @@ To show a help message for a specific sub-command use: /help ${name} [sub-comman
 
     protected fun removeSubCommand(commandName: String) = subCommands.remove(commandName)
 
-    private fun isValidSubCommand(name: String): Boolean = name in subCommands.keys
+    private fun isValidSubCommand(name: String): Boolean =
+        if(name in subCommands.keys)
+            true
+        else false.also{showSCErrorMessage(args[0] + invalidSCErrMsg)}
 
     fun getSubCommand(name: String): SubCommand? {
         if (!isValidSubCommand(name)) say("No sub-command \"$name\" exists")
@@ -258,7 +264,7 @@ To show a help message for a specific sub-command use: /help ${name} [sub-comman
         resetEmbedBuilder()
     }
     operator fun invoke(event : MessageReceivedEvent) = setEvent(event)(Parser.parse(event.message.contentRaw))
-    operator fun invoke(commandText: CommandContainer){
+    open operator fun invoke(commandText: CommandContainer){
         usedCommandName = commandText.commandName
         args = commandText.args
         if (checkTreatAsSubCommand(args)) {
@@ -287,6 +293,7 @@ To show a help message for a specific sub-command use: /help ${name} [sub-comman
     }
 
     operator fun invoke(event: SlashCommandInteractionEvent){
+        log.info("Reaction to slash command interaction by ${event.member}")
         reply = event.deferReply()
         scEvent = event
         this(event as Interaction)
@@ -328,7 +335,7 @@ To show a help message for a specific sub-command use: /help ${name} [sub-comman
         infix fun to(fileName: String) = saveImage(url, fileName)
     }*/
 
-    open var targetMember: Member = member
+    open var targetMember: Member? = null
         get() {
             if (scEvent != null) {
                 val tags = scEvent!!.getOptionsByType(OptionType.USER)
@@ -374,7 +381,8 @@ To show a help message for a specific sub-command use: /help ${name} [sub-comman
 
     protected infix fun tts(message: String): Message = BotAction.tts(channel, message)
     protected fun replyWithEmbed() = reply!!.addEmbeds(finalEmbed).complete()
-    protected var mentions = message.mentions.members
+    protected var mentions : List<Member> = ArrayList<Member>()
+        get() = message.mentions.members
 
     private val finalEmbed: MessageEmbed
         private get() = eb!!.setFooter(Bot.jda!!.selfUser.name).setTimestamp(Instant.now()).build()

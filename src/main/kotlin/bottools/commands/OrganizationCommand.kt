@@ -16,6 +16,8 @@ class OrganizationCommand(name: String) : SubCommand(name) {
         parent(commandName)
     }
 
+    override fun invoke(args: Array<String>) {}
+
     fun addCommand(alias: String, command: String = alias): OrganizationCommand {
         subCommands[alias] = command
         helpMessage = "$helpMessage $command"
