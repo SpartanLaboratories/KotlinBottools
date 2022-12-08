@@ -1,6 +1,7 @@
 package bottools.main
 
-import bottools.botactions.BotAction
+import bottools.botactions.contains
+import bottools.botactions.say
 import bottools.commands.Command
 import bottools.dataprocessing.GuildDataParser
 import bottools.dataprocessing.XMLReader
@@ -116,11 +117,7 @@ abstract class Bot : Runnable {
     }
 
     protected abstract fun applyDailyUpdate(currentDate: String?)
-    protected fun createGuildDataParser(): GuildDataParser {
-        return GuildDataParser()
-    }
-
-    protected infix fun addPlugin(plugin: Plugin) = plugin()
+    protected fun createGuildDataParser() = GuildDataParser()
 
     companion object {
         @JvmField
@@ -142,27 +139,23 @@ abstract class Bot : Runnable {
         private var running = false
         private var debug = false
         private var startTime: Long = 0
-        private fun createAllSlashCommands() {
-            jda!!.updateCommands()
-                .addCommands(interactions)
-                .complete()
-        }
+        private fun createAllSlashCommands() = jda!!.updateCommands().addCommands(interactions).complete()
 
         fun handleCommand(commandText: CommandContainer, event: MessageReceivedEvent) {
             val commandName = commandText.commandName
+            val channel = event.channel
             if(commands.containsKey(commandName)){
-                val channel = event.channel
                 try {
                     commands[commandName]!!.setEvent(event).invoke(commandText)
                 } catch (ipe: InsufficientPermissionException) {
                     ipe.printStackTrace()
-                    BotAction.say(channel, "Insufficient permissions to perform this command")
+                    Bot say "Insufficient permissions to perform this command" in channel
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    BotAction.say(channel, "An error occured while trying to execute this command")
+                    Bot say "An error occured while trying to execute this command" in channel
                 }
             } else {
-                BotAction.say(event.channel, "This command does not exist")
+                Bot say "This command does not exist" in channel
             }
         }
 
@@ -186,11 +179,9 @@ abstract class Bot : Runnable {
 
         infix fun createCommand(command: Command) {
             commands[command.name] = command
-            if (command.isInteractible) interactions.add(command.commandData!!)
+            if (command.isInteractible) interactions.add(command.commandData)
         }
 
-        fun getCommand(name: String): Command? {
-            return commands[name]
-        }
+        fun getCommand(name: String): Command = commands[name]!!
     }
 }

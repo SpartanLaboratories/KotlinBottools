@@ -21,6 +21,7 @@ import java.net.URLConnection
 internal class Connector {
     private var reader: BufferedReader? = null
     private var connection: URLConnection? = null
+    private lateinit var savedURL: String
 
     @Volatile
     private var isOpen = false
@@ -46,7 +47,7 @@ internal class Connector {
      * @return Whether a connection was successfully established
      */
     @Synchronized
-    fun open(urlName: String): Boolean {
+    infix fun open(urlName: String): Boolean {
         log.info("Starting attempt to connect to url: {}", urlName)
         waitForTurn()
         val url = getURL(urlName)
@@ -76,7 +77,7 @@ internal class Connector {
         log.debug("A connection is ready to be opened")
     }
 
-    private fun getURL(urlName: String): URL {
+    private infix fun getURL(urlName: String): URL {
         return try {
             val url = URL(urlName)
             log.trace("URL formed successfully")
@@ -87,7 +88,7 @@ internal class Connector {
         }
     }
 
-    private fun openConnection(url: URL): URLConnection? {
+    private infix fun openConnection(url: URL): URLConnection? {
         log.trace("Attempting to open connection")
         return try {
             val connection = url.openConnection()
@@ -150,7 +151,7 @@ internal class Connector {
      * @param destinationFile - the file to which you are trying to save an image to
      * @return The file to which the image was saved.
      */
-    fun saveImage(imageUrl: String, destinationFile: String?): File {
+    fun saveImage(imageUrl: String, destinationFile: String): File {
         log.info("Saving an image from url: {},\tto file: {}", imageUrl, destinationFile)
         try {
             open(imageUrl)
@@ -168,7 +169,8 @@ internal class Connector {
         }
         return File(destinationFile)
     }
-
+    infix fun saveImage(imageURL:String) = this.also{savedURL = imageURL}
+    infix fun to(fileName:String) = saveImage(savedURL, fileName)
     /**
      * Skip the specified number of lines in the html data of the
      * most recently established connection
@@ -202,7 +204,7 @@ internal class Connector {
      * @return the result of the GET request as a String
      * or null if unable to GET
      */
-    operator fun get(URL: String): String? {
+    infix fun get(URL: String): String? {
         log.debug("Attempting a GET action on url: {}", URL)
         try {
             return Unirest.get(URL).asString().body

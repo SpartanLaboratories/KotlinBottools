@@ -1,7 +1,7 @@
 package bottools.commands
 
-import bottools.botactions.BotAction
-import bottools.botactions.online.OnlineAction
+import bottools.botactions.*
+import bottools.botactions.online.*
 import bottools.main.Bot
 import bottools.main.Parser
 import bottools.main.Parser.CommandContainer
@@ -136,20 +136,9 @@ abstract class Command protected constructor(val name: String) {
     fun help(subcommand: Array<String>) {
         if (subcommand.size == 0) help() else getSubCommand(subcommand[0])!!.help(getSecondaryArgs(subcommand))
     }
-
-    /**
-     * Outputs the given message in the text channel of the event set by [pullInteractionData(GuildMessageReceivedEvent)]
-     * @param message - the message that is to be written in the text channel
-     */
-    protected infix fun say(message: String): Message {
-        var message = message
-        message = if (message.length < 2000) message else message.substring(0, 1999)
-        return BotAction.say(channel, message)
-    }
-
-    protected infix fun show(url: String) = OnlineAction.sendImageInChannel(url, channel)
-
-    protected infix fun show(file: File) = BotAction.sendFileInChannel(channel, file)
+    infix fun say(message: String) = Bot say message in channel
+    protected infix fun show(url: String) = Bot show url in channel
+    protected infix fun show(file: File) = Bot send file in channel
 
     /**
      * Outputs the given message in the text channel of the event set by [pullInteractionData(GuildMessageReceivedEvent)].
@@ -157,7 +146,7 @@ abstract class Command protected constructor(val name: String) {
      * @param secondsDelay - the delay in seconds after which the message is to be written.
      * @param message - the message that is to be written in the text channel.
      */
-    protected fun say(secondsDelay: Int, message: String?) = channel!!.sendMessage(message!!).completeAfter(secondsDelay.toLong(), TimeUnit.SECONDS)
+    protected fun say(secondsDelay: Int, message: String?) = channel.sendMessage(message!!).completeAfter(secondsDelay.toLong(), TimeUnit.SECONDS)
 
     /**
      * Update the help message to reflect all the automatically gathered information about this command.
@@ -275,12 +264,9 @@ abstract class Command protected constructor(val name: String) {
         this(args)
     }
     protected abstract operator fun invoke(args : Array<String>)
-    fun say(message: Message) = BotAction.say(channel, message)
+    fun say(message: Message) = Bot send message in channel
 
-    protected fun makeInteractible(): SlashCommandData {
-        isInteractible = true
-        return slashCommandData
-    }
+    protected fun makeInteractible() = slashCommandData.also { isInteractible = true }
 
     open val commandData: CommandData
         get() = slashCommandData
@@ -390,8 +376,6 @@ abstract class Command protected constructor(val name: String) {
     open fun getOption(optionName: String): OptionMapping = scEvent!!.getOption(optionName)!!
 
     companion object {
-        fun greet(user: User) = Bot.jda!!.getTextChannelsByName("botspam", true)[0].sendMessage("fuck you " + user.asMention).queue()
-
         /**
          *
          * @param args the String[] that is to be converted to a String

@@ -19,25 +19,11 @@ class ServicePacketReader(packetName: String) : XMLReader() {
             return lines
         }
 
-    fun keyName(): String {
-        return value("keyname")
-    }
-
-    fun oldValue(): String {
-        return value("oldvalue")
-    }
-
-    private fun value(name: String): String {
-        return getValue(getChild(root, name))
-    }
-
-    fun writeValue(data: String?) {
-        setValue(getChild(root, "oldvalue"), data)
-    }
-
-    override fun setDocument(pathName: String) {
-        super.setDocument("bottools/services/$pathName.xml")
-    }
+    fun keyName() = value("keyname")
+    fun oldValue()= value("oldvalue")
+    private fun value(name: String) = getValue(getChild(root, name))
+    fun writeValue(data: String?) = setValue(getChild(root, "oldvalue"), data)
+    override fun setDocument(pathName: String) = super.setDocument("bottools/services/$pathName.xml")
 
     companion object {
         @JvmStatic

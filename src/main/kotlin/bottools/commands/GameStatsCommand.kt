@@ -92,11 +92,11 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
 
     protected abstract fun showStats(args: Array<String>)
     protected abstract fun lastGame(args: Array<String>)
-    protected abstract fun postPatchNotes(value: String?): Void
+    protected abstract fun postPatchNotes(value: String)
     private fun startPatchNotesService() {
         ServiceCommand.createService(
             "game services/$gameName",
-            { value: String? -> postPatchNotes(value) }, 3600
+            { value: String -> postPatchNotes(value) }, 3600
         )
     }
 }

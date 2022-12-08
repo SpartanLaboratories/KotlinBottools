@@ -15,7 +15,7 @@ abstract class CheckValueService protected constructor(private val packetName: S
         println("Created service: $packetName")
     }
 
-    private infix fun setInterval(interval: Int) = this.also {
+    private infix fun at(interval: Int) = this.also {
         this.interval = interval
     }
 
@@ -92,7 +92,7 @@ abstract class CheckValueService protected constructor(private val packetName: S
     companion object {
         @JvmStatic
         protected fun createService(service: CheckValueService, triggerAction: Consumer<String>, interval: Int) =
-            (service respondWith triggerAction setInterval interval)()
+            (service respondWith triggerAction at interval)()
     }
     override fun invoke(args: Array<String>){}
 }
