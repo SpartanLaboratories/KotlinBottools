@@ -310,12 +310,6 @@ abstract class Command protected constructor(val name: String) {
 
     open infix fun reply(message: String) = reply!!.setContent(message).complete()
     protected infix fun replyWith(message: String) = reply(message)
-
-    protected fun saveImage(url: String, fileName: String): File = OnlineAction.saveImage(url, fileName)
-    protected infix fun saveImage(url:String) : SaveImageAction = SaveImageAction(url)
-    protected inner class SaveImageAction internal constructor(val url: String){
-        infix fun to(fileName: String) = saveImage(url, fileName)
-    }
     /*
     protected inner class SaveImageAction internal constructor(val url: String){
         infix fun to(fileName: String) = saveImage(url, fileName)
@@ -338,7 +332,7 @@ abstract class Command protected constructor(val name: String) {
     }
 
     protected open infix fun addToSlashCommandData(subcommand: SubcommandData)          = slashCommandData!!.addSubcommands(subcommand)
-    open infix fun addToSlashCommandData(subcommandGroup: SubcommandGroupData)= slashCommandData!!.addSubcommandGroups(subcommandGroup)
+    open infix fun addToSlashCommandData(subcommandGroup: SubcommandGroupData)          = slashCommandData!!.addSubcommandGroups(subcommandGroup)
     protected open infix fun addToSlashCommandData(optionData: OptionData)              = slashCommandData!!.addOptions(optionData)
 
     protected infix operator fun plusAssign(name: String){ OrganizationCommand(name) }

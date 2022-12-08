@@ -70,9 +70,8 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
         }
 
         override operator fun invoke(args: Array<String>){
-            val id = userID
-            if(id.isNullOrBlank()) sendNoIDMessage()
-            else                   reply("The in-game ID of " + (targetMember?.user?.name) + " is " + id)
+            if(userID.isNullOrBlank()) sendNoIDMessage()
+            else                   reply("The in-game ID of " + (targetMember!!.user.name) + " is " + userID)
         }
     }
 

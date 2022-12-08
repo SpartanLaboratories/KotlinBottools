@@ -1,6 +1,7 @@
 package bottools.botactions.online
 
 import bottools.botactions.*
+import bottools.main.Bot
 import net.dv8tion.jda.api.entities.channel.Channel
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 import net.dv8tion.jda.api.utils.messages.MessageCreateData
@@ -27,7 +28,10 @@ private val connector = Connector()
  */
 fun sendImageInChannel(imageAddress: String, channel: MessageChannel) =
     sendFileInChannel(channel, connector saveImage imageAddress to "res/temp.png")
-
+data class SaveImageAction(val savedImage:String){
+    infix fun to(fileName: String) = connector saveImage savedImage to fileName
+}
+infix fun Bot.Companion.save(imageURL:String) = SaveImageAction(imageURL)
 /**
  * Returns the next line of the source HTML code from the URL you are currently
  * connected to
@@ -52,11 +56,7 @@ fun connect(URL: String?): Boolean = connector.open(URL!!)
  * @param URL to send a get request to
  * @return what is returned by the get request
  */
-fun get(URL: String): JSONObject {
-    val reader: Reader = StringReader(connector.get(URL))
-    return JSONObject(JSONTokener(reader))
-}
-
+fun get(URL: String): JSONObject = JSONObject(JSONTokener(StringReader(connector.get(URL))))
 /**
  * Closes the connection to the currently opened URL.
  * Must be done before opening another one.
@@ -70,7 +70,8 @@ fun closeConnection() = connector.close()
  * @param fileName the name of the file to which you want to save the image.
  * @return
  */
-fun saveImage(url: String, fileName: String): File = connector.saveImage(url, fileName)
+
+fun to(url: String, fileName: String): File = connector.saveImage(url, fileName)
 
 /**
  * Allows for easier browsing of html data by skipping the line
