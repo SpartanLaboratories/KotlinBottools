@@ -1,10 +1,7 @@
 package bottools.commands
 
-import bottools.botactions.online.OnlineAction
-import bottools.botactions.online.OnlineAction.closeConnection
-import bottools.botactions.online.OnlineAction.nextLine
+import bottools.botactions.online.*
 import bottools.dataprocessing.SourceKeyParser
-import org.json.JSONObject
 import java.io.IOException
 
 abstract class OnlineCommand
@@ -16,16 +13,8 @@ abstract class OnlineCommand
     name!!
 ) {
     private val keyParser = SourceKeyParser()
-    protected var data : String? = null
-        protected get() =
-        try {
-            data = nextLine
-            data
-        } catch (e: IOException) {
-            println("The online command: $name has failed to aquire data")
-            e.printStackTrace()
-            data
-        }
+    protected lateinit var data : String
+    protected fun nextLine() = bottools.botactions.online.nextLine.also { data = it }
 
     protected fun cutToAfter(searchTerm: String) {
         data = cutToAfter(data, searchTerm)
@@ -36,13 +25,12 @@ abstract class OnlineCommand
     }
 
     protected fun skipLines(amount: Int) {
-        for (i in 0 until amount) data
+        for (i in 0 until amount) nextLine()
     }
 
     @Throws(IOException::class)
-    protected fun skipLinesTo(lineStartSearchTerm: String?) {
-        data = OnlineAction.skipLinesTo(lineStartSearchTerm)
-    }
+    protected fun skipLinesTo(lineStartSearchTerm: String?) =
+        bottools.botactions.online.skipLinesTo(lineStartSearchTerm).also { data = it }
 
     @Throws(IOException::class)
     protected fun skipToContains(partOfData: String?) {
@@ -86,11 +74,7 @@ abstract class OnlineCommand
     }
 
     @Synchronized
-    protected fun connect(address: String?): Boolean {
-        return OnlineAction.connect(address)
-    }
+    protected fun connect(address: String?) = bottools.botactions.online.connect(address)
 
-    protected operator fun get(URL: String? = primaryAddress): JSONObject {
-        return OnlineAction[URL!!]
-    }
+    protected operator fun get(URL: String? = primaryAddress) = bottools.botactions.online.get(URL!!)
 }

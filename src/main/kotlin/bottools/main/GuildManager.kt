@@ -15,7 +15,8 @@ import java.awt.Color
 
 class GuildManager {
     private lateinit var currentGuild : Guild
-    private var defaultRole: Role? = null
+    private val defaultRole:Role
+        get() = currentGuild.getRoleById(D/currentGuild-"defaultRole")?:currentGuild.publicRole
     private var rankRequirements: HashMap<Int, ImmutablePair<String, Double>>? = null
 
     /**
@@ -24,14 +25,7 @@ class GuildManager {
      */
     fun loadGuild(guild: Guild) {
         currentGuild = guild
-        println("Loading guild: " + currentGuild.name)
-        try {
-            defaultRole = Bot.data.getDefaultRole(guild)
-            println("The guild default role is set to: " + defaultRole!!.name)
-        } catch (e: Exception) {
-            println("Could not load the default role for the guild: " + guild.name)
-        }
-        rankRequirements = Bot.data.getRankReqs(guild)
+        //rankRequirements = Bot.data.getRankReqs(guild)
     }
 
     /**
@@ -43,9 +37,9 @@ class GuildManager {
      */
     fun managePoints(member : Member, message: String?, hasImageAttachment: Boolean) {
         val previousPoints = D/currentGuild/member-"nPoints"
-        val numPoints: Double = if (Parser.startsWithTrigger(message!!)) 0.5 else 1.8
-        Bot.data.addPoints(member, numPoints)
-        val currentPoints = (D/currentGuild/member-"nPoints") as Double
+        val numPoints: Double = if (Parser startsWithTrigger message!! ) 0.5 else 1.8
+        val currentPoints = (previousPoints as Double) + numPoints
+        D/currentGuild/member/"nPoints"+currentPoints.toString()
         // TODO Rankup system
         //checkRankUp(currentGuild.getMember(user), previousPoints, currentPoints);
     }

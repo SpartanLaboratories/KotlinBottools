@@ -3,12 +3,13 @@ package bottools.commands
 import bottools.main.Parser.CommandContainer
 
 
-class OrganizationCommand(name: String) : SubCommand(name) {
+class OrganizationCommand(name: String, parent:Command) : SubCommand(name, parent) {
     private val subCommands = HashMap<String, String>()
     data class orgData(val alias: String, val trueName: String)
     init {
         isSubCommandRequired(true)
         helpMessage = "Can be followed by:"
+
     }
 
     override fun invoke(commandName: CommandContainer){

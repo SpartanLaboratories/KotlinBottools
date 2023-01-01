@@ -10,20 +10,7 @@ import java.net.URL
 import java.util.function.Consumer
 
 class RssService protected constructor(serviceName: String?) : CheckValueService(serviceName!!) {
-    var feed: SyndFeed? = null
-
-    init {
-        try {
-            feed = SyndFeedInput().build(XmlReader(URL(packet.uRL)))
-        } catch (e: IllegalArgumentException) {
-            // TODO Auto-generated catch block
-            e.printStackTrace()
-        } catch (e: FeedException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
+    var feed = SyndFeedInput().build(XmlReader(URL(packet.uRL)))
 
     public override fun loop() {
         println("Testing rss feed service")

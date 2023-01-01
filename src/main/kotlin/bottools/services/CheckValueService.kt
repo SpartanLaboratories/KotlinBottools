@@ -5,13 +5,14 @@ import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.util.function.Consumer
 
-abstract class CheckValueService protected constructor(private val packetName: String) : OnlineCommand(packetName), Runnable {
+abstract class CheckValueService protected constructor(private val packetName: String)
+    : OnlineCommand(packetName.split('/')[1]), Runnable {
     private var interval = 0
     private var onChange: Consumer<String>? = null
-    protected var packet: ServicePacketReader
+    protected var packet: ServicePacketReaderBase
     private val log = LoggerFactory.getLogger(this::class.java)
     init {
-        packet = ServicePacketReader(packetName)
+        packet = ServicePacketReaderBase(packetName)
         println("Created service: $packetName")
     }
 
@@ -41,7 +42,7 @@ abstract class CheckValueService protected constructor(private val packetName: S
         initialSleep()
         while (true) {
             log.info("The service $name is starting a check")
-            packet = ServicePacketReader(packetName)
+            packet = ServicePacketReaderBase(packetName)
             loop()
             sleep()
         }
@@ -56,38 +57,28 @@ abstract class CheckValueService protected constructor(private val packetName: S
         it.onChange = onChange
     }
 
-    private fun valueChanged(): Boolean {
-        return !data.equals(packet.oldValue())
-    }
-
-    protected fun checkValues() {
-        if (valueChanged()) {
+    protected fun checkValues() =
+        if (data != packet.oldValue) {
             log.debug("$name found a new value: $data")
-            packet.writeValue(data)
+            packet.oldValue = data!!
             triggerResponce(data!!)
         } else log.debug("$name detected no changes")
-    }
 
     protected fun navigate() {
         skipLines()
         disconnect()
-        value
+        data = getValueFromKey(packet.keyName)
     }
 
     private fun skipLines() {
-        packet.skipLineData.forEach(Consumer { key: String? ->
+        packet.skipLineData.forEach { key: String ->
             try {
                 skipLinesTo(key)
             } catch (e: IOException) {
                 log.error("The service: $name has failed to perform a check")
             }
-        })
-    }
-
-    private val value: Unit
-        private get() {
-            data = getValueFromKey(packet.keyName())
         }
+    }
 
     companion object {
         @JvmStatic

@@ -1,51 +1,34 @@
 package bottools.dataprocessing
 
+import org.checkerframework.checker.units.qual.K
 import org.w3c.dom.Node
 import java.util.*
 
 class SourceKeyParser {
-    private val reader: XMLReader = XMLReader()
+    private val reader: BaseXMLReader = BaseXMLReader()
 
     init {
         reader.setDocument("WebParseKeys.xml")
     }
 
     fun getKeys(searchedName: String): KeySet {
-        val root: Node = reader.root // Keys
-        var key: Node = reader.stepDown(root) // Key
-        var nameNode: Node = reader.stepDown(key)
-        try {
-            while (true) {
-                if (nameNode.nodeName != "name") {
-                    key = reader.stepOver(key)
-                    nameNode = reader.stepDown(key)
-                    continue
+        val keySet = KeySet()
+        for(keyNode in reader.root.children()) {
+             if(keyNode-"name" != searchedName) continue
+             keyNode.children().forEach{
+                when(it.nodeName.lowercase()){
+                 "initial" -> keySet.addInitial(it.getValue())
+                 "alternate" -> keySet.addAlternative(it.getValue())
+                 "validation" -> keySet.addValidation(it.getValue())
+                 "terminal" -> keySet.terminal = it.getValue()
                 }
-                if (compare(nameNode, searchedName)) {
-                    val keySet: KeySet = KeySet()
-                    var keyTerm: Node = reader.stepOver(nameNode)
-                    while (true) {
-                        when (keyTerm.nodeName.lowercase(Locale.getDefault())) {
-                            "initial" -> keySet.addInitial(reader.getValue(keyTerm))
-                            "alternate" -> keySet.addAlternative(reader.getValue(keyTerm))
-                            "validation" -> keySet.addValidation(reader.getValue(keyTerm))
-                            "terminal" -> keySet.terminal = reader.getValue(keyTerm)
-                        }
-                        if (keyTerm.nodeName == "terminal") return keySet
-                        keyTerm = reader.stepOver(keyTerm)
-                    }
-                } else nameNode = reader.stepOver(nameNode)
-            }
-        } catch (e: Exception) {
-            println("Unable to find web key: $searchedName")
-            e.printStackTrace()
-            throw IllegalArgumentException()
+             }
+             break
         }
+        return keySet
     }
 
-    private fun compare(nameNode: Node, searchedName: String): Boolean {
-        return reader.getValue(nameNode).equals(searchedName)
-    }
+    private fun compare(nameNode: Node, searchedName: String) = reader.getValue(nameNode) == searchedName
 
     inner class KeySet internal constructor() {
         @JvmField

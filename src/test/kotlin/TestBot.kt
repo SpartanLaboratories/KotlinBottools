@@ -1,6 +1,5 @@
 import bottools.main.Bot
 import bottools.plugins.Plugins
-import java.util.ArrayList
 
 fun main() {
     KotBot()
@@ -8,6 +7,7 @@ fun main() {
 class KotBot : Bot() {
     override fun listCommands() {
         Plugins.REACTIONROLES()
+        Bot createCommand DotaCommand()
     }
 
     override fun applyDailyUpdate(currentDate: String?) {

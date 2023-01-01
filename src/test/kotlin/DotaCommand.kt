@@ -1,20 +1,21 @@
 import bottools.commands.GameStatsCommand
 
 class DotaCommand: GameStatsCommand("DOTA2") {
+    init{
+        createPatchNotesService()
+    }
     override fun showStats(args: Array<String>) {
-        TODO("Not yet implemented")
+        println("show stats test proc")
     }
 
     override fun lastGame(args: Array<String>) {
-        TODO("Not yet implemented")
+        println("last game test proc")
     }
 
-    override fun postPatchNotes(value: String?): Void {
-        TODO("Not yet implemented")
+    override fun postPatchNotes(value: String){
+        println("post patch notes test proc")
     }
 
-    override fun invoke(args: Array<String>) {
-        TODO("Not yet implemented")
-    }
+    override fun invoke(args: Array<String>) {}
 
 }

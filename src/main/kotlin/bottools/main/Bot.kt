@@ -3,10 +3,10 @@ package bottools.main
 import bottools.botactions.contains
 import bottools.botactions.say
 import bottools.commands.Command
-import bottools.dataprocessing.GuildDataParser
-import bottools.dataprocessing.XMLReader
+import bottools.commands.HelpCommand
+import bottools.dataprocessing.BaseXMLReader
+import bottools.dataprocessing.D
 import bottools.main.Parser.CommandContainer
-import bottools.plugins.Plugin
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent
@@ -40,16 +40,14 @@ abstract class Bot : Runnable {
         debug = false
         startTime = System.currentTimeMillis() + 18 * 3600000
         // My systems
-        data = createGuildDataParser()
         console = Console()
-        console!!.start()
+        console.start()
         // Bot setup
         initializeBotExistence() //Initial bot setup
-        //createCommand(HelpCommand())
-        listCommands() //Old school commands setup
-        createAllSlashCommands()
+        createCommand(HelpCommand())
+        listCommands()
         // My Systems again
-        data!!.updateServerDatabase() //Must be after bot and console initialization
+        D.updateServerDatabase() //Must be after bot and console initialization
         reader.setDocument("BotData.xml")
         //new Thread(this).start();
     }
@@ -100,7 +98,7 @@ abstract class Bot : Runnable {
         do {
             try {
                 log.info("Starting central process")
-                val dateNode: Node = reader.getChild(reader.root, "lastdailyupdate")
+                val dateNode: Node = reader.getChild(reader.root, "lastdailyupdate")!!
                 val lastDate: String = reader.getValue(dateNode)
                 log.info("The last daily update was on $lastDate")
                 val now = Instant.now().atOffset(ZoneOffset.ofHours(-8))
@@ -117,7 +115,6 @@ abstract class Bot : Runnable {
     }
 
     protected abstract fun applyDailyUpdate(currentDate: String?)
-    protected fun createGuildDataParser() = GuildDataParser()
 
     companion object {
         @JvmField
@@ -127,14 +124,13 @@ abstract class Bot : Runnable {
         private val interactions = ArrayList<CommandData>()
         @JvmField
         var responder: Responder? = null
-        lateinit var data: GuildDataParser
         //var guildManager: GuildManager = GuildManager
         var commandNameList = ArrayList<String>()
         var keys = arrayOfNulls<String>(3)
         private lateinit var console: Console
 
         //private static Console guiConsole = new GuiConsole();
-        protected val reader = XMLReader()
+        protected val reader = BaseXMLReader()
         private lateinit var listener: BotListener
         private var running = false
         private var debug = false
@@ -161,7 +157,7 @@ abstract class Bot : Runnable {
 
         fun stop() {
             jda!!.shutdown()
-            console!!.stop()
+            console.stop()
             running = false
         }
 

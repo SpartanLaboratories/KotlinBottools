@@ -17,21 +17,17 @@ import java.nio.file.Paths
 import java.util.*
 import java.util.function.Consumer
 
-val D = GuildDataParser()
-val B = GuildDataParser()
-
+/*
 @Suppress("unused")
-class GuildDataParser {
+class GuildDataParser(private val reader: BaseXMLReader = BaseXMLReader()) : XMLReader by reader {
     val log = LoggerFactory.getLogger(GuildDataParser::class.java)
-    private val reader = XMLReader()
+
     private lateinit var guildPath : String
     private val playlistDecoder = PlaylistDecoder()
     private lateinit var member : Member
     operator fun div(guild: Guild) = this inServer guild
-    operator fun div(person : Member) : Node {
-        this forMember person
-        return reader.root
-    }
+    operator fun div(person : Member) = this forMember person
+    operator fun div(nodeName:String) = reader.root/nodeName
     infix fun inServer(guild : Guild) : GuildDataParser {
         this setPathTo guild
         reader setDocument guildPath + "GuildData.xml"
@@ -58,15 +54,12 @@ class GuildDataParser {
     private infix fun getPromotionPoints(member : Member): String = this goTo member getChild "nPoints" then ::getValue
 
     private infix fun getValue(node :Node) = node.getValue()
-    private infix fun getChildren(node: Node) = node.getChildNodes()
 
     @Synchronized
     fun updateServerDatabase() {
         // DO NOT DELETE    use if the infinite whitespace in xml files bug occurs again
         //for(Guild g: Botmain.jda.getGuilds())Trimmer.trim("%USERPROFILE%\\OneDrive\\Documents\\Programming\\workspace\\TrumpBotTest\\guildData\\" + g.getName() + "\\MemberData.xml");
-        Bot.jda!!.guilds.forEach(Consumer { guild: Guild ->
-            updateServerDatabase(guild)
-        })
+        Bot.jda!!.guilds.forEach(::updateServerDatabase)
         //Botmain.out("Finished updating server member database")
     }
 
@@ -75,24 +68,26 @@ class GuildDataParser {
         val actualMembers = guild.loadMembers().get()
         for (member in actualMembers) {
             log.debug("Found guild member named: ${member.user.name}")
-            if(member.user.name !in filedMembers){
-                log.debug("This member is not yet in the database. Creating new data node...")
-                reader at reader.root createCategory "Person"
-                    reader create "tName"       containing member.user.name
-                    reader create "keyid"
-                    reader create "nPoints"     containing "0.0"
-                    reader create "match"       containing "none"
-                    reader create "requestedby" containing "none"
-                    reader create "money"       containing "1000"
-                    reader create "IDs"
-
-                    reader createCategory "time"
-                        reader create "timezone"    containing "none"
-                        reader create "dston"       containing "false"
-                        reader create "dststart"    containing "none"
-                        reader create "dstend"      containing "none"
-            }
+            if(member.user.name !in filedMembers)
+                createMemberEntry()
         }
+    }
+    private fun createMemberEntry(){
+        log.debug("This member is not yet in the database. Creating new data node...")
+        reader at reader.root createCategory "Person"
+            reader create "tName"       containing member.user.name
+            reader create "keyid"
+            reader create "nPoints"     containing "0.0"
+            reader create "match"       containing "none"
+            reader create "requestedby" containing "none"
+            reader create "money"       containing "1000"
+            reader create "IDs"
+
+            reader createCategory "time"
+                reader create "timezone"    containing "none"
+                reader create "dston"       containing "false"
+                reader create "dststart"    containing "none"
+                reader create "dstend"      containing "none"
     }
 
     fun setDSTon(guild: Guild, member: Member, on: Boolean) {
@@ -179,21 +174,10 @@ class GuildDataParser {
         node = reader.stepOver(node, 2)
         reader.setValue(node, message)
     }
-    private fun retriveNames(): ArrayList<String> {
-        val names = ArrayList<String>()
-        val root: Node = reader.root // The top level element in the document
-        log.debug("Root: " + root.nodeName) // Debug info
-        var person: Node = reader.stepDown(root)
-        var memberName: Node
-        do {
-            memberName = reader.stepDown(person) // Gets the <name> tag
-            val nodeValue: String = reader.getValue(memberName) // Gets the name text value
-            names.add(nodeValue) // Adds the name to the list of names
-            log.debug("Found person: $nodeValue in the database")
-        } while (reader.stepOver(person).also { person = it } != null)
-        return names
-    }
-
+    private fun retriveNames(): List<String> =
+        with(root.children()){
+            List(size){index -> get(index).nodeName}
+        }
     private infix fun goTo(member : Member) : Node = this getPersonNode member.user.name
     private infix fun getPersonNode(username: String): Node {
         var username = username
@@ -631,15 +615,15 @@ class GuildDataParser {
     fun createGuildDatabase(guild: Guild) {
         setPathTo(guild)
         File(guildPath).mkdirs()
-        val guildData = Arrays.asList(
+        val guildData = listOf(
             "<data>",
             "<defaultRole>online</defaultRole>",
             "<welcomeMessage>hello</welcomeMessage>",
             "<d2matchinfochannel>none</d2matchinfochannel>",
             "<dotapatchnoteschannel>none</dotapatchnoteschannel>",
-            "</data>",
             "<welcomeMessages></welcomeMessages>",
-            "<reactionRoles></reactionRoles>"
+            "<reactionRoles></reactionRoles>",
+            "</data>",
         )
         val guildDataPath = Paths.get(guildPath + "GuildData.xml")
         val people = Arrays.asList("<People>\n", "</People>")
@@ -705,4 +689,4 @@ class GuildDataParser {
     }
 }
 
-fun NodeList.getNodeNameAt(i : Int) : String = this.item(i).nodeName
+ */

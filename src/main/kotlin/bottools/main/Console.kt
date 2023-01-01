@@ -1,5 +1,6 @@
 package bottools.main
 
+import bottools.dataprocessing.D
 import bottools.main.Parser.CommandContainer
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Member
@@ -41,7 +42,7 @@ class Console : Thread() {
     private fun parse(command: String): Boolean {
         commandInfo = Parser.parse(command)
         args.addAll(commandInfo.args)
-        name = commandInfo!!.commandName
+        name = commandInfo.commandName
         return when (name) {
             "set" -> {
                 if (commandInfo!!.args == null || args.size == 0) log.info("Invalid command arguments")
@@ -75,7 +76,7 @@ class Console : Thread() {
             }
 
             "update" -> {
-                Bot.data.updateServerDatabase()
+                D.updateServerDatabase()
                 true
             }
 
@@ -92,18 +93,18 @@ class Console : Thread() {
             }
 
             "addtag" -> {
-                if (args.size == 3) Bot.data.addTag(
+                if (args.size == 3) D.addTag(
                     args[0],
                     args[1],
                     args[2]
-                ) else if (args.size == 2) Bot.data.addTag(
+                ) else if (args.size == 2) D.addTag(
                     args[0], args[1], ""
                 )
                 true
             }
 
             "removetag" -> {
-                Bot.data.removeTag(args[0], args[1])
+                D.removeTag(args[0], args[1])
                 true
             }
 
@@ -114,7 +115,8 @@ class Console : Thread() {
 
             "checkpersoncontents" -> {
                 val guild = Bot.jda!!.getGuildsByName(this.guild, true)[0]
-                for (s in Bot.data.getContents(guild, args[0])) out(s)
+                val person = guild.getMembersByEffectiveName(args[0],true).get(0)
+                (D/guild/person).readAll().forEach { out("${it.nodeName}: ${it.nodeValue}") }
                 true
             }
 

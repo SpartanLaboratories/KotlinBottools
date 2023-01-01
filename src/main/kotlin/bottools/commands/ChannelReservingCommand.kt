@@ -12,7 +12,7 @@ abstract class ChannelReservingCommand protected constructor(commandName: String
 
     abstract override fun invoke(args: Array<String>)
     protected fun preExecute() {}
-    protected inner class SCReserve : SubCommand("reserve") {
+    protected inner class SCReserve : SubCommand("reserve", this@ChannelReservingCommand) {
         init {
             helpMessage = """
                 Reserves this text channel to be used exclusively by this command.
@@ -29,7 +29,7 @@ abstract class ChannelReservingCommand protected constructor(commandName: String
         }
     }
 
-    protected inner class SCUnreserve : SubCommand("unreserve") {
+    protected inner class SCUnreserve : SubCommand("unreserve", this@ChannelReservingCommand) {
         init {
             helpMessage = "Removes the reservation for this channel"
         }

@@ -2,11 +2,9 @@ package bottools.botactions
 
 import bottools.main.Bot
 import net.dv8tion.jda.api.entities.Message
-import net.dv8tion.jda.api.entities.channel.Channel
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 import net.dv8tion.jda.api.entities.emoji.Emoji
 import net.dv8tion.jda.api.utils.FileUpload
-import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder
 import net.dv8tion.jda.api.utils.messages.MessageCreateData
 import org.slf4j.LoggerFactory
 import java.io.File

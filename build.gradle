@@ -5,6 +5,8 @@ plugins {
     id 'java-library'
     id 'java'
     id 'maven-publish'
+
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
 sourceSets {
@@ -12,7 +14,7 @@ sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
 }
 
-group = 'org.example'
+//group = 'org.example'
 version = '7.5-SNAPSHOT'
 
 repositories {
@@ -20,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'net.dv8tion:JDA:5.0.0-alpha.20'
+    api 'net.dv8tion:JDA:5.0.0-beta.2'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.

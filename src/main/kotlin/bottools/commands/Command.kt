@@ -1,7 +1,6 @@
 package bottools.commands
 
 import bottools.botactions.*
-import bottools.botactions.online.*
 import bottools.main.Bot
 import bottools.main.Parser
 import bottools.main.Parser.CommandContainer
@@ -20,8 +19,16 @@ import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.time.Instant
-import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
+import kotlin.collections.Collection
+import kotlin.collections.HashMap
+import kotlin.collections.List
+import kotlin.collections.MutableList
+import kotlin.collections.forEach
+import kotlin.collections.isEmpty
+import kotlin.collections.set
+import kotlin.collections.sliceArray
 
 /**
  * The command superclass that all command subclasses inherit from. When creating a new command subclass it must
@@ -306,7 +313,7 @@ abstract class Command protected constructor(val name: String) {
     protected open fun addOption(option: Option): Command  = this.also{
         slashCommandData.addOptions(option)
     }
-    operator fun plus(option: Option) = addOption(option)
+    open operator fun plus(option: Option) = addOption(option)
 
     open infix fun reply(message: String) = reply!!.setContent(message).complete()
     protected infix fun replyWith(message: String) = reply(message)
@@ -326,21 +333,20 @@ abstract class Command protected constructor(val name: String) {
 
     protected open fun generateSlashCommandData() {
         slashCommandData = Commands.slash(
-            name,
+            name.lowercase(),
             description!!
         )
     }
 
-    protected open infix fun addToSlashCommandData(subcommand: SubcommandData)          = slashCommandData!!.addSubcommands(subcommand)
-    open infix fun addToSlashCommandData(subcommandGroup: SubcommandGroupData)          = slashCommandData!!.addSubcommandGroups(subcommandGroup)
-    protected open infix fun addToSlashCommandData(optionData: OptionData)              = slashCommandData!!.addOptions(optionData)
+    protected open infix fun addToSlashCommandData(subcommand: SubcommandData)          = slashCommandData.addSubcommands(subcommand)
+    open infix fun addToSlashCommandData(subcommandGroup: SubcommandGroupData)          = slashCommandData.addSubcommandGroups(subcommandGroup)
+    protected open infix fun addToSlashCommandData(optionData: OptionData)              = slashCommandData.addOptions(optionData)
 
-    protected infix operator fun plusAssign(name: String){ OrganizationCommand(name) }
-    protected infix operator fun plus(name: String) = OrganizationCommand(name)
+    protected infix operator fun plusAssign(name: String){ OrganizationCommand(name, this) }
+    protected infix operator fun plus(name: String) = OrganizationCommand(name, this)
 
     operator fun plus(subcommand: SubCommand) = this.also {
         addSubCommand(subcommand)
-        subcommand.orient(this )
     }
 
     protected fun resetChannel(): MessageChannel =
@@ -359,13 +365,13 @@ abstract class Command protected constructor(val name: String) {
         messageEvent!!.message.
         also { message = it }
 
-    protected infix fun tts(message: String): Message = BotAction.tts(channel, message)
+    protected infix fun tts(message: String): Message = tts(channel, message)
     protected fun replyWithEmbed() = reply!!.addEmbeds(finalEmbed).complete()
     protected var mentions : List<Member> = ArrayList<Member>()
         get() = message.mentions.members
 
     private val finalEmbed: MessageEmbed
-        private get() = eb!!.setFooter(Bot.jda!!.selfUser.name).setTimestamp(Instant.now()).build()
+        private get() = eb.setFooter(Bot.jda!!.selfUser.name).setTimestamp(Instant.now()).build()
 
     open fun getOption(optionName: String): OptionMapping = scEvent!!.getOption(optionName)!!
 

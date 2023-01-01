@@ -1,5 +1,6 @@
 package bottools.main
 
+import bottools.dataprocessing.D
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
@@ -33,19 +34,22 @@ internal class BotListener : ListenerAdapter() {
     }
 
     private infix fun defaultOnGuildJoinAction(event: GuildJoinEvent) {
-        val joinedServer = event.guild
-        val serverName = joinedServer.name
-        log.info("Successfully joined the server: {}", serverName)
+        log.info("Successfully joined the server: $event.guild.name")
+        D.createGuildDatabase(event.guild)
     }
 
     private fun defaultOnGuildMemberJoinAction(event: GuildMemberJoinEvent) {
         log.info("The user {} has joined the guild {}", event.user.name, event.guild.name)
-        Bot.data.updateServerDatabase()
+        D.updateServerDatabase()
         log.info("Guild member database has been updated")
 
         // Gives the new guild member the specified default role
         log.info("Adding the default role to the new member")
-        //event.guild.addRoleToMember(event.member, Botmain.gdp.getDefaultRole(event.guild)).complete()
+        event.guild.let {
+            with(it.getRoleById(D/it-"defaultrole")){
+                it.addRoleToMember(event.member, this!!).complete()
+            }
+        }
     }
 
     private fun defaultOnGuildUpdateNameAction(event: GuildUpdateNameEvent) =

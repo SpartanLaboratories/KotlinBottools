@@ -1,5 +1,6 @@
 package bottools.plugins
 
+import bottools.dataprocessing.D
 import bottools.main.Bot
 import bottools.main.newMessageDeleteAction
 import bottools.main.newMessageReactionAddAction
@@ -15,11 +16,13 @@ fun interface Plugin {
 
 object Plugins {
     val REACTIONROLES = Plugin {
+        D.addTagFile("src/main/resources/ReactionRoles.xml")
         Bot createCommand AddReactionRole()
         Bot createCommand CreateMainWelcomeMessage()
-        val responder = Bot.responder!!
-        responder newMessageReactionAddAction   ReactionRoleActions::giveReactionRole
-        responder newMessageDeleteAction        ReactionRoleActions::removeDeletedWelcomeMessage
+        Bot.responder!!.let{
+            it newMessageReactionAddAction  ReactionRoleActions::giveReactionRole
+            it newMessageDeleteAction       ReactionRoleActions::removeDeletedWelcomeMessage
+        }
     }
 
     private fun isSpam(event: MessageReceivedEvent): Boolean {

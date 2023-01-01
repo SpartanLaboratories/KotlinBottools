@@ -2,14 +2,11 @@ package bottools.botactions.online
 
 import bottools.botactions.*
 import bottools.main.Bot
-import net.dv8tion.jda.api.entities.channel.Channel
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
-import net.dv8tion.jda.api.utils.messages.MessageCreateData
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.io.File
 import java.io.IOException
-import java.io.Reader
 import java.io.StringReader
 
 /**

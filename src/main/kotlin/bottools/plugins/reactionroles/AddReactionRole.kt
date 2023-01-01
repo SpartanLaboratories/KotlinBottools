@@ -3,6 +3,8 @@ package bottools.plugins.reactionroles
 import bottools.commands.Command
 import bottools.commands.Option
 import bottools.dataprocessing.D
+import bottools.dataprocessing.containing
+import bottools.dataprocessing.minus
 import bottools.main.Bot
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Role
@@ -53,10 +55,15 @@ class AddReactionRole : Command("addreactionrole") {
         say("Role was not found. Second option must be a role that is found in this server")
     }
 
-    private fun makeReactionRole(guild: Guild, emote: Emoji, role: Role) = Bot.data.addReactionRole(guild, emote, role)
+    private fun makeReactionRole(guild: Guild, emote: Emoji, role: Role) {
+        val reactionRoles = D/guild/"reactionRoles"
+        reactionRoles createCategory "reactionRole"
+            reactionRoles create "reaction" containing emote.asReactionCode
+            reactionRoles create "role"     containing role.id
+    }
 
     companion object {
-        fun getCorrespondingRole(guild: Guild, emote: Emoji) = guild.getRoleById((D/guild).getCorrespondingRoleID(emote)!!)
+
 
         @JvmStatic
 		fun getEmoteList(guild: Guild): List<Emoji> {

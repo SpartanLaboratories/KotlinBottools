@@ -3,7 +3,6 @@ package bottools.services
 import bottools.dataprocessing.D
 import bottools.dataprocessing.div
 import bottools.dataprocessing.minus
-import bottools.main.Bot
 import net.dv8tion.jda.api.entities.Guild
 import java.util.function.Consumer
 
