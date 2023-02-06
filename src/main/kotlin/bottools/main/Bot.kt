@@ -46,6 +46,7 @@ abstract class Bot : Runnable {
         initializeBotExistence() //Initial bot setup
         createCommand(HelpCommand())
         listCommands()
+        createAllSlashCommands()
         // My Systems again
         D.updateServerDatabase() //Must be after bot and console initialization
         reader.setDocument("BotData.xml")
@@ -99,7 +100,7 @@ abstract class Bot : Runnable {
             try {
                 log.info("Starting central process")
                 val dateNode: Node = reader.getChild(reader.root, "lastdailyupdate")!!
-                val lastDate: String = reader.getValue(dateNode)
+                val lastDate: String = reader.getValue(dateNode)!!
                 log.info("The last daily update was on $lastDate")
                 val now = Instant.now().atOffset(ZoneOffset.ofHours(-8))
                 val currentDay = now.dayOfMonth
@@ -157,7 +158,7 @@ abstract class Bot : Runnable {
 
         fun stop() {
             jda!!.shutdown()
-            console.stop()
+            console.interrupt()
             running = false
         }
 

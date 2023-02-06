@@ -1,5 +1,6 @@
 package bottools.botactions.online
 
+import com.mashape.unirest.http.HttpClientHelper.request
 import com.mashape.unirest.http.Unirest
 import com.mashape.unirest.http.exceptions.UnirestException
 import org.slf4j.LoggerFactory
@@ -7,6 +8,15 @@ import java.io.*
 import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLConnection
+import it.skrape.core.htmlDocument
+import it.skrape.selects.and
+import it.skrape.selects.eachImage
+import it.skrape.selects.eachText
+import it.skrape.selects.html5.a
+import it.skrape.selects.html5.div
+import it.skrape.selects.html5.p
+import it.skrape.selects.html5.span
+import org.jsoup.Jsoup
 
 /**
  * This class handles the lowest level online actions.
@@ -36,6 +46,7 @@ internal class Connector {
     init {
         Unirest.setTimeouts(0, 0)
         log.info("Connector was created successfully")
+
     }
 
     /**
@@ -91,9 +102,9 @@ internal class Connector {
     private infix fun openConnection(url: URL): URLConnection? {
         log.trace("Attempting to open connection")
         return try {
-            val connection = url.openConnection()
-            log.trace("Successfully opened a url connection")
-            connection
+            url.openConnection().also{
+                log.trace("Successfully opened a url connection")
+            }
         } catch (e: IOException) {
             log.error("A connection to the URL: {} could not be opened", url)
             e.printStackTrace()
@@ -122,6 +133,7 @@ internal class Connector {
             }
             if (!reader!!.ready()) {
                 log.error("A reader was created but is not ready")
+                log.error(data)
                 return false
             }
             log.trace("Reader was validated")
@@ -154,15 +166,13 @@ internal class Connector {
     fun saveImage(imageUrl: String, destinationFile: String): File {
         log.info("Saving an image from url: {},\tto file: {}", imageUrl, destinationFile)
         try {
-            open(imageUrl)
-            val `is` = connection!!.getInputStream()
+            val `is` = Jsoup.connect(imageUrl).ignoreContentType(true).execute().bodyStream()
             val os: OutputStream = FileOutputStream(destinationFile)
             val b = ByteArray(2048)
             var length: Int
             while (`is`.read(b).also { length = it } != -1) os.write(b, 0, length)
             `is`.close()
             os.close()
-            close()
         } catch (e: IOException) {
             log.error("Could not save image from url: $imageUrl")
             e.printStackTrace()
@@ -192,6 +202,7 @@ internal class Connector {
      */
     @Throws(IOException::class)
     operator fun next() : String{
+        log.info("Attemped next(). Data was: $data ")
         data = reader!!.readLine()
         return data!!
     }

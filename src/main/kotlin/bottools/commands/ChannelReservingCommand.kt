@@ -7,7 +7,8 @@ abstract class ChannelReservingCommand protected constructor(commandName: String
     private val reserved = HashMap<Guild, SingleChannelListener>()
 
     init {
-        this + SCReserve() + SCUnreserve()
+        SCReserve()
+        SCUnreserve()
     }
 
     abstract override fun invoke(args: Array<String>)

@@ -14,7 +14,8 @@ class SourceKeyParser {
     fun getKeys(searchedName: String): KeySet {
         val keySet = KeySet()
         for(keyNode in reader.root.children()) {
-             if(keyNode-"name" != searchedName) continue
+             if(keyNode-"name" != searchedName) continue //Find the matching name node
+             if(keyNode has "delegate") return getKeys(keyNode-"delegate")
              keyNode.children().forEach{
                 when(it.nodeName.lowercase()){
                  "initial" -> keySet.addInitial(it.getValue())

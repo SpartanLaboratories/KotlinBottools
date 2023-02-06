@@ -4,25 +4,27 @@ import bottools.main.Parser.CommandContainer
 
 
 class OrganizationCommand(name: String, parent:Command) : SubCommand(name, parent) {
-    private val subCommands = HashMap<String, String>()
+    private val orgCommands = HashMap<String, String>()
     data class orgData(val alias: String, val trueName: String)
     init {
-        isSubCommandRequired(true)
+        subCommandRequired = true
         helpMessage = "Can be followed by:"
 
     }
 
     override fun invoke(commandName: CommandContainer){
-        commandName.args[0] = subCommands[commandName.args[0]]!!
+        commandName.args[0] = orgCommands[commandName.args[0]]!!
         parent(commandName)
     }
 
     override fun invoke(args: Array<String>) {}
 
     fun addCommand(alias: String, command: String = alias): OrganizationCommand {
-        subCommands[alias] = command
+        orgCommands[alias] = command
         helpMessage = "$helpMessage $command"
-        parent.getSubCommand(command)!!.addOrganization(this, alias)
+        if(command !in parent.subCommands.keys)
+            throw IllegalArgumentException("Organization attempted to add subcommand: $command, which is not a valid subcommand of it's parent: ${parent.name}")
+        parent.subCommands[command]!!.addOrganization(this, alias)
         return this
     }
 

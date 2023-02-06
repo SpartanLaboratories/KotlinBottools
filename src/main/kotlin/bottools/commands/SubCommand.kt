@@ -7,8 +7,9 @@ import net.dv8tion.jda.api.interactions.commands.build.SubcommandData
 import net.dv8tion.jda.api.interactions.commands.build.SubcommandGroupData
 
 abstract class SubCommand(name: String, protected val parent: Command) : Command(name) {
+    init{ parent.addSubCommand(this)}
     override var guild          by parent::guild
-    override var targetMember   by parent::targetMember
+    override val targetMember   by parent::targetMember
     override var channel        by parent::channel
     val nestLevel
         get() = getNestLevel(parent)
@@ -26,7 +27,7 @@ abstract class SubCommand(name: String, protected val parent: Command) : Command
     }
 
     protected val parentCommand: Command
-        protected get() = if (SubCommand::class.java.isAssignableFrom(parent.javaClass)) (parent as SubCommand).parentCommand else parent
+        get() = if (SubCommand::class.java.isAssignableFrom(parent.javaClass)) (parent as SubCommand).parentCommand else parent
 
     protected infix fun getNestLevel(command: Command): Int = if (!SubCommand::class.java.isAssignableFrom(command::class.java)) 1 else getNestLevel((command as SubCommand).parent) + 1
 
@@ -40,7 +41,7 @@ abstract class SubCommand(name: String, protected val parent: Command) : Command
         var name = name.lowercase()
 
         when(getNestLevel(parent)){
-            1 -> parent.addToSlashCommandData(SubcommandGroupData(name, description!!)              .also{subcommandGroupData = it})
+            1 -> parent.addToSlashCommandData(SubcommandGroupData(name, description!!).also{subcommandGroupData = it})
             2 -> SubcommandData(name, description!!).let {
                 subcommandData = it
                 (parent as SubCommand).addToSCGData(it)
@@ -53,7 +54,7 @@ abstract class SubCommand(name: String, protected val parent: Command) : Command
     fun addToSCData(optionData: OptionData)          = subcommandData!!.addOptions(optionData)
 
     private fun getOptionData(name: String) = OptionData(OptionType.STRING, name, description!!)
-    override infix fun getOption(optionName: String): OptionMapping = parent.getOption(optionName)
+    override infix fun getOption(optionName: String): OptionMapping? = parent.getOption(optionName)
 
     override fun addOption(option: Option) = this.also{
         when (val nestLevel = getNestLevel(parent)) {

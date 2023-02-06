@@ -1,10 +1,6 @@
-/**
- *
- */
 package bottools.main
 
 import bottools.dataprocessing.D
-import bottools.dataprocessing.minus
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Member
@@ -37,9 +33,9 @@ class GuildManager {
      */
     fun managePoints(member : Member, message: String?, hasImageAttachment: Boolean) {
         val previousPoints = D/currentGuild/member-"nPoints"
-        val numPoints: Double = if (Parser startsWithTrigger message!! ) 0.5 else 1.8
-        val currentPoints = (previousPoints as Double) + numPoints
-        D/currentGuild/member/"nPoints"+currentPoints.toString()
+        val awardedPoints: Double = if (Parser startsWithTrigger message!! ) 0.5 else 1.8
+        val newPoints = (previousPoints as Double) + awardedPoints
+        D/currentGuild/member/"nPoints"+newPoints.toString()
         // TODO Rankup system
         //checkRankUp(currentGuild.getMember(user), previousPoints, currentPoints);
     }

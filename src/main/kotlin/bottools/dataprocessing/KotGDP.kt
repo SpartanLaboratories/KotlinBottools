@@ -41,6 +41,7 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
         reader setDocument guildDataPath.pathString
         reader at root
         customGuildNodes.forEach {
+            if(root has it.key)return@forEach
             reader create it.key containing it.value
         }
         write()
@@ -58,7 +59,14 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
     }
     private fun filedMembers(guild: Guild):List<String>{
         reader setDocument "guildData/${guild.name}/MemberData.xml"
-        return root.children().map{ it-"tName"}
+        return root.children().map {
+            try {
+                it - "tName"
+            } catch (e: IllegalArgumentException) {
+                log.error("filedMembers() failed to access the name of a member of the guild: $guild.name")
+                "no name"
+            }
+        }
     }
     private fun createMemberEntry(username:String){
         log.debug("This member is not yet in the database. Creating new data node...")
@@ -67,10 +75,9 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
             reader create "tName"       containing username
             reader create "keyid"
             reader create "nPoints"     containing "0.0"
-            reader create "match"       containing "none"
             reader create "requestedby" containing "none"
             reader create "money"       containing "1000"
-            reader create "IDs"
+            reader create "Games"
 
             reader createCategory "time"
                 reader create "timezone"    containing "none"
@@ -88,26 +95,30 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
         infix fun forMember(member: Member):DataAccessPoint = DataAccessPoint(getNodeOf(guild,member)!!)
     }
     open inner class DataAccessPoint internal constructor(private val node:Node){
-        operator fun div(groupName: String)     = this getGroup groupName
-        infix fun getGroup(groupName:String)    = DataAccessPoint(node/groupName)
-        operator fun minus(nodeName: String)    = this getValue nodeName
+        operator fun div(groupName: String)     = this assertChild groupName
+        operator fun minus(nodeName: String)    = reader getValue (this/nodeName).node
         infix fun getValue(nodeName:String)     = node-nodeName
         operator fun plus(newValue: String)     = this setTo newValue
         infix fun setTo(newValue:String)        = Unit.also{ reader.setValue(node, newValue)}
         fun readAll() = node.children()
-        infix fun create(childNodeName:String)  = reader at node create childNodeName
-        infix fun createCategory(childNodeName:String) = reader at node createCategory childNodeName
+        infix fun create(childNodeName:String)  = DataAccessPoint(reader at node create childNodeName)
+        infix fun containing(text:String) : Unit { reader.setValue(node, text)}
+        infix fun assertChild(childNodeName: String)    =   if(node has childNodeName)  this getGroup   childNodeName
+                                                            else                        this create     childNodeName
+        infix fun remove(childNodeName:String)  = reader.removeTag(node,childNodeName)
+        infix fun remove(node:Node)             = reader.removePossibleTag(this.node, node)
+        private infix fun getGroup(groupName:String)    = DataAccessPoint(node/groupName)
     }
     private fun getNodeOf(guild:Guild, member: Member): Node? {
         reader setDocument "guildData/${guild.name}/MemberData.xml"
         for (personNode in root.children())
-            if (personNode - "tName" == member.user.name.lowercase())
+            if (personNode - "tName" == member.user.name)
                 return personNode
         return null
     }
     fun addTagFile(localFilePath:String) {
         reader setDocument localFilePath
-        (root/"person").children().forEach{customNode -> customPersonNodes.put(customNode.nodeName, customNode.getValue())}
+        (root/"person").children().forEach{customPersonNodes.put(it.nodeName, it.getValue())}
         customGuildNodes.putAll((root/"data").children().map { it.nodeName to it.getValue() }.toMap())
     }
     internal fun addTag(fileName:String, node: String, value:String = "")   = performActionInFile(fileName, node, ::addTag, value)

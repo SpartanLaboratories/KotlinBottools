@@ -3,14 +3,15 @@ package bottools.commands
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
-class Option(type: String, name: String?, description: String?, required: Boolean) :
-    OptionData(getOptionType(type), name!!, description!!, required) {
-    internal constructor(type: String, name: String?, description: String?) : this(type, name, description, false) {}
+class Option(type: String = "string", name: String, description: String, required: Boolean = false) :
+    OptionData(getOptionType(type), name, description, required) {
 
     companion object {
         private fun getOptionType(type: String): OptionType {
-            when (type) {
-                "user" -> return OptionType.USER
+            when (type.lowercase()) {
+                "user"      -> return OptionType.USER
+                "role"      -> return OptionType.ROLE
+                "integer"   -> return OptionType.INTEGER
             }
             return OptionType.STRING
         }

@@ -16,6 +16,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.*
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction
+import net.dv8tion.jda.api.utils.FileUpload
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.time.Instant
@@ -23,7 +24,6 @@ import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 import kotlin.collections.Collection
 import kotlin.collections.HashMap
-import kotlin.collections.List
 import kotlin.collections.MutableList
 import kotlin.collections.forEach
 import kotlin.collections.isEmpty
@@ -80,8 +80,8 @@ abstract class Command protected constructor(val name: String) {
     protected var reply: ReplyCallbackAction? = null
     private var taggedMember: Member? = null
 
-    private val subCommands by lazy{ HashMap<String, SubCommand>()}
-    private var subCommandRequired = false
+    val subCommands by lazy{ HashMap<String, SubCommand>()}
+    protected var subCommandRequired = false
     var isInteractible = false
         private set
     private var noSubCommandDescription: String? = null
@@ -170,13 +170,11 @@ abstract class Command protected constructor(val name: String) {
                 To show a help message for a specific sub-command use: /help ${name} [sub-command name]""".trimIndent()
     }
 
-    protected fun checkTreatAsSubCommand(args: Array<String>): Boolean =
-        if(args.isEmpty()) isSubCommandRequired()
+    protected fun treatAsSubCommand(commandData: CommandContainer): Boolean =
+        if(commandData.args.isEmpty()) subCommandRequired
+            .also { if (subCommandRequired) showSCErrorMessage("${commandData.commandName} must be followed by a valid subcommand") }
         else isValidSubCommand(args[0])
 
-    private fun isSubCommandRequired() =
-        if(subCommandRequired) true.also{showSCErrorMessage(scRequiredErrMsg)} //Tell the user that an arg is required
-        else false
     private val subcommandNames: String
         private get() {
             var subcommandNames = ""
@@ -212,18 +210,13 @@ abstract class Command protected constructor(val name: String) {
 
     protected fun removeSubCommand(commandName: String) = subCommands.remove(commandName)
 
-    private fun isValidSubCommand(name: String): Boolean =
-        if(name in subCommands.keys)
-            true
-        else false.also{showSCErrorMessage(args[0] + invalidSCErrMsg)}
+    private fun isValidSubCommand(name: String): Boolean = (name in subCommands.keys).also{
+        if(it == false && subCommandRequired) showSCErrorMessage(name + invalidSCErrMsg)
+    }
 
     fun getSubCommand(name: String): SubCommand? {
         if (!isValidSubCommand(name)) say("No sub-command \"$name\" exists")
         return subCommands[name]
-    }
-
-    protected fun isSubCommandRequired(isRequired: Boolean) {
-        subCommandRequired = isRequired
     }
 
     /**
@@ -246,27 +239,25 @@ abstract class Command protected constructor(val name: String) {
         eb!!.setDescription(description)
     }
 
-    protected fun sendEmbed() {
-        sendEmbed(channel)
+    protected fun sendEmbed(channel: MessageChannel = this.channel, filePath: String = "") {
+        val message = channel.sendMessageEmbeds(finalEmbed)
+        if(filePath != "") message.addFiles(FileUpload.fromData(File(filePath), "itemline.png"))
+        message.complete()
         resetEmbedBuilder()
     }
 
-    private fun sendEmbed(channel: MessageChannel?) {
-        channel!!.sendMessageEmbeds(finalEmbed).complete()
-    }
-
-    protected fun sendEmbed(channelList: Collection<MessageChannel?>) {
-        channelList.forEach { channel: MessageChannel? -> this.sendEmbed(channel) }
+    protected fun sendEmbed(channelList: Collection<MessageChannel>) {
+        channelList.forEach{ sendEmbed(it) }
         resetEmbedBuilder()
     }
     operator fun invoke(event : MessageReceivedEvent) = setEvent(event)(Parser.parse(event.message.contentRaw))
     open operator fun invoke(commandText: CommandContainer){
         usedCommandName = commandText.commandName
         args = commandText.args
-        if (checkTreatAsSubCommand(args)) {
-            commandText.commandName = args.get(0)
+        if (treatAsSubCommand(commandText)) {
+            commandText.commandName = args[0]
             commandText.args = getSecondaryArgs(args)
-            subCommands[args[0].lowercase()]!!(commandText)
+            subCommands[args[0]]!!(commandText)
         }
         this(args)
     }
@@ -278,18 +269,22 @@ abstract class Command protected constructor(val name: String) {
     open val commandData: CommandData
         get() = slashCommandData
 
-    operator fun invoke(interaction: Interaction) = pullInteractionData(interaction)(Parser.parse("/" + name))
+    operator fun invoke(interaction: Interaction) = pullInteractionData(interaction)
 
     operator fun invoke(event: MessageContextInteractionEvent){
         reply = event.deferReply()
-        this(event as Interaction)
+        this(event as Interaction)(Parser.parse("/" + name))
+    }
+    operator fun invoke(event: UserContextInteractionEvent){
+        reply = event.deferReply()
+        this(event as Interaction)(Parser.parse("/" + name))
     }
 
     operator fun invoke(event: SlashCommandInteractionEvent){
         log.info("Reaction to slash command interaction by ${event.member}")
         reply = event.deferReply()
         scEvent = event
-        this(event as Interaction)
+        this(event as Interaction)(Parser.parse(event))
     }
 
     private fun pullInteractionData(event: Interaction): Command {
@@ -304,10 +299,12 @@ abstract class Command protected constructor(val name: String) {
     }
 
     protected open val description: String?
-        protected get() {
-            var description = helpMessage
-            if (description!!.length > 100) description = description.substring(0, description.indexOf("\n"))
-            return description
+        get() {
+            return helpMessage.let{
+                if(it!!.length > 100)
+                    it.substring(0, it.indexOf("\n"))
+                else it
+            }
         }
 
     protected open fun addOption(option: Option): Command  = this.also{
@@ -315,14 +312,15 @@ abstract class Command protected constructor(val name: String) {
     }
     open operator fun plus(option: Option) = addOption(option)
 
-    open infix fun reply(message: String) = reply!!.setContent(message).complete()
+    open infix fun reply(message: String) = if(reply != null)reply!!.setContent(message).complete()
+                                            else say(message)
     protected infix fun replyWith(message: String) = reply(message)
     /*
     protected inner class SaveImageAction internal constructor(val url: String){
         infix fun to(fileName: String) = saveImage(url, fileName)
     }*/
 
-    open var targetMember: Member? = null
+    open val targetMember: Member?
         get() {
             if (scEvent != null) {
                 val tags = scEvent!!.getOptionsByType(OptionType.USER)
@@ -341,14 +339,7 @@ abstract class Command protected constructor(val name: String) {
     protected open infix fun addToSlashCommandData(subcommand: SubcommandData)          = slashCommandData.addSubcommands(subcommand)
     open infix fun addToSlashCommandData(subcommandGroup: SubcommandGroupData)          = slashCommandData.addSubcommandGroups(subcommandGroup)
     protected open infix fun addToSlashCommandData(optionData: OptionData)              = slashCommandData.addOptions(optionData)
-
-    protected infix operator fun plusAssign(name: String){ OrganizationCommand(name, this) }
     protected infix operator fun plus(name: String) = OrganizationCommand(name, this)
-
-    operator fun plus(subcommand: SubCommand) = this.also {
-        addSubCommand(subcommand)
-    }
-
     protected fun resetChannel(): MessageChannel =
         (if (messageEvent != null) messageEvent!!.channel else scEvent!!.messageChannel).
         also {channel = it}
@@ -367,13 +358,17 @@ abstract class Command protected constructor(val name: String) {
 
     protected infix fun tts(message: String): Message = tts(channel, message)
     protected fun replyWithEmbed() = reply!!.addEmbeds(finalEmbed).complete()
-    protected var mentions : List<Member> = ArrayList<Member>()
+    protected val mentions
         get() = message.mentions.members
 
     private val finalEmbed: MessageEmbed
-        private get() = eb.setFooter(Bot.jda!!.selfUser.name).setTimestamp(Instant.now()).build()
+        get() {
+            if (eb.build().footer == null || eb.build().footer!!.text == "")
+                eb.setFooter(Bot.jda!!.selfUser.name);
+            return eb.setTimestamp(Instant.now()).build()
+        }
 
-    open fun getOption(optionName: String): OptionMapping = scEvent!!.getOption(optionName)!!
+    open fun getOption(optionName: String): OptionMapping? = scEvent!!.getOption(optionName)
 
     companion object {
         /**

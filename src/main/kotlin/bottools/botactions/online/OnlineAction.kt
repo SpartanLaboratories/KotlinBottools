@@ -2,12 +2,15 @@ package bottools.botactions.online
 
 import bottools.botactions.*
 import bottools.main.Bot
+import com.mashape.unirest.http.HttpClientHelper.request
+import it.skrape.fetcher.HttpFetcher
+import it.skrape.fetcher.response
+import it.skrape.fetcher.skrape
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 import org.json.JSONObject
 import org.json.JSONTokener
-import java.io.File
-import java.io.IOException
-import java.io.StringReader
+import org.jsoup.Jsoup
+import java.io.*
 
 /**
  * An extension of the BotAction class adding functionality that has
@@ -29,6 +32,7 @@ data class SaveImageAction(val savedImage:String){
     infix fun to(fileName: String) = connector saveImage savedImage to fileName
 }
 infix fun Bot.Companion.save(imageURL:String) = SaveImageAction(imageURL)
+
 /**
  * Returns the next line of the source HTML code from the URL you are currently
  * connected to
@@ -47,6 +51,8 @@ val nextLine: String
  * **false** if it was not
  */
 fun connect(URL: String?): Boolean = connector.open(URL!!)
+
+fun open(URL: String) = Jsoup.connect(URL).execute().body()
 
 /**
  * Return the results of a get request sent to the specified URL

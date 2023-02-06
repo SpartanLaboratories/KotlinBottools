@@ -8,7 +8,7 @@ import java.util.function.Consumer
 abstract class CheckValueService protected constructor(private val packetName: String)
     : OnlineCommand(packetName.split('/')[1]), Runnable {
     private var interval = 0
-    private var onChange: Consumer<String>? = null
+    private lateinit var onChange: Consumer<Array<String>>
     protected var packet: ServicePacketReaderBase
     private val log = LoggerFactory.getLogger(this::class.java)
     init {
@@ -20,7 +20,7 @@ abstract class CheckValueService protected constructor(private val packetName: S
         this.interval = interval
     }
 
-    private fun triggerResponce(newValue: String) = onChange!!.accept(newValue)
+    private fun triggerResponce(newValue: Array<String>) = onChange.accept(newValue)
 
 
     private fun sleep(seconds: Int = interval) {
@@ -32,41 +32,33 @@ abstract class CheckValueService protected constructor(private val packetName: S
         }
     }
 
-    operator fun invoke(args: Array<String?>?): Boolean {
-        return false
-    }
-
-    private operator fun invoke() = Thread(this).start()
+    override operator fun invoke(args: Array<String>) {}
+    protected abstract operator fun invoke()
 
     override fun run() {
         initialSleep()
         while (true) {
             log.info("The service $name is starting a check")
             packet = ServicePacketReaderBase(packetName)
-            loop()
+            this()
             sleep()
         }
     }
 
-    private fun initialSleep() {
-        sleep(3)
-    }
+    private fun initialSleep() = sleep(10)
 
-    protected abstract fun loop()
-    private infix fun respondWith(onChange: Consumer<String>) = this.also{
+    private infix fun respondWith(onChange: Consumer<Array<String>>) = this.also{
         it.onChange = onChange
     }
 
-    protected fun checkValues() =
-        if (data != packet.oldValue) {
+    protected open fun checkValues(oldValue:String) =
+        if (data != oldValue) {
             log.debug("$name found a new value: $data")
-            packet.oldValue = data!!
-            triggerResponce(data!!)
+            packet.oldValue = data
+            triggerResponce(arrayOf(data))
         } else log.debug("$name detected no changes")
 
     protected fun navigate() {
-        skipLines()
-        disconnect()
         data = getValueFromKey(packet.keyName)
     }
 
@@ -82,8 +74,7 @@ abstract class CheckValueService protected constructor(private val packetName: S
 
     companion object {
         @JvmStatic
-        protected fun createService(service: CheckValueService, triggerAction: Consumer<String>, interval: Int) =
-            (service respondWith triggerAction at interval)()
+        protected fun createService(service: CheckValueService, triggerAction: Consumer<Array<String>>, interval: Int) =
+            Thread(service respondWith triggerAction at interval).start()
     }
-    override fun invoke(args: Array<String>){}
 }

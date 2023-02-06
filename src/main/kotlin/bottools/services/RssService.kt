@@ -12,15 +12,14 @@ import java.util.function.Consumer
 class RssService protected constructor(serviceName: String?) : CheckValueService(serviceName!!) {
     var feed = SyndFeedInput().build(XmlReader(URL(packet.uRL)))
 
-    public override fun loop() {
+    override operator fun invoke() {
         println("Testing rss feed service")
         data = feed!!.entries[0].uri
-        checkValues()
+        checkValues(packet.oldValue)
     }
 
     companion object {
-        fun createService(serviceName: String, onChange: Consumer<String>, interval: Int) {
+        fun createService(serviceName: String, onChange: Consumer<Array<String>>, interval: Int) =
             createService(RssService(serviceName), onChange, interval)
-        }
     }
 }

@@ -35,8 +35,7 @@ object Parser {
             for (arg in argsString.split(" ".toRegex()).dropLastWhile { it.isEmpty() }
                 .toTypedArray()) if (!arg.startsWith("#") && !arg.startsWith("@")) nonTagArgs.add(arg)
         }
-        val args = nonTagArgs.toTypedArray()
-        return CommandContainer(raw, beheaded, command) with args
+        return CommandContainer(raw, beheaded, command) with nonTagArgs.toTypedArray()
     }
     @JvmStatic
     internal infix fun parse(event: SlashCommandInteractionEvent): CommandContainer {
@@ -51,12 +50,8 @@ object Parser {
         var index = 0
         if (hasSSCG) args.add(sscgName!!)
         if (hasSSC) args.add(sscName!!)
-        if (hasOptions) options.forEach(Consumer { option: OptionMapping ->
-            args.add(
-                option.asString
-            )
-        })
-        return CommandContainer("", "", commandName) with args as Array<String>
+        if (hasOptions) options.map { it.asString }.forEach(args::add)
+        return CommandContainer(event.fullCommandName, event.fullCommandName, commandName) with args.toTypedArray()
     }
     @JvmStatic
     internal infix fun startsWithTrigger(message: String): Boolean {

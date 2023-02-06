@@ -19,10 +19,12 @@ version = '7.5-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
 }
 
 dependencies {
     api 'net.dv8tion:JDA:5.0.0-beta.2'
+    implementation 'com.tfowl.ktor:ktor-jsoup:2.0.0'
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
@@ -48,6 +50,10 @@ dependencies {
 
     implementation group: 'org.springframework', name: 'spring-context', version: '5.3.23'
     testImplementation "org.jetbrains.kotlin:kotlin-script-runtime:1.7.10"
+
+    //implementation("it.skrape:skrapeit:0-SNAPSHOT")//{isChanging = true}
+    implementation("it.skrape:skrapeit:1.1.5")
+    implementation("org.jsoup:jsoup:1.15.3")
 }
 
 test {
@@ -64,4 +70,9 @@ compileTestKotlin {
 
 application {
     mainClassName = 'MainKt'
+}
+configurations.all {
+    resolutionStrategy {
+        cacheChangingModulesFor(0, "seconds")
+    }
 }
