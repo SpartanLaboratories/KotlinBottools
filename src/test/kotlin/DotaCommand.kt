@@ -21,7 +21,9 @@ class DotaCommand: GameStatsCommand("dota2") {
     }
     override fun invoke(args: Array<String>) {}
     protected fun openDB(urlSuffix: String, actions:()->Unit) = open("$dotabuffURL/$urlSuffix", actions)
-    override fun lastGame(args: Array<String>, auto: Boolean) = showLastGameStats(auto)
+    override fun lastGame(args: Array<String>, auto: Boolean) {
+        showLastGameStats(auto)
+    }
     override fun showStats(args: Array<String>) {
         println("show stats test proc")
     }

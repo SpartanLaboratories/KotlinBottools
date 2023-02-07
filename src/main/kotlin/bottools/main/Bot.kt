@@ -66,12 +66,7 @@ abstract class Bot : Runnable {
         }
         log.debug("Successfully read bot key.\nStarting jda building.")
         try {
-            // TODO figure out how to build JDA again
-            jda = JDABuilder.createDefault(
-                keys[0], EnumSet.allOf(
-                    GatewayIntent::class.java
-                )
-            )
+            jda = JDABuilder.createDefault(keys[0], EnumSet.allOf(GatewayIntent::class.java))
                 .addEventListeners(BotListener().also { listener = it })
                 .enableCache(CacheFlag.VOICE_STATE)
                 .enableCache(CacheFlag.EMOJI)

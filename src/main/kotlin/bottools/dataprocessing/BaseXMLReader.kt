@@ -64,7 +64,7 @@ open class BaseXMLReader : XMLReader {
             e.printStackTrace()
         } catch (e: SAXException) {
             // TODO Auto-generated catch block
-            e.printStackTrace()
+            //e.printStackTrace()
         } catch (e: IOException) {
             e.printStackTrace()
         } catch (e: ParserConfigurationException) {
@@ -103,7 +103,7 @@ open class BaseXMLReader : XMLReader {
     } catch (e: NullPointerException) {
         if(node != null)    log.error("Could not read value of the node ${node.nodeName}")
         else log.error("Could not read the value of the given node.")
-        throw IllegalArgumentException("Attempted value access of empty node: ${node.nodeName}")
+        ""
     }
 
     /**

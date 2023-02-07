@@ -11,6 +11,11 @@ abstract class CheckValueService protected constructor(private val packetName: S
     private lateinit var onChange: Consumer<Array<String>>
     protected var packet: ServicePacketReaderBase
     private val log = LoggerFactory.getLogger(this::class.java)
+    protected open var oldValue:String
+        get() = packet.oldValue
+        set(value) {
+            packet.oldValue = value
+        }
     init {
         packet = ServicePacketReaderBase(packetName)
         println("Created service: $packetName")
@@ -54,7 +59,7 @@ abstract class CheckValueService protected constructor(private val packetName: S
     protected open fun checkValues(oldValue:String) =
         if (data != oldValue) {
             log.debug("$name found a new value: $data")
-            packet.oldValue = data
+            this.oldValue = data
             triggerResponce(arrayOf(data))
         } else log.debug("$name detected no changes")
 

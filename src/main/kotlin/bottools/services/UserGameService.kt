@@ -8,7 +8,6 @@ import java.util.function.Consumer
 
 class UserGameService internal constructor(var gameName: String) :
     UserBasedService("game services/$gameName/UserGames") {
-    override fun checkGuild(guild: Guild) {}
     override val userId: String
         get() = D/guild/member/"Games"/gameName-"id"
 
