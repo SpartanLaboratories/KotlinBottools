@@ -47,13 +47,13 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
         write()
     }
 
-    internal fun updateServerDatabase() : Unit = Bot.jda!!.guilds.forEach(::updateServerDatabase)
+    internal fun updateServerDatabase() : Unit = Bot.jda!!.guildCache.forEach(::updateServerDatabase)
     private infix fun updateServerDatabase(guild: Guild) {
         for (member in guild.loadMembers().get()) {
             log.debug("Found guild member named: ${member.user.name}")
-            with(member.user.name){
-                if (this !in filedMembers(guild))
-                    createMemberEntry(this)
+            member.user.name.let{member ->
+                if (member !in filedMembers(guild))
+                    createMemberEntry(member)
             }
         }
     }
@@ -128,7 +128,7 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
             reader setDocument "guildData/${it.name}/$fileName"
             when(fileName.lowercase()){
                 "guilddata.xml" -> action.invoke(root, node, value)
-                "memberdata.xml" -> root.children().forEach{personNode -> action.invoke(personNode, node, value)}
+                "memberdata.xml" -> root.children().forEach{personNode -> action(personNode, node, value)}
                 else -> throw IllegalArgumentException("Invalid file name")
             }
             write()

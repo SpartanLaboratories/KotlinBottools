@@ -19,7 +19,7 @@ version = '7.5-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
+    maven { url = uri "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 dependencies {
@@ -51,9 +51,9 @@ dependencies {
     implementation group: 'org.springframework', name: 'spring-context', version: '5.3.23'
     testImplementation "org.jetbrains.kotlin:kotlin-script-runtime:1.7.10"
 
-    //implementation("it.skrape:skrapeit:0-SNAPSHOT")//{isChanging = true}
-    implementation("it.skrape:skrapeit:1.1.5")
-    implementation("org.jsoup:jsoup:1.15.3")
+    implementation("it.skrape:skrapeit:0-SNAPSHOT")//{isChanging = true}
+    //implementation "it.skrape:skrapeit:1.1.5"
+    implementation "org.jsoup:jsoup:1.15.3"
 }
 
 test {

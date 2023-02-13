@@ -4,6 +4,8 @@ import bottools.dataprocessing.D
 import bottools.dataprocessing.div
 import bottools.dataprocessing.minus
 import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.entities.Member
+import org.apache.commons.lang3.tuple.ImmutablePair
 import java.util.function.Consumer
 
 class UserGameService internal constructor(var gameName: String) :
@@ -12,7 +14,7 @@ class UserGameService internal constructor(var gameName: String) :
         get() = D/guild/member/"Games"/gameName-"id"
 
     companion object {
-        fun createService(gameName: String, onChange: Consumer<Array<String>>, interval: Int) =
+        fun createService(gameName: String, onChange: TriggerAction, interval: Int) =
             createService(UserGameService(gameName), onChange, interval)
     }
 }

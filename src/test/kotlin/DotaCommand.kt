@@ -33,7 +33,6 @@ class DotaCommand: GameStatsCommand("dota2") {
         println("post patch notes test proc")
         open(patchNoteURL){
             //skipLines(1)
-            
         }
     }
 
@@ -54,6 +53,7 @@ class DotaCommand: GameStatsCommand("dota2") {
         openDB("matches/$matchID") {
             mapValueByKey("duration", "radiant score", "dire score")
             cutToAfter(valueMap["steam name"]!!)
+            mapValueByKey("player lane", "player role", "player lane outcome")
             mapValueByKey("net worth", "lasthit", "deny", "gpm", "xpm", "damage", "healing")
             if (valueMap["healing"]!!.startsWith("<"))
                 valueMap["healing"] = ""
@@ -98,9 +98,10 @@ class DotaCommand: GameStatsCommand("dota2") {
             .setThumbnail("http://dotabuff.com${it["hero image"]}")
             .setTitle(it["match outcome"]!!.uppercase(),"https://www.dotabuff.com/matches/$matchID")
             .setDescription("Radiant  ${it["radiant score"]} : ${it["dire score"]}  Dire\nDuration: ${it["duration"]}")
+            .addField("Lane", "${it["player lane"]}\n${it["player role"]}\n${it["player lane outcome"]}", true)
             .addField("K/D/A", "${it["kills"]}\n${it["deaths"]}\n${it["assists"]}", true)
-            .addField("Farm", "LH/DN:           ${it["lasthit"]}/${it["deny"]}\nGPM/XPM:   ${it["gpm"]}/${it["xmp"]}\nNet Worth:  ${it["gold earned"]}", true)
-            .addField("Damage", "Hero Damage:     ${it["damage"]}\nHealing:      ${it["healing"]}\nTower Damage:  ${it["tower damage"]}", true) //.addField("Talents", talentDesc, true)
+            .addField("Farm", "LH/DN:     ${it["lasthit"]}/${it["deny"]}\nGPM/XPM:   ${it["gpm"]}/${it["xpm"]}\nNet Worth:   ${it["net worth"]}", true)
+            .addField("Damage", "Hero Damage:     ${it["damage"]}\nHealing:      ${it["healing"]}\nTower Damage:  ${it["building damage"]}", true) //.addField("Talents", talentDesc, true)
             .setImage("attachment://itemline.png")
             .setFooter(// Make sure that the footer states whether this is an automatic post or not, and if not then who requested it
                 if (auto) "Automated message" else "Requested by " + member.effectiveName,

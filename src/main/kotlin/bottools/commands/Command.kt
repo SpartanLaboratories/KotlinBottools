@@ -78,7 +78,6 @@ abstract class Command protected constructor(val name: String) {
     protected var args = Array<String>(0){""}
         private set
     protected var reply: ReplyCallbackAction? = null
-    private var taggedMember: Member? = null
 
     val subCommands by lazy{ HashMap<String, SubCommand>()}
     protected var subCommandRequired = false
@@ -132,7 +131,6 @@ abstract class Command protected constructor(val name: String) {
         channel = event.channel.asTextChannel()
         message = event.message
         tagged = message.mentions.members
-        taggedMember = if (tagged.isEmpty()) member else tagged[0]
     }
 
     /**
@@ -322,11 +320,10 @@ abstract class Command protected constructor(val name: String) {
 
     open val targetMember: Member?
         get() {
-            if (scEvent != null) {
-                val tags = scEvent!!.getOptionsByType(OptionType.USER)
-                if (tags.size > 0) taggedMember = tags[0].asMember
-            }
-            return if (taggedMember != null) taggedMember!! else member
+            return scEvent?.getOptionsByType(OptionType.USER)?.let{
+                if(it.size > 0) it[0].asMember
+                else            null
+            } ?: member
         }
 
     protected open fun generateSlashCommandData() {

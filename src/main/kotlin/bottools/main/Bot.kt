@@ -39,16 +39,22 @@ abstract class Bot : Runnable {
         running = true
         debug = false
         startTime = System.currentTimeMillis() + 18 * 3600000
+
         // My systems
         console = Console()
         console.start()
+
         // Bot setup
-        initializeBotExistence() //Initial bot setup
+        initializeBotExistence()
+
+        // My Systems again
+        D.updateServerDatabase() //Must be after bot and console initialization
+
+        //Commands
         createCommand(HelpCommand())
         listCommands()
         createAllSlashCommands()
-        // My Systems again
-        D.updateServerDatabase() //Must be after bot and console initialization
+
         reader.setDocument("BotData.xml")
         //new Thread(this).start();
     }
@@ -68,12 +74,13 @@ abstract class Bot : Runnable {
         try {
             jda = JDABuilder.createDefault(keys[0], EnumSet.allOf(GatewayIntent::class.java))
                 .addEventListeners(BotListener().also { listener = it })
+                //.enableCache(CacheFlag.)
                 .enableCache(CacheFlag.VOICE_STATE)
                 .enableCache(CacheFlag.EMOJI)
                 .enableCache(CacheFlag.ONLINE_STATUS)
                 .enableCache(CacheFlag.FORUM_TAGS)
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
-                .build()
+                .build().awaitReady()
             responder = listener.responder
             //jda.getPresence().setGame(Game.of(Game.GameType.DEFAULT, "/help for info"));
         } catch (e: IllegalArgumentException) {

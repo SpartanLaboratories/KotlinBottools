@@ -38,7 +38,7 @@ abstract class SubCommand(name: String, protected val parent: Command) : Command
     }
 
     internal fun generateSlashSubcommandData(parent: Command = this.parent, name: String = this.name) {
-        var name = name.lowercase()
+        val name = name.lowercase()
 
         when(getNestLevel(parent)){
             1 -> parent.addToSlashCommandData(SubcommandGroupData(name, description!!).also{subcommandGroupData = it})

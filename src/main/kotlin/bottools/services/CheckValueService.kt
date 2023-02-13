@@ -8,7 +8,7 @@ import java.util.function.Consumer
 abstract class CheckValueService protected constructor(private val packetName: String)
     : OnlineCommand(packetName.split('/')[1]), Runnable {
     private var interval = 0
-    private lateinit var onChange: Consumer<Array<String>>
+    protected lateinit var onChange: TriggerAction
     protected var packet: ServicePacketReaderBase
     private val log = LoggerFactory.getLogger(this::class.java)
     protected open var oldValue:String
@@ -25,7 +25,7 @@ abstract class CheckValueService protected constructor(private val packetName: S
         this.interval = interval
     }
 
-    private fun triggerResponce(newValue: Array<String>) = onChange.accept(newValue)
+    protected open fun triggerResponce(newValue: Array<String>) = onChange.trigger(newValue)
 
 
     private fun sleep(seconds: Int = interval) {
@@ -50,9 +50,9 @@ abstract class CheckValueService protected constructor(private val packetName: S
         }
     }
 
-    private fun initialSleep() = sleep(10)
+    private fun initialSleep() = sleep(5)
 
-    private infix fun respondWith(onChange: Consumer<Array<String>>) = this.also{
+    private infix fun respondWith(onChange: TriggerAction) = this.also{
         it.onChange = onChange
     }
 
@@ -79,7 +79,10 @@ abstract class CheckValueService protected constructor(private val packetName: S
 
     companion object {
         @JvmStatic
-        protected fun createService(service: CheckValueService, triggerAction: Consumer<Array<String>>, interval: Int) =
-            Thread(service respondWith triggerAction at interval).start()
+        protected fun createService(service: CheckValueService, onChange:TriggerAction, interval: Int):Unit =
+            Thread(service respondWith onChange at interval).start()
     }
+}
+open fun interface TriggerAction{
+fun trigger(a:Array<String>)
 }

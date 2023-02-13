@@ -9,6 +9,7 @@ import it.skrape.fetcher.skrape
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 import org.json.JSONObject
 import org.json.JSONTokener
+import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
 import java.io.*
 
@@ -52,7 +53,26 @@ val nextLine: String
  */
 fun connect(URL: String?): Boolean = connector.open(URL!!)
 
-fun open(URL: String) = Jsoup.connect(URL).execute().body()
+fun open(URL: String):String {
+    val cookieList = skrape(HttpFetcher){
+        request { url = "https://google.com" }
+        response { cookies }
+    }
+    return Jsoup.connect(URL).cookies(cookieList.map { it.name to it.value }.toMap())
+        .execute().body()
+}
+    /*
+try{
+    Jsoup.connect(URL).execute().body()
+}catch (e:HttpStatusException){
+    skrape(HttpFetcher){
+        request { url = URL }
+        response {
+            responseBody
+        }
+    }
+}
+*/
 
 /**
  * Return the results of a get request sent to the specified URL

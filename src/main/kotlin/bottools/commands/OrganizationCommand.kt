@@ -12,9 +12,9 @@ class OrganizationCommand(name: String, parent:Command) : SubCommand(name, paren
 
     }
 
-    override fun invoke(commandName: CommandContainer){
-        commandName.args[0] = orgCommands[commandName.args[0]]!!
-        parent(commandName)
+    override fun invoke(commandData: CommandContainer){
+        commandData.args[0] = orgCommands[commandData.args[0]]!!
+        parent(commandData)
     }
 
     override fun invoke(args: Array<String>) {}

@@ -47,12 +47,16 @@ open class UserBasedService internal constructor(serviceName: String) : CheckVal
         navigate()
         checkValues(oldValue)
     }
+
+    override fun triggerResponce(newValue: Array<String>) {
+        onChange.trigger(arrayOf(guild.id, member.id,data))
+    }
     protected open val userId: String?
         get() = D/guild/member - "keyid"
 
     companion object {
         private val log = LoggerFactory.getLogger(UserBasedService::class.java)
-        fun createService(serviceName: String, onChange: Consumer<Array<String>>, interval: Int) =
-            createService(UserBasedService(serviceName), onChange, interval)
+        fun createService(serviceName: String, onChange: TriggerAction, interval: Int):Unit =
+            CheckValueService.createService(UserBasedService(serviceName), onChange, interval)
     }
 }

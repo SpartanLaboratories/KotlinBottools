@@ -2,6 +2,7 @@ package bottools.commands
 
 import bottools.commands.OrganizationCommand.orgData
 import bottools.dataprocessing.D
+import bottools.main.Bot
 import bottools.services.ServiceCommand
 import bottools.services.UserGameService
 
@@ -25,13 +26,12 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
         SCGetID()
         // Organization
         last + orgData("game", "lastgame")
-        set.addCommand("id", "setid")
-        get.addCommand("id", "getid").addCommand("stats", "showstats")
-        id.addCommand("set", "setid").addCommand("get", "getid")
-            .addCommand("show", "getid")
-        show.addCommand("id", "getid").addCommand("stats", "showstats")
+        //set.addCommand("id", "setid")
+        //get.addCommand("id", "getid").addCommand("stats", "showstats")
+        TargetablePropertyCommand(::userID, this)
+        //id.addCommand("set", "setid").addCommand("get", "getid").addCommand("show", "getid")
+        //show.addCommand("id", "getid").addCommand("stats", "showstats")
     }
-
     protected inner class SCSetID() : SubCommand("setid", this@GameStatsCommand) {
         init {
             helpMessage = ("""sets the game id of the mentioned user"
@@ -42,7 +42,7 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
         }
 
         fun init() {
-            val id = Option("string", "id", "the steam/dotabuff id", true)
+            val id = Option("string", "id", "the $gameName id", true)
             val tagline = Option("string", "tagline", "the tag number associated with this id", false)
             this + id + tagline + targetMemberOption
         }
@@ -72,15 +72,15 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
      * Returns the in-game username of the guild member that is the target of this command
      * @return In-game username of the target member
      */
-    protected var userID: String?
+    internal var userID: String?
         get()       = D/guild/targetMember!!/"Games"/gameName-"id"
         set(value)  = D/guild/targetMember!!/"Games"/gameName/"id" + value!!
     protected var lastMatchID: String?
         get()       = D/guild/targetMember!!/"Games"/gameName-"latestmatchid"
         set(newID)  = D/guild/targetMember!!/"Games"/gameName/"latestmatchid"+newID!!
     protected var matchesChannel: String?
-        get()       = D/guild/member/"Games"/gameName-"matcheschannel"
-        set(value)  = D/guild/member/"Games"/gameName/"matcheschannel"+value!!
+        get()       = D/guild/"Games"/gameName-"matcheschannel"
+        set(value)  = D/guild/"Games"/gameName/"matcheschannel"+value!!
     protected fun sendNoIDMessage() = reply("This person's ${gameName} ID has not been set. Use:```/$gameName setid *in-game id* @forthisperson``` to set someone's ID")
 
     protected open fun showStats(args: Array<String>){}
@@ -92,10 +92,14 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
         lastGame(args = arrayOf(), auto = false)
     }
     protected open fun lastGame(args: Array<String>, auto: Boolean){}
-    private fun lastGame(args: Array<String>) = lastGame(args, true)
+    private fun userGameServiceTrigger(args:Array<String>):Unit{
+        guild   = Bot.jda!!.getGuildById(args[0])!!
+        member  = guild.getMemberById(args[1])!!
+        lastGame(arrayOf(args[2]),true)
+    }
     protected open infix fun postPatchNotes(value: Array<String>){}
     protected fun createPatchNotesService() = ServiceCommand.createService("game services/$gameName", ::postPatchNotes, 10)
-    protected fun createdUserGamesService() = UserGameService.createService(gameName, ::lastGame, 30)
+    protected fun createdUserGamesService() = UserGameService.createService(gameName, ::userGameServiceTrigger, 30)
     override fun getValueFromKey(key: String?): String = super.getValueFromKey("$gameName:$key")
 }
 

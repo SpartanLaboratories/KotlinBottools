@@ -15,7 +15,7 @@ class ServiceCommand(serviceName: String) : CheckValueService(serviceName) {
     }
 
     companion object {
-        fun createService(serviceName: String, onChange: Consumer<Array<String>>, interval: Int) =
-            createService(ServiceCommand(serviceName), onChange, interval)
+        fun createService(serviceName: String, onChange: TriggerAction, interval: Int):Unit =
+            CheckValueService.createService(ServiceCommand(serviceName), onChange, interval)
     }
 }

@@ -1,13 +1,13 @@
 package bottools.botactions.online
 
+import io.ktor.client.request.*
+import it.skrape.core.document
 import it.skrape.core.htmlDocument
-import it.skrape.fetcher.HttpFetcher
-import it.skrape.fetcher.extract
-import it.skrape.fetcher.response
-import it.skrape.fetcher.skrape
+import it.skrape.fetcher.*
 import it.skrape.matchers.toContain
 import it.skrape.selects.html5.img
 import org.jsoup.Jsoup
+import java.io.BufferedInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
@@ -17,5 +17,22 @@ class STest {
 
 }
 fun main(){
-    println(open("https://dotabuff.com/"))
+    val URL = "https://www.dotabuff.com"
+    val cookieList = skrape(HttpFetcher){
+        request { url = URL }
+        response { cookies }
+    }
+    val attempt = Jsoup.connect(URL).cookies(cookieList.map { it.name to it.value }.toMap())
+        .execute().body()
+    println(attempt)
+    //println(body)
+    /*
+    val input = BufferedInputStream(body)
+    val os: OutputStream = FileOutputStream("test.jpg")
+    val b = ByteArray(2048)
+    var length: Int
+    while (input.read(b).also { length = it } != -1) os.write(b, 0, length)
+
+     */
+
 }

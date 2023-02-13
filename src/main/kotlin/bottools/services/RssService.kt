@@ -19,7 +19,7 @@ class RssService protected constructor(serviceName: String?) : CheckValueService
     }
 
     companion object {
-        fun createService(serviceName: String, onChange: Consumer<Array<String>>, interval: Int) =
+        fun createService(serviceName: String, onChange: TriggerAction, interval: Int) =
             createService(RssService(serviceName), onChange, interval)
     }
 }
