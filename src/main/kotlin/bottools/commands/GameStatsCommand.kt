@@ -5,6 +5,7 @@ import bottools.dataprocessing.D
 import bottools.main.Bot
 import bottools.services.ServiceCommand
 import bottools.services.UserGameService
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 
 abstract class GameStatsCommand protected constructor(protected var gameName: String) : OnlineCommand(gameName) {
     protected var tagSymbol = "#"
@@ -28,6 +29,7 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
         last + orgData("game", "lastgame")
         //set.addCommand("id", "setid")
         //get.addCommand("id", "getid").addCommand("stats", "showstats")
+        PropertyCommand(::matchesChannelId, this, "channel")
         TargetablePropertyCommand(::userID, this)
         //id.addCommand("set", "setid").addCommand("get", "getid").addCommand("show", "getid")
         //show.addCommand("id", "getid").addCommand("stats", "showstats")
@@ -78,7 +80,7 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
     protected var lastMatchID: String?
         get()       = D/guild/targetMember!!/"Games"/gameName-"latestmatchid"
         set(newID)  = D/guild/targetMember!!/"Games"/gameName/"latestmatchid"+newID!!
-    protected var matchesChannel: String?
+    internal var matchesChannelId: String?
         get()       = D/guild/"Games"/gameName-"matcheschannel"
         set(value)  = D/guild/"Games"/gameName/"matcheschannel"+value!!
     protected fun sendNoIDMessage() = reply("This person's ${gameName} ID has not been set. Use:```/$gameName setid *in-game id* @forthisperson``` to set someone's ID")
@@ -95,6 +97,7 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
     private fun userGameServiceTrigger(args:Array<String>):Unit{
         guild   = Bot.jda!!.getGuildById(args[0])!!
         member  = guild.getMemberById(args[1])!!
+        channel = guild.getTextChannelById(matchesChannelId?:"0") ?: guild.defaultChannel as MessageChannel
         lastGame(arrayOf(args[2]),true)
     }
     protected open infix fun postPatchNotes(value: Array<String>){}

@@ -12,6 +12,7 @@ class Option(type: String = "string", name: String, description: String, require
                 "user"      -> return OptionType.USER
                 "role"      -> return OptionType.ROLE
                 "integer"   -> return OptionType.INTEGER
+                "channel"   -> return OptionType.CHANNEL
             }
             return OptionType.STRING
         }

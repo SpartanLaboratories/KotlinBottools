@@ -3,7 +3,6 @@ import bottools.botactions.online.save
 import bottools.botactions.say
 import bottools.commands.GameStatsCommand
 import bottools.main.Bot
-import bottools.services.CheckValueService
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 import java.awt.Color
 import java.awt.image.BufferedImage
@@ -17,7 +16,7 @@ class DotaCommand: GameStatsCommand("dota2") {
     private val patchNoteURL = "https://steamdb.info/api/PatchnotesRSS/?appid=570"
     init {
         //createPatchNotesService()
-        createdUserGamesService()
+        //createdUserGamesService()
     }
     override fun invoke(args: Array<String>) {}
     protected fun openDB(urlSuffix: String, actions:()->Unit) = open("$dotabuffURL/$urlSuffix", actions)
@@ -79,18 +78,10 @@ class DotaCommand: GameStatsCommand("dota2") {
             }
         }
 
-        // Decide which channel to post the match info in
-        // Automatic posts in the auto channel and requested posts in the same channel as the command
-        val channel:MessageChannel =
-            if (auto) {
-                if(matchesChannel == null || matchesChannel == "" || matchesChannel == "none") guild.defaultChannel as MessageChannel
-                else guild.getTextChannelById(matchesChannel!!) as MessageChannel
-            }
-            else this.channel
-
         // State who played the game
         if (auto) Bot say "${member.asMention} played a DOTA2 game" in channel
 
+        // Build the embed based on the values in the valuemap
         valueMap.let {eb
             .setColor(if(it["match outcome"]!!.lowercase() == "won") Color.GREEN else Color.RED)
             .setAuthor(it["steam name"], "$dotabuffURL/players/$userID", it["dbicon"])

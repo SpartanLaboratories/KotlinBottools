@@ -3,11 +3,11 @@ package bottools.commands
 import bottools.commands.OrganizationCommand.orgData
 import kotlin.reflect.KMutableProperty
 
-open class PropertyCommand(private val property:KMutableProperty<String?>, parent:Command):SubCommand(property.name, parent) {
+open class PropertyCommand(private val property:KMutableProperty<String?>, parent:Command, valueType:String="string"):SubCommand(property.name, parent) {
     protected val propertyName = property.name.lowercase()
     protected open val getCommand:SubCommand = MethodCommand(::reply, "get$propertyName", "shows the current value of $propertyName", parent)
     protected open val setCommand:SubCommand = MethodCommand(::write, "set$propertyName", "sets $propertyName to the given value", parent) +
-            Option(name = "value", description = "what you want to set $propertyName to", required = true)
+            Option(valueType, "value", "what you want to set $propertyName to", true)
     private var value:String?
         get() = property.getter.call()
         set(value) = property.setter.call(value)
