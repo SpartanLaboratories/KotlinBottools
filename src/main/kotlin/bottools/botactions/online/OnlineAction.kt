@@ -1,6 +1,7 @@
 package bottools.botactions.online
 
 import bottools.botactions.*
+import bottools.dataprocessing.minus
 import bottools.main.Bot
 import com.mashape.unirest.http.HttpClientHelper.request
 import it.skrape.fetcher.HttpFetcher
@@ -54,8 +55,8 @@ val nextLine: String
  */
 fun connect(URL: String?): Boolean = connector.open(URL!!)
 
-fun open(URL: String, cookieList:List<Node>):String =
-    Jsoup.connect(URL).cookies(cookieList.map { it.nodeName to it.nodeValue }.toMap()).execute().body()
+fun open(URL: String, cookieList:Map<String, String>):String =
+    Jsoup.connect(URL).cookies(cookieList).execute().body()
 
 /**
  * Return the results of a get request sent to the specified URL

@@ -4,7 +4,7 @@ import bottools.botactions.contains
 import bottools.botactions.say
 import bottools.commands.Command
 import bottools.commands.HelpCommand
-import bottools.dataprocessing.BaseXMLReader
+import bottools.dataprocessing.B
 import bottools.dataprocessing.D
 import bottools.main.Parser.CommandContainer
 import net.dv8tion.jda.api.JDA
@@ -19,7 +19,6 @@ import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
 import org.slf4j.LoggerFactory
-import org.w3c.dom.Node
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
@@ -29,7 +28,8 @@ import java.time.ZoneOffset
 import java.util.*
 import java.util.function.Predicate
 
-abstract class Bot : Runnable {
+
+abstract class Bot{
     var log = LoggerFactory.getLogger(Bot::class.java)
     init {
         /* In case I want to see logger status messages
@@ -56,8 +56,7 @@ abstract class Bot : Runnable {
         listCommands()
         createAllSlashCommands()
 
-        reader.setDocument("BotData.xml")
-        //new Thread(this).start();
+        CentralProcess.start(::applyDailyUpdate)
     }
 
     private fun initializeBotExistence() {
@@ -94,30 +93,36 @@ abstract class Bot : Runnable {
     }
 
     protected abstract fun listCommands()
-    override fun run() {
-        val second: Long = 1000
-        val minute = 60 * second
-        val hour = 60 * minute
-        val day = 24 * hour
-        do {
-            try {
-                log.info("Starting central process")
-                val dateNode: Node = reader.getChild(reader.root, "lastdailyupdate")!!
-                val lastDate: String = reader.getValue(dateNode)!!
-                log.info("The last daily update was on $lastDate")
-                val now = Instant.now().atOffset(ZoneOffset.ofHours(-8))
-                val currentDay = now.dayOfMonth
-                val currentMonth = now.monthValue
-                val currentDate = "$currentMonth/$currentDay"
-                log.info("The current date is: $currentDate")
-                if (lastDate != currentDate) applyDailyUpdate(currentDate) else log.info("no update is needed")
-                Thread.sleep(day)
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-            }
-        } while (true)
-    }
+    private object CentralProcess:Runnable{
+        private val log = LoggerFactory.getLogger(CentralProcess::class.java)
+        private val second: Long = 1000
+        private val minute = 60 * second
+        private val hour = 60 * minute
+        private val day = 24 * hour
+        private lateinit var externalUpdate: (date:String) -> Unit
+        fun start(externalUpdate:(date:String)->Unit) = Thread(this).also {this.externalUpdate=externalUpdate }.start()
+        override fun run() = doDaily {
+            val lastDailyUpdate = B-"lastdailyupdate"
+            log.info("The last daily update was on $lastDailyUpdate")
+            val currentDate = Instant.now().atOffset(ZoneOffset.ofHours(-6))
+                .let{"${it.dayOfMonth}/${it.monthValue}"}
+            log.info("The current date is: $currentDate")
+            externalUpdate.invoke(currentDate)
+            B/lastDailyUpdate + currentDate
+        }
+        private fun doDaily(dailyUpdate:()->Unit){
+            do{
+                try{
+                    dailyUpdate.invoke()
+                    Thread.sleep(day)
+                }catch (e:InterruptedException){
+                    log.error("The central update process has terminated")
+                    e.printStackTrace()
+                }
+            }while (true)
+        }
 
+    }
     protected abstract fun applyDailyUpdate(currentDate: String?)
 
     companion object {
@@ -134,7 +139,6 @@ abstract class Bot : Runnable {
         private lateinit var console: Console
 
         //private static Console guiConsole = new GuiConsole();
-        protected val reader = BaseXMLReader()
         private lateinit var listener: BotListener
         private var running = false
         private var debug = false

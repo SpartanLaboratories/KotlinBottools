@@ -11,7 +11,6 @@ class KotBot : Bot() {
     }
 
     override fun applyDailyUpdate(currentDate: String?) {
-        TODO("Not yet implemented")
     }
 
 }

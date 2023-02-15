@@ -5,21 +5,18 @@ import org.w3c.dom.NodeList
 
 interface XMLReader {
     val root: Node
-    fun write():Unit
-    /*
-    infix fun create(nodeName:String):Node
-    infix fun createCategory(nodeName:String):Node
-
-     */
+    fun write()
 }
 private fun Node.stepOver() = if(nextSibling == null) null else nextSibling.nextSibling
 private fun Node.stepDown() = if(firstChild == null) null else firstChild.nextSibling
 fun Node.children() :List<Node>{
     val list = ArrayList<Node>()
-    var childNode = stepDown()
+    var childNode = firstChild//stepDown()
     while(childNode!=null){
         list.add(childNode)
-        childNode = childNode.stepOver()
+        childNode = childNode.nextSibling//stepOver()
+        if(childNode!=null && childNode.nodeType == Node.TEXT_NODE)
+            childNode = childNode.nextSibling
     }
     return list
 }

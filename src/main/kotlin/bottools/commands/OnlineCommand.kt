@@ -2,6 +2,7 @@ package bottools.commands
 
 import bottools.dataprocessing.B
 import bottools.dataprocessing.SourceKeyParser
+import bottools.dataprocessing.minus
 import bottools.main.evaluateList
 import it.skrape.fetcher.Cookie
 import it.skrape.fetcher.HttpFetcher
@@ -18,25 +19,36 @@ protected constructor(name: String, protected var primaryAddress: String = "") :
     private val keyParser = SourceKeyParser()
     protected lateinit var data : String
     protected val valueMap = HashMap<String, String>()
-    private val cookieList = B/"Cookies"/name
+    private val cookieList by lazy { B/"Cookies"/name }
+    private val cookieMap
+        get() = cookieList.readAll().map { it-"name" to it-"value" }.toMap()
     init{
-        checkCookies()
-        stateCookies()
-        testConnection()
+        if (primaryAddress.isNotBlank()) {
+            deleteOldCookies()
+            acquireCookies()
+            logCookieAcquisition()
+            stateCookies()
+            testConnection()
+        }
     }
-    internal fun checkCookies() {
-        if (primaryAddress.isBlank())return
-        val cookies =
+    private fun deleteOldCookies(){
+        for (node in cookieList.readAll())
+            cookieList.remove(node)
+        cookieList + ""
+    }
+    private fun acquireCookies() =
             skrape(HttpFetcher) {
                 request { url = primaryAddress }
                 response { cookies }
-            }
-        cookies.forEach(::writeCookie)
-
+            }.forEachIndexed(::writeCookie)
+    private fun writeCookie(index:Int, cookie: Cookie) {
+        (cookieList/"cookie$index").let {
+            it/"name" + cookie.name
+            it/"value"+ cookie.value
+        }
     }
-    private fun writeCookie(cookie: Cookie) = cookieList/xmlValid(cookie.name) + xmlValid(cookie.value)
-    private fun xmlValid(s:String) = s.replace("_","").replace("-","").replace(" ","")
-    private fun stateCookies() = cookieList.readAll().map { it.toString() }.forEach(log::info)
+    private fun logCookieAcquisition(){}
+    private fun stateCookies() = cookieList.readAll().map { (it - "name") to (it - "value") }.map{it.toString()}.forEach(log::info)
     private fun testConnection() =  try{ connect();     log.info("The command $name successfully validated connection")}
                                     catch(e:Exception){ log.info("The command $name could not successfully validate connection.")}
     protected fun cutToAfter(searchTerm: String) {
@@ -69,7 +81,7 @@ protected constructor(name: String, protected var primaryAddress: String = "") :
      * @return whether the connection was successfully established.
      */
     protected open fun connect() = connect(primaryAddress)
-    protected infix fun connect(address: String) = bottools.botactions.online.open(address, cookieList.readAll())
+    protected infix fun connect(address: String) = bottools.botactions.online.open(address, cookieMap)
     protected fun open(address:String, executeWithURLData:()->Unit){
         data = connect(address)
         executeWithURLData()

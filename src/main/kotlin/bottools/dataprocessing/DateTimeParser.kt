@@ -7,11 +7,10 @@ class DateTimeParser {
         return readDate(date, month)
     }
 
-    fun readDateDDMM(rawDate: String): Date {
-        val month = rawDate.substring(3, 5)
-        val date = rawDate.substring(0, 2)
-        return readDate(date, month)
-    }
+    fun readDateDDMM(rawDate: String) = readDate(
+        month = rawDate.substring(3, 5),
+        date = rawDate.substring(0, 2)
+    )
 
     private fun readDate(date: String, month: String): Date {
         return try {
