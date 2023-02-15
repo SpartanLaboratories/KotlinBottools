@@ -108,7 +108,7 @@ abstract class Bot{
                 .let{"${it.dayOfMonth}/${it.monthValue}"}
             log.info("The current date is: $currentDate")
             externalUpdate.invoke(currentDate)
-            B/lastDailyUpdate + currentDate
+            B/"lastDailyUpdate" + currentDate
         }
         private fun doDaily(dailyUpdate:()->Unit){
             do{

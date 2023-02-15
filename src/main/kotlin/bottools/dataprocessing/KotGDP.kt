@@ -88,6 +88,13 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
         customPersonNodes.forEach { reader create it.key containing it.value }
         write()
     }
+    private fun xmlAcceptable(username:String):String{
+        var username = username
+        for (c in username.toString())
+            if (!Character.isAlphabetic(c.code) && !Character.isDigit(c))
+                username = username.replace(c.toString(),"")
+        return username
+    }
 
     inner class GuildDataAccessPoint internal constructor(private val guild: Guild)
         :DataAccessPoint(reader setDocument "guildData/${guild.name}/GuildData.xml"){

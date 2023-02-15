@@ -11,6 +11,10 @@ private fun Node.stepOver() = if(nextSibling == null) null else nextSibling.next
 private fun Node.stepDown() = if(firstChild == null) null else firstChild.nextSibling
 fun Node.children() :List<Node>{
     val list = ArrayList<Node>()
+    for(i in 0 until childNodes.length)
+        if(childNodes.item(i).nodeType == Node.ELEMENT_NODE)
+            list.add(childNodes.item(i))
+    /*
     var childNode = firstChild//stepDown()
     while(childNode!=null){
         list.add(childNode)
@@ -18,6 +22,8 @@ fun Node.children() :List<Node>{
         if(childNode!=null && childNode.nodeType == Node.TEXT_NODE)
             childNode = childNode.nextSibling
     }
+
+     */
     return list
 }
 

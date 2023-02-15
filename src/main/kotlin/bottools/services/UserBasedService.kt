@@ -23,10 +23,7 @@ open class UserBasedService internal constructor(serviceName: String) : CheckVal
         }
         return null
     }
-    override operator fun invoke() = jda!!.guilds.forEach{
-        if (it.name.lowercase() == "me")
-            checkGuild(it)
-    }//jda!!.guilds.forEach(::checkGuild)
+    override operator fun invoke() = jda.guilds.forEach(::checkGuild)
 
     protected open fun checkGuild(guild: Guild) {
         this.guild = guild

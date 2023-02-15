@@ -41,12 +41,11 @@ protected constructor(name: String, protected var primaryAddress: String = "") :
                 request { url = primaryAddress }
                 response { cookies }
             }.forEachIndexed(::writeCookie)
-    private fun writeCookie(index:Int, cookie: Cookie) {
+    private fun writeCookie(index:Int, cookie: Cookie) =
         (cookieList/"cookie$index").let {
             it/"name" + cookie.name
             it/"value"+ cookie.value
         }
-    }
     private fun logCookieAcquisition(){}
     private fun stateCookies() = cookieList.readAll().map { (it - "name") to (it - "value") }.map{it.toString()}.forEach(log::info)
     private fun testConnection() =  try{ connect();     log.info("The command $name successfully validated connection")}
