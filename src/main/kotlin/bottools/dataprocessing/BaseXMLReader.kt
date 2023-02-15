@@ -121,7 +121,7 @@ open class BaseXMLReader : XMLReader {
      */
     @JvmOverloads
     internal fun newChild(root: Node = this.root, tagName: String, content: String = ""): Element {
-        val addition = doc!!.createElement(tagName.replace(" ".toRegex(), ""))
+        val addition = doc!!.createElement(tagName.replace(" ", ""))
         addition.appendChild(doc!!.createTextNode(content))
         root.appendChild(addition)
         val oldRoot = root

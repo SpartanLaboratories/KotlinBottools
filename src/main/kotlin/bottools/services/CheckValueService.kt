@@ -66,17 +66,6 @@ abstract class CheckValueService protected constructor(private val packetName: S
     protected fun navigate() {
         data = getValueFromKey(packet.keyName)
     }
-
-    private fun skipLines() {
-        packet.skipLineData.forEach { key: String ->
-            try {
-                skipLinesTo(key)
-            } catch (e: IOException) {
-                log.error("The service: $name has failed to perform a check")
-            }
-        }
-    }
-
     companion object {
         @JvmStatic
         protected fun createService(service: CheckValueService, onChange:TriggerAction, interval: Int):Unit =

@@ -1,41 +1,49 @@
 package bottools.commands
 
-import bottools.botactions.online.*
+import bottools.dataprocessing.B
 import bottools.dataprocessing.SourceKeyParser
-import net.dv8tion.jda.api.EmbedBuilder
-import java.io.IOException
+import bottools.main.evaluateList
+import it.skrape.fetcher.Cookie
+import it.skrape.fetcher.HttpFetcher
+import it.skrape.fetcher.response
+import it.skrape.fetcher.skrape
 
 abstract class OnlineCommand
 /**
  * Use this if you plan on having a primary address that you want to be
- * opened with the pen() function.
+ * opened with the open() function.
  * @param primaryAddress the primary URL that will be accessed by this command
  */
 protected constructor(name: String, protected var primaryAddress: String = "") : Command(name) {
     private val keyParser = SourceKeyParser()
     protected lateinit var data : String
     protected val valueMap = HashMap<String, String>()
-    protected fun nextLine() = bottools.botactions.online.nextLine.also { data = it }
+    private val cookieList = B/"Cookies"/name
+    init{
+        checkCookies()
+        stateCookies()
+        testConnection()
+    }
+    internal fun checkCookies() {
+        if (primaryAddress.isBlank())return
+        val cookies =
+            skrape(HttpFetcher) {
+                request { url = primaryAddress }
+                response { cookies }
+            }
+        cookies.forEach(::writeCookie)
 
+    }
+    private fun writeCookie(cookie: Cookie) = cookieList/xmlValid(cookie.name) + xmlValid(cookie.value)
+    private fun xmlValid(s:String) = s.replace("_","").replace("-","").replace(" ","")
+    private fun stateCookies() = cookieList.readAll().map { it.toString() }.forEach(log::info)
+    private fun testConnection() =  try{ connect();     log.info("The command $name successfully validated connection")}
+                                    catch(e:Exception){ log.info("The command $name could not successfully validate connection.")}
     protected fun cutToAfter(searchTerm: String) {
         data = cutToAfter(data, searchTerm)
     }
 
     protected fun cutToAfter(data: String?, searchTerm: String) = data!!.substring(data.indexOf(searchTerm) + searchTerm.length)
-
-    protected fun skipLines(amount: Int) {
-        for (i in 0 until amount) nextLine()
-    }
-
-    @Throws(IOException::class)
-    protected fun skipLinesTo(lineStartSearchTerm: String?) =
-        bottools.botactions.online.skipLinesTo(lineStartSearchTerm).also { data = it }
-
-    @Throws(IOException::class)
-    protected fun skipToContains(partOfData: String?) {
-        while (!data.contains(partOfData!!));
-    }
-
     protected open fun getValueFromKey(key: String?): String {
         val keySet = keyParser.getKeys(key!!)
         for (searchTerm in keySet.initial) cutToAfter(searchTerm)
@@ -46,34 +54,25 @@ protected constructor(name: String, protected var primaryAddress: String = "") :
         return data.substring(0, data.indexOf(keySet.terminal))
     }
 
-    private fun validate(correctEntries: ArrayList<String>): Boolean {
-        if (correctEntries.size == 0) return true
-        for (validationString in correctEntries) when (validationString) {
-            "digit" -> if (Character.isDigit(
-                    data[0]
-                ) || data[0] == '-'
-            ) return true
-
-            "alphabetic" -> if (Character.isAlphabetic(data[0].code)) return true
-            else -> if (data.startsWith(validationString)) return true
+    private fun validate(correctEntries: ArrayList<String>): Boolean =
+        if (correctEntries.size == 0) true
+        else evaluateList(correctEntries){
+            when(it){
+                "digit" -> Character.isDigit(data[0]) || data[0] == '-'
+                "alphabetic" -> Character.isAlphabetic(data[0].code)
+                else -> data.startsWith(it)
+            }
         }
-        return false
-    }
 
     /**
      * Opens a new connection with the primary address of this command.
      * @return whether the connection was successfully established.
      */
     protected open fun connect() = connect(primaryAddress)
-
-    protected fun disconnect() = closeConnection()
-
-    @Synchronized
-    protected infix fun connect(address: String) = bottools.botactions.online.open(address)
+    protected infix fun connect(address: String) = bottools.botactions.online.open(address, cookieList.readAll())
     protected fun open(address:String, executeWithURLData:()->Unit){
         data = connect(address)
         executeWithURLData()
-        //disconnect()
     }
     protected operator fun get(URL: String? = primaryAddress) = bottools.botactions.online.get(URL!!)
     protected open fun mapValueByKey(vararg keyName:String) = keyName.forEach{ valueMap[it] = getValueFromKey(it)}

@@ -27,6 +27,7 @@ import java.io.IOException
 import java.time.Instant
 import java.time.ZoneOffset
 import java.util.*
+import java.util.function.Predicate
 
 abstract class Bot : Runnable {
     var log = LoggerFactory.getLogger(Bot::class.java)
@@ -183,4 +184,8 @@ abstract class Bot : Runnable {
 
         fun getCommand(name: String): Command = commands[name]!!
     }
+}
+fun <T>evaluateList(list:Iterable<T>, validator: Predicate<T>):Boolean{
+    for(t in list)if(validator.test(t))return true
+    return false
 }

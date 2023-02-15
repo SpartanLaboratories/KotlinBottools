@@ -14,12 +14,12 @@ import kotlin.collections.HashMap
 import kotlin.io.path.pathString
 
 val D = KotGDP()
-
+val B = KotGDP().openFile("BotData.xml")
 class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader by reader {
     private val log = LoggerFactory.getLogger(KotGDP::class.java)
     private val customPersonNodes = HashMap<String, String>()
     private val customGuildNodes = HashMap<String,String>()
-
+    fun openFile(fileName: String) = DataAccessPoint(reader setDocument fileName)
     operator fun div(guild: Guild) = this inServer guild
     infix fun inServer(guild:Guild) = GuildDataAccessPoint(guild)
 

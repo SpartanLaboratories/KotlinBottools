@@ -8,7 +8,7 @@ class HelpCommand : Command("help") {
     }
 
     public override fun invoke(args: Array<String>){
-        reply("Hello, I am " + Bot.jda!!.selfUser.name)
+        reply("Hello, I am " + jda.selfUser.name)
         if (args.isEmpty()) executeGenericVersion()
         else executeCommandNameVersion(args)
     }

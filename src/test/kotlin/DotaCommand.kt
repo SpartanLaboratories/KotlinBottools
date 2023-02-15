@@ -11,15 +11,14 @@ import java.io.IOException
 import javax.imageio.ImageIO
 
 
-class DotaCommand: GameStatsCommand("dota2") {
-    private val dotabuffURL = "http://www.dotabuff.com"
+class DotaCommand: GameStatsCommand("dota2","https://www.google.com") {
     private val patchNoteURL = "https://steamdb.info/api/PatchnotesRSS/?appid=570"
     init {
         //createPatchNotesService()
         //createdUserGamesService()
     }
     override fun invoke(args: Array<String>) {}
-    protected fun openDB(urlSuffix: String, actions:()->Unit) = open("$dotabuffURL/$urlSuffix", actions)
+    protected fun openDB(urlSuffix: String, actions:()->Unit) = open("$primaryAddress/$urlSuffix", actions)
     override fun lastGame(args: Array<String>, auto: Boolean) {
         showLastGameStats(auto)
     }
@@ -84,7 +83,7 @@ class DotaCommand: GameStatsCommand("dota2") {
         // Build the embed based on the values in the valuemap
         valueMap.let {eb
             .setColor(if(it["match outcome"]!!.lowercase() == "won") Color.GREEN else Color.RED)
-            .setAuthor(it["steam name"], "$dotabuffURL/players/$userID", it["dbicon"])
+            .setAuthor(it["steam name"], "$primaryAddress/players/$userID", it["dbicon"])
             .setTitle(it["hero name"], "https://www.dotabuff.com/matches/$matchID")
             .setThumbnail("http://dotabuff.com${it["hero image"]}")
             .setTitle(it["match outcome"]!!.uppercase(),"https://www.dotabuff.com/matches/$matchID")
@@ -96,7 +95,7 @@ class DotaCommand: GameStatsCommand("dota2") {
             .setImage("attachment://itemline.png")
             .setFooter(// Make sure that the footer states whether this is an automatic post or not, and if not then who requested it
                 if (auto) "Automated message" else "Requested by " + member.effectiveName,
-                if (auto) Bot.jda!!.selfUser.avatarUrl else member.user.avatarUrl
+                if (auto) jda.selfUser.avatarUrl else member.user.avatarUrl
             )
         }
         sendEmbed(channel, "res/itemline.png")

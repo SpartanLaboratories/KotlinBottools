@@ -7,7 +7,9 @@ import bottools.services.ServiceCommand
 import bottools.services.UserGameService
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 
-abstract class GameStatsCommand protected constructor(protected var gameName: String) : OnlineCommand(gameName) {
+abstract class GameStatsCommand
+     protected constructor(protected var gameName: String, primaryAddress:String="")
+    : OnlineCommand(gameName, primaryAddress) {
     protected var tagSymbol = "#"
     protected val userOption            = Option("user", "person", "the server member whose game you want to see", false);
     protected val targetMemberOption    = Option("user", "person", "the person whose game id you want to set", false)
@@ -95,7 +97,7 @@ abstract class GameStatsCommand protected constructor(protected var gameName: St
     }
     protected open fun lastGame(args: Array<String>, auto: Boolean){}
     private fun userGameServiceTrigger(args:Array<String>):Unit{
-        guild   = Bot.jda!!.getGuildById(args[0])!!
+        guild   = jda.getGuildById(args[0])!!
         member  = guild.getMemberById(args[1])!!
         channel = guild.getTextChannelById(matchesChannelId?:"0") ?: guild.defaultChannel as MessageChannel
         lastGame(arrayOf(args[2]),true)

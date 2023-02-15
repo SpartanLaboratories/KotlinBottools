@@ -55,8 +55,6 @@ import kotlin.collections.sliceArray
  * @author spartak
  */
 abstract class Command protected constructor(val name: String) {
-    private val log = LoggerFactory.getLogger(this::class.java)
-
     /**
      * Should this command display messages describing the actions that it is taking.
      * <br></br>**true** to display debug messages
@@ -66,13 +64,22 @@ abstract class Command protected constructor(val name: String) {
     open lateinit var guild: Guild
     //protected infix fun setGuild(guild:Guild) = this.also { this.guild = guild }
     protected lateinit var member: Member
+    open val targetMember: Member?
+        get() {
+            return scEvent?.getOptionsByType(OptionType.USER)?.let{
+                if(it.size > 0) it[0].asMember
+                else            null
+            } ?: member
+        }
     protected lateinit var user: User
         private set
     open lateinit var channel: MessageChannel
         infix fun setChannel(channel : MessageChannel) = this.also { this.channel = channel }
     protected lateinit var message: Message
     protected var tagged : MutableList<Member?> = ArrayList<Member?>()
-    protected var jda = Bot.jda
+    protected var jda = Bot.jda!!
+    protected val guilds
+        get() = jda.guilds
     protected var terminalArg = 0
     protected var eb = EmbedBuilder()
     protected var args = Array<String>(0){""}
@@ -318,13 +325,6 @@ abstract class Command protected constructor(val name: String) {
         infix fun to(fileName: String) = saveImage(url, fileName)
     }*/
 
-    open val targetMember: Member?
-        get() {
-            return scEvent?.getOptionsByType(OptionType.USER)?.let{
-                if(it.size > 0) it[0].asMember
-                else            null
-            } ?: member
-        }
 
     protected open fun generateSlashCommandData() {
         slashCommandData = Commands.slash(
@@ -340,15 +340,12 @@ abstract class Command protected constructor(val name: String) {
     protected fun resetChannel(): MessageChannel =
         (if (messageEvent != null) messageEvent!!.channel else scEvent!!.messageChannel).
         also {channel = it}
-
     protected fun resetMember(): Member =
         if (messageEvent != null) messageEvent!!.member!! else scEvent!!.member!!.
         also { member = it }
-
     protected fun resetGuild(): Guild =
         if (messageEvent != null) messageEvent!!.guild else scEvent!!.guild.
         also { guild = it!! }!!
-
     protected fun resetMessage(): Message =
         messageEvent!!.message.
         also { message = it }
@@ -368,6 +365,8 @@ abstract class Command protected constructor(val name: String) {
     open fun getOption(optionName: String): OptionMapping? = scEvent!!.getOption(optionName)
 
     companion object {
+        @JvmStatic
+        protected val log = LoggerFactory.getLogger(this::class.java)
         /**
          *
          * @param args the String[] that is to be converted to a String

@@ -11,6 +11,7 @@ import org.json.JSONObject
 import org.json.JSONTokener
 import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
+import org.w3c.dom.Node
 import java.io.*
 
 /**
@@ -53,26 +54,8 @@ val nextLine: String
  */
 fun connect(URL: String?): Boolean = connector.open(URL!!)
 
-fun open(URL: String):String {
-    val cookieList = skrape(HttpFetcher){
-        request { url = "https://google.com" }
-        response { cookies }
-    }
-    return Jsoup.connect(URL).cookies(cookieList.map { it.name to it.value }.toMap())
-        .execute().body()
-}
-    /*
-try{
-    Jsoup.connect(URL).execute().body()
-}catch (e:HttpStatusException){
-    skrape(HttpFetcher){
-        request { url = URL }
-        response {
-            responseBody
-        }
-    }
-}
-*/
+fun open(URL: String, cookieList:List<Node>):String =
+    Jsoup.connect(URL).cookies(cookieList.map { it.nodeName to it.nodeValue }.toMap()).execute().body()
 
 /**
  * Return the results of a get request sent to the specified URL
