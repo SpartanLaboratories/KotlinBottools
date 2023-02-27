@@ -2,14 +2,12 @@ package bottools.services
 
 import bottools.commands.OnlineCommand
 import org.slf4j.LoggerFactory
-import java.io.IOException
-import java.util.function.Consumer
 
 abstract class CheckValueService protected constructor(private val packetName: String)
-    : OnlineCommand(packetName.split('/')[1]), Runnable {
+    : OnlineCommand(packetName.replace("/","").replace(" ",""),ServicePacketReader(packetName).uRL), Runnable {
     private var interval = 0
     protected lateinit var onChange: TriggerAction
-    protected var packet: ServicePacketReaderBase
+    protected var packet: ServicePacketReader
     private val log = LoggerFactory.getLogger(this::class.java)
     protected open var oldValue:String
         get() = packet.oldValue
@@ -17,7 +15,7 @@ abstract class CheckValueService protected constructor(private val packetName: S
             packet.oldValue = value
         }
     init {
-        packet = ServicePacketReaderBase(packetName)
+        packet = ServicePacketReader(packetName)
         println("Created service: $packetName")
     }
 
@@ -44,7 +42,7 @@ abstract class CheckValueService protected constructor(private val packetName: S
         initialSleep()
         while (true) {
             log.info("The service $name is starting a check")
-            packet = ServicePacketReaderBase(packetName)
+            packet = ServicePacketReader(packetName)
             this()
             sleep()
         }

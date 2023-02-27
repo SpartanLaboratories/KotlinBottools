@@ -27,7 +27,7 @@ open class UserBasedService internal constructor(serviceName: String) : CheckVal
 
     protected open fun checkGuild(guild: Guild) {
         this.guild = guild
-        log.debug("Checking guild: {}", guild.name)
+        log.info("Checking guild: {}", guild.name)
         guild.members.forEach{
             member = it
             userId.let {
@@ -39,7 +39,7 @@ open class UserBasedService internal constructor(serviceName: String) : CheckVal
     }
 
     protected fun checkMember(member: Member) {
-        log.debug("Checking member: {}", member.user.name)
+        log.info("Checking member: {}", member.user.name)
         data = connect(packet.uRL.replace("userid", userId!!))
         navigate()
         checkValues(oldValue)

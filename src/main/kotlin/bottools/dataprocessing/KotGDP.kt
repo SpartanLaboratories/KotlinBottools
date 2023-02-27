@@ -51,7 +51,7 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
     private infix fun updateServerDatabase(guild: Guild) {
         for (member in guild.loadMembers().get()) {
             log.debug("Found guild member named: ${member.user.name}")
-            member.user.name.let{member ->
+            member.user.name.xmlAcceptable().let{member ->
                 if (member !in filedMembers(guild))
                     createMemberEntry(member)
             }
@@ -88,13 +88,7 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
         customPersonNodes.forEach { reader create it.key containing it.value }
         write()
     }
-    private fun xmlAcceptable(username:String):String{
-        var username = username
-        for (c in username.toString())
-            if (!Character.isAlphabetic(c.code) && !Character.isDigit(c))
-                username = username.replace(c.toString(),"")
-        return username
-    }
+    private fun String.xmlAcceptable() = toList().filter(Character::isLetterOrDigit).joinToString("")
 
     inner class GuildDataAccessPoint internal constructor(private val guild: Guild)
         :DataAccessPoint(reader setDocument "guildData/${guild.name}/GuildData.xml"){
@@ -109,7 +103,7 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
         infix fun setTo(newValue:String)        = Unit.also{ reader.setValue(node, newValue)}
         fun readAll() = node.children()
         infix fun create(childNodeName:String)  = DataAccessPoint(reader at node create childNodeName)
-        infix fun containing(text:String) : Unit { reader.setValue(node, text)}
+        infix fun containing(text:String) = reader.setValue(node, text)
         infix fun assertChild(childNodeName: String)    =   if(node has childNodeName)  this getGroup   childNodeName
                                                             else                        this create     childNodeName
         infix fun remove(childNodeName:String)  = reader.removeTag(node,childNodeName)
@@ -119,7 +113,7 @@ class KotGDP(private val reader : BaseXMLReader = BaseXMLReader()) : XMLReader b
     private fun getNodeOf(guild:Guild, member: Member): Node? {
         reader setDocument "guildData/${guild.name}/MemberData.xml"
         for (personNode in root.children())
-            if (personNode - "tName" == member.user.name)
+            if (personNode - "tName" == member.user.name.xmlAcceptable())
                 return personNode
         return null
     }

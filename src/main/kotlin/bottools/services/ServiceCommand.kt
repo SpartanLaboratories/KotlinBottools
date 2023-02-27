@@ -1,17 +1,20 @@
 package bottools.services
 
+import it.skrape.fetcher.BrowserFetcher
+import it.skrape.fetcher.response
+import it.skrape.fetcher.skrape
 import java.util.function.Consumer
 
 class ServiceCommand(serviceName: String) : CheckValueService(serviceName) {
     override operator fun invoke() {
-        connect()
+        data = skrape(BrowserFetcher){
+            request{
+                url = primaryAddress
+            }
+            response { responseBody }
+        }
         navigate()
         checkValues(packet.oldValue)
-    }
-
-    public override fun connect(): String{
-        println("The service: $name is trying to connect")
-        return super.connect(packet.uRL)
     }
 
     companion object {

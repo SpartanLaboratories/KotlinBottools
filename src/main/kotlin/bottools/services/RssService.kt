@@ -10,7 +10,11 @@ import java.net.URL
 import java.util.function.Consumer
 
 class RssService protected constructor(serviceName: String?) : CheckValueService(serviceName!!) {
-    var feed = SyndFeedInput().build(XmlReader(URL(packet.uRL)))
+    val feed = packet.uRL.let { address ->
+        primaryAddress = address
+        prepAddress()
+        SyndFeedInput().build(XmlReader(URL(address)))
+    }
 
     override operator fun invoke() {
         println("Testing rss feed service")

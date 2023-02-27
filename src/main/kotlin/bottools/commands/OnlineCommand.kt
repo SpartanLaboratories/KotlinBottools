@@ -1,5 +1,6 @@
 package bottools.commands
 
+import bottools.botactions.online.readCookies
 import bottools.dataprocessing.B
 import bottools.dataprocessing.SourceKeyParser
 import bottools.dataprocessing.minus
@@ -16,13 +17,16 @@ abstract class OnlineCommand
  * @param primaryAddress the primary URL that will be accessed by this command
  */
 protected constructor(name: String, protected var primaryAddress: String = "") : Command(name) {
+    protected val valueMap = HashMap<String, String>()
     private val keyParser = SourceKeyParser()
     protected lateinit var data : String
-    protected val valueMap = HashMap<String, String>()
-    private val cookieList by lazy { B/"Cookies"/name }
+    private val cookieList by lazy { B/"Cookies"/name}
     private val cookieMap
         get() = cookieList.readAll().map { it-"name" to it-"value" }.toMap()
     init{
+        prepAddress()
+    }
+    protected fun prepAddress(){
         if (primaryAddress.isNotBlank()) {
             deleteOldCookies()
             acquireCookies()
@@ -36,11 +40,7 @@ protected constructor(name: String, protected var primaryAddress: String = "") :
             cookieList.remove(node)
         cookieList + ""
     }
-    private fun acquireCookies() =
-            skrape(HttpFetcher) {
-                request { url = primaryAddress }
-                response { cookies }
-            }.forEachIndexed(::writeCookie)
+    private fun acquireCookies() = readCookies(primaryAddress).forEachIndexed(::writeCookie)
     private fun writeCookie(index:Int, cookie: Cookie) =
         (cookieList/"cookie$index").let {
             it/"name" + cookie.name
@@ -81,6 +81,8 @@ protected constructor(name: String, protected var primaryAddress: String = "") :
      */
     protected open fun connect() = connect(primaryAddress)
     protected infix fun connect(address: String) = bottools.botactions.online.open(address, cookieMap)
+    protected fun connectViaSkrape() = this connectViaSkrape primaryAddress
+    protected infix fun connectViaSkrape(address: String) = bottools.botactions.online.openViaSkrape(address)
     protected fun open(address:String, executeWithURLData:()->Unit){
         data = connect(address)
         executeWithURLData()

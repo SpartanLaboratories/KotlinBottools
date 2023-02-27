@@ -1,10 +1,9 @@
 package bottools.services
 
 import bottools.dataprocessing.*
-import org.w3c.dom.Node
 import java.util.function.Consumer
 
-class ServicePacketReaderBase(packetName: String) : BaseXMLReader() {
+class ServicePacketReader(packetName: String) : BaseXMLReader() {
     init {
         setDocument(packetName)
     }
@@ -23,9 +22,9 @@ class ServicePacketReaderBase(packetName: String) : BaseXMLReader() {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val test = ServicePacketReaderBase("game services/Dota 2.xml")
+            val test = ServicePacketReader("game services/Dota 2.xml")
             println(test.uRL)
-            test.skipLineData.forEach(Consumer { key: String? -> println(key) })
+            test.skipLineData.forEach(::println)
         }
     }
 }

@@ -14,14 +14,12 @@ import javax.imageio.ImageIO
 class DotaCommand: GameStatsCommand("dota2","https://www.dotabuff.com") {
     private val patchNoteURL = "https://steamdb.info/api/PatchnotesRSS/?appid=570"
     init {
-        //createPatchNotesService()
-        createdUserGamesService()
+        createPatchNotesService()
+        //createdUserGamesService()
     }
     override fun invoke(args: Array<String>) {}
     protected fun openDB(urlSuffix: String, actions:()->Unit) = open("$primaryAddress/$urlSuffix", actions)
-    override fun lastGame(args: Array<String>, auto: Boolean) {
-        showLastGameStats(auto)
-    }
+    override fun lastGame(args: Array<String>, auto: Boolean) = showLastGameStats(auto)
     override fun showStats(args: Array<String>) {
         println("show stats test proc")
     }
@@ -29,9 +27,9 @@ class DotaCommand: GameStatsCommand("dota2","https://www.dotabuff.com") {
 
     override fun postPatchNotes(value: Array<String>){
         println("post patch notes test proc")
-        open(patchNoteURL){
-            //skipLines(1)
-        }
+        data = connectViaSkrape(patchNoteURL)
+        mapValueByKey("dota2patchnotes")
+        bottools.botactions.tts(jda.getGuildsByName("me", true)[0].defaultChannel as MessageChannel, valueMap["dota2patchnotes"]!!)
     }
 
     private fun showLastGameStats(auto: Boolean = false) {
@@ -90,7 +88,7 @@ class DotaCommand: GameStatsCommand("dota2","https://www.dotabuff.com") {
             .setDescription("Radiant  ${it["radiant score"]} : ${it["dire score"]}  Dire\nDuration: ${it["duration"]}")
             .addField("Lane", "${it["player lane"]}\n${it["player role"]}\n${it["player lane outcome"]}", true)
             .addField("K/D/A", "${it["kills"]}\n${it["deaths"]}\n${it["assists"]}", true)
-            .addField("Farm", "LH/DN:     ${it["lasthit"]}/${it["deny"]}\nGPM/XPM:   ${it["gpm"]}/${it["xpm"]}\nNet Worth:   ${it["net worth"]}", true)
+            .addField("Farm", "LH/DN: \t\t${it["lasthit"]}/${it["deny"]}\nGPM/XPM:   ${it["gpm"]}/${it["xpm"]}\nNet Worth:   ${it["net worth"]}", true)
             .addField("Damage", "Hero Damage:     ${it["damage"]}\nHealing:      ${it["healing"]}\nTower Damage:  ${it["building damage"]}", true) //.addField("Talents", talentDesc, true)
             .setImage("attachment://itemline.png")
             .setFooter(// Make sure that the footer states whether this is an automatic post or not, and if not then who requested it

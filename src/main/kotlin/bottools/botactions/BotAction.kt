@@ -119,3 +119,4 @@ operator fun MessageChannel.contains(message:MessageCreateData) = true.also{ say
 infix fun Bot.Companion.show(url:String) = MessageCreateData.fromContent(url)
 infix fun Bot.Companion.send(file: File) = MessageCreateData.fromFiles(FileUpload.fromData(file))
 infix fun Bot.Companion.send(message:Message) = MessageCreateData.fromMessage(message)
+

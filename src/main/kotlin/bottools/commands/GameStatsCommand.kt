@@ -3,7 +3,9 @@ package bottools.commands
 import bottools.commands.OrganizationCommand.orgData
 import bottools.dataprocessing.D
 import bottools.main.Bot
+import bottools.services.RssService
 import bottools.services.ServiceCommand
+import bottools.services.ServicePacketReader
 import bottools.services.UserGameService
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel
 
@@ -21,7 +23,7 @@ abstract class GameStatsCommand
     protected val lastGame: SubCommand =
         MethodCommand(::manualLastGame, "lastgame", "Show the stats from the last game that was played",this) + userOption
     init {
-        //Settings
+        //  Command setup
         subCommandRequired = true
         makeInteractible()
         // Subcommands
@@ -103,8 +105,8 @@ abstract class GameStatsCommand
         lastGame(arrayOf(args[2]),true)
     }
     protected open infix fun postPatchNotes(value: Array<String>){}
-    protected fun createPatchNotesService() = ServiceCommand.createService("game services/$gameName", ::postPatchNotes, 10)
-    protected fun createdUserGamesService() = UserGameService.createService(gameName, ::userGameServiceTrigger, 30)
+    protected fun createPatchNotesService() = ServiceCommand.createService("game services/$gameName/patch notes", ::postPatchNotes, 10)
+    protected fun createdUserGamesService() = UserGameService.createService(gameName, ::userGameServiceTrigger, 60)
     override fun getValueFromKey(key: String?): String = super.getValueFromKey("$gameName:$key")
 }
 

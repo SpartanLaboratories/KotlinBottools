@@ -57,7 +57,12 @@ fun connect(URL: String?): Boolean = connector.open(URL!!)
 
 fun open(URL: String, cookieList:Map<String, String>):String =
     Jsoup.connect(URL).cookies(cookieList).execute().body()
-
+fun skrape(URL:String) = skrape(HttpFetcher){
+    request{url = URL }
+    response{this}
+}
+fun readCookies(URL:String) = skrape(URL).cookies
+fun openViaSkrape(URL:String) = skrape(URL).responseBody
 /**
  * Return the results of a get request sent to the specified URL
  * @param URL to send a get request to

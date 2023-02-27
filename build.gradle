@@ -20,6 +20,7 @@ version = '7.5-SNAPSHOT'
 repositories {
     mavenCentral()
     maven { url = uri "https://oss.sonatype.org/content/repositories/snapshots/" }
+    jcenter()
 }
 
 dependencies {
@@ -55,6 +56,8 @@ dependencies {
     //implementation "it.skrape:skrapeit:1.1.5"
     implementation "org.jsoup:jsoup:1.15.3"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.21"
+    // https://mvnrepository.com/artifact/it.marplex.cloudflarebypass/cloudflare-bypass
+    implementation 'it.marplex.cloudflarebypass:cloudflare-bypass:1.0'
 }
 
 test {
