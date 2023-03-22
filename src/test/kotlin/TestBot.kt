@@ -7,14 +7,7 @@ import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.jsoup.Jsoup
 
 fun main() {
-    runBlocking {
-        val client = CloudflareHTTPClient()
-
-        //Returns an OkHttp Response object
-        val url = "https://www.google.com"//.toHttpUrlOrNull()!!
-        val response = client.get(url)
-        println(response)
-    }
+    KotBot()
 }
 class KotBot : Bot() {
     override fun listCommands() {

@@ -38,7 +38,6 @@ abstract class Bot{
 	    */
         log.info("Begun bot initialization")
         running = true
-        debug = false
         startTime = System.currentTimeMillis() + 18 * 3600000
 
         // My systems
@@ -47,6 +46,7 @@ abstract class Bot{
 
         // Bot setup
         initializeBotExistence()
+        addInteractionResponses()
 
         // My Systems again
         D.updateServerDatabase() //Must be after bot and console initialization
@@ -81,7 +81,6 @@ abstract class Bot{
                 .enableCache(CacheFlag.FORUM_TAGS)
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
                 .build().awaitReady()
-            responder = listener.responder
             //jda.getPresence().setGame(Game.of(Game.GameType.DEFAULT, "/help for info"));
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
@@ -90,6 +89,12 @@ abstract class Bot{
             e.printStackTrace()
         }
         log.info("Completed bot creation")
+    }
+    private fun addInteractionResponses(){
+        responder newMessageReceivedAction              ::handleCommand
+        responder newSlashCommandInteractionAction      ::handleCommand
+        responder newMessageContextInteractionAction    ::handleCommand
+        responder newUserContextInteractionAction       ::handleCommand
     }
 
     protected abstract fun listCommands()
@@ -126,13 +131,11 @@ abstract class Bot{
     protected abstract fun applyDailyUpdate(currentDate: String?)
 
     companion object {
-        @JvmField
         var jda: JDA? = null
         var commands = HashMap<String, Command>()
             protected set
         private val interactions = ArrayList<CommandData>()
-        @JvmField
-        var responder: Responder? = null
+        val responder by lazy{ listener.responder}
         //var guildManager: GuildManager = GuildManager
         var commandNameList = ArrayList<String>()
         var keys = arrayOfNulls<String>(3)
@@ -141,11 +144,10 @@ abstract class Bot{
         //private static Console guiConsole = new GuiConsole();
         private lateinit var listener: BotListener
         private var running = false
-        private var debug = false
         private var startTime: Long = 0
         private fun createAllSlashCommands() = jda!!.updateCommands().addCommands(interactions).complete()
 
-        fun handleCommand(commandText: CommandContainer, event: MessageReceivedEvent) {
+        private fun handleCommand(commandText: CommandContainer, event: MessageReceivedEvent) {
             val commandName = commandText.commandName
             val channel = event.channel
             if(commands.containsKey(commandName)){
@@ -171,12 +173,12 @@ abstract class Bot{
 
         val uptime: Long
             get() = if (running) System.currentTimeMillis() - startTime else -18 * 3600000
+        private infix fun handleCommand(event: MessageReceivedEvent) = handleCommand(Parser parse event, event)
+        private infix fun handleCommand(event: SlashCommandInteractionEvent) = commands[event.name]!!(event)
 
-        infix fun handleCommand(event: SlashCommandInteractionEvent) = commands[event.name]!!(event)
+        private infix fun handleCommand(event: UserContextInteractionEvent) = commands[event.name]!!(event)
 
-        infix fun handleCommand(event: UserContextInteractionEvent) = commands[event.name]!!(event)
-
-        fun handleCommand(event: MessageContextInteractionEvent) {
+        private fun handleCommand(event: MessageContextInteractionEvent) {
             val name = event.name.lowercase(Locale.getDefault()).replace(" ".toRegex(), "")
             commands[name]!!(event)
         }

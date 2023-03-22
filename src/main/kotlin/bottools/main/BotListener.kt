@@ -27,10 +27,6 @@ internal class BotListener : ListenerAdapter() {
         responder newGuildJoinAction this::defaultOnGuildJoinAction
         responder newGuildUpdateNameAction this::defaultOnGuildUpdateNameAction
         responder newGuildMemberJoinAction this::defaultOnGuildMemberJoinAction
-        responder newMessageReceivedAction this::defaultOnMessageReceivedAction
-        responder newSlashCommandInteractionAction Bot::handleCommand
-        responder newUserContextInteractionAction Bot::handleCommand
-        responder newMessageContextInteractionAction Bot::handleCommand
     }
 
     private infix fun defaultOnGuildJoinAction(event: GuildJoinEvent) {
@@ -46,7 +42,7 @@ internal class BotListener : ListenerAdapter() {
         // Gives the new guild member the specified default role
         log.info("Adding the default role to the new member")
         event.guild.let {
-            with(it.getRoleById(D/it-"defaultrole")){
+            with(it.getRoleById(D / it - "defaultrole")) {
                 it.addRoleToMember(event.member, this!!).complete()
             }
         }
@@ -54,22 +50,20 @@ internal class BotListener : ListenerAdapter() {
 
     private fun defaultOnGuildUpdateNameAction(event: GuildUpdateNameEvent) =
         File("guildData/${event.oldName}").renameTo(File("guildData/${event.newName}"))
-
-    private fun defaultOnMessageReceivedAction(event: MessageReceivedEvent) =
-        if (startsWithTrigger(event) and (event.channel !in ignoredChannels))
-            Bot.handleCommand(Parser parse event, event)
-        else log.debug("The message did not start with a trigger")
     private fun startsWithTrigger(event: MessageReceivedEvent) = Parser startsWithTrigger event.message.contentRaw
-    fun ignoreChannel   (channel: MessageChannel) = ignoredChannels.add(channel)
-    fun unignoreChannel (channel: MessageChannel) = ignoredChannels.remove(channel)
-    infix fun ignore    (channel: MessageChannel) = ignoreChannel(channel)
-    infix fun listenTo  (channel: MessageChannel) = unignoreChannel(channel)
-    operator fun minus  (channel: MessageChannel) = this ignore channel
-    operator fun plus   (channel: MessageChannel) = this listenTo channel
-    override fun onGuildJoin                (event: GuildJoinEvent)                 = responder reactTo event
-    override fun onGuildMemberJoin          (event: GuildMemberJoinEvent)           = responder reactTo event
-    override fun onGuildUpdateName          (event: GuildUpdateNameEvent)           = responder reactTo event
-    override fun onMessageReceived          (event: MessageReceivedEvent)           = responder reactTo event
+    fun ignoreChannel(channel: MessageChannel) = ignoredChannels.add(channel)
+    fun unignoreChannel(channel: MessageChannel) = ignoredChannels.remove(channel)
+    infix fun ignore(channel: MessageChannel) = ignoreChannel(channel)
+    infix fun listenTo(channel: MessageChannel) = unignoreChannel(channel)
+    operator fun minus(channel: MessageChannel) = this ignore channel
+    operator fun plus(channel: MessageChannel) = this listenTo channel
+    override fun onMessageReceived(event: MessageReceivedEvent) {
+        if (startsWithTrigger(event) and (event.channel !in ignoredChannels))
+            responder reactTo event
+    }
+    override fun onGuildJoin(event: GuildJoinEvent) = responder reactTo event
+    override fun onGuildMemberJoin(event: GuildMemberJoinEvent) = responder reactTo event
+    override fun onGuildUpdateName(event: GuildUpdateNameEvent) = responder reactTo event
     override fun onMessageReactionAdd       (event: MessageReactionAddEvent)        = responder reactTo event
     override fun onMessageDelete            (event: MessageDeleteEvent)             = responder reactTo event
     override fun onUserUpdateOnlineStatus   (event: UserUpdateOnlineStatusEvent)    = responder reactTo event

@@ -14,8 +14,8 @@ import javax.imageio.ImageIO
 class DotaCommand: GameStatsCommand("dota2","https://www.dotabuff.com") {
     private val patchNoteURL = "https://steamdb.info/api/PatchnotesRSS/?appid=570"
     init {
-        createPatchNotesService()
-        //createdUserGamesService()
+        //createPatchNotesService()
+        createdUserGamesService()
     }
     override fun invoke(args: Array<String>) {}
     protected fun openDB(urlSuffix: String, actions:()->Unit) = open("$primaryAddress/$urlSuffix", actions)
