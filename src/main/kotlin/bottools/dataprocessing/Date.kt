@@ -6,8 +6,8 @@ import java.time.Month
 
 class Date{
     lateinit var day: DayOfWeek
-    var date: Int
-        set(date: Int){
+    var date = 0
+        set(date){
             require(date >= 1) { "Date value cannot be lower than 1" }
             when (month) {
                 Month.FEBRUARY ->

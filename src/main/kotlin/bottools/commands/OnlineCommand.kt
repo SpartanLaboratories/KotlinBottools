@@ -24,7 +24,7 @@ protected constructor(name: String, protected var primaryAddress: String = "") :
     private val cookieMap
         get() = cookieList.readAll().map { it-"name" to it-"value" }.toMap()
     init{
-        prepAddress()
+        //prepAddress()
     }
     protected fun prepAddress(){
         if (primaryAddress.isNotBlank()) {
