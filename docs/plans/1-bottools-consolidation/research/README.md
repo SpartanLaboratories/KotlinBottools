@@ -54,6 +54,15 @@ The library is built as follows:
   default, overridable per guild) reach the same handlers. Context-menu commands are supported.
 - **Game data.** It comes only from documented JSON APIs through typed providers, never from
   HTML scraping.
+- **HTTP.** HTTP and scraping are WebTools' domain.
+  - **What comes from WebTools.** `bottools-stats`, the weather plugin and the feeds plugin
+    consume WebTools' HTTP stack: the transport, the outbound-URL policy, the response cache,
+    the call budget, the call facade, the failure model and the test fakes.
+    [SpartanLaboratories/WebTools#55](https://github.com/SpartanLaboratories/WebTools/issues/55)
+    states what the library requires of it.
+  - **What stays in the library.** The game-provider framework.
+  - **Releases.** `1.0.0` depends on a WebTools release that carries the stack. During
+    development the library consumes WebTools through a Gradle composite build.
 - **Coroutines.** JDA is bridged to coroutines through `jda-ktx`, which stays internal to
   `bottools-core`.
 - **Storage.**
@@ -554,6 +563,58 @@ it with a new system, drop it, or list it as a potential feature after the roadm
 - `git filter-repo`'s documentation.
 
 **Findings:** [`bot-repository-history-purge.md`](bot-repository-history-purge.md)
+
+#### 13. How should the library consume a WebTools module that is not yet released, and what does that dependency require of both builds?
+
+**Options to compare:**
+
+- **During development:** a Gradle composite build that includes `../WebTools` when the
+  sibling checkout exists, with substitution by coordinates, versus `-SNAPSHOT` builds of
+  WebTools from the Central Portal's snapshot repository.
+- **The chain:** MagicBot consumes the library, which consumes WebTools. Either a nested
+  composite (MagicBot includes the library, which includes WebTools), or MagicBot includes both
+  builds itself.
+- **The library's CI:** checking out WebTools beside the library at a pinned commit, versus
+  resolving a published WebTools version.
+- **At release:** the `1.0.0` POM names a released WebTools version; how the two releases are
+  ordered.
+
+**Requirements:**
+
+- `bottools-stats`, the weather plugin and the feeds plugin consume WebTools' HTTP stack, as
+  WebTools#55 states. The game-provider framework stays in the library.
+- WebTools is public. It builds on Kotlin 2.2.0 and Gradle 9.7.1, sets group
+  `io.github.spartanlaboratories` and its version at the root, and publishes `webtools-udp`,
+  `webtools-scraping` and `webtools-browser`.
+- The library builds on Kotlin 2.2.x and Gradle 9.7.1 with JDA 6.7.0, which brings `okhttp-jvm`
+  5.5.0.
+- Publishing to a registry is a deliberate manual act, and no registry credential lives in CI.
+- MagicBot consumes the library as Question 10 answers: a composite build beside it, otherwise
+  `-SNAPSHOT` builds from `main`.
+- What WebTools#55 leaves open is WebTools' to decide: module placement, where the test fakes
+  ship, OkHttp version policy, feed parsing, reach, tiers and versioning. The answer says how
+  each option would affect the library's build and dependencies, without choosing among them.
+
+**The answer establishes:**
+
+- whether Gradle 9.7.1 supports nested included builds, and how substitution behaves through
+  them;
+- whether Maven Central accepts a release whose POM depends on a `-SNAPSHOT` version;
+- how a WebTools module's dependencies (OkHttp, Caffeine, kotlinx.coroutines) line up with
+  JDA's on the library's classpath, and how a build checks it;
+- WebTools' current publishing practice: its versions on Maven Central, whether it publishes
+  snapshots, and its release workflow;
+- how the library's CI pins WebTools and warns of drift.
+
+**Evidence that settles it:**
+
+- Gradle's documentation on composite builds: nested builds and dependency substitution.
+- Sonatype's Central Portal documentation on publishing requirements and on snapshots.
+- WebTools' build files, `CONTRIBUTING.md`, release workflow and Maven Central metadata.
+- [`unreleased-build-consumption.md`](unreleased-build-consumption.md), for the MagicBot edge
+  and the composite-build findings it already holds.
+
+**Findings:** [`webtools-consumption.md`](webtools-consumption.md)
 
 ### 1.4 Lenses
 
