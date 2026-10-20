@@ -39,8 +39,9 @@ This file holds three things:
 - **Versions.** The first published version is `1.0.0`; every build before it is
   `1.0.0-SNAPSHOT`. Later additions ship as `1.N.0` feature releases. The `7.x` line ends
   without a further release.
-- **Sources.** `GKB2` supplies the features being ported. `GKB2` and the earlier bot
-  repositories `GKB`, `BotTools` and `TrumpBot` are archived with pointers to `bottools`.
+- **Sources.** `GKB2` supplies the features being ported. `GKB2`, the earlier bot
+  repositories `GKB`, `BotTools` and `TrumpBot`, and TrumpBot's companion project `Support`
+  are archived with pointers to `bottools`.
 
 The library is built as follows:
 
@@ -78,6 +79,7 @@ The library is built as follows:
 - **Weather:** current conditions and a forecast, from a free API that needs no key.
 - **Admin:** get and set for every registered guild setting, restricted to server
   administrators.
+- **Feeds:** server administrators subscribe a channel to any RSS or Atom feed.
 
 Poker follows after `1.0.0` as playable Texas hold 'em.
 
@@ -90,11 +92,12 @@ Poker follows after `1.0.0` as playable Texas hold 'em.
   notes. Its old Dota 2 subcommand names (`setid`, `getid`, `lastgame`, `showstats`) remain as
   typed aliases.
 - **Later games.** Marvel Rivals, Path of Exile 2 and No More Room in Hell follow, one per
-  release.
+  release, each offering what its data source honestly supports.
 - **Public-bot obligations:**
   - a privacy policy and terms;
   - a command that deletes a user's data;
-  - either message-content approval or a prefix fallback limited to @-mentions;
+  - a typed form reached by @-mention in servers and by the prefix in DMs, so that MagicBot
+    needs no message-content intent;
   - sharding-ready configuration;
   - a tracker call budget that scales with the audience.
 - **Consuming the library.** It uses this repository through a Gradle composite build when the
@@ -106,7 +109,7 @@ Poker follows after `1.0.0` as playable Texas hold 'em.
 
 **History cleanup.** Before any of this, secrets, data, IDE and build files leave the tree and
 the history of every bot repository: `KotlinBottools`, `GKB2`, `GKB`, `BotTools`, `TrumpBot`,
-and `Support` if it turns out to be bot-related.
+and `Support`, TrumpBot's companion project.
 
 - `git filter-repo` rewrites each repository, followed by a force-push.
 - No token found in these histories is current. The rewrite is hygiene before the repositories
@@ -377,7 +380,7 @@ outside-world claims its recommendation rests on.
 
 **Requirements:**
 
-- One stack serves every stats provider and the weather plugin, and any feed fetching.
+- One stack serves every stats provider, the weather plugin and the feeds plugin.
 - Every provider call passes through a cache and a per-provider budget.
 - JSON maps to Kotlin types.
 - The library's classpath stays lean and free of conflicts with JDA's dependencies.
@@ -858,8 +861,11 @@ Source: [command-framework-prior-art](command-framework-prior-art.md) §2, §5, 
     not answered after about two seconds. No surveyed framework does this (Kord Extensions
     removed its automatic acknowledgement), so it gets a Level 2 test on a controllable clock
     before anything relies on it.
-  - In typed form `defer` shows a typing indicator, and a reply cannot be ephemeral
-    (Considerations, "Private replies to typed commands").
+  - In typed form `defer` shows a typing indicator, and no reply can be ephemeral. A reply
+    marked private therefore goes by DM, with a short public note that a DM was sent; when the
+    user's DMs are closed, the public reply holds nothing personal and points to the slash
+    command. The same handler serves both forms: the context turns a private reply into an
+    ephemeral one for an interaction and into a DM for a typed command.
 - **Preconditions** run once for both forms: guild-only, user and bot permissions, owner,
   cooldown and guild-enabled. A user-permission precondition also sets
   `default_member_permissions`, but enforcement never relies on it, because server
@@ -1039,8 +1045,11 @@ Source: [sqlite-persistence-stack](sqlite-persistence-stack.md) §2, §5, §6.
   absent). `eraseUser` and `eraseGuild` are single atomic operations over every table and owner
   scope and return counts per table; a plugin keeping data elsewhere erases it through its
   hook. SQLite keeps deleted bytes in free pages and the WAL until reused (`secure_delete` is
-  available), and a backup taken before an erasure still holds the user (Considerations,
-  "Backups and data deletion").
+  available).
+- **Backups are short-lived.** A backup taken before an erasure still holds the user until the
+  retention window stated in MagicBot's privacy policy has passed; no erasure log is kept. The
+  library offers the backup call and a close that checkpoints, and the host sets the
+  schedule.
 - **Schema.** `STRICT` tables with composite natural keys: `account_link`,
   `tracking_subscription` (each row with its own cursor and health), `guild_setting`,
   `job_state` and `plugin_kv`. Timestamps are epoch milliseconds.
@@ -1089,11 +1098,17 @@ Source: [http-client-stack](http-client-stack.md) §2, §5, §6. The shared stac
   `maxRequestsPerHost` is sized from the budget (5 by default); responses are size-capped
   before reading. In tests, Caffeine's ticker, the budget's clock and coroutine `delay` share
   one injected time source.
-- **Feeds.** Game news arrives as JSON (3.9), so it needs no feed parser. Whether a general RSS
-  or Atom plugin exists is open (Considerations, "Feeds"). If it does, Rome 2.1.0 (last
-  released 2023-03-12) sits behind a `FeedParser` port with DOCTYPEs disallowed, fetching goes
-  through the shared client with a DNS guard against private addresses and caps on redirects
-  and size, and `rssreader` 3.12.0 is the named replacement for Rome.
+- **Feeds.** Game news, such as Dota 2's patch notes, arrives as JSON from fixed provider
+  hosts (3.9) and needs no feed parser. The feeds plugin in `bottools-plugins` lets server
+  administrators subscribe a channel to any RSS or Atom URL, and it carries the parser:
+  - Rome 2.1.0 (last released 2023-03-12) sits behind a `FeedParser` port with DOCTYPEs
+    disallowed; `rssreader` 3.12.0 is the named replacement if Rome becomes a liability.
+  - Feeds are fetched as bytes through the shared client, never through Rome's own URL
+    reader, with a conditional GET (`ETag`, `Last-Modified`).
+  - The URLs come from administrators of a public bot, so the fetch is guarded against
+    server-side request forgery: `http` and `https` only, a DNS resolver that rejects
+    loopback, link-local and private addresses (which covers redirects too), capped
+    redirects and body size, and short timeouts.
 - **Tests.** Level 2 uses a fake transport serving recorded fixtures with scripted statuses and
   headers, on fake time. Level 3 runs the real transport against `mockwebserver3` 5.5.0. A
   fixture recorder runs only when an environment variable is set, never in CI, and strips keys.
@@ -1161,18 +1176,22 @@ Source: [game-and-weather-data-sources](game-and-weather-data-sources.md) §2, �
     did is not established; if not, a Zippopotam.us `Geocoder` sits behind the same port. MET
     Norway (its own geocoder and strict etiquette) and the US National Weather Service (US only)
     are not used.
-- **The later games** *(provisional: Question 9 needs a re-pass; scope in Considerations,
-  "Later games")*.
+- **The later games** *(provisional: Question 9 needs a re-pass)*. Each ships what its source
+  honestly supports, in this order, and each of their phases opens with a re-pass of its
+  sources.
   - **Marvel Rivals.** No official API exists in any source read. One community API
     (`marvelrivalsapi.com`, non-official, keyed, about 3,000 free requests a day, a player
     refresh at most every 30 minutes) covers profile with rank, match history and match
-    detail. Its terms could not be read.
+    detail. Its terms could not be read. The provider is Experimental and on demand, with
+    those three capabilities and no automatic posts.
   - **Path of Exile 2.** GGG's API covers PoE 2 but needs per-user OAuth, and registration of
     new applications was reported closed on 2026-10-14. poe.ninja's economy endpoints are its
-    supported public surface.
+    supported public surface. The provider offers economy data only; profiles and ladders wait
+    until GGG reopens application registration.
   - **No More Room in Hell.** Steam only, with an operator Steam key: profile, playtime (with
-    `include_played_free_games`) and achievements; no matches and no economy.
-- **What the provider model must allow, whichever games ship.**
+    `include_played_free_games`) and achievements; no matches and no economy. The provider
+    runs on commands only.
+- **What the provider model must allow across these sources.**
   - A capability is account-scoped (profile, history, detail) or global (economy, an
     achievement catalogue, weather).
   - Account identity is a sealed set, each kind validated by its provider: Steam64, a Marvel
@@ -1271,7 +1290,8 @@ Source: [codebase-inventory-and-fate](codebase-inventory-and-fate.md) §2, §3, 
   the role when the reaction is removed. Math and weather are rewritten against their
   specification. Admin becomes typed get and set over the registered settings. Poker is rebuilt
   in its own phase; GKB2's table, seat and button flow is the reusable idea, and its
-  `ActionRow` and `Button` code does not compile on JDA 6.
+  `ActionRow` and `Button` code does not compile on JDA 6. The feeds plugin is new:
+  `RssService`, which nothing calls, carries nothing over.
 - **Legacy data.** Three copies cover the same six servers and the same two linked members.
   KotlinBottools' copy is the newest (2025-09-24) and holds one of the links; GKB2's
   (2023-09-17) holds both; TrumpBot's (2022-10-31) uses an older layout and links one of the
@@ -1280,8 +1300,11 @@ Source: [codebase-inventory-and-fate](codebase-inventory-and-fate.md) §2, §3, 
 - **The importer.** Folders and members are keyed by names, so the importer resolves guilds by
   name among the bot's guilds and members with `retrieveMembersByPrefix` plus an exact match,
   reports what it cannot resolve rather than guessing, and does not import the seeded defaults
-  (`defaultRole` "online", `welcomeMessage` "hello") as choices. Which copies it reads is open
-  (Considerations, "Legacy data").
+  (`defaultRole` "online", `welcomeMessage` "hello") as choices. It reads KotlinBottools' and
+  GKB2's copies merged, the newer value winning for each server and member; TrumpBot's older
+  layout is not imported. All three copies leave the repositories before the rewrite and are
+  kept access-restricted, and the older copies are deleted once the import report has been
+  checked.
 - **GKB2's open issues #2 to #5 are obsolete** after the consolidation: their components
   leave, or the rebuilt definitions carry their intent.
 - **Six features leave the roadmap**, one line each in
@@ -1300,8 +1323,8 @@ Source: [bot-repository-history-purge](bot-repository-history-purge.md) §2, §5
   `Support`, which is bot-related: it is TrumpBot's Eclipse companion (TrumpBot's `.classpath`
   names `/Support`, and its `TimeCommand` imports Support's `Date`) and vendors a lavaplayer
   native and a ForecastIO client. Support holds no secret and no data, so its pass removes
-  binaries and IDE files only; what becomes of it afterwards is open (Considerations,
-  "Support").
+  binaries and IDE files only. After its purge it is archived alongside TrumpBot, its only
+  known consumer, with a README pointer.
 - **Secrets are confined to whole files** (`key.txt`, `keys.txt`, `key.pem`, `BotData.xml`)
   across all six histories; 34 candidate strings were searched in every blob, commit message,
   author field and ref name. So a rewrite by path is enough:
@@ -1324,9 +1347,10 @@ Source: [bot-repository-history-purge](bot-repository-history-purge.md) §2, §5
   views and forks keep the old objects until GitHub Support dereferences the pull requests and
   collects garbage. Support helps where rotating credentials cannot mitigate the risk; every
   token here is dead, so the credible ground is the personal data in GKB2's and GKB's public
-  histories, and in KotlinBottools before it goes public. Any pull request merged into
-  KotlinBottools before its rewrite adds such a ref (Considerations, "The planning pull request
-  and the rewrite").
+  histories, and in KotlinBottools before it goes public. No pull request is opened on
+  KotlinBottools before its rewrite: the rewrite opens Phase 0 and rewrites the planning branch
+  with `main`, and the planning pull request is opened afterwards from the rewritten branch,
+  so KotlinBottools gains no pull-request ref that pins the old history.
 - **Branches, hashes and clones.** Two remote branches are not on disk (BotTools
   `Working-Branch`, TrumpBot `feature/pokercommand`); the mirror clone covers them. Every commit
   hash changes in all five bot repositories, because each root commit holds a purged path, so
@@ -1348,109 +1372,30 @@ Source: [bot-repository-history-purge](bot-repository-history-purge.md) §2, §5
 Source: [discord-platform-rules](discord-platform-rules.md) §3.6, §6.
 
 - **Privacy policy and terms.** The policy states what is collected, how it is used and
-  shared, and how to request deletion, and names the third parties (OpenDota, Steam,
-  Open-Meteo, and later providers). Both URLs sit on the application profile
-  (`privacy_policy_url`, `terms_of_service_url`) and in the bot's help.
+  shared, how to request deletion, and how long deleted data can remain in backups (3.7), and
+  names the third parties (OpenDota, Steam, Open-Meteo, and later providers). Both URLs sit on
+  the application profile (`privacy_policy_url`, `terms_of_service_url`) and in the bot's help.
 - **Deletion.** A delete-my-data command runs `eraseUser`, deleting the user's global account
   links and every subscription they created, and reports the counts. Removing the bot from a
   guild runs `eraseGuild`. Data is deleted promptly on request and when it is no longer needed
   for the bot's stated function.
-- **Data use.** Ids and game links only, never message content, used only for the stated
-  function. No unsolicited DMs: notifications go to the subscribed channel.
+- **Data use.** MagicBot stores ids, game account links, subscriptions and server settings,
+  never message content, and uses them only for its stated function. No unsolicited DMs:
+  notifications go to the subscribed channel.
 - **Deployment.** Encryption at rest is a requirement on the deployment, whose host is not
   decided.
 - **Scale.** The configuration is ready for sharding (3.6), and the tracker's budget grows with
   the audience (3.8, 3.9).
-- **Owner tasks.** The application's owner handles App Verification and any privileged-intent
-  review; the library only reports an intent that is missing. MagicBot holds `GUILD_MEMBERS`
-  for the join features; whether it also holds `MESSAGE_CONTENT` is open (Considerations,
-  "MagicBot's typed form in servers").
-
----
-
-## Considerations
-
-Each of these choices changes what is built, and each blocks execution until it is settled.
-
-1. **Feeds.** Does `1.0.0` carry a general feeds plugin, or only game news?
-   - **(a) Game news only.** The stats framework gains a news-source capability, and Dota 2's
-     patch notes post from Steam's JSON news API. There is no RSS or Atom parser, and the bot
-     fetches no URL a user supplies.
-   - **(b) Also a general feeds plugin in `bottools-plugins`.** Server administrators subscribe
-     a channel to any RSS or Atom URL. This adds Rome behind a `FeedParser` port, fetching
-     guarded against server-side request forgery, storage for feed subscriptions and admin
-     commands. MagicBot installs it like every other plugin.
-   - **Recommendation: (a).** The `1.0.0` plugins are reaction roles, math, weather and admin;
-     today's `RssService` has no caller; and a public bot that fetches URLs supplied by its
-     users takes on a new attack surface. A general feeds plugin can follow as a later feature
-     release.
-2. **Private replies to typed commands.** Discord hides a reply from everyone but the invoker
-   only for interactions, so a typed command (`@MagicBot …`, `!…`) cannot reply privately.
-   Commands whose reply is meant for the invoker alone, such as the delete-my-data confirmation
-   and its report, need a rule for their typed form.
-   - **(a)** Send the private part by DM, with a short public note that a DM was sent. If the
-     user's DMs are closed, reply publicly with a message that holds nothing personal and points
-     to the slash command.
-   - **(b)** Reply publicly, and keep the reply free of personal detail.
-   - **(c)** Make such commands slash-only; the typed form answers with a pointer to the slash
-     command.
-   - **Recommendation: (a).** One handler serves both forms, and a DM sent in answer to the
-     user's own command is not unsolicited. The library models this as a reply visibility: an
-     ephemeral reply to an interaction, a DM to a typed command.
-3. **MagicBot's typed form in servers.** MagicBot holds `GUILD_MEMBERS` either way, because
-   the join features need it. Each privileged intent is a Developer Portal toggle below 10,000
-   users and needs a review, renewed every year, from 10,000; Discord's guide names welcome
-   messages as a standard reason for `GUILD_MEMBERS`.
-   - **(a) Mention only.** Typed commands are reached by @-mention in servers and by `!` in
-     DMs, and the old Dota 2 names stay as aliases reached through a mention. MagicBot holds no
-     `MESSAGE_CONTENT`.
-   - **(b) A bare `!` in servers too.** MagicBot also holds `MESSAGE_CONTENT`, which needs its
-     own review from 10,000 users; Discord may deny it when slash commands can do the job.
-   - **Recommendation: (a).** It holds at any audience size with one routine review, and the
-     bare-prefix mode stays a configuration switch the library offers.
-4. **Backups and data deletion.** An erasure removes a user from the live database, but a
-   backup taken earlier still holds them, and restoring it brings them back.
-   - **(a)** Keep backups short-lived, and state the retention window in the privacy policy:
-     deleted data leaves the backups within that window.
-   - **(b)** Keep an erasure log in the database and replay it after any restore. This adds a
-     table and a restore step to the storage design.
-   - **(c)** Never restore user data from a backup; restore settings only.
-   - **Recommendation: (a).** It needs no extra machinery. The library offers the backup call
-     and a close that checkpoints, and the host, once chosen, sets the schedule.
-5. **Later games.** Each later game ships what its source honestly supports, waits for a better
-   source, or is dropped. Every such phase starts with a re-pass of its sources.
-   - **Marvel Rivals** (a community API only): (a) an Experimental, on-demand provider with
-     profile and rank, match history and match detail, and no automatic posts; or (b) defer
-     until an official API exists.
-   - **Path of Exile 2:** (a) an economy-only provider from poe.ninja; or (b) defer until GGG
-     reopens application registration, which would allow profiles and ladders.
-   - **No More Room in Hell:** (a) profile, playtime and achievements through a Steam key; or
-     (b) drop the game.
-   - **Recommendation: (a) for all three, in the existing order.**
-6. **The planning pull request and the rewrite.** A pull request on KotlinBottools opened before
-   its history is rewritten creates `refs/pull/N/*`. Those refs keep the old history fetchable
-   after the force-push, and only GitHub Support can clear them.
-   - **(a)** Open no pull request from this planning branch until KotlinBottools' history is
-     rewritten. The rewrite opens Phase 0 and rewrites this branch too; the pull request is
-     then opened from the rewritten branch.
-   - **(b)** Merge the planning pull request now, and before the repository goes public ask
-     GitHub Support to clear the ref. Support may decline, since no token is current.
-   - **Recommendation: (a).** KotlinBottools' path to going public then depends on nobody
-     outside the organisation.
-7. **Legacy data.** Which copies does the importer read? All three are copied out before the
-   rewrite either way (3.13).
-   - **(a)** KotlinBottools' copy only: the newest, holding one of the two links.
-   - **(b)** KotlinBottools' and GKB2's copies, merged. They share a layout, and for each
-     server and member the newer value wins.
-   - **(c)** All three, merged. This adds a reader for TrumpBot's older layout and its
-     conflicting older link.
-   - **Recommendation: (b).** It keeps both links with one reader. The older copies are deleted
-     once the import report has been checked.
-8. **`Support` after its purge.**
-   - **(a)** Archive it with a README pointer, alongside TrumpBot, its only known consumer.
-   - **(b)** Keep it active, and move its vendored libraries to a dependency manager.
-   - **(c)** Delete it.
-   - **Recommendation: (a).**
+- **Intents and the typed form.** MagicBot holds the privileged `GUILD_MEMBERS` intent for the
+  default role and welcome message on join: a Developer Portal toggle below 10,000 users, and
+  from 10,000 a review renewed every year, for which Discord's guide names welcome messages as
+  a standard reason. It does not hold `MESSAGE_CONTENT`: in servers its typed form is reached
+  by @-mention (`@MagicBot setid 123`), in DMs by the prefix (`!setid 123`), and the old Dota 2
+  names stay as aliases. The library keeps the bare server prefix as a configuration switch for
+  other bots.
+- **Private replies.** A private reply to a typed command goes by DM (3.4).
+- **Owner tasks.** The application's owner handles App Verification and the privileged-intent
+  review; the library only reports an intent that is missing.
 
 ---
 
@@ -1517,8 +1462,8 @@ Each of these choices changes what is built, and each blocks execution until it 
 - **Hosting is not decided,** and with it: where MagicBot runs, encryption at rest, the backup
   schedule, a local disk for the database, and where the privacy policy and terms pages are
   served.
-- **GitHub Support.** The outcome of a request to clear pull-request refs cannot be known in
-  advance.
+- **GitHub Support.** The outcome of a request to clear GKB2's and BotTools' pull-request refs
+  and the cached views of rewritten commits cannot be known in advance.
 - **Kotlin 2.4 at language version 2.2.** Whether such a compiler reads metadata 2.4.0 is not
   established (3.12).
 - **Level 5 (UAT)** is deferred to a separate, later plan.
