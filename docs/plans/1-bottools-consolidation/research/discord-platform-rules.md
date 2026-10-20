@@ -8,6 +8,7 @@
   - App Verification, privileged-intent access and Stripe identity-check articles: support-dev.discord.com Help Centre, read 2026-10-20. The Developer Portal's App Verification checklist is behind a sign-in and was not read.
   - JDA: source read at tag `v6.7.0` (`7c900019ca511a994087320ce98d19cd79a2c4b0`, 2026-09-20, latest on Maven Central). The repository pins 5.6.1; every JDA symbol cited below also exists at tag `v5.6.1`.
   - discord.py: tag `v2.7.1` (`dfd1144b2246a7adafe3f1c64a4dd9bc2187fcee`), as a comparison.
+  - Kord Extensions: tag `v2.6.0` (`f86bef8eedc9db7f2f62aa56ce0a3bb62a86437d`, 2026-08-26), source at `https://codeberg.org/Kord-Extensions/kord-extensions`, read 2026-10-20, as a comparison for acknowledgement behaviour.
 
 Doc links below are GitHub blob links at the pinned commit. `D` = `https://github.com/discord/discord-api-docs/blob/fd75e22e8c327f60c3ceaa366878c8b223043142/developers`. `TOS` = `https://support-dev.discord.com/hc/en-us/articles/8562894815383-Discord-Developer-Terms-of-Service`; `POL` = `https://support-dev.discord.com/hc/en-us/articles/8563934450327-Discord-Developer-Policy`; `HC` = `https://support-dev.discord.com/hc/en-us/articles`.
 
@@ -267,7 +268,7 @@ The Developer Terms of Service (`TOS`, "Terms") and Developer Policy (`POL`, "Po
   - `HybridCommand` is "both an application command and a regular text command" with one callback, restricted to what application commands support. This is the same "one handler, two front doors" shape the library needs.
   - `Context.defer()` is a no-op for text invocations, so one handler can defer without knowing its origin.
   - `CommandTree.sync()` is an explicit call ("This must be called for the application commands to show up"), not an implicit action at start-up.
-- **Kord Extensions** (`Kord-Extensions/kord-extensions`): the repository's default branch held only a README when read (HEAD `c51fce17152ee1707cb1be76bb06b77554294039`), so its auto-acknowledgement behaviour was not verified.
+- **Kord Extensions `v2.6.0`** (`https://codeberg.org/Kord-Extensions/kord-extensions`): acknowledges immediately and unconditionally, with no timer. `PublicSlashCommand.run` and `EphemeralSlashCommand.run` run the checks, then answer with the definition's `initialResponse` or open a modal or call `deferPublicResponseUnsafe()` / `deferEphemeralResponseUnsafe()`, and only then check bot permissions, parse the arguments and run the body; the visibility is fixed by the class. A check that fails with a message is answered with an ephemeral initial response. Buttons and selects do the same (`deferredAck`). The one way to leave an interaction unanswered is the opt-in `UnsafeSlashCommand` (`InitialSlashCommandResponse.None`) [55]. This is the precedent for an acknowledge-first design; none of the frameworks read for this file defers on a timer, and the 2-second timer in section 6 is this file's own design margin.
 - **This repository today:**
   - `Bot` builds `JDABuilder.createDefault(token, EnumSet.allOf(GatewayIntent::class.java))` with `MemberCachePolicy.ALL` and `CacheFlag.ONLINE_STATUS`.
   - It registers commands with `jda.updateCommands().addCommands(interactions).complete()` at start-up.
@@ -316,7 +317,7 @@ Make the platform rules data in the command model and the runtime configuration,
    - Member cache: `MemberCachePolicy.NONE`/`DEFAULT` with `ChunkingFilter.NONE`; never `ALL`.
    - The join feature should be separately switchable. It is the one MagicBot feature that needs a privileged intent. It can be enabled below 10,000 users and needs a reviewed application above that.
 5. **Responses.**
-   - The runtime acknowledges before the deadline with a short timer (about 2 seconds) and a deferral whose ephemerality comes from the command definition.
+   - The runtime acknowledges before the deadline with a short timer (about 2 seconds) and a deferral whose ephemerality comes from the command definition. Kord Extensions acknowledges every interaction immediately instead (claim 55); the timer is this design, and immediate acknowledgement is its simpler alternative.
    - Component and modal `custom_id`s encode a route plus a short key and are dispatched by registry, so nothing depends on memory across restarts.
    - Admin and other privileged commands set `default_member_permissions` and re-check `Member.permissions` in the handler.
 6. **Legacy import.** Resolve names with `retrieveMembersByPrefix(name, 100)` plus an exact-match filter. It needs no privileged intent, does not trigger the whole-guild request limit, and the import then needs no `GUILD_MEMBERS` toggle.
@@ -395,6 +396,7 @@ Links use `D` = `https://github.com/discord/discord-api-docs/blob/fd75e22e8c327f
 52. **Reporting, support and permission.** "developers must: (1.) provide users of their Application with a way to report issues or violations relating to the Application or its use (including violations of our platform rules and other Terms); and, (2.) review such reports and take appropriate action." and "Do not initiate processes on a user or server’s behalf without first obtaining their permission." (`POL`, "Protect Discord Users", item 2 and the closing duties)
 53. **Content responsibility.** "You are solely responsible for your Application (including its development, operation, maintenance, support, distribution, use, and content)." (`TOS`, Section 3.b) and, among prohibited behaviours, "Distribute adult content to users under the age of 18, or without age-restricted labels (where applicable) to users ages 18 and older" (`POL`, item 10).
 54. **Removal from spaces.** "Your Application must respect users’ ability to remove the Application from spaces (e.g., servers or channels) where it is present." (`POL`, item 3)
+55. **Kord Extensions acknowledgement** (`v2.6.0`; base `https://codeberg.org/Kord-Extensions/kord-extensions/src/tag/v2.6.0/kord-extensions/src/main/kotlin/dev/kordex/core/`). "Call this to open with a response, omit it to ack instead." and `event.interaction.deferEphemeralResponseUnsafe()` (`commands/application/slash/EphemeralSlashCommand.kt`, `initialResponse` and `run`); `event.interaction.deferPublicResponseUnsafe()` (`commands/application/slash/PublicSlashCommand.kt`, `run`); "Whether to use a deferred ack, which will prevent Discord's "Thinking..." message." (`components/ComponentWithAction.kt`, `deferredAck`); "Don't respond. Warning: You may not be able to respond in time!" (`InitialSlashCommandResponse.None` in module `dev-unsafe`, `https://codeberg.org/Kord-Extensions/kord-extensions/src/tag/v2.6.0/modules/dev/dev-unsafe/src/main/kotlin/dev/kordex/modules/dev/unsafe/commands/slash/InitialSlashCommandResponse.kt`). The statement order in `run` (checks, acknowledgement, permission check, argument parsing, body) is read from the code.
 
 ## 8. Gaps
 
@@ -412,7 +414,7 @@ Links use `D` = `https://github.com/discord/discord-api-docs/blob/fd75e22e8c327f
 - **Numeric propagation time for global commands.** Not documented in the current text (only "read-repair").
 - **Per-channel message-create rate limit.** Not stated in the documentation; JDA learns it from headers.
 - **How Discord computes the recommended shard count.** Not documented.
-- **Kord Extensions' auto-acknowledge behaviour:** the repository's default branch contained only a README; not assessed.
+- **Kord Extensions' acknowledgement** was read from source at `v2.6.0` and not run; that a slow check can use up the 3-second window before its acknowledgement follows from the statement order and is not measured.
 - **Component survival across restarts** is my inference from the documented delivery model (claims 11 and 13), not a sentence in the documentation.
 - The 2.0-second acknowledgement timer in the recommendation is a design margin I chose, not a Discord number.
 
