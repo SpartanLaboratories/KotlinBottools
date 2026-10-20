@@ -9,16 +9,30 @@ Repositories and references (all read-only for you; a location written `github:<
 - github:SpartanLaboratories/GKB2@9422f85 — the source to port from: Kotlin 1.7.20 multiplatform with Compose, JDA 5.0.0-beta.2, Spring XML wiring.
 - %PROJECTS%/MyGameTools — the organisation's conventions: build-logic convention plugins, .github/workflows (ci.yml, pages.yml, release.yml), CONTRIBUTING.md, CHANGELOG.md, and the SupportedExtension / ExperimentalGameToolsApi markers in gametools-core.
 - %PROJECTS%/GeneralTools/docs/plans/7-kotlin-multiplatform/research/ — Kotlin Gradle plugin and Gradle compatibility, Maven Central publishing. The checkout is on branch feat/issue-7-kotlin-multiplatform, where this folder is committed in full.
-- %PROJECTS%/WebTools — per-level test-task wiring in its root build.gradle.kts, and the architecture precedent named below. The checkout is on a feature branch; both files are identical to master.
+- %PROJECTS%/WebTools — per-level test-task wiring in its root build.gradle.kts, and the architecture precedent named below. The checkout is on a feature branch; both files are identical to master. WebTools is also where the library's HTTP stack comes from (see "HTTP from WebTools" below). Read its current state from github:SpartanLaboratories/WebTools@master. Facts: it builds on Kotlin 2.2.0 and Gradle 9.7.1; it sets group io.github.spartanlaboratories and its version at the root, so a composite build substitutes it; it publishes webtools-udp, webtools-scraping and webtools-browser; webtools-scraping today is one Connector class on skrapeit 1.1.5, jsoup 1.15.4 and unirest-java 1.4.9. WebTools is public; KotlinBottools is private until its history rewrite.
+- SpartanLaboratories/WebTools#55 (https://github.com/SpartanLaboratories/WebTools/issues/55; read it with `gh issue view 55 --repo SpartanLaboratories/WebTools`) — what the library requires of WebTools' HTTP stack, with the library's former design of the stack offered as a draft. It is the contract the design consumes.
 - Organisation rules: %USERPROFILE%/.claude/CLAUDE.md (global rules, including "Library Design — Open-Ended by Default", the Audience-Reach documentation model and the 5-level testing hierarchy); the organisation's `.github` repository, github:SpartanLaboratories/.github@main (CONTRIBUTING.md, the health files CODE_OF_CONDUCT.md and SECURITY.md, and anything else you need from it); and these memory notes (that repository's `claude/memory/` folder mirrors them; the local files are the source): under %USERPROFILE%/.claude/projects/%PROJECTS%-MyGameTools/memory/ — prefer-result-over-nullable.md, library-design-open-ended.md, testing-5-level-hierarchy.md, level-5-uat-deferred.md, references-by-section.md; under %USERPROFILE%/.claude/projects/%PROJECTS%-WebTools/memory/ — api-evolution-clean-break.md, feedback_versioning_convention.md.
 
 === Read this first ===
 
 %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/README.md
 - Part 1 §1.1 states the work as facts.
-- Part 2 holds the verification results: 347 outside-world claims, 345 hold, 2 unclear (both behind hosts that refuse automated clients; neither is a design input), none fail.
+- Part 2 holds the verification results: 411 outside-world claims, 408 hold, 2 unclear (both behind hosts that refuse automated clients; neither is a design input), and 1 fails in part. That one is webtools-consumption 24: `okhttp-bom` 5.5.0 does list `okhttp-jvm`. The classpath check it fed stands, and importing the BOM as a platform becomes one way to align OkHttp.
 - Part 3 is the research summary, topic by topic (3.2 to 3.15). Each section names the findings file and the sections it rests on. Read Part 3 in full, then open the cited findings files (same folder) wherever you need detail.
 - §3.9, §3.10 and §3.15 rest on sources read at their own hosts: OpenDota's deployed limits and published terms, Steam's news feed and Web API terms, the later games' data sources, Open-Meteo's live behaviour, and Discord's current Developer Terms of Service and Developer Policy (effective 2024-07-08). §3.15 includes obligations that the binding list below does not name: a way for users to report issues, server automation that stays off until an administrator configures it, safeguards on the open feeds plugin, nothing but a game account id or a place name sent to third parties, and the identity check of the application owner before MagicBot passes 100 servers. Design for them; where one leaves a choice that is the user's, raise it in Considerations.
+- Question 13 and its findings file, research/webtools-consumption.md, cover how the library consumes WebTools before and at release. §3.8 states what the library requires of the HTTP stack, which now comes from WebTools.
+- §3.7 and research/sqlite-persistence-stack.md rest on SQLite's own documentation. Backups are `VACUUM INTO` copies pruned after 14 days.
+- §3.4 records that Kord Extensions acknowledges every interaction immediately, with no timer. An `Immediate` acknowledgement mode is the research's third option, beside the automatic timer and the manual mode.
+- §3.11 rests on Sonatype's and Gradle's own documentation:
+  - snapshots are cleaned up after about 90 days, so they are republished at least that often;
+  - same-named `build-logic` builds do not collide.
+- §3.16 (research Question 13) sets conditions on the WebTools release that the library's 1.0.0 needs:
+  - a JVM target of 21 or lower (WebTools#47);
+  - Kotlin metadata readable by 2.2.x;
+  - no `-SNAPSHOT` in a release.
+
+  It also covers the exact pin of WebTools, the classpath-alignment and release-metadata checks, and the CI lanes, including the published lane that gates release.
+- §3.16 also finds that Gradle orders a letter-suffixed version below its base version (`1.0.0a` < `1.0.0`), so a bug-fix release versioned by the organisation's letter-suffix rule loses conflict resolution to its plain release. The versioning rule is binding and is not to be changed. Raise in Considerations how the library's bug-fix releases are versioned, and what the library requires of WebTools' fixes, with the options and a recommendation.
 - Known gaps lists what is unfinished, including one "Unfinished — needs a planner re-pass" note: the Marvel Rivals community API's pricing and terms.
 Every user decision the research raised is settled; the answers are folded into Part 3 and restated below.
 
@@ -46,11 +60,19 @@ Library
   - Weather: current conditions plus a forecast, from a free API that needs no key.
   - Admin: typed get/set over every registered guild setting, admin-only.
   - Feeds: a general RSS/Atom plugin in bottools-plugins. Server administrators subscribe a channel to any feed URL. It brings:
-    - the feed parser (Rome behind a FeedParser port);
-    - a guard against server-side request forgery on the HTTP transport for administrator-supplied URLs;
-    - feed-subscription storage and admin commands.
+    - the feed parser (Rome behind a FeedParser port). Whether RSS/Atom parsing moves to WebTools is one of #55's open questions, so where the parser lives is provisional;
+    - a guard against server-side request forgery for administrator-supplied URLs, which is WebTools' outbound-URL policy (#55);
+    - feed-subscription storage and admin commands;
+    - content safeguards: administrator-only subscription, posts that name their source and carry no media, removal by any administrator, the report route, and a FeedUrlPolicy with an operator deny and allow list that MagicBot configures.
   - MagicBot installs every plugin, feeds included.
 - Game news is separate from the feeds plugin. Dota 2's patch notes come from Steam's JSON news API through a news source in bottools-stats, with no feed parser.
+- HTTP from WebTools. HTTP and scraping are WebTools' domain.
+  - bottools-stats, the weather plugin and the feeds plugin consume WebTools' HTTP stack instead of owning it. The stack is the transport, the outbound-URL policy, the response cache, the call budget, the call facade, the failure model and the test fakes. WebTools#55 is the contract.
+  - The game-provider framework stays in the library: the provider SPI and capabilities, AccountRef, the link service, GameRegistration, GameCommands, MatchTracker, GameNewsSource and NewsJob.
+  - #55's open questions are WebTools' to decide: module placement, where the test fakes ship, OkHttp version policy relative to JDA's pin, whether RSS/Atom parsing moves too, reach, stability tiers and versioning. Design the library against #55's requirements. Mark every design point that depends on one of these open questions *provisional*, naming the question, and do not resolve any of them on WebTools' behalf.
+  - Nothing from skrapeit, jsoup or unirest may reach the library's consumers. That exclusion is a constraint #55 places on WebTools.
+  - bottools 1.0.0 depends on a WebTools release that carries the stack. During development the library consumes WebTools through a Gradle composite build (research Question 13). The roadmap records this dependency.
+  - The library's own published test-fixtures artifact is deferred. It comes towards the end of the roadmap, depends on WebTools' HTTP stack (#55), and is planned only after that WebTools update lands; until then the fakes stay in test sources. It stays in Considerations, marked deferred with that dependency.
 - Poker is its own phase after 1.0.0: playable Texas hold 'em, shipped as a 1.N.0 feature release, Experimental until one full game has been played.
 - Platform: a JDK 21 toolchain; Kotlin 2.2.x (the organisation's pin, as in MyGameTools' build-logic); Kotlin consumers on the JVM only, with no Java-facing variants; Apache-2.0. The Kotlin Gradle plugin 2.2.x on Gradle 9 is an undocumented pairing that MyGameTools already uses; carry it as a risk (research README §3.12), with the GeneralTools 3.0.0 shape as the documented fallback.
 - Versions: new artifact ids bottools-* start at 1.0.0, and every build before that is 1.0.0-SNAPSHOT. Later additions ship as 1.N.0. The 7.x line ends with no further release.
@@ -79,9 +101,14 @@ MagicBot
     - Path of Exile 2: economy data only, from poe.ninja. Profiles and ladders wait until GGG reopens application registration.
     - No More Room in Hell: profile, playtime and achievements, through an operator Steam key, on commands only.
 - Public-bot obligations: privacy-policy and terms pages; a delete-my-data command; the mention-only typed form above; sharding-ready configuration; a tracker call budget that scales with the audience.
-- Backups are short-lived. The privacy policy states the retention window within which deleted data leaves backups. No erasure log is kept.
+  - The report route: a link to the MagicBot repository's GitHub issues and a contact e-mail address, both published in the privacy policy and the help. `privacy report` replies with both, and the bot stores no report.
+  - The privacy commands (`privacy policy`, `privacy report`, `privacy delete-my-data`) are a core built-in, enabled by `privacy { }` configuration, so any bot on the library can meet Discord's obligations; a bot that does not configure it gets nothing.
+  - The privacy-policy and terms pages are served from GitHub Pages of the MagicBot repository, rendered from its docs/. The MagicBot repository is therefore public.
+- Backups are short-lived. The privacy policy states the retention window within which deleted data leaves backups. No erasure log is kept. The window is 14 days: BackupJob deletes older backups, so the bot itself enforces it.
 - MagicBot consumes the library through a Gradle composite build when checked out beside it, and through -SNAPSHOT builds from main otherwise.
 - A one-off --import-legacy step imports the old guildData/*.xml links and settings, resolving names to ids through the running bot. It reads the KotlinBottools and GKB2 copies merged, with the newer value winning for each server and member. TrumpBot's older-layout copy is not imported. All three copies are archived out of the repositories before the history rewrite and kept access-restricted. The older copies are deleted once the import report has been checked.
+  - For each linked member still in a guild, the old Dota 2 matches channel becomes a MatchFeed subscription in that channel, and GKB2's patch-notes channel becomes a GameNews subscription.
+  - The import writes data owned by the reaction-roles plugin, the stats framework and the Dota 2 registration, so it lands after reaction roles and Dota 2.
 - Hosting is not decided: no host, container or deploy pipeline is part of this work. Deployment is a Known gap, and encryption at rest is a requirement on whatever host is chosen.
 
 History and repositories
@@ -93,7 +120,32 @@ Dropped features. The roadmap lists these as post-roadmap potential features; do
 
 === What to produce ===
 
-Write exactly one file: %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/architecture.md. It does not exist yet.
+Write exactly one file: %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/architecture.md. It exists and is uncommitted. Revise it in place, and write no other file.
+
+The revision:
+- **Bring it in line** with "HTTP from WebTools" and the other constraints above. Fold each settled item into the design as a fact (a requirement, a system's shape, a non-goal), never as a record of who decided what.
+- **Keep the review changes in the current text.** They stand:
+  - Experimental tiers for the capabilities no 1.0.0 provider uses;
+  - the importer's dependencies and what it writes;
+  - settings typed without nullables;
+  - the provisional mark in §1.2;
+  - the adoption rows for Main.kt, the Gradle wrapper and .gitignore.
+- **Keep the design calls already made**, unless the WebTools change forces otherwise: an open AccountRef, one SubscriptionStore with kinds, bottools-plugins depending on bottools-stats for HTTP, vanniktech 0.37.0, and the privacy built-in in core. If one moves, say so and why in your reply.
+- **Revise at least these sections:**
+  - §5: the module layout, the dependency graph and the exposure table. In §5.4, WebTools becomes a dependency, and the skrapeit/jsoup/unirest exclusion becomes a constraint on WebTools, as #55 states.
+  - §6 and §7.4: the stack is consumed from WebTools; the game-provider framework stays.
+  - §7.3: backups are VACUUM INTO copies pruned after 14 days (research/sqlite-persistence-stack.md).
+  - §7.5 and §7.6: the weather and feeds plugins consume the stack; the feeds safeguards; the settled public-bot obligations and the importer's mapping.
+  - §8.3 and §8.4: the flows run through WebTools' facade and transport.
+  - §9: the testing lines that name FakeHttpTransport and OkHttpTransport.
+  - §10.7: WebTools is now consumed.
+  - §12: the tiers of the surfaces that move.
+  - §13: owning the stack in the library becomes a rejected alternative, argued from the subject.
+  - §14: the stats-http-stack unit becomes consumption and integration work that depends on WebTools delivering #55. Record that bottools 1.0.0 depends on a WebTools release carrying it, with a composite build during development. Place the deferred test-fixtures item towards the end, after #55 lands.
+  - §15: add a cross-repository dependency risk.
+  - §16: list the provisional points that depend on WebTools' open questions.
+  - §17: remove the Considerations that are now settled. Keep the test-fixtures Consideration, marked deferred with its dependency on #55.
+- **Mark inline, as *provisional*,** every point that depends on one of #55's open questions, naming the question.
 
 Form:
 - Match the organisation's precedents:
@@ -143,11 +195,12 @@ It must cover, at the systems level:
    - OpenDota's limits and terms;
    - the community Marvel Rivals API;
    - the feeds plugin's exposure, as a public bot fetching URLs that administrators supply and posting what they return, for which the operator is solely responsible under Discord's Terms;
-   - GitHub Support's handling of pull-request refs and cached views.
+   - GitHub Support's handling of pull-request refs and cached views;
+   - the cross-repository dependency on WebTools: when #55 is delivered, the WebTools release that bottools 1.0.0 needs, and OkHttp's alignment with JDA's pin.
 8. Considerations: any trade-off that still needs the user's call, each with its options and a recommendation. The settled items above are not Considerations.
 9. Known gaps. Include the note from the research README's Known gaps headed "Unfinished — needs a planner re-pass", in substance, under the same heading: Question 9's Marvel Rivals community API, whose pricing, free-tier size and terms are unread (unreachable: marvelrivalsapi.com, tracker.gg). Name the question, the unreachable hosts and what is provisional: the Marvel Rivals provider's call budget and the clauses its phase adds to MagicBot's privacy policy and terms.
 
-   Mark every dependent design point "provisional" inline where it appears. Carry the README's other Known gaps that bear on the design, in substance.
+   Mark every dependent design point "provisional" inline where it appears. Carry the README's other Known gaps that bear on the design, in substance. List the design points that depend on #55's open questions, each marked provisional.
 
 Do not write the phased roadmap: phases, sub-issues and target versions belong to roadmap.md. The document may state the landing order of the systems.
 
@@ -163,6 +216,8 @@ A short report:
 
   Include as units the build and CI skeleton, the history rewrite and the 1.0.0 release with archiving, alongside the systems. These units become the roadmap's phases and stages.
 - the Considerations you wrote, verbatim;
+- the provisional points that depend on WebTools' open questions, as a list;
+- which of the design calls already made moved, if any, and why;
 - any binding constraint you could not satisfy, and why;
 - anything in the research summary you found wrong or contradictory, with the evidence.
 

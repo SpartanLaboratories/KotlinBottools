@@ -643,7 +643,8 @@ Every source is read at its own host wherever the host answers.
   - `marvelrivalsapi.com`, which answers 502 on every path while its documentation host answers;
   - `api.stratz.com`, and STRATZ's pages, which render only in a browser;
   - `developer.valvesoftware.com`;
-  - pages behind a sign-in, such as Discord's Developer Portal and Steam's key registration.
+  - pages behind a sign-in, such as Discord's Developer Portal, the Central Portal and Steam's
+    key registration.
 - **Hosts that answer only a browser.** `support-dev.discord.com` and `steamdb.info` answer
   only a browser User-Agent. `discord.com/developers/docs` refuses automated clients, and the
   same pages are on `docs.discord.com`.
@@ -667,29 +668,38 @@ Every source is read at its own host wherever the host answers.
 
 ## Part 2 — Verification results
 
-Every load-bearing claim in the twelve findings files was opened at its source on 2026-10-20:
+Every load-bearing claim in the thirteen findings files was opened at its source on 2026-10-20:
 at the pin or version its file names or, for a live page or service, on that date. Two claims
 that this summary rests on directly, P1 and P2 (2.1), were checked the same way. The verdict
 for each claim is in [verifier-report.md](verifier-report.md).
 
 | Findings file | Claims | Hold | Unclear | Fail |
 |---|---|---|---|---|
-| [discord-platform-rules](discord-platform-rules.md) | 54 | 54 | 0 | 0 |
+| [discord-platform-rules](discord-platform-rules.md) | 55 | 55 | 0 | 0 |
 | [jda-and-coroutine-bridge](jda-and-coroutine-bridge.md) | 16 | 16 | 0 | 0 |
-| [command-framework-prior-art](command-framework-prior-art.md) | 35 | 35 | 0 | 0 |
+| [command-framework-prior-art](command-framework-prior-art.md) | 43 | 43 | 0 | 0 |
 | [idiomatic-kotlin-api-shape](idiomatic-kotlin-api-shape.md) | 34 | 34 | 0 | 0 |
 | [bot-runtime-design](bot-runtime-design.md) | 26 | 26 | 0 | 0 |
-| [sqlite-persistence-stack](sqlite-persistence-stack.md) | 27 | 27 | 0 | 0 |
+| [sqlite-persistence-stack](sqlite-persistence-stack.md) | 37 | 37 | 0 | 0 |
 | [http-client-stack](http-client-stack.md) | 28 | 28 | 0 | 0 |
 | [dota2-data-sources](dota2-data-sources.md) | 36 | 35 | 1 | 0 |
 | [game-and-weather-data-sources](game-and-weather-data-sources.md) | 41 | 40 | 1 | 0 |
-| [unreleased-build-consumption](unreleased-build-consumption.md) | 20 | 20 | 0 | 0 |
+| [unreleased-build-consumption](unreleased-build-consumption.md) | 30 | 30 | 0 | 0 |
 | [codebase-inventory-and-fate](codebase-inventory-and-fate.md) | 4 | 4 | 0 | 0 |
 | [bot-repository-history-purge](bot-repository-history-purge.md) | 24 | 24 | 0 | 0 |
+| [webtools-consumption](webtools-consumption.md) | 35 | 34 | 0 | 1 |
 | P1 and P2 | 2 | 2 | 0 | 0 |
-| **Total** | **347** | **345** | **2** | **0** |
+| **Total** | **411** | **408** | **2** | **1** |
 
-No claim fails, so nothing in Part 3 rests on a refuted claim.
+One claim fails in part, and nothing in Part 3 rests on the part that fails.
+
+- **webtools-consumption 24** says that `okhttp-bom` has no `okhttp-jvm` entry. It has one:
+  `okhttp-bom` 5.5.0 lists `okhttp`, `okhttp-jvm` and `okhttp-android`, all at 5.5.0.
+- **The rest of the claim holds.** OkHttp's root module redirects its JVM variants to
+  `okhttp-jvm` with no shared capability, so without a platform Gradle still cannot see a mix of
+  legacy `okhttp` 4.x and `okhttp-jvm` 5.x.
+- **The consequence.** Importing `okhttp-bom` as a platform is a way to align the two. The
+  classpath check in 3.16 stands either way.
 
 ### 2.1 P1 and P2
 
@@ -767,6 +777,18 @@ in its findings file marked unverified.
   Java 8 by default for legacy compatibility").
 - **idiomatic-kotlin-api-shape C6 and C15** quote shortened sentences; the full sentences say
   the same thing.
+- **command-framework-prior-art C28.** One documentation quote ("Optional callable returning
+  an instance of your Arguments subtype") is on Kord Extensions' chat-commands page, not the
+  arguments page it cites.
+- **sqlite-persistence-stack C29.** SQLite's change log shows "Withdrawn" and the sentence after
+  it as two separate paragraphs.
+- **webtools-consumption 19.** Only the 404s for the WebTools snapshot metadata count as
+  evidence; the snapshot repository is not browsable at any path.
+- **webtools-consumption 21.** That Central rejects a release which depends on a `-SNAPSHOT`
+  rests on public reports from October 2025 on, not on Sonatype's documentation.
+- **webtools-consumption 29.** unirest-java 1.4.9 declares `jackson-databind` in test scope, so
+  that one does not reach a consumer; its compile-scope dependencies, such as Apache
+  `httpclient`, do.
 - **Rendered pages.** jda-and-coroutine-bridge 6 and 7, and http-client-stack 16 and 25, were
   read from rendered pages, not raw text.
 
@@ -779,11 +801,20 @@ in its findings file marked unverified.
   - Discord's Developer Terms of Service and Developer Policy, effective 2024-07-08;
   - GGG's developer documentation, whose newest changelog entry is dated 21/07/2026;
   - the Steam Web API Terms of Use, last updated July 2010.
+  - SQLite's documentation at sqlite.org (`wal.html` last updated 2026-08-25) and its release
+    log;
+  - Kord Extensions' source at its `v2.6.0` tag on Codeberg (2026-08-26) and its documentation
+    at docs.kordex.dev;
+  - Sonatype's Central Portal documentation on snapshots, tokens and publishing limits;
+  - Gradle's documentation for 9.7.1. The current release, 9.8.2, has the same chapter on
+    composite builds.
+  - WebTools' `master` at `85cfbbe`, and its artifacts on Maven Central.
 - **Newest releases on 2026-10-20:**
   - JDA 6.7.0, jda-ktx 0.15.0, Exposed 1.6.0, sqlite-jdbc 3.53.4.0;
   - Ktor 3.6.0, OkHttp 5.5.0, kotlinx.coroutines 1.11.0, kotlinx-serialization 1.12.0;
   - vanniktech 0.37.0, binary-compatibility-validator 0.18.2;
   - Hoplite 3.0.4, Caffeine 3.3.1, Quartz 2.5.2, Rome 2.1.0.
+  - Kord Extensions 2.6.0 (published to its own repository, not Maven Central).
 
   Gradle 9.8.2 exists; its composite-build and configuration-cache documentation reads the same
   as 9.7.1's.
@@ -796,9 +827,6 @@ in its findings file marked unverified.
   - pages behind a sign-in, such as Discord's Developer Portal and Steam's key registration.
 - **Hosts that answer only a browser.** support-dev.discord.com and steamdb.info answer only a
   browser User-Agent.
-- **Hosts that answer but were not used.** Sonatype's Central Portal pages, sqlite.org,
-  docs.gradle.org and codeberg.org answer. The findings that cite them rest on mirrors and
-  source code instead (Known gaps).
 
 ### 2.5 Claims about these codebases
 
@@ -835,13 +863,14 @@ source that could not be read; Known gaps names the source and what would settle
 | 3 | [command-framework-prior-art.md](command-framework-prior-art.md) | One command with a slash and a typed form: definitions, parsing, aliases, context, deferral, errors, help, components, tests | Complete |
 | 4 | [idiomatic-kotlin-api-shape.md](idiomatic-kotlin-api-shape.md) | Public API shape, failures, stability tiers, ABI checks, coroutine ownership | Complete |
 | 5 | [bot-runtime-design.md](bot-runtime-design.md) | Events, plugins, jobs, configuration, intents, sharding, lifecycle | Complete |
-| 6 | [sqlite-persistence-stack.md](sqlite-persistence-stack.md) | Access layer, connections, migrations, port shape, erasure | Complete |
+| 6 | [sqlite-persistence-stack.md](sqlite-persistence-stack.md) | Access layer, connections, migrations, port shape, erasure, backups, the SQLite version floor | Complete |
 | 7 | [http-client-stack.md](http-client-stack.md) | HTTP client, JSON, cache, call budget, feed parsing, tests | Complete |
 | 8 | [dota2-data-sources.md](dota2-data-sources.md) | OpenDota and Steam for Dota 2: endpoints, limits, terms, budget model, patch notes | Complete |
 | 9 | [game-and-weather-data-sources.md](game-and-weather-data-sources.md) | Marvel Rivals, Path of Exile 2, No More Room in Hell, weather | Complete except the Marvel Rivals API's pricing and terms (Known gaps) |
-| 10 | [unreleased-build-consumption.md](unreleased-build-consumption.md) | Composite build and snapshots for MagicBot | Complete |
+| 10 | [unreleased-build-consumption.md](unreleased-build-consumption.md) | Composite build and snapshots for MagicBot; Central Portal snapshot terms | Complete |
 | 11 | [codebase-inventory-and-fate.md](codebase-inventory-and-fate.md) | What each part of both codebases does, and where it goes | Complete |
 | 12 | [bot-repository-history-purge.md](bot-repository-history-purge.md) | What the history rewrite removes, and how | Complete |
+| 13 | [webtools-consumption.md](webtools-consumption.md) | Consuming WebTools before and at release: nested composite, release order, pins, classpath alignment, CI | Complete; one claim fails in part (Part 2) |
 
 ### 3.2 Discord platform rules
 
@@ -975,9 +1004,14 @@ Source: [command-framework-prior-art](command-framework-prior-art.md) §2, §5, 
     and an atomic acknowledgement state stops two parties both acknowledging. Each leaf
     declares a public or ephemeral reply.
   - In automatic mode the dispatcher defers with the declared visibility if the handler has
-    not answered after about two seconds. No surveyed framework does this (Kord Extensions
-    removed its automatic acknowledgement), so it gets a Level 2 test on a controllable clock
-    before anything relies on it.
+    not answered after about two seconds. No surveyed framework defers on a timer, so this gets
+    a Level 2 test on a controllable clock before anything relies on it.
+  - Kord Extensions acknowledges every interaction immediately: after its checks pass and
+    before it parses arguments, with the visibility its command class declares. That is the
+    simpler precedent, offered as a third mode, `Immediate`. It needs no timer and has no race,
+    at the price that every reply to a public command follows the loading state, and failures
+    need an explicit visibility. The three modes (automatic, manual, immediate) are one sealed
+    value on the leaf.
   - In typed form `defer` shows a typing indicator, and no reply can be ephemeral. A reply
     marked private therefore goes by DM, with a short public note that a DM was sent; when the
     user's DMs are closed, the public reply holds nothing personal and points to the slash
@@ -1128,7 +1162,8 @@ Source: [bot-runtime-design](bot-runtime-design.md) §2, §5, §6.
 
 Source: [sqlite-persistence-stack](sqlite-persistence-stack.md) §2, §5, §6.
 
-- **Plain JDBC on `org.xerial:sqlite-jdbc` 3.53.4.0, behind a thin internal layer.** No
+- **Plain JDBC on `org.xerial:sqlite-jdbc` 3.53.4.0 (floor 3.51.3.0), behind a thin internal
+  layer.** No
   Exposed, SQLDelight, jOOQ, R2DBC or connection pool: the work is about six tables and a few
   dozen fixed statements, and the hard parts are SQLite-specific and below any access layer.
   - Exposed's JDBC `suspendTransaction` does not leave the calling thread, it has no R2DBC
@@ -1140,13 +1175,17 @@ Source: [sqlite-persistence-stack](sqlite-persistence-stack.md) §2, §5, §6.
 - **Connections.** One writer with `transaction_mode=IMMEDIATE`, confined to
   `Dispatchers.IO.limitedParallelism(1)`, plus a small set of read-only connections. WAL mode,
   a `busy_timeout`, `foreign_keys=ON`, and `synchronous` from a `Durability` policy (`NORMAL`
-  by default). Each port call is one transaction, and no transaction spans a suspension point.
+  by default). Readers open after the writer has created the WAL files, and read transactions
+  stay short. Each port call is one transaction, and no transaction spans a suspension point.
   The file needs a local disk: WAL relies on shared memory, so a network file system will not
   do.
 - **Migrations** are hand-written, forward-only and keyed by `PRAGMA user_version`, each in
-  one `BEGIN IMMEDIATE` that also sets the version. The store refuses a file newer than it
-  knows and backs up a non-empty file before migrating it. A released migration never changes;
-  a checksum test guards this.
+  one `BEGIN IMMEDIATE` that also sets the version.
+  - The store refuses a file newer than it knows.
+  - It takes a `VACUUM INTO` copy of a non-empty file before migrating it.
+  - A migration that rebuilds a table switches `foreign_keys` off before its transaction
+    begins, because the pragma does nothing inside one.
+  - A released migration never changes; a checksum test guards this.
 - **Port shape** (in `bottools-core`, with no database dependency):
   - every method is a complete unit of work; read-modify-write is a named atomic operation or a
     pure `update` function run inside the write section;
@@ -1163,16 +1202,23 @@ Source: [sqlite-persistence-stack](sqlite-persistence-stack.md) §2, §5, §6.
   scope and return counts per table; a plugin keeping data elsewhere erases it through its
   hook. SQLite keeps deleted bytes in free pages and the WAL until reused (`secure_delete` is
   available).
-- **Backups are short-lived.** A backup taken before an erasure still holds the user until the
-  retention window stated in MagicBot's privacy policy has passed; no erasure log is kept. The
-  library offers the backup call and a close that checkpoints, and the host sets the
-  schedule.
-- **Schema.** `STRICT` tables with composite natural keys: `account_link`,
-  `tracking_subscription` (each row with its own cursor and health), `guild_setting`,
-  `job_state` and `plugin_kv`. Timestamps are epoch milliseconds.
-- **Version floor.** A WAL-reset race can corrupt data when two connections write and
-  checkpoint at once. It is reported in SQLite 3.7.0 to 3.51.2 and fixed in 3.51.3 (secondary
-  sources), so the pinned sqlite-jdbc must bundle a fixed SQLite, and CI checks the version.
+- **Backups are `VACUUM INTO` copies, pruned after 14 days, the retention window MagicBot's
+  privacy policy states.**
+  - A `VACUUM INTO` copy is a consistent snapshot that holds none of the deleted content.
+  - A backup taken before an erasure still holds the user until the window has passed.
+  - No erasure log is kept.
+- **Schema.** `STRICT` tables with composite natural keys: `account_link`, `subscription`,
+  `guild_setting`, `job_state` and `plugin_kv`. Timestamps are epoch milliseconds.
+  - Subscriptions of every kind (match posts for a linked account, game news, RSS and Atom
+    feeds) share the one `subscription` table, keyed by guild, channel, kind and target.
+  - Each row carries its own cursor and health.
+- **Version floor.** SQLite's documentation names a WAL-reset bug, present from 3.7.0 through
+  3.51.2, that can corrupt a database when two connections write or checkpoint at once. It is
+  fixed in 3.51.3, with backports to 3.44.6 and 3.50.7.
+  - The first sqlite-jdbc release that carries the fix is 3.51.3.0.
+  - sqlite-jdbc 3.53.4.0 builds from SQLite 3.53.4, above the fix.
+  - The store checks `sqlite_version()` when it opens a file.
+  - This design has one writing connection in any case.
 - **Tests.** One contract suite per port runs against the in-memory implementation and
   against SQLite on a temporary file, plus migration fixtures for every released schema
   version, a schema-drift test, a concurrency test and an erasure test. Multi-connection tests
@@ -1180,20 +1226,45 @@ Source: [sqlite-persistence-stack](sqlite-persistence-stack.md) §2, §5, §6.
 
 ### 3.8 HTTP, JSON, cache and call budget
 
-Source: [http-client-stack](http-client-stack.md) §2, §5, §6. The shared stack lives in
-`bottools-stats`, and `bottools-plugins` uses it through its ports.
+Source: [http-client-stack](http-client-stack.md) §2, §5, §6;
+[SpartanLaboratories/WebTools#55](https://github.com/SpartanLaboratories/WebTools/issues/55);
+[webtools-consumption](webtools-consumption.md) (3.16).
 
-- **HTTP: OkHttp directly, at the version JDA brings (`okhttp-jvm` 5.5.0),** behind an
-  internal `HttpTransport`. The suspend bridge copies OkHttp's 15-line `executeAsync`
-  pattern, because the `okhttp-coroutines` artifact needs coroutines 1.11.0. Ktor 3.6.0 would
-  add 19 artifacts and raise the runtime to coroutines 1.11.0 and stdlib 2.3.21; the JDK client
-  has no DNS hook and saves nothing while JDA keeps OkHttp on the classpath. The OkHttp version
-  moves only with JDA's.
+- **The stack comes from WebTools.** HTTP and scraping are WebTools' domain.
+  - **What the library consumes.** `bottools-stats`, the weather plugin and the feeds plugin
+    take WebTools' HTTP stack: the transport, the outbound-URL policy, the response cache, the
+    call budget, the call facade, the failure model and the test fakes.
+  - **What stays in the library.** The game-provider framework.
+  - **The contract.** WebTools#55 states what the library requires. It offers the design below
+    as a draft that WebTools may adopt, change or reject.
+  - **WebTools' decisions:**
+    - the module the stack lives in;
+    - where its test fakes ship;
+    - its OkHttp version policy relative to JDA's pin;
+    - whether RSS and Atom parsing moves too;
+    - its reach, its stability tiers and its versioning.
+
+    Library design points that depend on these are provisional.
+  - **Releases.** `1.0.0` depends on a WebTools release that carries the stack. During
+    development the library consumes WebTools through a Gradle composite build (3.16).
+
+  The bullets below are the findings behind the requirements and the draft.
+- **HTTP: OkHttp directly, at the version JDA brings (`okhttp-jvm` 5.5.0),** behind a
+  transport port.
+  - **The suspend bridge** copies OkHttp's 15-line `executeAsync` pattern, because the
+    `okhttp-coroutines` artifact needs coroutines 1.11.0.
+  - **Not Ktor, not the JDK client.** Ktor 3.6.0 would add 19 artifacts and raise the runtime to
+    coroutines 1.11.0 and stdlib 2.3.21. The JDK client has no DNS hook, and saves nothing
+    while JDA keeps OkHttp on the classpath.
+  - **Versioning.** The OkHttp version follows JDA's. How WebTools pins it is its own decision.
 - **JSON: kotlinx-serialization-json 1.9.0,** built for Kotlin 2.2, with the compiler plugin
-  at the Kotlin version. Internal `@Serializable` wire types map to public domain types, and
-  decoding starts from a size-capped string and ignores unknown keys. 1.12.0 needs a 2.4
-  compiler. Jackson is rejected: JDA's copy is runtime-only, and `jackson-module-kotlin` needs
-  `kotlin-reflect`.
+  at the Kotlin version.
+  - **Decoding stays with each consumer.** The call facade takes a decode function, so the
+    library's providers own their `@Serializable` wire types and map them to public domain
+    types.
+  - **Decoding rules.** It starts from a size-capped string and ignores unknown keys.
+  - **Not newer, not Jackson.** 1.12.0 needs a 2.4 compiler. Jackson is rejected: JDA's copy is
+    runtime-only, and `jackson-module-kotlin` needs `kotlin-reflect`.
 - **Cache: one Caffeine 3.3.1 `AsyncCache` per provider,** with a time to live per endpoint
   and a size bound. Loads run in a library-owned scope and are awaited with
   `asDeferred().await()`, because `CompletionStage.await()` cancels a shared load for every
@@ -1217,15 +1288,19 @@ Source: [http-client-stack](http-client-stack.md) §2, §5, §6. The shared stac
   one injected time source.
 - **Feeds.** Game news, such as Dota 2's patch notes, arrives as JSON from fixed provider
   hosts (3.9) and needs no feed parser. The feeds plugin in `bottools-plugins` lets server
-  administrators subscribe a channel to any RSS or Atom URL, and it carries the parser:
+  administrators subscribe a channel to any RSS or Atom URL, and it carries the parser, unless
+  WebTools takes RSS and Atom parsing on (provisional):
   - Rome 2.1.0 (last released 2023-03-12) sits behind a `FeedParser` port with DOCTYPEs
     disallowed; `rssreader` 3.12.0 is the named replacement if Rome becomes a liability.
-  - Feeds are fetched as bytes through the shared client, never through Rome's own URL
+  - Feeds are fetched as bytes through the shared stack, never through Rome's own URL
     reader, with a conditional GET (`ETag`, `Last-Modified`).
-  - The URLs come from administrators of a public bot, so the fetch is guarded against
-    server-side request forgery: `http` and `https` only, a DNS resolver that rejects
-    loopback, link-local and private addresses (which covers redirects too), capped
-    redirects and body size, and short timeouts.
+  - The URLs come from administrators of a public bot, so the fetch goes through the stack's
+    untrusted URL policy, the guard against server-side request forgery. It means:
+    - `http` and `https` only;
+    - a DNS resolver that rejects loopback, link-local and private addresses, which covers
+      redirects too;
+    - capped redirects and body size;
+    - short timeouts.
 - **Tests.** Level 2 uses a fake transport serving recorded fixtures with scripted statuses and
   headers, on fake time. Level 3 runs the real transport against `mockwebserver3` 5.5.0. A
   fixture recorder runs only when an environment variable is set, never in CI, and strips keys.
@@ -1424,23 +1499,42 @@ Source: [unreleased-build-consumption](unreleased-build-consumption.md) §2, §5
   a one-line `bottools.ref` file, and runs a scheduled build against `main` to warn of drift.
   No registry credential lives in CI.
 - **Snapshots are published by hand** from a clean `main` with
-  `./gradlew publishToMavenCentral`, at the end of each phase. vanniktech switches to the
-  snapshot repository for a `-SNAPSHOT` version, where signing is optional. Unverified
-  prerequisites: "Enable SNAPSHOTs" on the namespace, anonymous read, and a retention of about
-  90 days.
-- **The library's published-library convention plugin sets `group` and `version`,** because
-  vanniktech's `coordinates()` changes only the publication coordinates while Gradle's
-  automatic substitution matches `project.group:project.name`. Module directories equal the
-  artifact ids, and `build-logic` gets a distinct `rootProject.name`. MyGameTools' plugin sets
-  coordinates only; copied unchanged it would make the composite substitute nothing, so a check
-  guards against that.
+  `./gradlew publishToMavenCentral`.
+  - **When.** At the end of each phase, and at least every 90 days.
+  - **What vanniktech does.** It switches to the snapshot repository for a `-SNAPSHOT` version.
+    Signing is optional there.
+  - **Sonatype's own terms.** Its documentation gives the consumer instructions for the
+    snapshot repository with no credentials, and an anonymous read answers. It also says
+    snapshots "are cleaned up after a period of time (currently 90 days)" and that "no
+    validation is performed". A snapshot nobody republishes therefore disappears, and the
+    lone-checkout fallback fails.
+  - **The maintainer action.** "Enable SNAPSHOTs" on the `io.github.spartanlaboratories`
+    namespace has not been taken yet; until it is, uploads are refused.
+- **The library's published-library convention plugin sets `group` and `version`.**
+  - **Why.** vanniktech's `coordinates()` changes only the publication coordinates, while
+    Gradle's automatic substitution matches `project.group:project.name` and ignores the
+    requested version.
+  - **Module directories** equal the artifact ids.
+  - **Same-named `build-logic` builds do not collide.** Gradle names an included build by its
+    directory, so MagicBot's is `:build-logic` and the library's is
+    `:KotlinBottools:build-logic`; `rootProject.name` plays no part.
+  - **A guard.** MyGameTools' plugin sets coordinates only. Copied unchanged it would make the
+    composite substitute nothing, so a check guards against that.
 - **Gradle behaviour.** The included build runs on MagicBot's Gradle, so the two wrappers stay
   within one minor of each other. Plugin classpaths stay separate, and the library's tests run
   in its own CI.
-- **Rejected.** GitHub Packages (a token even for public packages); Gradle source dependencies
-  (they assume a `master` branch and have no current user-guide chapter); publishing from CI
-  (a Portal token has no scope narrower than the account). JitPack is credential-free but uses
-  other coordinates and needs a `jitpack.yml` for JDK 21; it stays in reserve.
+- **Reproducibility.** Snapshots cannot be pinned, and Gradle advises against dependency locking
+  with `-SNAPSHOT` versions. The commit-pinned composite checkout in CI is what keeps builds
+  reproducible.
+- **Rejected:**
+  - **GitHub Packages**, which needs a token even for public packages.
+  - **Gradle source dependencies**, which were announced as incubating, have no user-guide
+    chapter, assume a `master` branch, and cannot depend on a build that has included builds.
+  - **Publishing from CI**, because the Portal documents a token as a name and an expiry with
+    no narrower scope.
+
+  JitPack is credential-free and builds multi-module Gradle projects with JDK 21 through a
+  `jitpack.yml`, but it serves other coordinates; it stays in reserve.
 
 ### 3.12 Build toolchain
 
@@ -1514,6 +1608,11 @@ Source: [codebase-inventory-and-fate](codebase-inventory-and-fate.md) §2, §3, 
   layout is not imported. All three copies leave the repositories before the rewrite and are
   kept access-restricted, and the older copies are deleted once the import report has been
   checked.
+  - **The old Dota 2 matches channel** becomes a match-post subscription in that channel for
+    each linked member still in the guild. GKB2's patch-notes channel becomes a game-news
+    subscription.
+  - **Landing order.** The import writes data that the reaction-roles plugin, the stats
+    framework and the Dota 2 registration own, so it lands after them.
 - **GKB2's open issues #2 to #5 are obsolete** after the consolidation: their components
   leave, or the rebuilt definitions carry their intent.
 - **Six features leave the roadmap**, one line each in
@@ -1608,7 +1707,8 @@ providers' terms.
     game providers, and the hosts of feeds that administrators subscribe to, each with what it
     receives.
   - **Where it is linked.** In the Developer Portal (`privacy_policy_url`), and from the bot's
-    help.
+    help. The policy and terms pages are served from GitHub Pages of the MagicBot repository,
+    which is public.
   - **The terms page.** It sits beside the policy (`terms_of_service_url`). Discord's Terms do
     not require one, and any terms of MagicBot's own may not contradict Discord's.
   - **Non-affiliation.** The terms state that MagicBot is not affiliated with or endorsed by
@@ -1620,8 +1720,8 @@ providers' terms.
   - **When data is deleted.** Promptly, on request; when it is no longer needed for the bot's
     stated function; when Discord asks; and when the bot stops operating.
   - **Backups.** Discord's Terms set no number of days for "promptly" and no backup exemption.
-    The short backup window stated in the privacy policy is therefore MagicBot's own
-    commitment.
+    The backup window stated in the privacy policy, 14 days, is therefore MagicBot's own
+    commitment. The bot enforces it by deleting older backups.
   - **No log.** No erasure log is kept. Proof of deletion is owed only for data received in
     error.
 - **Data use and sharing.**
@@ -1638,16 +1738,24 @@ providers' terms.
   - When the user's DMs are closed (error 50007, or 50278 with no shared server), the public reply
     holds nothing personal and points to the slash command.
 - **Reports.** Discord's Policy requires a way for users to report issues or violations
-  relating to the bot, and requires the operator to review the reports and act on them. MagicBot
-  provides one, named in its help, and its operator answers it.
+  relating to the bot, and requires the operator to review the reports and act on them.
+  - **MagicBot's route.** A link to its repository's GitHub issues, and a contact e-mail
+    address, both named in its help and its privacy policy.
+  - **`privacy report`** replies with both, and the bot stores no report.
+  - **The `privacy` commands** (`policy`, `report`, `delete-my-data`) are a built-in of the
+    library, enabled by configuration, so any bot on it can meet these obligations.
 - **Server automation is opt-in.** The default role on join and the welcome message do nothing
   until a server administrator configures them, because the Policy requires permission before
   an app acts on a server's behalf. The seeded legacy defaults are not imported (3.13).
 - **Feeds.**
   - **Responsibility.** The operator is solely responsible for what the bot posts, and the
     Policy forbids distributing adult content to minors or without age-restricted labels.
-  - **Safeguards.** Only server administrators subscribe feeds, each post names its source, any
-    administrator can remove a subscription, and the report route above covers feed content.
+  - **Safeguards.**
+    - Only server administrators subscribe feeds.
+    - Each post names its source and carries no media.
+    - Any administrator can remove a subscription.
+    - The report route above covers feed content.
+    - MagicBot configures an operator allow and deny list for feed URLs.
 - **Security.**
   - **On the deployment, whose host is not decided:** encryption at rest; administrative,
     physical and technical safeguards; and prompt notice to Discord of any incident. A host
@@ -1676,6 +1784,66 @@ providers' terms.
 - **A Steam key, when configured** (for vanity names, and later for No More Room in Hell). It
   needs a Steam account with at least $5.00 of spend and a domain name. It stays out of
   background loops.
+
+### 3.16 Consuming WebTools
+
+Source: [webtools-consumption](webtools-consumption.md) §2, §3, §6.
+
+- **During development: a composite build, nested, with automatic substitution.**
+  - **Nesting.** Gradle 9.7.1 supports nested included builds: it flattens the build tree, keeps
+    one substitution registry for the whole tree, and treats two settings files that include
+    the same directory as one build.
+  - **Substitution.** WebTools' modules match `group:name`, so no substitution block is needed.
+    Substitution ignores the requested version, so the library declares from the start the
+    WebTools version it will release against. No WebTools snapshot is needed, and WebTools
+    publishes none.
+  - **Switches.** The library includes `../WebTools` when it exists. Its switches are system
+    properties or environment variables, because Gradle copies `-D` values into included builds
+    but not `-P` values.
+  - **MagicBot** needs no WebTools line of its own.
+- **Two conditions on the WebTools release.**
+  - **JVM target 21 or lower.** Every WebTools artifact published today is Java 23 bytecode
+    (`org.gradle.jvm.version` 23), which a JDK 21 build cannot use; WebTools#47 records this. The
+    composite hides it, because it compiles WebTools with the consuming build's JDK.
+  - **Readable by Kotlin 2.2.** The release's Kotlin metadata and `kotlin-stdlib` requirement
+    must stay readable by a 2.2.x compiler.
+- **Release order: WebTools first.**
+  - **No snapshot in a release.** Central's validation rejects a release that depends on a
+    `-SNAPSHOT` version. This rests on public reports, not on Sonatype's documentation (2.3).
+  - **The order.** WebTools releases. Once it resolves from Maven Central (10 to 30 minutes),
+    the library runs its published lane: composite off, JDK 21, Levels 1 to 3. Then it releases.
+  - **A guard.** A check on the generated POM and module metadata refuses a `-SNAPSHOT` version
+    and an active composite.
+- **Pins: exact, never a range.** Gradle orders `1.0.0a` below `1.0.0`, because an extra
+  non-numeric part sorts lower. A lettered bug-fix release therefore loses conflict resolution to
+  its plain release wherever both are requested. This reaches the organisation's versioning rule,
+  under which a bug fix takes a letter.
+- **Classpath alignment: a check task, not `failOnVersionConflict()`.**
+  - **What Gradle does.** It selects the highest requested version of each module. Without a
+    platform it cannot see a mix of legacy `okhttp` and `okhttp-jvm`. Importing `okhttp-bom`,
+    which lists both, aligns them (Part 2).
+  - **What the check asserts.** A task in `build-logic` checks the selected versions of
+    `okhttp-jvm`, coroutines, Caffeine, okio and the stdlib. It forbids legacy `okhttp` below 5,
+    and confirms that the composite substituted exactly when it was meant to.
+  - **Why not `failOnVersionConflict()`.** It would fail on a difference that is harmless today:
+    WebTools asks for `slf4j-api` 2.0.13 and JDA for 2.0.19.
+  - **How often OkHttp moves.** JDA moved its OkHttp pin four times between 6.0 and 6.6.
+- **CI: one pin for the chain.**
+  - **The pin.** The library pins WebTools by commit in `webtools.ref`. MagicBot's CI reads it
+    from the checked-out library.
+  - **Three lanes:** the composite at the pin, the published lane, and a scheduled drift build.
+    Scheduled workflows on a public repository stop after 60 days without activity.
+  - **WebTools has no CI, changelog, contributing guide or tags**, so the library's CI is the
+    first to build its code.
+- **What WebTools' open questions change for the library.** WebTools decides each of these:
+  - module placement changes one dependency coordinate;
+  - where the fakes ship decides whether Level 2 tests use a test-fixtures variant or a testing
+    module;
+  - the OkHttp policy sets the rule the alignment check applies (the same version, or the same
+    major);
+  - whether feed parsing moves decides whether Rome stays in `bottools-plugins`;
+  - its versioning decides the version the library pins;
+  - reach and tiers change nothing in the library's build today.
 
 ---
 
@@ -1706,7 +1874,10 @@ providers' terms.
   - the all-shards-ready rule;
   - the stop sequence;
   - automatic deferral on a controllable clock;
-  - composite substitution, nested `build-logic` naming and the configuration cache.
+  - composite substitution, including through a nested composite (3.16), and the
+    configuration cache;
+  - the published lane and the classpath and release-metadata checks of 3.16;
+  - whether `VACUUM INTO` can run on a read-only connection.
 - **Discord.**
   - **App Verification's checklist.** Beyond the Stripe identity check and the Developer Team
     requirement, the checklist sits in the Developer Portal behind a sign-in. The application's
@@ -1738,15 +1909,21 @@ providers' terms.
 - **Weather.** Open-Meteo's postal coverage is sampled, not mapped. Zippopotam.us publishes no
   terms.
 - **Central Portal snapshots.**
-  - Anonymous read, a retention of about 90 days, and whether a Portal token can be scoped are
-    unverified.
   - "Enable SNAPSHOTs" on the `io.github.spartanlaboratories` namespace is a maintainer action
     not yet taken.
-- **SQLite's own documentation** (`sqlite.org`) has not been read.
-  - WAL, `busy_timeout`, `user_version` and `synchronous` rest on SQLite's source comments.
-  - The SQLite version bundled in sqlite-jdbc 3.53.4.0 is still to be confirmed.
-- **Kord Extensions' source** (`codeberg.org`) has not been read; every comparison with it
-  rests on its documentation repository.
+  - Sonatype does not say whether its 90-day cleanup counts from a component's first upload or
+    its latest one.
+  - Sonatype does not say whether snapshot uploads count towards its monthly publishing limits.
+  - The Portal's token dialog sits behind a sign-in. The documentation shows no scope option.
+- **SQLite.** That `secure_delete` together with a `TRUNCATE` checkpoint removes an erased
+  user's bytes from the WAL file is an inference, not a documented guarantee. No benchmark has
+  been run.
+- **WebTools.**
+  - **Its open questions on WebTools#55** are its own to decide. Until it decides, the library's
+    design points that depend on them are provisional.
+  - **Its next release** must target Java 21 or lower (WebTools#47).
+  - **Gradle 9.** Its foojay resolver is at 0.8.0, while Gradle 9 calls for 1.0.0.
+  - **Its practices.** It has no CI, changelog, contributing guide or tags.
 - **User-installed commands.** Whether one receives `member` in a guild without the bot is not
   established; it matters only once user installation is added.
 - **Hosting is not decided,** and with it:
@@ -1755,8 +1932,7 @@ providers' terms.
   - the written service-provider agreement;
   - the country the privacy policy names, and whether Discord's transfer clauses apply;
   - the backup schedule;
-  - a local disk for the database;
-  - where the privacy policy and terms pages are served.
+  - a local disk for the database.
 - **GitHub Support.** The outcome of a request to clear GKB2's and BotTools' pull-request refs
   and the cached views of rewritten commits cannot be known in advance.
 - **Kotlin 2.4 at language version 2.2.** Whether such a compiler reads metadata 2.4.0 is not

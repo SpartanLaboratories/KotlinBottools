@@ -570,3 +570,161 @@ Across the whole report: 347 claims, 345 hold, 2 unclear, none fail.
 - developer.marvelrivals.com: no DNS entry.
 
 support-dev.discord.com answered a browser User-Agent. Every other host answered.
+
+## 6. SQLite, Kord Extensions, build consumption and WebTools (checked 2026-10-20)
+
+For the IDs below, these verdicts replace those in sections 1 to 5. They cover:
+
+- every new or changed claim in `sqlite-persistence-stack.md`, read at sqlite.org;
+- the Kord Extensions claims in `command-framework-prior-art.md`, `idiomatic-kotlin-api-shape.md`,
+  `bot-runtime-design.md` and `discord-platform-rules.md`, read from its source at tag `v2.6.0`
+  (commit `f86bef8`);
+- every new or changed claim in `unreleased-build-consumption.md`;
+- every claim in the new file `webtools-consumption.md`.
+
+Every other claim keeps its verdict above.
+
+Method:
+- Each source was opened on 2026-10-20 at its pin or live.
+- Kord Extensions was read from a shallow clone of the tag, and its documentation at
+  docs.kordex.dev.
+- Gradle was read from its documentation and from its source at `v9.7.1`.
+- Live, read-only calls (the Central snapshot repository, Maven Central metadata) were run again
+  once.
+- Quotes split by inline markup were counted as matches.
+
+### SQL (sqlite-persistence-stack.md)
+
+| ID | Verdict | What I found | Take as true instead |
+|---|---|---|---|
+| SQL-C14 | holds | All three quotes on `sqlite.org/wal.html`; the `wal.c` header lines match. | |
+| SQL-C15 | holds | All four quotes on `sqlite.org/lang_transaction.html`; `wal-lock.md` matches. | |
+| SQL-C16 | holds | The `busy_timeout` and `busy_handler` quotes on `sqlite.org/c3ref/`. | |
+| SQL-C19 | holds | `pragma.html` (`synchronous`): all three quotes; the `walFrames` text in `wal.c` matches. | |
+| SQL-C20 | holds | `wal.html` §11 (page updated 2026-08-25): the quotes; commit `fe57e14` (2026-03-03) has the stated subject. | |
+| SQL-C22 | holds | `pragma.html`: both quotes; `pragma.c` has the 32-bit signed sentence and `OP_SetCookie`. | |
+| SQL-C26 | holds | `pragma.html` (`secure_delete`): all three quotes; `Pragma.SECURE_DELETE` is in sqlite-jdbc 3.53.4.0's `SQLiteConfig`. | |
+| SQL-C27 | holds | `stricttables.html` and `lang_upsert.html`: the quotes; `TF_Strict` in `build.c`. | |
+| SQL-C28 | holds | sqlite-jdbc `VERSION` is `version=3.53.4`; `Makefile.common` and the README match; the 2026-08-26 release says "upgrade to sqlite 3.53.4"; SQLite 3.53.4 is dated 2026-07-24. 3.53.4.0 is still the newest on Central. | |
+| SQL-C29 | holds | `changes.html` has the 3.51.3 and 3.52.0 entries ("Withdrawn" and the next sentence are two paragraphs); sqlite-jdbc's metadata runs 3.51.3.0 then 3.53.0.0, with no 3.52.0.0. | |
+| SQL-C30 | holds | `releaselog/3_53_4.html` lists the WAL-reset fix among the changes since 3.53.0. | |
+| SQL-C31 | holds | `rescode.html`: the `SQLITE_BUSY_SNAPSHOT` sentence. | |
+| SQL-C32 | holds | All seven quotes in `wal.html` §1 to §3.1. | |
+| SQL-C33 | holds | `pragma.html` (`foreign_keys`): both quotes. | |
+| SQL-C34 | holds | `lang_altertable.html` §4 and §8: the quotes. | |
+| SQL-C35 | holds | `lang_vacuum.html`: all five quotes. | |
+| SQL-C36 | holds | `pragma.html`: the `TRUNCATE`, `FULL` and PASSIVE-checkpoint quotes. | |
+| SQL-C37 | holds | `wal.html` §9: both quotes. | |
+
+### CFP (command-framework-prior-art.md)
+
+| ID | Verdict | What I found | Take as true instead |
+|---|---|---|---|
+| CFP-C28 | holds | Every source quote at `v2.6.0` (`ChatCommandsBuilder`, `intentsBuilder`, `ChatCommand.arguments`, `argumentsObj = builder.invoke()` in both parsers, `toSlashOption`, `SlashCommandConverter`). Four of five documentation quotes are on the cited pages; "Optional callable returning an instance of your Arguments subtype" is on the chat-commands page. | Cite `docs.kordex.dev/bots/commands/chat` for that quote. |
+| CFP-C29 | holds | `StringParser` and `ChatCommandParser` KDoc; the `parseNext()` cursor line in `SingleToOptionalConverter`. | |
+| CFP-C30 | holds | The `SlashCommandParser` KDoc (wrapped over two lines); the single-value sentence on the converters page. | |
+| CFP-C31 | holds | `FailureReason` KDoc, the `FailureResponseBuilder` typealias and `Exceptions.kt`; the documentation quote on the error-responses page. | |
+| CFP-C32 | holds | `CommandContext` and `InteractionContext`; both documentation quotes on the interactions page. | |
+| CFP-C33 | holds | The changelog page has both sentences. | |
+| CFP-C34 | holds | `ApplicationCommand.requirePermission` KDoc; the documentation says permissions are not enforced. | |
+| CFP-C35 | holds | Both sentences on the chat-commands page. | |
+| CFP-C36 | holds | The registration-failure log in `Extension.chatCommand` and the subcommand message in `_Functions.kt`. | |
+| CFP-C37 | holds | `EphemeralSlashCommand`, `PublicSlashCommand` and the builder KDocs; `PublicSlashCommand.run` orders checks, then the initial response or deferral, then `checkBotPerms`, then argument parsing. | |
+| CFP-C38 | holds | All five quotes; `ComponentRegistry` has the debug log. | |
+| CFP-C39 | holds | The `None` KDoc in `InitialSlashCommandResponse`; the `UnsafeAPI` text is its `@RequiresOptIn` message. | |
+| CFP-C40 | holds | `MemberChecks.kt` and `Command.kt`. | |
+| CFP-C41 | holds | `ChatGroupCommand.parent`, `_Functions.kt` and `ChatCommandRegistry`. | |
+| CFP-C42 | holds | `HelpProvider` KDoc, `HelpExtension.gatherCommands`, `ChatCommandParser`; the documentation quote on the chat-commands page. | |
+| CFP-C43 | holds | The README quotes; the test files listed (`StringParserTest`, `TimestampConverterTest`, `SchedulerTest`, `MapTest`, `StringTest`). | |
+
+### IKA, BRD and DPR (Kord Extensions items)
+
+| ID | Verdict | What I found | Take as true instead |
+|---|---|---|---|
+| IKA-C25 | holds | `Arguments.kt`, `Converter.parsed`, `ChatCommand.arguments`, `builder.invoke()` in both parsers, the `ExtensionDSL` marker; both documentation quotes; the KSP line on the setup tutorial. | |
+| BRD-11 | holds | Every source quote at `v2.6.0` (`Extension.slashCommands`, `loadExtension`/`unloadExtension`, `PluginBuilder`, `PluginManager`, `Scheduler`, `Task`, sharding, `envOrNull`); the five documentation quotes on their pages. | |
+| DPR-55 | holds | `EphemeralSlashCommand`, `PublicSlashCommand`, `ComponentWithAction` and the `dev-unsafe` `None` KDoc; the statement order in `run` is as stated. | |
+
+### UBC (unreleased-build-consumption.md)
+
+| ID | Verdict | What I found | Take as true instead |
+|---|---|---|---|
+| UBC-1 | holds | `docs.gradle.org/9.7.1/userguide/composite_builds.html`: both quotes; also on `/current` (9.8.2). | |
+| UBC-2 | holds | Both quotes on the same page. | |
+| UBC-3 | holds | Both quotes on the same page. | |
+| UBC-4 | holds | "Unique Build Paths" on the composite page; the sentence is in the 8.0 upgrade guide. | |
+| UBC-5 | holds | The configuration-cache page has the quote. | |
+| UBC-11 | holds | vanniktech's CHANGELOG at 0.37.0 (2026-06-21) lists JDK 17, Gradle 9.0.0, AGP 8.13.0 and KGP 2.2.0; 0.37.0 is still the newest release. | |
+| UBC-13 | holds | `filtering_repository_content`: the DSL sentence, `snapshotsOnly()`, the group comment and `includeGroup`. | |
+| UBC-14 | holds | All three quotes in `dependency_caching`, `dependency_locking` and `dependency_versions` (9.7.1). | |
+| UBC-15 | holds | The GitHub Packages Gradle page: both quotes. | |
+| UBC-16 | holds | All six quotes on `docs.jitpack.io`. | |
+| UBC-20 | holds | vanniktech issue 891 (2025-06-12) and eisop/checker-framework#2109 carry the quotes; both are issue reports, as the claim says. | |
+| UBC-21 | holds | `central.sonatype.org/publish/publish-portal-snapshots/`: the 90-day, no-validation and "Confirm" quotes; the Gradle snippet has a content filter and no credentials. | |
+| UBC-22 | holds | An anonymous read of okio's snapshot metadata and POM answered 200. | |
+| UBC-23 | holds | The token page (display name and expiry) and the API page (user-token header). | |
+| UBC-24 | holds | JetBrains' Gradle page: both quotes. | |
+| UBC-25 | holds | Gradle `v9.7.1` `DefaultIncludedBuildRegistry.assignPath` and `DefaultConfigurableIncludedBuild` (`name = projectDir.getName()`). | |
+| UBC-26 | holds | `CompositeBuildDependencySubstitutions`: the replacement map is keyed by module identifier; the version is not read. | |
+| UBC-27 | holds | The 2018 blog quotes; the `SourceControl` Javadoc; the locking page; `userguide/source_dependencies.html` returns 404 on 9.7.1. | |
+| UBC-28 | holds | All three quotes on the composite page. | |
+| UBC-29 | holds | The `jitpack.yml` and webhook quotes; the `gradle-modular` sample's served POM carries JitPack's coordinates. | |
+| UBC-30 | holds | Both quotes on the publishing-limits page; it does not mention snapshots. | |
+
+### WTC (webtools-consumption.md)
+
+| ID | Verdict | What I found | Take as true instead |
+|---|---|---|---|
+| WTC-1 | holds | Both quotes on the composite page (9.7.1; also 9.8.2). | |
+| WTC-2 | holds | All three quotes on the composite page. | |
+| WTC-3 | holds | `CompositeBuildServices` and `BuildInclusionCoordinator` at `v9.7.1`. | |
+| WTC-4 | holds | `registerBuild` reuses a build registered for the same directory; `assignPath`. | |
+| WTC-5 | holds | `getReplacementFor` keys on the module identifier; capability selectors are copied; every project is registered. | |
+| WTC-6 | holds | `BuildDefinition` starts a new build parameter set; system properties are copied in `prepareNewBuild`, project properties only in `prepareNewInstance` (read from source). | |
+| WTC-7 | holds | All four quotes on the configuration-cache page (9.7.1). | |
+| WTC-8 | holds | The graph-resolution quote, and "often can't detect the conflict" on the capabilities page. | |
+| WTC-9 | holds | `dependency_versions`: "1.1.a < 1.1." and the splitting rule; the qualifier sentence; `StaticVersionComparator`. | |
+| WTC-10 | holds | All four quotes on `dependency_versions`. | |
+| WTC-11 | holds | Both quotes on `publishing_maven`. | |
+| WTC-12 | holds | All three quotes on `dependency_constraints`. | |
+| WTC-13 | holds | `ResolutionStrategy`, `ComponentSelectionReason` and `ResolutionResult` Javadoc. | |
+| WTC-14 | holds | The quote on `variant_attributes`. | |
+| WTC-15 | holds | The `.module` files of webtools-udp 2.0.0, webtools-scraping 1.0.0 and webtools-browser 1.0.0 declare `org.gradle.jvm.version` 23; WebTools#47 (open) matches. Class headers were not inspected. | |
+| WTC-16 | holds | Central metadata: webtools-udp 1.0.0, 1.1.0, 2.0.0; scraping and browser 1.0.0; the legacy `WebTools` artifact at 2.0.1a; no `webtools-http`. | |
+| WTC-17 | holds | WebTools `master` at `85cfbbe`: Kotlin 2.2.0, vanniktech 0.36.0, group and version 1.0.0 in `allprojects`, `slf4j-api` 2.0.13, foojay 0.8.0, Gradle 9.7.1, skrapeit 1.1.5. | |
+| WTC-18 | holds | WebTools has no `.github`, `CONTRIBUTING.md` or `CHANGELOG.md`, no tags and no workflows; the three organisation `CONTRIBUTING.md` quotes are present. | |
+| WTC-19 | holds | The four WebTools snapshot-metadata paths return 404; okio's returns 200. The repository is not browsable at any path, so only the 404s count. | Rely on the 404s only. |
+| WTC-20 | holds | The requirements page ("Correct Coordinates") and the snapshots page. | |
+| WTC-21 | holds | The forum thread and two project issues (October 2025) carry the quotes. The general statement rests on these reports only; Sonatype's pages do not document it, as the findings say. | |
+| WTC-22 | holds | The Portal API page has the quote. | |
+| WTC-23 | holds | The immutability page; vanniktech 0.37.0 `central.md` says publishing "can take 10 to 30 minutes". | |
+| WTC-24 | **fails** (in part) | The module-file part holds: `okhttp-5.5.0.module` redirects its JVM variants to `okhttp-jvm` with no capabilities. The changelog quotes hold. The BOM part is false: `okhttp-bom-5.5.0.pom` lists `okhttp-jvm` and `okhttp-android` at 5.5.0, as well as `okhttp`. | `okhttp-bom` 5.5.0 lists `okhttp`, `okhttp-jvm` and `okhttp-android` (https://repo1.maven.org/maven2/com/squareup/okhttp3/okhttp-bom/5.5.0/okhttp-bom-5.5.0.pom). |
+| WTC-25 | holds | JDA 6.7.0's POM: `okhttp-jvm` 5.5.0 and `slf4j-api` 2.0.19; JDA's OkHttp pins across 6.0.0 to 6.6.0 as stated. | |
+| WTC-26 | holds | The AWS developer-guide page has the quote. | |
+| WTC-27 | holds | kotlinx.coroutines 1.10.2 requires stdlib 2.1.0, 1.11.0 requires 2.2.20; jda-ktx 0.14.2 requires coroutines 1.10.2. | |
+| WTC-28 | holds | Caffeine 3.3.1's `.module`: JVM 11, jspecify 1.0.1, error_prone_annotations 2.50.0. | |
+| WTC-29 | holds | webtools-scraping 1.0.0 brings skrapeit 1.1.5, jsoup 1.15.4 and unirest-java 1.4.9; unirest's POM lists `httpclient` 4.5.2. Its `jackson-databind` entry is test scope. | Only unirest's compile-scope dependencies reach a consumer. |
+| WTC-30 | holds | The three Gradle quotes on `java_testing`; vanniktech 0.37.0's `TestFixtures.kt` KDoc and functions. | |
+| WTC-31 | holds | Kotlin's opt-in page has the quote. | |
+| WTC-32 | holds | GitHub's "events that trigger workflows": all three quotes. | |
+| WTC-33 | holds | hivemq-edge at `c878592`: the conditional `includeBuild`, the catalog version and the SDK's snapshot version. | |
+| WTC-34 | holds | Kotlin 2.2.0 `MetadataVersion.kt`: the read rule and `INSTANCE = MetadataVersion(2, 2, 0)`. The inference was not checked. | |
+| WTC-35 | holds | gradle/foojay-toolchains#151 has the quote, and the maintainers' reply quotes the 1.0.0 release note on Gradle 9. | |
+
+### Totals for this section
+
+holds 92 / fails 1 / unclear 0 / out of scope 0 / not reached 0 (93 claims).
+
+- Fails: WTC-24, in its statement about `okhttp-bom` only.
+- Notes:
+  - CFP-C28: one documentation quote is on another page.
+  - SQL-C29: two paragraphs.
+  - WTC-19: rely on the 404s.
+  - WTC-21: rests on public reports.
+  - WTC-29: jackson-databind is test scope.
+
+Across the whole report: 411 claims, 408 hold, 2 unclear, 1 fails.
+
+### Hosts that refused
+
+None. Codeberg, docs.kordex.dev, sqlite.org, docs.gradle.org, Sonatype's sites, JitPack, JetBrains, GitHub's documentation and Maven Central all answered.
