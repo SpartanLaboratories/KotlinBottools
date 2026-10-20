@@ -2,7 +2,7 @@
 
 Which persistence stack should bottools-data-sqlite use to implement the storage ports on SQLite?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/sqlite-persistence-stack.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/sqlite-persistence-stack.md
 
 What your answer informs (use it to aim; keep it out of the file):
 - the SQLite implementation's access layer;
@@ -41,7 +41,7 @@ Requirements specific to your question:
 Today's storage, for grounding (cite by symbol):
 - KotlinBottools: bottools.dataprocessing.KotGDP, BaseXMLReader, XMLReader, GuildDataParser. One shared reader switches files with setDocument() and rewrites the whole file on every write. Names, not snowflakes, are the keys.
 - GKB2: dataprocessing.Database, a port-like interface returning Result.
-Today's data files are in /home/user/KotlinBottools/guildData/ (structure only: never copy member names or ids into your file).
+Today's data files are in %PROJECTS%/KotlinBottools/guildData/ (structure only: never copy member names or ids into your file).
 
 Sources:
 - Maven Central metadata, POMs and release notes for each library (org.jetbrains.exposed, org.xerial:sqlite-jdbc, app.cash.sqldelight, org.flywaydb, org.liquibase, com.zaxxer:HikariCP).

@@ -2,7 +2,7 @@
 
 What public data sources exist for Marvel Rivals, Path of Exile 2, No More Room in Hell and weather, and what does each allow a free public Discord bot to do?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/game-and-weather-data-sources.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/game-and-weather-data-sources.md
 
 What your answer informs (use it to aim; keep it out of the file):
 - whether each later game can have a provider at all;

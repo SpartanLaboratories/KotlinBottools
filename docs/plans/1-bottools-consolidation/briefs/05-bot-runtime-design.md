@@ -2,7 +2,7 @@
 
 How should the bot runtime in bottools-core dispatch Discord events, install plugins, run scheduled jobs, read configuration and prepare for sharding?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/bot-runtime-design.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/bot-runtime-design.md
 
 What your answer informs (use it to aim; keep it out of the file): the runtime architecture of bottools-core. That covers:
 - the event registry;

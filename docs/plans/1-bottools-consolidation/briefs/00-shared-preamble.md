@@ -2,18 +2,18 @@ You are a researcher for the planning of SpartanLaboratories/KotlinBottools#1, "
 
 === Repository, paths and reference material ===
 
-- Target repository: /home/user/KotlinBottools (branch ccr-2c690a64-fz5whf checked out; main = b2f2078). It is a single Gradle module today: version 7.5-SNAPSHOT, Kotlin 2.1.10, JDA 5.6.1, Gradle 8.10, code under src/main/kotlin/bottools/.
-- Issue folder: /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/
-- The research plan with every question: /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/README.md. Read it first; your question is one of its numbered questions in Part 1.3, and Part 1.1 describes the work.
+- Target repository: %PROJECTS%/KotlinBottools (branch docs/issue-1-bottools-consolidation checked out; main = b2f2078). It is a single Gradle module today: version 7.5-SNAPSHOT, Kotlin 2.1.10, JDA 5.6.1, Gradle 8.10, code under src/main/kotlin/bottools/.
+- Issue folder: %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/
+- The research plan with every question: %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/README.md. Read it first; your question is one of its numbered questions in Part 1.3, and Part 1.1 describes the work.
 - Earlier researchers' findings files in the same research/ folder may be read for context. Do not repeat them, and never edit them or the README.
-- Read-only reference on disk:
-  - /home/user/GKB2: the second library being merged in (master @ 9422f85; Kotlin 1.7.20 multiplatform with Compose desktop, JDA 5.0.0-beta.2, Spring XML wiring; code under src/jvmMain/kotlin/com/spartanlabs/bottools/).
-  - /home/user/spartanlaboratories/gkb and /home/user/spartanlaboratories/bottools: earlier generations of the same tooling, with full history.
-  - /home/user/spartanlaboratories/generaltools, /home/user/spartanlaboratories/webtools, /home/user/spartanlabsgaming/mygametools: sibling libraries whose conventions this work follows. MyGameTools has the build-logic convention plugins, CI and Dokka setup; WebTools has the per-level test tasks.
-  - /home/user/spartanlaboratories/generaltools/docs/plans/7-kotlin-multiplatform/research/: current findings (2026-10-15) on vanniktech publishing to the Central Portal and on Kotlin/Gradle compatibility, reused by this work.
-  - /home/user/spartanlaboratories/spartanui and /home/user/spartanlaboratories/spartangraphics: stubs of future UI libraries.
-  - /home/user/spartanlaboratories/.github/CONTRIBUTING.md: the organisation's working agreement.
-  - /home/user/.claude/CLAUDE.md: the organisation's engineering rules (library design and stability tiers, documentation, the five-level test hierarchy).
+- Read-only reference. A location written `github:<owner>/<repo>@<ref>` is not on disk: read it through `gh api repos/<owner>/<repo>/contents/<path>?ref=<ref>` or `https://raw.githubusercontent.com/<owner>/<repo>/<ref>/<path>`, and do not clone it.
+  - github:SpartanLaboratories/GKB2@9422f85: the second library being merged in (master @ 9422f85; Kotlin 1.7.20 multiplatform with Compose desktop, JDA 5.0.0-beta.2, Spring XML wiring; code under src/jvmMain/kotlin/com/spartanlabs/bottools/).
+  - github:SpartanLaboratories/GKB@master and github:SpartanLaboratories/BotTools@main: earlier generations of the same tooling, with full history.
+  - %PROJECTS%/GeneralTools, %PROJECTS%/WebTools, %PROJECTS%/MyGameTools: sibling libraries whose conventions this work follows. MyGameTools has the build-logic convention plugins, CI and Dokka setup; WebTools has the per-level test tasks. The WebTools and GeneralTools checkouts sit on feature branches; the WebTools files named in these briefs are identical to its master.
+  - %PROJECTS%/GeneralTools/docs/plans/7-kotlin-multiplatform/research/: current findings (2026-10-15) on vanniktech publishing to the Central Portal and on Kotlin/Gradle compatibility, reused by this work. The checkout is on branch feat/issue-7-kotlin-multiplatform, where this folder is committed in full; GeneralTools' master holds only README.md, kmp-build-and-kotlin-compat.md, kmp-maven-central-publishing.md and kotlin-logging-adoption.md.
+  - github:SpartanLaboratories/SpartanUI@main and github:SpartanLaboratories/SpartanGraphics@main: stubs of future UI libraries.
+  - github:SpartanLaboratories/.github@main: the organisation's `.github` repository. CONTRIBUTING.md is the working agreement; CODE_OF_CONDUCT.md and SECURITY.md are the other health files; read anything else you need from it. Its `claude/` folder is a public mirror of `%USERPROFILE%/.claude/`, which is the source: read CLAUDE.md and the memory notes from the local copy.
+  - %USERPROFILE%/.claude/CLAUDE.md: the organisation's engineering rules (library design and stability tiers, documentation, the five-level test hierarchy).
 
 === The work your question serves ===
 
@@ -91,14 +91,14 @@ What is NOT yours: you do not design the system or write a plan. You answer your
 
 === Sources and reachability ===
 
-- gh is NOT installed in this container.
+- gh is installed and authenticated. Prefer it for GitHub content: `gh api repos/<owner>/<repo>/contents/<path>?ref=<ref>`, `gh search code`, `gh issue view`, `gh pr view`.
 - For GitHub-hosted sources, use:
   - https://raw.githubusercontent.com/<owner>/<repo>/<tag-or-commit>/<path>;
   - github.com pages through WebFetch;
   - or a shallow clone (git clone --depth 1 --branch <tag>) into a new, empty directory under your scratchpad.
 - Maven Central metadata and POMs are at https://repo1.maven.org/maven2/<group path>/<artifact>/maven-metadata.xml.
 - Pin every code citation to a tag or commit.
-- The environment's network policy may refuse some hosts. The coordinator's latest probe of which hosts answer is appended at the end of this brief.
+- This machine has ordinary network access. The coordinator's latest probe of which hosts answer, and which refuse non-browser clients, is appended at the end of this brief.
 - Where a primary site is unreachable, read the same primary content from a reachable primary mirror. Examples:
   - Discord's API documentation is published as the discord/discord-api-docs repository on GitHub.
   - OpenDota's API specification and rate-limit configuration live in odota/core on GitHub.

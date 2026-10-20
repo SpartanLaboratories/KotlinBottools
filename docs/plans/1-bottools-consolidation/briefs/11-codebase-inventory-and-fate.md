@@ -2,7 +2,7 @@
 
 What does each part of KotlinBottools and GKB2 do today, which copy is better where both have one, and where does each part go in the new library or MagicBot?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/codebase-inventory-and-fate.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/codebase-inventory-and-fate.md
 
 What your answer informs (use it to aim; keep it out of the file):
 - the adoption verdicts and blast radius of the consolidation;
@@ -12,10 +12,10 @@ What your answer informs (use it to aim; keep it out of the file):
 This is a codebase question. Your main evidence is the two codebases, read-only, plus git history. External research is limited to whatever you need to judge a defect.
 
 Codebases:
-- /home/user/KotlinBottools: src/main/kotlin/bottools/**, src/test/kotlin/** (TestBot, DotaCommand), src/main/resources/**, the build files, README.md.
+- %PROJECTS%/KotlinBottools: src/main/kotlin/bottools/**, src/test/kotlin/** (TestBot, DotaCommand), src/main/resources/**, the build files, README.md.
   The untracked docs/ folder holds a superseded draft. Ignore it; do not cite it.
-- /home/user/GKB2: src/jvmMain/**, src/jvmTest/**, resources (internals.xml, plugins.xml, commands.xml, ReactionRoles.xml, logback.xml), build files, pom.xml.
-- Lineage only: /home/user/spartanlaboratories/gkb and /home/user/spartanlaboratories/bottools.
+- github:SpartanLaboratories/GKB2@9422f85: src/jvmMain/**, src/jvmTest/**, resources (internals.xml, plugins.xml, commands.xml, ReactionRoles.xml, logback.xml), build files, pom.xml.
+- Lineage only: github:SpartanLaboratories/GKB@master and github:SpartanLaboratories/BotTools@main.
 - GKB2's open issues #2–#5: read them on github.com (https://github.com/SpartanLaboratories/GKB2/issues/2 and so on) through WebFetch, if reachable.
 
 Produce:

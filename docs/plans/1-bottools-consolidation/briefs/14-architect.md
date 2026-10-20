@@ -4,17 +4,17 @@ You are the architect for Stage 3 of a planning pipeline. You design at the syst
 
 SpartanLaboratories/KotlinBottools#1, "BotTools consolidation & MagicBot (tracking)". Consolidate KotlinBottools and GKB2 into one modern Discord-bot library, published to Maven Central as io.github.spartanlaboratories:bottools-* (bottools-core, bottools-data-sqlite, bottools-stats, bottools-plugins, and the bottools umbrella). Also deliver MagicBot, a public game-stats bot in its own repository, SpartanLaboratories/MagicBot (to be created; it does not exist yet).
 
-Repositories and references on disk (all read-only for you):
-- /home/user/KotlinBottools — the target repository, branch ccr-2c690a64-fz5whf checked out (tip 04c52b6). Today: one Gradle module, version 7.5-SNAPSHOT, Kotlin 2.1.10, JDA 5.6.1, Gradle 8.10.
-- /home/user/GKB2 — the source to port from: Kotlin 1.7.20 multiplatform with Compose, JDA 5.0.0-beta.2, Spring XML wiring.
-- /home/user/spartanlabsgaming/mygametools — the organisation's conventions: build-logic convention plugins, .github/workflows (ci.yml, pages.yml, release.yml), CONTRIBUTING.md, CHANGELOG.md, and the SupportedExtension / ExperimentalGameToolsApi markers in gametools-core.
-- /home/user/spartanlaboratories/generaltools/docs/plans/7-kotlin-multiplatform/research/ — Kotlin Gradle plugin and Gradle compatibility, Maven Central publishing.
-- /home/user/spartanlaboratories/webtools — per-level test-task wiring in its root build.gradle.kts.
-- Organisation rules: /home/user/.claude/CLAUDE.md (global rules, including "Library Design — Open-Ended by Default", the Audience-Reach documentation model and the 5-level testing hierarchy), /home/user/spartanlaboratories/.github/CONTRIBUTING.md, and these memory notes under /home/user/spartanlaboratories/.github/claude/memory/: MyGameTools/prefer-result-over-nullable.md, MyGameTools/library-design-open-ended.md, MyGameTools/testing-5-level-hierarchy.md, MyGameTools/level-5-uat-deferred.md, MyGameTools/references-by-section.md, WebTools/api-evolution-clean-break.md, WebTools/feedback_versioning_convention.md.
+Repositories and references (all read-only for you; a location written `github:<owner>/<repo>@<ref>` is not on disk — read it through `gh api repos/<owner>/<repo>/contents/<path>?ref=<ref>` or `https://raw.githubusercontent.com/<owner>/<repo>/<ref>/<path>`, and do not clone it):
+- %PROJECTS%/KotlinBottools — the target repository, branch docs/issue-1-bottools-consolidation checked out (tip: `git -C %PROJECTS%/KotlinBottools rev-parse --short HEAD`). Today: one Gradle module, version 7.5-SNAPSHOT, Kotlin 2.1.10, JDA 5.6.1, Gradle 8.10.
+- github:SpartanLaboratories/GKB2@9422f85 — the source to port from: Kotlin 1.7.20 multiplatform with Compose, JDA 5.0.0-beta.2, Spring XML wiring.
+- %PROJECTS%/MyGameTools — the organisation's conventions: build-logic convention plugins, .github/workflows (ci.yml, pages.yml, release.yml), CONTRIBUTING.md, CHANGELOG.md, and the SupportedExtension / ExperimentalGameToolsApi markers in gametools-core.
+- %PROJECTS%/GeneralTools/docs/plans/7-kotlin-multiplatform/research/ — Kotlin Gradle plugin and Gradle compatibility, Maven Central publishing. The checkout is on branch feat/issue-7-kotlin-multiplatform, where this folder is committed in full.
+- %PROJECTS%/WebTools — per-level test-task wiring in its root build.gradle.kts, and the architecture precedent named below. The checkout is on a feature branch; both files are identical to master.
+- Organisation rules: %USERPROFILE%/.claude/CLAUDE.md (global rules, including "Library Design — Open-Ended by Default", the Audience-Reach documentation model and the 5-level testing hierarchy); the organisation's `.github` repository, github:SpartanLaboratories/.github@main (CONTRIBUTING.md, the health files CODE_OF_CONDUCT.md and SECURITY.md, and anything else you need from it); and these memory notes (that repository's `claude/memory/` folder mirrors them; the local files are the source): under %USERPROFILE%/.claude/projects/%PROJECTS%-MyGameTools/memory/ — prefer-result-over-nullable.md, library-design-open-ended.md, testing-5-level-hierarchy.md, level-5-uat-deferred.md, references-by-section.md; under %USERPROFILE%/.claude/projects/%PROJECTS%-WebTools/memory/ — api-evolution-clean-break.md, feedback_versioning_convention.md.
 
 === Read this first ===
 
-/home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/README.md
+%PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/README.md
 - Part 1 §1.1 states the work as facts.
 - Part 2 holds the verification results: 299 outside-world claims, 285 hold, 14 unclear (all behind unreachable hosts), none fail.
 - Part 3 is the research summary, topic by topic (3.2 to 3.15). Each section names the findings file and the sections it rests on. Read Part 3 in full, then open the cited findings files (same folder) wherever you need detail.
@@ -92,13 +92,13 @@ Dropped features. The roadmap lists these as post-roadmap potential features; do
 
 === What to produce ===
 
-Write exactly one file: /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/architecture.md. It does not exist yet.
+Write exactly one file: %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/architecture.md. It does not exist yet.
 
 Form:
 - Match the organisation's precedents:
-  - /home/user/spartanlaboratories/webtools/docs/plans/14-reliable-ordered-channel/architecture.md, an architecture document;
-  - §2 "Target architecture" of /home/user/spartanlabsgaming/mygametools/docs/framework-vision-and-roadmap.md, for module layout, cross-cutting principles and Mermaid diagrams.
-- Open with a Header / Association block that ties the document to SpartanLaboratories/KotlinBottools#1 and names the branch ccr-2c690a64-fz5whf.
+  - %PROJECTS%/WebTools/docs/plans/14-reliable-ordered-channel/architecture.md, an architecture document;
+  - §2 "Target architecture" of %PROJECTS%/MyGameTools/docs/framework-vision-and-roadmap.md, for module layout, cross-cutting principles and Mermaid diagrams.
+- Open with a Header / Association block that ties the document to SpartanLaboratories/KotlinBottools#1 and names the branch docs/issue-1-bottools-consolidation.
 - Use British spelling. Use short bullets with bold lead-ins where they help, and tables where they compare.
 - Keep it proportional: a document a maintainer can read in one sitting. Point to the research README and the findings files for evidence rather than repeating it.
 
@@ -180,7 +180,7 @@ Where something is still open, it goes in one of two sections, written as plainl
 
 === Boundaries (read-only) ===
 
-Investigate and report. Change no file except the one Markdown document you own: /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/architecture.md.
+Investigate and report. Change no file except the one Markdown document you own: %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/architecture.md.
 
 Run nothing that mutates:
 - no build that writes into a repository;
@@ -192,6 +192,6 @@ Read-only commands (git log, git show, git blame, grep, reading files) are fine.
 
 Other rules:
 - Do not commit architecture.md. The coordinator commits it later, with the user's approval.
-- Never read, cite or rely on /home/user/KotlinBottools/docs/bottools-vision-and-roadmap.md, a superseded draft.
+- Never read, cite or rely on %PROJECTS%/KotlinBottools/docs/bottools-vision-and-roadmap.md, a superseded draft.
 - Never print, copy or quote a secret value; refer to secrets by path and commit only.
 - Do not quote member names, guild names or ids from any legacy data file.

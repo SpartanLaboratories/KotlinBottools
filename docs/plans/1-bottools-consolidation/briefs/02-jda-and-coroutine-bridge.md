@@ -2,7 +2,7 @@
 
 Which JDA release line should bottools-core build on, and does jda-ktx meet the library's needs as its internal coroutine bridge?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/jda-and-coroutine-bridge.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/jda-and-coroutine-bridge.md
 
 What your answer informs (use it to aim; keep it out of the file):
 - the JDA version pin and how JDA is exposed (api versus implementation);
@@ -20,7 +20,7 @@ Requirements specific to your question:
   - the Kotlin version jda-ktx is compiled with (read its build file at the release tag);
   - if possible, the @Metadata metadata version in its published jar classes;
   - the kotlin-stdlib and kotlinx-coroutines versions its POM requires.
-  A consumer on Kotlin 2.2.x can read class metadata up to 2.3.x only. The GeneralTools research at /home/user/spartanlaboratories/generaltools/docs/plans/7-kotlin-multiplatform/research/kmp-build-and-kotlin-compat.md explains the rule; reuse it.
+  A consumer on Kotlin 2.2.x can read class metadata up to 2.3.x only. The GeneralTools research at %PROJECTS%/GeneralTools/docs/plans/7-kotlin-multiplatform/research/kmp-build-and-kotlin-compat.md explains the rule; reuse it.
 - JDA must support:
   - slash commands with subcommand groups;
   - user and message context menus;

@@ -2,7 +2,7 @@
 
 What must the history rewrite remove from each bot repository, and how is it done safely on GitHub?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/bot-repository-history-purge.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/bot-repository-history-purge.md
 
 What your answer informs (use it to aim; keep it out of the file):
 - the scope and order of the history-hygiene work at the start of the initiative;
@@ -11,10 +11,10 @@ What your answer informs (use it to aim; keep it out of the file):
 
 Repositories:
 - On disk, full history. Use git -C <path> log --all and related commands:
-  - /home/user/KotlinBottools
-  - /home/user/GKB2
-  - /home/user/spartanlaboratories/gkb
-  - /home/user/spartanlaboratories/bottools
+  - %PROJECTS%/KotlinBottools
+  - github:SpartanLaboratories/GKB2@9422f85
+  - github:SpartanLaboratories/GKB@master
+  - github:SpartanLaboratories/BotTools@main
 - Not on disk: SpartanLaboratories/TrumpBot (private) and SpartanLaboratories/Support (private). Do not try to fetch them. List them as not inspected, and say what the rewrite needs from them once they are available.
 
 Produce:
@@ -48,7 +48,7 @@ Produce:
    - copy guildData/ outside the repository first, because the legacy importer reads it;
    - rewrite before archiving, since archived repositories are read-only;
    - rewrite KotlinBottools before it becomes public;
-   - branches that exist when the rewrite runs (this planning work lives on branch ccr-2c690a64-fz5whf of KotlinBottools and is merged to main before the rewrite);
+   - branches that exist when the rewrite runs (this planning work lives on branch docs/issue-1-bottools-consolidation of KotlinBottools and is merged to main before the rewrite);
    - commit hashes cited in documents change after the rewrite.
 6. The .gitignore patterns each repository needs afterwards (secrets, data directories, build output, IDE files), and a secret-scanning step in CI (for example gitleaks): whether it fits the organisation's CI.
 

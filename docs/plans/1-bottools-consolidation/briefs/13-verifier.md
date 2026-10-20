@@ -9,7 +9,7 @@ Twelve researchers wrote findings files. Each file ends with a numbered list of 
 3. Check nothing newer changes it.
 4. Give a verdict: holds, fails or unclear.
 
-The claims are NOT copied into this brief. Read them from the files. All files are in /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/. Each file's claims are in its section titled "Load-bearing claims": section 7 in every file except codebase-inventory-and-fate.md, where it is section 8. Each file's Findings sections give context if a claim's wording is terse.
+The claims are NOT copied into this brief. Read them from the files. All files are in %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/. Each file's claims are in its section titled "Load-bearing claims": section 7 in every file except codebase-inventory-and-fate.md, where it is section 8. Each file's Findings sections give context if a claim's wording is terse.
 
 Claim IDs use a file prefix plus the claim's own number as written in the file. Where a file numbers claims "C1", "C2"…, keep the C: for example CFP-C3, IKA-C14b.
 
@@ -59,20 +59,16 @@ Tier A, by file:
 - PURGE: 1, 2, 3, 4, 5, 6, 8, 9, 15, 16, 17, 18, 19, 20, 21, 24
 - Planner: P1, P2
 
-=== Reachability (this environment's network policy) ===
+=== Reachability ===
 
-- Hosts that answered the coordinator's latest probe:
-  - github.com and raw.githubusercontent.com;
-  - repo1.maven.org (it sometimes answers HTTP 429; wait and retry a few times);
-  - kotlinlang.org;
-  - plugins.gradle.org.
-- Hosts that were refused: Discord's sites (discord.com, docs.discord.com, support-dev.discord.com), OpenDota's sites, Steam's sites, Sonatype's sites, sqlite.org, ktor.io, docs.gradle.org, docs.github.com, and the game and weather providers' own sites. The coordinator appends its latest probe below; it overrides this list.
+- This machine has ordinary network access. In the coordinator's probe of 2026-10-20 every host it tried answered: Discord's (docs.discord.com; support-dev.discord.com with a browser User-Agent), OpenDota's, Steam's, Sonatype's, sqlite.org, docs.gradle.org, docs.github.com, and the game and weather providers' own sites.
+  - Exceptions: discord.com/developers/docs/* and tracker.gg return 403 to non-browser clients (read the Discord docs at docs.discord.com); api.stratz.com needs a token; marvelrivalsapi.com's root returns 502 while docs.marvelrivalsapi.com answers.
+  - The coordinator appends its latest probe below; it overrides this list.
 - Most claims cite sources on GitHub or Maven Central at a pinned tag or commit. Open exactly that pin.
-- Some claims are already marked by their researcher as "unverified", "excerpt", "paraphrase" or "read through a summariser", because their host was refused. For each:
-  - Try the cited source once.
-  - If the host is refused, look once for an authoritative copy on a reachable host (for example a docs repository on GitHub).
-  - If there is none, mark it "unclear: source unreachable (<host>)" and move on. Do not search further.
-- gh is NOT installed. Use WebFetch, curl, or a shallow git clone into your scratchpad for GitHub content.
+- Some claims are marked by their researcher as "unverified", "excerpt", "paraphrase" or "read through a summariser" because their host refused the environment that wrote them. Open the cited source itself; it should answer from this machine. Only if a host refuses you:
+  - look once for an authoritative copy on a reachable host (for example a docs repository on GitHub);
+  - if there is none, mark it "unclear: source unreachable (<host>)" and move on. Do not search further.
+- gh is installed and authenticated; prefer `gh api` for GitHub content. WebFetch, curl and a shallow clone into your scratchpad remain available.
 - For Maven Central version facts, read maven-metadata.xml and the POM or .module file.
 - For a currency check, compare against the newest release in maven-metadata.xml or the project's tag list.
 

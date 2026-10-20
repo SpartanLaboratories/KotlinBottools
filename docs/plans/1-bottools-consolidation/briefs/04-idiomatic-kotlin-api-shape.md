@@ -2,7 +2,7 @@
 
 What shape should the library's public Kotlin API take? That covers the command DSL, handler signatures, option access, identifiers, failures, stability tiers and coroutine ownership. The shape must be idiomatic, evolvable without breaking consumers, and safe for concurrent use.
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/idiomatic-kotlin-api-shape.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/idiomatic-kotlin-api-shape.md
 
 What your answer informs (use it to aim; keep it out of the file): the Kotlin idioms of the public API across bottools-core, bottools-data-sqlite, bottools-stats and bottools-plugins.
 
@@ -35,7 +35,7 @@ Options to compare:
 Requirements specific to your question:
 - Kotlin 2.2.x. Only stable language features appear in the public API; anything in preview stays out or sits behind the Experimental marker.
 - Consumers are Kotlin on the JVM only; no Java-facing variants are needed.
-- The design is open-ended (see "Library Design — Open-Ended by Default" in /home/user/.claude/CLAUDE.md):
+- The design is open-ended (see "Library Design — Open-Ended by Default" in %USERPROFILE%/.claude/CLAUDE.md):
   - interface plus default implementation for systems, inheritance for domain types;
   - policy parameterised, hooks exposed, additions opt-in;
   - three stability tiers.

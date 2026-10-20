@@ -5,7 +5,7 @@ organisation's `planner` pipeline (interview → research → architecture → d
 exists so the pass can be continued on another machine; delete it once `roadmap.md` is written
 and committed.
 
-**Branch:** `ccr-2c690a64-fz5whf`, off `main` (`b2f2078`). Every document under
+**Branch:** `docs/issue-1-bottools-consolidation`, off `main` (`b2f2078`). Every document under
 `docs/plans/1-bottools-consolidation/` is committed and pushed on it. No pull request is opened
 from this branch until KotlinBottools' history has been rewritten (Phase 0's first act); the PR
 is then opened from the rewritten branch.

@@ -2,7 +2,7 @@
 
 What does the Discord platform require of a public bot that is reached by slash commands, context menus and typed messages, and what limits does it put on commands, intents, sharding and data handling?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/discord-platform-rules.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/discord-platform-rules.md
 
 What your answer informs (use it to aim; keep it out of the file):
 - the limits the library's command model must enforce when it turns a command tree into slash registrations;

@@ -2,7 +2,7 @@
 
 How do established Discord bot frameworks give one command both a slash and a typed form, and what should this library's command model take from them?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/command-framework-prior-art.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/command-framework-prior-art.md
 
 What your answer informs (use it to aim; keep it out of the file): the command model of bottools-core. That covers:
 - how the command tree is represented;

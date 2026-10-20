@@ -2,7 +2,7 @@
 
 How should MagicBot, a separate repository, consume builds of the bottools library that are not yet released?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/unreleased-build-consumption.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/unreleased-build-consumption.md
 
 What your answer informs (use it to aim; keep it out of the file):
 - how MagicBot's settings.gradle.kts and CI resolve the library;
@@ -34,8 +34,8 @@ Options to compare:
 Requirements specific to your question:
 - MagicBot builds through the composite build when the two checkouts sit side by side, and against -SNAPSHOT builds from main otherwise.
 - Publishing uses com.vanniktech.maven.publish under io.github.spartanlaboratories. Nothing is released before 1.0.0, and every pre-1.0.0 build is 1.0.0-SNAPSHOT.
-- The organisation's working agreement is at /home/user/spartanlaboratories/.github/CONTRIBUTING.md (sections "Releasing" and "Deployment environments").
-- Reuse /home/user/spartanlaboratories/generaltools/docs/plans/7-kotlin-multiplatform/research/kmp-maven-central-publishing.md for how the plugin talks to the Central Portal. Do not re-research it; extend it to snapshots.
+- The organisation's working agreement is at github:SpartanLaboratories/.github@main/CONTRIBUTING.md (sections "Releasing" and "Deployment environments").
+- Reuse %PROJECTS%/GeneralTools/docs/plans/7-kotlin-multiplatform/research/kmp-maven-central-publishing.md for how the plugin talks to the Central Portal. Do not re-research it; extend it to snapshots.
 - MagicBot's CI builds on GitHub Actions.
 
 Sources:
@@ -44,7 +44,7 @@ Sources:
 - Sonatype Central Portal documentation on publishing and consuming snapshots.
 - GitHub Packages documentation for the Maven registry.
 - JitPack documentation.
-- MyGameTools' build-logic (/home/user/spartanlabsgaming/mygametools/build-logic) and settings, for the conventions in use.
+- MyGameTools' build-logic (%PROJECTS%/MyGameTools/build-logic) and settings, for the conventions in use.
 
 Lenses:
 - Best systems: how multi-repo Kotlin projects develop a library and its consumer side by side.

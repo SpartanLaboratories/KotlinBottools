@@ -2,7 +2,7 @@
 
 Which HTTP, JSON, caching and call-budget stack should the stats providers and plugins share?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/http-client-stack.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/http-client-stack.md
 
 What your answer informs (use it to aim; keep it out of the file):
 - the shared client stack in bottools-stats, which the weather and feeds plugins in bottools-plugins also use;

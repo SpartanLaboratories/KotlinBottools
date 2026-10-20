@@ -2,7 +2,7 @@
 
 What can OpenDota and Steam provide for Dota 2 account links, profiles, match history, match detail and patch notes, and at what call budget for a public bot?
 
-Findings file (write exactly here): /home/user/KotlinBottools/docs/plans/1-bottools-consolidation/research/dota2-data-sources.md
+Findings file (write exactly here): %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/dota2-data-sources.md
 
 What your answer informs (use it to aim; keep it out of the file):
 - the Dota 2 provider: endpoints, models and account resolution;
