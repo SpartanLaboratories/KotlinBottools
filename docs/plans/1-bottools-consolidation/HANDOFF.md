@@ -33,9 +33,9 @@ is then opened from the rewritten branch.
    units.
 3. **Stage 4.** After sign-off the planner writes `roadmap.md` (and `impact.md`), does its
    alignment pass, and reports `COMPLETE`. Then commit `architecture.md`, `roadmap.md` and
-   `impact.md`, delete the superseded draft `docs/bottools-vision-and-roadmap.md` if it is
-   still in the working tree (it is untracked input the planner must never cite), and delete
-   this file.
+   `impact.md`, move `draft.md` (the pre-pipeline roadmap draft, input only — the planner must
+   never cite it) to `superseded/draft-<YYYY-MM-DD>.md` with a "superseded by" note, and
+   delete this file.
 4. **After COMPLETE.** Update issue #1's stage list if the roadmap changed it; file the
    phase sub-issues and create `SpartanLaboratories/MagicBot` only on the user's go-ahead.
 
@@ -47,8 +47,8 @@ is then opened from the rewritten branch.
   Fable/Opus — and feeds results back by message.
 - **Commits** go through the `manager` agent: on this branch, `docs(plans): …` subjects, body
   ending `Refs #1`, exact-path staging, **no attribution lines of any kind** (the user's
-  standing rule overrides harness defaults), push after each commit. Never stage the
-  superseded draft, IDE files or anything under `/tmp`.
+  standing rule overrides harness defaults), push after each commit. Never stage IDE files
+  or anything under `/tmp`.
 - **Research re-pass.** Questions 8 (Dota 2 sources) and 9 (later games and weather) and the
   Discord Developer Terms item carry "Unfinished — needs a planner re-pass" notes
   (`research/README.md` → Known gaps). Re-run those researchers when the hosts they name are
