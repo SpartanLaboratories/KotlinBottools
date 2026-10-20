@@ -244,7 +244,7 @@ Each quote is verbatim. Claims 1 to 19 and 21 to 36 were read at their source or
 
 ## 8. Gaps
 
-1. **OpenDota's terms for caching and commercial use are not written anywhere reachable.** The only published text is the 2014 FAQ ("best-effort basis"; code credit appreciated). No contact was made. If MagicBot's policy needs OpenDota's position on caching match data or on a public bot with many subscribers, the question goes to `support@opendota.com` (the address shown on the key page); no message has been sent.
+1. **OpenDota's terms for caching and commercial use are not written anywhere reachable.** The only published text is the 2014 FAQ ("best-effort basis"; code credit appreciated). No contact was made. If MagicBot's policy needs OpenDota's position on caching match data or on a public bot with many subscribers, the question goes to the support address shown on OpenDota's key page; no message has been sent.
 2. **Whether the daily 429 is returned in production.** The headers and `/metadata` show the limits are active, but exceeding 3,000 calls was not tried. The tracker treats a daily 429 as possible and honours the headers.
 3. **End-to-end freshness is only partly measured.** The `publicMatches` sample shows matches visible within roughly 40 s to a few minutes of ending; the `recentMatches` path for a specific tracked account was not timed (it needs an account that finishes a match during the test). The 2-minute polling floor is a judgment.
 4. **No public Dota 2 Discord bot with automatic match posting at scale was found**, so the polling model has no field-tested precedent; its constants (3 matches per account per day, tier thresholds, population mix, 500-call interactive reserve, 2-minute floor) are labelled assumptions, not measurements.
