@@ -1817,7 +1817,10 @@ Source: [webtools-consumption](webtools-consumption.md) §2, §3, §6.
 - **Pins: exact, never a range.** Gradle orders `1.0.0a` below `1.0.0`, because an extra
   non-numeric part sorts lower. A lettered bug-fix release therefore loses conflict resolution to
   its plain release wherever both are requested. This reaches the organisation's versioning rule,
-  under which a bug fix takes a letter.
+  under which a fix bumps MinorChange or takes a trailing letter (`1.9.0` → `1.9.1` or `1.9.0a`).
+  The organisation's guide answers it in "Lettered versions in dependency graphs"
+  (`SpartanLaboratories/.github` `CONTRIBUTING.md`): a library pins a lettered version with
+  `strictly`, at the cost Gradle states for downstream consumers (WTC-10).
 - **Classpath alignment: a check task, not `failOnVersionConflict()`.**
   - **What Gradle does.** It selects the highest requested version of each module. Without a
     platform it cannot see a mix of legacy `okhttp` and `okhttp-jvm`. Importing `okhttp-bom`,
