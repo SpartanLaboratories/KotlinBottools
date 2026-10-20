@@ -4,7 +4,8 @@
 
 - **For:** [SpartanLaboratories/KotlinBottools#1](https://github.com/SpartanLaboratories/KotlinBottools/issues/1),
   *"BotTools consolidation & MagicBot (tracking)"*.
-- **Committed on:** branch `ccr-2c690a64-fz5whf`, as `docs(plans):` commits that reference #1.
+- **Committed on:** branch `docs/issue-1-bottools-consolidation`, off `main` @ `b2f2078`, as
+  `docs(plans):` commits that reference #1.
 - **Maintained by:** the planner. Each `<question-slug>.md` file beside this one belongs to the
   researcher who wrote it and is not edited here.
 - **Date:** 2026-10-20.
@@ -571,17 +572,26 @@ itself being designed.
 
 ### 1.5 Source reachability
 
-The research environment's network policy can refuse a primary source's host. When that
-happens:
+Every source is read at its own host wherever the host answers.
 
-- The researcher reads the same primary content from a reachable mirror. Discord's API
-  documentation is the `discord/discord-api-docs` repository, and OpenDota's API specification
-  is in `odota/core`.
-- Every claim that could not be opened at its source is marked unverified. Nothing is guessed in
-  its place.
-- A question left incomplete for that reason is marked **Unfinished — needs a planner re-pass**
-  in this file's Known gaps. The note names the unreachable hosts and the decisions and phases
-  that stay provisional. Every document that depends on the question carries the same note.
+- **Mirrors.** Some primary content is also published elsewhere. Discord's API documentation is
+  the `discord/discord-api-docs` repository, and OpenDota's API specification and rate-limit
+  configuration are in `odota/core`. A finding read from a mirror names it.
+- **Hosts that refuse or need an account:**
+  - `tracker.gg`;
+  - `marvelrivalsapi.com`, which answers 502 on every path while its documentation host answers;
+  - `api.stratz.com`, and STRATZ's pages, which render only in a browser;
+  - `developer.valvesoftware.com`;
+  - pages behind a sign-in, such as Discord's Developer Portal and Steam's key registration.
+- **Hosts that answer only a browser.** `support-dev.discord.com` and `steamdb.info` answer
+  only a browser User-Agent. `discord.com/developers/docs` refuses automated clients, and the
+  same pages are on `docs.discord.com`.
+- **Unverified claims.** Every claim that could not be opened at its source is marked
+  unverified. Nothing is guessed in its place.
+- **Unfinished questions.** A question left incomplete for that reason is marked
+  **Unfinished — needs a planner re-pass** in this file's Known gaps. The note names the
+  unreachable hosts and the decisions and phases that stay provisional. Every document that
+  depends on the question carries the same note.
 
 ### 1.6 Verification plan
 
@@ -596,102 +606,138 @@ happens:
 
 ## Part 2 — Verification results
 
-Every load-bearing claim in the twelve findings files was re-opened at its source on
-2026-10-20, at the pin or version its file names. Two claims that this summary rests on
-directly, P1 and P2 (2.1), were checked the same way.
+Every load-bearing claim in the twelve findings files was opened at its source on 2026-10-20:
+at the pin or version its file names or, for a live page or service, on that date. Two claims
+that this summary rests on directly, P1 and P2 (2.1), were checked the same way. The verdict
+for each claim is in [verifier-report.md](verifier-report.md).
 
 | Findings file | Claims | Hold | Unclear | Fail |
 |---|---|---|---|---|
-| [discord-platform-rules](discord-platform-rules.md) | 36 | 36 | 0 | 0 |
+| [discord-platform-rules](discord-platform-rules.md) | 54 | 54 | 0 | 0 |
 | [jda-and-coroutine-bridge](jda-and-coroutine-bridge.md) | 16 | 16 | 0 | 0 |
 | [command-framework-prior-art](command-framework-prior-art.md) | 35 | 35 | 0 | 0 |
 | [idiomatic-kotlin-api-shape](idiomatic-kotlin-api-shape.md) | 34 | 34 | 0 | 0 |
 | [bot-runtime-design](bot-runtime-design.md) | 26 | 26 | 0 | 0 |
 | [sqlite-persistence-stack](sqlite-persistence-stack.md) | 27 | 27 | 0 | 0 |
-| [http-client-stack](http-client-stack.md) | 28 | 27 | 1 | 0 |
-| [dota2-data-sources](dota2-data-sources.md) | 20 | 16 | 4 | 0 |
-| [game-and-weather-data-sources](game-and-weather-data-sources.md) | 27 | 18 | 9 | 0 |
+| [http-client-stack](http-client-stack.md) | 28 | 28 | 0 | 0 |
+| [dota2-data-sources](dota2-data-sources.md) | 36 | 35 | 1 | 0 |
+| [game-and-weather-data-sources](game-and-weather-data-sources.md) | 41 | 40 | 1 | 0 |
 | [unreleased-build-consumption](unreleased-build-consumption.md) | 20 | 20 | 0 | 0 |
 | [codebase-inventory-and-fate](codebase-inventory-and-fate.md) | 4 | 4 | 0 | 0 |
 | [bot-repository-history-purge](bot-repository-history-purge.md) | 24 | 24 | 0 | 0 |
 | P1 and P2 | 2 | 2 | 0 | 0 |
-| **Total** | **299** | **285** | **14** | **0** |
+| **Total** | **347** | **345** | **2** | **0** |
 
 No claim fails, so nothing in Part 3 rests on a refuted claim.
 
 ### 2.1 P1 and P2
 
-- **P1: OpenDota counts a request before it refuses it.** In `odota/core` @ `449fb7b`
-  (`svc/web.ts`), the middleware increments both counters first
-  (`command.hincrby("rate_limit", …)`, `command.hincrby("daily_rate_limit", …)`) and compares
-  afterwards (`if (remMinute < 0) { return res.status(429)… }`,
-  `if (!res.locals.isAPIRequest && remDay < 0) { … }`). A `POST /api/request/{id}` costs 10
-  (`rateCost = 10`). Three qualifiers hold: the block runs only when `ENABLE_API_LIMIT` is set
-  (empty by default in the repository); the daily refusal applies only without a key; keyed
-  requests increment both counters too. A refused request therefore still spends quota.
-  404, 429 and 500 responses are not billed, but they count toward the rate limits.
+- **P1: OpenDota counts a request before it refuses it.**
+  - **Order.** In `odota/core` @ `449fb7b` (`svc/web.ts`), the middleware increments both
+    counters first (`command.hincrby("rate_limit", …)`, `command.hincrby("daily_rate_limit", …)`)
+    and compares afterwards (`if (remMinute < 0) { return res.status(429)… }`,
+    `if (!res.locals.isAPIRequest && remDay < 0) { … }`).
+  - **Cost.** A `POST /api/request/{id}` costs 10 (`rateCost = 10`).
+  - **Qualifiers.** Three hold:
+    - The block runs only when `ENABLE_API_LIMIT` is set. That setting is empty by default in the
+      repository, but production has it on: live keyless responses carry the rate-limit headers
+      that only this block sets ([dota2-data-sources](dota2-data-sources.md) §3.1).
+    - The daily refusal applies only without a key.
+    - Keyed requests increment both counters too.
+  - **Consequence.** A refused request still spends quota. 404, 429 and 500 responses are not
+    billed, but they count toward the rate limits.
 - **P2: the Gradle range documented for each Kotlin Gradle plugin (KGP) line**, from Kotlin's
   compatibility table (`kotlinlang.org/docs/gradle-configure-project.html`, source
   `docs/topics/gradle/gradle-configure-project.md` in `JetBrains/kotlin-web-site`, read
-  2026-10-20): KGP 2.2.0 to 2.2.21 on Gradle 7.6.3 to 8.14; 2.3.0 and 2.3.10 on 7.6.3 to
-  9.0.0; 2.3.20 and 2.3.21 on 7.6.3 to 9.3.0; 2.4.0 and 2.4.10 on 7.6.3 to 9.5.0; 2.4.20 and
-  2.4.21 on 7.6.3 to 9.7.0. KGP 2.3.0 is the first line documented on any Gradle 9 release.
+  2026-10-20):
+
+  | KGP | Gradle |
+  |---|---|
+  | 2.2.0 to 2.2.21 | 7.6.3 to 8.14 |
+  | 2.3.0 and 2.3.10 | 7.6.3 to 9.0.0 |
+  | 2.3.20 and 2.3.21 | 7.6.3 to 9.3.0 |
+  | 2.4.0 and 2.4.10 | 7.6.3 to 9.5.0 |
+  | 2.4.20 and 2.4.21 | 7.6.3 to 9.7.0 |
+
+  KGP 2.3.0 is the first line documented on any Gradle 9 release.
 
 ### 2.2 Claims that could not be opened at their source
 
-All 14 sit behind hosts the environment refuses. Each stays in its findings file with its
-weakness stated, and what rests on it is provisional (Known gaps).
+Two claims, and one part of a third, sit behind hosts that refuse automated clients. Each stays
+in its findings file marked unverified.
 
 | Claim | What it says | Unreachable host | What rests on it |
 |---|---|---|---|
-| http-client-stack 20 | Path of Exile declares its rate limits in `X-Rate-Limit-*` headers, which "may change without notice" | www.pathofexile.com | a budget that takes rules from headers (PoE 2) |
-| dota2-data-sources 17; game-and-weather-data-sources 25 | The Steam Web API allows 100,000 calls a day, and Steam data about a user is retrieved only "as requested by the end user" | steamcommunity.com | vanity names resolved only on request; the No More Room in Hell provider |
-| dota2-data-sources 18 | SteamDB offers no API and disallows scraping | steamdb.info | not using SteamDB's feed |
-| dota2-data-sources 19 | OpenDota asks for credit when its code is reused | blog.opendota.com | the attribution wording |
-| dota2-data-sources 20 | STRATZ's token tiers | stratz.medium.com | nothing (comparison only) |
-| game-and-weather-data-sources 11 | Zippopotam.us needs no key and serves GeoNames data "as-is" | docs.zippopotam.us | the fallback postal-code geocoder |
-| game-and-weather-data-sources 12 | Nominatim allows at most one request a second | operations.osmfoundation.org | nothing (not used) |
-| game-and-weather-data-sources 15 | The Marvel Rivals community API is "non-official" and keyed, with 3,000 free requests a day and a player refresh at most every 30 minutes | marvelrivalsapi.com | the Marvel Rivals provider |
-| game-and-weather-data-sources 16 | Tracker Network lists no Marvel Rivals API | tracker.gg | the absence of another source |
-| game-and-weather-data-sources 17 and 18 | GGG's API needs per-user authorization and "may change without notice"; it has a ladder scope and a `poe2` realm | www.pathofexile.com | the PoE 2 provider's capabilities |
-| game-and-weather-data-sources 21, second part | poe.ninja's economy endpoints are its supported public surface (the first part, that its other endpoints are internal, holds) | poe.ninja | the PoE 2 economy provider |
-| game-and-weather-data-sources 26 | No More Room in Hell lists 115 achievements, and private profiles hide data | steamcommunity.com, developer.valvesoftware.com | the No More Room in Hell provider |
+| dota2-data-sources 20 | STRATZ's token tiers | stratz.medium.com (403); STRATZ's own pages render only in a browser | nothing (comparison only) |
+| game-and-weather-data-sources 16 | Tracker Network lists no Marvel Rivals API | tracker.gg (403 challenge) | nothing beyond the absence of a second Marvel Rivals source |
+| game-and-weather-data-sources 15, plan-table part | The community API's free plan allows 3,000 requests a day (the rest of the claim holds at docs.marvelrivalsapi.com) | marvelrivalsapi.com (502) | the Marvel Rivals provider's budget (Known gaps) |
 
 ### 2.3 Claims that hold with a caveat
 
-- **discord-platform-rules 30 to 32** (privacy policy, deletion, encryption at rest, use of API
-  data) hold for the Developer Terms and Developer Policy effective 2022-10-01. A version
-  effective 2024-07-08 exists on support-dev.discord.com, which the environment refuses, so the
-  public-bot obligations built on them are provisional (Known gaps).
-- **P2:** Gradle 9.0.0 is the upper end of the KGP 2.3.0 and 2.3.10 ranges, not a lower bound.
-- **jda-and-coroutine-bridge 7:** JDA 6.2.1's "start migrating to JDA 6 as soon as possible"
+- **Live observations.** Claims that record a live response were re-run the same day and showed
+  the same behaviour: for example dota2-data-sources 21, 24, 32 and 34, and
+  game-and-weather-data-sources 37 to 39. Values that change by nature differ, such as player
+  counts and the newest feed item.
+- **dota2-data-sources 33 (freshness).** Samples vary. The newest listed match had ended 38 to
+  137 seconds before the call in one set of samples, and 170 to 238 seconds in another, both on
+  2026-10-20.
+- **dota2-data-sources 31.** `ResolveVanityURL`'s response codes come from a third-party client;
+  Valve's page does not state them.
+- **http-client-stack 20.** The quoted sentence is not on the page in those words, but the
+  substance holds:
+  - Path of Exile's developer documentation declares its rate limits in `X-Rate-Limit-Policy`,
+    `X-Rate-Limit-Rules` and `X-Rate-Limit-{rule}` headers.
+  - It says "These limits are dynamic and can change at any time depending on our requirements",
+    and "the details in this document may change without notice".
+  - game-and-weather-data-sources 30 quotes the page as it reads.
+- **discord-platform-rules 37.** Discord's documentation URLs for the Terms and Policy redirect
+  with HTTP 307, not 308, to the same pages.
+- **discord-platform-rules 44.** Terms 5(b) reads "applicable laws and regulations" where the
+  quote has "or"; the meaning is the same.
+- **P2.** Gradle 9.0.0 is the upper end of the KGP 2.3.0 and 2.3.10 ranges, not a lower bound.
+- **jda-and-coroutine-bridge 7.** JDA 6.2.1's "start migrating to JDA 6 as soon as possible"
   concerns Discord's DAVE voice protocol. JDA 6.7.0's own release notes are what tie channel
   obfuscation (mandatory 2026-11-16) to the 6.x line.
-- **sqlite-persistence-stack C20:** the SQLite commit that fixes the WAL-reset race is
-  confirmed; the affected range (3.7.0 to 3.51.2) and the first fixed release (3.51.3) rest on
+- **sqlite-persistence-stack C20.** The SQLite commit that fixes the WAL-reset race is
+  confirmed. The affected range (3.7.0 to 3.51.2) and the first fixed release (3.51.3) rest on
   secondary articles.
-- **unreleased-build-consumption 16:** JitPack's text lives at `building/_index.en.md` and
+- **unreleased-build-consumption 16.** JitPack's text lives at `building/_index.en.md` and
   `faq/_index.en.md`, worded slightly differently ("JitPack compiles projects using OpenJDK
   Java 8 by default for legacy compatibility").
 - **idiomatic-kotlin-api-shape C6 and C15** quote shortened sentences; the full sentences say
   the same thing.
-- **jda-and-coroutine-bridge 6 and 7, and http-client-stack 16 and 25,** were read from
-  rendered pages, not raw text.
+- **Rendered pages.** jda-and-coroutine-bridge 6 and 7, and http-client-stack 16 and 25, were
+  read from rendered pages, not raw text.
 
 ### 2.4 Currency and reachability
 
 - **Pins.** None of the pinned sources had moved: Discord's documentation at `fd75e22`,
-  `odota/core` at `449fb7b`, `jda-ktx` at `4fc12af`.
-- **Newest releases on 2026-10-20:** JDA 6.7.0, jda-ktx 0.15.0, Exposed 1.6.0, sqlite-jdbc
-  3.53.4.0, Ktor 3.6.0, OkHttp 5.5.0, kotlinx.coroutines 1.11.0, kotlinx-serialization 1.12.0,
-  vanniktech 0.37.0, binary-compatibility-validator 0.18.2, Hoplite 3.0.4, Caffeine 3.3.1,
-  Quartz 2.5.2 and Rome 2.1.0. Gradle 9.8.2 exists; its composite-build and
-  configuration-cache documentation reads the same as 9.7.1's.
-- **Refused hosts.** At verification: steamcommunity.com, steamdb.info, blog.opendota.com,
-  stratz.medium.com, docs.zippopotam.us, operations.osmfoundation.org, marvelrivalsapi.com,
-  tracker.gg, www.pathofexile.com and poe.ninja. The findings could not reach discord.com,
-  docs.discord.com, support-dev.discord.com, OpenDota's and Steam's API and documentation
-  hosts, Sonatype's Central Portal pages, sqlite.org or docs.gradle.org either.
+  `odota/core` at `449fb7b`, `odota/dotaconstants` at `5c0242d`, `jda-ktx` at `4fc12af`.
+- **Live texts read on 2026-10-20:**
+  - OpenDota's API document, version 31.1.0;
+  - Discord's Developer Terms of Service and Developer Policy, effective 2024-07-08;
+  - GGG's developer documentation, whose newest changelog entry is dated 21/07/2026;
+  - the Steam Web API Terms of Use, last updated July 2010.
+- **Newest releases on 2026-10-20:**
+  - JDA 6.7.0, jda-ktx 0.15.0, Exposed 1.6.0, sqlite-jdbc 3.53.4.0;
+  - Ktor 3.6.0, OkHttp 5.5.0, kotlinx.coroutines 1.11.0, kotlinx-serialization 1.12.0;
+  - vanniktech 0.37.0, binary-compatibility-validator 0.18.2;
+  - Hoplite 3.0.4, Caffeine 3.3.1, Quartz 2.5.2, Rome 2.1.0.
+
+  Gradle 9.8.2 exists; its composite-build and configuration-cache documentation reads the same
+  as 9.7.1's.
+- **Hosts that refuse:**
+  - stratz.medium.com and api.stratz.com;
+  - tracker.gg;
+  - marvelrivalsapi.com, which answers 502 while its documentation host answers;
+  - developer.marvelrivals.com, which has no DNS entry;
+  - developer.valvesoftware.com, behind a challenge page;
+  - pages behind a sign-in, such as Discord's Developer Portal and Steam's key registration.
+- **Hosts that answer only a browser.** support-dev.discord.com and steamdb.info answer only a
+  browser User-Agent.
+- **Hosts that answer but were not used.** Sonatype's Central Portal pages, sqlite.org,
+  docs.gradle.org and codeberg.org answer. The findings that cite them rest on mirrors and
+  source code instead (Known gaps).
 
 ### 2.5 Claims about these codebases
 
@@ -708,6 +754,9 @@ These were checked against the code at the baselines:
   key files, data files and binaries, and its `.classpath` names the `Support` project. The
   three copies of the legacy data cover the same six servers (3.13).
 - MyGameTools' `build-logic` applies KGP 2.2.0 and vanniktech 0.36.0 on Gradle 9.7.1.
+- Both copies of `DotaCommand` (KotlinBottools' test source and GKB2's `jvmTest`) define
+  `showLastGameStats` and `postPatchNotes`, the post logic the Dota 2 findings compare with
+  OpenDota's fields.
 
 ---
 
@@ -720,15 +769,15 @@ source that could not be read; Known gaps names the source and what would settle
 
 | # | File | What it settles | State |
 |---|---|---|---|
-| 1 | [discord-platform-rules.md](discord-platform-rules.md) | Command limits, interaction timing, intents per feature, privileged-intent approval, sharding, rate limits, public-bot obligations | Complete except the current Developer Terms and Policy (Known gaps) |
+| 1 | [discord-platform-rules.md](discord-platform-rules.md) | Command limits, interaction timing, intents per feature, privileged-intent approval, App Verification, sharding, rate limits, public-bot obligations | Complete |
 | 2 | [jda-and-coroutine-bridge.md](jda-and-coroutine-bridge.md) | The JDA release line and the jda-ktx pairing | Complete |
 | 3 | [command-framework-prior-art.md](command-framework-prior-art.md) | One command with a slash and a typed form: definitions, parsing, aliases, context, deferral, errors, help, components, tests | Complete |
 | 4 | [idiomatic-kotlin-api-shape.md](idiomatic-kotlin-api-shape.md) | Public API shape, failures, stability tiers, ABI checks, coroutine ownership | Complete |
 | 5 | [bot-runtime-design.md](bot-runtime-design.md) | Events, plugins, jobs, configuration, intents, sharding, lifecycle | Complete |
 | 6 | [sqlite-persistence-stack.md](sqlite-persistence-stack.md) | Access layer, connections, migrations, port shape, erasure | Complete |
 | 7 | [http-client-stack.md](http-client-stack.md) | HTTP client, JSON, cache, call budget, feed parsing, tests | Complete |
-| 8 | [dota2-data-sources.md](dota2-data-sources.md) | OpenDota and Steam for Dota 2: endpoints, limits, budget model, patch notes | **Unfinished — needs a planner re-pass** |
-| 9 | [game-and-weather-data-sources.md](game-and-weather-data-sources.md) | Marvel Rivals, Path of Exile 2, No More Room in Hell, weather | **Unfinished — needs a planner re-pass** |
+| 8 | [dota2-data-sources.md](dota2-data-sources.md) | OpenDota and Steam for Dota 2: endpoints, limits, terms, budget model, patch notes | Complete |
+| 9 | [game-and-weather-data-sources.md](game-and-weather-data-sources.md) | Marvel Rivals, Path of Exile 2, No More Room in Hell, weather | Complete except the Marvel Rivals API's pricing and terms (Known gaps) |
 | 10 | [unreleased-build-consumption.md](unreleased-build-consumption.md) | Composite build and snapshots for MagicBot | Complete |
 | 11 | [codebase-inventory-and-fate.md](codebase-inventory-and-fate.md) | What each part of both codebases does, and where it goes | Complete |
 | 12 | [bot-repository-history-purge.md](bot-repository-history-purge.md) | What the history rewrite removes, and how | Complete |
@@ -746,8 +795,15 @@ Source: [discord-platform-rules](discord-platform-rules.md) §2, §3.
   Below 10,000 unique users who can see the app, each is a Developer Portal toggle. At 10,000
   the app has 90 days to apply and must re-apply every year, and Discord may deny a use case
   that "can be accomplished through interactions or other means without privileged intents".
-  Pages that still say 100 servers are superseded. App Verification is a separate process
-  whose criteria are unverified.
+  The review criteria are those in Discord's two privileged-intent guides; no separate
+  review-policy article exists. Pages that still tie intents to 100 servers are superseded.
+- **App Verification is a separate gate, at 100 servers.** Discord's Help Centre still says
+  "Verification is required for your app to scale past 100 servers".
+  - Its one public requirement is an identity check, through Stripe, of the owner of the
+    Developer Team that owns the app, renewed every three years. The rest of its checklist is in
+    the Developer Portal, behind a sign-in.
+  - What an unverified app can do at 100 servers is not stated.
+  - Verification also gates Discovery and monetisation, which MagicBot does not need.
 - **Intents by feature.** Slash commands, context menus, components and modals need none.
   Typed commands by mention or DM need `GUILD_MESSAGES` and `DIRECT_MESSAGES`. Reaction roles
   need `GUILD_MESSAGE_REACTIONS`. The default role and welcome message on join need the
@@ -1113,93 +1169,185 @@ Source: [http-client-stack](http-client-stack.md) §2, §5, §6. The shared stac
   headers, on fake time. Level 3 runs the real transport against `mockwebserver3` 5.5.0. A
   fixture recorder runs only when an environment variable is set, never in CI, and strips keys.
 
-### 3.9 Dota 2 *(provisional: Question 8 needs a re-pass)*
+### 3.9 Dota 2
 
-Source: [dota2-data-sources](dota2-data-sources.md) §2, §5, §6.
+Source: [dota2-data-sources](dota2-data-sources.md) §2, §3, §6.
 
-- **Source: OpenDota, without a key to start.** The repository defaults are 60 calls a minute
-  and 3,000 a day per client IP without a key, and 300 a minute with no daily cap at $0.0001 a
-  call with a key (404, 429 and 500 responses are not billed). `X-Rate-Limit-Remaining-Minute`
-  is always sent and `X-Rate-Limit-Remaining-Day` only without a key; a refusal is a 429 with a
-  JSON error and no `Retry-After`; a parse request costs 10 (P1). The deployed values could not
-  be read, so every number is configuration, not a constant.
-- **The daily allowance is the binding limit.** With labelled assumptions (three matches per
-  account a day, a 20 % margin, 500 calls a day reserved for commands), uniform polling fits 6
-  accounts at 5 minutes, 19 at 15, 37 at 30 and 70 at 60. Polling by activity (every 5 minutes
-  within 2 hours of the last match, every 30 within 24 hours, otherwise every 3 hours) costs as
-  much as a 30-minute interval while seeing active players within about 5 minutes. With a key,
-  that mix costs about $0.15 per tracked account a month, and the minute limit binds near 8,000
-  accounts. The budget is configured in calls a day; when demand exceeds it, intervals stretch
-  rather than accounts being dropped. Buying a key is an operating choice that configuration
-  absorbs.
-- **Calls.** One `recentMatches` call per distinct account per tick, so many guilds following
-  one account cost one poll; one `matches/{id}` call per new match, shared by every follower.
-  Parse requests are never automatic (about 17 calls against 2 for an unparsed post), so an
-  unparsed match shows "lane unavailable". `recentMatches` carries K/D/A, GPM/XPM, last hits,
-  hero and tower damage, healing, duration, result and hero; denies, net worth, items, talents
-  and the score need the detail call; OpenDota has no lane-outcome field. A "last match" call
-  needs `significant=0` to include turbo and similar modes.
-- **Accounts.** Steam64 ids, 32-bit account ids, and OpenDota, Dotabuff and
-  `steamcommunity.com/profiles/` URLs need no key (`account_id = steam64 − 76561197960265728`).
-  Vanity names need a Steam Web API key and are resolved only on the user's own request,
-  through an optional capability present only when a key is configured. A 404 means "OpenDota
-  has not seen this account"; an empty history means "turn on Expose Public Match Data".
-- **Patch notes** come from Steam's keyless `ISteamNews/GetNewsForApp` (JSON) behind a
-  `PatchNoteSource` port, polled hourly and deduplicated by item id per subscription cursor;
-  posts carry the title, link and a trimmed excerpt. `dotaconstants`' `patchnotes.json` is
-  optional enrichment. Which feed name or tag marks a Dota patch could not be observed.
-  SteamDB's RSS (no API; scraping disallowed) and the undocumented `dota2.com/datafeed`
-  endpoints are rejected.
-- **Constants and images.** `odota/dotaconstants` (MIT) supplies heroes and items, refreshed
-  daily, with `Hero #N` for unknown ids. Images come from `cdn.cloudflare.steamstatic.com` plus
-  the constants' paths, and the item line is composed in memory per invocation.
-- **Attribution.** Posts say "Data: OpenDota" and link to the match page; OpenDota's terms of
-  use could not be read. STRATZ is not used: its terms could not be verified, and nothing needs
-  it.
+- **Source: OpenDota, without a key to start.** The deployed limits (`GET /api/metadata`) are
+  60 calls a minute and 3,000 a day per client IP without a key, and 3,000 a minute with no
+  daily cap with a key. A key costs $0.01 per 100 calls from the first call and needs a payment
+  method; 404, 429 and 500 responses are not billed. The repository default of 300 a minute for
+  keyed calls is not what production serves.
+  - `X-Rate-Limit-Remaining-Minute` is always sent, and `X-Rate-Limit-Remaining-Day` only
+    without a key. A refusal is a 429 with a JSON error and no `Retry-After`, and a parse request
+    costs 10 (P1).
+  - The provider reads `/metadata` once at start-up and treats configured numbers as defaults. A
+    key travels in an `Authorization: Bearer` header, which keeps it out of URLs.
+- **Terms.** OpenDota publishes no written terms for its API. Its "Privacy & Terms" link is a
+  2014 FAQ whose terms section reads "The service is provided on a best-effort basis." Nothing
+  governs attribution, caching or commercial use of API data; credit is requested only for reuse
+  of OpenDota's MIT-licensed code. A link from each post to `opendota.com/matches/{id}` is a
+  courtesy and the reader's route to the parsed view.
+- **The keyless daily allowance is the binding limit; with a key, money is.** The model rests on
+  labelled assumptions: three matches per account a day, a 20 % margin, and 500 calls a day
+  reserved for commands.
+  - Uniform polling fits 6 accounts at 5 minutes, 19 at 15, 37 at 30 and 70 at 60.
+  - Polling by activity (every 5 minutes within 2 hours of the last match, every 30 within 24
+    hours, otherwise every 3 hours) costs about 51 calls an account a day, as much as a 30-minute
+    interval, while seeing active players within about 5 minutes.
+  - With a key, that mix costs about $0.15 per tracked account a month, and the minute limit
+    binds only beyond about 67,000 accounts. A key becomes worthwhile once about 40 accounts are
+    tracked.
+  - The budget is configured in calls a day. When demand exceeds it, intervals stretch rather
+    than accounts being dropped. Buying a key is an operating choice that configuration absorbs.
+- **Freshness.** A finished match appears in OpenDota's public listing within about 40 seconds
+  to 4 minutes: the newest listed match had ended 38 to 238 seconds before the call across eight
+  samples (2.3). Polling more often than about every 2 minutes therefore gains nothing. The
+  per-account `recentMatches` path has not been timed end to end.
+- **Calls.**
+  - One `recentMatches` call per distinct account per tick, so many guilds following one account
+    cost one poll. One `matches/{id}` call per new match, shared by every follower. Parse
+    requests are never automatic: a parsed post costs about 17 calls against 2.
+  - `recentMatches` carries K/D/A, GPM/XPM, last hits, hero and tower damage, healing, duration,
+    result and hero. The detail call adds denies, net worth, the Radiant/Dire score, talents and
+    items, all present on an unparsed match.
+  - Lane, role, roaming, lane efficiency and item timings stay null until OpenDota parses the
+    replay, so an unparsed match shows "lane unavailable". OpenDota has no lane-outcome field.
+  - A "last match" call needs `significant=0` to include turbo and similar modes.
+- **Accounts.**
+  - Steam64 ids, 32-bit account ids, and OpenDota, Dotabuff and `steamcommunity.com/profiles/`
+    URLs need no key (`account_id = steam64 − 76561197960265728`).
+  - Vanity names need a Steam Web API key; a keyless call is refused with HTTP 400. They are
+    resolved only on the user's own request, through an optional capability present only when a
+    key is configured. A key needs a Steam account with at least $5.00 of spend and a domain name.
+  - A 404 means "OpenDota has not seen this account"; an empty history means "turn on Expose
+    Public Match Data".
+- **The Steam Web API terms bind every Steam call.** They set 100,000 calls a day and require:
+  - a privacy policy covering non-public Steam data;
+  - retrieval only as the end user requests;
+  - telling users what Steam data is stored, and in which country;
+  - a confidential key;
+  - no suggestion that Valve endorses the application.
+
+  So the key never enters the tracker, and MagicBot's privacy policy names Valve and the country
+  where its data is stored.
+- **Patch notes** come from Steam's keyless `ISteamNews/GetNewsForApp` (JSON) for app 570,
+  behind a game-news source port in `bottools-stats`.
+  - The source is polled hourly (the response expires after an hour) with
+    `feeds=steam_community_announcements`, and items are deduplicated by `gid` per subscription
+    cursor.
+  - Valve tags most gameplay patch posts `patchnotes`, but not all (7.41e is untagged), so a post
+    qualifies by that tag or by a title matching "Gameplay Patch" or "Update".
+  - A Valve patch post is often only a pointer to `www.dota2.com/patches/<version>`. The bot's
+    post therefore carries the title, that link (taken from the post's `[url]`) and a short
+    excerpt converted from Steam's BBCode.
+  - `dotaconstants`' `patchnotes.json` is optional enrichment.
+  - Not used: SteamDB's RSS, a build feed that SteamDB says is not meant for monitoring patches,
+    on a site whose FAQ forbids scraping; and the `www.dota2.com/datafeed` patch endpoints, which
+    answer but are undocumented.
+- **Constants and images.**
+  - `odota/dotaconstants` (MIT) supplies heroes and items, refreshed daily, with `Hero #N` for
+    unknown ids.
+  - Images come from `cdn.cloudflare.steamstatic.com` plus the constants' paths: heroes are
+    256 × 144 pixels, hero icons 32 × 32, items 88 × 64. The item line is composed in memory per
+    invocation.
+  - No published terms cover using Valve's CDN; OpenDota's own client uses it the same way.
+- **Attribution and third parties.**
+  - Posts say "Data: OpenDota" with the match link.
+  - MagicBot's privacy policy and terms name OpenDota (match and profile data, drawn from Valve's
+    public match feed and replays), and Valve and Steam (the news feed, the image CDN and, when
+    configured, vanity resolution). They also name the hosts of feeds that administrators
+    subscribe channels to.
+  - The terms state that MagicBot is not affiliated with or endorsed by Valve.
+  - STRATZ is not used: its documentation and terms pages render only in a browser and could not
+    be read, its API refuses calls without a token, and nothing needs it.
 
 ### 3.10 Weather and the later games
 
-Source: [game-and-weather-data-sources](game-and-weather-data-sources.md) §2, §5, §6.
+Source: [game-and-weather-data-sources](game-and-weather-data-sources.md) §2, §3, §6.
 
-- **Weather: Open-Meteo for both forecast and geocoding.** The shape comes from Open-Meteo's
-  own website and server source; live behaviour is provisional (Question 9).
-  - No key. The free tier is non-commercial (under 10,000 calls a day, 5,000 an hour and 600 a
-    minute, per IP); ads or subscriptions on the bot would make it commercial, so the base URL
-    and a key stay configurable. The data is CC BY 4.0, so embeds link "Weather data by
-    Open-Meteo.com".
-  - Two ports, `Geocoder` and `WeatherProvider`. One call returns current conditions and five
-    days; units are set per guild or user. A sealed `WeatherCode` has an `Unknown(code)` case;
-    failures are `NoMatch`, `Ambiguous(candidates)`, `RateLimited` and `UpstreamError`.
-    Geocodes are cached for days, forecasts for 10 to 15 minutes.
-  - The old `getcity` and `getzip` become aliases of one `weather` command that takes a name
-    or a postal code. Whether the geocoder resolves US ZIP codes as well as the old 4.3 MB file
-    did is not established; if not, a Zippopotam.us `Geocoder` sits behind the same port. MET
-    Norway (its own geocoder and strict etiquette) and the US National Weather Service (US only)
-    are not used.
-- **The later games** *(provisional: Question 9 needs a re-pass)*. Each ships what its source
-  honestly supports, in this order, and each of their phases opens with a re-pass of its
-  sources.
-  - **Marvel Rivals.** No official API exists in any source read. One community API
-    (`marvelrivalsapi.com`, non-official, keyed, about 3,000 free requests a day, a player
-    refresh at most every 30 minutes) covers profile with rank, match history and match
-    detail. Its terms could not be read. The provider is Experimental and on demand, with
-    those three capabilities and no automatic posts.
-  - **Path of Exile 2.** GGG's API covers PoE 2 but needs per-user OAuth, and registration of
-    new applications was reported closed on 2026-10-14. poe.ninja's economy endpoints are its
-    supported public surface. The provider offers economy data only; profiles and ladders wait
-    until GGG reopens application registration.
-  - **No More Room in Hell.** Steam only, with an operator Steam key: profile, playtime (with
-    `include_played_free_games`) and achievements; no matches and no economy. The provider
-    runs on commands only.
+- **Weather: Open-Meteo for both forecast and geocoding.**
+  - **Terms.** No key. The free tier is non-commercial: under 10,000 calls a day, 5,000 an hour
+    and 600 a minute, counted per IP, and earlier on shared hosts. Ads or subscriptions on the
+    bot would make it commercial, so the base URL and a key stay configurable.
+  - **Credit.** The data is CC BY 4.0, so embeds link "Weather data by Open-Meteo.com". The
+    privacy policy names Open-Meteo and GeoNames (CC BY), whose data drives the geocoder.
+  - **Budget.** Responses carry no quota header, so the budget counts calls locally.
+  - **Shape.** Two ports, `Geocoder` and `WeatherProvider`.
+    - One call returns current conditions and five days, and units are set per guild or user.
+    - A sealed `WeatherCode` has an `Unknown(code)` case.
+    - Failures are `NoMatch`, `Ambiguous(candidates)`, `RateLimited` and `UpstreamError`.
+    - Geocodes are cached for days, forecasts for 10 to 15 minutes.
+  - **Geocoder coverage.**
+    - It resolves US ZIP codes (90210, 10001 and 94105 each find the right place) and French
+      codes, which covers what the old US-only file did.
+    - It finds nothing for full UK postcodes, and gives a wrong place for a German code.
+    - A bare postal code collides across countries: 10001 also matches places in Spain and
+      France.
+  - **The `weather` command.**
+    - It takes a name or a postal code, with an optional country. The old `getcity` and `getzip`
+      become its aliases.
+    - A bare ambiguous name or code gets a disambiguation step, never the first hit.
+    - A Zippopotam.us `Geocoder` sits behind the same port and is tried only after Open-Meteo
+      finds nothing. It takes a country and a code, needs no key, serves GeoNames data and
+      publishes no terms.
+  - **Not used.** MET Norway, which needs its own geocoder and strict etiquette, and the US
+    National Weather Service, which covers the US only.
+- **The later games.** Each ships what its source honestly supports, in this order, and each of
+  their phases opens by reading its sources again.
+  - **Marvel Rivals** *(provisional in part: the API's pricing and terms are unread)*.
+    - **No official API.** Marvel Rivals' site has no developer link, and
+      `developer.marvelrivals.com` does not resolve.
+    - **The community API** (`marvelrivalsapi.com`) documents itself as unofficial and subject to
+      change, because the game's data "was not explicitly made usable ... for third parties". It
+      lists a Discord bot among its intended uses.
+    - **Access.** It needs an operator key in an `x-api-key` header. It applies a dynamic rate
+      limit reported in `X-RateLimit-*` headers, and locks its player-refresh endpoint for 30
+      minutes per player.
+    - **Coverage.** It covers profile with rank, match history and match detail. Players are
+      identified by UID, because its username lookup is "not always reliable". Its achievements
+      are a catalogue, not per-player data.
+    - **Unread.** Its pricing page and any terms of service sit on a host that answers 502. The
+      size of the free tier and any attribution or caching clause are therefore unknown.
+    - **The provider** is Experimental and on demand, with those three capabilities and no
+      automatic posts.
+  - **Path of Exile 2.**
+    - **GGG's own API.** It carries PoE 2: characters, and a ladder of the top 1,000 since
+      0.5.0. But GGG states "We are currently unable to process new applications", every account
+      call needs per-user OAuth, and the ladder needs a confidential client with an HTTPS
+      callback on a registered domain.
+    - **The provider therefore offers economy data only**, from poe.ninja's documented economy
+      endpoints: the league list, the exchange overview for currency-like categories, and
+      unique-item prices.
+    - **poe.ninja's conditions.** It calls access "allowed but incidental", with no versioning
+      and no SLA. It asks for a descriptive User-Agent with a contact and for conditional
+      requests. It refreshes PoE 2 data about hourly, publishes no numeric limit and blocks
+      excessive use.
+    - **A second economy source.** GGG's own documented, keyless Currency Exchange feed (an
+      hourly history of currency pairs) could back the same capability through the same port.
+      The first PoE 2 release does not need it.
+    - **Waiting.** Profiles and ladders wait until GGG reopens application registration.
+    - **Notice.** GGG asks public applications to state that they are not affiliated with or
+      endorsed by GGG.
+  - **No More Room in Hell.**
+    - **Source.** Steam only, with an operator Steam key.
+    - **Offers.** Profile, playtime and the game's 115 achievements. Playtime needs
+      `include_played_free_games`, because the game is free to play.
+    - **Does not exist.** No match history, match detail, ladder or economy source; game-wide
+      stats need a publisher key.
+    - **Open.** Whether the game defines Steam stats beyond achievements can be checked only with
+      a key, at that phase.
+    - **Commands only.** The Steam Web API terms limit retrieval to what the end user requests.
 - **What the provider model must allow across these sources.**
-  - A capability is account-scoped (profile, history, detail) or global (economy, an
-    achievement catalogue, weather).
+  - A capability is account-scoped (profile, history, detail, per-player achievements) or global
+    (economy, an achievement catalogue, weather).
   - Account identity is a sealed set, each kind validated by its provider: Steam64, a Marvel
-    Rivals id or name, a PoE account name.
+    Rivals UID (a username is resolved to it once), a PoE account name.
   - Authentication is per provider (none, an operator key, an operator Steam key, per-user
-    OAuth), and a provider that cannot authenticate at start-up is not registered.
+    OAuth with an approved application), and a provider that cannot authenticate at start-up is
+    not registered.
   - A call can carry a season or league, and a `LADDER` capability exists because two sources
-    offer one.
+    offer one (GGG's ladder; Marvel Rivals' player and hero leaderboards).
   - Lookups that can miss return distinct `Result` failures; a private Steam profile is an
     outcome for the user to fix, not an error.
 
@@ -1351,11 +1499,24 @@ Source: [bot-repository-history-purge](bot-repository-history-purge.md) §2, §5
   KotlinBottools before its rewrite: the rewrite opens Phase 0 and rewrites the planning branch
   with `main`, and the planning pull request is opened afterwards from the rewritten branch,
   so KotlinBottools gains no pull-request ref that pins the old history.
-- **Branches, hashes and clones.** Two remote branches are not on disk (BotTools
-  `Working-Branch`, TrumpBot `feature/pokercommand`); the mirror clone covers them. Every commit
+- **Remote refs** (`git ls-remote`, 2026-10-20):
+
+  | Repository | Branches | Pull-request refs |
+  |---|---|---|
+  | KotlinBottools | `main`, `docs/issue-1-bottools-consolidation` (the planning branch) | none |
+  | GKB2 | `master` | `refs/pull/6/head` |
+  | GKB | `master` | none |
+  | BotTools | `main`, `Working-Branch` | `refs/pull/2/head`, `refs/pull/3/head` |
+  | TrumpBot | `main`, `feature/pokercommand` | none |
+  | Support | `main` | none |
+
+  The findings file's KotlinBottools entry lists a second branch, `ccr-2c690a64-fz5whf`, which
+  no longer exists.
+- **Branches, hashes and clones.** The content of BotTools `Working-Branch` and TrumpBot
+  `feature/pokercommand` has not been inspected; the mirror clone covers them. Every commit
   hash changes in all five bot repositories, because each root commit holds a purged path, so
-  documents citing baselines are updated from `commit-map`. Existing clones, including those in
-  this environment, are deleted and cloned again, never pulled.
+  documents citing baselines are updated from `commit-map`. Existing clones are deleted and
+  cloned again, never pulled.
 - **Exit criterion,** per repository, on a fresh mirror with pull-request refs fetched: no
   purged path anywhere; every manifest blob id missing; no binary except the Gradle wrapper
   jar; `gitleaks` with the repository's configuration finds nothing; no pull-request ref
@@ -1367,35 +1528,93 @@ Source: [bot-repository-history-purge](bot-repository-history-purge.md) §2, §5
   and with `--redact`, because Actions logs are public once the repository is. GitHub secret
   scanning is on.
 
-### 3.15 Public-bot obligations for MagicBot *(provisional: the Developer Terms need a re-pass)*
+### 3.15 Public-bot obligations for MagicBot
 
-Source: [discord-platform-rules](discord-platform-rules.md) §3.6, §6.
+Source: [discord-platform-rules](discord-platform-rules.md) §2, §3.5, §3.6, §6, for Discord's
+Developer Terms of Service and Developer Policy effective 2024-07-08;
+[dota2-data-sources](dota2-data-sources.md) §3.5, §6 and
+[game-and-weather-data-sources](game-and-weather-data-sources.md) §3.5 to §3.7, for the game
+providers' terms.
 
-- **Privacy policy and terms.** The policy states what is collected, how it is used and
-  shared, how to request deletion, and how long deleted data can remain in backups (3.7), and
-  names the third parties (OpenDota, Steam, Open-Meteo, and later providers). Both URLs sit on
-  the application profile (`privacy_policy_url`, `terms_of_service_url`) and in the bot's help.
-- **Deletion.** A delete-my-data command runs `eraseUser`, deleting the user's global account
-  links and every subscription they created, and reports the counts. Removing the bot from a
-  guild runs `eraseGuild`. Data is deleted promptly on request and when it is no longer needed
-  for the bot's stated function.
-- **Data use.** MagicBot stores ids, game account links, subscriptions and server settings,
-  never message content, and uses them only for its stated function. No unsolicited DMs:
-  notifications go to the subscribed channel.
-- **Deployment.** Encryption at rest is a requirement on the deployment, whose host is not
-  decided.
+- **Privacy policy and terms.**
+  - **What the policy says.** It complies with applicable privacy law. It states:
+    - what is collected, and how it is used, stored, retained and shared with Discord and with
+      third parties;
+    - how to request deletion;
+    - the retention windows for live data and for backups (3.7);
+    - which Steam data is stored and in which country, as the Steam Web API terms require.
+  - **Third parties it names.** OpenDota, Valve and Steam, Open-Meteo and GeoNames, the later
+    game providers, and the hosts of feeds that administrators subscribe to, each with what it
+    receives.
+  - **Where it is linked.** In the Developer Portal (`privacy_policy_url`), and from the bot's
+    help.
+  - **The terms page.** It sits beside the policy (`terms_of_service_url`). Discord's Terms do
+    not require one, and any terms of MagicBot's own may not contradict Discord's.
+  - **Non-affiliation.** The terms state that MagicBot is not affiliated with or endorsed by
+    Valve. Once Path of Exile 2 data is shown, the same statement covers Grinding Gear Games.
+- **Deletion.**
+  - **Commands and events.** A delete-my-data command runs `eraseUser`, deleting the user's
+    global account links and every subscription they created, and reports the counts. Removing
+    the bot from a guild runs `eraseGuild`.
+  - **When data is deleted.** Promptly, on request; when it is no longer needed for the bot's
+    stated function; when Discord asks; and when the bot stops operating.
+  - **Backups.** Discord's Terms set no number of days for "promptly" and no backup exemption.
+    The short backup window stated in the privacy policy is therefore MagicBot's own
+    commitment.
+  - **No log.** No erasure log is kept. Proof of deletion is owed only for data received in
+    error.
+- **Data use and sharing.**
+  - **What is stored.** Ids, game account links, subscriptions and server settings, never message
+    content.
+  - **How it is used.** Only for the bot's stated function: no profiling, no selling, and no
+    training of models on message content.
+  - **What third parties receive.** Only a game account id or a place name, never a Discord user,
+    guild or channel id, so what reaches them is what the user asked to look up.
+  - **The host** is a service provider, bound in writing to act only on the operator's behalf.
+- **Contact.**
+  - No unsolicited DMs: notifications go to the subscribed channel.
+  - A private reply to a typed command goes by DM only in answer to that command (3.4).
+  - When the user's DMs are closed (error 50007, or 50278 with no shared server), the public reply
+    holds nothing personal and points to the slash command.
+- **Reports.** Discord's Policy requires a way for users to report issues or violations
+  relating to the bot, and requires the operator to review the reports and act on them. MagicBot
+  provides one, named in its help, and its operator answers it.
+- **Server automation is opt-in.** The default role on join and the welcome message do nothing
+  until a server administrator configures them, because the Policy requires permission before
+  an app acts on a server's behalf. The seeded legacy defaults are not imported (3.13).
+- **Feeds.**
+  - **Responsibility.** The operator is solely responsible for what the bot posts, and the
+    Policy forbids distributing adult content to minors or without age-restricted labels.
+  - **Safeguards.** Only server administrators subscribe feeds, each post names its source, any
+    administrator can remove a subscription, and the report route above covers feed content.
+- **Security.**
+  - **On the deployment, whose host is not decided:** encryption at rest; administrative,
+    physical and technical safeguards; and prompt notice to Discord of any incident. A host
+    outside the EEA and the UK brings Discord's standard contractual clauses for transfers.
+  - **The token** is kept encrypted wherever a third party could read it, and never appears in a
+    public repository or its history (3.14).
+  - **Unused tokens.** Discord may revoke a token unused for 30 days, which affects a rarely run
+    development application.
 - **Scale.** The configuration is ready for sharding (3.6), and the tracker's budget grows with
   the audience (3.8, 3.9).
-- **Intents and the typed form.** MagicBot holds the privileged `GUILD_MEMBERS` intent for the
-  default role and welcome message on join: a Developer Portal toggle below 10,000 users, and
-  from 10,000 a review renewed every year, for which Discord's guide names welcome messages as
-  a standard reason. It does not hold `MESSAGE_CONTENT`: in servers its typed form is reached
-  by @-mention (`@MagicBot setid 123`), in DMs by the prefix (`!setid 123`), and the old Dota 2
-  names stay as aliases. The library keeps the bare server prefix as a configuration switch for
-  other bots.
-- **Private replies.** A private reply to a typed command goes by DM (3.4).
-- **Owner tasks.** The application's owner handles App Verification and the privileged-intent
-  review; the library only reports an intent that is missing.
+- **Intents and the typed form.**
+  - **`GUILD_MEMBERS`.** MagicBot holds it for the default role and welcome message on join. It
+    is a Developer Portal toggle below 10,000 users. From 10,000 it needs a review, renewed every
+    year, for which Discord's guide names welcome messages as a standard reason.
+  - **No `MESSAGE_CONTENT`.** In servers its typed form is reached by @-mention
+    (`@MagicBot setid 123`), in DMs by the prefix (`!setid 123`), and the old Dota 2 names stay
+    as aliases.
+  - **The bare prefix.** The library keeps the bare server prefix as a configuration switch for
+    other bots.
+- **Owner tasks.**
+  - **App Verification.** The owner of the Developer Team that owns the application verifies
+    their identity through Stripe before MagicBot passes 100 servers, and again every three
+    years.
+  - **The privileged-intent review** falls to the same owner, from 10,000 users.
+  - **The library's part** is only to report an intent that is missing.
+- **A Steam key, when configured** (for vanity names, and later for No More Room in Hell). It
+  needs a Steam account with at least $5.00 of spend and a domain name. It stays out of
+  background loops.
 
 ---
 
@@ -1403,65 +1622,80 @@ Source: [discord-platform-rules](discord-platform-rules.md) §3.6, §6.
 
 ### Unfinished — needs a planner re-pass
 
-1. **Question 8, Dota 2 ([dota2-data-sources](dota2-data-sources.md)).**
-   - **Unreachable hosts:** `api.opendota.com`, `docs.opendota.com`, `www.opendota.com`,
-     `blog.opendota.com`, `api.steampowered.com`, `steamcommunity.com`,
-     `partner.steamgames.com`, `developer.valvesoftware.com`, `cdn.cloudflare.steamstatic.com`,
-     `steamdb.info`, `www.dota2.com`, `api.stratz.com`, `stratz.com`.
-   - **Not established:** OpenDota's deployed limits, key price and terms of use (one call to
-     `/api/metadata` and a read of its terms settle them); the Steam Web API terms and key
-     registration; what Steam's news feed for app 570 carries, and which feed name or tag marks
-     a patch; the terms for Valve's CDN images; how soon a finished match appears.
-   - **Provisional until then:** the tracker's budget numbers and polling tiers; the
-     patch-notes filter; the attribution text; the OpenDota and Steam clauses of MagicBot's
-     privacy policy; Phase 4's Dota 2 provider, match tracker and patch-notes stages, and
-     MagicBot's Dota 2 features (3.9).
-2. **Question 9, later games and weather
-   ([game-and-weather-data-sources](game-and-weather-data-sources.md)).**
-   - **Unreachable hosts:** `marvelrivalsapi.com`, `docs.marvelrivalsapi.com`,
-     `www.marvelrivals.com`, `developer.marvelrivals.com`, `tracker.gg`, `www.pathofexile.com`,
-     `fr.pathofexile.com`, `s3.pathofexile.com`, `poe.ninja`, `poe2.ninja`, `www.poewiki.net`,
-     `poedb.tw`, `store.steampowered.com`, `api.steampowered.com`, `partner.steamgames.com`,
-     `steamcommunity.com`, `open-meteo.com`, `api.open-meteo.com`,
-     `geocoding-api.open-meteo.com`, `api.met.no`, `api.weather.gov`, `nominatim.org`.
-   - **Not established:** the Marvel Rivals community API's terms, limits and response shapes;
-     GGG's developer reference, its registration status, and whether a bot's web callback is
-     allowed; poe.ninja's API reference; which Steam stats No More Room in Hell defines;
-     Open-Meteo's live behaviour (US ZIP codes, ordering of ambiguous names, 429 headers) and
-     the licence wording for its geocoding data.
-   - **Provisional until then:** the fallback postal-code geocoder, and the Marvel Rivals,
-     Path of Exile 2 and No More Room in Hell providers and their phases (3.10). The weather
-     plugin's shape stands.
-3. **Discord's current Developer Terms and Developer Policy (Question 1,
-   [discord-platform-rules](discord-platform-rules.md)).**
-   - **Unreachable hosts:** `support-dev.discord.com`, `discord.com`, `docs.discord.com`.
-   - **Not established:** the wording of the terms effective 2024-07-08 against the 2022-10-01
-     snapshot; App Verification's criteria and when verification becomes required; the review
-     policy for the message-content intent; a reported rule against training AI models on
-     message content.
-   - **Provisional until then:** the public-bot obligations (3.15), the contents of MagicBot's
-     privacy policy and terms, and the stage that opens MagicBot to the public.
+1. **The Marvel Rivals community API's pricing and terms (Question 9,
+   [game-and-weather-data-sources](game-and-weather-data-sources.md)).**
+   - **Unreachable hosts:**
+     - `marvelrivalsapi.com`, which answers 502 on every path, including its pricing, terms and
+       privacy pages;
+     - `tracker.gg`, which answers 403 with a challenge page.
+   - **Not established:**
+     - the size of the free tier and the numeric rate limit;
+     - any terms of service, attribution, caching or redistribution clause;
+     - what the "Free" and "Premium" tags on its endpoints gate;
+     - live response shapes, which come from the documentation's examples.
+   - **Provisional until then:** the Marvel Rivals provider's call budget, and the clauses its
+     phase adds to MagicBot's privacy policy and terms (3.10). The Marvel Rivals phase opens by
+     reading them.
 
 ### Other gaps
 
-- **Nothing was built or run.** The walking skeleton settles these first: the compile-level
-  checks in 3.12; one `CoroutineEventManager` per shard feeding one router, including a
-  restarted shard; the all-shards-ready rule; the stop sequence; automatic deferral on a
-  controllable clock; composite substitution, nested `build-logic` naming and the
-  configuration cache.
-- **Central Portal snapshots.** Anonymous read, a retention of about 90 days, and whether a
-  Portal token can be scoped are unverified. "Enable SNAPSHOTs" on the
-  `io.github.spartanlaboratories` namespace is a maintainer action not yet taken.
-- **SQLite's own documentation** (`sqlite.org`) could not be read; WAL, `busy_timeout`,
-  `user_version` and `synchronous` rest on SQLite's source comments. The SQLite version bundled
-  in sqlite-jdbc 3.53.4.0 is still to be confirmed.
-- **Kord Extensions' source** (`codeberg.org`) could not be read; every comparison with it rests
-  on its documentation repository.
+- **Nothing was built or run.** The walking skeleton settles these first:
+  - the compile-level checks in 3.12;
+  - one `CoroutineEventManager` per shard feeding one router, including a restarted shard;
+  - the all-shards-ready rule;
+  - the stop sequence;
+  - automatic deferral on a controllable clock;
+  - composite substitution, nested `build-logic` naming and the configuration cache.
+- **Discord.**
+  - **App Verification's checklist.** Beyond the Stripe identity check and the Developer Team
+    requirement, the checklist sits in the Developer Portal behind a sign-in. The application's
+    owner reads it when verifying.
+  - **An unverified app at 100 servers.** What it can do there is not stated.
+  - **Two readings Discord's texts do not settle.** Whether a Steam id or a place name typed
+    into a command counts as API Data: the design treats it as covered. Whether a DM answering
+    the user's own command counts as the permission the Policy asks for: the design treats it as
+    permitted.
+- **OpenDota.**
+  - **Terms on caching and commercial use.** They are not written anywhere. If MagicBot's policy
+    needs OpenDota's position, the question goes to the support address on OpenDota's API-key
+    page.
+  - **Not observed:** a daily 429 in production, and the end-to-end freshness of
+    `recentMatches` for one tracked account.
+- **Valve and Steam.**
+  - **The image CDN** publishes no terms for third-party use.
+  - **Key registration.** The form needs a sign-in, so whether a bot without its own web domain
+    can register a key (the form asks for one) is not established.
+  - **`ResolveVanityURL`'s response codes** come from a third-party client only.
+  - **The patch-post selection rule** is validated on one window of seven patches (March to
+    September 2026).
+- **Path of Exile 2.**
+  - **poe.ninja** publishes no numeric limit.
+  - **GGG.** Its per-policy limits and its ladder response need an approved application. Its
+    currency feed has been exercised only at its first hour.
+- **No More Room in Hell.** Whether the game defines Steam stats beyond achievements needs a
+  key.
+- **Weather.** Open-Meteo's postal coverage is sampled, not mapped. Zippopotam.us publishes no
+  terms.
+- **Central Portal snapshots.**
+  - Anonymous read, a retention of about 90 days, and whether a Portal token can be scoped are
+    unverified.
+  - "Enable SNAPSHOTs" on the `io.github.spartanlaboratories` namespace is a maintainer action
+    not yet taken.
+- **SQLite's own documentation** (`sqlite.org`) has not been read.
+  - WAL, `busy_timeout`, `user_version` and `synchronous` rest on SQLite's source comments.
+  - The SQLite version bundled in sqlite-jdbc 3.53.4.0 is still to be confirmed.
+- **Kord Extensions' source** (`codeberg.org`) has not been read; every comparison with it
+  rests on its documentation repository.
 - **User-installed commands.** Whether one receives `member` in a guild without the bot is not
   established; it matters only once user installation is added.
-- **Hosting is not decided,** and with it: where MagicBot runs, encryption at rest, the backup
-  schedule, a local disk for the database, and where the privacy policy and terms pages are
-  served.
+- **Hosting is not decided,** and with it:
+  - where MagicBot runs;
+  - encryption at rest;
+  - the written service-provider agreement;
+  - the country the privacy policy names, and whether Discord's transfer clauses apply;
+  - the backup schedule;
+  - a local disk for the database;
+  - where the privacy policy and terms pages are served.
 - **GitHub Support.** The outcome of a request to clear GKB2's and BotTools' pull-request refs
   and the cached views of rewritten commits cannot be known in advance.
 - **Kotlin 2.4 at language version 2.2.** Whether such a compiler reads metadata 2.4.0 is not

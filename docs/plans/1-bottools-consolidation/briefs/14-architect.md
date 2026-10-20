@@ -16,9 +16,10 @@ Repositories and references (all read-only for you; a location written `github:<
 
 %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/research/README.md
 - Part 1 §1.1 states the work as facts.
-- Part 2 holds the verification results: 299 outside-world claims, 285 hold, 14 unclear (all behind unreachable hosts), none fail.
+- Part 2 holds the verification results: 347 outside-world claims, 345 hold, 2 unclear (both behind hosts that refuse automated clients; neither is a design input), none fail.
 - Part 3 is the research summary, topic by topic (3.2 to 3.15). Each section names the findings file and the sections it rests on. Read Part 3 in full, then open the cited findings files (same folder) wherever you need detail.
-- Known gaps lists what is unfinished, including three "Unfinished — needs a planner re-pass" notes.
+- §3.9, §3.10 and §3.15 rest on sources read at their own hosts: OpenDota's deployed limits and published terms, Steam's news feed and Web API terms, the later games' data sources, Open-Meteo's live behaviour, and Discord's current Developer Terms of Service and Developer Policy (effective 2024-07-08). §3.15 includes obligations that the binding list below does not name: a way for users to report issues, server automation that stays off until an administrator configures it, safeguards on the open feeds plugin, nothing but a game account id or a place name sent to third parties, and the identity check of the application owner before MagicBot passes 100 servers. Design for them; where one leaves a choice that is the user's, raise it in Considerations.
+- Known gaps lists what is unfinished, including one "Unfinished — needs a planner re-pass" note: the Marvel Rivals community API's pricing and terms.
 Every user decision the research raised is settled; the answers are folded into Part 3 and restated below.
 
 === Binding constraints ===
@@ -141,15 +142,12 @@ It must cover, at the systems level:
    - JDA's minor-release breakage;
    - OpenDota's limits and terms;
    - the community Marvel Rivals API;
-   - the feeds plugin's exposure, as a public bot fetching URLs that administrators supply;
+   - the feeds plugin's exposure, as a public bot fetching URLs that administrators supply and posting what they return, for which the operator is solely responsible under Discord's Terms;
    - GitHub Support's handling of pull-request refs and cached views.
 8. Considerations: any trade-off that still needs the user's call, each with its options and a recommendation. The settled items above are not Considerations.
-9. Known gaps. Include the three notes from the research README's Known gaps, in substance. Head each one "Unfinished — needs a planner re-pass", and name the question, the unreachable hosts and what is provisional:
-   - Question 8, the Dota 2 data sources;
-   - Question 9, the later games and weather;
-   - Discord's current Developer Terms and Developer Policy (Question 1).
+9. Known gaps. Include the note from the research README's Known gaps headed "Unfinished — needs a planner re-pass", in substance, under the same heading: Question 9's Marvel Rivals community API, whose pricing, free-tier size and terms are unread (unreachable: marvelrivalsapi.com, tracker.gg). Name the question, the unreachable hosts and what is provisional: the Marvel Rivals provider's call budget and the clauses its phase adds to MagicBot's privacy policy and terms.
 
-   Mark every dependent design point "provisional" inline where it appears.
+   Mark every dependent design point "provisional" inline where it appears. Carry the README's other Known gaps that bear on the design, in substance.
 
 Do not write the phased roadmap: phases, sub-issues and target versions belong to roadmap.md. The document may state the landing order of the systems.
 
@@ -192,6 +190,6 @@ Read-only commands (git log, git show, git blame, grep, reading files) are fine.
 
 Other rules:
 - Do not commit architecture.md. The coordinator commits it later, with the user's approval.
-- Never read, cite or rely on %PROJECTS%/KotlinBottools/docs/bottools-vision-and-roadmap.md, a superseded draft.
+- Never read, cite or rely on %PROJECTS%/KotlinBottools/docs/plans/1-bottools-consolidation/draft.md, the pre-pipeline roadmap draft.
 - Never print, copy or quote a secret value; refer to secrets by path and commit only.
 - Do not quote member names, guild names or ids from any legacy data file.

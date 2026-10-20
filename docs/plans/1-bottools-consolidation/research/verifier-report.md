@@ -417,3 +417,156 @@ All failed with "getaddrinfo ENOTFOUND" through WebFetch.
 I did not try discord.com, docs.discord.com or support-dev.discord.com directly, because the coordinator's probe already showed them refused. I did not try the other hosts in the probe list (OpenDota's sites, docs.gradle.org, sqlite.org, Sonatype). github.com pages, raw.githubusercontent.com, repo1.maven.org (with retries on 429), and kotlinlang.org all answered.
 
 I created no files outside my own scratch checkouts. I deleted those, and the helper scripts I wrote under the scratchpad, before replying.
+
+## 5. Claims read at their own hosts (checked 2026-10-20)
+
+For the IDs below, these verdicts replace those in sections 1 to 4. They cover:
+
+- every new or changed claim in `dota2-data-sources.md`, `game-and-weather-data-sources.md` and
+  `discord-platform-rules.md`, whose sources are read at their own hosts;
+- HTTP-20, whose host answers.
+
+Every other claim keeps its verdict above.
+
+Method:
+- Each source was opened on 2026-10-20 at its pin or live. Help Centre pages were read with a
+  browser User-Agent.
+- Each live, keyless, read-only call was run again once. Values that change by nature (player
+  counts, timestamps, the newest item in a feed or a random sample) were judged on the behaviour
+  the claim states, not on equality.
+- No call created or changed anything: no sign-in, no key, no POST.
+
+Short names:
+- OD: OpenDota.
+- SPD: `https://partner.steamgames.com/doc/webapi`.
+- TOS and POL: Discord's Developer Terms of Service and Developer Policy, at
+  `https://support-dev.discord.com/hc/en-us/articles/8562894815383` and `/8563934450327`.
+- HC: Discord's Help Centre.
+
+### DOTA (dota2-data-sources.md)
+
+| ID | Verdict | What I found | Take as true instead |
+|---|---|---|---|
+| DOTA-1 | holds | The cross-reference to claim 21 is right: live `/api/metadata` has `premRateLimit:3000`, `freeRateLimit:60`, `freeCallLimit:3000`. | |
+| DOTA-2 | holds | `if (!res.locals.isAPIRequest && remDay < 0) {` is in `svc/web.ts` at `449fb7b`, beside `rateCost = 10;`. | |
+| DOTA-3 | holds | `svc/api/spec.ts` at the pin has the sentence; the live document at `api.opendota.com/api` has it under `POST /request/{match_id}`. | |
+| DOTA-4 | holds | The three comments are in `spec.ts` at the pin. | |
+| DOTA-5 | holds | `s=100,l=a?.freeCallLimit,u=a?.freeRateLimit,p=a?.premRateLimit,m=.01` is in `index-Beg1ol7M.js`; `en-US-dNamy-P5.js` has the three `api_*` strings and the `b`, `f`, `T`, `M`, `L` strings. | |
+| DOTA-10 | holds | The cross-reference to claim 32 is right: both live matches carry `net_worth`, `ability_upgrades_arr` and `item_neutral`. | |
+| DOTA-13 | holds | The cross-reference to claim 24 is right: live items carry `gid`, `title`, `url`, `date`, `tags`, `contents`, `feedname`. | |
+| DOTA-17 | holds | `steamcommunity.com/dev/apiterms`, "Last updated July 2010": all three quotes. | |
+| DOTA-18 | holds | `steamdb.info/faq/`: both quotes. | |
+| DOTA-19 | holds | `blog.opendota.com/2014/08/01/faq/` (2014-08-01): both quotes; the footer link target is in the deployed bundle. | |
+| DOTA-20 | unclear: source unreachable (stratz.medium.com, 403) | `stratz.com/api` is script-rendered and shows no figures. A search summary of the post (dated 2021-11-20) repeats the Individual Token figures and adds a 2,000-per-hour default token. | Unverified; comparison only. |
+| DOTA-21 | holds | `"isSubscriber":false,"freeCallLimit":3000,"freeRateLimit":60,"premRateLimit":3000,"beta":false`. | |
+| DOTA-22 | holds | OpenAPI `info.version` "31.1.0"; the `api_key` description carries the Bearer sentence. | |
+| DOTA-23 | holds | All bundle strings present; `quantity: Math.ceil(usageCount / Number(config.API_BILLING_UNIT)),` is in `svc/apiadmin.ts` at the pin. | |
+| DOTA-24 | holds | `count` 104; six items from `steam_community_announcements` tagged `["patchnotes"]` with the six titles; the untagged "Gameplay Patch 7.41e and Summer Scrub" is present; the 7.41f body quote is present. | |
+| DOTA-25 | holds | SPD `ISteamNews`: `GetNewsForApp/v2` with `appid`, `maxlength`, `enddate`, `count` ("# of posts to retrieve (default 20)") and `feeds`; no `tags`; the only key row belongs to `GetNewsForAppAuthed`. | |
+| DOTA-26 | holds | "SteamDB Builds for Dota 2", "Dota 2 update for 19 October 2026", "SteamDB Build 26065111", `<ttl>3600</ttl>`. | |
+| DOTA-27 | holds | `patchnoteslist` returns 118 entries, 7.08 to 7.41f; `patchnotes?version=7.41f` returns `{"patch_number":"7.41f",...,"items":[`. | |
+| DOTA-28 | holds | `partner.steamgames.com/doc/webapi_overview/auth`: the sentence. | |
+| DOTA-29 | holds | `help.steampowered.com/en/faqs/view/71D3-35C2-AD96-AA3A`: the $5.00 sentence and "Accessing the Steam Web API". | |
+| DOTA-30 | holds | SPD `ISteamUser`: `key` and `vanityurl` required; a keyless call returns HTTP 400 `Required parameter 'key' is missing`. | |
+| DOTA-31 | holds | The third-party wrapper at its pin; the claim already states it is a single source. | |
+| DOTA-32 | holds | Match 9022423471: `has_parsed:true` and every listed key. Match 9053824229: `has_parsed:false`; lane fields, `purchase_log` and `lane_efficiency_pct` null; `net_worth`, `denies`, `ability_upgrades_arr` present. | |
+| DOTA-33 | holds | Three fresh `publicMatches` calls: the newest listed match had ended 238, 170 and 175 seconds earlier, against 38 to 137 recorded. Within a few minutes. | Freshness samples range from about 40 seconds to 4 minutes. |
+| DOTA-34 | holds | The CDN returns `image/png`: hero 256 × 144, icon 32 × 32, item 88 × 64. | |
+| DOTA-35 | holds | `build/patchnotes.json` at the pin: 122 keys ending `7_41d`, `7_41e`, `7_41f`; `master` is still that commit. | |
+| DOTA-36 | holds | A fresh call: `Expires` one hour after `Date`. A cached response replays its original `Expires`. | |
+
+### GWD (game-and-weather-data-sources.md)
+
+| ID | Verdict | What I found | Take as true instead |
+|---|---|---|---|
+| GWD-1 | holds | `open-meteo.com/en/terms` live: both quotes; also in the pinned website source. | |
+| GWD-2 | holds | Live terms page: all three quotes. | |
+| GWD-3 | holds | Live terms page: the sentence. | |
+| GWD-4 | holds | At the pin: `RateLimiter.swift` (`?? 10_000`, the message) and `ForecastApiResult.swift` (the two weight lines). | |
+| GWD-5 | holds | `open-meteo.com/en/licence` live: every quote, including the example link and "Location database from GeoNames ( CC-BY Licence )". | |
+| GWD-6 | holds | Pinned `forecast.yml` and docs page: the quotes. A fresh call returned the same shape and the same four response headers; values differ, as expected. | |
+| GWD-7 | holds | Live geocoding docs: every quote; the controller has "Parameter count must be between 1 and 100." | |
+| GWD-8 | holds | At the pin: the test assertion; the README's GeoNames and CC BY-NC lines. The live licence page says CC BY 4.0. | |
+| GWD-9 | holds | `api.met.no` terms and licence pages live: every quote; `FAQ.md` at the pin. | |
+| GWD-10 | holds | `weather-gov/api` at the pin: both quotes. | |
+| GWD-11 | holds | `docs.zippopotam.us` and `zippopotam.us`: all three quotes. | |
+| GWD-12 | holds | `operations.osmfoundation.org/policies/nominatim/`: both quotes. | |
+| GWD-15 | holds (quoted parts) | `docs.marvelrivalsapi.com`: the introduction (modified 2025-07-25), rate-limit and update-player (modified 2026-05-20) quotes. The plan-table part: `marvelrivalsapi.com` answered 502 on `/` and `/pricing`. | The free plan's size is unverified. |
+| GWD-16 | unclear: source unreachable (tracker.gg, 403 challenge) | No authoritative copy found. | Unverified; nothing rests on it. |
+| GWD-17 | holds | GGG `authorization` and `index`, live: all three quotes. | |
+| GWD-18 | holds | GGG `reference`, live: all three quotes; `authorization` has the client-credentials sentence. | |
+| GWD-19 | holds | GGG `reference`, live: both quotes; `poe2-mcp` `src/auth.ts` at the pin: the scopes line. | |
+| GWD-20 | holds | GGG `index`, live: "We are currently unable to process new applications." | |
+| GWD-21 | holds | `poe.ninja/docs/api`, live: all three quotes. | |
+| GWD-22 | holds | The three route lines are on the page; `/poe2/api/economy/leagues` returned 200 with the leagues, `cache-control: no-cache` and an `etag`. | |
+| GWD-23 | holds | `SteamTracking` at the pin and SPD `ISteamUserStats` live agree on which methods take `key`. | |
+| GWD-24 | holds | SPD `IPlayerService`, live: the sentence (the pinned JSON differs only in whitespace). | |
+| GWD-25 | holds | `steamcommunity.com/dev/apiterms`, "Last updated July 2010": every quote. | |
+| GWD-26 | holds | `steamcommunity.com/stats/224260/achievements`: "115 achievements (109 rare)" and the Sledgehammer achievement. | |
+| GWD-27 | holds | `message.mdx` at the pin and the current `docs.discord.com` page: both table rows. | |
+| GWD-28 | holds | GGG `authorization`, live: all three quotes. | |
+| GWD-29 | holds | GGG `index`, live: all three quotes. | |
+| GWD-30 | holds | GGG `index`, live: all three quotes. | |
+| GWD-31 | holds | GGG `reference` ("Currency Exchange", "Public API") and `changelog` (3.29.0, 21/07/2026): the quotes; the live feed returned `{"next_change_id":1733515200,"markets":[]}`. | |
+| GWD-32 | holds | GGG `changelog`, "PoE2 EA - 0.5.0" (26/05/2026): the sentence. | |
+| GWD-33 | holds | `poe.ninja/docs/api`, live: all four quotes. | |
+| GWD-34 | holds | Store `appdetails`: `is_free` true, 115 achievements. | |
+| GWD-35 | holds | Same sentence as DOTA-28. | |
+| GWD-36 | holds | SPD `IPlayerService` and `ISteamUserStats`: both quotes. | |
+| GWD-37 | holds | 115 global achievement entries starting `SAVE_GRABBED_TEAMMATE`; a player count with `result` 1; "No public global leaderboards available". | |
+| GWD-38 | holds | Every geocoder result as recorded, query by query. | |
+| GWD-39 | holds | `de/10115` Berlin; `gb/SW1A` Westminster Abbey; `Cache-Control: max-age=14400`. | |
+| GWD-40 | holds | The v2 match-history, v1 match and v2 player-stats pages carry the quoted content and tags. | |
+| GWD-41 | holds | No `api`, `developer` or `open` link on the home page; `developer.marvelrivals.com` has no DNS entry. | |
+
+### DPR (discord-platform-rules.md)
+
+| ID | Verdict | What I found | Take as true instead |
+|---|---|---|---|
+| DPR-18 | holds | `docs.discord.com/developers/events/gateway.md`: the sentence. | |
+| DPR-30 | holds | TOS (effective 2024-07-08, last updated 2024-06-06), 5.a and 5.b: both quotes and the first sentence of 5.a. | |
+| DPR-31 | holds | TOS 5.c: the quote. | |
+| DPR-32 | holds | POL items 15 and 5: both quotes. | |
+| DPR-37 | holds | Both headers carry the dates. The `docs.discord.com` URLs redirect with HTTP 307, not 308, to the same pages. | Read "308" as "307". |
+| DPR-38 | holds | HC 23926564536471 (updated 2024-08-30): both quotes. | |
+| DPR-39 | holds | HC 6275923204375 (2024-06-10): both quotes. | |
+| DPR-40 | holds | HC 6226051178775 (2026-06-23): both quotes. | |
+| DPR-41 | holds | HC 6205754771351 (2026-06-11): the TL;DR quote. | |
+| DPR-42 | holds | The privileged-intent review guide, Step 3, Path B: the quote. | |
+| DPR-43 | holds | POL item 21: the quote. | |
+| DPR-44 | holds | TOS 13: the definition. TOS 5.b: the sentence reads "applicable laws and regulations" where the quote has "or"; the meaning is the same. | Read "or" as "and". |
+| DPR-45 | holds | TOS 5.b: all three parts. | |
+| DPR-46 | holds | TOS 12.a: the quote. | |
+| DPR-47 | holds | TOS 2.d and 9.a: both quotes. | |
+| DPR-48 | holds | TOS 5.c: the quote. | |
+| DPR-49 | holds | TOS 11.a: the quote. | |
+| DPR-50 | holds | TOS 6: both quotes. | |
+| DPR-51 | holds | The Create DM sentences in `user.md`; codes 50007 and 50278 in `opcodes-and-status-codes.md`. | |
+| DPR-52 | holds | POL: the "developers must" duties and item 2. | |
+| DPR-53 | holds | TOS 3.b and POL item 10: both quotes. | |
+| DPR-54 | holds | POL item 3: the sentence. | |
+
+### HTTP (http-client-stack.md)
+
+| ID | Verdict | What I found | Take as true instead |
+|---|---|---|---|
+| HTTP-20 | holds (substance) | `www.pathofexile.com/developer/docs/index`, Rate Limits: "These limits are dynamic and can change at any time depending on our requirements. For this reason we include headers…", with `X-Rate-Limit-Policy`, `-Rules` and `-{rule}`. "May change without notice" is in "the details in this document may change without notice…". The sentence the claim quotes is not on the page in those words. | Use the page's own wording, as GWD-30 quotes it. |
+
+### Totals for this section
+
+holds 87 / fails 0 / unclear 2 / out of scope 0 / not reached 0 (89 claims).
+
+- Unclear: DOTA-20, GWD-16. The plan-table part of GWD-15 is also unread.
+- Fails: none.
+- Notes: DPR-37 (307 rather than 308), DPR-44 ("and" rather than "or"), HTTP-20 (the quote's wording).
+
+Across the whole report: 347 claims, 345 hold, 2 unclear, none fail.
+
+### Hosts that refused
+
+- stratz.medium.com: 403.
+- tracker.gg: 403, behind a challenge page.
+- marvelrivalsapi.com: 502 on `/` and `/pricing`.
+- developer.marvelrivals.com: no DNS entry.
+
+support-dev.discord.com answered a browser User-Agent. Every other host answered.
