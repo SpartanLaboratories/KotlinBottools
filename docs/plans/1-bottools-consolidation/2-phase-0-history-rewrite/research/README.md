@@ -366,3 +366,608 @@ Each researcher works through these, wherever they bear on its question.
 2. **Common practice and convention:** GitHub's and git's documented procedures, and the
    organisation's own conventions (MyGameTools' workflows, MagicBot's gitleaks configuration).
 3. **Idiomatic Kotlin:** does not apply. This phase writes no Kotlin.
+
+---
+
+## Part 2 — Verification results
+
+All 122 load-bearing claims in the five findings files were re-opened at their sources on 2026-10-21,
+at the versions the claims name. Those versions are:
+
+- git v2.55.0 and Git for Windows v2.55.0.windows.5;
+- git-filter-repo v2.47.0;
+- gitleaks v8.30.1;
+- actions/checkout v7.0.1;
+- GitHub's documentation and REST description at `main`;
+- gh 2.100.0.
+
+All 122 hold. None fails, and none is unclear.
+
+| Findings file | Claims | Hold | Fail | Unclear |
+|---|---|---|---|---|
+| [`git-filter-repo-on-windows.md`](git-filter-repo-on-windows.md) | 29 | 29 | 0 | 0 |
+| [`gitleaks-local-and-ci.md`](gitleaks-local-and-ci.md) | 26 | 26 | 0 | 0 |
+| [`github-residual-exposure-and-visibility.md`](github-residual-exposure-and-visibility.md) | 29 | 29 | 0 | 0 |
+| [`clone-realignment-and-data-extraction.md`](clone-realignment-and-data-extraction.md) | 29 | 29 | 0 | 0 |
+| [`purge-blast-radius.md`](purge-blast-radius.md) | 9 | 9 | 0 | 0 |
+
+Some values were recomputed rather than read:
+
+- **git-filter-repo v2.47.0 script.** Its sha256 was recomputed from the tag's raw file and from the
+  PyPI wheel, and the two are identical. Its git blob id was recomputed too.
+- **The PyPI wheel.** Its sha256 was recomputed.
+- **gitleaks v8.30.1.** The sha256 of the Windows x64 zip and of the Linux x64 tarball were recomputed.
+  Both match the checksums file and the release's asset digests. The release still has no signature
+  and no attestation.
+
+### 2.1 Notes that qualify the claims
+
+- **Newer git releases.** git 2.56.0 (2026-09-28) and Git for Windows 2.56.0.windows.1 and .windows.2
+  were released after the procedures were written.
+  - In 2.56 the repack-and-prune logic of `git gc` moved from `builtin/gc.c` to `odb/source-files.c`.
+    Its behaviour is unchanged: `--prune=now` still repacks with `-a` and prunes.
+  - `other_head_refs` gained a repository argument.
+  - The quoted documentation is unchanged.
+  - Git for Windows' `compat/mingw.c` was not re-checked at 2.56.
+
+  The procedures are written for the git installed here, 2.55.0.windows.5, and the run uses that
+  version.
+- **A probe prefix.** The residual-exposure findings (§3.1 and their re-runnable observations) give the
+  demonstration repository's commit as a 12-digit prefix with one wrong digit.
+  - The correct prefix answers 200 on the web, `.patch` and REST routes, and so do its 7- and 4-digit
+    forms.
+  - A 3-digit prefix answers 404 on the web and 422 on REST.
+
+  No recommendation depends on the prefix.
+- **Dates.** In claim 27 of the git-filter-repo findings:
+  - 2024-12-14 is the author date of the multi-line-configuration fix; it was committed on
+    2025-01-28;
+  - the Python 3.14 fix is dated 2025-07-26 UTC.
+- **Wording.** A few quotes join adjacent source lines or skip a blank line. The substance is
+  unaffected.
+
+### 2.2 Claims about these repositories
+
+These were spot-checked against this clone and the GitHub API.
+
+- **Commit counts.** The two branches hold 61 commits between them, one of which is a merge.
+  - One non-merge commit lies wholly inside KotlinBottools' purge list: "Removed build folder",
+    2023-01-02.
+  - With the merge that sits above it, that makes two pruned commits.
+- **The README.**
+  - Lines 233 to 235 and 261 to 265 name files that leave the repository.
+  - Line 257 is the `services` source package, which is kept.
+  - `Bot.initializeBotExistence` reads `key.txt`.
+- **`src/jvmTest/resources/PoECurrencyKeys.xml`.** This file in GKB2 and GKB is 293 bytes and on a
+  kept path. It is a table of `initial`/`terminal` scraping markers. A pattern scan found:
+  - no token shape;
+  - no long hexadecimal string;
+  - no key assignment;
+  - no key parameter in a URL.
+- **This folder's documents** contain no guild folder name from the three data sets. The check matched
+  whole words and printed counts only. Every match was an ordinary English word, used in its ordinary
+  sense.
+
+---
+
+## Part 3 — Summary
+
+### 3.1 Findings files
+
+| # | File | What it settles |
+|---|---|---|
+| 1 | [`git-filter-repo-on-windows.md`](git-filter-repo-on-windows.md) | Installing, running and checking the rewrite tool on this machine |
+| 2 | [`gitleaks-local-and-ci.md`](gitleaks-local-and-ci.md) | The scanner: local exit tests, the configuration, the positive control, the CI job |
+| 3 | [`github-residual-exposure-and-visibility.md`](github-residual-exposure-and-visibility.md) | What GitHub keeps after the push, the push itself, the visibility change and the scanning settings |
+| 4 | [`clone-realignment-and-data-extraction.md`](clone-realignment-and-data-extraction.md) | The two existing clones, the data copy, the blob manifests |
+| 5 | [`purge-blast-radius.md`](purge-blast-radius.md) | Post-rewrite expectations, the privacy gate, references, `.gitignore`, the README, the parent statements that change |
+
+### 3.2 The rewrite tool
+
+Source: findings 1, §3 and §6; findings 4, §3.9.
+
+- **Installation.** git-filter-repo 2.47.0 is installed from PyPI into the user scheme, with hash
+  checking: `python -m pip install --user --require-hashes --only-binary=:all: --no-deps` with a
+  requirements file that pins the wheel's sha256. The launcher lands in
+  `%APPDATA%\Python\Python314\Scripts`, which is already on Git Bash's `PATH`.
+  - No winget package exists.
+  - The single-file script has no integrity mechanism.
+  - A plain install into the interpreter's scheme would leave `git filter-repo` unfound.
+- **Verification.** Before any rewrite, two independent values must match:
+  - `git filter-repo --version`, which prints the script's 12-character blob id, `a40bce548d2c`;
+  - the installed module's sha256, which equals the upstream tag's script.
+
+  Both values were recomputed in verification.
+- **Path lists.** filter-repo reads a list file as raw bytes and strips only the line ending. A
+  byte-order mark or a trailing space becomes part of the entry. It validates nothing, and when an
+  entry matches nothing it exits 0 without a warning. A list saved by Windows PowerShell (UTF-16) or
+  with a typo is therefore a silent no-op. So:
+  - each list is written with Git Bash `printf '%s\n'`;
+  - it is proved against the byte count and sha256 recorded in the runbook;
+  - character checks prove the rest: no carriage return, no non-ASCII byte, no blank line, only the
+    allowed characters.
+- **The run in a mirror.** In a `git clone --mirror`, `--sensitive-data-removal` behaves as follows:
+  - it fetches nothing, because the clone sets `remote.origin.mirror`;
+  - it keeps the `origin` remote;
+  - it writes `commit-map`, `ref-map`, `changed-refs`, `first-changed-commits` and
+    `suboptimal-issues` under `<mirror>/filter-repo/`;
+  - it prints a NEXT STEPS block whose push line is `git push --force --mirror origin`.
+
+  A mirror is used for one run only. A second run becomes a continuation and can reach an interactive
+  prompt.
+- **Success is defined by counts from git.** A run succeeds only when every one of these holds:
+  - exit status 0;
+  - no `fatal`, `error` or `Traceback` line in the log;
+  - `You rewrote C (of T)` agrees with `commit-map`;
+  - every list entry matches at least once before the rewrite and zero times after, by
+    `git rev-list --all --full-history --count -- ':(top,literal)<entry>'`;
+  - the commit count after equals T minus the pruned commits;
+  - `origin` is still present.
+
+  Any failure discards the mirror before anything is pushed.
+- **Windows hazards.**
+  - `fast-import` rejects kept paths with characters NTFS forbids. No kept path in the six histories
+    has one (findings 5, §3.A).
+  - `--analyze` can loop on paths that look like drive letters, so it runs under `timeout`.
+  - Case-colliding refs abort a mirror run. There are none.
+  - filter-repo 2.47.0 ran cleanly on a throwaway fixture with git 2.55.0.windows.5 and Python 3.14.7.
+- **Outputs.** These are kept outside every repository:
+  - the rewrite's metadata files and its log;
+  - the NEXT STEPS block;
+  - the list and a `SHA256SUMS` file.
+
+  They hold pre-rewrite ids, which are lookup keys for the old objects on GitHub. They are never
+  committed and never quoted in a document.
+
+### 3.3 The scanner
+
+Source: findings 2, §3 and §6.
+
+- **Installation.** gitleaks v8.30.1 comes from the release zip, checked by four equal sha256 values:
+  - the checksums file;
+  - a pinned constant;
+  - the release API's asset digest;
+  - the winget-pkgs manifest.
+
+  The release has no signature and no attestation, and `gitleaks.exe` is not Authenticode-signed.
+- **The exit status is not proof.** At v8.30.1, `gitleaks git` exits 0 and prints "no leaks found"
+  when its internal `git log` fails. Every scan therefore runs through a wrapper, `secret_scan.py`,
+  which:
+  - requires the scanned-commit count to equal an independent count from `git log`;
+  - requires zero error lines in the log and a parseable JSON report;
+  - prints only counts, rule ids and fixed markers.
+- **Scan options.** gitleaks' default log options skip content that only a merge commit carries, and
+  pure renames. The move of GKB2's token file from `key.txt` to `keys.txt` is such a rename.
+  - `--log-opts` therefore carries `--full-history --no-renames -m`, plus either `--all` or
+    `--branches --tags`.
+  - Other flags: `--redact=100`, `--no-banner`, and a JSON report kept in the workspace.
+  - `-v` is never used, because it prints paths, commit ids and author identities.
+- **The configuration** keeps MagicBot's three rules unchanged and adds two:
+  - unchanged: `discord-bot-token`, `bare-token-file` and `legacy-bot-data-file`;
+  - added: `legacy-key-file`, for `keys.txt` and `key.pem`;
+  - added: the root-anchored `legacy-state-directory`, for `logs/`, `services/` and `log.txt`.
+
+  There is no allowlist. The planning documents scan clean without one, and a path allowlist would
+  switch off every rule, the token and private-key rules included, for the paths it names.
+- **The positive control.** Path-only rules fire once per text hunk, and never for a deletion, an empty
+  file or a binary. The control therefore compares the distinct files reported per rule with git's
+  own count of those files. It has two layers:
+  - a synthetic canary mirror, holding fake secrets, a pull-request ref, a merge-only secret and a
+    pure rename;
+  - each untouched pre-rewrite mirror.
+
+  BotTools and Support hold none of the guarded files, so for them the control is a negative baseline
+  only.
+- **The exit tests.**
+  - The branches-and-tags scan of each rewritten mirror must be clean.
+  - For the four repositories without pull-request refs, the all-refs scan must equal it.
+  - For GKB2 and BotTools, the all-refs result is measured and reported.
+- **CI.** The job lives in `.github/workflows/secret-scan.yml`, separate from the `ci.yml` the
+  build-skeleton phase adds. It:
+  - runs on `ubuntu-latest` with `contents: read`;
+  - checks out with `actions/checkout` v7.0.1, pinned to its commit, with `fetch-depth: 0` and
+    `persist-credentials: false`;
+  - uses the Linux x64 tarball, pinned by sha256;
+  - runs the canary first, then the history scan, then the tree scan;
+  - is triggered by pushes to `main`, pull requests to `main` and manual dispatch;
+  - shows only counts by rule id in its log.
+
+### 3.4 GitHub after the push, and the visibility change
+
+Source: findings 3, §3 and §6; findings 5, §3.A and §3.D.
+
+- **What GitHub keeps.** After a force-push, GitHub keeps serving every pre-rewrite commit, tree and
+  blob by id, on every route:
+  - the web commit, tree, blob, raw, compare and archive views;
+  - the REST commit, git-object, contents and zipball endpoints;
+  - a fetch by id over the git protocol, which sends all of the commit's ancestors.
+
+  GitHub documents no expiry. A 4-digit hexadecimal prefix resolves wherever it is unambiguous.
+- **The push.** `refs/pull/*` is advertised to fetch, not to push. So:
+  - the rewritten mirror's local `refs/pull/*` are deleted before the push;
+  - the push runs as `git push --porcelain --force --mirror origin`, and must exit 0 with no rejected
+    line;
+  - each ref is then checked against `ref-map`, through `git ls-remote --refs` and through the REST
+    `/branches` listing.
+- **What the pull-request refs keep reachable.** After the push, a fresh mirror of GKB2 still reaches
+  70 of its 81 purged blobs through `refs/pull/6/head`. A fresh mirror of BotTools reaches all 39 of
+  its purged blobs through its two pull-request refs.
+- **What the exit tests prove without GitHub Support:**
+  - every branch and tag on GitHub equals its rewritten tip;
+  - a fresh mirror holds no purged path, and no purged blob reachable from a branch or tag. For the
+    four repositories without pull-request refs, the same holds for every ref GitHub advertises;
+  - the residual behind GKB2's and BotTools' pull-request refs is counted;
+  - status-only probes count which old ids GitHub still serves.
+- **What they cannot prove:** that GitHub has dropped the old objects, that its cached views are gone,
+  or that no third-party copy exists.
+- **The visibility change.** First,
+  `gh repo edit SpartanLaboratories/KotlinBottools --visibility public --accept-visibility-change-consequences`.
+  Then a separate `PATCH` of `security_and_analysis`, enabling `secret_scanning` and
+  `secret_scanning_push_protection`.
+  - The two cannot be combined, because those settings do not exist while the repository is private.
+  - Nothing is enabled automatically for an organisation-owned repository.
+  - Generic patterns and validity checks need a paid plan, so they stay off, as they are on MagicBot.
+  - The token's `repo` scope is enough.
+  - Secret scanning covers the history of all branches, plus issue, pull-request and discussion text.
+    It does not report on objects that no ref reaches.
+- **What becomes reachable when KotlinBottools is made public in place.** Its old objects have never
+  been public. Once the repository is public, anyone who obtains one pre-rewrite commit id can reach
+  all of its old history. That history holds:
+  - the bot-token file, whose token is dead;
+  - the data file holding a session cookie;
+  - the per-guild data files, with Discord member and guild names. The tree listings alone carry the
+    guild names.
+
+  The ids are easy to obtain:
+  - the repository's activity feed carries the before and after ids of every push, and of the
+    rewrite's force-push. It holds 42 entries today, and GitHub documents that a change from private
+    to public publishes the repository's activity;
+  - a random 4-digit prefix hits one of the old commits in about 2,000 requests;
+  - every pre-rewrite id printed in a published document is a key.
+
+  Nothing can be recalled once anyone has forked or fetched. GKB2, GKB and BotTools were public before
+  the rewrite, so their exposure is not new. TrumpBot and Support stay private.
+- **Self-service alternatives to a Support ticket.** Two exist:
+  - a fresh repository under the same name, made public instead of the old one, which starts with an
+    empty object store;
+  - a new public repository under another name, with KotlinBottools kept private.
+
+  Two facts bear on both:
+  - An issue transfer keeps comments, assignees, matching labels and milestones, and redirects the old
+    URL. GitHub documents nothing about issue numbers or about sub-issue and "blocked by" links.
+  - Deleting a repository needs the `delete_repo` token scope. The signed-in token does not have it;
+    `gh auth refresh -s delete_repo` grants it interactively.
+
+### 3.5 The clones, the data copy and the manifests
+
+Source: findings 4, §3 and §6.
+
+- **This clone** is realigned in place, by git-filter-repo's procedure for other copies, hardened.
+  1. A preflight checks refs, configuration and locks, and maps every local branch through
+     `commit-map`. A tip that `commit-map` does not hold stops the run; a pruned tip walks first
+     parents.
+  2. A check that the server's heads equal `ref-map` runs before any fetch. A `git fetch --prune`
+     against an empty or half-filled remote deletes every remote-tracking ref and still exits 0.
+  3. `git fetch --prune`.
+  4. `git reset --hard`, after a collision check.
+  5. `git update-ref` for the other branches.
+  6. `ORIG_HEAD` and `FETCH_HEAD` are deleted. They are not reachability roots, but they hold old ids
+     as text.
+  7. `git reflog expire --expire=now --all`, then `git gc --prune=now`.
+  8. The proofs. `count-objects` must show one pack and no garbage. `cat-file --batch-check` must
+     report every first-changed commit, every changed commit and every manifest blob missing, and the
+     same check on the untouched backup must report none missing.
+
+  On Windows, a locked file makes `git reset --hard` warn and exit 0, and makes `git gc` exit 0 while
+  leaving the old pack behind. So the proofs decide, not the exit statuses. Expected on this clone
+  today:
+  - two local branches;
+  - 41 tracked files leave the working tree: the data and runtime-state files, once the copy exists;
+  - 418 untracked or ignored files stay untouched.
+
+  The variant in which the rewritten history goes to a fresh repository under the same name uses the
+  same procedure. In that variant the check of the server's heads is essential.
+- **TrumpBot.**
+  1. Its untracked files (4, all under `.idea/`) are archived with a checksum list.
+  2. The clone is moved into the workspace. A directory rename fails while any file inside it is open,
+     which makes the move the lock probe.
+  3. A fresh clone is made at the same path.
+  4. The untracked files are restored without overwriting anything.
+  5. The same proofs run.
+  6. The old clone is deleted last.
+
+  Cleaning it in place is rejected: it takes more steps and reaches the same result.
+- **The data copy.** Each file is copied with `git cat-file blob <id>`, record by record from
+  `git ls-tree -r -z`, and verified with `git hash-object --no-filters`.
+  - `git archive` is not used. It converts line endings under `core.autocrlf=true`: an LF file came
+    out as CRLF. Switching the conversion off in configuration still yields CRLF wherever
+    `.gitattributes` asks for it.
+  - The sources are read from the untouched backup mirrors:
+    - KotlinBottools `main`: 29 files under `guildData/` plus `BotData.xml`;
+    - GKB2 at the parent of the commit that deletes `guildData/` ("No DB updates", 2023-10-29): 29
+      plus 1;
+    - TrumpBot `main`: 30 plus 1.
+  - The destination is `%USERPROFILE%\BotLegacyData`, an ordinary folder under the user profile. By
+    default only the user, SYSTEM and Administrators may open it. Folders at the root of `D:` are not
+    used, because they grant `Authenticated Users` the right to modify.
+  - The layout has one subfolder per source, plus `records/`, `manifests/` and a `COPY-VERIFIED`
+    marker.
+- **The manifests.** A Python classifier runs over `git ls-tree -r -z` of every distinct tree in the
+  backup mirror, every ref included. Using filter-repo's own matching rule, it lists the blobs that
+  occur only under purged paths. The alternatives are inexact:
+  - `git rev-list --objects` names one path per object;
+  - filter-repo's `blob-shas-and-paths.txt` joins several paths with `", "`, which a path can itself
+    contain.
+
+  Some blobs occur under both purged and kept paths, and the classifier leaves them out: KotlinBottools
+  has one (the empty blob) and BotTools two. The classifier's kept-blob count is the exit test's
+  expected number of surviving blobs. An optional `refs/pull/` argument gives the expectation for a
+  fresh GitHub mirror of GKB2 or BotTools.
+- **Windows settings for the procedures.**
+  - `GIT_ASK_YESNO=false` makes Git for Windows' unlink-retry prompt answer "no".
+  - Native programs get mixed-form paths (`C:/...`).
+  - `tar` runs with `--force-local`.
+  - The KotlinBottools and TrumpBot projects are closed in IntelliJ IDEA before the clone procedures
+    run.
+  - IntelliJ's Local History keeps copies of edited files outside git, for five working days by
+    default. No git operation reaches them.
+
+### 3.6 Expectations, privacy and references
+
+Source: findings 5, §3 and §6.
+
+- **Pruned commits.** The rewrite prunes 10 commits. Three of them are merges — one each in
+  KotlinBottools, GKB and TrumpBot — whose second-parent side held only a pruned commit.
+  - Commits before and after, counting branches and tags:
+
+    | KotlinBottools | GKB2 | GKB | BotTools | TrumpBot | Support |
+    |---|---|---|---|---|---|
+    | 61 → 59 | 32 → 30 | 11 → 9 | 16 → 15 | 11 → 9 | 2 → 1 |
+
+    KotlinBottools' numbers move with every commit to the planning branch: after = T − 2.
+  - `You rewrote C (of T)` reports C = T in every repository.
+  - `first-changed-commits` holds one line per repository.
+- **What survives:**
+
+  | | KotlinBottools | GKB2 | GKB | BotTools | TrumpBot | Support |
+  |---|---|---|---|---|---|---|
+  | Distinct paths | 115 | 82 | 60 | 82 | 56 | 29 |
+  | Blobs kept | 317 | 211 | 113 | 145 | 106 | 29 |
+  | Purged blobs | 346 | 81 | 58 | 39 | 199 | 7,259 |
+  | Blobs under both purged and kept paths | 1 | 0 | 0 | 2 | 0 | 0 |
+  | Largest surviving blob other than the wrapper jar (bytes) | 159,282 | 27,602 | 27,586 | 27,168 | 25,952 | 14,302 |
+
+  - The Gradle wrapper jar survives in KotlinBottools, GKB2 and GKB.
+  - No other binary survives, nor any credential-like name, nor any name that Windows `fast-import`
+    rejects.
+  - Every list entry matches at least one path.
+  - The nested `services` source packages survive.
+  - The run derives the expectations from the backup mirrors, with the classifier and the expectation
+    script.
+- **Privacy gate.** The gate first builds name lists from the three data sets:
+  - 6 guild folders;
+  - 240 distinct member names across all versions;
+  - 25 id-shaped numbers.
+
+  It checks them against everything that becomes public with KotlinBottools:
+  - 316 text blobs on the two branches;
+  - 61 commit messages, with their author and committer identities;
+  - issues #1 to #19, with their comments.
+
+  It also checks the old commit messages of the other five repositories. It finds no blocking hit. The
+  raw hits are:
+  - ordinary words;
+  - a template folder named with an ordinary word;
+  - one repository's name;
+  - a public constant, the Steam64 offset.
+
+  The same gate run over the unpurged repository flags more than a thousand hits, so it does detect a
+  failed purge. It runs again before the visibility change.
+
+  Two personal details are in the material that becomes public:
+  - the commit identities carry the maintainer's own e-mail address, already public in three
+    repositories' commits;
+  - the local Windows account name appears in paths, in 17 lines of 6 documents.
+- **Pre-rewrite ids.**
+  - The planning branch's tip cites them 154 times in 16 documents, covering 55 commits. 121 of those
+    citations are in the parent purge research.
+  - Older versions of the documents in history hold 39 more.
+  - None appears on `main`, in commit messages or issues, in MagicBot, in WebTools #55 or #58, or in
+    `SpartanLaboratories/.github`.
+
+  Every one goes stale at the rewrite. Once KotlinBottools is public, its own are lookup keys for the
+  old objects.
+- **What a fresh repository under the same name would cost.**
+  - Up to 75 links to re-create:
+    - 18 sub-issue links;
+    - 36 "blocked by" links inside the repository;
+    - 21 across repositories, 19 with MagicBot and 2 with WebTools #55.
+  - The `1.0.0` milestone and three custom labels.
+  - About 180 text citations that stay correct only if issue numbers 1 to 19 survive.
+
+  The GraphQL API has `transferIssue` (with `createLabelsIfMissing`), `addSubIssue` and
+  `addBlockedBy`. There are no Projects items, webhooks, deploy keys, secrets or forks to rebuild.
+- **`.gitignore`.** Replacing the file on `main` conflicts with the planning branch's own change to it
+  when the planning branch is merged later. Committing the identical file on the planning branch too
+  makes that merge clean. It is copied with `git checkout <ref> -- .gitignore`, because a cherry-pick
+  of the commit also conflicts.
+- **README.**
+  - Lines 233 to 235 and 261 to 265, the project-structure entries for `key.txt`, `BotData.xml`,
+    `WebParseKeys.xml` and `guildData/`, stop describing the repository.
+  - The `key.txt` instructions stay accurate, because `Bot.initializeBotExistence` reads that file.
+  - To run the old code from a clone of the rewritten repository, a user must supply `key.txt`,
+    `BotData.xml`, `WebParseKeys.xml`, the `services/*.xml` polling-state files and a `res/`
+    directory.
+- **Parent statements that no longer hold.** These rest on a GitHub Support ticket or an
+  access-restricted location:
+  - architecture.md: §1.3; §1.4, criterion 6; §11 (steps 1, 2 and 4, and the exit criterion); §14,
+    unit 0; §15 (two rows); §16;
+  - roadmap.md: the header and § "Phase 0 — History rewrite";
+  - impact.md: §2.1, §2.4 and §3.1 item 4;
+  - issue #1's Phase 0 line;
+  - issue #2's body.
+
+  Separately, the plan-folder line of issues #2 to #19 names the phase number where the folder name
+  uses the issue number.
+- **Across the organisation.** No other repository's default branch tracks a purged file name.
+  MagicBot's `.gitleaks.toml` has two gaps:
+  - a global allowlist exempts `README.md`, `.gitleaks.toml` and `docs/*.md` from every rule, so a
+    bot token pasted into its documents would pass;
+  - it lacks the `keys.txt`, `key.pem`, `logs/` and `services/` rules.
+
+### 3.7 Where sources disagreed
+
+- **Whether filter-repo removes `origin`.** The parent purge research (§6.3 step 7) says it does, and
+  has the runbook add `origin` back. filter-repo's v2.47.0 source returns before that code when
+  `--sensitive-data-removal` is set, so `origin` stays, and `git remote add` would fail. The source
+  holds (findings 1, §3.6).
+- **The pruned-commit count.** The parent research (§3.3) counts six pruned commits. filter-repo also
+  prunes merges that become degenerate, which makes ten. That count came from filter-repo itself run
+  on content-free stand-ins of each history, and two independent derivations agree with it. Ten holds
+  (findings 5, §3.A).
+- **The exit criterion for pull-request refs.** The parent criterion (§6.5) requires that no
+  pull-request ref reach a purged blob. Without GitHub Support that cannot hold for GKB2 or BotTools.
+  The criterion that holds is the branches-and-tags one, with the residual behind the pull-request
+  refs counted and reported (findings 3, §6.4).
+- **Pre-rewrite ids in documents.** The blast-radius findings recommend replacing them before the
+  rewrite. The residual-exposure findings show that the activity feed and prefix guessing yield old
+  ids anyway. Both are right about different things. Replacing the ids removes the documents as a
+  source of keys; that matters only if KotlinBottools is made public with its old object store.
+- **What a visibility change does to unreferenced objects.** GitHub's documentation says nothing on
+  this. Two things support the inference that they become public:
+  - the observed access gate, where the only question is whether the caller may read the repository;
+  - published research (Truffle Security, Neodyme).
+
+  It is stated as an inference.
+
+### 3.8 What does not fit
+
+- **For the rewrite tool:**
+  - a winget install, because no package exists;
+  - the single-file script, because it has no integrity check;
+  - `--path` arguments, because a command line cannot be hash-pinned or archived;
+  - `--force`, `--partial`, `--refs` and `--no-fetch`, because each bypasses a safety check.
+- **For the scanner:**
+  - a winget install, because it fetches the same zip and changes machine state for no extra
+    assurance;
+  - the gitleaks GitHub Action, because it needs a licence for organisation accounts;
+  - a global allowlist, because it switches off every rule for the paths it names;
+  - `-v`, because it prints paths and identities into public logs.
+- **For the push:** pushing with the rewritten `refs/pull/*` still in the mirror, because the expected
+  rejections would hide any other failure.
+- **For the copy and the manifest:**
+  - `git archive`, because it converts line endings;
+  - `git rev-list --objects` and `blob-shas-and-paths.txt`, because each is inexact for the manifest.
+- **For the clones:**
+  - replacing this clone's `.git` with a fresh clone's, because the tracked files the rewrite removes
+    would stay behind as untracked files;
+  - cleaning TrumpBot's clone in place.
+- **For the data folder:** a folder at the root of `D:`, because it grants `Authenticated Users` the
+  right to modify.
+- **For citations:** rewriting pre-rewrite ids from `commit-map`. Ten commits have no new id, and a
+  new id would again cite a state that GitHub keeps beside the old one.
+
+---
+
+## Considerations
+
+**C1 — Make KotlinBottools public with its old object store, or make public a repository with a fresh
+one.** No GitHub Support ticket is filed, so the pre-rewrite KotlinBottools history stays stored on
+GitHub. In place, the visibility change publishes that history to anyone who obtains one old commit id
+(§3.4). The history holds:
+
+- a dead bot token;
+- a session cookie, whose liveness is not established;
+- the member and guild names of the per-guild data.
+
+None of it has been public before. The options:
+
+- **A. Make the repository public in place.** Nothing is lost: issue numbers, links and URLs stay as
+  they are, and no step is added. Before the rewrite, the pre-rewrite ids at the planning branch's tip
+  are replaced by commit subjects and dates, so the documents stop being a source of keys. The cost is
+  the exposure above. The activity feed and prefix guessing still yield ids, older document versions
+  keep 39 citations, and the exposure is permanent once anyone forks or fetches.
+- **B. Make public a fresh repository under the same name.** The steps, in order:
+  1. Create a private repository under a temporary name.
+  2. Push the rewritten history to it.
+  3. Re-create the `1.0.0` milestone and the three custom labels.
+  4. Transfer issues #1 to #19 in numeric order, checking each new number against its source.
+  5. Re-create any sub-issue and "blocked by" links that were dropped.
+  6. Delete the old repository.
+  7. Rename the new one to `KotlinBottools`.
+  8. Make it public, and enable secret scanning and push protection.
+
+  A rehearsal on two throwaway private repositories comes first. It establishes whether a transfer keeps
+  issue numbers and links, and if it does not, the run stops before KotlinBottools is touched. The
+  deletion needs the `delete_repo` scope: grant it beforehand with
+  `gh auth refresh -h github.com -s delete_repo`, which needs an interactive sign-in.
+
+  The gain: nothing from the old history is reachable from the public repository, and the pre-rewrite
+  ids in documents become harmless.
+
+  The cost:
+  - more steps;
+  - a short window in which the name resolves to nothing;
+  - a new repository id;
+  - the up to 75 links and the milestone and labels to re-create (§3.6).
+- **C. Keep KotlinBottools private, and publish the rewritten history under another name.** The old
+  objects stay private and the issues stay where they are. The cost:
+  - the repository name the architecture, MagicBot, WebTools and every document use changes;
+  - the public code and the private issues separate.
+- **D. File a GitHub Support ticket for KotlinBottools alone**, and keep it private until Support has
+  removed the cached views. The other five repositories go ahead without a ticket. The cost is an
+  unknown wait. MagicBot's CI checkout (Phase 13) and the Dokka Pages site (Phase 1) need the public
+  repository, so they wait with it.
+
+**Recommendation:** B, rehearsed first. It is the only option that publishes nothing that was private,
+keeps the name, and needs no Support ticket. If the rehearsal shows that transfers lose issue numbers or
+links, the run stops, and the choice is between A and D.
+
+**C2 — Record Phase 0's conditions in the parent plan documents.** The parent statements listed in §3.6
+assume a GitHub Support ticket, an access-restricted location for the data copy, and the
+pull-request-ref exit criterion. Two options:
+
+- (a) Dated callouts in `architecture.md`, `roadmap.md` and `impact.md`, plus matching edits to issue
+  #1's Phase 0 line and issue #2's body. The callouts state:
+  - no Support ticket;
+  - an ordinary local folder for the data copy;
+  - the branches-and-tags exit criterion with the reported residual;
+  - C1's outcome.
+- (b) Leave the parent documents as they are, and let this folder's documents stand as the record.
+
+**Recommendation:** (a). The callouts go into the same commit as this folder's plan documents, before
+the rewrite.
+
+---
+
+## Known gaps
+
+- **The real histories have not been rewritten or scanned.** The first real run confirms what was
+  derived. Each of these is behind its own stop condition:
+  - filter-repo's log lines;
+  - the scan counts;
+  - whether the token regex matches each real token file;
+  - the scan time on TrumpBot and Support.
+- **The CI workflow and the Linux gitleaks binary have not run on GitHub.**
+- **The activity feed after a visibility change** could not be observed: whether it lists the entries
+  from before the change to anonymous readers. GitHub documents that a visibility change publishes
+  activity.
+- **Issue transfers.** Whether a transfer keeps issue numbers and sub-issue and "blocked by" links is
+  undocumented and untested.
+- **Default-rule findings in the old repositories' kept Kotlin and Java sources** are unknown until the
+  scans run. A hit there stops the run for a decision.
+- **The privacy gate's name lists** are built from member names as they are stored. A display name
+  stored in another form can be missed.
+- **Two credentials' liveness** is not established: the session cookie and TrumpBot's private key. The
+  bot tokens are dead.
+- **IntelliJ's Local History** holds copies of edited files outside git, which no git operation
+  reaches.
+- **Material lost with the workspace.** Some material is neither a secret nor part of the copied data.
+  It exists nowhere once the workspace is deleted:
+  - `key.txt`;
+  - `WebParseKeys.xml`;
+  - the `services/` polling state;
+  - the `res/` assets;
+  - TrumpBot's data files and binaries;
+  - Support's vendored libraries and natives.
+- **Git 2.56** was released after the procedures were written against 2.55. The run uses 2.55.0.windows.5.
