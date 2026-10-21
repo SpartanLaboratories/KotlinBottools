@@ -707,8 +707,18 @@ Source: findings 4, §3 and §6.
   - `GIT_ASK_YESNO=false` makes Git for Windows' unlink-retry prompt answer "no".
   - Native programs get mixed-form paths (`C:/...`).
   - `tar` runs with `--force-local`.
-  - The KotlinBottools and TrumpBot projects are closed in IntelliJ IDEA before the clone procedures
-    run.
+  - **The KotlinBottools project stays open in IntelliJ IDEA for the whole run**, because the session
+    that runs Phase 0 works inside that IDE. TrumpBot is not open in it.
+  - **Background git activity.** While the project is open, the IDE's git integration runs short git
+    commands in the background and reads files under `.git` directly. Either can hold the index lock
+    or a pack file for a moment. A reset or ref update that meets a transient lock error is therefore
+    run again, and `git gc --prune=now` can leave an old pack behind.
+  - **Push safety does not need the object deletion.** A push sends only objects reachable from the
+    refs it updates, minus those the remote already has. Once these hold:
+    - no ref, reflog entry or stash in this clone reaches a pre-rewrite commit;
+    - `origin` is verified to be the fresh repository;
+
+    no push can carry old history, whether or not the old objects have yet been deleted.
   - IntelliJ's Local History keeps copies of edited files outside git, for five working days by
     default. No git operation reaches them.
 
@@ -831,8 +841,10 @@ Source: findings 5, §3 and §6.
   refs counted and reported (findings 3, §6.4).
 - **Pre-rewrite ids in documents.** The blast-radius findings recommend replacing them before the
   rewrite. The residual-exposure findings show that the activity feed and prefix guessing yield old
-  ids anyway. Both are right about different things. Replacing the ids removes the documents as a
-  source of keys; that matters only if KotlinBottools is made public with its old object store.
+  ids anyway. Both are right about different things. Replacing the ids would remove the documents as
+  a source of keys, but that matters only for a public repository holding the old objects. The public
+  KotlinBottools is a fresh repository (§3.9), so the ids stay as dated citations that resolve only in
+  the private legacy repository.
 - **What a visibility change does to unreferenced objects.** GitHub's documentation says nothing on
   this. Two things support the inference that they become public:
   - the observed access gate, where the only question is whether the caller may read the repository;
@@ -867,76 +879,85 @@ Source: findings 5, §3 and §6.
 - **For citations:** rewriting pre-rewrite ids from `commit-map`. Ten commits have no new id, and a
   new id would again cite a state that GitHub keeps beside the old one.
 
+### 3.9 How KotlinBottools becomes public
+
+No GitHub Support ticket is filed, so the pre-rewrite KotlinBottools history stays stored on GitHub
+(§3.4). For that reason the rewritten history is made public through a fresh repository, and the
+pre-rewrite repository stays private.
+
+- **The fresh repository.**
+  1. The rewritten mirror is pushed to a new private repository under a temporary name.
+  2. The `1.0.0` milestone and the three custom labels (`type: bug`, `type: feature`,
+     `type: tracking`) are created in it.
+  3. Issues #1 to #19 are transferred into it in numeric order. All nineteen are open, and no pull
+     request exists. Each transfer is checked to have landed on its own number.
+  4. Any sub-issue or "blocked by" link that a transfer drops is re-created; §3.6 lists those links.
+
+  Nothing else is created in the new repository before the last transfer, because issues and pull
+  requests share one number sequence. The planning pull request is opened after the transfers.
+- **The swap.**
+  - The pre-rewrite repository is renamed `KotlinBottools-legacy`. It stays private and is archived,
+    which makes it read-only.
+  - The new repository takes the name `KotlinBottools`.
+  - It is made public, with secret scanning and push protection.
+
+  No repository is deleted.
+- **What the legacy repository keeps.** Its refs stay exactly as they are: `main`, and the planning
+  branch with every commit pushed before the mirror clone. It keeps its milestone and labels, and no
+  issue is left in it. Its objects, activity feed and events stay private, and the pre-rewrite ids
+  cited in documents resolve only there.
+- **What the public repository holds.** Its object store starts empty and holds only the rewritten
+  history.
+  - No route in §3.4 reaches an old object from it.
+  - Its activity feed holds only post-rewrite ids.
+  - The pre-rewrite ids in documents resolve to nothing in it, so the documents keep them as dated
+    citations.
+- **Links.** The name and the issue numbers stay the same, so these keep resolving:
+  - `KotlinBottools#N` references and issue URLs in MagicBot, WebTools, `SpartanLaboratories/.github`
+    and the documents;
+  - links by branch name, `blob/docs/issue-1-bottools-consolidation/...`, which resolve on the
+    rewritten branch.
+- **Settings and access.** The new repository gets the settings the old one has:
+  - default branch `main`;
+  - issues and projects on, wiki and discussions off;
+  - merge commits, squash merges and rebase merges allowed;
+  - Actions enabled for all actions;
+  - no description, homepage or topics.
+
+  The only direct collaborator is the organisation's administrator, and no team has access.
+- **The rehearsal.** Two throwaway private repositories come first. They prove the transfer behaviour:
+  numbers, comments, labels, milestone, and sub-issue and "blocked by" links. If a transfer loses a
+  number or a link, the run stops before KotlinBottools is touched. Because nothing is deleted, the two
+  rehearsal repositories remain afterwards, private and archived.
+- **This clone.** Its `origin` URL does not change; after the renames it points at the new
+  repository. It is realigned by §3.5's procedure. The check of the server's heads before any fetch
+  matters here, because while the renames are in progress the name can resolve to the legacy
+  repository.
+- **MagicBot.** The gap in MagicBot's `.gitleaks.toml` (§3.6) is recorded as a comment on MagicBot#2,
+  its Phase 13 issue, which owns that file.
+
+### 3.10 The parent documents and issues
+
+The parent documents carry dated callouts recording Phase 0's conditions:
+
+- `architecture.md`: §1.3, §1.4 criterion 6, §11, §14 unit 0, §15 and §16;
+- `roadmap.md`: the header and § "Phase 0 — History rewrite";
+- `impact.md`: §2.1, §2.4 and §3.1 item 4.
+
+Matching edits are made to issues #1 and #2. The conditions recorded are:
+
+- no GitHub Support ticket is filed;
+- the legacy data copy sits in an ordinary local folder;
+- the exit criterion is that branches and tags are clean, with the pull-request residual of GKB2 and
+  BotTools counted and reported;
+- KotlinBottools is made public as a fresh repository, and the pre-rewrite repository is kept private
+  and archived as `KotlinBottools-legacy`.
+
 ---
 
 ## Considerations
 
-**C1 — Make KotlinBottools public with its old object store, or make public a repository with a fresh
-one.** No GitHub Support ticket is filed, so the pre-rewrite KotlinBottools history stays stored on
-GitHub. In place, the visibility change publishes that history to anyone who obtains one old commit id
-(§3.4). The history holds:
-
-- a dead bot token;
-- a session cookie, whose liveness is not established;
-- the member and guild names of the per-guild data.
-
-None of it has been public before. The options:
-
-- **A. Make the repository public in place.** Nothing is lost: issue numbers, links and URLs stay as
-  they are, and no step is added. Before the rewrite, the pre-rewrite ids at the planning branch's tip
-  are replaced by commit subjects and dates, so the documents stop being a source of keys. The cost is
-  the exposure above. The activity feed and prefix guessing still yield ids, older document versions
-  keep 39 citations, and the exposure is permanent once anyone forks or fetches.
-- **B. Make public a fresh repository under the same name.** The steps, in order:
-  1. Create a private repository under a temporary name.
-  2. Push the rewritten history to it.
-  3. Re-create the `1.0.0` milestone and the three custom labels.
-  4. Transfer issues #1 to #19 in numeric order, checking each new number against its source.
-  5. Re-create any sub-issue and "blocked by" links that were dropped.
-  6. Delete the old repository.
-  7. Rename the new one to `KotlinBottools`.
-  8. Make it public, and enable secret scanning and push protection.
-
-  A rehearsal on two throwaway private repositories comes first. It establishes whether a transfer keeps
-  issue numbers and links, and if it does not, the run stops before KotlinBottools is touched. The
-  deletion needs the `delete_repo` scope: grant it beforehand with
-  `gh auth refresh -h github.com -s delete_repo`, which needs an interactive sign-in.
-
-  The gain: nothing from the old history is reachable from the public repository, and the pre-rewrite
-  ids in documents become harmless.
-
-  The cost:
-  - more steps;
-  - a short window in which the name resolves to nothing;
-  - a new repository id;
-  - the up to 75 links and the milestone and labels to re-create (§3.6).
-- **C. Keep KotlinBottools private, and publish the rewritten history under another name.** The old
-  objects stay private and the issues stay where they are. The cost:
-  - the repository name the architecture, MagicBot, WebTools and every document use changes;
-  - the public code and the private issues separate.
-- **D. File a GitHub Support ticket for KotlinBottools alone**, and keep it private until Support has
-  removed the cached views. The other five repositories go ahead without a ticket. The cost is an
-  unknown wait. MagicBot's CI checkout (Phase 13) and the Dokka Pages site (Phase 1) need the public
-  repository, so they wait with it.
-
-**Recommendation:** B, rehearsed first. It is the only option that publishes nothing that was private,
-keeps the name, and needs no Support ticket. If the rehearsal shows that transfers lose issue numbers or
-links, the run stops, and the choice is between A and D.
-
-**C2 — Record Phase 0's conditions in the parent plan documents.** The parent statements listed in §3.6
-assume a GitHub Support ticket, an access-restricted location for the data copy, and the
-pull-request-ref exit criterion. Two options:
-
-- (a) Dated callouts in `architecture.md`, `roadmap.md` and `impact.md`, plus matching edits to issue
-  #1's Phase 0 line and issue #2's body. The callouts state:
-  - no Support ticket;
-  - an ordinary local folder for the data copy;
-  - the branches-and-tags exit criterion with the reported residual;
-  - C1's outcome.
-- (b) Leave the parent documents as they are, and let this folder's documents stand as the record.
-
-**Recommendation:** (a). The callouts go into the same commit as this folder's plan documents, before
-the rewrite.
+None open.
 
 ---
 
@@ -949,11 +970,9 @@ the rewrite.
   - whether the token regex matches each real token file;
   - the scan time on TrumpBot and Support.
 - **The CI workflow and the Linux gitleaks binary have not run on GitHub.**
-- **The activity feed after a visibility change** could not be observed: whether it lists the entries
-  from before the change to anonymous readers. GitHub documents that a visibility change publishes
-  activity.
 - **Issue transfers.** Whether a transfer keeps issue numbers and sub-issue and "blocked by" links is
-  undocumented and untested.
+  undocumented. The rehearsal on two throwaway repositories settles it before KotlinBottools is
+  touched (§3.9).
 - **Default-rule findings in the old repositories' kept Kotlin and Java sources** are unknown until the
   scans run. A hit there stops the run for a decision.
 - **The privacy gate's name lists** are built from member names as they are stored. A display name
