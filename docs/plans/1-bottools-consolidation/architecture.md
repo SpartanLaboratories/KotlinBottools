@@ -17,7 +17,7 @@
   2.1.10, JDA 5.6.1, Gradle 8.10) and `GKB2` `master` @ `9422f85` (Kotlin 1.7.20 multiplatform
   with Compose desktop, JDA 5.0.0-beta.2, Spring XML wiring, Gradle 7.5.1).
 - **Status:** systems design. [`roadmap.md`](roadmap.md) turns §14 into phases, sub-issues and
-  target versions, and [`impact.md`](impact.md) holds the adoption, blast radius and follow-ups;
+  target versions, and [`consequences.md`](consequences.md) holds the adoption, blast radius and follow-ups;
   each unit's implementation plan is written in its own issue's folder.
 - **Evidence:** [`research/README.md`](research/README.md) Part 3 is the summary this design is
   built from; each `research/<topic>.md` file holds the detail. Citations below name the file
@@ -180,6 +180,20 @@
   (Dota 2's automatic reports, replaced by the match tracker) — because an archived repository's
   issues and code are read-only.
 
+> **Dated note, 2026-11-07 — how Phase 0 carries this out** ([`2-phase-0-history-rewrite/architecture.md`](2-phase-0-history-rewrite/architecture.md)).
+>
+> - No GitHub Support ticket is filed for any of the six repositories.
+> - KotlinBottools is not force-pushed in place. Its rewritten history goes to a fresh repository
+>   that takes the name `KotlinBottools` and becomes public. Every issue and pull-request number
+>   of the pre-rewrite repository is reproduced in it, and the pre-rewrite repository is renamed
+>   `KotlinBottools-legacy`, kept private and archived.
+> - The planning documents reach `main` before the rewrite, through #2's own pull request on the
+>   pre-rewrite repository, so no planning pull request follows the rewrite.
+> - KotlinBottools' rewrite also replaces machine-local paths with neutral forms in every file and
+>   commit: the folder that holds the project checkouts and the user-profile folder, in any slash
+>   form and case.
+> - Phase 0 is carried out as eight sub-issues of #2 (its §15).
+
 ### 1.4 Acceptance criteria
 
 1. `./gradlew build` passes on the six modules: compile with `explicitApi()`, Dokka with no
@@ -203,6 +217,11 @@
    classpath-alignment and release-metadata checks pass; no `-SNAPSHOT` appears in a release's
    POM or module metadata, and the module metadata carries `strictly` on the umbrella's module
    edges and on `bottools-http`'s WebTools edge.
+
+> **Dated note, 2026-11-07 — criterion 6** ([`2-phase-0-history-rewrite/architecture.md`](2-phase-0-history-rewrite/architecture.md) §1.2). Without a GitHub Support
+> ticket, no rewrite can clear GKB2's and BotTools' pull-request refs. The criterion is that every
+> branch and tag of the six repositories is clean on a fresh mirror; the purged blobs still
+> reachable through GKB2's and BotTools' pull-request refs are counted and reported.
 
 ---
 
@@ -1519,6 +1538,21 @@ repository's configuration finds nothing; no pull-request ref reaches a purged b
 are deleted and re-cloned, never pulled; the older legacy copies are deleted once the import
 report has been checked.
 
+> **Dated note, 2026-11-07 — departures in Phase 0's design** ([`2-phase-0-history-rewrite/architecture.md`](2-phase-0-history-rewrite/architecture.md) §12.1).
+>
+> - **Step 1.** The legacy data is copied to an ordinary local folder under the user profile, not
+>   to an access-restricted location.
+> - **Step 2.** KotlinBottools becomes public as a fresh repository: every number is reproduced,
+>   and the pre-rewrite repository stays private and archived as `KotlinBottools-legacy`. Its
+>   publication therefore does not depend on a Support ticket. The planning pull request lands
+>   before the rewrite, on the pre-rewrite repository, whose pull-request refs never become public.
+> - **Step 4.** No Support ticket is filed. What GitHub still serves of each old history is
+>   measured and reported.
+> - **Exit criterion.** As the note to §1.4 states.
+> - **Also.** filter-repo keeps `origin` under `--sensitive-data-removal`. The rewrite prunes ten
+>   commits, three of them merges. KotlinBottools' rewrite replaces machine-local paths with
+>   neutral forms.
+
 ---
 
 ## 12. Extension and stability
@@ -1625,6 +1659,12 @@ is a dependency order, not a schedule.
 | 21 | `magicbot-poe2` (MagicBot's track; post-1.0.0) | Economy-only provider over poe.ninja behind an `EconomySource` seam; MagicBot `1.N.0` | `magicbot-marvel-rivals` (release order) |
 | 22 | `magicbot-nmrih` (MagicBot's track; post-1.0.0) | Steam-keyed profile, playtime and achievements, commands only; MagicBot `1.N.0` | `magicbot-poe2` (release order) |
 
+> **Dated note, 2026-11-07 — unit 0.** It is carried out as eight sub-issues of #2, in this
+> order: preparation; transfer rehearsal; KotlinBottools rewrite and swap; repository hygiene;
+> KotlinBottools publication; GKB2 and GKB rewrite; BotTools, TrumpBot and Support rewrite;
+> residual report and cleanup ([`2-phase-0-history-rewrite/architecture.md`](2-phase-0-history-rewrite/architecture.md) §15). `build-skeleton` waits for the KotlinBottools
+> rewrite-and-swap unit, and MagicBot's skeleton waits for the publication unit.
+
 **MagicBot's track.** Units 13 to 16 and 20 to 22 are planned and tracked in
 `SpartanLaboratories/MagicBot`, under a MagicBot tracking issue of its own, with their plan
 folders in MagicBot's `docs/plans/`; the library's units cross-reference them the way they
@@ -1670,13 +1710,21 @@ composite beside the library, locally and in CI, and never includes `../WebTools
 | **Cross-repository coupling**: MagicBot pins the library by commit and the library pins WebTools by commit; the Gradle wrappers of the chain must stay within one minor; MagicBot's CI checks KotlinBottools out with a token scoped to MagicBot alone | the three CIs | `bottools.ref`, `webtools.ref` and the scheduled drift builds; KotlinBottools is public from the end of its rewrite (§11), before MagicBot's CI first checks it out (unit 13), so no PAT is needed anywhere |
 | **Concurrency and performance**: one definition under many invocations; a per-event coroutine loses JDA's per-shard ordering | runtime | immutable definitions, per-event contexts, idempotent handlers against stored state, a keyed serial lane where order matters; Level 4c tests |
 
+> **Dated note, 2026-11-07 — two rows above** ([`2-phase-0-history-rewrite/architecture.md`](2-phase-0-history-rewrite/architecture.md) §16).
+>
+> - **GitHub Support's handling** no longer bears on the visibility change. No ticket is filed,
+>   KotlinBottools becomes public as a fresh repository, and the residual of the other five is
+>   measured.
+> - **The old data copies** sit in an ordinary local folder under the user profile. They are read
+>   once by the import and deleted after its report has been checked.
+
 Every requirement in §1 is met by this design; none had to be set aside.
 
 ---
 
 ## 16. Known gaps
 
-### Unfinished — needs a planner re-pass
+### Unfinished — to be researched again
 
 1. **The Marvel Rivals community API's pricing and terms** (research Question 9,
    [`research/game-and-weather-data-sources.md`](research/game-and-weather-data-sources.md)).
@@ -1758,6 +1806,8 @@ each reaches.
   the database.
 - **GitHub Support.** The outcome of a request to clear GKB2's and BotTools' pull-request refs
   and cached views cannot be known in advance.
+  > **Dated note, 2026-11-07.** No Support ticket is filed, so this outcome is not awaited.
+  > Phase 0 measures and reports what stays reachable instead ([`2-phase-0-history-rewrite/architecture.md`](2-phase-0-history-rewrite/architecture.md) §6.6).
 - **Level 5 (UAT)** is deferred to a separate, later plan.
 
 ---

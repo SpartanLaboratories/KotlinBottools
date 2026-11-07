@@ -15,8 +15,12 @@
     implementation plan, in its issue's folder, before it is built.
 - **Branch:** `docs/issue-1-bottools-consolidation`, off `main` @ `b2f2078`. Phase 0 rewrites
   both, so from then on commits are found by subject.
+  > **Dated note, 2026-11-07.** The planning documents land on `main` before Phase 0's
+  > rewrite, through #2's own pull request. The rewrite then gives every commit a new id, replaces
+  > machine-local paths with neutral forms, and makes the result public as a fresh repository
+  > under the same name. The pre-rewrite repository stays private as `KotlinBottools-legacy`.
 - **Related:**
-  - [`impact.md`](impact.md): adoption, blast radius and follow-ups;
+  - [`consequences.md`](consequences.md): adoption, blast radius and follow-ups;
   - [`research/README.md`](research/README.md) Part 3: the evidence.
 - **Other tracks this roadmap depends on:**
   - [SpartanLaboratories/WebTools#55](https://github.com/SpartanLaboratories/WebTools/issues/55):
@@ -266,6 +270,26 @@ graph TD
 | 23 | Phase 23 — Desktop manager on SpartanUI and SpartanGraphics (unscheduled) | SpartanUI and SpartanGraphics usable | — |
 
 ### Phase 0 — History rewrite
+
+> **Dated note, 2026-11-07 — Phase 0 as designed** ([`2-phase-0-history-rewrite/architecture.md`](2-phase-0-history-rewrite/architecture.md)).
+>
+> - **Scope changes:**
+>   - no GitHub Support ticket;
+>   - the legacy data in an ordinary local folder;
+>   - KotlinBottools made public as a fresh repository, with every number reproduced and the
+>     pre-rewrite repository kept private and archived as `KotlinBottools-legacy`;
+>   - machine-local paths replaced in KotlinBottools' history;
+>   - the planning pull request lands before the rewrite, as #2's own landing.
+> - **Units,** sub-issues of #2: preparation; transfer rehearsal; KotlinBottools rewrite and swap;
+>   repository hygiene; KotlinBottools publication; GKB2 and GKB rewrite; BotTools, TrumpBot and
+>   Support rewrite; residual report and cleanup.
+> - **Unblocks:** Phase 1 once the rewrite-and-swap unit has landed; MagicBot's Phase 13 once the
+>   publication unit has landed.
+> - **Done when:**
+>   - every branch and tag of the six repositories is clean, with the pull-request residual
+>     counted;
+>   - KotlinBottools is public with secret scanning and push protection;
+>   - its numbers and links are intact (§1.2 of the Phase 0 design).
 
 - **Scope** (architecture §11, §14 unit 0):
   - **Copy the legacy data out.** The data of KotlinBottools, GKB2 and TrumpBot goes to an

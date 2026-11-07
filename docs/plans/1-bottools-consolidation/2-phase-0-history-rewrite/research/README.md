@@ -819,7 +819,7 @@ Source: findings 5, §3 and §6.
   - architecture.md: §1.3; §1.4, criterion 6; §11 (steps 1, 2 and 4, and the exit criterion); §14,
     unit 0; §15 (two rows); §16;
   - roadmap.md: the header and § "Phase 0 — History rewrite";
-  - impact.md: §2.1, §2.4 and §3.1 item 4;
+  - consequences.md: §2.1, §2.4 and §3.1 item 4;
   - issue #1's Phase 0 line;
   - issue #2's body.
 

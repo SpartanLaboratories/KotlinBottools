@@ -1,4 +1,4 @@
-# Verifier report: research claims for KotlinBottools#1 (checked 2026-10-20)
+# Verification report: research claims for KotlinBottools#1 (checked 2026-10-20)
 
 Method: sources were read at the exact pins (shallow checkouts of the Discord docs, JDA, discord.py, BotCommands, Sapphire, Kord docs, odota/core, kotlin-web-site; raw files; Maven POMs, .module files and maven-metadata.xml; one class-file parse for Kotlin metadata versions). Quotes were matched after collapsing whitespace and stripping Markdown, AsciiDoc, Javadoc and link markup. A quote that differs only by markup is "holds". Where a quote differs in words, I say so.
 
@@ -218,7 +218,7 @@ Short code names:
 | SQL-C24 | holds | `liquibase-core-5.0.4.pom`: `FSL-1.1-ALv2`, "Functional Source License, Version 1.1, ALv2 Future License". Metadata release 5.0.4. | |
 | SQL-C25 | holds | Exposed 1.6.0 `Migrations.md`: all three sentences. CHANGELOG: EXPOSED-755 and EXPOSED-758 lines. | |
 | SQL-C26 | holds | `SQLiteConfig.java`: "When secure_delete is on, SQLite overwrites deleted content with zeros". | |
-| SQL-C27 | holds | sqlite/sqlite `master`: `build.c` has the STRICT comment and `tabOpts & TF_Strict`; `upsert.c` line 12. The "bundled 3.53.x includes them" step remains the researcher's inference. | |
+| SQL-C27 | holds | sqlite/sqlite `master`: `build.c` has the STRICT comment and `tabOpts & TF_Strict`; `upsert.c` line 12. The "bundled 3.53.x includes them" step remains the findings' inference. | |
 
 ### HTTP (http-client-stack.md)
 
@@ -373,7 +373,7 @@ Short code names:
 | PURGE-23 | holds | git/git `master` `gitignore.adoc`: both quotes. | |
 | PURGE-24 | holds | `git ls-remote` shows `v2.47.0` as the highest filter-repo tag. The releases page (WebFetch) shows v2.47.0 as "Latest", dated "04 Dec", year not shown. | |
 
-### Planner-added claims
+### Claims added in the summary
 
 | ID | Verdict | What I found | Take as true instead |
 |---|---|---|---|
@@ -391,7 +391,7 @@ The 14 unclear:
 
 ## 3. Fails
 
-None. Holds that need a caveat before the planner relies on them:
+None. Holds that need a caveat before the design relies on them:
 - DPR-30, DPR-31, DPR-32: the quotes are true of the 2022-10-01 snapshot only. A Developer Terms and Developer Policy version "Effective date: July 8, 2024" exists on support-dev.discord.com (refused), so the 2022 wording may be superseded.
 - UBC-16: the cited `BUILDING.md` and `FAQ.md` do not exist at that jitpack.io commit. The text is in `building/_index.en.md` and `faq/_index.en.md`, and two quotes are slightly reworded there.
 - P2: Gradle 9.0.0 is the upper bound of the 2.3.0 and 2.3.10 ranges, not a lower bound.

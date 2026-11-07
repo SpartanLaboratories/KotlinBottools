@@ -1,4 +1,4 @@
-# BotTools consolidation and MagicBot — impact
+# BotTools consolidation and MagicBot — consequences
 
 ## Header / Association
 
@@ -99,6 +99,16 @@ archived GKB2, keep it for reference.
   - **TrumpBot #1** reports that Dota 2's automatic reports do not work. MagicBot's tracker
     replaces them.
 
+> **Dated note, 2026-11-07** ([`2-phase-0-history-rewrite/consequences.md`](2-phase-0-history-rewrite/consequences.md) §2).
+>
+> - KotlinBottools is not force-pushed in place. Its rewritten history becomes a fresh public
+>   repository under the same name, with every number reproduced, and the pre-rewrite repository
+>   stays private and archived as `KotlinBottools-legacy`.
+> - No Support ticket is filed. GKB2's and BotTools' pull-request refs and every cached view stay,
+>   and the residual is measured and reported.
+> - KotlinBottools' main working copy is realigned in place rather than cloned again; the TrumpBot
+>   clone is cloned again.
+
 ### 2.2 Consumers
 
 - **Nobody outside the bot repositories uses either codebase.**
@@ -174,6 +184,8 @@ archived GKB2, keep it for reference.
 - **Personal data in the legacy copies.**
   - The copies are kept access-restricted and are read once, by the import.
   - The older copies are deleted once the import report has been checked.
+  > **Dated note, 2026-11-07.** The copies sit in an ordinary local folder under the user
+  > profile, `%USERPROFILE%\BotLegacyData`, not in an access-restricted location.
 
 ### 2.5 Documentation
 
@@ -229,6 +241,10 @@ archived GKB2, keep it for reference.
    - the force-pushes;
    - the GitHub Support tickets;
    - KotlinBottools' change to public.
+   > **Dated note, 2026-11-07.** There is no access-restricted location and there are no Support
+   > tickets: the data goes to an ordinary local folder, and the force-pushes, the repository swap
+   > and the visibility change are carried out by #2's sub-issues ([`2-phase-0-history-rewrite/architecture.md`](2-phase-0-history-rewrite/architecture.md) §15). What
+   > remains for the maintainer is listed in [`2-phase-0-history-rewrite/consequences.md`](2-phase-0-history-rewrite/consequences.md) §6.
 5. **Discord:**
    - the development application;
    - MagicBot's new application, under a Developer Team whose owner completes App

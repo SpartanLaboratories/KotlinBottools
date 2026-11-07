@@ -247,7 +247,7 @@ if (webToolsComposite && webToolsDir.resolve("settings.gradle.kts").isFile) {
 
 ## 7. Load-bearing claims
 
-Claim numbers are cited by a verifier as WTC-n.
+Claim numbers are cited in the verification report as WTC-n.
 
 **WTC-1. A build tree is recursive; nested composites are flattened.**
 Source: <https://docs.gradle.org/9.7.1/userguide/composite_builds.html>, sections "Composite Build Layout" and "Requirements for Composite Builds", Gradle 9.7.1.

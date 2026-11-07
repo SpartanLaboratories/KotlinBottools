@@ -152,7 +152,7 @@ Test only: `com.squareup.okhttp3:mockwebserver3` 5.5.0 and `kotlinx-coroutines-t
 - The JDK client would remove the OkHttp dependency in principle, but JDA keeps OkHttp on the classpath regardless, so nothing is saved, while the DNS-guard hook, interceptors and a mature mock server are lost.
 - Bucket4j is rejected as the default only because it would not remove the code that matters (reservation, caps, cancellation, header feedback), and the in-house arithmetic is short. If a team prefers it, `consumeIgnoringRateLimits` is the primitive to build the reservation on, and the `CallBudget` port is unchanged.
 
-**Decision points the planner can still change without changing the rest:** Bucket4j for the in-house arithmetic; `rssreader` for Rome; serialization 1.11.0 for 1.9.0. Each sits behind a port or a version pin.
+**Decision points the design can still change without changing the rest:** Bucket4j for the in-house arithmetic; `rssreader` for Rome; serialization 1.11.0 for 1.9.0. Each sits behind a port or a version pin.
 
 ## 7. Load-bearing claims
 
@@ -188,7 +188,7 @@ Test only: `com.squareup.okhttp3:mockwebserver3` 5.5.0 and `kotlinx-coroutines-t
 ## 8. Gaps
 
 - **Unreachable hosts.** `api.opendota.com`, `docs.opendota.com`, `open-meteo.com`, `www.pathofexile.com` and `fr.pathofexile.com` (DNS or proxy refusal), and the IETF and RFC hosts `www.rfc-editor.org` and `datatracker.ietf.org`. Consequences: OpenDota's production limits are inferred from the `odota/core` defaults and are **unverified for production**; the Open-Meteo and Path of Exile figures rest on web-search excerpts (claims 19 and 20, marked unverified at source); `Retry-After` is read from MDN's repository instead of RFC 9110. Also unreachable earlier: `ktor.io` and `square.github.io/okhttp` (read from their repositories instead).
-- **Marvel Rivals and No More Room in Hell limits.** Not researched here; the provider researchers own them. The budget design assumes only that a provider supplies windows and, optionally, a header parser.
+- **Marvel Rivals and No More Room in Hell limits.** Not researched here; the provider questions own them. The budget design assumes only that a provider supplies windows and, optionally, a header parser.
 - **Nothing was built.** No Gradle run exists in this environment's rules, so these are untested: the serialization plugin at Kotlin 2.2.x against runtime 1.9.0 (and 1.11.0); `bottools-stats` compiling against Ktor-free OkHttp 5.5.0 metadata 2.1.0; Gradle's resolution of `okhttp-jvm` when declared beside JDA's. The metadata-version rule used (a 2.2.x compiler reads up to 2.3.0) is the one verified in `jda-and-coroutine-bridge.md`, not re-tested. A one-line compile of each dependency under Kotlin 2.2.0 should be the first Phase 1 check.
 - **JDK `HttpClient` decompression and cancellation.** The Javadoc I read does not mention gunzip, and cancellation is best effort. I did not run it. Rejection of the JDK client rests on the missing DNS hook and interceptors, not on decompression.
 - **Rome's real-world tolerance versus `rssreader`.** Not measured; the choice of Rome rests on its incumbency and age. No malformed-feed corpus was run through either. Whether the Dota patch-notes source is RSS/Atom or JSON is not settled here; it decides whether Rome belongs in `bottools-stats` as well as `bottools-plugins`.

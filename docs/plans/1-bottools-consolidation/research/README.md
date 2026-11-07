@@ -6,8 +6,8 @@
   *"BotTools consolidation & MagicBot (tracking)"*.
 - **Committed on:** branch `docs/issue-1-bottools-consolidation`, off `main` @ `b2f2078`, as
   `docs(plans):` commits that reference #1.
-- **Maintained by:** the planner. Each `<question-slug>.md` file beside this one belongs to the
-  researcher who wrote it and is not edited here.
+- **Files:** this README holds the questions, the verification results and the summary. Each
+  `<question-slug>.md` file beside it holds the findings for one question and is not edited here.
 - **Date:** 2026-10-20.
 - **Baselines:**
   - `KotlinBottools` `main` @ `b2f2078`: one Gradle module, version `7.5-SNAPSHOT`, Kotlin
@@ -618,7 +618,7 @@ it with a new system, drop it, or list it as a potential feature after the roadm
 
 ### 1.4 Lenses
 
-Each researcher applies three lenses inside its own question, wherever they bear on it:
+Each findings file applies three lenses inside its own question, wherever they bear on it:
 
 1. **The best systems for the purpose:** how this class of problem is solved well, what mature
    libraries in the same space expose, and which approaches fail at scale.
@@ -651,18 +651,18 @@ Every source is read at its own host wherever the host answers.
 - **Unverified claims.** Every claim that could not be opened at its source is marked
   unverified. Nothing is guessed in its place.
 - **Unfinished questions.** A question left incomplete for that reason is marked
-  **Unfinished — needs a planner re-pass** in this file's Known gaps. The note names the
+  **Unfinished — to be researched again** in this file's Known gaps. The note names the
   unreachable hosts and the decisions and phases that stay provisional. Every document that
   depends on the question carries the same note.
 
 ### 1.6 Verification plan
 
 - **Outside-world claims.** Every findings file ends with its load-bearing claims, each with a
-  verbatim quote, its link and the version or date it applies to. One verifier re-opens every
-  source.
+  verbatim quote, its link and the version or date it applies to. One verification pass
+  re-opens every source.
   - A claim that **fails** leaves the design inputs, and any decision resting on it opens again.
   - A claim that is **unclear** may stay, with its weakness stated wherever it is used.
-- **Claims about these codebases** are spot-checked against the code by the planner.
+- **Claims about these codebases** are spot-checked against the code.
 
 ---
 
@@ -671,7 +671,7 @@ Every source is read at its own host wherever the host answers.
 Every load-bearing claim in the thirteen findings files was opened at its source on 2026-10-20:
 at the pin or version its file names or, for a live page or service, on that date. Two claims
 that this summary rests on directly, P1 and P2 (2.1), were checked the same way. The verdict
-for each claim is in [verifier-report.md](verifier-report.md).
+for each claim is in [verification-report.md](verification-report.md).
 
 | Findings file | Claims | Hold | Unclear | Fail |
 |---|---|---|---|---|
@@ -1852,7 +1852,7 @@ Source: [webtools-consumption](webtools-consumption.md) §2, §3, §6.
 
 ## Known gaps
 
-### Unfinished — needs a planner re-pass
+### Unfinished — to be researched again
 
 1. **The Marvel Rivals community API's pricing and terms (Question 9,
    [game-and-weather-data-sources](game-and-weather-data-sources.md)).**

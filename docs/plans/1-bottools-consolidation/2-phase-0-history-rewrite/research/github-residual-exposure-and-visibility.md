@@ -316,7 +316,7 @@ KotlinBottools' issue text is scanned after the flip; 19 open issues exist.
 - **The BFG project** answers every report of the hidden-ref rejection with the same three facts: the `refs/pull/*`
   refs are synthetic and read-only, the real refs were pushed, and the old data stays reachable through them until
   Support deletes the pull requests or the repository is recreated (`rtyley/bfg-repo-cleaner` issues #36 and #484).
-- **Security researchers** (Neodyme 2024, Truffle Security 2024 and 2025) treat a force-push as not removing anything:
+- **Published security research** (Neodyme 2024, Truffle Security 2024 and 2025) treat a force-push as not removing anything:
   they scan the public activity and event stream for zero-commit pushes and fetch the `before` id; both conclude that
   rotation is the only reliable remedy and that Support is the only removal route.
 - **Mirroring tools on GitLab** delete the hidden refs locally before `git push --mirror`

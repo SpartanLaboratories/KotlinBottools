@@ -397,9 +397,9 @@ Line numbers are those of the planning branch at the time of reading.
 | roadmap Phase 0 (lines 280 to 283) | "Ask GitHub Support" | delete the bullet; add "measure and report what the pull-request refs and cached views keep" |
 | roadmap Phase 0 (line 288) and "Done when" (lines 300, 301) | "after any Support ticket"; "on a fresh mirror with pull-request refs fetched" | no ticket clause; the exit criterion for branches and tags, plus the reported residual |
 | `roadmap.md` line 16 | "off `main` @ <a pre-rewrite id>" | "off `main` before Phase 0 (2026-10-20)" |
-| `impact.md` section 2.1 (lines 84 to 87) | "both left to GitHub Support" | "both remain on GitHub" |
-| `impact.md` section 2.4 (line 175) | "The copies are kept access-restricted" | "kept in a local folder outside every repository" |
-| `impact.md` section 3.1, item 4 (lines 227 to 231) | "the access-restricted location ...; the GitHub Support tickets" | "the local folder for the legacy data copies"; delete the tickets |
+| `consequences.md` section 2.1 (lines 84 to 87) | "both left to GitHub Support" | "both remain on GitHub" |
+| `consequences.md` section 2.4 (line 175) | "The copies are kept access-restricted" | "kept in a local folder outside every repository" |
+| `consequences.md` section 3.1, item 4 (lines 227 to 231) | "the access-restricted location ...; the GitHub Support tickets" | "the local folder for the legacy data copies"; delete the tickets |
 | parent `research/README.md` (lines 1608 to 1610, 1648 to 1661, 1680 to 1684, 1939, 1940) | "kept access-restricted"; "a Support ticket where one applies"; "no pull-request ref reaches a purged blob"; the Support gap | the same replacements |
 | parent `research/bot-repository-history-purge.md`, bottom line and sections 3.3, 6.1, 6.3 steps 2 and 8, 6.5 | the Support ticket, "encrypted or access-restricted", the pruned counts (1, 2, 1, 1, 1) | rewrite in place: ticket removed, counts 2, 2, 2, 1, 2 and 1 for Support |
 | issue #1 body (line 58) | "no secret file remains anywhere in the history of any bot-related repository" | "...in any branch or tag"; old objects stay retrievable by id and through three pull-request refs |
