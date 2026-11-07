@@ -8,8 +8,8 @@
 - **Design inputs:** [`../../architecture.md`](../../architecture.md) §1.3, §11 and §14 unit 0;
   [`../../roadmap.md`](../../roadmap.md) § "Phase 0 — History rewrite";
   [`../../research/bot-repository-history-purge.md`](../../research/bot-repository-history-purge.md).
-- **Maintained by:** the planner. Each `<question-slug>.md` file beside this one belongs to the
-  researcher who wrote it and is not edited here.
+- **Files:** this README holds the questions, the verification results and the summary. Each
+  `<question-slug>.md` file beside it holds the findings for one question and is not edited here.
 - **Date:** 2026-10-20.
 - **Citations:** documents by section, code by symbol, commits by subject. Revisions are named
   by rule (for example "the parent of the commit that deletes `guildData/`"), not by a
@@ -41,10 +41,15 @@ becomes public.
   1. KotlinBottools;
   2. GKB2 and GKB;
   3. BotTools, TrumpBot and Support.
-- **Execution.** The whole phase runs from one Windows 11 machine, through an implementer that
-  follows a written runbook literally.
+- **Execution.** Each unit of the phase is a sub-issue of #2, carried out from one Windows 11
+  machine by its own run, which follows a written plan literally.
   - Every step has a check and a stop condition.
-  - A failing verification stops the run before anything is pushed.
+  - A failing verification stops the run before anything irreversible.
+  - The run does its local work itself. Every write to GitHub, or to a repository's checkout on
+    this machine, is sent as a request that carries the plan's procedure and expected results,
+    and the run verifies it afterwards. Those writes include the pushes, a repository's creation,
+    renames, archiving, visibility and security settings, issue transfers and relationships,
+    labels and comments.
   - The force-pushes and the visibility change need no separate approval step.
 - **No GitHub Support ticket is filed** for any repository. After the rewrite, these stay on
   GitHub and keep the old objects reachable:
@@ -62,10 +67,10 @@ becomes public.
   - TrumpBot `main`.
 
   A manifest of the blob ids to purge is recorded beside the copy, outside every repository.
-- **This working directory.** `%PROJECTS%\KotlinBottools` is the working directory
-  of the running session. It cannot be deleted or renamed, so it is brought onto the rewritten
-  history in place. The TrumpBot clone at `%PROJECTS%\TrumpBot` is deleted and
-  cloned again.
+- **The main working copy.** KotlinBottools' main working copy on this machine is the working
+  directory of the sessions that work on the repository. It cannot be deleted or renamed, so it is
+  brought onto the rewritten history in place. The local TrumpBot clone is deleted and cloned
+  again.
 - **The mirror clones** live in a dedicated workspace outside every project folder. They are
   deleted once the exit tests pass, so only the data copy remains.
 - **No pushes in between.** Nothing is pushed to a repository between its mirror clone and its
@@ -74,9 +79,10 @@ becomes public.
 - **KotlinBottools afterwards:**
   - a root-anchored `.gitignore`;
   - a gitleaks configuration and CI job;
-  - public visibility, with GitHub secret scanning and push protection;
-  - the planning pull request, opened from the rewritten planning branch. No pull request of any
-    kind is opened on KotlinBottools before its rewrite.
+  - public visibility, with GitHub secret scanning and push protection.
+- **The planning documents** reach `main` before the rewrite, through a pull request on the
+  pre-rewrite repository. That repository is kept private once the rewrite is done (§3.9), so the
+  `refs/pull/*` of that pull request, which pin the pre-rewrite history, never become public.
 - **Nothing sensitive in the output.** No secret, member name, guild name or Discord id appears
   in any command output, document, commit message, pull-request text or issue comment.
 
@@ -359,7 +365,7 @@ the new histories, and what the rewrite leaves and touches.
 
 ### 1.4 Lenses
 
-Each researcher works through these, wherever they bear on its question.
+Each findings file works through these, wherever they bear on its question.
 
 1. **Best systems for the purpose:** how organisations that do history purges and secret-scanning
    set-ups well actually run them, and which approaches fail in practice.
@@ -688,7 +694,7 @@ Source: findings 4, §3 and §6.
       plus 1;
     - TrumpBot `main`: 30 plus 1.
   - The destination is `%USERPROFILE%\BotLegacyData`, an ordinary folder under the user profile. By
-    default only the user, SYSTEM and Administrators may open it. Folders at the root of `D:` are not
+    default only the user, SYSTEM and Administrators may open it. Folders at a drive's root are not
     used, because they grant `Authenticated Users` the right to modify.
   - The layout has one subfolder per source, plus `records/`, `manifests/` and a `COPY-VERIFIED`
     marker.
@@ -705,7 +711,7 @@ Source: findings 4, §3 and §6.
   fresh GitHub mirror of GKB2 or BotTools.
 - **Windows settings for the procedures.**
   - `GIT_ASK_YESNO=false` makes Git for Windows' unlink-retry prompt answer "no".
-  - Native programs get mixed-form paths (`C:/...`).
+  - Native programs get mixed-form paths: a drive letter followed by forward slashes.
   - `tar` runs with `--force-local`.
   - **The KotlinBottools project stays open in IntelliJ IDEA for the whole run**, because the session
     that runs Phase 0 works inside that IDE. TrumpBot is not open in it.
@@ -874,7 +880,7 @@ Source: findings 5, §3 and §6.
   - replacing this clone's `.git` with a fresh clone's, because the tracked files the rewrite removes
     would stay behind as untracked files;
   - cleaning TrumpBot's clone in place.
-- **For the data folder:** a folder at the root of `D:`, because it grants `Authenticated Users` the
+- **For the data folder:** a folder at a drive's root, because it grants `Authenticated Users` the
   right to modify.
 - **For citations:** rewriting pre-rewrite ids from `commit-map`. Ten commits have no new id, and a
   new id would again cite a state that GitHub keeps beside the old one.
@@ -889,12 +895,20 @@ pre-rewrite repository stays private.
   1. The rewritten mirror is pushed to a new private repository under a temporary name.
   2. The `1.0.0` milestone and the three custom labels (`type: bug`, `type: feature`,
      `type: tracking`) are created in it.
-  3. Issues #1 to #19 are transferred into it in numeric order. All nineteen are open, and no pull
-     request exists. Each transfer is checked to have landed on its own number.
-  4. Any sub-issue or "blocked by" link that a transfer drops is re-created; §3.6 lists those links.
+  3. Every number the pre-rewrite repository has used is reproduced in it, in numeric order:
+     - an issue, open or closed, is transferred;
+     - a pull request, which cannot be transferred, is reproduced by a closed placeholder issue at
+       the same number, which points to the pull request in the legacy repository.
 
-  Nothing else is created in the new repository before the last transfer, because issues and pull
-  requests share one number sequence. The planning pull request is opened after the transfers.
+     Each step is checked to have landed on its own number. Today issues #1 to #19 are all open
+     and no pull request exists. By the time of the swap, more numbers are in use: the planning
+     documents' pull request, #2's sub-issues, and the landings of the units that run before the
+     swap.
+  4. Any sub-issue or "blocked by" link that a transfer drops is re-created; §3.6 lists the links
+     that exist today.
+
+  Nothing else is created in the new repository before the last number is reproduced, because
+  issues and pull requests share one number sequence.
 - **The swap.**
   - The pre-rewrite repository is renamed `KotlinBottools-legacy`. It stays private and is archived,
     which makes it read-only.
@@ -902,21 +916,24 @@ pre-rewrite repository stays private.
   - It is made public, with secret scanning and push protection.
 
   No repository is deleted.
-- **What the legacy repository keeps.** Its refs stay exactly as they are: `main`, and the planning
-  branch with every commit pushed before the mirror clone. It keeps its milestone and labels, and no
-  issue is left in it. Its objects, activity feed and events stay private, and the pre-rewrite ids
-  cited in documents resolve only there.
+- **What the legacy repository keeps.** Its refs stay exactly as they are at the mirror clone,
+  including the `refs/pull/*` of the pull requests merged before the swap. It keeps its pull
+  requests, milestone and labels, and no issue is left in it. Its objects, activity feed and events
+  stay private, and the pre-rewrite ids cited in documents resolve only there.
 - **What the public repository holds.** Its object store starts empty and holds only the rewritten
   history.
   - No route in §3.4 reaches an old object from it.
   - Its activity feed holds only post-rewrite ids.
   - The pre-rewrite ids in documents resolve to nothing in it, so the documents keep them as dated
     citations.
-- **Links.** The name and the issue numbers stay the same, so these keep resolving:
-  - `KotlinBottools#N` references and issue URLs in MagicBot, WebTools, `SpartanLaboratories/.github`
-    and the documents;
-  - links by branch name, `blob/docs/issue-1-bottools-consolidation/...`, which resolve on the
-    rewritten branch.
+- **Links.** The name and every number stay the same, so `KotlinBottools#N` references and issue
+  URLs keep resolving in MagicBot, WebTools, `SpartanLaboratories/.github` and the documents. A
+  pull request's number leads to its placeholder.
+
+  Links that name the planning branch, `blob/docs/issue-1-bottools-consolidation/...`, stop
+  resolving once that branch is merged and deleted. There are 56 of them: 40 in KotlinBottools'
+  issues, 15 in MagicBot's and 1 in WebTools #55. They are pointed at `main`, where the same
+  documents live before and after the swap.
 - **Settings and access.** The new repository gets the settings the old one has:
   - default branch `main`;
   - issues and projects on, wiki and discussions off;
@@ -925,10 +942,14 @@ pre-rewrite repository stays private.
   - no description, homepage or topics.
 
   The only direct collaborator is the organisation's administrator, and no team has access.
-- **The rehearsal.** Two throwaway private repositories come first. They prove the transfer behaviour:
-  numbers, comments, labels, milestone, and sub-issue and "blocked by" links. If a transfer loses a
-  number or a link, the run stops before KotlinBottools is touched. Because nothing is deleted, the two
-  rehearsal repositories remain afterwards, private and archived.
+- **The rehearsal.** Two throwaway private repositories come first. They prove the transfer
+  behaviour:
+  - numbers, including a placeholder at a pull request's number and a closed issue;
+  - comments, labels and milestone;
+  - sub-issue and "blocked by" links.
+
+  If a transfer loses a number or a link, the run stops before KotlinBottools is touched. Because
+  nothing is deleted, the two rehearsal repositories remain afterwards, private and archived.
 - **This clone.** Its `origin` URL does not change; after the renames it points at the new
   repository. It is realigned by §3.5's procedure. The check of the server's heads before any fetch
   matters here, because while the renames are in progress the name can resolve to the legacy
@@ -942,7 +963,7 @@ The parent documents carry dated callouts recording Phase 0's conditions:
 
 - `architecture.md`: §1.3, §1.4 criterion 6, §11, §14 unit 0, §15 and §16;
 - `roadmap.md`: the header and § "Phase 0 — History rewrite";
-- `impact.md`: §2.1, §2.4 and §3.1 item 4.
+- `consequences.md`: §2.1, §2.4 and §3.1 item 4.
 
 Matching edits are made to issues #1 and #2. The conditions recorded are:
 
@@ -951,7 +972,9 @@ Matching edits are made to issues #1 and #2. The conditions recorded are:
 - the exit criterion is that branches and tags are clean, with the pull-request residual of GKB2 and
   BotTools counted and reported;
 - KotlinBottools is made public as a fresh repository, and the pre-rewrite repository is kept private
-  and archived as `KotlinBottools-legacy`.
+  and archived as `KotlinBottools-legacy`;
+- the planning documents reach `main` before the rewrite, through a pull request on the pre-rewrite
+  repository, so there is no planning pull request after it.
 
 ---
 
@@ -963,30 +986,5 @@ None open.
 
 ## Known gaps
 
-- **The real histories have not been rewritten or scanned.** The first real run confirms what was
-  derived. Each of these is behind its own stop condition:
-  - filter-repo's log lines;
-  - the scan counts;
-  - whether the token regex matches each real token file;
-  - the scan time on TrumpBot and Support.
-- **The CI workflow and the Linux gitleaks binary have not run on GitHub.**
-- **Issue transfers.** Whether a transfer keeps issue numbers and sub-issue and "blocked by" links is
-  undocumented. The rehearsal on two throwaway repositories settles it before KotlinBottools is
-  touched (§3.9).
-- **Default-rule findings in the old repositories' kept Kotlin and Java sources** are unknown until the
-  scans run. A hit there stops the run for a decision.
-- **The privacy gate's name lists** are built from member names as they are stored. A display name
-  stored in another form can be missed.
-- **Two credentials' liveness** is not established: the session cookie and TrumpBot's private key. The
-  bot tokens are dead.
-- **IntelliJ's Local History** holds copies of edited files outside git, which no git operation
-  reaches.
-- **Material lost with the workspace.** Some material is neither a secret nor part of the copied data.
-  It exists nowhere once the workspace is deleted:
-  - `key.txt`;
-  - `WebParseKeys.xml`;
-  - the `services/` polling state;
-  - the `res/` assets;
-  - TrumpBot's data files and binaries;
-  - Support's vendored libraries and natives.
-- **Git 2.56** was released after the procedures were written against 2.55. The run uses 2.55.0.windows.5.
+The phase's known gaps, including what this research could not establish, are kept in
+[`../consequences.md`](../consequences.md) §5.
