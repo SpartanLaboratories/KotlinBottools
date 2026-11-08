@@ -380,11 +380,30 @@ pre.dsl .c{color:var(--muted)} pre.dsl .k{color:var(--server);font-weight:600} p
 .badge{font:10px/1 var(--mono);padding:3px 6px;border-radius:3px;border:1px solid var(--line);white-space:nowrap;color:var(--ink-2)}
 /* a bug is a label, not an outcome: neutral, told by its ▲ and its word (no status colour, GUIDANCE.md §1) */
 .badge.bug::before{content:"▲ ";color:var(--ink-2)}
-/* a tracking issue's chain on the roadmap (GUIDANCE.md §5): units landed of all units, with a thin green bar */
+/* a tracking issue's chain on the roadmap (GUIDANCE.md §5): units landed of all units, and its units as a StepBar on a line of its own under
+   the roadmap item (dashboards-skill/54) */
 .chainprog{display:inline-flex;align-items:center;gap:6px;font:11px var(--mono);color:var(--ink-2);white-space:nowrap}
-.cbar{display:inline-block;width:60px;height:5px;border-radius:3px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;vertical-align:middle}
-.cbar i{display:block;height:100%;background:var(--good)}
-.legend .cbar{width:40px}
+/* The StepBar (nomenclature/ui.md, StepBar; dashboards-skill/54): the steps of a sequence in order, each a chevron with its name inside,
+   done, current or to come. An ordered list, the current step aria-current="step", each step's state said in words to a screen reader
+   (.sb-st). It stands on a line of its own and wraps inside itself at phone width, never widening the board; a long name wraps inside its
+   chevron. Done: solid, the strong neutral with a faint wash; current: solid, in ink and bold; to come: dashed and muted. Each chevron is
+   its list item clipped to the shape, its edge (::before) and its fill (::after) layered inside it, so a dashed edge and a mark follow the
+   chevron; each nests into the notch of the next. The same rules on every dashboard type that draws one. */
+.stepbar{list-style:none;margin:6px 0 2px;padding:0 0 0 7px;display:flex;flex-wrap:wrap;gap:4px 0;min-width:0;max-width:100%}
+.stepbar>li{--sb-edge:var(--ink-2);--sb-fill:color-mix(in srgb,var(--ink-2) 14%,var(--surface));--sb-w:1.5px;position:relative;z-index:0;display:flex;align-items:center;min-width:0;max-width:calc(100% + 7px);min-height:26px;margin-left:-7px;padding:4px 15px 4px 19px;font:11.5px/1.25 var(--mono);color:var(--ink);overflow-wrap:anywhere;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%,10px 50%)}
+.stepbar>li:first-child{padding-left:11px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%)}
+.stepbar>li::before,.stepbar>li::after{content:"";position:absolute;inset:0;z-index:-2;background:var(--sb-edge)}
+.stepbar>li::after{z-index:-1;inset:var(--sb-w);background:var(--sb-fill);clip-path:polygon(1px 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,1px 100%,10.5px 50%)}
+.stepbar>li:first-child::after{clip-path:polygon(0 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,0 100%)}
+.stepbar>li.cur{--sb-edge:var(--ink);--sb-fill:color-mix(in srgb,var(--ink) 7%,var(--surface));--sb-w:2px;font-weight:700}
+.stepbar>li.todo{--sb-edge:repeating-linear-gradient(90deg,var(--muted) 0 5px,transparent 5px 9px);--sb-fill:var(--surface);color:var(--muted)}
+.stepbar .sb-st{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.legend i.sbk{position:relative;z-index:0;width:22px;height:12px;border:0;border-radius:0;background:none;--sb-edge:var(--ink-2);--sb-fill:color-mix(in srgb,var(--ink-2) 14%,var(--surface));--sb-w:1.5px;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 50%,calc(100% - 6px) 100%,0 100%,6px 50%)}
+.legend i.sbk::before,.legend i.sbk::after{content:"";position:absolute;inset:0;z-index:-2;background:var(--sb-edge)}
+.legend i.sbk::after{z-index:-1;inset:var(--sb-w);background:var(--sb-fill);clip-path:polygon(1px 0,calc(100% - 5px) 0,100% 50%,calc(100% - 5px) 100%,1px 100%,6.5px 50%)}
+.legend i.sbk.cur{--sb-edge:var(--ink);--sb-fill:color-mix(in srgb,var(--ink) 7%,var(--surface));--sb-w:2px}
+.legend i.sbk.todo{--sb-edge:repeating-linear-gradient(90deg,var(--muted) 0 3px,transparent 3px 5px);--sb-fill:var(--surface)}
+.roadmap>li>.stepbar{margin:5px 0 3px 14px}
 .legend i.swk{width:10px;height:10px;border:0;border-radius:2px;background:var(--c,var(--muted))}
 .legend i.barsk{height:6px;border:0;border-radius:0 3px 3px 0;background:var(--ink-2)}
 .legend i.gapk{border:0;background:none;width:auto;height:auto;font-style:italic;color:var(--muted)}
@@ -647,9 +666,9 @@ footer code{color:var(--ink-2)}
   <div class="guarantee-cards">
     <div class="guarantee-card"><h3>Failure model</h3>
       <table class="gtbl"><tbody>
-        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
@@ -660,9 +679,9 @@ footer code{color:var(--ink-2)}
       </tbody></table></div>
     <div class="guarantee-card"><h3>Extension points</h3>
       <table class="gtbl"><tbody>
-        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
@@ -686,9 +705,9 @@ footer code{color:var(--ink-2)}
       </tbody></table></div></div>
     <div class="guarantee-card"><h3>Compatibility &amp; versioning</h3>
       <table class="gtbl"><tbody>
-        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
@@ -699,9 +718,9 @@ footer code{color:var(--ink-2)}
       </tbody></table></div>
     <div class="guarantee-card"><h3>Thread safety</h3>
       <table class="gtbl"><tbody>
-        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
@@ -712,9 +731,9 @@ footer code{color:var(--ink-2)}
       </tbody></table></div>
     <div class="guarantee-card"><h3>Resources to close</h3>
       <table class="gtbl"><tbody>
-        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
@@ -725,9 +744,9 @@ footer code{color:var(--ink-2)}
       </tbody></table></div>
     <div class="guarantee-card"><h3>On your classpath</h3>
       <table class="gtbl"><tbody>
-        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
@@ -742,11 +761,11 @@ footer code{color:var(--ink-2)}
 <section class="context">
   <h2>Context</h2>
   <div class="cards">
-    <div class="card"><h3>Roadmap <small>1 item · 18 issues · 2026-11-07</small></h3>
+    <div class="card"><h3>Roadmap <small>2 items · 26 issues · 2026-11-08</small></h3>
       <ol class="roadmap">
-        <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/1" target="_blank" rel="noopener">#1</a><span><a data-board="1">BotTools consolidation &amp; MagicBot (tracking)</a> <small>tracking issue · its phases in the <a href="../plans/1-bottools-consolidation/roadmap.md">roadmap</a></small> <span class="chainprog" data-landed="0" data-total="18"></span></span><span class="tags"><span class="badge">open</span></span></div>
+        <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/1" target="_blank" rel="noopener">#1</a><span><a data-board="1">BotTools consolidation &amp; MagicBot (tracking)</a> <small>tracking issue · its phases in the <a href="../plans/1-bottools-consolidation/roadmap.md">roadmap</a></small> <span class="chainprog" data-landed="0" data-total="18"><span data-unit="current">Phase 0</span><span data-unit="todo">Phase 1</span><span data-unit="todo">Phase 2</span><span data-unit="todo">Phase 3</span><span data-unit="todo">Phase 4</span><span data-unit="todo">Phase 5</span><span data-unit="todo">Phase 6a</span><span data-unit="todo">Phase 6b</span><span data-unit="todo">Phase 7</span><span data-unit="todo">Phase 8</span><span data-unit="todo">Phase 9</span><span data-unit="todo">Phase 10</span><span data-unit="todo">Phase 11</span><span data-unit="todo">Phase 12</span><span data-unit="todo">Phase 17</span><span data-unit="todo">Phase 18</span><span data-unit="todo">Phase 19</span><span data-unit="todo">Phase 23</span></span></span><span class="tags"><span class="badge">open</span></span></div>
           <ul class="issues">
-            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/2" target="_blank" rel="noopener">#2</a><span><a data-board="2">Phase 0 — History rewrite: purge secrets and data from the six bot repositories</a> <small>tracking issue · its plan lands with this board · eight units, filed as sub-issues once it lands</small> <span class="chainprog" data-landed="0" data-total="8"></span></span><span class="tags"><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/2" target="_blank" rel="noopener">#2</a><span><a data-board="2">Phase 0 — History rewrite: purge secrets and data from the six bot repositories</a> <small>tracking issue · its eight units are the next roadmap item</small></span><span class="tags"><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/3" target="_blank" rel="noopener">#3</a><span><a data-board="3">Phase 1 — Build skeleton: multi-module build, conventions, CI and repository scaffolding</a></span><span class="tags"><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/4" target="_blank" rel="noopener">#4</a><span><a data-board="4">Phase 2 — Core foundation: ids, failures, settings, storage ports and configuration</a></span><span class="tags"><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/5" target="_blank" rel="noopener">#5</a><span><a data-board="5">Phase 3 — Command model: definitions, validation, typed invocation, dispatch and help</a></span><span class="tags"><span class="badge">open</span></span></li>
@@ -764,16 +783,27 @@ footer code{color:var(--ink-2)}
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/17" target="_blank" rel="noopener">#17</a><span><a data-board="17">Phase 18 — Published test fixtures for plugin and provider authors (Experimental)</a></span><span class="tags"><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/18" target="_blank" rel="noopener">#18</a><span><a data-board="18">Phase 19 — Poker plugin: playable Texas hold 'em (Experimental)</a></span><span class="tags"><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/19" target="_blank" rel="noopener">#19</a><span><a data-board="19">Phase 23 — Desktop manager on SpartanUI and SpartanGraphics (unscheduled)</a></span><span class="tags"><span class="badge">open</span></span></li>
+          </ul></li>
+        <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/2" target="_blank" rel="noopener">#2</a><span><a data-board="2">Phase 0 — History rewrite: purge secrets and data from the six bot repositories</a> <small>tracking issue · its units in landing order</small> <span class="chainprog" data-landed="0" data-total="8"><span data-unit="current">Preparation</span><span data-unit="todo">Transfer rehearsal</span><span data-unit="todo">KotlinBottools rewrite and swap</span><span data-unit="todo">Repository hygiene</span><span data-unit="todo">Make KotlinBottools public</span><span data-unit="todo">Rewrite GKB2 and GKB</span><span data-unit="todo">Rewrite BotTools, TrumpBot and Support</span><span data-unit="todo">Residual report and cleanup</span></span></span><span class="tags"><span class="badge">open</span></span></div>
+          <ul class="issues">
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/21" target="_blank" rel="noopener">#21</a><span><a data-board="21">Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests</a></span><span class="tags"><span class="badge" data-sys="toolchain">toolchain</span><span class="badge" data-sys="backups-and-manifests">backups-and-manifests</span><span class="badge" data-sys="legacy-data-copy">legacy-data-copy</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/22" target="_blank" rel="noopener">#22</a><span><a data-board="22">Phase 0 · 2 — Transfer rehearsal on two throwaway repositories</a></span><span class="tags"><span class="badge" data-sys="repository-swap">repository-swap</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/23" target="_blank" rel="noopener">#23</a><span><a data-board="23">Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment</a></span><span class="tags"><span class="badge" data-sys="backups-and-manifests">backups-and-manifests</span><span class="badge" data-sys="rewrite-pipeline">rewrite-pipeline</span><span class="badge" data-sys="privacy-gate">privacy-gate</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="repository-swap">repository-swap</span><span class="badge" data-sys="clone-realignment">clone-realignment</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/24" target="_blank" rel="noopener">#24</a><span><a data-board="24">Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG</a></span><span class="tags"><span class="badge" data-sys="privacy-gate">privacy-gate</span><span class="badge" data-sys="repository-hygiene">repository-hygiene</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/25" target="_blank" rel="noopener">#25</a><span><a data-board="25">Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection</a></span><span class="tags"><span class="badge" data-sys="privacy-gate">privacy-gate</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="repository-swap">repository-swap</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/26" target="_blank" rel="noopener">#26</a><span><a data-board="26">Phase 0 · 6 — Rewrite GKB2 and GKB</a></span><span class="tags"><span class="badge" data-sys="rewrite-pipeline">rewrite-pipeline</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/27" target="_blank" rel="noopener">#27</a><span><a data-board="27">Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone</a></span><span class="tags"><span class="badge" data-sys="rewrite-pipeline">rewrite-pipeline</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="clone-realignment">clone-realignment</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/28" target="_blank" rel="noopener">#28</a><span><a data-board="28">Phase 0 · 8 — Residual-exposure report and workspace cleanup</a></span><span class="tags"><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="cleanup">cleanup</span><span class="badge">open</span></span></li>
           </ul>
-          <p class="more">#2's units in landing order, not filed yet: <span class="badge planned">planned</span> 1 preparation → 2 transfer-rehearsal → 3 kotlinbottools-rewrite-and-swap → 4 repository-hygiene → 5 kotlinbottools-publish, and from 3: 6 gkb2-gkb-rewrite → 7 bottools-trumpbot-support-rewrite → 8 residual-report-and-cleanup (<a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md">architecture</a> §15). Its ten systems are on the Systems tab, all planned.</p></li>
+          <p class="more">Units 3 to 5 follow unit 2 in that order; units 6 and 7 follow unit 3, in that order, and unit 8 follows units 5 and 7 (<a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md">architecture</a> §15). The ten systems on the Systems tab are all planned: <a data-issue="21">#21</a> set up the toolchain, the backups and manifests and the legacy data copy on the working machine, outside every repository, so the repository holds no code of them and they stay drawn dashed.</p></li>
       </ol></div>
-    <div class="card"><h3>Unscheduled issues <small>0 open · 2026-11-07</small></h3>
-      <p class="more">None: every open issue is #1 or one of its sub-issues.</p></div>
+    <div class="card"><h3>Unscheduled issues <small>1 open · 2026-11-08</small></h3>
+      <ul class="issues"><li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/29" target="_blank" rel="noopener">#29</a><span><a data-board="29">Adopt the organization's Dokka and project site standard</a></span><span class="tags"><span class="badge" data-sys="kotlinbottools">kotlinbottools</span><span class="badge">open</span></span></li></ul></div>
     <div class="card"><h3>Plans and documents</h3>
       <ul class="docs">
         <li><a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md">#2 architecture</a> · <a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/consequences.md">consequences</a> · <a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/research/README.md">research</a> — the ten planned systems drawn dashed here (§6, §7, §9, §10) and the eight units (§15)</li>
         <li><a href="../plans/1-bottools-consolidation/architecture.md">#1 architecture</a> · <a href="../plans/1-bottools-consolidation/roadmap.md">roadmap</a> · <a href="../plans/1-bottools-consolidation/consequences.md">consequences</a> — the consolidation's design and its phases</li>
-        <li><a data-workboard>Repository work board</a> — every planning and development run · <a data-issue="2">#2</a> tracking board — the eight units of the history rewrite</li>
+        <li><a data-workboard>Repository work board</a> — every planning and development run · <a data-issue="2">#2</a> tracking board — the eight units of the history rewrite · <a data-issue="21">#21</a> issue board — the preparation unit, which last amended this board</li>
         <li><a href="../../README.md">README</a> — features, setup, the command system and the data access</li>
         <li><a href="systems.json"><code>systems.json</code></a> — the registry this board is built from · <a href="workspace.dsl"><code>workspace.dsl</code></a> — the C4 model in the C4 tab</li>
       </ul></div>
@@ -787,74 +817,74 @@ footer code{color:var(--ink-2)}
 <script type="application/json" id="systems">
 {
   "repo": "SpartanLaboratories/KotlinBottools",
-  "updated": "2026-11-07",
+  "updated": "2026-11-08",
   "systems": [
     {"slug": "kotlinbottools", "name": "KotlinBottools", "kind": "repo", "parent": null, "status": "built",
      "function": "A Kotlin Discord bot framework on JDA: hierarchical text and slash commands, XML-backed guild and member data, event responders and polling services, built by one Gradle build at 7.5-SNAPSHOT.",
      "paths": ["."], "version": null,
-     "asIs": {"ref": "docs/issue-1-bottools-consolidation", "sha": "996fe5c", "date": "2026-11-07T07:50:26Z"},
-     "lastAmended": {"issue": 2, "sha": "996fe5c"},
+     "asIs": {"ref": "chore/issue-21-preparation", "sha": "a12958a", "date": "2026-11-08T22:58:50Z"},
+     "lastAmended": {"issue": 21, "sha": "a12958a"},
      "board": "index.html", "dsl": "workspace.dsl"},
 
     {"slug": "toolchain", "name": "Toolchain", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Install, verify and pin every tool, and prove each check is not blind before it is trusted.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.1", "placement": "WS/tools and the user-scheme pip install, outside every repository",
-                   "units": [{"unit": 1, "slug": "preparation"}]},
+                   "units": [{"unit": 1, "slug": "preparation", "subIssue": 21}]},
      "c4": {"workspace.dsl": "kbt.toolchain"}},
     {"slug": "backups-and-manifests", "name": "Backups and manifests", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Take one untouched mirror per repository and derive from it everything the rewrite is judged against.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.2", "placement": "WS/backup and DATA/manifests, outside every repository",
-                   "units": [{"unit": 1, "slug": "preparation"}, {"unit": 3, "slug": "kotlinbottools-rewrite-and-swap"}]},
+                   "units": [{"unit": 1, "slug": "preparation", "subIssue": 21}, {"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}]},
      "c4": {"workspace.dsl": "kbt.backups"}},
     {"slug": "legacy-data-copy", "name": "Legacy data copy", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Preserve BotData.xml and guildData/ byte-exactly from three revisions before anything is rewritten.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.3", "placement": "DATA, outside every repository",
-                   "units": [{"unit": 1, "slug": "preparation"}]},
+                   "units": [{"unit": 1, "slug": "preparation", "subIssue": 21}]},
      "c4": {"workspace.dsl": "kbt.dataCopy"}},
     {"slug": "rewrite-pipeline", "name": "Rewrite pipeline", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Turn one backup-mirrored repository into a pushed, proven, rewritten repository, or stop before its push.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.4", "placement": "WS/mirror, WS/fresh and DATA/rewrite, outside every repository",
-                   "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap"}, {"unit": 6, "slug": "gkb2-gkb-rewrite"}, {"unit": 7, "slug": "bottools-trumpbot-support-rewrite"}]},
+                   "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 6, "slug": "gkb2-gkb-rewrite", "subIssue": 26}, {"unit": 7, "slug": "bottools-trumpbot-support-rewrite", "subIssue": 27}]},
      "c4": {"workspace.dsl": "kbt.pipeline"}},
     {"slug": "privacy-gate", "name": "Privacy gate and id-reference check", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Prove, by count, that nothing that becomes public with KotlinBottools names a guild, a member or a legacy id, and that nothing new cites a pre-rewrite id.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.5", "placement": "WS/tools and DATA/run/gate, outside every repository",
-                   "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap"}, {"unit": 4, "slug": "repository-hygiene"}, {"unit": 5, "slug": "kotlinbottools-publish"}]},
+                   "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 4, "slug": "repository-hygiene", "subIssue": 24}, {"unit": 5, "slug": "kotlinbottools-publish", "subIssue": 25}]},
      "c4": {"workspace.dsl": "kbt.gate"}},
     {"slug": "residual-exposure", "name": "Residual-exposure measurement", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Measure what GitHub still serves of each old history and report it in counts.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.6", "placement": "DATA/rewrite, outside every repository",
-                   "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap"}, {"unit": 5, "slug": "kotlinbottools-publish"}, {"unit": 6, "slug": "gkb2-gkb-rewrite"}, {"unit": 7, "slug": "bottools-trumpbot-support-rewrite"}, {"unit": 8, "slug": "residual-report-and-cleanup"}]},
+                   "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 5, "slug": "kotlinbottools-publish", "subIssue": 25}, {"unit": 6, "slug": "gkb2-gkb-rewrite", "subIssue": 26}, {"unit": 7, "slug": "bottools-trumpbot-support-rewrite", "subIssue": 27}, {"unit": 8, "slug": "residual-report-and-cleanup", "subIssue": 28}]},
      "c4": {"workspace.dsl": "kbt.residual"}},
     {"slug": "cleanup", "name": "Cleanup", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Leave the machine with the data folder and records, the two realigned clones, and nothing else of the phase.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.7", "placement": "WS and DATA, outside every repository",
-                   "units": [{"unit": 8, "slug": "residual-report-and-cleanup"}]},
+                   "units": [{"unit": 8, "slug": "residual-report-and-cleanup", "subIssue": 28}]},
      "c4": {"workspace.dsl": "kbt.cleanup"}},
     {"slug": "repository-swap", "name": "Repository swap", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Make the rewritten KotlinBottools public as a fresh repository without losing a number or a link.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "7", "placement": "GitHub; DATA/run/swap and DATA/run/rehearsal",
-                   "units": [{"unit": 2, "slug": "transfer-rehearsal"}, {"unit": 3, "slug": "kotlinbottools-rewrite-and-swap"}, {"unit": 5, "slug": "kotlinbottools-publish"}]},
+                   "units": [{"unit": 2, "slug": "transfer-rehearsal", "subIssue": 22}, {"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 5, "slug": "kotlinbottools-publish", "subIssue": 25}]},
      "c4": {"workspace.dsl": "kbt.swap"}},
     {"slug": "clone-realignment", "name": "Clone realignment", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Bring this working directory onto the rewritten history in place, so that no push from it can carry old history, and replace the TrumpBot clone with a fresh one at the same path.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "9", "placement": "this working directory, the local TrumpBot clone and DATA/run/realign",
-                   "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap"}, {"unit": 7, "slug": "bottools-trumpbot-support-rewrite"}]},
+                   "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 7, "slug": "bottools-trumpbot-support-rewrite", "subIssue": 27}]},
      "c4": {"workspace.dsl": "kbt.realign"}},
     {"slug": "repository-hygiene", "name": "Repository hygiene", "kind": "system", "parent": "kotlinbottools", "status": "planned",
      "function": "Author the in-repo files and the README and changelog edits that land on main through their unit's pull request: a root-anchored .gitignore, .gitleaks.toml, and the secret-scan workflow with its scan wrapper.",
      "paths": [".gitleaks.toml", ".github/scripts/secret_scan.py", ".github/workflows/secret-scan.yml"],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "10", "placement": ".gitignore, .gitleaks.toml, .github/scripts/secret_scan.py, .github/workflows/secret-scan.yml, README.md, CHANGELOG.md",
-                   "units": [{"unit": 4, "slug": "repository-hygiene"}]},
+                   "units": [{"unit": 4, "slug": "repository-hygiene", "subIssue": 24}]},
      "c4": {"workspace.dsl": "kbt.hygiene"}}
   ]
 }
@@ -866,16 +896,16 @@ footer code{color:var(--ink-2)}
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "docs/issue-1-bottools-consolidation", "sha": "996fe5c", "date": "2026-11-07T07:50:26Z"},
-  "lastAmended": {"issue": 2, "title": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories", "sha": "996fe5c"},
-  "written": {"sha": "996fe5c"}
+  "asIs": {"ref": "chore/issue-21-preparation", "sha": "a12958a", "date": "2026-11-08T22:58:50Z"},
+  "lastAmended": {"issue": 21, "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests", "sha": "a12958a"},
+  "written": {"sha": "a12958a"}
 }
 </script>
 
 <!-- A verbatim copy of workspace.dsl (scripts/embed.js … dsl). -->
 <script type="text/plain" id="dsl">
 // KotlinBottools — C4 model as code (Structurizr DSL): the repository's systems and how they interact. Source of truth for docs/dashboards/index.html.
-// As-is at KotlinBottools docs/issue-1-bottools-consolidation 996fe5c (2026-11-07): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture, every one planned and drawn dashed. Code is authoritative on any conflict.
+// As-is at KotlinBottools chore/issue-21-preparation a12958a (2026-11-08): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture, every one planned and drawn dashed. Code is authoritative on any conflict.
 workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the planned systems that purge the bot repositories' histories before KotlinBottools is made public." {
 
     !identifiers hierarchical
@@ -979,7 +1009,7 @@ const REPO="https://github.com/"+REG.repo;
    and the title opens the board, written <a data-board="N">title</a> by hand, plain text while the issue has none. A lone #n opens
    the board when one exists and the GitHub issue otherwise: ilink(n), or <a data-issue="N">#N</a> by hand. linkIssues() resolves
    the hand-written ones at load. */
-const BOARDS={"2":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html"}; // fill: issue number → its issue board relative to this board, on this one line, e.g. {"38":"../../plans/38-slug/dashboard.html"}
+const BOARDS={"2":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html","21":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation/dashboard.html"}; // fill: issue number → its issue board relative to this board, on this one line, e.g. {"38":"../../plans/38-slug/dashboard.html"}
 /* the newest board of each issue on this machine (plan/RULES.md §1, "The newest board on this machine"): docs/plans/.live/boards.js, beside the
    live marker, which board.js --live writes in every checkout; opened from disk, an issue's link opens it (a run in flight in a worktree,
    a landed issue's live view copy) before BOARDS, the boards as committed; a published copy has no marker */
@@ -1649,11 +1679,24 @@ renderState();
 /* ---------- The Guarantees' and the Context's legends (GUIDANCE.md §2) ----------
    Generated from what each section draws, so a hand-written guarantee card or card needs no legend of its own: the system swatches present, a
    planned (dashed, faded) row, a gap, the one neutral series of the test-level bars, the badges and their meaning, a tracking issue's
-   chain bar. A section that draws no encoding shows no legend. A tracking issue's chain, written <span class="chainprog"
-   data-landed="n" data-total="m"></span>, is drawn here: "chain n of m landed" and its bar. */
+   chain's StepBar. A section that draws no encoding shows no legend. */
+/* A tracking issue's chain on the roadmap (dashboards-skill/54; nomenclature/ui.md, StepBar), written <span class="chainprog"
+   data-landed="n" data-total="m"> holding one <span data-unit="done|current|todo">its name</span> per unit in landing order: drawn
+   "chain n of m landed" in its place and, on a line of its own under the roadmap item, a StepBar, one chevron per unit with the unit's name
+   inside, done (landed), current (in progress) or to come. A state board draws no work in progress, so the current unit carries no mark.
+   An ordered list, the current units aria-current="step", each state said in words to a screen reader. A chain written before the units
+   (data-landed and data-total alone) is drawn with its units numbered. */
+const SB_STATE={done:"landed",cur:"in progress",todo:"to come"};
+function chainBars(){ document.querySelectorAll(".chainprog[data-total]").forEach(e=>{ if(e.dataset.drawn) return; e.dataset.drawn="1";
+  const n=+e.dataset.landed||0, m=+e.dataset.total||0, named=[...e.querySelectorAll("[data-unit]")].map(u=>({html:u.innerHTML.trim(),st:({done:"done",landed:"done",current:"cur"})[u.dataset.unit]||"todo"}));
+  const us=named.length?named:Array.from({length:m},(x,k)=>({html:`unit ${k+1}`,st:k<n?"done":"todo"}));
+  e.textContent=`chain ${n} of ${m} landed`;
+  const ri=e.closest(".ri"), host=ri&&ri.parentElement; if(!host||!us.length) return;
+  const num=(ri.querySelector("a")||{}).textContent||"", bar=document.createElement("ol"); bar.className="stepbar"; bar.setAttribute("aria-label",`${num?num+": ":""}its units in landing order`);
+  bar.innerHTML=us.map(u=>`<li class="${u.st}"${u.st==="cur"?' aria-current="step"':""}>${u.html}<span class="sb-st">, ${SB_STATE[u.st]}</span></li>`).join("");
+  ri.after(bar); }); }
 function sectionKeys(){
-  document.querySelectorAll(".chainprog[data-total]").forEach(e=>{ const n=+e.dataset.landed||0, m=+e.dataset.total||0, pct=m?Math.round(100*n/m):0;
-    e.innerHTML=`chain ${n} of ${m} landed <span class="cbar" role="img" aria-label="${n} of ${plural(m,"unit")} landed"><i style="width:${pct}%"></i></span>`; });
+  chainBars();
   const put=(sec,id,entries)=>{ if(!sec) return; let k=document.getElementById(id); const html=entries.filter(Boolean).join("");
     if(!html){ if(k) k.remove(); return; } if(!k){ k=document.createElement("div"); k.className="legend"; k.id=id; sec.appendChild(k); } k.innerHTML=html; };
   const G=document.querySelector("section.guarantees"), C=document.querySelector("section.context"), has=(s,q)=>!!(s&&s.querySelector(q));
@@ -1669,7 +1712,8 @@ function sectionKeys(){
     states.length?`<span>${states.map(s=>`<span class="badge">${esc(s)}</span>`).join(" ")} the issue's state on the tracker</span>`:"",
     has(C,".badge.bug")?`<span><span class="badge bug">bug</span>labelled a bug on the tracker</span>`:"",
     has(C,".badge.planned")?`<span><span class="badge planned">planned</span>dashed: planned, not started</span>`:"",
-    has(C,".chainprog")?`<span><span class="cbar"><i style="width:40%"></i></span>a tracking issue's chain: units landed of all units</span>`:""]);
+    ...(()=>{ const st=new Set(C?[...C.querySelectorAll(".stepbar>li")].map(l=>["done","cur"].find(k=>l.classList.contains(k))||"todo"):[]);
+      return [st.has("done")?`<span><i class="sbk"></i>a tracking issue's unit, in landing order: landed</span>`:"",st.has("cur")?`<span><i class="sbk cur"></i>bold: a unit in progress</span>`:"",st.has("todo")?`<span><i class="sbk todo"></i>dashed: a unit to come</span>`:""]; })()]);
 }
 sectionKeys();
 

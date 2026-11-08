@@ -157,6 +157,26 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .steps li.todo .dot{background:none;border:2px dashed var(--muted)}
 .steps li.cur{color:var(--ink);font-weight:700}
 .steps li.cur .dot{background:var(--accent);border-color:var(--accent)}
+/* The StepBar (nomenclature/ui.md, StepBar; dashboards-skill/54): the steps of a sequence in order, each a chevron with its name inside,
+   done, current or to come. An ordered list, the current step aria-current="step", each step's state said in words to a screen reader
+   (.sb-st). It stands on a line of its own and wraps inside itself at phone width, never widening the board; a long name wraps inside its
+   chevron. Done: solid, the strong neutral with a faint wash; current: solid, in ink and bold; to come: dashed and muted. Each chevron is
+   its list item clipped to the shape, its edge (::before) and its fill (::after) layered inside it, so a dashed edge and a mark follow the
+   chevron; each nests into the notch of the next. The same rules on every dashboard type that draws one. */
+.stepbar{list-style:none;margin:6px 0 2px;padding:0 0 0 7px;display:flex;flex-wrap:wrap;gap:4px 0;min-width:0;max-width:100%}
+.stepbar>li{--sb-edge:var(--ink-2);--sb-fill:color-mix(in srgb,var(--ink-2) 14%,var(--surface));--sb-w:1.5px;position:relative;z-index:0;display:flex;align-items:center;min-width:0;max-width:calc(100% + 7px);min-height:26px;margin-left:-7px;padding:4px 15px 4px 19px;font:11.5px/1.25 var(--mono);color:var(--ink);overflow-wrap:anywhere;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%,10px 50%)}
+.stepbar>li:first-child{padding-left:11px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%)}
+.stepbar>li::before,.stepbar>li::after{content:"";position:absolute;inset:0;z-index:-2;background:var(--sb-edge)}
+.stepbar>li::after{z-index:-1;inset:var(--sb-w);background:var(--sb-fill);clip-path:polygon(1px 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,1px 100%,10.5px 50%)}
+.stepbar>li:first-child::after{clip-path:polygon(0 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,0 100%)}
+.stepbar>li.cur{--sb-edge:var(--ink);--sb-fill:color-mix(in srgb,var(--ink) 7%,var(--surface));--sb-w:2px;font-weight:700}
+.stepbar>li.todo{--sb-edge:repeating-linear-gradient(90deg,var(--muted) 0 5px,transparent 5px 9px);--sb-fill:var(--surface);color:var(--muted)}
+.stepbar .sb-st{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.legend i.sbk{position:relative;z-index:0;width:22px;height:12px;border:0;border-radius:0;background:none;--sb-edge:var(--ink-2);--sb-fill:color-mix(in srgb,var(--ink-2) 14%,var(--surface));--sb-w:1.5px;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 50%,calc(100% - 6px) 100%,0 100%,6px 50%)}
+.legend i.sbk::before,.legend i.sbk::after{content:"";position:absolute;inset:0;z-index:-2;background:var(--sb-edge)}
+.legend i.sbk::after{z-index:-1;inset:var(--sb-w);background:var(--sb-fill);clip-path:polygon(1px 0,calc(100% - 5px) 0,100% 50%,calc(100% - 5px) 100%,1px 100%,6.5px 50%)}
+.legend i.sbk.cur{--sb-edge:var(--ink);--sb-fill:color-mix(in srgb,var(--ink) 7%,var(--surface));--sb-w:2px}
+.legend i.sbk.todo{--sb-edge:repeating-linear-gradient(90deg,var(--muted) 0 3px,transparent 3px 5px);--sb-fill:var(--surface)}
 .chain{list-style:none;margin:4px 0 2px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .chain li a,.chain li span.u{display:inline-flex;align-items:center;gap:5px;font:11.5px var(--mono);padding:3px 7px;border:1px solid var(--line);border-left:4px solid var(--c,var(--muted));border-radius:4px;background:var(--surface);text-decoration:none;color:var(--ink-2)}
 .chain li.pending a,.chain li.pending span.u{border-style:dashed;border-left-style:solid}
@@ -218,6 +238,7 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .run{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font:11px var(--mono);color:var(--muted)}
 .inspector .run{margin:0 0 4px}
 .inspector .steps{margin:6px 0 4px}
+.inspector .stepbar{margin:6px 0 4px}
 /* An issue board's strip and its step panel (plan/RULES.md §3, "The step panel"): the strip on the left half, the panel breaking the
    current step down on the right; one column below 940 px. The legend runs under both. A board that has landed or was cancelled
    has no current step and keeps the strip across the row. */
@@ -261,14 +282,10 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .sp-pass small{display:block;font:11px var(--mono);color:var(--ink-2);margin-top:3px}
 .sp p.sp-when{font:11px var(--mono);color:var(--muted);margin:0 0 4px}
 .sp-facts{margin-top:10px}
-/* Finished steps (plan/RULES.md §3, "Finished steps"): a finished step's dot on the strip is a button that shows the step in the panel;
-   the one shown is ringed in ink, never the accent (which marks the work in progress), and the panel opens with a line saying what it
-   shows and the way back. A board that has landed shows the picked step beside its landing. */
-.steps li>.stepbtn{appearance:none;display:inline-flex;align-items:center;font:inherit;color:inherit;background:none;border:0;padding:2px 3px;margin:-2px -3px;border-radius:4px;cursor:pointer;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
-.steps li>.stepbtn:hover{text-decoration-color:var(--ink)}
-.steps li.sel>.stepbtn{color:var(--ink);font-weight:700;text-decoration-color:var(--ink)}
-.steps li.sel .dot{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--ink)}
-.legend i.node.sel{box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--ink)}
+/* Finished steps (plan/RULES.md §3, "Finished steps"): a finished step's chevron on the strip holds a button that shows the step in the
+   panel; the one shown is ringed in ink, never the accent (which marks the work in progress), and the panel opens with a line saying what
+   it shows and the way back. A board that has landed shows the picked step beside its landing. The strip is a StepBar: its buttons' and
+   its ink Ring's rules stand with the StepBar's marks (dashboards-skill/54). */
 .sp-view{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;justify-content:space-between;margin:0 0 8px;padding:0 0 6px;border-bottom:1px solid var(--hair);font:11.5px var(--mono);color:var(--ink-2)}
 .sp-view b{color:var(--ink)}
 .sp-back{appearance:none;font:600 11px/1 var(--mono);padding:4px 9px;border:1px solid var(--ink-2);border-radius:10px;background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
@@ -301,6 +318,23 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
   .fullpulse{box-shadow:inset 0 0 0 2px var(--accent),inset 0 0 14px 4px color-mix(in srgb,var(--accent) 40%,transparent)}
   .col-fullpulse{box-shadow:inset 0 0 0 1.5px var(--accent),inset 0 0 9px 2px color-mix(in srgb,var(--accent) 26%,transparent)}
   .steps li.cur.fullpulse .dot{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent),0 0 8px 3px color-mix(in srgb,var(--accent) 45%,transparent)}}
+/* The StepBar's marks (dashboards-skill/54; GUIDANCE.md §1): the current step at work carries the FullPulse, its edge the solid accent
+   Ring and its fill the accent wash breathing; while its run waits on you, the Ring alone, still (.held); under reduced motion the wash
+   holds at its middle strength. A finished step on the progress strip is a button showing it in the step panel; the one shown is ringed
+   in ink (.sel), never the accent. */
+@keyframes stepbar-fullpulse{0%,100%{background-color:color-mix(in srgb,var(--accent) 7%,var(--surface))}50%{background-color:color-mix(in srgb,var(--accent) 30%,var(--surface))}}
+.stepbar>li.cur.fullpulse,.stepbar>li.cur.held{animation:none;box-shadow:none;background:none;--sb-edge:var(--accent);--sb-w:2px}
+.stepbar>li.cur.fullpulse::after{animation:stepbar-fullpulse 2s ease-in-out infinite}
+.stepbar>li.cur.held{--sb-fill:var(--surface)}
+.stepbar>li>.stepbtn{appearance:none;display:inline;font:inherit;color:inherit;text-align:left;background:none;border:0;padding:0;margin:0;cursor:pointer;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;overflow-wrap:anywhere}
+.stepbar>li>.stepbtn:hover{text-decoration-color:var(--ink)}
+.stepbar>li>.stepbtn:focus-visible{outline:2px solid var(--focus);outline-offset:1px;border-radius:2px}
+.stepbar>li.sel{--sb-edge:var(--ink);--sb-w:2.5px;font-weight:700}
+.stepbar>li.sel>.stepbtn{color:var(--ink);text-decoration-color:var(--ink)}
+.legend i.sbk.acc{--sb-edge:var(--accent);--sb-w:2px;--sb-fill:color-mix(in srgb,var(--accent) 22%,var(--surface))}
+.legend i.sbk.ring{--sb-edge:var(--accent);--sb-w:2px;--sb-fill:var(--surface)}
+.legend i.sbk.sel{--sb-edge:var(--ink);--sb-w:2.5px}
+@media (prefers-reduced-motion:reduce){.stepbar>li.cur.fullpulse::after{animation:none!important;background-color:color-mix(in srgb,var(--accent) 18%,var(--surface))}}
 
 /* KPIs */
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:10px;margin:14px 0 18px}
@@ -364,6 +398,8 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .kpi-tile .legend.tl-steps>span.tl-note{display:block;color:var(--muted);margin-top:5px;break-inside:avoid}
 /* a statement's reference whose section number is read from its link's anchor alone (its file not there to read): "(§42?)" */
 .legend b.srefk{font:600 10.5px var(--mono);color:var(--link)}
+/* …and a Verdict statement's, drawn as its section chip: "§42?" (dashboards-skill/53) */
+.legend b.section-chip{font:600 10px/1.35 var(--mono);color:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:0 5px;letter-spacing:.04em}
 .legend i.segk.dash{background:none;border:1.5px dashed var(--sc,var(--muted));height:7px}
 .legend i.segk.slot{background:none;border:1px solid var(--line);height:7px}
 
@@ -551,6 +587,16 @@ a.more:hover{text-decoration:underline}
 .cell .sum b.gap-lead{font-weight:700}
 .cell .meta :is(.where-chip,.baseline-chip){font:600 10px var(--mono);color:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:1px 5px;letter-spacing:.04em;text-decoration:none;min-width:0;max-width:100%;overflow-wrap:anywhere}
 .cell .meta a.baseline-chip:hover{border-color:var(--ink-2);color:var(--ink)}
+/* The Verdict cell's count labels (plan/RULES.md §2, "Statements"; dashboards-skill/53): its steps, tests and risks, each a count label as the
+   Gap cell's evidence is, the figure in ink and muted at zero. */
+.cell .meta .count-label{letter-spacing:0}
+.cell .meta .count-label b{color:var(--ink);font-weight:700}
+.cell .meta .count-label.zero b{color:var(--muted);font-weight:400}
+/* A unit's landing on a tracking board's As built cell (plan/RULES.md §3, "The units' landings"; dashboards-skill/53): the PR chip and the
+   merge chip above the summary, copied from the unit's own board (unit.landing), neutral chips with the kind chip's look. */
+.cell .landing-chips{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 5px}
+.cell .landing-chips :is(.pr-chip,.merge-chip){font:600 10px var(--mono);color:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:1px 5px;letter-spacing:.04em;text-decoration:none;min-width:0;max-width:100%;overflow-wrap:anywhere}
+.cell .landing-chips a:is(.pr-chip,.merge-chip):hover{border-color:var(--ink-2);color:var(--ink)}
 .cell::before{content:"";position:absolute;left:calc(-1 * var(--cg) - 1px);top:50%;width:var(--cg);border-top:2px solid var(--ink-2)}
 .cell::after{content:"";position:absolute;left:-6px;top:calc(50% - 5px);width:10px;height:10px;border-radius:50%;background:var(--ink-2)}
 .cell.gap::before{display:none}
@@ -590,6 +636,10 @@ a.more:hover{text-decoration:underline}
 .stmts .n{font:600 10.5px var(--mono);color:var(--muted)}
 a.sref{font:600 10.5px var(--mono);color:var(--link);text-decoration:none;white-space:normal;overflow-wrap:anywhere;border-bottom:0!important}
 a.sref:hover{text-decoration:underline}
+/* The Verdict's section chip (plan/RULES.md §2, "Statements"; dashboards-skill/53): a Verdict statement's reference as a neutral chip,
+   "§R2", with the gap's kind chip's look, never the link blue; it opens the section's excerpt as the "(§4.2)" reference does. */
+a.section-chip{display:inline-block;font:600 10px/1.35 var(--mono);color:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:0 5px;letter-spacing:.04em;text-decoration:none;max-width:100%;overflow-wrap:anywhere;vertical-align:baseline;border-bottom:1px solid var(--line)!important}
+a.section-chip:hover,a.section-chip:focus-visible{border-color:var(--ink-2)!important;color:var(--ink)}
 .inspector .stmts{margin:0 0 8px;font-size:13px;color:var(--ink)}
 blockquote.excerpt{margin:2px 0 0;padding:6px 10px;border-left:3px solid var(--ink-2);background:var(--surface-2);border-radius:0 4px 4px 0;color:var(--ink)}
 blockquote.excerpt p{margin:4px 0 0;color:var(--ink-2);font-size:12.5px}
@@ -952,8 +1002,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   "title": "Phase 0 history rewrite",
   "issueTitle": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
   "function": "Phase 0 of the BotTools consolidation purges secrets and legacy data from the histories of the six bot repositories: KotlinBottools, GKB2, GKB, BotTools, TrumpBot and Support. The legacy data is first copied out byte-exactly, with a manifest of the blobs to purge; then each repository is rewritten with `git filter-repo` in a mirror clone, in a fixed order, and must pass its exit tests on a fresh mirror. KotlinBottools gains a root-anchored `.gitignore` and a gitleaks CI job and becomes public with secret scanning and push protection; what GitHub still serves of the old histories is measured and reported. The phase moves no version.",
-  "status": "planned",
-  "sized": "2026-11-07T00:00:00Z",
+  "status": "building",
+  "sized": "2026-11-07T07:05:00Z",
   "parent": {
     "issue": 1,
     "board": null
@@ -968,10 +1018,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   "asBuilt": null,
   "systems": [],
   "wip": {
-    "step": "document",
-    "since": "2026-11-08T01:12:00Z",
-    "updated": "2026-11-08T01:40:22Z",
-    "detail": "Document: 3 of 3 tasks done; every task done.",
+    "step": "implementation",
+    "since": "2026-11-08T21:15:43Z",
+    "updated": "2026-11-08T21:15:43Z",
+    "detail": "0 of 8 units landed; #21 in progress; #22 up next.",
     "steps": [
       "sizing",
       "interview",
@@ -985,7 +1035,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "landed"
     ],
     "current": [
-      "built"
+      "preparation.built"
     ],
     "questions": [],
     "research": null,
@@ -995,34 +1045,34 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     "remediation": null,
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-08T01:40:22Z",
-      "note": "3 of 3 tasks done"
+      "name": "sub-issues-filed",
+      "at": "2026-11-08T01:46:36Z",
+      "note": "final: filing done"
     },
     "history": {
       "sizing": [
         {
           "since": null,
-          "ended": "2026-11-07T00:00:00Z",
+          "ended": "2026-11-07T07:05:00Z",
           "endedBy": "sized",
           "to": "plan"
         }
       ],
       "plan": [
         {
-          "since": "2026-11-07T00:00:00Z",
+          "since": "2026-11-07T07:05:00Z",
           "ended": "2026-11-07T07:11:27Z",
           "endedBy": "researched",
           "to": "architecture",
           "event": {
             "name": "sized",
-            "at": "2026-11-07T00:00:00Z"
+            "at": "2026-11-07T07:05:00Z"
           },
           "detail": "History rewrite of six repositories, planned to the architecture; each unit becomes a sub-issue. Research is verified; the architecture draft awaits revision and sign-off.",
           "plan": {
             "state": "re-pass",
             "from": "parent",
-            "since": "2026-11-07T00:00:00Z"
+            "since": "2026-11-07T07:05:00Z"
           }
         }
       ],
@@ -1102,10 +1152,86 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             ]
           },
           "outage": "run resumed from its handoff after the previous session ended"
+        },
+        {
+          "since": "2026-11-08T01:12:00Z",
+          "ended": "2026-11-08T01:41:50Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-08T01:40:22Z",
+            "note": "3 of 3 tasks done"
+          },
+          "detail": "Document: 3 of 3 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Architecture and consequences confirmed final",
+                "state": "done"
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards with the planned units drawn dashed",
+                "state": "done"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-08T01:41:50Z",
+          "ended": "2026-11-08T01:42:49Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-08T01:41:50Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-08T01:42:49Z",
+          "ended": "2026-11-08T01:45:25Z",
+          "endedBy": "sub-issues-filed",
+          "to": "sub-issues",
+          "event": {
+            "name": "landed",
+            "at": "2026-11-08T01:42:58Z"
+          },
+          "detail": "The plan landed in PR #20; its units are filed next."
+        }
+      ],
+      "sub-issues": [
+        {
+          "since": "2026-11-08T01:45:25Z",
+          "ended": "2026-11-08T21:15:43Z",
+          "endedBy": "sized",
+          "to": "implementation",
+          "event": {
+            "name": "sub-issues-filed",
+            "at": "2026-11-08T01:46:36Z",
+            "note": "final: filing done"
+          },
+          "detail": "8 of 8 units filed as sub-issues; each unit's board appears when its run starts.",
+          "units": {
+            "done": 8,
+            "total": 8
+          }
         }
       ]
     },
-    "next": "preparation",
+    "next": "transfer-rehearsal",
     "qa": [],
     "qaMax": 3,
     "waitingOn": null,
@@ -1114,7 +1240,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "waitsOn": [],
       "blocks": []
     },
-    "landing": null,
+    "landing": {
+      "pr": 20,
+      "merge": "1a74516a28c14f22d642d6adb3000aca264b6731"
+    },
     "asked": [
       {
         "step": "architecture",
@@ -1261,6 +1390,73 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "date": "2026-11-08",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Merge: merging it in PR #20",
+      "ref": "PR #20"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "The plan landed in PR #20, merge 1a74516",
+      "ref": "PR #20"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "1 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "2 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "3 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "4 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "5 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "6 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "7 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "8 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "8 of 8 units filed as sub-issues; filing done"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "#21 started"
     }
   ],
   "rows": [
@@ -1274,7 +1470,518 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "n": 1,
         "slug": "preparation",
         "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
-        "blockedBy": []
+        "blockedBy": [],
+        "issue": 21,
+        "board": "21-preparation/dashboard.html",
+        "folder": "21-preparation/",
+        "live": {
+          "step": "document",
+          "since": "2026-11-08T22:59:18Z",
+          "updated": "2026-11-08T23:16:53Z",
+          "detail": "Document: 4 of 6 tasks done; Documentation review current.",
+          "steps": [
+            "sizing",
+            "interview",
+            "research",
+            "plan",
+            "branch",
+            "implementation",
+            "qa",
+            "remediation",
+            "document",
+            "landing",
+            "merge",
+            "landed"
+          ],
+          "waitingOn": null,
+          "resume": null,
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:40:00Z",
+              "findings": {
+                "test": 6,
+                "code": 5
+              },
+              "severity": {
+                "minor": 9,
+                "other": 2
+              },
+              "route": "re-plan-then-remediation"
+            },
+            {
+              "pass": 2,
+              "verdict": "running",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:40:31Z",
+              "findings": {}
+            },
+            {
+              "pass": 3,
+              "verdict": "changes-requested",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:57:17Z",
+              "findings": {
+                "test": 0,
+                "code": 3
+              },
+              "severity": {
+                "minor": 3,
+                "other": 0
+              },
+              "route": "on-the-spot"
+            }
+          ],
+          "qaMax": 3,
+          "status": "building",
+          "branch": "chore/issue-21-preparation",
+          "event": {
+            "name": "document",
+            "at": "2026-11-08T23:16:53Z",
+            "note": "4 of 6 tasks done"
+          },
+          "plan": {
+            "state": "re-pass",
+            "from": "qa",
+            "pass": 1,
+            "since": "2026-11-08T22:40:00Z"
+          },
+          "stages": [
+            {
+              "id": "S1",
+              "name": "Workspace, tool files and version pins",
+              "state": "done",
+              "rows": [
+                "workspace",
+                "git-and-runtimes",
+                "scan-wrapper"
+              ]
+            },
+            {
+              "id": "S2",
+              "name": "git-filter-repo",
+              "state": "done",
+              "rows": [
+                "filter-repo"
+              ]
+            },
+            {
+              "id": "S3",
+              "name": "gitleaks and canary",
+              "state": "done",
+              "rows": [
+                "gitleaks",
+                "scan-wrapper"
+              ]
+            },
+            {
+              "id": "S4",
+              "name": "Path-scrub expressions and fixture rehearsal",
+              "state": "done",
+              "rows": [
+                "filter-repo",
+                "path-scrub"
+              ]
+            },
+            {
+              "id": "S5",
+              "name": "Path lists",
+              "state": "done",
+              "rows": [
+                "path-lists"
+              ]
+            },
+            {
+              "id": "S6",
+              "name": "Authentication, mirrors and backups",
+              "state": "done",
+              "rows": [
+                "authentication",
+                "backups"
+              ]
+            },
+            {
+              "id": "S7",
+              "name": "Legacy data copy",
+              "state": "done",
+              "rows": [
+                "legacy-data-copy"
+              ]
+            },
+            {
+              "id": "S8",
+              "name": "Manifests, expectation rows and positive controls",
+              "state": "done",
+              "rows": [
+                "manifests",
+                "positive-controls"
+              ]
+            },
+            {
+              "id": "S9",
+              "name": "Closing checks",
+              "state": "done",
+              "rows": [
+                "backups",
+                "counts-only-records"
+              ]
+            }
+          ],
+          "remediation": {
+            "pass": 3,
+            "route": "on-the-spot"
+          },
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "current"
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "todo"
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "As-built record and consequences",
+                "state": "done"
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG: documents only, no entry",
+                "state": "done"
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done"
+              }
+            ]
+          },
+          "history": {
+            "sizing": [
+              {
+                "since": null,
+                "ended": "2026-11-08T21:15:43Z",
+                "endedBy": "sized",
+                "to": "plan"
+              }
+            ],
+            "plan": [
+              {
+                "since": "2026-11-08T21:15:43Z",
+                "ended": "2026-11-08T22:05:48Z",
+                "endedBy": "plan-accepted",
+                "to": "branch",
+                "event": {
+                  "name": "sized",
+                  "at": "2026-11-08T21:15:43Z"
+                },
+                "detail": "Local preparation for the history rewrite: pinned tools, workspace, backup mirrors, the legacy data copy and the manifests. Nothing is written to GitHub except this unit's documents.",
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-08T21:15:43Z"
+                }
+              }
+            ],
+            "branch": [
+              {
+                "since": "2026-11-08T22:05:48Z",
+                "ended": "2026-11-08T22:06:10Z",
+                "endedBy": "branch-cut",
+                "to": "implementation",
+                "event": {
+                  "name": "plan-accepted",
+                  "at": "2026-11-08T22:05:48Z"
+                },
+                "detail": "The plan runs as nine pinned stage scripts. The parent design still fits and the upstream pins are unchanged.",
+                "branch": "chore/issue-21-preparation"
+              }
+            ],
+            "implementation": [
+              {
+                "since": "2026-11-08T22:06:10Z",
+                "ended": "2026-11-08T22:12:20Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-08T22:11:56Z",
+                  "note": "S9 reported done; Quality Review next"
+                },
+                "detail": "All nine stages passed with no stop and no deviation. Six backups unchanged; the three data copies verified by blob id; five manifests equal the research table.",
+                "stages": [
+                  {
+                    "id": "S1",
+                    "name": "Workspace, tool files and version pins",
+                    "state": "done",
+                    "rows": [
+                      "workspace",
+                      "git-and-runtimes",
+                      "scan-wrapper"
+                    ]
+                  },
+                  {
+                    "id": "S2",
+                    "name": "git-filter-repo",
+                    "state": "done",
+                    "rows": [
+                      "filter-repo"
+                    ]
+                  },
+                  {
+                    "id": "S3",
+                    "name": "gitleaks and canary",
+                    "state": "done",
+                    "rows": [
+                      "gitleaks",
+                      "scan-wrapper"
+                    ]
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Path-scrub expressions and fixture rehearsal",
+                    "state": "done",
+                    "rows": [
+                      "filter-repo",
+                      "path-scrub"
+                    ]
+                  },
+                  {
+                    "id": "S5",
+                    "name": "Path lists",
+                    "state": "done",
+                    "rows": [
+                      "path-lists"
+                    ]
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Authentication, mirrors and backups",
+                    "state": "done",
+                    "rows": [
+                      "authentication",
+                      "backups"
+                    ]
+                  },
+                  {
+                    "id": "S7",
+                    "name": "Legacy data copy",
+                    "state": "done",
+                    "rows": [
+                      "legacy-data-copy"
+                    ]
+                  },
+                  {
+                    "id": "S8",
+                    "name": "Manifests, expectation rows and positive controls",
+                    "state": "done",
+                    "rows": [
+                      "manifests",
+                      "positive-controls"
+                    ]
+                  },
+                  {
+                    "id": "S9",
+                    "name": "Closing checks",
+                    "state": "done",
+                    "rows": [
+                      "backups",
+                      "counts-only-records"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "since": "2026-11-08T22:12:20Z",
+                "ended": "2026-11-08T22:40:00Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-08T22:12:20Z",
+                  "note": "Quality Review 1: running"
+                },
+                "detail": "Quality Review 1 running.",
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:40:00Z",
+                    "findings": {
+                      "test": 6,
+                      "code": 5
+                    },
+                    "severity": {
+                      "minor": 9,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-08T22:40:31Z",
+                "ended": "2026-11-08T22:57:17Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-08T22:51:10Z",
+                  "note": "Quality Review 3: running"
+                },
+                "detail": "The second review asked for wording only: the exemption for generated boards' commit ids now covers every such field, and three smaller statements were corrected. No script changed.",
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "running",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:40:31Z",
+                    "findings": {}
+                  },
+                  {
+                    "pass": 3,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:57:17Z",
+                    "findings": {
+                      "test": 0,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 3,
+                      "other": 0
+                    },
+                    "route": "on-the-spot"
+                  }
+                ]
+              }
+            ],
+            "remediation": [
+              {
+                "since": "2026-11-08T22:40:00Z",
+                "ended": "2026-11-08T22:40:31Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-08T22:40:00Z",
+                  "note": "Quality Review 1: changes-requested"
+                },
+                "detail": "Every acceptance criterion recomputed from the records matched and the local preparation is sound. The findings are plan wording that claims more than the scripts check, and differing accounts of what the landing adds.",
+                "remediation": {
+                  "pass": 1,
+                  "route": "re-plan-then-remediation",
+                  "steps": [
+                    {
+                      "name": "Plan wording and landing account corrected",
+                      "state": "current"
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:40:00Z",
+                    "findings": {
+                      "test": 6,
+                      "code": 5
+                    },
+                    "severity": {
+                      "minor": 9,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-08T22:57:17Z",
+                "ended": "2026-11-08T22:59:18Z",
+                "endedBy": "document",
+                "to": "document",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-08T22:57:17Z",
+                  "note": "Quality Review 3: changes-requested"
+                },
+                "detail": "All the documents are closed. Three excerpts on this unit's issue board still quote the replaced plan.",
+                "remediation": {
+                  "pass": 3,
+                  "route": "on-the-spot"
+                },
+                "qa": [
+                  {
+                    "pass": 3,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:57:17Z",
+                    "findings": {
+                      "test": 0,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 3,
+                      "other": 0
+                    },
+                    "route": "on-the-spot"
+                  }
+                ]
+              }
+            ]
+          },
+          "rowNames": {
+            "workspace": "The workspace and the data folder",
+            "git-and-runtimes": "git pinned; Python, pip and gh recorded",
+            "filter-repo": "git-filter-repo 2.47.0, proved on a fixture",
+            "gitleaks": "gitleaks v8.30.1",
+            "scan-wrapper": "The scan wrapper, the canary and the saved scripts",
+            "path-scrub": "The path-scrub expression file",
+            "path-lists": "The six root-anchored path lists",
+            "authentication": "Non-interactive access to the six repositories",
+            "backups": "A mirror and an untouched backup of each of the six",
+            "legacy-data-copy": "The legacy data copy and `COPY-VERIFIED`",
+            "manifests": "Manifests and expectation rows of the five static repositories",
+            "positive-controls": "The positive-control scans",
+            "counts-only-records": "Records that carry counts only"
+          },
+          "recon": {
+            "interview": {
+              "reconstructed": true,
+              "ended": null,
+              "trail": [],
+              "milestones": []
+            },
+            "research": {
+              "reconstructed": true,
+              "ended": "2026-10-21",
+              "trail": [],
+              "milestones": [
+                {
+                  "date": "2026-10-21",
+                  "label": "Research verified, in #2's run",
+                  "ref": "../research/README.md",
+                  "note": "written on this board at sized from #2's research summary (§3.2, §3.3, §3.5, §3.6) and architecture §2.3, §2.4, §5, §6.1 to §6.3, with this unit's row in §15"
+                }
+              ]
+            }
+          }
+        }
       },
       "gap": {
         "kind": "missing",
@@ -1439,7 +2146,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "n": 2,
         "slug": "transfer-rehearsal",
         "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories",
-        "blockedBy": []
+        "blockedBy": [
+          21
+        ],
+        "issue": 22
       },
       "gap": {
         "kind": "risk",
@@ -1549,7 +2259,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "n": 3,
         "slug": "kotlinbottools-rewrite-and-swap",
         "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
-        "blockedBy": []
+        "blockedBy": [
+          22
+        ],
+        "issue": 23
       },
       "gap": {
         "kind": "risk",
@@ -1758,7 +2471,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "n": 4,
         "slug": "repository-hygiene",
         "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
-        "blockedBy": []
+        "blockedBy": [
+          23
+        ],
+        "issue": 24
       },
       "gap": {
         "kind": "missing",
@@ -1884,7 +2600,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "n": 5,
         "slug": "kotlinbottools-publish",
         "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection",
-        "blockedBy": []
+        "blockedBy": [
+          24
+        ],
+        "issue": 25
       },
       "gap": {
         "kind": "missing",
@@ -1983,7 +2702,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "n": 6,
         "slug": "gkb2-gkb-rewrite",
         "title": "Phase 0 · 6 — Rewrite GKB2 and GKB",
-        "blockedBy": []
+        "blockedBy": [
+          23
+        ],
+        "issue": 26
       },
       "gap": {
         "kind": "risk",
@@ -2072,7 +2794,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "n": 7,
         "slug": "bottools-trumpbot-support-rewrite",
         "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
-        "blockedBy": []
+        "blockedBy": [
+          26
+        ],
+        "issue": 27
       },
       "gap": {
         "kind": "risk",
@@ -2173,7 +2898,11 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "n": 8,
         "slug": "residual-report-and-cleanup",
         "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
-        "blockedBy": []
+        "blockedBy": [
+          25,
+          27
+        ],
+        "issue": 28
       },
       "gap": {
         "kind": "missing",
@@ -2363,10 +3092,122 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     "api": [],
     "conversion": [],
     "source": "consequences.md",
-    "link": "consequences.md#2-blast-radius"
+    "link": "consequences.md#2-blast-radius",
+    "units": [
+      {
+        "unit": "preparation",
+        "basis": "plan",
+        "summary": "Local preparation: no module is published and no version moves. The unit writes nothing to GitHub but its own documents, reads the six repositories, and leaves the tools, backups, lists, manifests and verified data copy the later units consume.",
+        "release": {
+          "bump": "none",
+          "version": null,
+          "note": "no module is published and no version moves"
+        },
+        "source": "21-preparation/consequences.md §1 to §4",
+        "link": "21-preparation/consequences.md#2-blast-radius"
+      }
+    ]
   },
   "tests": null,
-  "roadmap": null,
+  "roadmap": {
+    "issue": 1,
+    "title": "BotTools consolidation & MagicBot (tracking)",
+    "asOf": "2026-11-08",
+    "items": [
+      {
+        "issue": 2,
+        "title": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
+        "state": "OPEN",
+        "ref": "../roadmap.md#phase-0--history-rewrite",
+        "section": "Phase 0 — History rewrite"
+      },
+      {
+        "issue": 3,
+        "title": "Phase 1 — Build skeleton: multi-module build, conventions, CI and repository scaffolding",
+        "state": "OPEN"
+      },
+      {
+        "issue": 4,
+        "title": "Phase 2 — Core foundation: ids, failures, settings, storage ports and configuration",
+        "state": "OPEN"
+      },
+      {
+        "issue": 5,
+        "title": "Phase 3 — Command model: definitions, validation, typed invocation, dispatch and help",
+        "state": "OPEN"
+      },
+      {
+        "issue": 6,
+        "title": "Phase 4 — SQLite storage: migrations, erasure and backups",
+        "state": "OPEN"
+      },
+      {
+        "issue": 7,
+        "title": "Phase 5 — Bot runtime: plugins, events, gateway, jobs, registration and built-in commands",
+        "state": "OPEN"
+      },
+      {
+        "issue": 8,
+        "title": "Phase 6a — HTTP call surface: the bottools-http API, endpoint vocabulary, failures and test fake",
+        "state": "OPEN"
+      },
+      {
+        "issue": 9,
+        "title": "Phase 6b — WebTools adapter: the internal adapter, composite build, strict pin, alignment checks and CI lanes",
+        "state": "OPEN"
+      },
+      {
+        "issue": 10,
+        "title": "Phase 7 — Stats provider framework: provider SPI, account links, match tracker and game news",
+        "state": "OPEN"
+      },
+      {
+        "issue": 11,
+        "title": "Phase 8 — Reaction-roles plugin, with the default role and welcome message on join",
+        "state": "OPEN"
+      },
+      {
+        "issue": 12,
+        "title": "Phase 9 — Math plugin",
+        "state": "OPEN"
+      },
+      {
+        "issue": 13,
+        "title": "Phase 10 — Admin plugin: typed get and set over guild settings",
+        "state": "OPEN"
+      },
+      {
+        "issue": 14,
+        "title": "Phase 11 — Weather plugin: conditions and forecast from Open-Meteo",
+        "state": "OPEN"
+      },
+      {
+        "issue": 15,
+        "title": "Phase 12 — Feeds plugin: RSS and Atom subscriptions with content safeguards",
+        "state": "OPEN"
+      },
+      {
+        "issue": 16,
+        "title": "Phase 17 — Release 1.0.0 to Maven Central and archive the predecessor repositories",
+        "state": "OPEN"
+      },
+      {
+        "issue": 17,
+        "title": "Phase 18 — Published test fixtures for plugin and provider authors (Experimental)",
+        "state": "OPEN"
+      },
+      {
+        "issue": 18,
+        "title": "Phase 19 — Poker plugin: playable Texas hold 'em (Experimental)",
+        "state": "OPEN"
+      },
+      {
+        "issue": 19,
+        "title": "Phase 23 — Desktop manager on SpartanUI and SpartanGraphics (unscheduled)",
+        "state": "OPEN"
+      }
+    ]
+  },
   "followUps": [
     {
       "name": "MagicBot's secret-scan configuration",
@@ -2446,6 +3287,19 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     "corrections": [
       {
         "what": "The halt at the architecture and the sign-off that answered it were stamped 07:40 and 08:00 UTC, later than when they happened and, for the sign-off, later than the events that followed it. They are recorded at 07:25:54 and 07:29:01 UTC, when each update arrived: the architecture's first visit, the wait on the answers and the Document step's start move with them.",
+        "when": "2026-11-08"
+      },
+      {
+        "what": "The sizing was recorded at 2026-11-07 00:00:00 UTC: the run sent its sizing time as midnight. It is recorded at 07:05:00 UTC; the run's start and the visits it bounds (sizing, plan) move with it.",
+        "when": "2026-11-08",
+        "retime": {
+          "event": "sized",
+          "from": "2026-11-07T00:00:00Z",
+          "to": "2026-11-07T07:05:00Z"
+        }
+      },
+      {
+        "what": "The units were recorded with no dependencies on one another, though the architecture's end-to-end order (§8) and the filed issues' blocked-by links give them: #22 after #21, #23 after #22, #24 and #26 after #23, #25 after #24, #27 after #26, and #28 after #25 and #27. Each unit now names its blockers.",
         "when": "2026-11-08"
       }
     ]
@@ -2648,9 +3502,12 @@ const routeName=r=>ROUTE_NAME[routeKey(r)]||ROUTE_NAME.remediation;
 const remediationName=(r,p)=>{ const n=parseInt(p,10); return Number.isInteger(n)&&n>1?`${routeName(r)} of ${passName(n)}`:routeName(r); };
 /* a step by its name; c {route, pass} names a remediation visit (no pass: the step, bare) */
 const stepLabel=(s,c)=>!s?"":s==="remediation"?(c&&c.pass!=null?remediationName(c.route,c.pass):routeName(c&&c.route)):STEP_NAME[s]||String(s);
+/* the step a halt names (dashboards-skill/50): a fix step by its route alone, "Correction" or "Resolution", never its pass; every other step by its name (passnames.js haltName()) */
+const haltLabel=(s,c)=>s==="remediation"?routeName(c&&c.route):stepLabel(s,c);
 const REMEDIATION_NOTE="Correction or Resolution after a Quality Review; each step is recorded as it runs";
 const PROGRESS_NOTE="a progress note: a report of the work as it happens";
-const NOTE_WORK={planner:"planning",interviewer:"interview",researcher:"research",verifier:"verification",architect:"architecture","plan-writer":"plan writing","rookie-dev":"implementation","test-inspector":"test check",qa:PASS_NAME,"code-reviewer":"code check","documentation-reviewer":"documentation review"};
+/* a Quality Review's checks by the check, "documentation check", "code check", "test check" (dashboards-skill/52; passnames.js NOTE_WORK) */
+const NOTE_WORK={planner:"planning",interviewer:"interview",researcher:"research",verifier:"verification",architect:"architecture","plan-writer":"plan writing","rookie-dev":"implementation","test-inspector":"test check",qa:PASS_NAME,"code-reviewer":"code check","documentation-reviewer":"documentation check"};
 const EVENT_STEP={sized:"sizing","research-planning":"research","research-started":"research","research-returned":"research","research-verifying":"research","research-complete":"research",interview:"interview","architecture-signed-off":"architecture","sub-issues-filed":"sub-issues","boards-created":"boards","plan-accepted":"plan","branch-cut":"branch","implementation-stage":"implementation","qa-pass":"qa",document:"document",landing:"landing","state-boards":"state-boards",merge:"merge",landed:"landed"};
 function raisedWords(raised){ const s=String(raised==null?"":raised).trim(); if(!s) return ""; let m=/^implementation-stage(?:\s+(\S+))?$/i.exec(s);
   if(m) return `raised during ${STEP_NAME.implementation}${m[1]?`, stage ${/^S\d+$/i.test(m[1])?m[1].slice(1):m[1]}`:""}`;
@@ -2658,6 +3515,13 @@ function raisedWords(raised){ const s=String(raised==null?"":raised).trim(); if(
   const st=EVENT_STEP[s]||(STEP_NAME[s]?s:null); return st?`raised at ${stepLabel(st)}`:`raised at ${s}`; }
 const inPlaceWords=p=>p&&p.inPlace?`${p.inPlace==="fixing"?"fixing":"fixed"} in place · no additional ${REVIEW}`:"";
 const findingsTotal=f=>Object.values(f||{}).filter(n=>Number.isInteger(n)&&n>=0).reduce((a,b)=>a+b,0);
+/* a Quality Review's findings line (dashboards-skill/51; passnames.js findingsWords()): the count, then the severities (minor,
+   other), then the kinds (documentation, test, code), each zero left out, "18 findings (2 minor, 16 other; 3 documentation, 15 code)" */
+const FINDING_KINDS=["documentation","test","code"], FINDING_SEVERITIES=["minor","other"];
+const findingParts=(m,order)=>{ const r=k=>order.indexOf(k)<0?order.length:order.indexOf(k); return Object.entries(m&&typeof m==="object"?m:{}).filter(([,n])=>Number.isInteger(n)&&n>0).sort((a,b)=>r(a[0])-r(b[0])).map(([k,n])=>`${n} ${k}`); };
+const findingsWords=(f,sev,zero)=>{ const sv=findingParts(sev,FINDING_SEVERITIES), kinds=findingParts(f,FINDING_KINDS), t=findingsTotal(f)||findingsTotal(sev);
+  const counted=[f,sev].some(m=>m&&typeof m==="object"&&Object.values(m).some(n=>Number.isInteger(n)&&n>=0));
+  return t||sv.length||(zero&&counted)?`${t} finding${t===1?"":"s"}${sv.length||kinds.length?` (${[sv.join(", "),kinds.join(", ")].filter(Boolean).join("; ")})`:""}`:""; };
 /* names:end */
 /* a run's remediation (wip, or a unit's mirror): its route and the pass it answers, the recorded ones else the last pass that requested changes */
 function runCtx(R){ R=R||{}; const M=R.remediation&&typeof R.remediation==="object"?R.remediation:null, cr=(Array.isArray(R.qa)?R.qa:[]).filter(p=>p&&p.verdict==="changes-requested"), last=cr[cr.length-1];
@@ -2710,9 +3574,15 @@ function locOf(x){ let l=x&&x.locality; if(l===undefined){ const from=String(PLA
   return !l?null:String(l).startsWith("external-")?{k:"external",name:String(l).slice(9)}:LOC[l]?{k:l}:null; }
 const locChip=(L,word)=>`<span class="loc l${LOC[L.k].s}"><i aria-hidden="true">${LOC[L.k].g}</i>${esc(word||(L.k==="external"&&L.name?`external · ${L.name}`:LOC[L.k].label))}</span>`;
 const depPill=x=>{ const d=DEP[x.build], L=locOf(x); return d||L?`<span class="dep-pill"${x.why||x.via?` title="${esc(x.why||`a duplicate: the state of ${x.via}`)}"`:""}>${d?pill(d):""}${L?locChip(L):""}</span>`:""; };
-/* a unit's dependencies and what it holds up, from the unit rows (unit.blockedBy) */
-const unitDeps=r=>(r&&r.unit&&r.unit.blockedBy||[]).map(n=>{ const b=ROWS.find(x=>x.unit&&x.unit.issue===n); return {issue:n,build:b?(unitLanded(b)?"clear":(b.asBuilt||{}).state==="dropped"?"dropped":"blocking"):undefined,locality:"local-repository"}; });
-const unitHolds=r=>r&&r.unit&&r.unit.issue?ROWS.filter(x=>x.unit&&(x.unit.blockedBy||[]).includes(r.unit.issue)).map(x=>({issue:x.unit.issue})):[];
+/* a unit's dependencies and what it holds up, from the unit rows (unit.blockedBy). A blocker is an issue number, or {unit:k}, a unit of this board by
+   its number while it has no issue yet (plan/RULES.md §3; lib.js blockerOf(), the same rule): resolved to {issue, row, n}, the issue null for a unit
+   not filed yet, which bref() names "unit k · its slug" until it is filed, when it links like any #n */
+const blockerOf=x=>{ if(x&&typeof x==="object"&&Number.isInteger(x.unit)){ const b=ROWS.find(r=>r.unit&&r.unit.n===x.unit)||null; return {issue:b&&b.unit.issue||null,row:b,n:x.unit}; }
+  const b=ROWS.find(r=>r.unit&&r.unit.issue===x)||null; return {issue:Number.isInteger(x)?x:null,row:b,n:b?b.unit.n:null}; };
+const blockersOf=r=>(r&&r.unit&&r.unit.blockedBy||[]).map(blockerOf);
+const bref=x=>x.issue?ilink(x.issue):`unit ${esc(x.n)}${x.row?` · ${esc(x.row.unit.slug||x.row.id)}`:""}`;
+const unitDeps=r=>blockersOf(r).map(x=>({...x,build:x.row?(unitLanded(x.row)?"clear":(x.row.asBuilt||{}).state==="dropped"?"dropped":"blocking"):undefined,locality:"local-repository"}));
+const unitHolds=r=>r&&r.unit?ROWS.filter(x=>x.unit&&x!==r&&blockersOf(x).some(b=>b.row===r)).map(x=>({issue:x.unit.issue||null,row:x,n:x.unit.n})):[];
 /* the legend entries of the dependency pills a view drew */
 function depKeys(deps,holds){ const ks=[], bs=new Set(deps.map(x=>x.build).filter(k=>DEP[k])), ls=new Set(deps.map(locOf).filter(Boolean).map(L=>L.k)), hs=new Set(holds.filter(k=>HOLD[k]));
   Object.keys(DEP).filter(k=>bs.has(k)).forEach(k=>ks.push(`<span>${pill(DEP[k])} a dependency's build state: ${esc(DEP[k].desc)}</span>`));
@@ -2751,9 +3621,13 @@ function stmtLabel(s){ if(s&&typeof s.label==="string"&&s.label.trim()) return s
   const n=refNumShown(s); if(n) return n.label+(n.from==="anchor"?"?":"");
   const a=String((s&&s.ref)||"").split("#")[1]; return a?"§ "+a:"§"; }
 const refMarkNote=s=>{ const n=refNumShown(s)||{label:"§"}, d=n.label.slice(1); return `the section number is read from the link's anchor alone: its file was not there to read, and the anchor drops a heading number's dots, so ${d} may be ${d.length>1?d.split("").join("."):d}`; };
-const stmtRef=(s,row,col,i)=>s&&typeof s.ref==="string"&&relLink(s.ref)?` <a class="sref" href="${esc(s.ref)}" data-row="${esc(row)}" data-col="${col}" data-i="${i}" title="${nameText(s.excerpt&&s.excerpt.heading?s.excerpt.heading:s.ref)}${refMarked(s)?` (${esc(refMarkNote(s))})`:""}: click for the section's excerpt">(${esc(stmtLabel(s))})</a>`:"";
+/* a Verdict statement ends with its section chip, "§R2" (dashboards-skill/53); an As built statement with its reference in parentheses, "(§4.2)" */
+const stmtRef=(s,row,col,i)=>{ if(!(s&&typeof s.ref==="string"&&relLink(s.ref))) return ""; const chip=col==="verdict";
+  return ` <a class="${chip?"section-chip":"sref"}" href="${esc(s.ref)}" data-row="${esc(row)}" data-col="${col}" data-i="${i}" title="${nameText(s.excerpt&&s.excerpt.heading?s.excerpt.heading:s.ref)}${refMarked(s)?` (${esc(refMarkNote(s))})`:""}: click for the section's excerpt">${chip?esc(stmtLabel(s)):`(${esc(stmtLabel(s))})`}</a>`; };
 /* the legend entry of a marked reference, where the statements drawn carry one */
-const refKey=list=>list.some(refMarked)?`<span><b class="srefk">(§n?)</b> a section number read from its link alone: the plan file was not there to tell §4.2 from §42</span>`:"";
+const REF_MARK_WHY="a section number read from its link alone: the plan file was not there to tell §4.2 from §42";
+/* verdict: the Verdict statements drawn (their section chips), built: the As built ones (their "(§n)" references) */
+const refKey=(verdict,built)=>(verdict.some(refMarked)?`<span><b class="section-chip">§n?</b> ${REF_MARK_WHY}</span>`:"")+((built||[]).some(refMarked)?`<span><b class="srefk">(§n?)</b> ${REF_MARK_WHY}</span>`:"");
 /* a cell's, a card's or the inspector's statements: the verdict's, or the as built ones with their marks; "" when the row has none */
 function stmtsHtml(r,col){ const x=col==="verdict"?r.verdict:r.asBuilt, all=stmtsRaw(x), num=((r.verdict||{}).list==="numbered");
   if(!all.some(stmtOk)) return "";
@@ -2826,7 +3700,7 @@ const colGlowCls=col=>CURRENT.includes(col)?(PAUSED?" held":" col-fullpulse"):""
    that is not a unit on this board counts as not landed, since the board cannot show it landed. */
 let NEXT_ROW=null;
 const unitLanded=r=>LANDED_STATES.includes(stateOf(r));
-function openBlockers(r){ if(!r||!r.unit) return []; return (r.unit.blockedBy||[]).filter(n=>{ const b=ROWS.find(x=>x.unit&&x.unit.issue===n); return !(b&&unitLanded(b)); }); }
+function openBlockers(r){ if(!r||!r.unit) return []; return blockersOf(r).filter(x=>!(x.row&&unitLanded(x.row))); }
 const isNext=r=>!!NEXT_ROW&&r===NEXT_ROW;
 /* A merged branch is not shown (plan/RULES.md §3, "Branches"): an issue board stops naming its branch once it has landed, and a
    tracking board once its own plan has landed: its wip.step (or the step a halt resumes at) is past "landing", its status is
@@ -2835,7 +3709,7 @@ const isNext=r=>!!NEXT_ROW&&r===NEXT_ROW;
 let ownStep="", PLAN_LANDED=false, SHOW_BRANCH=false;
 const TAG_NEXT=`<span class="tag-next">UP NEXT</span>`;
 const BLOCKED={g:"⊘",label:"blocked",cls:"warning"};
-const blockedPill=r=>{ const o=openBlockers(r); return o.length?pill(BLOCKED,` by ${o.map(n=>ilink(n)).join(", ")}`,"blocked"):""; };
+const blockedPill=r=>{ const o=openBlockers(r); return o.length?pill(BLOCKED,` by ${o.map(bref).join(", ")}`,"blocked"):""; };
 const nextTags=r=>isNext(r)?`${TAG_NEXT} ${blockedPill(r)}`:"";
 /* the legend entries for the two marks, written once */
 const KEY_GLOW=`<span><i class="gl"></i>FullPulse, breathing: being worked on now</span>`;
@@ -2849,7 +3723,8 @@ function markKeys(addrs){ if(!addrs.length) return ""; const cells=addrs.filter(
   return (cells.length>held?KEY_GLOW:"")+(held?KEY_HELD:"")+(cols?(PAUSED?KEY_COLHELD:KEY_COLGLOW):""); }
 /* A unit's run: its pill, its last qa pass, the run line of its cell and card, its block on the strip, its legend entries. */
 function runPill(L){ const k=runKind(L), d=RUN[k]; return k==="run"?pill(d,"",`run at ${stepLabel(L.step,runCtx(L))||"?"}`):k==="escalated"?pill(d,"","escalated"):pill(d); }
-const runAt=L=>{ const k=runKind(L); return k==="halted"||k==="escalated"?(L.resume?`<span>at ${esc(stepLabel(L.resume,runCtx(L)))}</span>`:""):""; };
+/* where a waiting run stopped: a halt names a fix step by its route alone (haltLabel()), an escalation the step's visit */
+const runAt=L=>{ const k=runKind(L); return k==="halted"?(L.resume?`<span>at ${esc(haltLabel(L.resume,runCtx(L)))}</span>`:""):k==="escalated"?(L.resume?`<span>at ${esc(stepLabel(L.resume,runCtx(L)))}</span>`:""):""; };
 const lastQa=L=>{ const q=qaShown(L); return q.length?q[q.length-1]:null; };
 const qaPill=p=>{ const d=QA[p.verdict]||QA.running; return pill(d,"",`${passName(p.pass)} · ${d.label}`)+inPlaceMark(p); };
 function runLine(r){ const L=runOf(r); if(!L) return ""; const q=lastQa(L);
@@ -2936,11 +3811,12 @@ const stepTitle=(s,c)=>!s?"—":stepLabel(s,c);
 function spList(items){ return items.length?`<ol class="sp-list">${items.join("")}</ol>`:""; }
 const spItem=(cls,mark,body,sub)=>`<li class="${cls}">${mark}<span class="q">${body}${sub?`<small>${sub}</small>`:""}</span></li>`;
 const dotMark=`<span class="dot" aria-hidden="true"></span>`;
-function qaBlock(p,keys){ const d=QA[p.verdict]||QA.running, f=p.findings||{}, sv=p.severity||{};
-  const kinds=["documentation","test","code"].filter(k=>f[k]!=null).map(k=>`${f[k]} ${k==="documentation"?"doc":k}`).join(" · "), sev=Object.entries(sv).map(([k,n])=>`${n} ${k}`).join(" · ");
+/* a Quality Review's card: its verdict, its findings line (findingsWords(): "18 findings (2 minor, 16 other; 3 documentation, 15 code)",
+   "0 findings" where it counted none), its route, its note and its test report */
+function qaBlock(p,keys){ const d=QA[p.verdict]||QA.running, fl=findingsWords(p.findings,p.severity,true);
   keys.add(`<span>${pill(d)} ${REVIEW} verdict</span>`);
-  const rt=ROUTE[p.route], nf=findingsTotal(f);
-  return `<div class="sp-pass ${p.verdict==="approved"?"good":p.verdict==="changes-requested"?"critical":"run pend"}"><div class="ph">${esc(passName(p.pass))} ${pill(d)}${p.date?` <span class="nw">${when(p.date)}</span>`:""}</div>${kinds?`<small>${nf} finding${nf===1?"":"s"} by kind: ${esc(kinds)}</small>`:""}${sev?`<small>by severity: ${esc(sev)}</small>`:""}${rt?`<small>route: ${esc(rt.label)}</small>`:""}${p.note?`<small>${rich(p.note)}</small>`:""}${p.report?`<small>the test report: <code>${esc(p.report)}</code> (a build output, not committed)${liveCopyLink(p.reportCopy,"its copy")}</small>`:""}</div>`; }
+  const rt=ROUTE[p.route];
+  return `<div class="sp-pass ${p.verdict==="approved"?"good":p.verdict==="changes-requested"?"critical":"run pend"}"><div class="ph">${esc(passName(p.pass))} ${pill(d)}${p.date?` <span class="nw">${when(p.date)}</span>`:""}</div>${fl?`<small>${esc(fl)}</small>`:""}${rt?`<small>route: ${esc(rt.label)}</small>`:""}${p.note?`<small>${rich(p.note)}</small>`:""}${p.report?`<small>the test report: <code>${esc(p.report)}</code> (a build output, not committed)${liveCopyLink(p.reportCopy,"its copy")}</small>`:""}</div>`; }
 /* The questions put to you (plan/RULES.md §3, "The step panel"; dashboards-skill/45): the interview's
    (wip.interview) and a halt's in any other step (wip.asked), drawn alike: each with the options it offers, answered (its answer's gist, or
    when the answer came) or waiting on you, and the count. A question is answered once it has its gist or its answered time (the event that
@@ -2958,6 +3834,9 @@ const askedShown=(R,S)=>(Array.isArray(R&&R.asked)?R.asked:[]).filter(q=>q&&type
 const askedBlock=(list,keys)=>list.length?`<div class="sp-asked">${questionsHtml(list,keys,"asked","Asked at the halt")}</div>`:"";
 /* the questions a halted run waits on, for the "waiting on you" card: the interview's while it halted there, else the halt's */
 const waitingQs=R=>{ const S=R&&R.step==="halted"?R.resume:null; if(!S) return []; return (S==="interview"?(Array.isArray(R.interview)?R.interview:[]):askedShown(R,S)).filter(q=>q&&q.text&&!qAnsweredOf(q)); };
+/* the step a halted run resumes at, on the "waiting on you" card: a fix step by its route alone (haltLabel(); dashboards-skill/50), every
+   other step by its name, "Implementation", "Architecture", never its id (dashboards-skill/51, dated 51) */
+const resumeAt=(s,c)=>haltLabel(s,c);
 const PANEL={
   sizing:R=>`<p>The issue is being sized: its systems and how much planning it takes.</p>${R.detail?`<p>${rich(R.detail)}</p>`:""}`,
   interview:(R,o,keys)=>{ const iv=Array.isArray(R.interview)?R.interview.filter(q=>q&&q.text):[];
@@ -3038,7 +3917,8 @@ function stepPanel(R,o){ o=o||{}; const k=R.step||"", held=["halted","escalated"
   const opts={...o,held}, title=stepTitle(S,runCtx(R));
   /* the heading is the step's title alone (plan/RULES.md §3, "The step panel"); a unit's panel names its unit to assistive technology */
   let h=`<div class="sp${held?" sp-held":""}${o.own?" own":""}" data-step="${esc(S)}"${o.row?` style="--r:${o.row}"`:""} role="group" aria-label="${esc(o.label||"The current step")}: ${esc(title)}"><h3 class="sp-t">${esc(title)}</h3>`;
-  if(k==="halted"){ h+=`<p class="sp-wait">⏸ Held still at ${esc(S?title:"its step")}: it waits on you for ${rich(R.waitingOn||R.detail||"(not stated)")}</p>`; }
+  /* a halt names a fix step by its route alone, "Held still at Correction" (haltLabel()); the heading keeps the visit's title */
+  if(k==="halted"){ h+=`<p class="sp-wait">⏸ Held still at ${esc(S?haltLabel(S,runCtx(R)):"its step")}: it waits on you for ${rich(R.waitingOn||R.detail||"(not stated)")}</p>`; }
   if(k==="escalated") h+=`<p class="sp-wait">⇧ Escalated from ${esc(S?title:"its step")}: held still while the issue's scope is re-decided.</p>`;
   /* the questions a halt in this step put to you, with their options (wip.asked; the interview's are its own panel's) */
   if(S!=="interview") h+=askedBlock(askedShown(R,S),keys);
@@ -3071,7 +3951,7 @@ const refAt=(ref,label,base)=>base&&typeof ref==="string"&&/^[\w.-][\w./-]*\.(?:
 const unitBase=r=>r&&r.unit&&relLink(r.unit.board)&&r.unit.board.includes("/")?r.unit.board.replace(/[^/]*$/,""):"";
 
 /* ---------- Finished steps (plan/RULES.md §3, "Finished steps"; dashboards-skill/24) ----------
-   A finished step's dot on the strip is a button: a click (Enter, Space) shows that step in the step panel, the dot stays ringed in ink
+   A finished step's chevron on the strip holds a button: a click (Enter, Space) shows that step in the step panel, the chevron stays ringed in ink
    (never the accent, which marks the work in progress), and a line above the panel says what it shows, with "back to now"; a second
    click, "back to now" or Escape returns. SEL is the selection, {run, step}: "own" (the board's own run) or a unit's issue (its mirror,
    unit.live), kept across the live redraw and dropped once the step is no longer finished there. The panel reads the step's snapshot,
@@ -3130,7 +4010,7 @@ function selRun(key){ if(key==="own") return STOPPED?null:{R:WIP,status:PLAN.sta
   const r=ROWS.find(x=>x.unit&&String(x.unit.issue)===key), L=r&&runOf(r); return L?{R:L,status:L.status,row:r}:null; }
 function checkSel(){ if(!SEL) return; const x=selRun(SEL.run); if(!x||!finishedOf(x.R,x.status).includes(SEL.step)) SEL=null; }
 const selFor=key=>SEL&&SEL.run===key?SEL.step:null;
-const KEY_SEL=`<span><i class="node sel"></i>ringed in ink: the finished step the panel shows</span>`;
+const KEY_SEL=`<span><i class="sbk sel"></i>ringed in ink: the finished step the panel shows</span>`;
 const KEY_PAST_TODO=`<span><i class="node hollow"></i>dashed: not done when the step ended</span>`;
 const pastWord=st=>st==="done"?" · done":st==="current"?" · in progress when the step ended":" · not started";
 const pastItems=(list,o,keys)=>spList(list.map(x=>{ const d=x.state==="done"; if(!d) keys.add(KEY_PAST_TODO); return spItem(d?"done":"todo",dotMark,`${x.id?`<b>${esc(x.id)}</b> `:""}${rich(stepName(x))}${pastWord(x.state)}`,Array.isArray(x.rows)&&x.rows.length?`touched ${x.rows.map(id=>codeOnly(o.rowName(id))).join(", ")}`:""); }));
@@ -3211,7 +4091,7 @@ const KEY_CHG=()=>`<span><i class="chg"></i>charging arrow: its verdict being wr
 
 /* ---------- Header, chips ---------- */
 /* The chain's progress (tracking boards, plan/RULES.md §3): in place of a status that reads "building" from the first unit's start to
-   the last unit's landing, "1 of 11 landed · #47 in progress (plan) · #62 up next". Units dropped or deferred are counted apart,
+   the last unit's landing, "1 of 11 landed · #47 in progress (Plan) · #62 up next". Units dropped or deferred are counted apart,
    not in the total. Each unit in wip.current carries its own run's step from its mirror (unit.live), so the chip follows every
    event of the unit's run; a unit whose run waits reads "waiting on you". The unit up next is tagged with each blocker that has not
    landed. Before any unit starts: "planned · 11 units"; once all have landed: "landed · 11 of 11". Every #n is a lone #n: it opens
@@ -3225,13 +4105,13 @@ function chainCounts(){ const units=ROWS.filter(r=>r.unit), out=k=>count(units,r
 function chainChip(){ const {units,landed,M,extra}=chainCounts();
   const cur=LANDED||STOPPED?[]:units.filter(rowActive);
   const done=LANDED||(M>0&&landed===M), started=landed>0||cur.length>0||units.some(r=>stateOf(r)==="complete");
-  const runWord=r=>{ const L=runOf(r); if(!L) return "in progress"; const k=runKind(L); return k==="halted"?"waiting on you":k==="escalated"?"escalated":k==="cancelled"?"run cancelled":`in progress (${esc(L.step||"?")})`; };
+  const runWord=r=>{ const L=runOf(r); if(!L) return "in progress"; const k=runKind(L); return k==="halted"?"waiting on you":k==="escalated"?"escalated":k==="cancelled"?"run cancelled":`in progress${L.step?` (${esc(stepLabel(L.step,runCtx(L)))})`:""}`; }; /* the unit's step by its name, as its run Pill names it (dashboards-skill/51) */
   const u=r=>r.unit.issue?ilink(r.unit.issue):esc(r.unit.slug||r.id);
   let txt;
   if(done) txt=[`<b>landed</b> · ${landed} of ${M}`,...extra];
   else if(STOPPED) txt=[`<b>cancelled</b> · ${landed} of ${M} landed`,...extra];
   else if(!started) txt=[`<b>planned</b> · ${M?`${M} unit${M===1?"":"s"}`:"no units yet"}`,...extra];
-  else txt=[`<b>${landed} of ${M} landed</b>`,...cur.map(r=>`${u(r)} ${runWord(r)}`),NEXT_ROW?`${u(NEXT_ROW)} up next${openBlockers(NEXT_ROW).length?`, blocked by ${openBlockers(NEXT_ROW).map(n=>ilink(n)).join(", ")}`:""}`:"",...extra];
+  else txt=[`<b>${landed} of ${M} landed</b>`,...cur.map(r=>`${u(r)} ${runWord(r)}`),NEXT_ROW?`${u(NEXT_ROW)} up next${openBlockers(NEXT_ROW).length?`, blocked by ${openBlockers(NEXT_ROW).map(bref).join(", ")}`:""}`:"",...extra];
   const pct=chainCounts().pct;
   return `<span class="chip status progress wide${done?" done":!started?" planned":""}"><span class="ck">tracking issue · chain</span> ${txt.filter(Boolean).join(" · ")}<span class="cbar" role="img" aria-label="${landed} of ${plural(M,"unit")} landed"><i style="width:${pct}%"></i></span></span>`; }
 let OPTS=[];
@@ -3270,14 +4150,19 @@ function renderHeader(){
 
 /* ---------- The WIP strip (plan/RULES.md §3) ---------- */
 /* o (a unit's run): held (its run waits on you), still (no mark: the inspector's copy), label (the list's name). */
-/* pick (a run's finished steps, plan/RULES.md §3, "Finished steps"): { key, R, status }; each finished step's dot is a button that shows it
-   in the step panel, the one shown ringed in ink and pressed. */
+/* pick (a run's finished steps, plan/RULES.md §3, "Finished steps"): { key, R, status }; each finished step's chevron holds a button that
+   shows it in the step panel, the one shown ringed in ink and pressed. */
+/* The strip is a StepBar (dashboards-skill/54; nomenclature/ui.md, StepBar): the run's steps in order, each a chevron with the step's name
+   inside, done, current or to come; an ordered list, the current step aria-current="step" and each state said in words to a screen reader.
+   The current step carries the in-progress marks (GUIDANCE.md §1): the FullPulse, the Ring alone while the run waits on you. */
+const SB_STATE={done:"done",cur:"current",todo:"to come"};
+const sbState=st=>`<span class="sb-st">, ${SB_STATE[st]}</span>`;
 function stepsLine(steps,cur,o){ o=o||{}; const i=steps.indexOf(cur), held=o.held!=null?o.held:PAUSED, done=o.held!=null?false:LANDED, nm=s=>stepLabel(s,{route:(o.ctx||{}).route});
   const pk=o.pick&&!o.still?o.pick:null, fin=new Set(pk?finishedOf(pk.R,pk.status):[]), on=pk?selFor(pk.key):null;
-  return `<ol class="steps" aria-label="${esc(o.label||"Pipeline steps")}">${steps.map((s,j)=>{ const st=done||j<i?"done":j===i?"cur":"todo", dot=`<span class="dot" aria-hidden="true"></span>`;
+  return `<ol class="stepbar" aria-label="${esc(o.label||"Pipeline steps")}">${steps.map((s,j)=>{ const st=done||j<i?"done":j===i?"cur":"todo";
     if(fin.has(s)&&st!=="cur"){ PICKS++; const sel=on===s;
-      return `<li class="${st} pick${sel?" sel":""}"><button type="button" class="stepbtn" data-run="${esc(pk.key)}" data-step="${esc(s)}" aria-pressed="${sel}" aria-label="${esc(nm(s))}: finished; ${sel?"shown in the step panel, press again for now":"show it in the step panel"}">${dot}${esc(nm(s))}</button></li>`; }
-    return `<li class="${st}${st==="cur"&&!done&&!o.still?(held?" held":" fullpulse"):""}"${st==="cur"?' aria-current="step"':""}>${dot}${esc(nm(s))}</li>`; }).join("")}</ol>`; }
+      return `<li class="${st} pick${sel?" sel":""}"><button type="button" class="stepbtn" data-run="${esc(pk.key)}" data-step="${esc(s)}" aria-pressed="${sel}" aria-label="${esc(nm(s))}: finished; ${sel?"shown in the step panel, press again for now":"show it in the step panel"}">${esc(nm(s))}</button></li>`; }
+    return `<li class="${st}${st==="cur"&&!done&&!o.still?(held?" held":" fullpulse"):""}"${st==="cur"?' aria-current="step"':""}>${esc(nm(s))}${sbState(st)}</li>`; }).join("")}</ol>`; }
 /* ---------- Progress notes (plan/RULES.md §3, "The step panel") ----------
    Every part of the run writes docs/plans/.live/progress/<issue>/<name>.js in its checkout every 10 minutes it runs, one line
    setting window.PROGRESS["<name>"] to its note (who, issue, times, done, left, estimate), and deletes it when it finishes. While the run is
@@ -3287,7 +4172,8 @@ function stepsLine(steps,cur,o){ o=o||{}; const i=steps.indexOf(cur), held=o.hel
    step panel: its work, how long it has run, what is done, what is left, its estimate and when it wrote; a note not updated for over 20
    minutes is drawn muted. A tracking board probes each unit in progress under the unit's own issue. The names below are
    file names only: a note is shown by the work it reports (noteLabel(), NOTE_WORK under names:begin: "research ·
-   <slug>", "implementation · s2", "code check"), never by its file's name (no internal names on a board, dashboards-skill/33). */
+   <slug>", "implementation · s2"; a Quality Review's checks "documentation check", "code check", "test check", dashboards-skill/52), never by
+   its file's name (no internal names on a board, dashboards-skill/33). */
 const AGENTS=["planner","interviewer","researcher","verifier","architect","plan-writer","rookie-dev","test-inspector","qa","code-reviewer","documentation-reviewer"];
 const noteLabel=name=>{ const n=String(name||""), b=Object.keys(NOTE_WORK).sort((x,y)=>y.length-x.length).find(k=>n===k||n.startsWith(k+"-")); return b?NOTE_WORK[b]+(n.length>b.length?" · "+n.slice(b.length+1):""):"progress"; };
 const PROG_STALE_MS=20*60000;
@@ -3329,7 +4215,7 @@ function renderWip(){
   /* the board's own facts: its Quality Reviews, its blockers, its landing */
   const facts=[];
   const qa=LANDED||STOPPED?qaInPlace(WIP,(Array.isArray(WIP.qa)?WIP.qa:[]).filter(p=>p&&typeof p==="object"),true):qaShown(WIP);
-  if(qa.length) facts.push(`<span><span class="l">${PASS_NAME}s</span>${qa.map(p=>{ const d=QA[p.verdict]||QA.running, f=p.findings||{}, nf=findingsTotal(f); const n=["documentation","test","code"].filter(k=>f[k]!=null).map(k=>`${f[k]} ${k==="documentation"?"doc":k}`).join(" / "), sv=Object.entries(p.severity||{}).map(([k,c])=>`${c} ${k}`).join(" / "); return `${pill(d,"",`${passName(p.pass)} · ${d.label}`)}${n?` <small>${nf} finding${nf===1?"":"s"}: ${esc(n)}</small>`:""}${sv?` <small>${esc(sv)}</small>`:""}${p.inPlace?` ${inPlaceMark(p)}`:""}`; }).join(" ")}${WIP.qaMax?` <small>of at most ${esc(WIP.qaMax)}</small>`:""}</span>`);
+  if(qa.length) facts.push(`<span><span class="l">${PASS_NAME}s</span>${qa.map(p=>{ const d=QA[p.verdict]||QA.running, fl=findingsWords(p.findings,p.severity,true); return `${pill(d,"",`${passName(p.pass)} · ${d.label}`)}${fl?` <small>${esc(fl)}</small>`:""}${p.inPlace?` ${inPlaceMark(p)}`:""}`; }).join(" ")}${WIP.qaMax?` <small>of at most ${esc(WIP.qaMax)}</small>`:""}</span>`);
   /* what the run depends on, each with its pill, and what it holds up: blocks while the issue is open, enables once it has landed */
   const bl=WIP.blockers||{}, iref=x=>x.repo&&x.repo!==PLAN.repo?ilink(x.issue,x.repo):ilink(x.issue), holdK=PLAN.status==="built"?"enables":"blocks";
   if((bl.waitsOn||[]).length) facts.push(`<span><span class="l">depends on</span><span class="deplist">${bl.waitsOn.map(x=>`<span>${iref(x)} ${depPill(x)}</span>`).join("")}</span></span>`);
@@ -3400,8 +4286,8 @@ function renderWip(){
     /* waiting on you: only while the tracking issue or a unit's run is halted */
     /* each with the questions it waits on (plan/RULES.md §3; dashboards-skill/45): a unit's by their text, their options in its step panel beside; the tracking issue's own with their options, as no panel of its own is drawn while it waits */
     const ownQs=waitingQs(WIP), wq=(qs,opts)=>qs.length?`<ul class="wq">${qs.map(q=>{ const ops=opts&&Array.isArray(q.options)?q.options.filter(x=>typeof x==="string"&&x.trim()):[]; return `<li>${rich(q.text)}${ops.length?`<ul class="sp-opts">${ops.map(x=>`<li>${rich(x)}</li>`).join("")}</ul>`:""}</li>`; }).join("")}</ul>`:"";
-    const waits=[...(HALTED?[`<li><b>#${esc(PLAN.issue)}</b>, the tracking issue: ${rich(WIP.waitingOn||WIP.detail||"(not stated)")}${wq(ownQs,true)}${WIP.resume?`<small>resumes at ${esc(WIP.resume)}</small>`:""}</li>`]:[]),
-      ...act.filter(runHeld).map(r=>{ const L=runOf(r), qs=waitingQs(L); return `<li>${uref(r)}: ${rich(L.waitingOn||L.detail||"(not stated)")}${wq(qs,false)}${qs.some(q=>Array.isArray(q.options)&&q.options.length)?`<small>the options: in its step panel</small>`:""}${L.resume?`<small>its run resumes at ${esc(L.resume)}</small>`:""}</li>`; })];
+    const waits=[...(HALTED?[`<li><b>#${esc(PLAN.issue)}</b>, the tracking issue: ${rich(WIP.waitingOn||WIP.detail||"(not stated)")}${wq(ownQs,true)}${WIP.resume?`<small>resumes at ${esc(resumeAt(WIP.resume,runCtx(WIP)))}</small>`:""}</li>`]:[]),
+      ...act.filter(runHeld).map(r=>{ const L=runOf(r), qs=waitingQs(L); return `<li>${uref(r)}: ${rich(L.waitingOn||L.detail||"(not stated)")}${wq(qs,false)}${qs.some(q=>Array.isArray(q.options)&&q.options.length)?`<small>the options: in its step panel</small>`:""}${L.resume?`<small>its run resumes at ${esc(resumeAt(L.resume,runCtx(L)))}</small>`:""}</li>`; })];
     if(waits.length){ rowN++; h+=`<div class="wipcard wait" style="--r:${rowN}"><div class="wipcard-t"><span class="k">⏸ Waiting on you</span></div><ul>${waits.join("")}</ul></div>`; legend.push(`<span><i class="wait"></i>yellow card: waiting on you, and for what</span>`); }
     /* the phase runs down beside every row the others take; alone, it takes the whole row */
     h=`<div class="wipgrid">${phase.replace(/^<div class="wipcard phase([^"]*)"/,(m,c)=>`<div class="wipcard phase${c}${rowN?"":" solo"}" style="--rows:${Math.max(rowN,1)}"`)}${h}</div>`;
@@ -3424,8 +4310,8 @@ function renderWip(){
   legend.push(...pkeys);
   /* the strip's legend: exactly what it drew */
   const runHeldAny=runs.some(runHeld);
-  if(st!=="cancelled") legend.push(`<span><i class="node"></i>step done${PICKS?": click a finished step to see it in the panel":""}</span>`,SEL?KEY_SEL:"",LANDED?"":PAUSED?`<span><i class="hold"></i>current step, paused</span>`:`<span><i class="node acc"></i>ringed dot, breathing: the step at work now</span>`,LANDED?"":`<span><i class="node hollow"></i>dashed: step to come</span>`);
-  if(!PAUSED&&!LANDED&&runs.some(runPaused)) legend.push(`<span><i class="hold"></i>a unit's current step, paused</span>`);
+  if(st!=="cancelled") legend.push(`<span><i class="sbk"></i>step done${PICKS?": click a finished step to see it in the panel":""}</span>`,SEL?KEY_SEL:"",LANDED?"":PAUSED?`<span><i class="sbk ring"></i>current step, the Ring alone: paused while the run waits on you</span>`:`<span><i class="sbk acc"></i>current step, in a FullPulse: the step at work now</span>`,LANDED?"":`<span><i class="sbk todo"></i>dashed: step to come</span>`);
+  if(!PAUSED&&!LANDED&&runs.some(runPaused)) legend.push(`<span><i class="sbk ring"></i>a unit's current step, the Ring alone: paused while its run waits on you</span>`);
   if(runs.length) legend.push(`<span><i class="runbar"></i>accent edge: a unit in progress, its own run mirrored from its board</span>`);
   if(runHeldAny) legend.push(`<span><i class="runbar halt"></i>yellow edge: that run waits on you</span>`);
   if(runs.length) legend.push(runKeys(runs));
@@ -3684,6 +4570,18 @@ function rowTitle(r){ const u=r.unit; if(!u) return codeOnly(r.name);
    zero), the bold lead (the summary's first sentence in bold), and in its foot the where chip (the row's where) and the baseline chip
    ("at <sha>", the board's baseline, opening the commit). A row with no where, a board with no baseline sha, draws no chip for it. */
 const evidenceLabel=n=>`<span class="count-label${n?"":" zero"}">· <b>${n}</b> evidence</span>`;
+/* The Verdict cell's count labels (plan/RULES.md §2, "Statements"; dashboards-skill/53): its steps, tests and risks, each a count label as the
+   evidence count is, the figure in ink and muted at zero, the noun agreeing with it ("1 step", "0 tests") */
+const countLabel=(n,one,many)=>`<span class="count-label${Number(n)?"":" zero"}"><b>${esc(n)}</b> ${Number(n)===1?one:(many||one+"s")}</span>`;
+/* A unit's landing on a tracking board's As built cell (plan/RULES.md §3, "The units' landings"; dashboards-skill/53): the PR chip and the merge
+   chip, from unit.landing (embed.js copies it from the unit's own board) or, for a unit with no board, the row's asBuilt.pr and asBuilt.merge;
+   "" on a row that is no unit, or a unit that records neither */
+const landingOf=r=>{ if(!r||!r.unit) return {}; const L=r.unit.landing&&typeof r.unit.landing==="object"?r.unit.landing:{}, b=r.asBuilt||{}, pr=L.pr||b.pr, m=L.merge||b.merge;
+  return {pr:Number.isInteger(+pr)&&+pr>0?+pr:null, merge:typeof m==="string"&&/^[0-9a-f]{7,40}$/i.test(m)?m:null}; };
+const landingChips=r=>{ const {pr,merge}=landingOf(r); if(!pr&&!merge) return "";
+  const prC=pr?(REPO?`<a class="pr-chip" href="${esc(REPO)}/pull/${pr}" target="_blank" rel="noopener" title="the unit's pull request">PR #${pr}</a>`:`<span class="pr-chip" title="the unit's pull request">PR #${pr}</span>`):"";
+  const mC=merge?(REPO?`<a class="merge-chip" href="${esc(REPO)}/commit/${esc(merge)}" target="_blank" rel="noopener" title="the unit's merge commit ${esc(merge)}">merge ${esc(merge.slice(0,7))}</a>`:`<span class="merge-chip" title="the unit's merge commit ${esc(merge)}">merge ${esc(merge.slice(0,7))}</span>`):"";
+  return `<div class="landing-chips">${prC}${mC}</div>`; };
 const whereChip=r=>r&&r.where?`<span class="where-chip" title="where">${codeOnly(r.where)}</span>`:"";
 const baselineChip=b=>{ const sha=b&&b.sha?String(b.sha):""; if(!sha) return ""; const t=`the baseline${b.ref?`: ${esc(b.ref)}`:""}`; return /^[0-9a-f]{7,40}$/i.test(sha)&&REPO?`<a class="baseline-chip" href="${esc(REPO)}/commit/${esc(sha)}" target="_blank" rel="noopener" title="${t}">at ${esc(sha)}</a>`:`<span class="baseline-chip" title="${t}">at ${esc(sha)}</span>`; };
 /* The bold lead splits the summary as written, so each part keeps its code spans whole: the first sentence ends at ".", "!" or "?" and
@@ -3704,10 +4602,10 @@ const buildingLead=(r,st,cls)=>{ const b=r.asBuilt||{}; return (st==="in-progres
 const builtBody=(r,st)=>{ const b=r.asBuilt||{}, s=stmtsHtml(r,"built"); return s?buildingLead(r,st)+s:rich(b.summary||(st==="pending"?"Not built yet.":"")); };
 /* the as-built cell's or card's marks: its own FullPulse, the column's (colcell-fullpulse), or the up-next Ring of the next unit */
 const builtMark=r=>{ const g=cellGlow(r.id,"built"); return g+(/ fullpulse| held/.test(g)||!isNext(r)?"":" upnext-ring"); };
-function cellVerdict(r){ const v=r.verdict||{}, w=verdictOf(r), leave=w==="leave", chg=!w&&CHARGING(); return `<div class="cell verdict${leave?" leave":""}${chg?` charging${PAUSED?" still":""}`:""}${cellGlow(r.id,"verdict")}" role="button" tabindex="0" data-row="${esc(r.id)}" data-col="verdict" aria-label="Verdict: ${nameText(r)}${w?"":", not yet written"}"><div class="kick">3 · VERDICT${w?` <span class="kind">${leave?"leave as is":"build"}</span>`:""}</div><div class="sum">${verdictBody(r)}</div><div class="meta"><span>${plural((v.steps||[]).length,"step")} · ${plural((v.tests||[]).length,"test")} · ${plural((v.risks||[]).length,"risk")}</span>${moreLink(v.link,"plan")}</div></div>`; }
+function cellVerdict(r){ const v=r.verdict||{}, w=verdictOf(r), leave=w==="leave", chg=!w&&CHARGING(); return `<div class="cell verdict${leave?" leave":""}${chg?` charging${PAUSED?" still":""}`:""}${cellGlow(r.id,"verdict")}" role="button" tabindex="0" data-row="${esc(r.id)}" data-col="verdict" aria-label="Verdict: ${nameText(r)}${w?"":", not yet written"}"><div class="kick">3 · VERDICT${w?` <span class="kind">${leave?"leave as is":"build"}</span>`:""}</div><div class="sum">${verdictBody(r)}</div><div class="meta"><span>${countLabel((v.steps||[]).length,"step")} · ${countLabel((v.tests||[]).length,"test")} · ${countLabel((v.risks||[]).length,"risk")}</span>${moreLink(v.link,"plan")}</div></div>`; }
 function cellBuilt(r){ const st=stateOf(r), b=r.asBuilt||{}, S=STATES[st]; const extra=st==="deferred"&&b.issue?` → ${ilink(b.issue)}`:"";
   const link=b.link||(r.unit&&(unitHref(r)||r.unit.folder))||"";
-  return `<div class="cell built ${S.cls}${st==="pending"?" pending":""}${st==="deferred"?" deferred":""}${builtMark(r)}" role="button" tabindex="0" data-row="${esc(r.id)}" data-col="built" aria-label="As built: ${nameText(r)}, ${S.label}${isNext(r)?", up next":""}${runOf(r)?`, its run: ${esc(runShort(runOf(r)).slice(2))}`:""}"><div class="kick">4 · AS BUILT ${badge(st,extra)}${nextTags(r)}</div><div class="sum">${builtBody(r,st)}</div>${runLine(r)}<div class="meta"><span>${plural((b.changes||[]).length,"change")} · ${plural((b.commits||[]).length,"commit")}</span>${moreLink(link,r.unit?(unitHref(r)?"board":"folder"):"record")}</div></div>`; }
+  return `<div class="cell built ${S.cls}${st==="pending"?" pending":""}${st==="deferred"?" deferred":""}${builtMark(r)}" role="button" tabindex="0" data-row="${esc(r.id)}" data-col="built" aria-label="As built: ${nameText(r)}, ${S.label}${isNext(r)?", up next":""}${runOf(r)?`, its run: ${esc(runShort(runOf(r)).slice(2))}`:""}"><div class="kick">4 · AS BUILT ${badge(st,extra)}${nextTags(r)}</div>${landingChips(r)}<div class="sum">${builtBody(r,st)}</div>${runLine(r)}<div class="meta"><span>${plural((b.changes||[]).length,"change")} · ${plural((b.commits||[]).length,"commit")}</span>${moreLink(link,r.unit?(unitHref(r)?"board":"folder"):"record")}</div></div>`; }
 const GROUP_ORDER=["Code","Tests","Documents","Release","Left for later"];
 function grouped(){ const groups=[]; ROWS.forEach(r=>{ const g=r.group||""; let G=groups.find(x=>x.name===g); if(!G){ G={name:g,rows:[]}; groups.push(G); } G.rows.push(r); });
   /* an issue board orders its groups Code, Tests, Documents, Release, Left for later; a tracking board keeps landing order */
@@ -3717,7 +4615,7 @@ function renderBoard(){
   /* one line, for what the board does not draw (the columns, the colours and the marks are in the heads and the legend) */
   $("#design-lede").textContent=TRACKING
     ?"One row per unit, in landing order; each unit is planned and built on its own board. Click a cell for its detail."
-    :"Click a cell, an option or a statement's (§) reference for its detail and the Markdown section that holds the rest.";
+    :"Click a cell, an option or a statement's § reference for its detail and the Markdown section that holds the rest.";
   const ms=c=>(PLAN.milestones||[]).find(m=>m.column===c);
   let h=`<div class="colhead" data-col="units" aria-hidden="true"></div>`+COLS.map((c,i)=>{ const m=ms(c.key);
     const dt=m?`${esc(m.label)}${m.date?` · <span class="nw">${when(m.date)}</span>`:""}${m.ref?` · ${refHtml(m.ref)}`:""}`:FILLING.includes(c.key)?"being written":(c.key==="built"&&!LANDED?"not landed":"");
@@ -3744,7 +4642,7 @@ function renderBoard(){
     +(NEXT_ROW?KEY_NEXT(NEXT_ROW):"")
     +Q_ORDER.filter(x=>[...RROWS.values()].includes(x)).map(KEY_RS).join("")
     +(CHARGING()&&ROWS.some(r=>!verdictOf(r))?KEY_CHG():"")
-    +refKey(ROWS.flatMap(r=>[...stmtsOf(r.verdict),...stmtsOf(r.asBuilt)]));
+    +refKey(ROWS.flatMap(r=>stmtsOf(r.verdict)),ROWS.flatMap(r=>stmtsOf(r.asBuilt)));
 }
 /* The kind chips the Timeline draws, in its legend: the gap's kind (column 1) and the written verdict's (column 3), each a neutral,
    solid chip (GUIDANCE.md §1: a kind is a fact, not an outcome, and dashed means only planned or pending), listed only when drawn. */
@@ -3773,7 +4671,7 @@ function select(rowId,col,optId){
 }
 /* A statement's reference (plan/RULES.md §2, "Statements"): a plain click shows, in the inspector, the excerpt embed.js copied from the
    plan section it rests on, beside the link that opens the section; a modified click (a new tab, a new window) follows the link. */
-function bindRefs(root){ (root||document).querySelectorAll("a.sref").forEach(a=>a.addEventListener("click",e=>{ if(e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey) return;
+function bindRefs(root){ (root||document).querySelectorAll("a.sref,a.section-chip").forEach(a=>a.addEventListener("click",e=>{ if(e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey) return;
   e.preventDefault(); e.stopPropagation(); const cell=document.querySelector(`#board .cell[data-row="${CSS.escape(a.dataset.row)}"][data-col="${a.dataset.col}"]`);
   if(a.closest("#board")){ document.querySelectorAll("#board .cell.sel, #board .opt.sel").forEach(x=>x.classList.remove("sel")); if(cell) cell.classList.add("sel"); }
   inspectRef(a.dataset.row,a.dataset.col,+a.dataset.i); try{ history.replaceState(null,"","#"+a.dataset.row+"."+a.dataset.col+".s"+a.dataset.i); }catch(x){} })); }
@@ -3793,7 +4691,7 @@ function inspectOption(r,o){ if(!o){ inspect(`<div class="kicker">2 · CONSIDERE
 function inspectVerdict(r){ const v=r.verdict||{}, w=verdictOf(r);
   inspect(`<div class="kicker">3 · VERDICT${w?` · ${w==="leave"?"LEAVE AS IS":"BUILD"}`:""}</div><div class="name">${codeOnly(r.name)}</div><div class="vis">${whereOf(r)}</div>${w&&stmtsOf(v).length?stmtsHtml(r,"verdict"):`<p class="lead">${w?rich(v.summary):"Not yet written."}</p>`}${v.defense?`<p>${rich(v.defense)}</p>`:""}<dl>${v.steps&&v.steps.length?`<dt>Steps</dt><dd><ol class="steps-list">${v.steps.map(s=>`<li><b>${esc(s.id||"·")}</b><span>${rich(s.what||"")}${fileTree(s.files)}${s.check?`<span class="check">${rich(s.check)}</span>`:""}${s.link?` ${moreLink(s.link,"in the plan")}`:""}</span></li>`).join("")}</ol></dd>`:""}${v.tests&&v.tests.length?`<dt>Tests</dt><dd>${list(v.tests)}</dd>`:""}${v.leaves&&v.leaves.length?`<dt>Leaves to other units</dt><dd>${list(v.leaves)}</dd>`:""}${v.risks&&v.risks.length?`<dt>Risks and what bounds them</dt><dd>${list(v.risks)}</dd>`:""}${v.source?`<dt>Source</dt><dd>${refHtml(v.source)}</dd>`:""}${v.link?`<dt>Detail</dt><dd>${refHtml(v.link)}</dd>`:""}</dl>`); }
 function inspectBuilt(r){ const b=r.asBuilt||{}, st=stateOf(r), a=PLAN.asBuilt||{}, u=r.unit;
-  inspect(`<div class="kicker">4 · AS BUILT${a.sha?` · AT ${esc(a.sha).toUpperCase()}`:""}</div><div class="name">${codeOnly(r.name)}</div><div class="vis">${badge(st,st==="deferred"&&b.issue?` → ${ilink(b.issue)}`:"")} ${esc(STATES[st].desc)}</div>${stmtsOf(b).length?buildingLead(r,st,"lead")+stmtsHtml(r,"built"):`<p class="lead">${rich(b.summary||(st==="pending"?"Not built yet.":""))}</p>`}<dl>${b.changes&&b.changes.length?`<dt>Changes from the verdict</dt><dd><ol>${b.changes.map(c=>`<li><b>${rich(c.what||"")}</b>${c.why?` — ${rich(c.why)}`:""}${c.when||c.ref||c.link?`<br><small>${esc(c.when||"")}${c.ref?` · ${refHtml(c.ref)}`:""}${c.link?` · ${refHtml(c.link,"the reason")}`:""}</small>`:""}</li>`).join("")}</ol></dd>`:""}${ftTree(b.files).kids.length?`<dt>Files</dt><dd>${fileTree(b.files)}</dd>`:""}${b.tests?`<dt>Tests</dt><dd>${rich(b.tests)}</dd>`:""}${b.commits&&b.commits.length?`<dt>Commits</dt><dd>${b.commits.map(c=>refHtml(c)).join(" · ")}</dd>`:""}${b.verified?`<dt>Verified</dt><dd>${rich(b.verified)}</dd>`:""}${b.issue?`<dt>Moved to</dt><dd>${ilink(b.issue)}</dd>`:""}${u?`<dt>Unit</dt><dd>${esc(u.n)}. ${u.issue?pair(u.issue,u.slug||r.id):esc(u.slug||"")}${u.blockedBy&&u.blockedBy.length?`<br>depends on <span class="deplist">${unitDeps(r).map(x=>`<span>${ilink(x.issue)} ${depPill(x)}</span>`).join("")}</span>`:""}${unitHolds(r).length?`<br>blocks · enables <span class="deplist">${unitHolds(r).map(x=>`<span>${ilink(x.issue)} ${pill(HOLD[unitLanded(r)?"enables":"blocks"])}</span>`).join("")}</span>`:""}${(u.blockedBy||[]).length||unitHolds(r).length?`<div class="legend">${depKeys(unitDeps(r),unitHolds(r).length?[unitLanded(r)?"enables":"blocks"]:[]).join("")}</div>`:""}${u.versions?`<br>versions: ${rich(u.versions)}`:""}${u.branch&&!unitLanded(r)?`<br>branch <code>${esc(u.branch)}</code>`:""}${u.board?"":`<br>${u.folder?refHtml(u.folder,"its folder"):"no plan folder yet"}`}</dd>`:""}${runOf(r)?inspectRun(r):""}${b.link?`<dt>Detail</dt><dd>${refHtml(b.link)}</dd>`:""}</dl>`); }
+  inspect(`<div class="kicker">4 · AS BUILT${a.sha?` · AT ${esc(a.sha).toUpperCase()}`:""}</div><div class="name">${codeOnly(r.name)}</div><div class="vis">${badge(st,st==="deferred"&&b.issue?` → ${ilink(b.issue)}`:"")} ${esc(STATES[st].desc)}</div>${stmtsOf(b).length?buildingLead(r,st,"lead")+stmtsHtml(r,"built"):`<p class="lead">${rich(b.summary||(st==="pending"?"Not built yet.":""))}</p>`}<dl>${b.changes&&b.changes.length?`<dt>Changes from the verdict</dt><dd><ol>${b.changes.map(c=>`<li><b>${rich(c.what||"")}</b>${c.why?` — ${rich(c.why)}`:""}${c.when||c.ref||c.link?`<br><small>${esc(c.when||"")}${c.ref?` · ${refHtml(c.ref)}`:""}${c.link?` · ${refHtml(c.link,"the reason")}`:""}</small>`:""}</li>`).join("")}</ol></dd>`:""}${ftTree(b.files).kids.length?`<dt>Files</dt><dd>${fileTree(b.files)}</dd>`:""}${b.tests?`<dt>Tests</dt><dd>${rich(b.tests)}</dd>`:""}${b.commits&&b.commits.length?`<dt>Commits</dt><dd>${b.commits.map(c=>refHtml(c)).join(" · ")}</dd>`:""}${b.verified?`<dt>Verified</dt><dd>${rich(b.verified)}</dd>`:""}${b.issue?`<dt>Moved to</dt><dd>${ilink(b.issue)}</dd>`:""}${u?`<dt>Unit</dt><dd>${esc(u.n)}. ${u.issue?pair(u.issue,u.slug||r.id):esc(u.slug||"")}${u.blockedBy&&u.blockedBy.length?`<br>depends on <span class="deplist">${unitDeps(r).map(x=>`<span>${bref(x)} ${depPill(x)}</span>`).join("")}</span>`:""}${unitHolds(r).length?`<br>blocks · enables <span class="deplist">${unitHolds(r).map(x=>`<span>${bref(x)} ${pill(HOLD[unitLanded(r)?"enables":"blocks"])}</span>`).join("")}</span>`:""}${(u.blockedBy||[]).length||unitHolds(r).length?`<div class="legend">${depKeys(unitDeps(r),unitHolds(r).length?[unitLanded(r)?"enables":"blocks"]:[]).join("")}</div>`:""}${u.versions?`<br>versions: ${rich(u.versions)}`:""}${u.branch&&!unitLanded(r)?`<br>branch <code>${esc(u.branch)}</code>`:""}${u.board?"":`<br>${u.folder?refHtml(u.folder,"its folder"):"no plan folder yet"}`}</dd>`:""}${runOf(r)?inspectRun(r):""}${b.link?`<dt>Detail</dt><dd>${refHtml(b.link)}</dd>`:""}</dl>`); }
 /* the inspector's entry for a unit's run, from its mirror: the pill, its qa passes, the step, its steps (no mark) and its detail */
 function inspectRun(r){ const L=runOf(r);
   return `<dt>Its run now · from its board</dt><dd><div class="run">${runPill(L)}${runAt(L)}${qaShown(L).map(qaPill).join("")}</div>step <b>${esc(stepLabel(L.step,runCtx(L))||"—")}</b>${L.since?` since ${when(L.since)}`:""}${L.updated?` · updated ${when(L.updated)}`:""}${L.branch?` · branch <code>${esc(L.branch)}</code>`:""}${runBlock(r,true)}</dd>`; }
@@ -4100,8 +4998,9 @@ function inspectImpact(ref){ const [k,...rest]=String(ref).split("."), id=rest.j
    frame's width, the boxes widen up to 260 px and the gaps take the rest; where the frame is narrower than the graph needs, it
    keeps its natural size and scrolls inside its frame. */
 function renderChain(){
-  const units=ROWS.filter(r=>r.unit), byIssue=new Map(units.map(r=>[r.unit.issue,r]));
-  const depth=new Map(); const d=r=>{ if(depth.has(r.id)) return depth.get(r.id); depth.set(r.id,0); const v=Math.max(0,...(r.unit.blockedBy||[]).map(n=>byIssue.get(n)).filter(Boolean).map(x=>d(x)+1)); depth.set(r.id,v); return v; };
+  /* the edges run between the unit rows a unit's blockers name, by issue number or, before the filing, by unit number (blockersOf()) */
+  const units=ROWS.filter(r=>r.unit), deps=r=>blockersOf(r).map(x=>x.row).filter(b=>b&&b!==r);
+  const depth=new Map(); const d=r=>{ if(depth.has(r.id)) return depth.get(r.id); depth.set(r.id,0); const v=Math.max(0,...deps(r).map(x=>d(x)+1)); depth.set(r.id,v); return v; };
   units.forEach(d);
   const cols=[]; units.forEach(r=>{ const c=depth.get(r.id); (cols[c]=cols[c]||[]).push(r); });
   const H=50,GY=14,PAD=12, maxRows=Math.max(1,...cols.map(c=>c?c.length:0)), n=Math.max(1,cols.length);
@@ -4110,14 +5009,14 @@ function renderChain(){
   const width=Math.max(natural,frameW>natural?frameW:natural), height=PAD*2+maxRows*H+(maxRows-1)*GY, chars=Math.floor((W-24)/7), fit=(t,k)=>t.length>k?t.slice(0,k-1)+"…":t;
   const pos=new Map(); cols.forEach((c,i)=>(c||[]).forEach((r,j)=>{ const off=(maxRows-c.length)*(H+GY)/2; pos.set(r.id,{x:PAD+i*(W+GX),y:PAD+off+j*(H+GY)}); }));
   let s=`<svg class="chainsvg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="Units and what blocks them"><defs><marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0,0 L8,4 L0,8 z"/></marker></defs>`;
-  units.forEach(r=>(r.unit.blockedBy||[]).map(n=>byIssue.get(n)).filter(Boolean).forEach(b=>{ const p=pos.get(b.id), q=pos.get(r.id); const x1=p.x+W,y1=p.y+H/2,x2=q.x-2,y2=q.y+H/2,mx=(x1+x2)/2; s+=`<path class="edge${unitLanded(b)?"":" todo"}" d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}" marker-end="url(#arr)"/>`; }));
+  units.forEach(r=>deps(r).forEach(b=>{ const p=pos.get(b.id), q=pos.get(r.id); const x1=p.x+W,y1=p.y+H/2,x2=q.x-2,y2=q.y+H/2,mx=(x1+x2)/2; s+=`<path class="edge${unitLanded(b)?"":" todo"}" d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}" marker-end="url(#arr)"/>`; }));
   units.forEach(r=>{ const p=pos.get(r.id), st=stateOf(r), S=STATES[st], act=rowActive(r)&&!LANDED&&!STOPPED?(PAUSED||runPaused(r)?" held":" fullpulse"):isNext(r)?" upnext-ring":"", L=runOf(r);
-    s+=`<g class="unit ${S.cls}${st==="pending"?" pending":""}${act}" data-row="${esc(r.id)}" data-sys="${esc(r.system)}" tabindex="0" role="button" aria-label="Unit ${esc(r.unit.n)}: ${nameText(r)}, ${S.label}${L?`, its run: ${esc(runShort(L).slice(2))}`:""}" transform="translate(${p.x},${p.y})"><rect class="box" width="${W}" height="${H}" rx="5"/><rect class="bar" width="5" height="${H}" rx="2"/>${st!=="pending"?`<rect class="st" x="${W-6}" width="6" height="${H}" rx="2"/>`:""}<text class="t" x="12" y="19">${esc(r.unit.n)} · ${esc((r.unit.slug||r.id).slice(0,chars))}</text><text class="s" x="12" y="37">${esc(fit(`#${r.unit.issue} · ${L?runShort(L):`${S.g} ${S.label}`}`,Math.floor((W-24)/6.2)))}</text>${isNext(r)?`<rect class="tagbox" x="${W-60}" y="-7" width="54" height="14" rx="3"/><text class="tagtx" x="${W-33}" y="3" text-anchor="middle">UP NEXT</text>`:""}</g>`; });
+    s+=`<g class="unit ${S.cls}${st==="pending"?" pending":""}${act}" data-row="${esc(r.id)}" data-sys="${esc(r.system)}" tabindex="0" role="button" aria-label="Unit ${esc(r.unit.n)}: ${nameText(r)}, ${S.label}${L?`, its run: ${esc(runShort(L).slice(2))}`:""}" transform="translate(${p.x},${p.y})"><rect class="box" width="${W}" height="${H}" rx="5"/><rect class="bar" width="5" height="${H}" rx="2"/>${st!=="pending"?`<rect class="st" x="${W-6}" width="6" height="${H}" rx="2"/>`:""}<text class="t" x="12" y="19">${esc(r.unit.n)} · ${esc((r.unit.slug||r.id).slice(0,chars))}</text><text class="s" x="12" y="37">${esc(fit(`${r.unit.issue?`#${r.unit.issue} · `:"not filed yet · "}${L?runShort(L):`${S.g} ${S.label}`}`,Math.floor((W-24)/6.2)))}</text>${isNext(r)?`<rect class="tagbox" x="${W-60}" y="-7" width="54" height="14" rx="3"/><text class="tagtx" x="${W-33}" y="3" text-anchor="middle">UP NEXT</text>`:""}</g>`; });
   s+=`</svg>`;
   $("#chain-frame").innerHTML=s; paint($("#chain-frame"));
   document.querySelectorAll(".chainsvg .unit").forEach(g=>{ const go=()=>{ document.querySelectorAll(".chainsvg .unit.sel").forEach(e=>e.classList.remove("sel")); g.classList.add("sel"); INSPECTED={k:"unit",row:g.dataset.row}; inspectBuilt(ROWS.find(x=>x.id===g.dataset.row)); }; g.addEventListener("click",go); g.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }); });
   const usedSt=[...new Set(units.map(stateOf))];
-  $("#chain-key").innerHTML=sysKey(units.map(r=>r.system))+Object.keys(STATES).filter(k=>usedSt.includes(k)&&k!=="pending").map(k=>`<span>${badge(k)} ${["as-planned","amended","deviated"].includes(k)?"landed: ":""}${esc(STATES[k].desc)}</span>`).join("")+(usedSt.includes("pending")?`<span><i class="pln"></i>dashed: unit not built</span>`:"")+`<span><i class="ln"></i>arrow: blocks</span>`+(units.some(r=>(r.unit.blockedBy||[]).some(n=>byIssue.has(n)&&!unitLanded(byIssue.get(n))))?`<span><i class="ln dash"></i>dashed arrow: its blocker has not landed</span>`:"")+(!LANDED&&!STOPPED&&units.some(r=>rowActive(r)&&!PAUSED&&!runPaused(r))?`<span><i class="gl"></i>accent fill, breathing: the unit being worked on now</span>`:"")+(!LANDED&&!STOPPED&&units.some(r=>rowActive(r)&&(PAUSED||runPaused(r)))?`<span><i class="hold"></i>active unit, paused while its run waits on you</span>`:"")+(units.some(runOf)?`<span>▶ step · ⏸ waiting on you: a unit in progress, its own run from its board</span>`:"")+(NEXT_ROW?`<span><i class="nx"></i>${TAG_NEXT} still outer Ring: the next unit, not started</span>`:"");
+  $("#chain-key").innerHTML=sysKey(units.map(r=>r.system))+Object.keys(STATES).filter(k=>usedSt.includes(k)&&k!=="pending").map(k=>`<span>${badge(k)} ${["as-planned","amended","deviated"].includes(k)?"landed: ":""}${esc(STATES[k].desc)}</span>`).join("")+(usedSt.includes("pending")?`<span><i class="pln"></i>dashed: unit not built</span>`:"")+`<span><i class="ln"></i>arrow: blocks</span>`+(units.some(r=>deps(r).some(b=>!unitLanded(b)))?`<span><i class="ln dash"></i>dashed arrow: its blocker has not landed</span>`:"")+(!LANDED&&!STOPPED&&units.some(r=>rowActive(r)&&!PAUSED&&!runPaused(r))?`<span><i class="gl"></i>accent fill, breathing: the unit being worked on now</span>`:"")+(!LANDED&&!STOPPED&&units.some(r=>rowActive(r)&&(PAUSED||runPaused(r)))?`<span><i class="hold"></i>active unit, paused while its run waits on you</span>`:"")+(units.some(runOf)?`<span>▶ step · ⏸ waiting on you: a unit in progress, its own run from its board</span>`:"")+(NEXT_ROW?`<span><i class="nx"></i>${TAG_NEXT} still outer Ring: the next unit, not started</span>`:"");
 }
 
 /* ---------- Source ---------- */
@@ -4134,9 +5033,17 @@ function renderContext(){
   const cards=[];
   /* Roadmap: on a tracking board the item is this issue and its units; otherwise the parent tracking issue, if any. */
   const rm=PLAN.roadmap||null;
+  /* the roadmap item that claims this board, its section of the parent's roadmap.md where that document names it (lib.js
+     roadmapDocItem(); plan/RULES.md §2, "The Context's roadmap") */
+  const rmState=i=>i&&i.state?` · ${esc(String(i.state).toUpperCase()==="CLOSED"&&i.stateReason==="NOT_PLANNED"?"closed · not planned":String(i.state).toUpperCase()==="CLOSED"&&i.stateReason==="DUPLICATE"?"closed · duplicate":i.state)}`:"";
+  const rmSec=i=>i&&i.issue===PLAN.issue&&i.ref?` · ${refHtml(i.ref,i.section?`roadmap: ${i.section}`:"its roadmap section")}`:"";
   if(TRACKING){ const units=ROWS.filter(r=>r.unit);
+    /* a tracking board nested under another tracking issue names the parent's roadmap item it is (plan.roadmap, lib.js fillRoadmap()):
+       the parent, then this issue's item and where it stands among the parent's items; nothing where no source names it */
+    if(rm&&rm.issue){ const its=rm.items||[], k=its.findIndex(i=>i&&i.issue===PLAN.issue), me=k>=0?its[k]:null;
+      if(me) cards.push(`<div class="card"><h3>Roadmap item <small>#${esc(rm.issue)}${its.length>1?` · ${k+1} of ${plural(its.length,"item")}`:""}${rm.asOf?` · ${day(rm.asOf)}`:""}</small></h3><ul class="issues"><li><span class="nm">${rm.title?pair(rm.issue,rm.title,null,1):ilink(rm.issue)}</span></li><li><span class="nm">${me.title?pair(me.issue,me.title,null,1):ilink(me.issue)}${rmState(me)} · this board${rmSec(me)}</span></li></ul></div>`); }
     cards.push(`<div class="card"><h3>Roadmap <small>#${esc(PLAN.issue)} · ${plural(units.length,"unit")}${WIP.updated?` · ${day(WIP.updated)}`:""}</small></h3><ul class="issues">${units.map(r=>`<li><span class="nm">${esc(r.unit.n)}. ${r.unit.issue?pair(r.unit.issue,r.name):codeOnly(r.name)} · ${badge(stateOf(r))}${runOf(r)?` ${runPill(runOf(r))}`:""}${isNext(r)?` ${TAG_NEXT}`:""}</span></li>`).join("")}</ul></div>`); }
-  else if(rm&&rm.issue) cards.push(`<div class="card"><h3>Roadmap <small>${day(rm.asOf||"")}</small></h3><ul class="issues"><li><span class="nm">${rm.title?pair(rm.issue,rm.title,null,1):ilink(rm.issue)}</span></li>${(rm.items||[]).map(i=>`<li><span class="nm">${i.title?pair(i.issue,i.title,null,1):ilink(i.issue)}${i.state?` · ${esc(String(i.state).toUpperCase()==="CLOSED"&&i.stateReason==="NOT_PLANNED"?"closed · not planned":String(i.state).toUpperCase()==="CLOSED"&&i.stateReason==="DUPLICATE"?"closed · duplicate":i.state)}`:""}${i.issue===PLAN.issue?" · this board":""}</span></li>`).join("")}</ul></div>`);
+  else if(rm&&rm.issue) cards.push(`<div class="card"><h3>Roadmap <small>${day(rm.asOf||"")}</small></h3><ul class="issues"><li><span class="nm">${rm.title?pair(rm.issue,rm.title,null,1):ilink(rm.issue)}</span></li>${(rm.items||[]).map(i=>`<li><span class="nm">${i.title?pair(i.issue,i.title,null,1):ilink(i.issue)}${rmState(i)}${i.issue===PLAN.issue?" · this board":""}${rmSec(i)}</span></li>`).join("")}</ul></div>`);
   /* a sub-issue's board whose roadmap is not filled yet (embed.js fills it from the repository roadmap, lib.js fillRoadmap();
      dashboards-skill/34): its parent tracking issue claims it, so the card names the parent and its board; "no tracking parent" only
      where there is none */

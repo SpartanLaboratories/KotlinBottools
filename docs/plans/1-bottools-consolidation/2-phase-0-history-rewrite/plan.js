@@ -10,8 +10,8 @@ window.dashboardLive&&window.dashboardLive("plan",
   "title": "Phase 0 history rewrite",
   "issueTitle": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
   "function": "Phase 0 of the BotTools consolidation purges secrets and legacy data from the histories of the six bot repositories: KotlinBottools, GKB2, GKB, BotTools, TrumpBot and Support. The legacy data is first copied out byte-exactly, with a manifest of the blobs to purge; then each repository is rewritten with `git filter-repo` in a mirror clone, in a fixed order, and must pass its exit tests on a fresh mirror. KotlinBottools gains a root-anchored `.gitignore` and a gitleaks CI job and becomes public with secret scanning and push protection; what GitHub still serves of the old histories is measured and reported. The phase moves no version.",
-  "status": "planned",
-  "sized": "2026-11-07T00:00:00Z",
+  "status": "building",
+  "sized": "2026-11-07T07:05:00Z",
   "parent": {
     "issue": 1,
     "board": null
@@ -26,10 +26,10 @@ window.dashboardLive&&window.dashboardLive("plan",
   "asBuilt": null,
   "systems": [],
   "wip": {
-    "step": "document",
-    "since": "2026-11-08T01:12:00Z",
-    "updated": "2026-11-08T01:40:22Z",
-    "detail": "Document: 3 of 3 tasks done; every task done.",
+    "step": "implementation",
+    "since": "2026-11-08T21:15:43Z",
+    "updated": "2026-11-08T21:15:43Z",
+    "detail": "0 of 8 units landed; #21 in progress; #22 up next.",
     "steps": [
       "sizing",
       "interview",
@@ -43,7 +43,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "landed"
     ],
     "current": [
-      "built"
+      "preparation.built"
     ],
     "questions": [],
     "research": null,
@@ -53,34 +53,34 @@ window.dashboardLive&&window.dashboardLive("plan",
     "remediation": null,
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-08T01:40:22Z",
-      "note": "3 of 3 tasks done"
+      "name": "sub-issues-filed",
+      "at": "2026-11-08T01:46:36Z",
+      "note": "final: filing done"
     },
     "history": {
       "sizing": [
         {
           "since": null,
-          "ended": "2026-11-07T00:00:00Z",
+          "ended": "2026-11-07T07:05:00Z",
           "endedBy": "sized",
           "to": "plan"
         }
       ],
       "plan": [
         {
-          "since": "2026-11-07T00:00:00Z",
+          "since": "2026-11-07T07:05:00Z",
           "ended": "2026-11-07T07:11:27Z",
           "endedBy": "researched",
           "to": "architecture",
           "event": {
             "name": "sized",
-            "at": "2026-11-07T00:00:00Z"
+            "at": "2026-11-07T07:05:00Z"
           },
           "detail": "History rewrite of six repositories, planned to the architecture; each unit becomes a sub-issue. Research is verified; the architecture draft awaits revision and sign-off.",
           "plan": {
             "state": "re-pass",
             "from": "parent",
-            "since": "2026-11-07T00:00:00Z"
+            "since": "2026-11-07T07:05:00Z"
           }
         }
       ],
@@ -160,10 +160,86 @@ window.dashboardLive&&window.dashboardLive("plan",
             ]
           },
           "outage": "run resumed from its handoff after the previous session ended"
+        },
+        {
+          "since": "2026-11-08T01:12:00Z",
+          "ended": "2026-11-08T01:41:50Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-08T01:40:22Z",
+            "note": "3 of 3 tasks done"
+          },
+          "detail": "Document: 3 of 3 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Architecture and consequences confirmed final",
+                "state": "done"
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards with the planned units drawn dashed",
+                "state": "done"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-08T01:41:50Z",
+          "ended": "2026-11-08T01:42:49Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-08T01:41:50Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-08T01:42:49Z",
+          "ended": "2026-11-08T01:45:25Z",
+          "endedBy": "sub-issues-filed",
+          "to": "sub-issues",
+          "event": {
+            "name": "landed",
+            "at": "2026-11-08T01:42:58Z"
+          },
+          "detail": "The plan landed in PR #20; its units are filed next."
+        }
+      ],
+      "sub-issues": [
+        {
+          "since": "2026-11-08T01:45:25Z",
+          "ended": "2026-11-08T21:15:43Z",
+          "endedBy": "sized",
+          "to": "implementation",
+          "event": {
+            "name": "sub-issues-filed",
+            "at": "2026-11-08T01:46:36Z",
+            "note": "final: filing done"
+          },
+          "detail": "8 of 8 units filed as sub-issues; each unit's board appears when its run starts.",
+          "units": {
+            "done": 8,
+            "total": 8
+          }
         }
       ]
     },
-    "next": "preparation",
+    "next": "transfer-rehearsal",
     "qa": [],
     "qaMax": 3,
     "waitingOn": null,
@@ -172,7 +248,10 @@ window.dashboardLive&&window.dashboardLive("plan",
       "waitsOn": [],
       "blocks": []
     },
-    "landing": null,
+    "landing": {
+      "pr": 20,
+      "merge": "1a74516a28c14f22d642d6adb3000aca264b6731"
+    },
     "asked": [
       {
         "step": "architecture",
@@ -319,6 +398,73 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-08",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Merge: merging it in PR #20",
+      "ref": "PR #20"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "The plan landed in PR #20, merge 1a74516",
+      "ref": "PR #20"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "1 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "2 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "3 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "4 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "5 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "6 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "7 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "8 of 8 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "8 of 8 units filed as sub-issues; filing done"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "#21 started"
     }
   ],
   "rows": [
@@ -332,7 +478,518 @@ window.dashboardLive&&window.dashboardLive("plan",
         "n": 1,
         "slug": "preparation",
         "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
-        "blockedBy": []
+        "blockedBy": [],
+        "issue": 21,
+        "board": "21-preparation/dashboard.html",
+        "folder": "21-preparation/",
+        "live": {
+          "step": "document",
+          "since": "2026-11-08T22:59:18Z",
+          "updated": "2026-11-08T23:16:53Z",
+          "detail": "Document: 4 of 6 tasks done; Documentation review current.",
+          "steps": [
+            "sizing",
+            "interview",
+            "research",
+            "plan",
+            "branch",
+            "implementation",
+            "qa",
+            "remediation",
+            "document",
+            "landing",
+            "merge",
+            "landed"
+          ],
+          "waitingOn": null,
+          "resume": null,
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:40:00Z",
+              "findings": {
+                "test": 6,
+                "code": 5
+              },
+              "severity": {
+                "minor": 9,
+                "other": 2
+              },
+              "route": "re-plan-then-remediation"
+            },
+            {
+              "pass": 2,
+              "verdict": "running",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:40:31Z",
+              "findings": {}
+            },
+            {
+              "pass": 3,
+              "verdict": "changes-requested",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:57:17Z",
+              "findings": {
+                "test": 0,
+                "code": 3
+              },
+              "severity": {
+                "minor": 3,
+                "other": 0
+              },
+              "route": "on-the-spot"
+            }
+          ],
+          "qaMax": 3,
+          "status": "building",
+          "branch": "chore/issue-21-preparation",
+          "event": {
+            "name": "document",
+            "at": "2026-11-08T23:16:53Z",
+            "note": "4 of 6 tasks done"
+          },
+          "plan": {
+            "state": "re-pass",
+            "from": "qa",
+            "pass": 1,
+            "since": "2026-11-08T22:40:00Z"
+          },
+          "stages": [
+            {
+              "id": "S1",
+              "name": "Workspace, tool files and version pins",
+              "state": "done",
+              "rows": [
+                "workspace",
+                "git-and-runtimes",
+                "scan-wrapper"
+              ]
+            },
+            {
+              "id": "S2",
+              "name": "git-filter-repo",
+              "state": "done",
+              "rows": [
+                "filter-repo"
+              ]
+            },
+            {
+              "id": "S3",
+              "name": "gitleaks and canary",
+              "state": "done",
+              "rows": [
+                "gitleaks",
+                "scan-wrapper"
+              ]
+            },
+            {
+              "id": "S4",
+              "name": "Path-scrub expressions and fixture rehearsal",
+              "state": "done",
+              "rows": [
+                "filter-repo",
+                "path-scrub"
+              ]
+            },
+            {
+              "id": "S5",
+              "name": "Path lists",
+              "state": "done",
+              "rows": [
+                "path-lists"
+              ]
+            },
+            {
+              "id": "S6",
+              "name": "Authentication, mirrors and backups",
+              "state": "done",
+              "rows": [
+                "authentication",
+                "backups"
+              ]
+            },
+            {
+              "id": "S7",
+              "name": "Legacy data copy",
+              "state": "done",
+              "rows": [
+                "legacy-data-copy"
+              ]
+            },
+            {
+              "id": "S8",
+              "name": "Manifests, expectation rows and positive controls",
+              "state": "done",
+              "rows": [
+                "manifests",
+                "positive-controls"
+              ]
+            },
+            {
+              "id": "S9",
+              "name": "Closing checks",
+              "state": "done",
+              "rows": [
+                "backups",
+                "counts-only-records"
+              ]
+            }
+          ],
+          "remediation": {
+            "pass": 3,
+            "route": "on-the-spot"
+          },
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "current"
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "todo"
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "As-built record and consequences",
+                "state": "done"
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG: documents only, no entry",
+                "state": "done"
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done"
+              }
+            ]
+          },
+          "history": {
+            "sizing": [
+              {
+                "since": null,
+                "ended": "2026-11-08T21:15:43Z",
+                "endedBy": "sized",
+                "to": "plan"
+              }
+            ],
+            "plan": [
+              {
+                "since": "2026-11-08T21:15:43Z",
+                "ended": "2026-11-08T22:05:48Z",
+                "endedBy": "plan-accepted",
+                "to": "branch",
+                "event": {
+                  "name": "sized",
+                  "at": "2026-11-08T21:15:43Z"
+                },
+                "detail": "Local preparation for the history rewrite: pinned tools, workspace, backup mirrors, the legacy data copy and the manifests. Nothing is written to GitHub except this unit's documents.",
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-08T21:15:43Z"
+                }
+              }
+            ],
+            "branch": [
+              {
+                "since": "2026-11-08T22:05:48Z",
+                "ended": "2026-11-08T22:06:10Z",
+                "endedBy": "branch-cut",
+                "to": "implementation",
+                "event": {
+                  "name": "plan-accepted",
+                  "at": "2026-11-08T22:05:48Z"
+                },
+                "detail": "The plan runs as nine pinned stage scripts. The parent design still fits and the upstream pins are unchanged.",
+                "branch": "chore/issue-21-preparation"
+              }
+            ],
+            "implementation": [
+              {
+                "since": "2026-11-08T22:06:10Z",
+                "ended": "2026-11-08T22:12:20Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-08T22:11:56Z",
+                  "note": "S9 reported done; Quality Review next"
+                },
+                "detail": "All nine stages passed with no stop and no deviation. Six backups unchanged; the three data copies verified by blob id; five manifests equal the research table.",
+                "stages": [
+                  {
+                    "id": "S1",
+                    "name": "Workspace, tool files and version pins",
+                    "state": "done",
+                    "rows": [
+                      "workspace",
+                      "git-and-runtimes",
+                      "scan-wrapper"
+                    ]
+                  },
+                  {
+                    "id": "S2",
+                    "name": "git-filter-repo",
+                    "state": "done",
+                    "rows": [
+                      "filter-repo"
+                    ]
+                  },
+                  {
+                    "id": "S3",
+                    "name": "gitleaks and canary",
+                    "state": "done",
+                    "rows": [
+                      "gitleaks",
+                      "scan-wrapper"
+                    ]
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Path-scrub expressions and fixture rehearsal",
+                    "state": "done",
+                    "rows": [
+                      "filter-repo",
+                      "path-scrub"
+                    ]
+                  },
+                  {
+                    "id": "S5",
+                    "name": "Path lists",
+                    "state": "done",
+                    "rows": [
+                      "path-lists"
+                    ]
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Authentication, mirrors and backups",
+                    "state": "done",
+                    "rows": [
+                      "authentication",
+                      "backups"
+                    ]
+                  },
+                  {
+                    "id": "S7",
+                    "name": "Legacy data copy",
+                    "state": "done",
+                    "rows": [
+                      "legacy-data-copy"
+                    ]
+                  },
+                  {
+                    "id": "S8",
+                    "name": "Manifests, expectation rows and positive controls",
+                    "state": "done",
+                    "rows": [
+                      "manifests",
+                      "positive-controls"
+                    ]
+                  },
+                  {
+                    "id": "S9",
+                    "name": "Closing checks",
+                    "state": "done",
+                    "rows": [
+                      "backups",
+                      "counts-only-records"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "since": "2026-11-08T22:12:20Z",
+                "ended": "2026-11-08T22:40:00Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-08T22:12:20Z",
+                  "note": "Quality Review 1: running"
+                },
+                "detail": "Quality Review 1 running.",
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:40:00Z",
+                    "findings": {
+                      "test": 6,
+                      "code": 5
+                    },
+                    "severity": {
+                      "minor": 9,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-08T22:40:31Z",
+                "ended": "2026-11-08T22:57:17Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-08T22:51:10Z",
+                  "note": "Quality Review 3: running"
+                },
+                "detail": "The second review asked for wording only: the exemption for generated boards' commit ids now covers every such field, and three smaller statements were corrected. No script changed.",
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "running",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:40:31Z",
+                    "findings": {}
+                  },
+                  {
+                    "pass": 3,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:57:17Z",
+                    "findings": {
+                      "test": 0,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 3,
+                      "other": 0
+                    },
+                    "route": "on-the-spot"
+                  }
+                ]
+              }
+            ],
+            "remediation": [
+              {
+                "since": "2026-11-08T22:40:00Z",
+                "ended": "2026-11-08T22:40:31Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-08T22:40:00Z",
+                  "note": "Quality Review 1: changes-requested"
+                },
+                "detail": "Every acceptance criterion recomputed from the records matched and the local preparation is sound. The findings are plan wording that claims more than the scripts check, and differing accounts of what the landing adds.",
+                "remediation": {
+                  "pass": 1,
+                  "route": "re-plan-then-remediation",
+                  "steps": [
+                    {
+                      "name": "Plan wording and landing account corrected",
+                      "state": "current"
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:40:00Z",
+                    "findings": {
+                      "test": 6,
+                      "code": 5
+                    },
+                    "severity": {
+                      "minor": 9,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-08T22:57:17Z",
+                "ended": "2026-11-08T22:59:18Z",
+                "endedBy": "document",
+                "to": "document",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-08T22:57:17Z",
+                  "note": "Quality Review 3: changes-requested"
+                },
+                "detail": "All the documents are closed. Three excerpts on this unit's issue board still quote the replaced plan.",
+                "remediation": {
+                  "pass": 3,
+                  "route": "on-the-spot"
+                },
+                "qa": [
+                  {
+                    "pass": 3,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-08",
+                    "at": "2026-11-08T22:57:17Z",
+                    "findings": {
+                      "test": 0,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 3,
+                      "other": 0
+                    },
+                    "route": "on-the-spot"
+                  }
+                ]
+              }
+            ]
+          },
+          "rowNames": {
+            "workspace": "The workspace and the data folder",
+            "git-and-runtimes": "git pinned; Python, pip and gh recorded",
+            "filter-repo": "git-filter-repo 2.47.0, proved on a fixture",
+            "gitleaks": "gitleaks v8.30.1",
+            "scan-wrapper": "The scan wrapper, the canary and the saved scripts",
+            "path-scrub": "The path-scrub expression file",
+            "path-lists": "The six root-anchored path lists",
+            "authentication": "Non-interactive access to the six repositories",
+            "backups": "A mirror and an untouched backup of each of the six",
+            "legacy-data-copy": "The legacy data copy and `COPY-VERIFIED`",
+            "manifests": "Manifests and expectation rows of the five static repositories",
+            "positive-controls": "The positive-control scans",
+            "counts-only-records": "Records that carry counts only"
+          },
+          "recon": {
+            "interview": {
+              "reconstructed": true,
+              "ended": null,
+              "trail": [],
+              "milestones": []
+            },
+            "research": {
+              "reconstructed": true,
+              "ended": "2026-10-21",
+              "trail": [],
+              "milestones": [
+                {
+                  "date": "2026-10-21",
+                  "label": "Research verified, in #2's run",
+                  "ref": "../research/README.md",
+                  "note": "written on this board at sized from #2's research summary (§3.2, §3.3, §3.5, §3.6) and architecture §2.3, §2.4, §5, §6.1 to §6.3, with this unit's row in §15"
+                }
+              ]
+            }
+          }
+        }
       },
       "gap": {
         "kind": "missing",
@@ -497,7 +1154,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "n": 2,
         "slug": "transfer-rehearsal",
         "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories",
-        "blockedBy": []
+        "blockedBy": [
+          21
+        ],
+        "issue": 22
       },
       "gap": {
         "kind": "risk",
@@ -607,7 +1267,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "n": 3,
         "slug": "kotlinbottools-rewrite-and-swap",
         "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
-        "blockedBy": []
+        "blockedBy": [
+          22
+        ],
+        "issue": 23
       },
       "gap": {
         "kind": "risk",
@@ -816,7 +1479,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "n": 4,
         "slug": "repository-hygiene",
         "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
-        "blockedBy": []
+        "blockedBy": [
+          23
+        ],
+        "issue": 24
       },
       "gap": {
         "kind": "missing",
@@ -942,7 +1608,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "n": 5,
         "slug": "kotlinbottools-publish",
         "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection",
-        "blockedBy": []
+        "blockedBy": [
+          24
+        ],
+        "issue": 25
       },
       "gap": {
         "kind": "missing",
@@ -1041,7 +1710,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "n": 6,
         "slug": "gkb2-gkb-rewrite",
         "title": "Phase 0 · 6 — Rewrite GKB2 and GKB",
-        "blockedBy": []
+        "blockedBy": [
+          23
+        ],
+        "issue": 26
       },
       "gap": {
         "kind": "risk",
@@ -1130,7 +1802,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "n": 7,
         "slug": "bottools-trumpbot-support-rewrite",
         "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
-        "blockedBy": []
+        "blockedBy": [
+          26
+        ],
+        "issue": 27
       },
       "gap": {
         "kind": "risk",
@@ -1231,7 +1906,11 @@ window.dashboardLive&&window.dashboardLive("plan",
         "n": 8,
         "slug": "residual-report-and-cleanup",
         "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
-        "blockedBy": []
+        "blockedBy": [
+          25,
+          27
+        ],
+        "issue": 28
       },
       "gap": {
         "kind": "missing",
@@ -1421,10 +2100,122 @@ window.dashboardLive&&window.dashboardLive("plan",
     "api": [],
     "conversion": [],
     "source": "consequences.md",
-    "link": "consequences.md#2-blast-radius"
+    "link": "consequences.md#2-blast-radius",
+    "units": [
+      {
+        "unit": "preparation",
+        "basis": "plan",
+        "summary": "Local preparation: no module is published and no version moves. The unit writes nothing to GitHub but its own documents, reads the six repositories, and leaves the tools, backups, lists, manifests and verified data copy the later units consume.",
+        "release": {
+          "bump": "none",
+          "version": null,
+          "note": "no module is published and no version moves"
+        },
+        "source": "21-preparation/consequences.md §1 to §4",
+        "link": "21-preparation/consequences.md#2-blast-radius"
+      }
+    ]
   },
   "tests": null,
-  "roadmap": null,
+  "roadmap": {
+    "issue": 1,
+    "title": "BotTools consolidation & MagicBot (tracking)",
+    "asOf": "2026-11-08",
+    "items": [
+      {
+        "issue": 2,
+        "title": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
+        "state": "OPEN",
+        "ref": "../roadmap.md#phase-0--history-rewrite",
+        "section": "Phase 0 — History rewrite"
+      },
+      {
+        "issue": 3,
+        "title": "Phase 1 — Build skeleton: multi-module build, conventions, CI and repository scaffolding",
+        "state": "OPEN"
+      },
+      {
+        "issue": 4,
+        "title": "Phase 2 — Core foundation: ids, failures, settings, storage ports and configuration",
+        "state": "OPEN"
+      },
+      {
+        "issue": 5,
+        "title": "Phase 3 — Command model: definitions, validation, typed invocation, dispatch and help",
+        "state": "OPEN"
+      },
+      {
+        "issue": 6,
+        "title": "Phase 4 — SQLite storage: migrations, erasure and backups",
+        "state": "OPEN"
+      },
+      {
+        "issue": 7,
+        "title": "Phase 5 — Bot runtime: plugins, events, gateway, jobs, registration and built-in commands",
+        "state": "OPEN"
+      },
+      {
+        "issue": 8,
+        "title": "Phase 6a — HTTP call surface: the bottools-http API, endpoint vocabulary, failures and test fake",
+        "state": "OPEN"
+      },
+      {
+        "issue": 9,
+        "title": "Phase 6b — WebTools adapter: the internal adapter, composite build, strict pin, alignment checks and CI lanes",
+        "state": "OPEN"
+      },
+      {
+        "issue": 10,
+        "title": "Phase 7 — Stats provider framework: provider SPI, account links, match tracker and game news",
+        "state": "OPEN"
+      },
+      {
+        "issue": 11,
+        "title": "Phase 8 — Reaction-roles plugin, with the default role and welcome message on join",
+        "state": "OPEN"
+      },
+      {
+        "issue": 12,
+        "title": "Phase 9 — Math plugin",
+        "state": "OPEN"
+      },
+      {
+        "issue": 13,
+        "title": "Phase 10 — Admin plugin: typed get and set over guild settings",
+        "state": "OPEN"
+      },
+      {
+        "issue": 14,
+        "title": "Phase 11 — Weather plugin: conditions and forecast from Open-Meteo",
+        "state": "OPEN"
+      },
+      {
+        "issue": 15,
+        "title": "Phase 12 — Feeds plugin: RSS and Atom subscriptions with content safeguards",
+        "state": "OPEN"
+      },
+      {
+        "issue": 16,
+        "title": "Phase 17 — Release 1.0.0 to Maven Central and archive the predecessor repositories",
+        "state": "OPEN"
+      },
+      {
+        "issue": 17,
+        "title": "Phase 18 — Published test fixtures for plugin and provider authors (Experimental)",
+        "state": "OPEN"
+      },
+      {
+        "issue": 18,
+        "title": "Phase 19 — Poker plugin: playable Texas hold 'em (Experimental)",
+        "state": "OPEN"
+      },
+      {
+        "issue": 19,
+        "title": "Phase 23 — Desktop manager on SpartanUI and SpartanGraphics (unscheduled)",
+        "state": "OPEN"
+      }
+    ]
+  },
   "followUps": [
     {
       "name": "MagicBot's secret-scan configuration",
@@ -1504,6 +2295,19 @@ window.dashboardLive&&window.dashboardLive("plan",
     "corrections": [
       {
         "what": "The halt at the architecture and the sign-off that answered it were stamped 07:40 and 08:00 UTC, later than when they happened and, for the sign-off, later than the events that followed it. They are recorded at 07:25:54 and 07:29:01 UTC, when each update arrived: the architecture's first visit, the wait on the answers and the Document step's start move with them.",
+        "when": "2026-11-08"
+      },
+      {
+        "what": "The sizing was recorded at 2026-11-07 00:00:00 UTC: the run sent its sizing time as midnight. It is recorded at 07:05:00 UTC; the run's start and the visits it bounds (sizing, plan) move with it.",
+        "when": "2026-11-08",
+        "retime": {
+          "event": "sized",
+          "from": "2026-11-07T00:00:00Z",
+          "to": "2026-11-07T07:05:00Z"
+        }
+      },
+      {
+        "what": "The units were recorded with no dependencies on one another, though the architecture's end-to-end order (§8) and the filed issues' blocked-by links give them: #22 after #21, #23 after #22, #24 and #26 after #23, #25 after #24, #27 after #26, and #28 after #25 and #27. Each unit now names its blockers.",
         "when": "2026-11-08"
       }
     ]
