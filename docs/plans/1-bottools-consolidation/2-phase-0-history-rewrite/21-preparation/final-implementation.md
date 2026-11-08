@@ -59,7 +59,7 @@ Paths below are written as `%USERPROFILE%` forms; `WS` is `%USERPROFILE%\BotWS` 
 | The six backups exist and are untouched | Met: each backup's checksum list verified after the last stage |
 | `COPY-VERIFIED` is written after the three data copies verify by blob id | Met |
 | The five static repositories' expectation rows equal the research table, and their positive controls come out as expected | Met |
-| The output named nothing sensitive | Met for what the unit prints and writes (the plan's Requirement 11, which leaves the generated boards' commit-id fields outside it): every script prints counts, rule ids and markers only, and the five-pattern scan of the as-run log found nothing |
+| The output named nothing sensitive | Met for what the unit prints and writes (the plan's Requirement 11, which leaves the generated boards' commit-id fields outside it). For the output: every script prints counts, rule ids and markers only, and the five-pattern scan of the as-run log found nothing. For the documents: the plan, its replaced copy, the consequences and this record were scanned for the barred forms (40-digit hexadecimal ids, 17-to-20-digit numbers, `guildData/<x>` paths, the account name, user-profile paths) and hold none; the one 40-digit id they carry is the blob id of the upstream git-filter-repo script, not an id of these repositories. S9's scan cannot itself prove that nothing sensitive was named: it reads the as-run log alone, and neither scan can recognise a guild or member name in free text, so the guarantee rests on no script printing those values and on the documents carrying no value read from `guildData/`, `logs/` or the data files |
 
 ---
 

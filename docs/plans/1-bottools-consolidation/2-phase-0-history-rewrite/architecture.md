@@ -50,7 +50,7 @@
   appears in it: a secret value, a member name, a guild name, a Discord id, a path under
   `guildData/` or `logs/`, a pre-rewrite commit id, or a purged blob id.
 
-  > **Dated note, 2026-11-08.** The commit ids in the generated boards' generated fields (the `baseline.sha` and `wip.landing.merge` (with the merge id also in a generated timeline label) of an issue or tracking board's `plan.json`, `plan.js` and `dashboard.html`, and the `asIs`, `lastAmended`, `written` and `tree` shas of the state boards and the repository work board) are outside this statement. The fields are generated and no unit's procedure writes them, and under the swap (§7) the pre-rewrite objects live only in the private legacy repository, so the ids resolve to nothing in the public repository, as with the older documents' ids (§4). The id-reference check of `kotlinbottools-publish` (§6.5) must account for every such field; its count cannot reach 0 otherwise.
+  > **Dated note, 2026-11-08.** The commit ids in the generated boards' generated fields (the note at §1.1 item 9 lists them) are outside this statement. The fields are generated and no unit's procedure writes them, and under the swap (§7) the pre-rewrite objects live only in the private legacy repository, so the ids resolve to nothing in the public repository, as with the older documents' ids (§4). The id-reference check of `kotlinbottools-publish` (§6.5) must account for every such field; its count cannot reach 0 otherwise.
 
 ---
 

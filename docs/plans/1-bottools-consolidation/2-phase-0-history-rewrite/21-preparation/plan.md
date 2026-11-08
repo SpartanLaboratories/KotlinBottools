@@ -961,11 +961,15 @@ expects nothing from any sibling. What it provides, by slug:
   - **The saved tools and their fixed names** under `WS/tools`: the 23 research-document tools, the
     helpers and stage scripts of Appendix A, `filter-repo-requirements.txt` and `kbt-path.txt`.
   - **`env.sh` as the contract.** Sibling units source it from the same path
-    (`%USERPROFILE%\BotWS\tools\env.sh`, in mixed form). It exports `WS`, `DATA`, `TOOLS`, `OUT`,
-    `BKROOT`, `GR`, `GL`, `CFG`, `SS`, `SCRUB`, `KBT`, `PROJECTS`, `REPOS_ALL` and `REPOS_STATIC`; it
-    defines the function `gitnet` (every git network read, with `gh auth git-credential` as the only
-    credential helper) and the function `repo_env <repo>`, which sets `REPO`, `BK`, `MIRROR`, `RM`,
-    `LIST`, `MANIFEST`, `URL` and `CLONE`.
+    (`%USERPROFILE%\BotWS\tools\env.sh`, in mixed form). It exports `P_HOME`, `WS`, `DATA`, `TOOLS`,
+    `OUT`, `BKROOT`, `GR`, `GLV`, `GL`, `CFG`, `SS`, `SCRUB`, `KBT`, `PROJECTS`, `P_HOME_L`,
+    `PROJECTS_L`, `REPOS_ALL` and `REPOS_STATIC`; it defines the function `gitnet` (every git network
+    read, with `gh auth git-credential` as the only credential helper) and the function
+    `repo_env <repo>`, which sets `REPO`, `BK`, `MIRROR`, `RM`, `LIST`, `MANIFEST`, `URL` and `CLONE`.
+    Sourcing it also suppresses prompts (`GIT_ASK_YESNO=false`, `GIT_TERMINAL_PROMPT=0` and
+    `GCM_INTERACTIVE=never`) and, once `WS/tools/python313-scripts.txt` exists (`s4-fallback` writes
+    it), prepends the folder that file names to `PATH`. It reads `WS/tools/kbt-path.txt` at source
+    time, so that file must exist first: `KBT`, `PROJECTS` and `PROJECTS_L` all come from it.
   - **The six lists:** `WS/lists/<repo>-purge.txt`, with copies and a `SHA256SUMS` in
     `DATA/run/lists/`.
   - **`COPY-VERIFIED`,** the precondition of every later step that deletes or rewrites anything. The

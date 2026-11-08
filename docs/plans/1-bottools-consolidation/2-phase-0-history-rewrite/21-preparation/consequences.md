@@ -20,7 +20,7 @@
 ## 1. Published artifacts
 
 None. No module is published and no version moves. The landing changes documents and generated
-boards only; §2.4 gives the full account.
+boards only; §2.4 points to the full account.
 
 ---
 
@@ -38,13 +38,13 @@ TrumpBot and Support are as they were.
 Local, and deliberate:
 
 - **git-filter-repo 2.47.0** is installed in the Python 3.14 user scheme, hash-verified. It stays after
-  the phase (architecture §6.7). CPython 3.13 is not installed: the fallback did not run (§5).
-- **`%USERPROFILE%\BotWS`**, the workspace (architecture §5.2): the gitleaks install and the saved
+  the phase ([architecture §6.7](../architecture.md#67-cleanup)). CPython 3.13 is not installed (§5).
+- **`%USERPROFILE%\BotWS`**, the workspace ([architecture §5.2](../architecture.md#52-userprofilebotws--the-workspace-ws-deleted-by-the-last-unit)): the gitleaks install and the saved
   tools, the six backup mirrors and the mirrors, the canary and fixture, the path lists and the
   gitleaks reports. The backup mirrors hold everything the phase's rewrites later remove, so the
   folder keeps the data folder's protection for as long as it exists. The last unit of the phase
   deletes it.
-- **`%USERPROFILE%\BotLegacyData`**, the data folder (architecture §5.1): the three legacy data
+- **`%USERPROFILE%\BotLegacyData`**, the data folder ([architecture §5.1](../architecture.md#51-userprofilebotlegacydata--the-data-folder-data-outlives-the-phase)): the three legacy data
   copies, their verification records, the manifests of purged blob ids, the ref listings taken at
   clone time, the count files of each stage, the path lists and the path-scrub expression file. It
   outlives the phase. Nothing in it is committed, printed or quoted: it holds personal data, lookup
@@ -59,17 +59,10 @@ checkout.
 
 ### 2.4 Documents and generated boards
 
-The landing changes documents and generated boards only, through the repository's normal landing.
-No source, test or build file changes, and no README or CHANGELOG entry applies.
-
-- **In this folder:** `plan.md`, this file, `final-implementation.md`, the replaced plan text under
-  `superseded/`, and the issue board files (`plan.json`, `plan.js`, `dashboard.html`).
-- **Outside this folder:** one line in the parent's `consequences.md` (the link to §4 below), the dated
-  note on the generated boards' commit ids in the parent's `architecture.md` (§1.1 item 9 and the
-  "Public material" line), and ten generated board files whose regeneration records this unit's
-  state: `docs/dashboards/index.html`,
-  `state.json`, `systems.json` and `workspace.dsl`; `docs/plans/board.js`, `board.json` and
-  `index.html`; and the parent folder's `plan.js`, `plan.json` and `dashboard.html`.
+The landing changes what [plan §7.1](plan.md#71-repository-changes) lists, through the repository's
+normal landing. Beyond that list: the one line in the parent's `consequences.md` is the link to §4
+below, and no README or CHANGELOG entry applies
+([plan, Documentation impact](plan.md#documentation-impact)).
 
 
 ---
@@ -93,7 +86,9 @@ the expression file are consumed by the phase's later units (§4).
 - **`transfer-rehearsal`** (#22, blocked by this unit), **`repository-hygiene`**,
   **`kotlinbottools-publish`** and **`residual-report-and-cleanup`** also consume the proven
   non-interactive authentication, and `secret_scan.py` and `gitleaks.toml` at their fixed names;
-  `residual-report-and-cleanup` confirms the follow-up records of §6.
+  `residual-report-and-cleanup` confirms that neither follow-up record of §6 came to exist: no
+  token-rule gap and no default-rule finding, the second within the limit of
+  [the open `kept_findings.py` follow-up](#6-follow-ups).
 - **`kotlinbottools-rewrite-and-swap`** also consumes the expression file with its pinned size and
   hash and the fixture's expected scrub counts. It takes its own fresh KotlinBottools mirror and
   backup at its start, replacing this unit's copies of those two, which serve the data copy only.
@@ -109,27 +104,23 @@ by this unit. Nothing here changes MagicBot or WebTools.
 
 ## 5. Known gaps
 
-**Settled by the run** (the counts are in [`final-implementation.md`](final-implementation.md) §3):
+**Settled by the run:** the results and counts are in
+[`final-implementation.md`](final-implementation.md#3-measurements) §3. One limit applies to them: its
+`total_kept=0` holds only as far as `kept_findings.py` does (still open, below).
 
-- The real repositories match the research table. The five static repositories' refs, manifests,
-  expectation rows and positive controls come out as the table and design state, and the three data
-  copies verify by blob id.
-- The token rule matches every real token file probed. No coverage gap was recorded.
-- No rule reports anything in a file the purge lists keep, in the five static repositories
-  (`total_kept=0`), within the limit below.
-
-**The plan's assumptions:** none failed (plan, Assumptions). Nothing else changed the repositories' refs,
-the real data and histories match the research, the installed launcher behaved as the fixture's script
-run did, and each clone, copy and scan fit its stage. The one assumption about the install manager and
-CPython 3.13 was not exercised, because the fallback did not run.
+**The plan's assumptions:** none failed ([plan, Assumptions](plan.md#assumptions)). Nothing else changed
+the repositories' refs, the real data and histories match the research, the installed launcher behaved
+as the fixture's script run did, and each clone, copy and scan fit its stage. The one assumption about
+the install manager and CPython 3.13 was not exercised (the fallback, below).
 
 **Still open:**
 
-- **The Python 3.13 fallback** of the rewrite tool has not been exercised. It only runs if the
-  rehearsal fails on Python 3.14; it did not fail, so the route stays unexecuted, and its first
-  command is the interpreter's own install, where a failure stops the unit that needs it.
-- **`kept_findings.py`** has not been exercised by a fixture with a finding in a kept file, so the
-  zeros above are its own answer on the real reports. It is a recorded limit (plan, Test plan).
+- **The Python 3.13 fallback** of the rewrite tool did not run. It runs only if the rehearsal fails on
+  Python 3.14, and it did not fail, so the route stays unexecuted; its first command is the
+  interpreter's own install, where a failure stops the unit that needs it.
+- **`kept_findings.py`** has not been exercised by a fixture with a finding in a kept file, so
+  `total_kept=0` is its own answer on the real reports. It is a recorded limit
+  ([plan, Test plan](plan.md#test-plan)).
 - **The architecture's statement** that the research documents record the size and sha256 of every
   tool holds only for `gitleaks.toml`, `secret_scan.py` and the workflow file. The plan records
   the size and sha256 of every tool it saves, so the check it describes does happen; the statement
@@ -139,20 +130,23 @@ CPython 3.13 was not exercised, because the fallback did not run.
 
 ## 6. Follow-ups
 
-**Closed, not triggered:**
+**Closed, not triggered** (the outcomes are in
+[`final-implementation.md`](final-implementation.md#36-positive-controls-on-the-untouched-backups) §3.6):
 
-- **The token rule.** No positive control showed the token rule missing a real token while its path
-  rule fired, so `DATA/rewrite/<repo>/token-rule-gap.txt` does not exist and the parent's
-  consequences §6 needs no regex change on this evidence.
-- **Default-rule findings in kept files.** None was recorded in any of the five static repositories
-  (`gitleaks-kept.txt`), so the decision the parent's consequences §6 names is not needed for them.
+- **The token rule.** The parent's consequences §6 needs no regex change on this evidence.
+- **Default-rule findings in kept files.** The decision the parent's consequences §6 names is not
+  needed for the five static repositories. This closure reaches only as far as `kept_findings.py`,
+  which has never been exercised on a finding ([the open follow-up](#6-follow-ups)).
+
+Neither record of these two exists, so `residual-report-and-cleanup` has nothing to act on: it confirms
+that no `DATA/rewrite/<repo>/token-rule-gap.txt` appeared and that each `gitleaks-kept.txt` still reads
+`total_kept=0`, with no rule line.
 
 **Open:**
 
 - **`kept_findings.py`.** If a later unit relies on it, give it a fixture with a finding in a kept
-  file first (plan §7.4 S8).
-- **The generated boards' commit ids.** The generated boards carry pre-rewrite commit ids in their
-  generated fields: `baseline.sha` and `wip.landing.merge` (with the merge id also in a generated timeline label) of an issue or tracking board's `plan.json`, `plan.js` and `dashboard.html`, and the `asIs`, `lastAmended`, `written` and `tree` shas of the state boards and the repository work board. They are outside this unit's output
-  rule (plan, Requirement 11). `kotlinbottools-publish` must account for every such field in its
-  id-reference check (architecture §6.5), whose corpus is what the phase adds, or its count will not
-  reach 0.
+  file first ([plan §7.4 S8](plan.md#s8--manifests-expectation-rows-and-positive-controls)).
+- **The generated boards' commit ids.** The generated boards carry pre-rewrite commit ids in the
+  generated fields that [plan Requirement 11](plan.md#requirements) lists and leaves outside this unit's
+  output rule. `kotlinbottools-publish` must account for every such field in its id-reference check
+  ([architecture §6.5](../architecture.md#65-privacy-gate-and-id-reference-check)), whose corpus is what the phase adds, or its count will not reach 0.
