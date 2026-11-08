@@ -485,8 +485,8 @@ window.dashboardLive&&window.dashboardLive("plan",
         "live": {
           "step": "document",
           "since": "2026-11-08T22:59:18Z",
-          "updated": "2026-11-08T23:16:53Z",
-          "detail": "Document: 4 of 6 tasks done; Documentation review current.",
+          "updated": "2026-11-08T23:18:38Z",
+          "detail": "Document: 6 of 6 tasks done; every task done.",
           "steps": [
             "sizing",
             "interview",
@@ -547,8 +547,8 @@ window.dashboardLive&&window.dashboardLive("plan",
           "branch": "chore/issue-21-preparation",
           "event": {
             "name": "document",
-            "at": "2026-11-08T23:16:53Z",
-            "note": "4 of 6 tasks done"
+            "at": "2026-11-08T23:18:38Z",
+            "note": "6 of 6 tasks done"
           },
           "plan": {
             "state": "re-pass",
@@ -646,12 +646,12 @@ window.dashboardLive&&window.dashboardLive("plan",
               {
                 "id": "documentation-review",
                 "name": "Documentation review",
-                "state": "current"
+                "state": "done"
               },
               {
                 "id": "reconcile-documentation",
                 "name": "Reconcile documentation",
-                "state": "todo"
+                "state": "done"
               },
               {
                 "id": "reconcile-plan",
