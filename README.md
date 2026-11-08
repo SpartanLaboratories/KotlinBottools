@@ -324,6 +324,13 @@ val elements = doc.select("div.class")
 
 ---
 
+## 📚 Documentation
+
+- [`docs/dashboards/`](docs/dashboards/index.html) — the state boards: the repository's systems as built at a named commit, the planned ones drawn dashed
+- [`docs/plans/`](docs/plans/index.html) — the plans, one folder per issue, and the work boards: how each issue's planning and development is going
+
+---
+
 ## 📝 License
 
 No license specified. Contact [SpartanLaboratories](https://github.com/SpartanLaboratories) for usage rights.

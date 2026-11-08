@@ -43,3 +43,13 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### IDE folders ###
+.idea/
+.fleet/
+.nbproject/
+
+### Editor swap and backup files ###
+*.swp
+*.swo
+*~
