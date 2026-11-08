@@ -199,6 +199,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 7. `bottools-trumpbot-support-rewrite`
 8. `residual-report-and-cleanup`
 
+`preparation` has landed; what it leaves for the units after it is in [its consequences, §4](21-preparation/consequences.md#4-sibling-units-and-neighbouring-issues).
+
 **Neighbouring issues:**
 
 - **#1,** the tracking issue. Its planning documents land with #2's own landing.

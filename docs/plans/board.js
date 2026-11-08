@@ -3,22 +3,37 @@ window.dashboardLive&&window.dashboardLive("board",
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-08T01:37:51Z",
+  "generated": "2026-11-08T23:12:00Z",
   "asOf": "2026-11-08",
   "tree": {
-    "ref": "docs/issue-1-bottools-consolidation",
-    "sha": "996fe5c"
+    "ref": "chore/issue-21-preparation",
+    "sha": "a12958a"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
   },
-  "systems": [],
+  "systems": [
+    {
+      "slug": "kotlinbottools",
+      "name": "KotlinBottools",
+      "slot": 0,
+      "top": "KotlinBottools",
+      "status": "built",
+      "board": "docs/dashboards/index.html"
+    }
+  ],
   "groups": [
     {
       "key": "1",
       "issue": 1,
       "title": "BotTools consolidation & MagicBot (tracking)",
       "board": null
+    },
+    {
+      "key": "2",
+      "issue": 2,
+      "title": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html"
     }
   ],
   "rows": [
@@ -49,15 +64,15 @@ window.dashboardLive&&window.dashboardLive("board",
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/",
-      "branch": "docs/issue-1-bottools-consolidation",
+      "branch": null,
       "system": null,
-      "step": "document",
-      "detail": "Document: 1 of 3 tasks done; State boards with the planned units drawn dashed current.",
-      "since": "2026-11-08T01:12:00Z",
-      "updated": "2026-11-08T01:15:00Z",
+      "step": "implementation",
+      "detail": "0 of 8 units landed; #21 in progress; #22 up next.",
+      "since": "2026-11-08T21:15:43Z",
+      "updated": "2026-11-08T21:15:43Z",
       "qa": [],
       "qaMax": 3,
-      "status": "planning",
+      "status": "building",
       "fixOf": null,
       "landed": null,
       "reconciliation": {
@@ -72,18 +87,423 @@ window.dashboardLive&&window.dashboardLive("board",
         "dropped": 0,
         "deferred": 0,
         "left": 0,
-        "planned": true,
+        "planned": false,
         "done": false,
-        "current": [],
+        "current": [
+          {
+            "issue": 21,
+            "slug": "preparation",
+            "step": "document"
+          }
+        ],
         "next": {
-          "issue": null,
-          "slug": "preparation",
-          "blockedBy": []
-        }
+          "issue": 22,
+          "slug": "transfer-rehearsal",
+          "blockedBy": [
+            {
+              "issue": 21
+            }
+          ]
+        },
+        "units": [
+          {
+            "n": 1,
+            "issue": 21,
+            "name": "Preparation",
+            "state": "current"
+          },
+          {
+            "n": 2,
+            "issue": 22,
+            "name": "Transfer rehearsal",
+            "state": "todo"
+          },
+          {
+            "n": 3,
+            "issue": 23,
+            "name": "KotlinBottools rewrite and swap",
+            "state": "todo"
+          },
+          {
+            "n": 4,
+            "issue": 24,
+            "name": "Repository hygiene",
+            "state": "todo"
+          },
+          {
+            "n": 5,
+            "issue": 25,
+            "name": "Make KotlinBottools public",
+            "state": "todo"
+          },
+          {
+            "n": 6,
+            "issue": 26,
+            "name": "Rewrite GKB2 and GKB",
+            "state": "todo"
+          },
+          {
+            "n": 7,
+            "issue": 27,
+            "name": "Rewrite BotTools, TrumpBot and Support",
+            "state": "todo"
+          },
+          {
+            "n": 8,
+            "issue": 28,
+            "name": "Residual report and cleanup",
+            "state": "todo"
+          }
+        ]
       },
       "systemName": "",
       "group": "1",
       "order": 1
+    },
+    {
+      "issue": 21,
+      "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
+      "state": "OPEN",
+      "created": "2026-11-08",
+      "parent": 2,
+      "waitsOn": [],
+      "blocks": [
+        {
+          "issue": 22,
+          "state": "OPEN",
+          "hold": "blocks"
+        }
+      ],
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation/",
+      "branch": "chore/issue-21-preparation",
+      "system": "kotlinbottools",
+      "step": "document",
+      "detail": "Document: 2 of 6 tasks done; Documentation review, State boards in parallel.",
+      "since": "2026-11-08T22:59:18Z",
+      "updated": "2026-11-08T23:06:27Z",
+      "qa": [
+        {
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-08",
+          "at": "2026-11-08T22:40:00Z",
+          "findings": {
+            "test": 6,
+            "code": 5
+          },
+          "severity": {
+            "minor": 9,
+            "other": 2
+          },
+          "route": "re-plan-then-remediation"
+        },
+        {
+          "pass": 2,
+          "verdict": "running",
+          "date": "2026-11-08",
+          "at": "2026-11-08T22:40:31Z",
+          "findings": {}
+        },
+        {
+          "pass": 3,
+          "verdict": "changes-requested",
+          "date": "2026-11-08",
+          "at": "2026-11-08T22:57:17Z",
+          "findings": {
+            "test": 0,
+            "code": 3
+          },
+          "severity": {
+            "minor": 3,
+            "other": 0
+          },
+          "route": "on-the-spot"
+        }
+      ],
+      "qaMax": 3,
+      "status": "building",
+      "fixOf": null,
+      "landed": null,
+      "reconciliation": {
+        "state": "partial",
+        "landed": null,
+        "total": null
+      },
+      "active": true,
+      "systemName": "KotlinBottools",
+      "group": "2",
+      "order": 1
+    },
+    {
+      "issue": 22,
+      "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories",
+      "state": "OPEN",
+      "created": "2026-11-08",
+      "parent": 2,
+      "waitsOn": [
+        {
+          "issue": 21,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [
+        {
+          "issue": 23,
+          "state": "OPEN",
+          "hold": "blocks"
+        }
+      ],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "kotlinbottools",
+      "step": null,
+      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 1.",
+      "qa": [],
+      "qaMax": null,
+      "status": "next",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "next": true,
+      "blockedBy": [
+        {
+          "issue": 21
+        }
+      ],
+      "systemName": "KotlinBottools",
+      "group": "2",
+      "order": 2
+    },
+    {
+      "issue": 23,
+      "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
+      "state": "OPEN",
+      "created": "2026-11-08",
+      "parent": 2,
+      "waitsOn": [
+        {
+          "issue": 22,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [
+        {
+          "issue": 26,
+          "state": "OPEN",
+          "hold": "blocks"
+        },
+        {
+          "issue": 24,
+          "state": "OPEN",
+          "hold": "blocks"
+        }
+      ],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "kotlinbottools",
+      "step": null,
+      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 2, and Phase 1 may start once it has landed.",
+      "qa": [],
+      "qaMax": null,
+      "status": "not-started",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "systemName": "KotlinBottools",
+      "group": "2",
+      "order": 3
+    },
+    {
+      "issue": 24,
+      "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
+      "state": "OPEN",
+      "created": "2026-11-08",
+      "parent": 2,
+      "waitsOn": [
+        {
+          "issue": 23,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [
+        {
+          "issue": 25,
+          "state": "OPEN",
+          "hold": "blocks"
+        }
+      ],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "kotlinbottools",
+      "step": null,
+      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 3.",
+      "qa": [],
+      "qaMax": null,
+      "status": "not-started",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "systemName": "KotlinBottools",
+      "group": "2",
+      "order": 4
+    },
+    {
+      "issue": 25,
+      "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection",
+      "state": "OPEN",
+      "created": "2026-11-08",
+      "parent": 2,
+      "waitsOn": [
+        {
+          "issue": 24,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [
+        {
+          "issue": 28,
+          "state": "OPEN",
+          "hold": "blocks"
+        }
+      ],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "kotlinbottools",
+      "step": null,
+      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 4, and MagicBot's Phase 13 may start once it has landed.",
+      "qa": [],
+      "qaMax": null,
+      "status": "not-started",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "systemName": "KotlinBottools",
+      "group": "2",
+      "order": 5
+    },
+    {
+      "issue": 26,
+      "title": "Phase 0 · 6 — Rewrite GKB2 and GKB",
+      "state": "OPEN",
+      "created": "2026-11-08",
+      "parent": 2,
+      "waitsOn": [
+        {
+          "issue": 23,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [
+        {
+          "issue": 27,
+          "state": "OPEN",
+          "hold": "blocks"
+        }
+      ],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "kotlinbottools",
+      "step": null,
+      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 3.",
+      "qa": [],
+      "qaMax": null,
+      "status": "not-started",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "systemName": "KotlinBottools",
+      "group": "2",
+      "order": 6
+    },
+    {
+      "issue": 27,
+      "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
+      "state": "OPEN",
+      "created": "2026-11-08",
+      "parent": 2,
+      "waitsOn": [
+        {
+          "issue": 26,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [
+        {
+          "issue": 28,
+          "state": "OPEN",
+          "hold": "blocks"
+        }
+      ],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "kotlinbottools",
+      "step": null,
+      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 6.",
+      "qa": [],
+      "qaMax": null,
+      "status": "not-started",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "systemName": "KotlinBottools",
+      "group": "2",
+      "order": 7
+    },
+    {
+      "issue": 28,
+      "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
+      "state": "OPEN",
+      "created": "2026-11-08",
+      "parent": 2,
+      "waitsOn": [
+        {
+          "issue": 27,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        },
+        {
+          "issue": 25,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "kotlinbottools",
+      "step": null,
+      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after units 5 and 7, and its landing closes #2.",
+      "qa": [],
+      "qaMax": null,
+      "status": "not-started",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "systemName": "KotlinBottools",
+      "group": "2",
+      "order": 8
     }
   ],
   "roadmap": [
@@ -190,9 +610,60 @@ window.dashboardLive&&window.dashboardLive("board",
       "title": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
       "state": "OPEN",
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html",
-      "items": []
+      "items": [
+        {
+          "issue": 21,
+          "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
+          "state": "OPEN"
+        },
+        {
+          "issue": 22,
+          "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories",
+          "state": "OPEN"
+        },
+        {
+          "issue": 23,
+          "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
+          "state": "OPEN"
+        },
+        {
+          "issue": 24,
+          "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
+          "state": "OPEN"
+        },
+        {
+          "issue": 25,
+          "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection",
+          "state": "OPEN"
+        },
+        {
+          "issue": 26,
+          "title": "Phase 0 · 6 — Rewrite GKB2 and GKB",
+          "state": "OPEN"
+        },
+        {
+          "issue": 27,
+          "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
+          "state": "OPEN"
+        },
+        {
+          "issue": 28,
+          "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
+          "state": "OPEN"
+        }
+      ]
     }
   ],
-  "unscheduled": []
+  "unscheduled": [
+    {
+      "issue": 29,
+      "title": "Adopt the organization's Dokka and project site standard",
+      "labels": [
+        "type: feature"
+      ],
+      "created": "2026-11-08",
+      "system": "kotlinbottools"
+    }
+  ]
 }
 );

@@ -1,0 +1,2914 @@
+{
+  "schema": "plan-board/1",
+  "repo": "SpartanLaboratories/KotlinBottools",
+  "issue": 21,
+  "slug": "21-preparation",
+  "folder": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation",
+  "kind": "issue",
+  "title": "Preparation",
+  "issueTitle": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
+  "function": "Nothing the history rewrite needs is in place: neither `git filter-repo` nor `gitleaks` is installed, there is no workspace or data folder, no backup of the six repositories, no copy of the legacy data and no manifest to judge a rewrite against. This run pins and proves the tools, writes the path-scrub expressions and the six path lists, proves non-interactive access, takes a mirror and an untouched backup of each repository, copies `BotData.xml` and `guildData/` from three revisions byte for byte, and derives the manifests, expectation rows and positive-control scans of the five static repositories. Unit 1 of #2: local work with no version moved, and nothing written to GitHub except this unit's documents.",
+  "status": "building",
+  "sized": "2026-11-08T21:15:43Z",
+  "parent": {
+    "issue": 2,
+    "board": "../dashboard.html"
+  },
+  "fixOf": null,
+  "branch": "chore/issue-21-preparation",
+  "baseline": {
+    "ref": "main",
+    "sha": "1a74516",
+    "date": "2026-11-07"
+  },
+  "asBuilt": null,
+  "systems": [
+    {
+      "slug": "kotlinbottools",
+      "name": "KotlinBottools",
+      "slot": 0,
+      "top": "KotlinBottools",
+      "status": "built",
+      "board": "docs/dashboards/index.html"
+    }
+  ],
+  "wip": {
+    "step": "document",
+    "since": "2026-11-08T22:59:18Z",
+    "updated": "2026-11-08T23:18:38Z",
+    "detail": "Document: 6 of 6 tasks done; every task done.",
+    "steps": [
+      "sizing",
+      "interview",
+      "research",
+      "plan",
+      "branch",
+      "implementation",
+      "qa",
+      "remediation",
+      "document",
+      "landing",
+      "merge",
+      "landed"
+    ],
+    "current": [
+      "built"
+    ],
+    "questions": [],
+    "research": null,
+    "interview": [],
+    "plan": {
+      "state": "re-pass",
+      "from": "qa",
+      "pass": 1,
+      "since": "2026-11-08T22:40:00Z"
+    },
+    "stages": [
+      {
+        "id": "S1",
+        "name": "Workspace, tool files and version pins",
+        "state": "done",
+        "rows": [
+          "workspace",
+          "git-and-runtimes",
+          "scan-wrapper"
+        ]
+      },
+      {
+        "id": "S2",
+        "name": "git-filter-repo",
+        "state": "done",
+        "rows": [
+          "filter-repo"
+        ]
+      },
+      {
+        "id": "S3",
+        "name": "gitleaks and canary",
+        "state": "done",
+        "rows": [
+          "gitleaks",
+          "scan-wrapper"
+        ]
+      },
+      {
+        "id": "S4",
+        "name": "Path-scrub expressions and fixture rehearsal",
+        "state": "done",
+        "rows": [
+          "filter-repo",
+          "path-scrub"
+        ]
+      },
+      {
+        "id": "S5",
+        "name": "Path lists",
+        "state": "done",
+        "rows": [
+          "path-lists"
+        ]
+      },
+      {
+        "id": "S6",
+        "name": "Authentication, mirrors and backups",
+        "state": "done",
+        "rows": [
+          "authentication",
+          "backups"
+        ]
+      },
+      {
+        "id": "S7",
+        "name": "Legacy data copy",
+        "state": "done",
+        "rows": [
+          "legacy-data-copy"
+        ]
+      },
+      {
+        "id": "S8",
+        "name": "Manifests, expectation rows and positive controls",
+        "state": "done",
+        "rows": [
+          "manifests",
+          "positive-controls"
+        ]
+      },
+      {
+        "id": "S9",
+        "name": "Closing checks",
+        "state": "done",
+        "rows": [
+          "backups",
+          "counts-only-records"
+        ]
+      }
+    ],
+    "remediation": {
+      "pass": 3,
+      "route": "on-the-spot"
+    },
+    "open": [],
+    "event": {
+      "name": "document",
+      "at": "2026-11-08T23:18:38Z",
+      "note": "6 of 6 tasks done"
+    },
+    "history": {
+      "sizing": [
+        {
+          "since": null,
+          "ended": "2026-11-08T21:15:43Z",
+          "endedBy": "sized",
+          "to": "plan"
+        }
+      ],
+      "plan": [
+        {
+          "since": "2026-11-08T21:15:43Z",
+          "ended": "2026-11-08T22:05:48Z",
+          "endedBy": "plan-accepted",
+          "to": "branch",
+          "event": {
+            "name": "sized",
+            "at": "2026-11-08T21:15:43Z"
+          },
+          "detail": "Local preparation for the history rewrite: pinned tools, workspace, backup mirrors, the legacy data copy and the manifests. Nothing is written to GitHub except this unit's documents.",
+          "plan": {
+            "state": "re-pass",
+            "from": "parent",
+            "since": "2026-11-08T21:15:43Z"
+          }
+        }
+      ],
+      "branch": [
+        {
+          "since": "2026-11-08T22:05:48Z",
+          "ended": "2026-11-08T22:06:10Z",
+          "endedBy": "branch-cut",
+          "to": "implementation",
+          "event": {
+            "name": "plan-accepted",
+            "at": "2026-11-08T22:05:48Z"
+          },
+          "detail": "The plan runs as nine pinned stage scripts. The parent design still fits and the upstream pins are unchanged.",
+          "branch": "chore/issue-21-preparation"
+        }
+      ],
+      "implementation": [
+        {
+          "since": "2026-11-08T22:06:10Z",
+          "ended": "2026-11-08T22:12:20Z",
+          "endedBy": "qa-pass",
+          "to": "qa",
+          "event": {
+            "name": "implementation-stage",
+            "at": "2026-11-08T22:11:56Z",
+            "note": "S9 reported done; Quality Review next"
+          },
+          "detail": "All nine stages passed with no stop and no deviation. Six backups unchanged; the three data copies verified by blob id; five manifests equal the research table.",
+          "stages": [
+            {
+              "id": "S1",
+              "name": "Workspace, tool files and version pins",
+              "state": "done",
+              "rows": [
+                "workspace",
+                "git-and-runtimes",
+                "scan-wrapper"
+              ]
+            },
+            {
+              "id": "S2",
+              "name": "git-filter-repo",
+              "state": "done",
+              "rows": [
+                "filter-repo"
+              ]
+            },
+            {
+              "id": "S3",
+              "name": "gitleaks and canary",
+              "state": "done",
+              "rows": [
+                "gitleaks",
+                "scan-wrapper"
+              ]
+            },
+            {
+              "id": "S4",
+              "name": "Path-scrub expressions and fixture rehearsal",
+              "state": "done",
+              "rows": [
+                "filter-repo",
+                "path-scrub"
+              ]
+            },
+            {
+              "id": "S5",
+              "name": "Path lists",
+              "state": "done",
+              "rows": [
+                "path-lists"
+              ]
+            },
+            {
+              "id": "S6",
+              "name": "Authentication, mirrors and backups",
+              "state": "done",
+              "rows": [
+                "authentication",
+                "backups"
+              ]
+            },
+            {
+              "id": "S7",
+              "name": "Legacy data copy",
+              "state": "done",
+              "rows": [
+                "legacy-data-copy"
+              ]
+            },
+            {
+              "id": "S8",
+              "name": "Manifests, expectation rows and positive controls",
+              "state": "done",
+              "rows": [
+                "manifests",
+                "positive-controls"
+              ]
+            },
+            {
+              "id": "S9",
+              "name": "Closing checks",
+              "state": "done",
+              "rows": [
+                "backups",
+                "counts-only-records"
+              ]
+            }
+          ]
+        }
+      ],
+      "qa": [
+        {
+          "since": "2026-11-08T22:12:20Z",
+          "ended": "2026-11-08T22:40:00Z",
+          "endedBy": "qa-pass",
+          "to": "remediation",
+          "event": {
+            "name": "qa-pass",
+            "at": "2026-11-08T22:12:20Z",
+            "note": "Quality Review 1: running"
+          },
+          "detail": "Quality Review 1 running.",
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:40:00Z",
+              "findings": {
+                "test": 6,
+                "code": 5
+              },
+              "severity": {
+                "minor": 9,
+                "other": 2
+              },
+              "route": "re-plan-then-remediation"
+            }
+          ]
+        },
+        {
+          "since": "2026-11-08T22:40:31Z",
+          "ended": "2026-11-08T22:57:17Z",
+          "endedBy": "qa-pass",
+          "to": "remediation",
+          "event": {
+            "name": "qa-pass",
+            "at": "2026-11-08T22:51:10Z",
+            "note": "Quality Review 3: running"
+          },
+          "detail": "The second review asked for wording only: the exemption for generated boards' commit ids now covers every such field, and three smaller statements were corrected. No script changed.",
+          "qa": [
+            {
+              "pass": 2,
+              "verdict": "running",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:40:31Z",
+              "findings": {}
+            },
+            {
+              "pass": 3,
+              "verdict": "changes-requested",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:57:17Z",
+              "findings": {
+                "test": 0,
+                "code": 3
+              },
+              "severity": {
+                "minor": 3,
+                "other": 0
+              },
+              "route": "on-the-spot"
+            }
+          ]
+        }
+      ],
+      "remediation": [
+        {
+          "since": "2026-11-08T22:40:00Z",
+          "ended": "2026-11-08T22:40:31Z",
+          "endedBy": "qa-pass",
+          "to": "qa",
+          "event": {
+            "name": "qa-pass",
+            "at": "2026-11-08T22:40:00Z",
+            "note": "Quality Review 1: changes-requested"
+          },
+          "detail": "Every acceptance criterion recomputed from the records matched and the local preparation is sound. The findings are plan wording that claims more than the scripts check, and differing accounts of what the landing adds.",
+          "remediation": {
+            "pass": 1,
+            "route": "re-plan-then-remediation",
+            "steps": [
+              {
+                "name": "Plan wording and landing account corrected",
+                "state": "current"
+              }
+            ]
+          },
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:40:00Z",
+              "findings": {
+                "test": 6,
+                "code": 5
+              },
+              "severity": {
+                "minor": 9,
+                "other": 2
+              },
+              "route": "re-plan-then-remediation"
+            }
+          ]
+        },
+        {
+          "since": "2026-11-08T22:57:17Z",
+          "ended": "2026-11-08T22:59:18Z",
+          "endedBy": "document",
+          "to": "document",
+          "event": {
+            "name": "qa-pass",
+            "at": "2026-11-08T22:57:17Z",
+            "note": "Quality Review 3: changes-requested"
+          },
+          "detail": "All the documents are closed. Three excerpts on this unit's issue board still quote the replaced plan.",
+          "remediation": {
+            "pass": 3,
+            "route": "on-the-spot"
+          },
+          "qa": [
+            {
+              "pass": 3,
+              "verdict": "changes-requested",
+              "date": "2026-11-08",
+              "at": "2026-11-08T22:57:17Z",
+              "findings": {
+                "test": 0,
+                "code": 3
+              },
+              "severity": {
+                "minor": 3,
+                "other": 0
+              },
+              "route": "on-the-spot"
+            }
+          ]
+        }
+      ]
+    },
+    "next": null,
+    "qa": [
+      {
+        "pass": 1,
+        "verdict": "changes-requested",
+        "date": "2026-11-08",
+        "at": "2026-11-08T22:40:00Z",
+        "findings": {
+          "test": 6,
+          "code": 5
+        },
+        "severity": {
+          "minor": 9,
+          "other": 2
+        },
+        "route": "re-plan-then-remediation"
+      },
+      {
+        "pass": 2,
+        "verdict": "running",
+        "date": "2026-11-08",
+        "at": "2026-11-08T22:40:31Z",
+        "findings": {}
+      },
+      {
+        "pass": 3,
+        "verdict": "changes-requested",
+        "date": "2026-11-08",
+        "at": "2026-11-08T22:57:17Z",
+        "findings": {
+          "test": 0,
+          "code": 3
+        },
+        "severity": {
+          "minor": 3,
+          "other": 0
+        },
+        "route": "on-the-spot"
+      }
+    ],
+    "qaMax": 3,
+    "waitingOn": null,
+    "resume": null,
+    "blockers": {
+      "waitsOn": [],
+      "blocks": []
+    },
+    "landing": null,
+    "document": {
+      "tasks": [
+        {
+          "id": "documentation-review",
+          "name": "Documentation review",
+          "state": "done"
+        },
+        {
+          "id": "reconcile-documentation",
+          "name": "Reconcile documentation",
+          "state": "done"
+        },
+        {
+          "id": "reconcile-plan",
+          "name": "As-built record and consequences",
+          "state": "done"
+        },
+        {
+          "id": "readme-changelog",
+          "name": "README and CHANGELOG: documents only, no entry",
+          "state": "done"
+        },
+        {
+          "id": "state-boards",
+          "name": "State boards",
+          "state": "done"
+        },
+        {
+          "id": "document-landing",
+          "name": "Document commit",
+          "state": "done"
+        }
+      ]
+    }
+  },
+  "milestones": [
+    {
+      "column": "gap",
+      "label": "Research verified, in #2's run",
+      "date": "2026-10-21",
+      "ref": "../research/README.md",
+      "note": "written on this board at sized from #2's research summary (§3.2, §3.3, §3.5, §3.6) and architecture §2.3, §2.4, §5, §6.1 to §6.3, with this unit's row in §15"
+    },
+    {
+      "column": "considered",
+      "label": "Architecture signed off, in #2's run",
+      "date": "2026-11-07",
+      "ref": "../architecture.md",
+      "note": "the options #2's architecture and its research weighed for this unit: §5, §6.1 to §6.3 and §14, with the comparisons in the findings behind them; this unit's own plan adds to them at plan acceptance"
+    },
+    {
+      "column": "verdict",
+      "label": "Plan accepted",
+      "date": "2026-11-08",
+      "ref": "plan.md",
+      "note": "nine pinned stage scripts run in order; the parent design still fits and the upstream pins are unchanged"
+    }
+  ],
+  "trail": [
+    {
+      "date": "2026-11-08",
+      "column": "gap",
+      "label": "Sized; the plan starts"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "considered",
+      "label": "Gap and Considered written from #2's research and architecture",
+      "ref": "../architecture.md#15-decomposition"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "verdict",
+      "label": "Plan accepted",
+      "ref": "plan.md"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Branch `chore/issue-21-preparation` cut; implementation starts at S1"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Implementation done (9 stages); Quality Review next"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Quality Review 1: running"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Quality Review 1: changes requested, 11 findings (9 minor, 2 other; 6 test, 5 code)"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Quality Review 2: running"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Quality Review 3: running"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Quality Review 3: changes requested, 3 findings (3 minor; 3 code)"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Document: Documentation review current"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Document: Documentation review, State boards in parallel"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Document: Documentation review, Document commit in parallel"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Document: every task done"
+    }
+  ],
+  "rows": [
+    {
+      "id": "workspace",
+      "group": "Workspace and tools",
+      "name": "The workspace and the data folder",
+      "system": "kotlinbottools",
+      "where": "`%USERPROFILE%\\BotWS` · `%USERPROFILE%\\BotLegacyData`",
+      "gap": {
+        "kind": "missing",
+        "summary": "Neither folder the phase works in exists. The backups, the data copy and the records need a place outside every repository and outside OneDrive, and the backup mirrors hold exactly what the rewrite removes, so the folders' access has to be checked.",
+        "evidence": [
+          "`../architecture.md:336` — two folders under the user profile, outside every repository, the project checkouts and OneDrive",
+          "`../architecture.md:339` — a drive's root grants `Authenticated Users` modify, and the mirrors hold what the rewrite removes",
+          "Neither folder exists on this machine when the run starts"
+        ],
+        "source": "../architecture.md §5",
+        "link": "../architecture.md#5-workspace-and-records-layout"
+      },
+      "options": [
+        {
+          "id": "profile-folders",
+          "name": "Two folders under the user profile, created with their access checked",
+          "verdict": "accepted",
+          "why": "The data folder outlives the phase and the workspace is deleted by its last unit; under the profile, the workspace has the data folder's protection for as long as it exists.",
+          "source": "../architecture.md §5",
+          "link": "../architecture.md#5-workspace-and-records-layout"
+        },
+        {
+          "id": "drive-root",
+          "name": "The workspace at a drive's root, for short paths",
+          "verdict": "declined",
+          "why": "Folders at a drive's root grant `Authenticated Users` modify, and the backups hold what the rewrite removes.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "Both folders exist under the user profile, `%USERPROFILE%\\BotWS` and `%USERPROFILE%\\BotLegacyData`, the data folder laid out to outlive the phase.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "Each folder passed S1's checks: under the user profile, outside OneDrive and the project-checkouts folder, inside no repository, with no broad access entry.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "Neither condition arose: S1 passed with no stop, before anything was written to GitHub or a clone.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#31-the-procedures-own-record",
+            "excerpt": {
+              "ref": "final-implementation.md#31-the-procedures-own-record",
+              "heading": "3.1 The procedure's own record",
+              "paragraph": "`DATA/run/as-run.log` holds 19 of 19 `STAGE ... OK` results, 19 `exit=0` lines, no `STOP`, no `RECORD` line, and `UNIT OK`.",
+              "hash": "abc8d399f3c3"
+            }
+          },
+          {
+            "text": "The layout is the design's, with the canary's count files and this unit's per-repository files added; the closing stage found every file it lists present.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#31-the-procedures-own-record",
+            "excerpt": {
+              "ref": "final-implementation.md#31-the-procedures-own-record",
+              "heading": "3.1 The procedure's own record",
+              "paragraph": "`DATA/run/as-run.log` holds 19 of 19 `STAGE ... OK` results, 19 `exit=0` lines, no `STOP`, no `RECORD` line, and `UNIT OK`.",
+              "hash": "abc8d399f3c3"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The workspace `%USERPROFILE%\\BotWS` and the data folder `%USERPROFILE%\\BotLegacyData` are created, and the data folder outlives the phase.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "31571648392f"
+            }
+          },
+          {
+            "text": "Each folder is checked: under the user profile, outside OneDrive and the project-checkouts folder, inside no repository, with no `Everyone`, `Users` or `Authenticated Users` entry.",
+            "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+            "excerpt": {
+              "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+              "heading": "S1 — Workspace, tool files and version pins",
+              "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
+              "hash": "d526c2bf1547"
+            }
+          },
+          {
+            "text": "A broad access entry or a folder in the wrong place stops the unit, with nothing yet written to GitHub or to a clone.",
+            "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+            "excerpt": {
+              "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+              "heading": "S1 — Workspace, tool files and version pins",
+              "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
+              "hash": "d526c2bf1547"
+            }
+          },
+          {
+            "text": "The layout is the design's, with the canary's count files and this unit's per-repository files added.",
+            "ref": "plan.md#workspace-and-data-folder-layout",
+            "excerpt": {
+              "ref": "plan.md#workspace-and-data-folder-layout",
+              "heading": "Workspace and data-folder layout",
+              "paragraph": "The layout is architecture §5, with these additions: `DATA/run/canary/` for the canary's count files, and, in `DATA/rewrite/<repo>/`, the files this unit writes (listed below).",
+              "hash": "a99636f4f485"
+            }
+          }
+        ],
+        "defense": "The folders are always derived from `%USERPROFILE%`, so no literal path is typed. Their access is checked first because the backup mirrors taken later hold everything the phase's rewrites remove.",
+        "steps": [
+          {
+            "id": "S1",
+            "what": "Bootstrap the folders' first paths, then create and check both through the `s1-pins` stage.",
+            "check": "an `ok` line for each folder check; `STAGE S1 OK`",
+            "link": "plan.md#s1--workspace-tool-files-and-version-pins"
+          }
+        ],
+        "tests": [
+          "L4c non-functional — the access and location checks of the folders (S1, S7)"
+        ],
+        "risks": [
+          "Disk space: about 1 GB for the mirrors, backups and copy, against 2.6 TB free"
+        ],
+        "source": "plan.md Requirements 1, Design (layout), §7.4 S1",
+        "link": "plan.md#s1--workspace-tool-files-and-version-pins"
+      }
+    },
+    {
+      "id": "git-and-runtimes",
+      "group": "Workspace and tools",
+      "name": "git pinned; Python, pip and gh recorded",
+      "system": "kotlinbottools",
+      "where": "`run/tool-versions.txt`, in the data folder",
+      "gap": {
+        "kind": "risk",
+        "summary": "Every procedure of the phase was verified against git 2.55.0.windows.5, and git 2.56 exists. A different git, Python minor or gh major would run steps nobody has verified, and no record of the versions exists yet.",
+        "evidence": [
+          "`../architecture.md:229` — git 2.55.0.windows.5 on this machine, with `core.autocrlf=true` system-wide",
+          "`../architecture.md:427` — git 2.56 exists, and the procedures were verified against 2.55"
+        ],
+        "source": "../architecture.md §2.3, §6.1",
+        "link": "../architecture.md#61-toolchain"
+      },
+      "options": [
+        {
+          "id": "pin-and-stop",
+          "name": "Record the versions and stop on a different git, Python minor or gh major",
+          "verdict": "accepted",
+          "why": "The procedures were verified on this stack, so a difference stops the unit.",
+          "source": "../architecture.md §6.1",
+          "link": "../architecture.md#61-toolchain"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "git, Python and gh met their pins, and S1 passed with no stop.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "The versions, pip's and gh's among them, were recorded in `DATA/run/tool-versions.txt`.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "git must be `2.55.0.windows.5` exactly, Python minor 3.14 and gh major 2; any difference stops the unit.",
+            "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+            "excerpt": {
+              "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+              "heading": "S1 — Workspace, tool files and version pins",
+              "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
+              "hash": "d526c2bf1547"
+            }
+          },
+          {
+            "text": "The versions, pip's and gh's among them, are recorded in `DATA/run/tool-versions.txt`.",
+            "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+            "excerpt": {
+              "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+              "heading": "S1 — Workspace, tool files and version pins",
+              "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
+              "hash": "d526c2bf1547"
+            }
+          }
+        ],
+        "defense": "The pins are checked in the first stage, so a different stack stops the unit before any tool is installed or any repository is read.",
+        "steps": [
+          {
+            "id": "S1",
+            "what": "Check the git, Python and gh pins and write the version record through the `s1-pins` stage.",
+            "check": "`ok` lines for the three pins; `tool-versions.txt` written; `STAGE S1 OK`",
+            "link": "plan.md#s1--workspace-tool-files-and-version-pins"
+          }
+        ],
+        "tests": [
+          "L1 gating — the S1 version pins: git exact, Python minor, gh major"
+        ],
+        "risks": [],
+        "source": "plan.md Requirements 2, §7.4 S1",
+        "link": "plan.md#s1--workspace-tool-files-and-version-pins"
+      }
+    },
+    {
+      "id": "filter-repo",
+      "group": "Workspace and tools",
+      "name": "git-filter-repo 2.47.0, proved on a fixture",
+      "system": "kotlinbottools",
+      "where": "the user-scheme pip install · `rehearsal/`, in the workspace",
+      "gap": {
+        "kind": "missing",
+        "summary": "`git filter-repo` is not installed, and its exit status cannot be trusted. It exits 0 even when an entry matched nothing, so a throwaway fixture has to confirm the tool, the list parsing and the success checks on this stack before any real data.",
+        "evidence": [
+          "`../architecture.md:235` — neither `git filter-repo` nor `gitleaks` is installed",
+          "`../architecture.md:244` — it exits 0 even when nothing matched",
+          "`../architecture.md:433` — the fixture run, with a UTF-16 list as its negative control"
+        ],
+        "source": "../architecture.md §2.3, §2.4, §6.1",
+        "link": "../architecture.md#61-toolchain"
+      },
+      "options": [
+        {
+          "id": "pypi-user-scheme",
+          "name": "The PyPI wheel in the user scheme, hash-pinned, verified by two independent values and confirmed on a throwaway fixture",
+          "verdict": "accepted",
+          "why": "The launcher lands in a directory already on Git Bash's `PATH`, the wheel's hash is pinned, and the `--version` blob-id prefix and the module's sha256 must both equal the upstream tag's script.",
+          "source": "../architecture.md §6.1",
+          "link": "../architecture.md#61-toolchain"
+        },
+        {
+          "id": "interpreter-scheme",
+          "name": "pip into the interpreter's scheme",
+          "verdict": "declined",
+          "why": "The launcher lands off `PATH`, so `git filter-repo` would fail until `PATH` is edited.",
+          "source": "../research/git-filter-repo-on-windows.md §3.3",
+          "link": "../research/git-filter-repo-on-windows.md#33-installation-routes-compared"
+        },
+        {
+          "id": "pipx-or-uv",
+          "name": "`pipx` or `uv tool`",
+          "verdict": "declined",
+          "why": "Hash pinning needs `--pip-args` and a requirements file, with no benefit over the user scheme here.",
+          "source": "../research/git-filter-repo-on-windows.md §3.3",
+          "link": "../research/git-filter-repo-on-windows.md#33-installation-routes-compared"
+        },
+        {
+          "id": "winget",
+          "name": "winget",
+          "verdict": "declined",
+          "why": "No winget package of git-filter-repo exists.",
+          "source": "../research/git-filter-repo-on-windows.md §3.3",
+          "link": "../research/git-filter-repo-on-windows.md#33-installation-routes-compared"
+        },
+        {
+          "id": "single-file",
+          "name": "The single file from the release tag",
+          "verdict": "declined",
+          "why": "The single-file script has no integrity mechanism. It stays the fallback if the user-scheme install does not land on `PATH`.",
+          "source": "../research/README.md §3.2; ../architecture.md §3",
+          "link": "../research/README.md#32-the-rewrite-tool"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "git-filter-repo 2.47.0 was installed from PyPI into the Python user scheme through the hash-pinned requirements file.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "Both values equalled the upstream tag's script: the `git filter-repo --version` blob-id prefix and the installed module's sha256.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "The rehearsal ran the rewrite's flags on the throwaway fixture and gave the fixture's exact before and after counts, ending `verify: failures=0`.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#32-the-canary-and-the-fixture",
+            "excerpt": {
+              "ref": "final-implementation.md#32-the-canary-and-the-fixture",
+              "heading": "3.2 The canary and the fixture",
+              "paragraph": "Canary (gitleaks through its wrapper): both scans gave their first line and every rule's distinct-file count: `commits_scanned=6 expected_commits=6` over every ref and `commits_scanned=5 expected_commits=5` over branches and tags, each verified `CANARY OK`. · Fixture rehearsal of filter-repo: · `You rewrote 5 (of 5) commits`, with 2 commits pruned and 3 commits left, the commit-map rows and `first-changed-commits` as expected, every purge entry at 0 afterwards. · The three scrub expressions matched these (commit, file) pairs, matches and commit-message lines before the run, and nothing after …",
+              "hash": "923ddb08b516"
+            }
+          },
+          {
+            "text": "The UTF-16 negative control behaved as required: the byte proofs rejected the list, and the entry check rejected a filter-repo run that had rewritten nothing.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#32-the-canary-and-the-fixture",
+            "excerpt": {
+              "ref": "final-implementation.md#32-the-canary-and-the-fixture",
+              "heading": "3.2 The canary and the fixture",
+              "paragraph": "Canary (gitleaks through its wrapper): both scans gave their first line and every rule's distinct-file count: `commits_scanned=6 expected_commits=6` over every ref and `commits_scanned=5 expected_commits=5` over branches and tags, each verified `CANARY OK`. · Fixture rehearsal of filter-repo: · `You rewrote 5 (of 5) commits`, with 2 commits pruned and 3 commits left, the commit-map rows and `first-changed-commits` as expected, every purge entry at 0 afterwards. · The three scrub expressions matched these (commit, file) pairs, matches and commit-message lines before the run, and nothing after …",
+              "hash": "923ddb08b516"
+            }
+          },
+          {
+            "text": "The fallback did not run: S4 passed on Python 3.14 with no stop, and `s4-fallback` stayed saved and unused.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "git-filter-repo 2.47.0 comes from PyPI into the Python user scheme, through a hash-pinned requirements file.",
+            "ref": "plan.md#s2--git-filter-repo-hash-pinned-install-two-independent-values",
+            "excerpt": {
+              "ref": "plan.md#s2--git-filter-repo-hash-pinned-install-two-independent-values",
+              "heading": "S2 — git-filter-repo: hash-pinned install, two independent values",
+              "paragraph": "Check: the requirements file's size and sha256; pip's status and `Successfully installed git-filter-repo-2.47.0` (or `Requirement already satisfied` on a re-run); `git-filter-repo` on `PATH` from the user-scheme scripts folder; `git filter-repo --version` printing `a40bce548d2c`; the installed module's sha256 `67447413e273fc76809289111748870b6f6072f08b17efe94863a92d810b7d94`; both values equal to the upstream tag's script (GitHub contents API, raw download); pip name and version; versions appended to `tool-versions.txt`; `STAGE S2 OK`. The stage's status check of `git filter-repo --version` …",
+              "hash": "5fca5dddff04"
+            }
+          },
+          {
+            "text": "Two independent values verify it, the `git filter-repo --version` blob-id prefix and the installed module's sha256, each equal to the upstream tag's script.",
+            "ref": "plan.md#s2--git-filter-repo-hash-pinned-install-two-independent-values",
+            "excerpt": {
+              "ref": "plan.md#s2--git-filter-repo-hash-pinned-install-two-independent-values",
+              "heading": "S2 — git-filter-repo: hash-pinned install, two independent values",
+              "paragraph": "Check: the requirements file's size and sha256; pip's status and `Successfully installed git-filter-repo-2.47.0` (or `Requirement already satisfied` on a re-run); `git-filter-repo` on `PATH` from the user-scheme scripts folder; `git filter-repo --version` printing `a40bce548d2c`; the installed module's sha256 `67447413e273fc76809289111748870b6f6072f08b17efe94863a92d810b7d94`; both values equal to the upstream tag's script (GitHub contents API, raw download); pip name and version; versions appended to `tool-versions.txt`; `STAGE S2 OK`. The stage's status check of `git filter-repo --version` …",
+              "hash": "5fca5dddff04"
+            }
+          },
+          {
+            "text": "The rehearsal runs the real KotlinBottools rewrite's flags on a throwaway fixture and must give the fixture's exact before and after counts.",
+            "ref": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal",
+            "excerpt": {
+              "ref": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal",
+              "heading": "S4 — The path-scrub expression file and the filter-repo fixture rehearsal",
+              "paragraph": "The stage writes `DATA/run/scrub/replace-text.txt` from the checkout's parent folder (the project-checkouts folder) and then rehearses filter-repo on a throwaway fixture with the same flags the real KotlinBottools rewrite will use (`--sensitive-data-removal --invert-paths --paths-from-file` with `--replace-text` and `--replace-message`).",
+              "hash": "f653be352576"
+            }
+          },
+          {
+            "text": "A list saved as UTF-16 is the negative control: the byte proofs reject it, and filter-repo exits 0 having rewritten nothing, which the entry check rejects.",
+            "ref": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal",
+            "excerpt": {
+              "ref": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal",
+              "heading": "S4 — The path-scrub expression file and the filter-repo fixture rehearsal",
+              "paragraph": "The stage writes `DATA/run/scrub/replace-text.txt` from the checkout's parent folder (the project-checkouts folder) and then rehearses filter-repo on a throwaway fixture with the same flags the real KotlinBottools rewrite will use (`--sensitive-data-removal --invert-paths --paths-from-file` with `--replace-text` and `--replace-message`).",
+              "hash": "f653be352576"
+            }
+          },
+          {
+            "text": "A `STOP` at or after the label `filter-repo exit status` runs the same pinned install under Python 3.13 and repeats S4 once; any other stop ends the unit.",
+            "ref": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal",
+            "excerpt": {
+              "ref": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal",
+              "heading": "S4 — The path-scrub expression file and the filter-repo fixture rehearsal",
+              "paragraph": "The stage writes `DATA/run/scrub/replace-text.txt` from the checkout's parent folder (the project-checkouts folder) and then rehearses filter-repo on a throwaway fixture with the same flags the real KotlinBottools rewrite will use (`--sensitive-data-removal --invert-paths --paths-from-file` with `--replace-text` and `--replace-message`).",
+              "hash": "f653be352576"
+            }
+          }
+        ],
+        "defense": "The tool's exit status says nothing on its own, so the rehearsal's counts and the entry checks decide. The install is hash-pinned, so a stop in S2 leaves nothing to clean and the stage can be repeated.",
+        "steps": [
+          {
+            "id": "S2",
+            "what": "Install the pinned wheel and verify it by its two values through the `s2-filter-repo` stage.",
+            "check": "the version prefix and the module's sha256 equal the upstream tag's; `STAGE S2 OK`",
+            "link": "plan.md#s2--git-filter-repo-hash-pinned-install-two-independent-values"
+          },
+          {
+            "id": "S4",
+            "what": "Rehearse filter-repo on the fixture through the `s4-rehearsal` stage, with the negative control.",
+            "check": "the pre-run, post-run and scrub counts; `verify: failures=0`; `STAGE S4 OK`",
+            "link": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal"
+          }
+        ],
+        "tests": [
+          "L2 component — the fixture rehearsal with its exact before and after counts, and `rehearsal_fixture.py verify`",
+          "L4a deterministic — the UTF-16 negative control's counts"
+        ],
+        "risks": [
+          "A tool or asset hash that differs is a stop and is never accepted; a changed upstream asset is investigated, not adopted",
+          "The Python 3.13 fallback has not been executed: it runs only if the rehearsal fails on 3.14, and a failure of its first command, the interpreter's install, stops the unit"
+        ],
+        "source": "plan.md Requirements 2 and 4, §7.4 S2 and S4",
+        "link": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal"
+      }
+    },
+    {
+      "id": "gitleaks",
+      "group": "Workspace and tools",
+      "name": "gitleaks v8.30.1",
+      "system": "kotlinbottools",
+      "where": "`tools/gitleaks-8.30.1/`, in the workspace",
+      "gap": {
+        "kind": "missing",
+        "summary": "`gitleaks` is not installed, and its release carries no signature or attestation. Its integrity has to rest on hashes from independent channels.",
+        "evidence": [
+          "`../architecture.md:235` — neither `git filter-repo` nor `gitleaks` is installed",
+          "`../architecture.md:436` — four equal sha256 values; the release has no signature or attestation"
+        ],
+        "source": "../architecture.md §2.3, §6.1",
+        "link": "../architecture.md#61-toolchain"
+      },
+      "options": [
+        {
+          "id": "release-zip",
+          "name": "The release zip, verified by four equal sha256 values",
+          "verdict": "accepted",
+          "why": "The checksums file, a pinned constant, the release asset digest and the winget manifest must all agree, which is the integrity the release itself does not give.",
+          "source": "../architecture.md §6.1",
+          "link": "../architecture.md#61-toolchain"
+        },
+        {
+          "id": "winget-package",
+          "name": "The winget package",
+          "verdict": "declined",
+          "why": "It installs the same zip and changes machine state, for no stronger assurance.",
+          "source": "../research/gitleaks-local-and-ci.md §2",
+          "link": "../research/gitleaks-local-and-ci.md#2-bottom-line"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "gitleaks v8.30.1 was installed from the release zip into the workspace's tool folder.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "The four sha256 values of the zip were equal.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "The executable's sha256 and version checked out, and the attestation status was recorded: none for the zip and none for the release.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "gitleaks v8.30.1 comes from the release zip, into the workspace's tool folder.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "31571648392f"
+            }
+          },
+          {
+            "text": "Four sha256 values of the zip must be equal: the file's own hash, the release checksums file, the release asset's digest and the winget-pkgs manifest.",
+            "ref": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary",
+            "excerpt": {
+              "ref": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary",
+              "heading": "S3 — gitleaks: four sha256 values, wrapper and canary",
+              "paragraph": "Check: the zip and checksums sizes (8438883 and 999 bytes); four equal values for the zip's sha256 `d29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332afc4e`: the file's own hash, the release checksums file, the release asset's digest, and the winget-pkgs manifest; `gitleaks.exe`'s sha256 and version `8.30.1`; `attestation: none` for both the zip and the release (an `attested` line is also recorded, not a stop); the canary's two scans. The stage compares each scan's first line (`commits_scanned` and `expected_commits`) and, through `secret_scan.py canary-check`, each rule's …",
+              "hash": "48a48fbeb64b"
+            }
+          },
+          {
+            "text": "`gitleaks.exe`'s own sha256 and its version are checked, and the attestation status is recorded rather than stopped on.",
+            "ref": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary",
+            "excerpt": {
+              "ref": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary",
+              "heading": "S3 — gitleaks: four sha256 values, wrapper and canary",
+              "paragraph": "Check: the zip and checksums sizes (8438883 and 999 bytes); four equal values for the zip's sha256 `d29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332afc4e`: the file's own hash, the release checksums file, the release asset's digest, and the winget-pkgs manifest; `gitleaks.exe`'s sha256 and version `8.30.1`; `attestation: none` for both the zip and the release (an `attested` line is also recorded, not a stop); the canary's two scans. The stage compares each scan's first line (`commits_scanned` and `expected_commits`) and, through `secret_scan.py canary-check`, each rule's …",
+              "hash": "48a48fbeb64b"
+            }
+          }
+        ],
+        "defense": "The release has no signature or attestation, so the integrity rests on four values that must agree.",
+        "steps": [
+          {
+            "id": "S3",
+            "what": "Download, verify and unpack the release through the `s3-gitleaks` stage.",
+            "check": "the sizes, the four equal values, the executable's hash and version; `STAGE S3 OK`",
+            "link": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary"
+          }
+        ],
+        "tests": [
+          "L2 component — the gitleaks canary (S3), with each scan's first line and per-rule file counts compared"
+        ],
+        "risks": [
+          "A tool or asset hash that differs is a stop and is never accepted; a changed upstream asset is investigated, not adopted"
+        ],
+        "source": "plan.md Requirements 2, §7.4 S3",
+        "link": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary"
+      }
+    },
+    {
+      "id": "scan-wrapper",
+      "group": "Workspace and tools",
+      "name": "The scan wrapper, the canary and the saved scripts",
+      "system": "kotlinbottools",
+      "where": "`tools/` and `canary/`, in the workspace",
+      "gap": {
+        "kind": "risk",
+        "summary": "A gitleaks exit status proves nothing. It exits 0 and prints \"no leaks found\" when its internal `git log` fails, and its defaults skip merge-only content and pure renames, so a scan needs its own proof that it saw everything. The helper scripts exist only in the findings files, each with a recorded size and hash.",
+        "evidence": [
+          "`../architecture.md:254` — it exits 0 with \"no leaks found\" when its internal `git log` fails",
+          "`../architecture.md:255` — its defaults skip merge-only content and pure renames",
+          "`../architecture.md:400` — the tools are saved from the findings files, which record their sizes and sha256 values"
+        ],
+        "source": "../architecture.md §2.4, §5.2, §6.1",
+        "link": "../architecture.md#61-toolchain"
+      },
+      "options": [
+        {
+          "id": "wrapper-and-canary",
+          "name": "Every scan through `secret_scan.py`, proved first on a synthetic canary, and every script checked against its recorded size and hash",
+          "verdict": "accepted",
+          "why": "The wrapper requires the scanned-commit count to equal an independent `git log --numstat` count, zero error lines and a parseable report; the canary must give its exact per-rule file counts before any real scan counts.",
+          "source": "../architecture.md §6.1",
+          "link": "../architecture.md#61-toolchain"
+        },
+        {
+          "id": "exit-status",
+          "name": "Rely on gitleaks' exit status, or on `git reset` and `git gc` exit status on Windows",
+          "verdict": "declined",
+          "why": "Each is 0 on failure in the cases the phase meets; counts and proofs decide.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        },
+        {
+          "id": "global-allowlist",
+          "name": "A global allowlist in the scan configuration",
+          "verdict": "declined",
+          "why": "A path allowlist disables every rule for the paths it names, the token and private-key rules included.",
+          "source": "../architecture.md §14; ../research/README.md §3.3",
+          "link": "../research/README.md#33-the-scanner"
+        },
+        {
+          "id": "tools-from-working-copies",
+          "name": "Save the research documents' tools from the checkout's working copies",
+          "verdict": "declined",
+          "why": "Those copies are CRLF while their blobs on `main` are LF, so the procedure reads the blobs.",
+          "source": "plan.md Current state",
+          "link": "plan.md#current-state"
+        },
+        {
+          "id": "commit-the-helpers",
+          "name": "Commit the helper scripts to a repository",
+          "verdict": "declined",
+          "why": "Every tool stays in the workspace, which keeps machine-specific logic and the rehearsal's fixtures out of the history being cleaned.",
+          "source": "plan.md Design, Non-goals",
+          "link": "plan.md#how-the-scripts-reach-the-machine"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "The bootstrap saved `env.sh` and `save-tools.sh`, which saved the rest, each checked by size and sha256: 44 files in all.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "The research tools were read from each document's blob on `main`, and every one matched its recorded size and sha256.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "`copy-data.sh`'s two placeholder checks were replaced with real folder checks, and the file passed its re-check at its new size and sha256.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "Both canary scans gave their first line and every rule's distinct-file count, each verified `CANARY OK`, before any real scan ran.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#32-the-canary-and-the-fixture",
+            "excerpt": {
+              "ref": "final-implementation.md#32-the-canary-and-the-fixture",
+              "heading": "3.2 The canary and the fixture",
+              "paragraph": "Canary (gitleaks through its wrapper): both scans gave their first line and every rule's distinct-file count: `commits_scanned=6 expected_commits=6` over every ref and `commits_scanned=5 expected_commits=5` over branches and tags, each verified `CANARY OK`. · Fixture rehearsal of filter-repo: · `You rewrote 5 (of 5) commits`, with 2 commits pruned and 3 commits left, the commit-map rows and `first-changed-commits` as expected, every purge entry at 0 afterwards. · The three scrub expressions matched these (commit, file) pairs, matches and commit-message lines before the run, and nothing after …",
+              "hash": "923ddb08b516"
+            }
+          },
+          {
+            "text": "The scripts stayed in the plan and the workspace: the branch adds none to a repository.",
+            "state": "as-planned",
+            "ref": "consequences.md#24-documents-and-generated-boards",
+            "excerpt": {
+              "ref": "consequences.md#24-documents-and-generated-boards",
+              "heading": "2.4 Documents and generated boards",
+              "paragraph": "The landing changes what plan §7.1 lists, through the repository's normal landing. Beyond that list: the one line in the parent's `consequences.md` is the link to §4 below, and no README or CHANGELOG entry applies (plan, Documentation impact).",
+              "hash": "5aec18de82e4"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The bootstrap saves `env.sh` and `save-tools.sh`, which then saves the 23 tools of the research documents and the 18 of Appendix A, each checked by size and sha256.",
+            "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+            "excerpt": {
+              "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
+              "heading": "S1 — Workspace, tool files and version pins",
+              "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
+              "hash": "d526c2bf1547"
+            }
+          },
+          {
+            "text": "The research tools are read from each document's blob on `main`, so the checkout's CRLF working copies play no part.",
+            "ref": "plan.md#how-the-scripts-reach-the-machine",
+            "excerpt": {
+              "ref": "plan.md#how-the-scripts-reach-the-machine",
+              "heading": "How the scripts reach the machine",
+              "paragraph": "The scripts live in this plan and in the workspace, never in a repository. The architecture commits only the three CI files, and only in the later `repository-hygiene` unit. Keeping the helpers out of every repository also keeps machine-specific logic and the rehearsal's fixtures out of the history that is being cleaned. · Bootstrap. The first block of S1 (§7.4) creates the first folder paths, records this checkout's main working-tree path in `kbt-path.txt`, and saves `env.sh` and `save-tools.sh` from Appendix A's fenced blocks. Each such block's fence carries `file=<name>` in its info …",
+              "hash": "f0fb725f0d83"
+            }
+          },
+          {
+            "text": "`copy-data.sh`'s two placeholder checks are replaced with real folder checks read from the environment, and the file is re-checked against its own size and sha256.",
+            "ref": "plan.md#current-state",
+            "excerpt": {
+              "ref": "plan.md#current-state",
+              "heading": "Current state",
+              "paragraph": "Facts checked on 2026-11-08.",
+              "hash": "669d2b70b96d"
+            }
+          },
+          {
+            "text": "The canary's two scans must give each scan's first line, each rule's distinct-file count and `CANARY OK`; no real scan counts until S3 has passed.",
+            "ref": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary",
+            "excerpt": {
+              "ref": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary",
+              "heading": "S3 — gitleaks: four sha256 values, wrapper and canary",
+              "paragraph": "Check: the zip and checksums sizes (8438883 and 999 bytes); four equal values for the zip's sha256 `d29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332afc4e`: the file's own hash, the release checksums file, the release asset's digest, and the winget-pkgs manifest; `gitleaks.exe`'s sha256 and version `8.30.1`; `attestation: none` for both the zip and the release (an `attested` line is also recorded, not a stop); the canary's two scans. The stage compares each scan's first line (`commits_scanned` and `expected_commits`) and, through `secret_scan.py canary-check`, each rule's …",
+              "hash": "48a48fbeb64b"
+            }
+          },
+          {
+            "text": "The scripts live in the plan and the workspace, never in a repository.",
+            "ref": "plan.md#how-the-scripts-reach-the-machine",
+            "excerpt": {
+              "ref": "plan.md#how-the-scripts-reach-the-machine",
+              "heading": "How the scripts reach the machine",
+              "paragraph": "The scripts live in this plan and in the workspace, never in a repository. The architecture commits only the three CI files, and only in the later `repository-hygiene` unit. Keeping the helpers out of every repository also keeps machine-specific logic and the rehearsal's fixtures out of the history that is being cleaned. · Bootstrap. The first block of S1 (§7.4) creates the first folder paths, records this checkout's main working-tree path in `kbt-path.txt`, and saves `env.sh` and `save-tools.sh` from Appendix A's fenced blocks. Each such block's fence carries `file=<name>` in its info …",
+              "hash": "f0fb725f0d83"
+            }
+          }
+        ],
+        "defense": "`secret_scan.py` requires the scanned-commit count to equal an independent count, zero error lines and a parseable report, and the canary proves that gate is not blind before any real scan counts.",
+        "steps": [
+          {
+            "id": "S1",
+            "what": "Save every tool file and check each against its recorded size and sha256 through `save-tools.sh`.",
+            "check": "`tools saved: 44 files`; `STAGE SAVE-TOOLS OK`",
+            "link": "plan.md#s1--workspace-tool-files-and-version-pins"
+          },
+          {
+            "id": "S3",
+            "what": "Run the wrapper over the canary, for all refs and for branches and tags.",
+            "check": "each scan's status 1 and first line, each rule's distinct-file count; both checks print `CANARY OK` with status 0; `STAGE S3 OK`",
+            "link": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary"
+          }
+        ],
+        "tests": [
+          "L1 gating — the save-time size and sha256 check of every saved tool, and the wrapper's `--help`",
+          "L2 component — the gitleaks canary, with each scan's first line and per-rule file counts compared"
+        ],
+        "risks": [
+          "`core.autocrlf=true` converts anything read from a checkout, so the procedure reads blobs and never a working-tree copy",
+          "The recorded sizes and hashes of Appendix A's blocks are those of the landed text, so an edit to a block must re-record them in `save-tools.sh`'s table"
+        ],
+        "source": "plan.md Requirements 2, Design, §7.4 S1 and S3",
+        "link": "plan.md#s3--gitleaks-four-sha256-values-wrapper-and-canary"
+      }
+    },
+    {
+      "id": "path-scrub",
+      "group": "Scrub and path lists",
+      "name": "The path-scrub expression file",
+      "system": "kotlinbottools",
+      "where": "`run/scrub/replace-text.txt`, in the data folder",
+      "gap": {
+        "kind": "missing",
+        "summary": "Nothing yet replaces the machine-local paths in KotlinBottools' history. The local account name appears in paths in 17 lines of 6 documents, and filter-repo 2.47.0 under Python 3.14.7 has a defect in turning a `glob:` expression into a regex, which limits the file's form.",
+        "evidence": [
+          "`../research/README.md:786` — the local account name, in 17 lines of 6 documents",
+          "`../architecture.md:249` — the Python 3.14 defect is confined to `glob:` expressions",
+          "`../architecture.md:447` — `regex:` lines only, each case-insensitive"
+        ],
+        "source": "../architecture.md §2.4, §6.1",
+        "link": "../architecture.md#61-toolchain"
+      },
+      "options": [
+        {
+          "id": "regex-lines",
+          "name": "`regex:` lines only, case-insensitive, naming no account, proved on the fixture",
+          "verdict": "accepted",
+          "why": "A generic account segment matches every user-profile path. On the fixture every path form must be replaced in text files and a commit message, nothing else may change, and a fixture binary must stay untouched.",
+          "source": "../architecture.md §6.1",
+          "link": "../architecture.md#61-toolchain"
+        },
+        {
+          "id": "scrub-unreleased",
+          "name": "Run the scrub with filter-repo's unreleased `main`, or under Python 3.13",
+          "verdict": "declined",
+          "why": "`main` brings every unreleased change since 2.47.0 into all six rewrites and a second interpreter adds an install to verify; the scrub uses `regex:` lines only, outside the defect. Python 3.13 stays the fallback the fixture rehearsal can call for.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        },
+        {
+          "id": "scrub-glob",
+          "name": "Express the scrub as `glob:` lines, or name this machine's account in the expression file",
+          "verdict": "declined",
+          "why": "`glob:` lines hit the Python 3.14 defect, and an account-specific line would put the account name into a file that must stay unshared.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "`DATA/run/scrub/replace-text.txt` holds the three `regex:` lines the plan pins, with no `glob:` line.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "The expressions turned every form of the project-checkouts folder into `%PROJECTS%` and any user-profile folder into `%USERPROFILE%`, so the file names no account.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "The helper wrote the file at run time, and its line count, byte count and sha256 equalled the plan's.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "On the fixture every form was replaced in text files and a commit message, every control line stayed unchanged and the binary file's blob id did not change.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#32-the-canary-and-the-fixture",
+            "excerpt": {
+              "ref": "final-implementation.md#32-the-canary-and-the-fixture",
+              "heading": "3.2 The canary and the fixture",
+              "paragraph": "Canary (gitleaks through its wrapper): both scans gave their first line and every rule's distinct-file count: `commits_scanned=6 expected_commits=6` over every ref and `commits_scanned=5 expected_commits=5` over branches and tags, each verified `CANARY OK`. · Fixture rehearsal of filter-repo: · `You rewrote 5 (of 5) commits`, with 2 commits pruned and 3 commits left, the commit-map rows and `first-changed-commits` as expected, every purge entry at 0 afterwards. · The three scrub expressions matched these (commit, file) pairs, matches and commit-message lines before the run, and nothing after …",
+              "hash": "923ddb08b516"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "`DATA/run/scrub/replace-text.txt` holds three `regex:` lines, each case-insensitive, and no `glob:` line.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "31571648392f"
+            }
+          },
+          {
+            "text": "The project-checkouts folder, in every form, becomes `%PROJECTS%`, and any user-profile folder becomes `%USERPROFILE%` through a generic account segment, so the file names no account.",
+            "ref": "plan.md#what-the-three-scrub-expressions-are-in-words",
+            "excerpt": {
+              "ref": "plan.md#what-the-three-scrub-expressions-are-in-words",
+              "heading": "What the three scrub expressions are, in words",
+              "paragraph": "The expression file is built at run time by `scrub_expressions.py` from the checkout's parent folder (the project-checkouts folder), so the drive letter and folder names never appear in this plan. The fixture builds its forms the same way.",
+              "hash": "d8ffb574782a"
+            }
+          },
+          {
+            "text": "A helper writes the file at run time from the checkout's parent folder, and the plan pins only its line count, byte count and sha256.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "31571648392f"
+            }
+          },
+          {
+            "text": "On the fixture every form must be replaced in text files and a commit message, every control line left unchanged and the binary file untouched.",
+            "ref": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal",
+            "excerpt": {
+              "ref": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal",
+              "heading": "S4 — The path-scrub expression file and the filter-repo fixture rehearsal",
+              "paragraph": "The stage writes `DATA/run/scrub/replace-text.txt` from the checkout's parent folder (the project-checkouts folder) and then rehearses filter-repo on a throwaway fixture with the same flags the real KotlinBottools rewrite will use (`--sensitive-data-removal --invert-paths --paths-from-file` with `--replace-text` and `--replace-message`).",
+              "hash": "f653be352576"
+            }
+          }
+        ],
+        "defense": "Applied in memory to every text blob and message of this clone's refs, the three expressions left zero occurrences of any path form or of the account name, and their engine is the same Python `re` over bytes that filter-repo uses.",
+        "steps": [
+          {
+            "id": "S4",
+            "what": "Write the expression file and rehearse the scrub on the fixture through the `s4-rehearsal` stage.",
+            "check": "3 lines, 291 bytes and the pinned sha256; every expression at zero after the run; `verify: failures=0`",
+            "link": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal"
+          }
+        ],
+        "tests": [
+          "L2 component — `rehearsal_fixture.py verify`, byte for byte",
+          "L4a deterministic — the pinned size and sha256 of the expression file, and the scrub-count numbers on the fixture"
+        ],
+        "risks": [
+          "The expression file names the project-checkouts folder: it stays in `DATA/run/scrub/`, is never committed or printed, and only its line count, byte count and sha256 appear in documents"
+        ],
+        "source": "plan.md Requirements 3 and 4, Design, §7.4 S4",
+        "link": "plan.md#s4--the-path-scrub-expression-file-and-the-filter-repo-fixture-rehearsal"
+      }
+    },
+    {
+      "id": "path-lists",
+      "group": "Scrub and path lists",
+      "name": "The six root-anchored path lists",
+      "system": "kotlinbottools",
+      "where": "`lists/<repo>-purge.txt`, in the workspace · `run/lists/`, in the data folder",
+      "gap": {
+        "kind": "risk",
+        "summary": "A wrong path list removes nothing and still reports success. filter-repo reads a list as raw bytes and validates nothing, so a byte-order mark, a trailing space, a typo or a list saved as UTF-16 is a silent no-op.",
+        "evidence": [
+          "`../research/README.md:487` — a list is read as raw bytes and nothing is validated",
+          "`../research/git-filter-repo-on-windows.md:128` — a UTF-16 file matches no entry and raises no error",
+          "`../architecture.md:461` — the lists are written with `printf '%s\\n'` and proved byte-wise"
+        ],
+        "source": "../research/README.md §3.2; ../architecture.md §6.1",
+        "link": "../research/README.md#32-the-rewrite-tool"
+      },
+      "options": [
+        {
+          "id": "printf-and-proofs",
+          "name": "Written with Git Bash `printf '%s\\n'` and proved byte-wise",
+          "verdict": "accepted",
+          "why": "The byte count and sha256 are recorded, and character checks prove no carriage return, pure ASCII, no blank line, only the allowed characters and as many lines as entries.",
+          "source": "../architecture.md §6.1",
+          "link": "../architecture.md#61-toolchain"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "The six root-anchored lists were written with `printf '%s\\n'`, as the parent purge research gives them.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "Each list passed the character proofs and equalled its recorded byte count and sha256.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "",
+              "hash": "ae6b88e2036e"
+            }
+          },
+          {
+            "text": "The lists stand in the workspace and, with a `SHA256SUMS`, in `DATA/run/lists/`.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The six root-anchored lists are exactly the parent purge research's, written with `printf '%s\\n'`.",
+            "ref": "plan.md#s5--the-six-path-lists",
+            "excerpt": {
+              "ref": "plan.md#s5--the-six-path-lists",
+              "heading": "S5 — The six path lists",
+              "paragraph": "Writes `WS/lists/<repo>-purge.txt` with `printf '%s\\n'` (the entries of the parent purge research §6.2, unchanged) and copies them to `DATA/run/lists/` with a `SHA256SUMS`. Check: for each list the character proofs (no CR, pure ASCII, no NUL, ends in a newline, only the allowed characters, no dangerous form, no blank line, the entry count) and the recorded byte count and sha256:",
+              "hash": "9550542f90bf"
+            }
+          },
+          {
+            "text": "Each list must pass the character proofs and equal its recorded byte count and sha256; a list that fails is never used.",
+            "ref": "plan.md#s5--the-six-path-lists",
+            "excerpt": {
+              "ref": "plan.md#s5--the-six-path-lists",
+              "heading": "S5 — The six path lists",
+              "paragraph": "Writes `WS/lists/<repo>-purge.txt` with `printf '%s\\n'` (the entries of the parent purge research §6.2, unchanged) and copies them to `DATA/run/lists/` with a `SHA256SUMS`. Check: for each list the character proofs (no CR, pure ASCII, no NUL, ends in a newline, only the allowed characters, no dangerous form, no blank line, the entry count) and the recorded byte count and sha256:",
+              "hash": "9550542f90bf"
+            }
+          },
+          {
+            "text": "The lists are written to the workspace and copied, with a `SHA256SUMS`, to `DATA/run/lists/`.",
+            "ref": "plan.md#s5--the-six-path-lists",
+            "excerpt": {
+              "ref": "plan.md#s5--the-six-path-lists",
+              "heading": "S5 — The six path lists",
+              "paragraph": "Writes `WS/lists/<repo>-purge.txt` with `printf '%s\\n'` (the entries of the parent purge research §6.2, unchanged) and copies them to `DATA/run/lists/` with a `SHA256SUMS`. Check: for each list the character proofs (no CR, pure ASCII, no NUL, ends in a newline, only the allowed characters, no dangerous form, no blank line, the entry count) and the recorded byte count and sha256:",
+              "hash": "9550542f90bf"
+            }
+          }
+        ],
+        "defense": "A wrong list removes nothing and still reports success, so the procedure proves each list's bytes rather than trusting the run that uses it.",
+        "steps": [
+          {
+            "id": "S5",
+            "what": "Write and prove the six lists through the `s5-lists` stage.",
+            "check": "the character proofs and the recorded size and sha256 of each list; `STAGE S5 OK`",
+            "link": "plan.md#s5--the-six-path-lists"
+          }
+        ],
+        "tests": [
+          "L2 component — the byte-wise list proofs (S5)",
+          "L4a deterministic — the pinned sizes and sha256 values of the six lists"
+        ],
+        "risks": [],
+        "source": "plan.md Requirements 5, §7.4 S5",
+        "link": "plan.md#s5--the-six-path-lists"
+      }
+    },
+    {
+      "id": "authentication",
+      "group": "Access and backups",
+      "name": "Non-interactive access to the six repositories",
+      "system": "kotlinbottools",
+      "where": "every git network read of the units",
+      "gap": {
+        "kind": "risk",
+        "summary": "A network read can stop on a prompt no run can answer. The first network command per repository may open a Git Credential Manager sign-in, and nothing yet proves the signed-in token reads all six repositories.",
+        "evidence": [
+          "`../research/clone-realignment-and-data-extraction.md:345` — the first network command per repository may open a sign-in",
+          "`../architecture.md:471` — `gh auth git-credential` as the only credential helper, proved by `git ls-remote` against each repository"
+        ],
+        "source": "../architecture.md §3, §6.1",
+        "link": "../architecture.md#61-toolchain"
+      },
+      "options": [
+        {
+          "id": "gh-credential-helper",
+          "name": "`gh auth git-credential` as the only credential helper, proved by a non-interactive `git ls-remote` against each repository",
+          "verdict": "accepted",
+          "why": "No Git Credential Manager window can open in a run that cannot answer one, and a repository the token cannot read stops the unit before anything is cloned.",
+          "source": "../architecture.md §6.1",
+          "link": "../architecture.md#61-toolchain"
+        },
+        {
+          "id": "complete-the-sign-in",
+          "name": "Complete the Git Credential Manager sign-in when it appears",
+          "verdict": "declined",
+          "why": "A run cannot answer such a window, so none may open.",
+          "source": "../research/clone-realignment-and-data-extraction.md; ../architecture.md §6.1",
+          "link": "../architecture.md#61-toolchain"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "`gh auth git-credential` was the only credential helper on the procedure's git network reads.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "A non-interactive `git ls-remote` proved access to all six repositories before the first clone.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "The five static repositories' ref names equalled the design's table; KotlinBottools' refs stayed unpinned.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#33-mirrors-and-backups",
+            "excerpt": {
+              "ref": "final-implementation.md#33-mirrors-and-backups",
+              "heading": "3.3 Mirrors and backups",
+              "paragraph": "",
+              "hash": "64ef130dbf49"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "`gh auth git-credential` is the only credential helper, so no prompt can open.",
+            "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+            "excerpt": {
+              "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+              "heading": "S6 — Authentication, mirrors and untouched backups",
+              "paragraph": "First the proof, before anything is cloned:",
+              "hash": "24cea6fb55c7"
+            }
+          },
+          {
+            "text": "A non-interactive `git ls-remote` against each of the six repositories proves it before anything is cloned.",
+            "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+            "excerpt": {
+              "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+              "heading": "S6 — Authentication, mirrors and untouched backups",
+              "paragraph": "First the proof, before anything is cloned:",
+              "hash": "24cea6fb55c7"
+            }
+          },
+          {
+            "text": "The five static repositories' ref names must equal the design's table; KotlinBottools' refs are not pinned, because landings move them.",
+            "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+            "excerpt": {
+              "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+              "heading": "S6 — Authentication, mirrors and untouched backups",
+              "paragraph": "First the proof, before anything is cloned:",
+              "hash": "24cea6fb55c7"
+            }
+          }
+        ],
+        "defense": "All six repositories already answer a non-interactive `git ls-remote` through this helper, and proving it again first means a repository that cannot be read stops the unit before any clone.",
+        "steps": [
+          {
+            "id": "S6",
+            "what": "Prove access to the six repositories through `s6-backups auth`.",
+            "check": "each `git ls-remote` exits 0 and lists refs; the static ref names equal the table; `STAGE S6-auth OK`",
+            "link": "plan.md#s6--authentication-mirrors-and-untouched-backups"
+          }
+        ],
+        "tests": [
+          "L3 integration — the non-interactive `ls-remote` proof against the six repositories"
+        ],
+        "risks": [
+          "A stale or differing ref listing stops that repository's call before it clones"
+        ],
+        "source": "plan.md Requirements 6, §7.4 S6",
+        "link": "plan.md#s6--authentication-mirrors-and-untouched-backups"
+      }
+    },
+    {
+      "id": "backups",
+      "group": "Access and backups",
+      "name": "A mirror and an untouched backup of each of the six",
+      "system": "kotlinbottools",
+      "where": "`backup/` and `mirror/`, in the workspace",
+      "gap": {
+        "kind": "missing",
+        "summary": "No copy of the six histories exists outside GitHub. The untouched backup is the control of every \"all missing\" proof and the source of the data copy and the residual probes' id lists, and its `ls-remote` listing is what later pushes are checked against.",
+        "evidence": [
+          "`../architecture.md:483` — one `git clone --mirror`, copied at once to the backup before any other git command runs in it",
+          "`../architecture.md:491` — the `ls-remote` listing at clone time makes the gap between clone and push safe",
+          "`../architecture.md:523` — the backup's three further roles"
+        ],
+        "source": "../architecture.md §6.2",
+        "link": "../architecture.md#62-backups-and-manifests"
+      },
+      "options": [
+        {
+          "id": "mirror-then-copy",
+          "name": "One `git clone --mirror` per repository, copied at once with `cp -a`, with its `ls-remote` listing recorded",
+          "verdict": "accepted",
+          "why": "The backup is taken before any other git command runs in the clone, so it stays untouched, and the clone becomes the mirror a later rewrite runs in.",
+          "source": "../architecture.md §6.2",
+          "link": "../architecture.md#62-backups-and-manifests"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "Each of the six repositories got one `git clone --mirror`, copied at once with `cp -a` to its backup.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "Each backup has its `ls-remote` listing from clone time and a `backup.SHA256SUMS` covering every file.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "Every backup was proved bare and mirror-flagged, with refs equal to the listing and the same 22 files as its mirror.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#33-mirrors-and-backups",
+            "excerpt": {
+              "ref": "final-implementation.md#33-mirrors-and-backups",
+              "heading": "3.3 Mirrors and backups",
+              "paragraph": "",
+              "hash": "64ef130dbf49"
+            }
+          },
+          {
+            "text": "No call met an existing mirror or backup: each repository was taken once, with no stop and no re-run.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#31-the-procedures-own-record",
+            "excerpt": {
+              "ref": "final-implementation.md#31-the-procedures-own-record",
+              "heading": "3.1 The procedure's own record",
+              "paragraph": "`DATA/run/as-run.log` holds 19 of 19 `STAGE ... OK` results, 19 `exit=0` lines, no `STOP`, no `RECORD` line, and `UNIT OK`.",
+              "hash": "abc8d399f3c3"
+            }
+          },
+          {
+            "text": "The closing stage proved all six backups unchanged against their checksum lists, with exactly the listed files present.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "",
+              "hash": "ae6b88e2036e"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "Each repository gets one `git clone --mirror`, copied at once with `cp -a` to its backup, before any other git command runs in the mirror.",
+            "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+            "excerpt": {
+              "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+              "heading": "S6 — Authentication, mirrors and untouched backups",
+              "paragraph": "First the proof, before anything is cloned:",
+              "hash": "24cea6fb55c7"
+            }
+          },
+          {
+            "text": "The `ls-remote` listing is recorded at clone time, with a `backup.SHA256SUMS` of every file in the backup beside it.",
+            "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+            "excerpt": {
+              "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+              "heading": "S6 — Authentication, mirrors and untouched backups",
+              "paragraph": "First the proof, before anything is cloned:",
+              "hash": "24cea6fb55c7"
+            }
+          },
+          {
+            "text": "Each backup is proved bare, mirror-flagged, with refs equal to the listing and the same file set as its mirror.",
+            "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+            "excerpt": {
+              "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
+              "heading": "S6 — Authentication, mirrors and untouched backups",
+              "paragraph": "First the proof, before anything is cloned:",
+              "hash": "24cea6fb55c7"
+            }
+          },
+          {
+            "text": "A mirror or backup that already exists stops the call on purpose, and the re-run rule names what to delete.",
+            "ref": "plan.md#75-re-running",
+            "excerpt": {
+              "ref": "plan.md#75-re-running",
+              "heading": "7.5 Re-running",
+              "paragraph": "A stop is fixed first; then the unit is re-run from S1 (the design's rule), with these state rules:",
+              "hash": "2f4f876c10b7"
+            }
+          },
+          {
+            "text": "The closing stage proves every backup unchanged against its checksum list, with exactly the listed files present.",
+            "ref": "plan.md#s9--closing-checks",
+            "excerpt": {
+              "ref": "plan.md#s9--closing-checks",
+              "heading": "S9 — Closing checks",
+              "paragraph": "Check: for each of the six repositories, the backup unchanged (`sha256sum -c` against its `backup.SHA256SUMS`, and exactly the listed files present) and its `ls-remote-at-clone.txt` present; these files present: `COPY-VERIFIED`, the expression file, `tool-versions.txt`, `DATA/run/lists/SHA256SUMS`, for each of the five static repositories its `.blobs`, `.counts` and `.kept` in `DATA/manifests/` and its `expect-row.txt`, `gitleaks-before.txt` and `gitleaks-kept.txt` in `DATA/rewrite/<repo>/`, and the two `.pinned.blobs` of GKB2 and BotTools; and, over `DATA/run/as-run.log` alone, these five …",
+              "hash": "9444c88e6276"
+            }
+          }
+        ],
+        "defense": "Copying the clone before anything else runs in it keeps the backup untouched, and the later units take these backups as the control for their rewrites.",
+        "steps": [
+          {
+            "id": "S6",
+            "what": "Take each repository's mirror and backup in turn through `s6-backups <repository>`.",
+            "check": "`ok <repo>: refs=<n> backup_files=<m>`; `STAGE S6-<repo> OK` for all six",
+            "link": "plan.md#s6--authentication-mirrors-and-untouched-backups"
+          },
+          {
+            "id": "S9",
+            "what": "Re-check every backup against its checksum list through the `s9-close` stage.",
+            "check": "`sha256sum -c` passes and exactly the listed files are present",
+            "link": "plan.md#s9--closing-checks"
+          }
+        ],
+        "tests": [
+          "L3 integration — the real mirror clones and untouched backups (S6)"
+        ],
+        "risks": [
+          "A killed run mid-clone leaves a partial mirror or backup, which the stage refuses to overwrite; the re-run rule gives the exact files to delete",
+          "Nothing else may change the six repositories' refs while the unit runs: a change stops that repository's call and the stage is repeated for it"
+        ],
+        "source": "plan.md Requirements 7, §7.4 S6 and S9, §7.5",
+        "link": "plan.md#s6--authentication-mirrors-and-untouched-backups"
+      }
+    },
+    {
+      "id": "legacy-data-copy",
+      "group": "Data and manifests",
+      "name": "The legacy data copy and `COPY-VERIFIED`",
+      "system": "kotlinbottools",
+      "where": "the data folder's three source folders and `records/`",
+      "gap": {
+        "kind": "missing",
+        "summary": "The legacy data has not been copied out, and the rewrite removes it. `BotData.xml` and `guildData/` have to survive byte-exactly from three sources, and `COPY-VERIFIED` is the precondition of every later step that deletes or rewrites anything.",
+        "evidence": [
+          "`../architecture.md:97` — the legacy data is preserved before any rewrite",
+          "`../architecture.md:277` — `git archive` converts line endings, and `git cat-file blob` does not",
+          "`../architecture.md:543` — `COPY-VERIFIED` is the precondition of every later destructive step"
+        ],
+        "source": "../architecture.md §1.1, §2.4, §6.3",
+        "link": "../architecture.md#63-legacy-data-copy"
+      },
+      "options": [
+        {
+          "id": "cat-file-per-record",
+          "name": "`git cat-file blob` per `git ls-tree -r -z` record, verified by `git hash-object --no-filters`",
+          "verdict": "accepted",
+          "why": "Each file is written from its blob with no conversion, and verified against its blob id.",
+          "source": "../architecture.md §6.3",
+          "link": "../architecture.md#63-legacy-data-copy"
+        },
+        {
+          "id": "git-archive",
+          "name": "`git archive` piped to `tar`",
+          "verdict": "declined",
+          "why": "It converts line endings under `core.autocrlf=true`.",
+          "source": "../architecture.md §6.3",
+          "link": "../architecture.md#63-legacy-data-copy"
+        },
+        {
+          "id": "archive-conversion-off",
+          "name": "`git archive` with `core.autocrlf` and `core.eol` overridden",
+          "verdict": "declined",
+          "why": "It is correct only while no attribute converts; `.gitattributes` can still ask for CRLF.",
+          "source": "../research/clone-realignment-and-data-extraction.md §3.10",
+          "link": "../research/clone-realignment-and-data-extraction.md#310-comparison-of-the-options"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "`BotData.xml` and `guildData/` were copied from the three sources the plan names.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "Each file was written through `git cat-file blob` and verified by `git hash-object --no-filters`.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "The copies hold 30, 30 and 31 records, each with as many files on disk and no hash mismatch.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#34-the-legacy-data-copy",
+            "excerpt": {
+              "ref": "final-implementation.md#34-the-legacy-data-copy",
+              "heading": "3.4 The legacy data copy",
+              "paragraph": "",
+              "hash": "501ee573d80c"
+            }
+          },
+          {
+            "text": "`COPY-VERIFIED` was written after all three copies verified, and stands empty for the later units to wait on.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "`BotData.xml` and `guildData/` are copied from three sources: KotlinBottools `main`, GKB2 at the parent of the commit that deletes `guildData/`, and TrumpBot `main`.",
+            "ref": "plan.md#s7--the-legacy-data-copy",
+            "excerpt": {
+              "ref": "plan.md#s7--the-legacy-data-copy",
+              "heading": "S7 — The legacy data copy",
+              "paragraph": "Copies `BotData.xml` and `guildData/` from the three backup mirrors, blob by blob through `git cat-file blob` into the data folder, and verifies each file by `git hash-object --no-filters`. Check:",
+              "hash": "228cf57a4f0f"
+            }
+          },
+          {
+            "text": "Each file is written through `git cat-file blob` and verified by `git hash-object --no-filters`.",
+            "ref": "plan.md#s7--the-legacy-data-copy",
+            "excerpt": {
+              "ref": "plan.md#s7--the-legacy-data-copy",
+              "heading": "S7 — The legacy data copy",
+              "paragraph": "Copies `BotData.xml` and `guildData/` from the three backup mirrors, blob by blob through `git cat-file blob` into the data folder, and verifies each file by `git hash-object --no-filters`. Check:",
+              "hash": "228cf57a4f0f"
+            }
+          },
+          {
+            "text": "The copies must hold 30, 30 and 31 records, with no unexpected entry, write failure or hash mismatch.",
+            "ref": "plan.md#s7--the-legacy-data-copy",
+            "excerpt": {
+              "ref": "plan.md#s7--the-legacy-data-copy",
+              "heading": "S7 — The legacy data copy",
+              "paragraph": "Copies `BotData.xml` and `guildData/` from the three backup mirrors, blob by blob through `git cat-file blob` into the data folder, and verifies each file by `git hash-object --no-filters`. Check:",
+              "hash": "228cf57a4f0f"
+            }
+          },
+          {
+            "text": "`COPY-VERIFIED` is written only after all three copies verify, and no later unit deletes or rewrites anything until it exists.",
+            "ref": "plan.md#s7--the-legacy-data-copy",
+            "excerpt": {
+              "ref": "plan.md#s7--the-legacy-data-copy",
+              "heading": "S7 — The legacy data copy",
+              "paragraph": "Copies `BotData.xml` and `guildData/` from the three backup mirrors, blob by blob through `git cat-file blob` into the data folder, and verifies each file by `git hash-object --no-filters`. Check:",
+              "hash": "228cf57a4f0f"
+            }
+          }
+        ],
+        "defense": "Reading blobs avoids the line-ending conversion `git archive` makes under `core.autocrlf=true`. Once written, `COPY-VERIFIED` is permanent for this unit, so a copy is never redone over it.",
+        "steps": [
+          {
+            "id": "S7",
+            "what": "Copy and verify the three sources through the `s7-data` stage.",
+            "check": "the per-source counts, zero hash mismatches, `COPY-VERIFIED` present; `STAGE S7 OK`",
+            "link": "plan.md#s7--the-legacy-data-copy"
+          }
+        ],
+        "tests": [
+          "L4b end-to-end — the data copy verified by blob id (S7)",
+          "L4c non-functional — the access and location checks of the destination (S7)"
+        ],
+        "risks": [
+          "A stop can leave a partial copy, which is deleted before the re-run and never counts as `COPY-VERIFIED`"
+        ],
+        "source": "plan.md Requirements 8, §7.4 S7, §7.5",
+        "link": "plan.md#s7--the-legacy-data-copy"
+      }
+    },
+    {
+      "id": "manifests",
+      "group": "Data and manifests",
+      "name": "Manifests and expectation rows of the five static repositories",
+      "system": "kotlinbottools",
+      "where": "`manifests/`, in the data folder · GKB2, GKB, BotTools, TrumpBot and Support",
+      "gap": {
+        "kind": "missing",
+        "summary": "Nothing yet says what a rewrite of these repositories should leave. Every later gate needs a manifest of purged blob ids and an expectation row per repository, derived from the backup, and for the five static repositories that row must equal the research table.",
+        "evidence": [
+          "`../architecture.md:497` — the manifest of purged blob ids, by filter-repo's own matching rule",
+          "`../architecture.md:503` — the expectation row of each repository",
+          "`../architecture.md:509` — the re-derived row must equal the research table"
+        ],
+        "source": "../architecture.md §6.2",
+        "link": "../architecture.md#62-backups-and-manifests"
+      },
+      "options": [
+        {
+          "id": "classifier",
+          "name": "`git ls-tree -r -z` of every distinct tree, classified by filter-repo's own matching rule",
+          "verdict": "accepted",
+          "why": "It finds the blobs that occur under a purged path and under no kept path, exactly, every ref included.",
+          "source": "../architecture.md §6.2",
+          "link": "../architecture.md#62-backups-and-manifests"
+        },
+        {
+          "id": "rev-list-objects",
+          "name": "`git rev-list --objects --all`, by path",
+          "verdict": "declined",
+          "why": "It names one path per object.",
+          "source": "../research/clone-realignment-and-data-extraction.md §3.10",
+          "link": "../research/clone-realignment-and-data-extraction.md#310-comparison-of-the-options"
+        },
+        {
+          "id": "blob-shas-file",
+          "name": "filter-repo's `blob-shas-and-paths.txt`",
+          "verdict": "declined",
+          "why": "It joins several paths with a separator that a path can itself contain.",
+          "source": "../research/clone-realignment-and-data-extraction.md §3.10",
+          "link": "../research/clone-realignment-and-data-extraction.md#310-comparison-of-the-options"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "A manifest of purged blob ids was built for each of the five repositories by `blob_manifest.py`, over every distinct tree of every ref in the backup.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#35-manifests-and-expectation-rows",
+            "excerpt": {
+              "ref": "final-implementation.md#35-manifests-and-expectation-rows",
+              "heading": "3.5 Manifests and expectation rows",
+              "paragraph": "All values equal the research table. `P` and the commits after are the table's own (`T − P`); each later rewrite proves `P`.",
+              "hash": "a59f60a28908"
+            }
+          },
+          {
+            "text": "Each expectation row, derived from the backup by `expect_row.py`, equalled the research table field by field, the commits-after field being arithmetic on the table (`T − P`).",
+            "state": "as-planned",
+            "ref": "final-implementation.md#35-manifests-and-expectation-rows",
+            "excerpt": {
+              "ref": "final-implementation.md#35-manifests-and-expectation-rows",
+              "heading": "3.5 Manifests and expectation rows",
+              "paragraph": "All values equal the research table. `P` and the commits after are the table's own (`T − P`); each later rewrite proves `P`.",
+              "hash": "a59f60a28908"
+            }
+          },
+          {
+            "text": "GKB2 and BotTools also got their `refs/pull/`-pinned variant, and its kept-blob check passed for both.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#35-manifests-and-expectation-rows",
+            "excerpt": {
+              "ref": "final-implementation.md#35-manifests-and-expectation-rows",
+              "heading": "3.5 Manifests and expectation rows",
+              "paragraph": "All values equal the research table. `P` and the commits after are the table's own (`T − P`); each later rewrite proves `P`.",
+              "hash": "a59f60a28908"
+            }
+          },
+          {
+            "text": "The largest surviving blob of each repository was within the bound of 100000 bytes.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#35-manifests-and-expectation-rows",
+            "excerpt": {
+              "ref": "final-implementation.md#35-manifests-and-expectation-rows",
+              "heading": "3.5 Manifests and expectation rows",
+              "paragraph": "All values equal the research table. `P` and the commits after are the table's own (`T − P`); each later rewrite proves `P`.",
+              "hash": "a59f60a28908"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "A manifest of purged blob ids is built for each of the five repositories by `blob_manifest.py`, over every distinct tree of every ref in the backup.",
+            "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+            "excerpt": {
+              "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+              "heading": "S8 — Manifests, expectation rows and positive controls",
+              "paragraph": "One call per repository, in this order, with `run_in_background`:",
+              "hash": "2a105bffff20"
+            }
+          },
+          {
+            "text": "`expect_row.py` derives each expectation row from the backup, and it must equal the research table field by field; the commits-after field is arithmetic on the table (`T − P`).",
+            "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+            "excerpt": {
+              "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+              "heading": "S8 — Manifests, expectation rows and positive controls",
+              "paragraph": "One call per repository, in this order, with `run_in_background`:",
+              "hash": "2a105bffff20"
+            }
+          },
+          {
+            "text": "GKB2 and BotTools also get a `refs/pull/`-pinned variant, which predicts a fresh mirror of the server.",
+            "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+            "excerpt": {
+              "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+              "heading": "S8 — Manifests, expectation rows and positive controls",
+              "paragraph": "One call per repository, in this order, with `run_in_background`:",
+              "hash": "2a105bffff20"
+            }
+          },
+          {
+            "text": "The largest surviving blob must be within the bound of 100000 bytes.",
+            "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+            "excerpt": {
+              "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+              "heading": "S8 — Manifests, expectation rows and positive controls",
+              "paragraph": "One call per repository, in this order, with `run_in_background`:",
+              "hash": "2a105bffff20"
+            }
+          }
+        ],
+        "defense": "Each later rewrite is judged against these manifests and rows, so they are derived from the untouched backup and a field that differs stops that repository and the unit.",
+        "steps": [
+          {
+            "id": "S8",
+            "what": "Write each repository's manifest and row through `s8-row <repository>`, one repository per call.",
+            "check": "every row field equals the table; `STAGE S8-<repo> OK` for all five",
+            "link": "plan.md#s8--manifests-expectation-rows-and-positive-controls"
+          }
+        ],
+        "tests": [
+          "L4b end-to-end — the manifests and expectation rows against the real backup mirrors (S8)"
+        ],
+        "risks": [
+          "The expected counts come from the research table and the design, and only this unit's run confirms them: a real history that differs stops the unit for that repository"
+        ],
+        "source": "plan.md Requirements 9, §7.4 S8",
+        "link": "plan.md#s8--manifests-expectation-rows-and-positive-controls"
+      }
+    },
+    {
+      "id": "positive-controls",
+      "group": "Data and manifests",
+      "name": "The positive-control scans",
+      "system": "kotlinbottools",
+      "where": "the untouched backups, scanned with the real configuration",
+      "gap": {
+        "kind": "risk",
+        "summary": "The scan rules have never met the real repositories. This control is the first real test of MagicBot's token regex against the real token files, and a scan that fires on nothing proves nothing about the rewrite.",
+        "evidence": [
+          "`../architecture.md:511` — the positive-control scan of the untouched backup",
+          "`../architecture.md:517` — the first real test of the token regex; a path probe that fires while the token probe does not is recorded"
+        ],
+        "source": "../architecture.md §6.2",
+        "link": "../architecture.md#62-backups-and-manifests"
+      },
+      "options": [
+        {
+          "id": "control-and-record",
+          "name": "Compare each path rule's distinct-file count with git's own, and record a token-rule miss by rule id and count",
+          "verdict": "accepted",
+          "why": "The unit continues past a token-rule miss, because the purge's proofs rest on the path rules and the manifests, not on the token rule.",
+          "source": "../architecture.md §6.2",
+          "link": "../architecture.md#62-backups-and-manifests"
+        },
+        {
+          "id": "edit-token-rule",
+          "name": "Edit the token rule during the run",
+          "verdict": "declined",
+          "why": "The rule is not edited mid-run; changing the regex in both repositories' configurations is a follow-up.",
+          "source": "../architecture.md §6.2; ../consequences.md §6",
+          "link": "../consequences.md#6-follow-ups"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "GKB2, GKB and TrumpBot flagged the guarded files, each passing its control status and verdict.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
+            "excerpt": {
+              "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
+              "heading": "3.6 Positive controls on the untouched backups",
+              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and TrumpBot. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
+              "hash": "601c9df10c23"
+            }
+          },
+          {
+            "text": "BotTools and Support passed on the absence of the six rule ids this configuration owns.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
+            "excerpt": {
+              "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
+              "heading": "3.6 Positive controls on the untouched backups",
+              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and TrumpBot. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
+              "hash": "601c9df10c23"
+            }
+          },
+          {
+            "text": "No token-rule probe was at zero while its path probe fired, so the run recorded none.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
+            "excerpt": {
+              "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
+              "heading": "3.6 Positive controls on the untouched backups",
+              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and TrumpBot. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
+              "hash": "601c9df10c23"
+            }
+          },
+          {
+            "text": "No rule had a finding in a file the purge list keeps: the kept-findings count was zero for all five repositories, so none became a follow-up.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
+            "excerpt": {
+              "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
+              "heading": "3.6 Positive controls on the untouched backups",
+              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and TrumpBot. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
+              "hash": "601c9df10c23"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "GKB2, GKB and TrumpBot must flag the guarded files: every path rule's report count equal to git's own, every named probe above zero, ending `CONTROL OK`.",
+            "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+            "excerpt": {
+              "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+              "heading": "S8 — Manifests, expectation rows and positive controls",
+              "paragraph": "One call per repository, in this order, with `run_in_background`:",
+              "hash": "2a105bffff20"
+            }
+          },
+          {
+            "text": "BotTools and Support pass on the absence of the six rule ids this configuration owns.",
+            "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+            "excerpt": {
+              "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+              "heading": "S8 — Manifests, expectation rows and positive controls",
+              "paragraph": "One call per repository, in this order, with `run_in_background`:",
+              "hash": "2a105bffff20"
+            }
+          },
+          {
+            "text": "A token-rule probe at zero while its path probe fires is recorded, and the unit continues.",
+            "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+            "excerpt": {
+              "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+              "heading": "S8 — Manifests, expectation rows and positive controls",
+              "paragraph": "One call per repository, in this order, with `run_in_background`:",
+              "hash": "2a105bffff20"
+            }
+          },
+          {
+            "text": "A finding of any rule in a file the purge list keeps is recorded by rule id and count, and becomes a follow-up.",
+            "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+            "excerpt": {
+              "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
+              "heading": "S8 — Manifests, expectation rows and positive controls",
+              "paragraph": "One call per repository, in this order, with `run_in_background`:",
+              "hash": "2a105bffff20"
+            }
+          }
+        ],
+        "defense": "The rule set is not edited mid-run and a kept file lies outside every purged path, so neither record stops the unit. A repository whose control fails is never declared clean: it stops, and the unit with it.",
+        "steps": [
+          {
+            "id": "S8",
+            "what": "Scan each untouched backup through `secret_scan.py` with `--refs all`, inside `s8-row <repository>`.",
+            "check": "`CONTROL OK` for the three, the six ids absent for the two; no `GATE FAILED`",
+            "link": "plan.md#s8--manifests-expectation-rows-and-positive-controls"
+          }
+        ],
+        "tests": [
+          "L4b end-to-end — the positive controls against the real backup mirrors (S8)"
+        ],
+        "risks": [
+          "Whether a real token file matches the token rule, and whether the rule set reports anything in a kept file, are only known once the controls have run"
+        ],
+        "source": "plan.md Requirements 9 and 10, §7.4 S8",
+        "link": "plan.md#s8--manifests-expectation-rows-and-positive-controls"
+      }
+    },
+    {
+      "id": "counts-only-records",
+      "group": "Documents",
+      "name": "Records that carry counts only",
+      "system": "kotlinbottools",
+      "where": "this unit's as-built record and every output of its steps",
+      "gap": {
+        "kind": "risk",
+        "summary": "What this unit produces is sensitive. Pre-rewrite commit ids and purged blob ids are lookup keys for the old objects, paths and names are personal data, and the scrub file names a machine-local path, so none of it may be printed, quoted or committed.",
+        "evidence": [
+          "`../architecture.md:375` — nothing under the data folder is ever committed, printed or quoted, and the records carry counts only",
+          "`../research/README.md:550` — `-v` prints paths, commit ids and author identities"
+        ],
+        "source": "../architecture.md §5.1",
+        "link": "../architecture.md#51-userprofilebotlegacydata--the-data-folder-data-outlives-the-phase"
+      },
+      "options": [
+        {
+          "id": "counts-and-rule-ids",
+          "name": "Keep the detail in the two folders; every output prints counts and rule ids only",
+          "verdict": "accepted",
+          "why": "The unit is done only when no output has named a secret, a guild, a member, a Discord id or a pre-rewrite id.",
+          "source": "../architecture.md §5.1, §6.1",
+          "link": "../architecture.md#5-workspace-and-records-layout"
+        },
+        {
+          "id": "gitleaks-verbose",
+          "name": "gitleaks `-v`",
+          "verdict": "declined",
+          "why": "It prints paths and identities.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "text": "Every script printed only counts, rule ids and fixed markers, and `DATA/run/as-run.log` records the 19 stage results and exit statuses.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#31-the-procedures-own-record",
+            "excerpt": {
+              "ref": "final-implementation.md#31-the-procedures-own-record",
+              "heading": "3.1 The procedure's own record",
+              "paragraph": "`DATA/run/as-run.log` holds 19 of 19 `STAGE ... OK` results, 19 `exit=0` lines, no `STOP`, no `RECORD` line, and `UNIT OK`.",
+              "hash": "abc8d399f3c3"
+            }
+          },
+          {
+            "text": "No script printed the token files, the legacy data, a name, an id or a token value, and none listed the paths under `guildData/`.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "",
+              "hash": "ae6b88e2036e"
+            }
+          },
+          {
+            "text": "Nothing under `DATA` was committed, printed or quoted, and the as-built record carries results and counts only.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "",
+              "hash": "ae6b88e2036e"
+            }
+          },
+          {
+            "text": "The closing stage scanned the as-run log alone for its five patterns and found nothing, and the run ended `UNIT OK`.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "",
+              "hash": "ae6b88e2036e"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "Every script prints only counts, rule ids, fixed markers and exit statuses, and the runner appends each line to `DATA/run/as-run.log`.",
+            "ref": "plan.md#73-conventions-for-every-stage",
+            "excerpt": {
+              "ref": "plan.md#73-conventions-for-every-stage",
+              "heading": "7.3 Conventions for every stage",
+              "paragraph": "Shell. Git Bash, through the shell tool. Each tool call starts a new shell, so every command below stands alone. Paths are in mixed form (a drive letter, then forward slashes); the folders are always derived from `%USERPROFILE%`, and the only machine-specific values are read from the environment and from `kbt-path.txt`. · Scripts, not typed commands. Everything the stages run lives in the saved scripts of Appendix A; the implementer types only the short commands below. None of them contains a doubled backslash, so nothing can be mangled in transit, and no literal path is typed. · Reading the …",
+              "hash": "6e67a38a87b1"
+            }
+          },
+          {
+            "text": "No script prints the token files, the legacy data, a name, an id or a token value, and none lists the paths under `guildData/`.",
+            "ref": "plan.md#the-output-rule",
+            "excerpt": {
+              "ref": "plan.md#the-output-rule",
+              "heading": "The output rule",
+              "paragraph": "No script prints the contents of `key.txt`, `keys.txt`, `key.pem`, `BotData.xml`, `WebParseKeys.xml`, anything under `guildData/` or `logs/`, a member or guild name, an id, or a token value: every script prints only counts, rule ids, fixed markers and exit statuses, and the guarantee rests on that. S9 cannot prove it. S9 scans `DATA/run/as-run.log`, and no other file, for five patterns only: a 40-digit hexadecimal token, a 17-to-20-digit number, a path of the shape `guildData/<x>`, this machine's account name and a user-profile folder path in forward-slash form (`<drive>:/users/` or …",
+              "hash": "20e942ee1374"
+            }
+          },
+          {
+            "text": "Nothing under `DATA` is ever committed, printed or quoted, and the as-built record carries counts only.",
+            "ref": "plan.md#workspace-and-data-folder-layout",
+            "excerpt": {
+              "ref": "plan.md#workspace-and-data-folder-layout",
+              "heading": "Workspace and data-folder layout",
+              "paragraph": "The layout is architecture §5, with these additions: `DATA/run/canary/` for the canary's count files, and, in `DATA/rewrite/<repo>/`, the files this unit writes (listed below).",
+              "hash": "a99636f4f485"
+            }
+          },
+          {
+            "text": "The closing stage scans the as-run log alone for five patterns: 40-digit hexadecimal tokens, 17-to-20-digit numbers, paths of the shape `guildData/<x>`, the account name and user-profile paths in forward-slash form.",
+            "ref": "plan.md#s9--closing-checks",
+            "excerpt": {
+              "ref": "plan.md#s9--closing-checks",
+              "heading": "S9 — Closing checks",
+              "paragraph": "Check: for each of the six repositories, the backup unchanged (`sha256sum -c` against its `backup.SHA256SUMS`, and exactly the listed files present) and its `ls-remote-at-clone.txt` present; these files present: `COPY-VERIFIED`, the expression file, `tool-versions.txt`, `DATA/run/lists/SHA256SUMS`, for each of the five static repositories its `.blobs`, `.counts` and `.kept` in `DATA/manifests/` and its `expect-row.txt`, `gitleaks-before.txt` and `gitleaks-kept.txt` in `DATA/rewrite/<repo>/`, and the two `.pinned.blobs` of GKB2 and BotTools; and, over `DATA/run/as-run.log` alone, these five …",
+              "hash": "9444c88e6276"
+            }
+          }
+        ],
+        "defense": "The guild and member names sit in `guildData/` paths, which no script lists, so the rule covers what is listed as well as what is read; the guarantee rests on no script printing those values, and the closing scan of the log cannot prove it.",
+        "steps": [
+          {
+            "id": "S9",
+            "what": "Scan the as-run log for the five patterns and confirm the files the stage lists are present, through the `s9-close` stage.",
+            "check": "the log scans find nothing; `UNIT OK`, then `== s9-close exit=0`",
+            "link": "plan.md#s9--closing-checks"
+          }
+        ],
+        "tests": [
+          "L4c non-functional — S9's scan of the as-run log, alone, for five patterns; that nothing sensitive is printed rests on no script printing those values"
+        ],
+        "risks": [
+          "A find or a changed backup at the closing stage means something unexpected printed content or touched the backups, and the unit is not done"
+        ],
+        "source": "plan.md Requirements 11, Design (the output rule), §7.3, §7.4 S9",
+        "link": "plan.md#the-output-rule"
+      }
+    },
+    {
+      "id": "kotlinbottools-at-its-rewrite",
+      "group": "Left for later",
+      "name": "KotlinBottools' own backup, manifest, expectation row and positive control",
+      "system": "kotlinbottools",
+      "where": "unit 3, #23",
+      "gap": {
+        "kind": "missing",
+        "summary": "KotlinBottools' rewrite inputs would go stale if they were taken here. Every landing before its rewrite adds commits to it, so this unit's KotlinBottools mirror serves the data copy only.",
+        "evidence": [
+          "`../architecture.md:488` — KotlinBottools is mirrored again at the start of its rewrite",
+          "`../architecture.md:489` — this unit's KotlinBottools mirror serves the data copy only"
+        ],
+        "source": "../architecture.md §6.2, §15",
+        "link": "../architecture.md#15-decomposition"
+      },
+      "options": [
+        {
+          "id": "at-its-rewrite",
+          "name": "Taken at the start of its rewrite, in unit 3, with nothing landing meanwhile",
+          "verdict": "accepted",
+          "why": "A landing between its mirror clone and its push would be lost from the rewritten history.",
+          "source": "../architecture.md §14, §15",
+          "link": "../architecture.md#15-decomposition"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "No scan or manifest of KotlinBottools was taken: S8 ran for the five static repositories alone.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "Its real manifest, expectation row and positive control stay with the unit that rewrites it.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The two folders. `WS` and `DATA` exist under the user profile, outside OneDrive, outside the project-checkouts folder and inside no repository, each with no `Everyone`, `Users` or `Authenticated Users` access entry. · The toolchain at its pins (recorded in `DATA/run/tool-versions.txt`): · git 2.55.0.windows.5, Python 3.14.7, pip 26.2.1, gh 2.100.0, GNU tar 1.35; · git-filter-repo 2.47.0 in the Python 3.14 user scheme, verified by its two independent values (the version prefix and the installed module's sha256, both equal to the upstream tag's script); · gitleaks 8.30.1 from the release zip, …",
+              "hash": "d59d5cd33172"
+            }
+          },
+          {
+            "text": "This unit's KotlinBottools mirror and backup served the data copy only; replacing them with a fresh pair stays with that unit, at its start.",
+            "state": "as-planned",
+            "ref": "consequences.md#4-sibling-units-and-neighbouring-issues",
+            "excerpt": {
+              "ref": "consequences.md#4-sibling-units-and-neighbouring-issues",
+              "heading": "4. Sibling units and neighbouring issues",
+              "paragraph": "What the later units consume (the contract is the \"Interfaces with sibling units\" section of `plan.md`; this is its summary):",
+              "hash": "0e72717905c0"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "leave",
+        "statements": [
+          {
+            "text": "No scan or manifest of KotlinBottools is taken beyond its data copy.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the TrumpBot clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 unless …",
+              "hash": "85755a919d0e"
+            }
+          },
+          {
+            "text": "Its real manifest, expectation row and positive control belong to the unit that rewrites it.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the TrumpBot clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 unless …",
+              "hash": "85755a919d0e"
+            }
+          },
+          {
+            "text": "This unit's KotlinBottools mirror and backup serve the data copy only, and that unit replaces them with a fresh mirror and backup taken at its start.",
+            "ref": "plan.md#interfaces-with-sibling-units",
+            "excerpt": {
+              "ref": "plan.md#interfaces-with-sibling-units",
+              "heading": "Interfaces with sibling units",
+              "paragraph": "This unit has no dependencies: it starts once #2's planning documents have landed, and they have. It expects nothing from any sibling. What it provides, by slug:",
+              "hash": "eb50433f4bf0"
+            }
+          }
+        ],
+        "defense": "KotlinBottools' refs move with every landing, unlike the five static repositories', so rewrite inputs taken here would be out of date by its rewrite.",
+        "steps": [],
+        "tests": [],
+        "risks": [],
+        "source": "plan.md Non-goals, Interfaces with sibling units",
+        "link": "plan.md#non-goals"
+      }
+    }
+  ],
+  "impact": {
+    "basis": "plan",
+    "summary": "Local preparation with no published effect: no module is published, no version moves, and the landing changes documents and generated boards only. The unit writes nothing else to GitHub and only reads the six repositories. On this machine it leaves git-filter-repo installed and creates the workspace and the data folder, whose results the phase's later units consume.",
+    "none": null,
+    "release": {
+      "bump": "none",
+      "version": null,
+      "note": "no module is published and no version moves"
+    },
+    "downstream": [
+      {
+        "who": "KotlinBottools, GKB2, GKB, BotTools, TrumpBot and Support on GitHub",
+        "kind": "repository",
+        "system": null,
+        "effect": "none",
+        "summary": "Read only: each is listed with `git ls-remote` and cloned once with `git clone --mirror`. No repository, ref, issue or setting changes beyond this unit's own landing.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "This machine",
+        "kind": "operator",
+        "system": null,
+        "effect": "additive",
+        "summary": "git-filter-repo 2.47.0 is installed in the Python user scheme and stays after the phase; CPython 3.13 was not added, as the fallback did not run. The workspace is created and the last unit of the phase deletes it; the data folder outlives the phase, and nothing in it is committed, printed or quoted.",
+        "link": "consequences.md#22-this-machine"
+      },
+      {
+        "who": "The two clones on this machine",
+        "kind": "repository",
+        "system": null,
+        "effect": "none",
+        "summary": "Neither changes: the unit only reads KotlinBottools' checkout, and looks at the TrumpBot clone only to confirm that it sits beside it.",
+        "link": "consequences.md#23-the-two-clones-on-this-machine"
+      },
+      {
+        "who": "The parent's documents and the generated boards",
+        "kind": "repository",
+        "system": "kotlinbottools",
+        "effect": "none",
+        "summary": "The landing adds one line to the parent's `consequences.md` and a dated note on the generated boards' commit ids to its `architecture.md`, and ten generated board files record this unit's state.",
+        "link": "consequences.md#24-documents-and-generated-boards"
+      },
+      {
+        "who": "`transfer-rehearsal` (#22)",
+        "kind": "consumer",
+        "system": "kotlinbottools",
+        "effect": "additive",
+        "summary": "Blocked by this unit. Uses the installed and saved tools, the `env.sh` contract, the six lists, `COPY-VERIFIED`, the runner and the log, the proven non-interactive authentication, and `secret_scan.py` and `gitleaks.toml` at their fixed names.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "who": "`kotlinbottools-rewrite-and-swap` (#23)",
+        "kind": "consumer",
+        "system": "kotlinbottools",
+        "effect": "additive",
+        "summary": "Uses the installed tools, the saved tools, the six lists, the expression file, the `env.sh` contract and `COPY-VERIFIED`, and takes its own fresh KotlinBottools mirror and backup at its start.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "who": "`repository-hygiene` (#24)",
+        "kind": "consumer",
+        "system": "kotlinbottools",
+        "effect": "additive",
+        "summary": "Takes `secret_scan.py` and `gitleaks.toml` from the workspace copies this unit saved.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "who": "`kotlinbottools-publish` (#25), `gkb2-gkb-rewrite` (#26), `bottools-trumpbot-support-rewrite` (#27) and `residual-report-and-cleanup` (#28)",
+        "kind": "consumer",
+        "system": "kotlinbottools",
+        "effect": "additive",
+        "summary": "Every one uses the installed and saved tools, the `env.sh` contract, the six lists, `COPY-VERIFIED`, the runner and the log. `gkb2-gkb-rewrite` and `bottools-trumpbot-support-rewrite` also use the five static repositories' backups, manifests and expectation rows; `kotlinbottools-publish` and `residual-report-and-cleanup` also use the proven authentication and the scan tools; `kotlinbottools-publish` accounts for the generated boards' commit ids in its id-reference check.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      }
+    ],
+    "adaptation": [
+      {
+        "who": "Existing code and mechanisms",
+        "system": "kotlinbottools",
+        "need": "none",
+        "summary": "Nothing existing adopts anything from this unit; the saved tools, the path lists and the expression file are consumed by the phase's later units.",
+        "link": "consequences.md#3-adoption"
+      }
+    ],
+    "api": [],
+    "conversion": [],
+    "source": "consequences.md §1 to §4; plan.md Interfaces with sibling units",
+    "link": "consequences.md#2-blast-radius",
+    "changes": [
+      {
+        "entry": "downstream.1",
+        "what": "CPython 3.13 was not added on this machine.",
+        "why": "The fixture rehearsal passed on Python 3.14.7, so the fallback that would install it did not run.",
+        "when": "Implementation",
+        "ref": "consequences.md#22-this-machine"
+      },
+      {
+        "entry": "downstream.3",
+        "what": "The landing edits the parent's documents and carries generated boards.",
+        "why": "It adds one line to the parent's `consequences.md` and a dated note on the generated boards' commit ids to its `architecture.md`, and ten generated board files record this unit's state.",
+        "when": "Document",
+        "ref": "consequences.md#24-documents-and-generated-boards"
+      },
+      {
+        "entry": "downstream.4",
+        "what": "`transfer-rehearsal` (#22) consumes this unit's results.",
+        "why": "It is blocked by this unit and takes what every later unit takes, plus the proven authentication and the scan tools at their fixed names.",
+        "when": "Document",
+        "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "entry": "downstream.7",
+        "what": "What each of the four later units consumes is stated unit by unit.",
+        "why": "Only `gkb2-gkb-rewrite` and `bottools-trumpbot-support-rewrite` consume the backups, manifests and expectation rows the planned entry named for all four.",
+        "when": "Document",
+        "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      }
+    ]
+  },
+  "tests": {
+    "base": "main",
+    "updated": "2026-11-08T22:11:56Z",
+    "added": [],
+    "amended": [],
+    "relevant": []
+  },
+  "roadmap": {
+    "issue": 2,
+    "title": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
+    "asOf": "2026-11-08",
+    "items": [
+      {
+        "issue": 21,
+        "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
+        "state": "OPEN"
+      },
+      {
+        "issue": 22,
+        "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories",
+        "state": "OPEN"
+      },
+      {
+        "issue": 23,
+        "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
+        "state": "OPEN"
+      },
+      {
+        "issue": 24,
+        "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
+        "state": "OPEN"
+      },
+      {
+        "issue": 25,
+        "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection",
+        "state": "OPEN"
+      },
+      {
+        "issue": 26,
+        "title": "Phase 0 · 6 — Rewrite GKB2 and GKB",
+        "state": "OPEN"
+      },
+      {
+        "issue": 27,
+        "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
+        "state": "OPEN"
+      },
+      {
+        "issue": 28,
+        "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
+        "state": "OPEN"
+      }
+    ]
+  },
+  "followUps": [
+    {
+      "name": "kept_findings.py",
+      "note": "Not exercised by a fixture with a finding in a kept file, so its zeros are its own answer on the real reports. A later unit that relies on it first gives it such a fixture (consequences.md §6)."
+    },
+    {
+      "name": "the generated boards' commit ids",
+      "note": "They stay outside this unit's output rule; `kotlinbottools-publish` must account for every such field in its id-reference check, or its count will not reach 0 (consequences.md §6)."
+    }
+  ],
+  "documents": [
+    {
+      "label": "Issue #21",
+      "path": "https://github.com/SpartanLaboratories/KotlinBottools/issues/21",
+      "note": "the unit as #2 filed it: its scope and what done means"
+    },
+    {
+      "label": "plan.md",
+      "path": "plan.md",
+      "note": "the procedure: the requirements, the design, the nine stages with their checks and stops (§7.4), re-running (§7.5), and the stage scripts in Appendix A"
+    },
+    {
+      "label": "consequences.md",
+      "path": "consequences.md",
+      "note": "the blast radius on this machine and in the repositories (§2), what the later units consume (§4), the known gaps (§5) and the follow-ups (§6)"
+    },
+    {
+      "label": "final-implementation.md",
+      "path": "final-implementation.md",
+      "note": "the as-built record: what was built (§1), acceptance (§2), the run's measurements (§3), and the deviations from the plan (§4: none)"
+    },
+    {
+      "label": "#2 architecture",
+      "path": "../architecture.md",
+      "note": "§2.3 and §2.4 the tools and the verified facts, §5 the two folders, §6.1 to §6.3 the toolchain, backups, manifests and data copy, §14 the alternatives, §15 unit 1"
+    },
+    {
+      "label": "#2 research",
+      "path": "../research/README.md",
+      "note": "the questions, verification and summary the Gap column rests on; the comparisons behind the options are in `git-filter-repo-on-windows.md`, `gitleaks-local-and-ci.md` and `clone-realignment-and-data-extraction.md`"
+    },
+    {
+      "label": "#2 consequences",
+      "path": "../consequences.md",
+      "note": "§4 the sibling units, §5 the known gaps, §6 the follow-ups, the token rule among them"
+    },
+    {
+      "label": "#2 tracking board",
+      "path": "../dashboard.html",
+      "note": "the eight units in landing order"
+    }
+  ],
+  "notes": {
+    "corrections": [
+      {
+        "what": "The closing scan's Verdict statement and its test line said it covers any user-profile path; the plan scans the as-run log alone for five patterns, the user-profile one in forward-slash form only. Rows: counts-only-records.",
+        "when": "2026-11-08"
+      },
+      {
+        "what": "The closing stage's step said every recorded file is confirmed present, and the Row's defence that the stage checks the log rather than trusting the scripts; the stage confirms the files it lists, and the guarantee rests on no script printing those values, which the scan cannot prove. Rows: counts-only-records.",
+        "when": "2026-11-08"
+      },
+      {
+        "what": "The canary's check, Verdict statement and test lines said the exact lines or exact per-rule counts; the plan compares each scan's status and first line, each rule's distinct-file count, and each check's status and `CANARY OK` verdict, the other lines being printed only. Rows: scan-wrapper, gitleaks.",
+        "when": "2026-11-08"
+      },
+      {
+        "what": "The expectation-row statement said the row equals the research table field by field without saying that the commits-after field is arithmetic on the table (`T − P`), as the plan's S8 and test-plan limits state it. Rows: manifests.",
+        "when": "2026-11-08"
+      },
+      {
+        "what": "Every statement's excerpt was re-copied from the plan's current text, after each statement was read against its section; the excerpts had quoted the replaced plan text.",
+        "when": "2026-11-08"
+      }
+    ]
+  },
+  "links": {
+    "workBoard": "../../../index.html",
+    "repoBoard": "../../../../dashboards/index.html",
+    "boards": {
+      "kotlinbottools": "../../../../dashboards/index.html"
+    }
+  }
+}
