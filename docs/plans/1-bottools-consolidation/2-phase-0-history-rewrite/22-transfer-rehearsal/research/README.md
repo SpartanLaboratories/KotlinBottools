@@ -127,6 +127,29 @@ members to change repository visibility, the signed-in account is an organisatio
 administrator permission on KotlinBottools, and `MagicBot#2` reads cross-repository "blocked by"
 links to KotlinBottools issues today.
 
+### Did not hold in the build
+
+**"Body text is not rewritten"** ([`issue-transfer-behaviour.md`](issue-transfer-behaviour.md) §3.3,
+and §6's "no `#N` rewriting expected"). The statement was not among the 55 claims above: it rested
+on a 2020 thread and a 2026 project log, read accurately. The fixture's first transfer, on
+2026-11-09, shows the opposite, and the plan's item check is corrected for it
+([`../plan.md`](../plan.md), Design, "What a transfer does to references"):
+
+- **In the moved issue,** each bare `#N` in the body and in the comments became the source
+  repository's full name: `#4` became `SpartanLaboratories/phase0-rehearsal-a#4`. The body grew from
+  134 to 248 bytes; five references changed, three in the body and two in the comments. Titles,
+  labels, milestone and comment count are unchanged.
+- **In the source issues that cite the moved issue,** the reference to it became the target's full
+  name (`SpartanLaboratories/phase0-rehearsal-b#1`) and every other bare reference in the same text
+  became the source's full name: #6's body grew from 9,072 to 13,366 bytes (13 references naming the
+  target, 100 naming the source, none left bare) and #10's has one of each. The issues that do not
+  cite the moved issue are byte-identical, and no source comment cited it, so comments in the source
+  were not seen.
+- **The same rule is reported from 2021:** "#B => bz-archive#B and #A => llvm-project#A", and, once
+  the citing issue itself moves into the target, "llvm-project#A => #A"
+  ([LLVM mailing list, 2021-12-03](https://lists.llvm.org/pipermail/cfe-dev/2021-December/069518.html)).
+  The later steps of the rehearsal measure that second half here.
+
 ---
 
 ## Summary
@@ -164,6 +187,8 @@ links to KotlinBottools issues today.
   on 2026-11-08. The rehearsal proves it in the real direction.
 - **Limits** that bind nothing here: 100 sub-issues per parent, eight nesting levels, 50 links per
   dependency type. The walk's reads assume no depth.
+- **References in the text** are rewritten by a transfer, which no source documents; the build
+  measured it (see Did not hold in the build, above).
 
 ### 2. The rename swap with the source made private
 
