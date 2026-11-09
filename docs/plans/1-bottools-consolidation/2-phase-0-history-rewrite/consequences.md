@@ -60,7 +60,10 @@ The rewrite itself changes two source files on `main` through the path scrub
   - for GKB2 and BotTools, their pull-request refs also keep the old history fetchable. At the
     research baseline that is 70 of GKB2's 81 purged blobs, and all 39 of BotTools'. For the
     three public repositories this exposure is not new;
-  - for KotlinBottools, the pre-rewrite objects stay only in the private legacy repository.
+  - for KotlinBottools, the pre-rewrite objects are public until the swap (§2.2), then only in the
+    private legacy repository.
+
+  > **Dated note, 2026-11-08.** KotlinBottools has been public since 2026-11-08 and stays so until the swap (architecture §2.1), so its purge-listed files and old objects are anonymously readable until then. The window cannot be undone: the residual report states it and that no measurement can exclude a copy taken during it (architecture §12.4).
 - **Secret scanning and push protection** are turned on for the public KotlinBottools only.
 
 ### 2.2 KotlinBottools: the public repository and the legacy repository
@@ -80,6 +83,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 
   It is the only place where the dated pre-rewrite citations resolve. Being archived, it accepts
   no push; deleting it is not planned (§6).
+
+  > **Dated note, 2026-11-08.** Until the swap the repository is public under its current name, so the pre-rewrite history and the pull-request refs listed above are readable by anyone until then. The swap makes it private as it is renamed and archived (architecture §7.5).
 - **The planning documents** reach `main` before the rewrite, through #2's own landing on the
   pre-rewrite repository. The rewritten `main` carries them to the public repository, so the
   parent roadmap's planning pull request is that landing, not a later one.
@@ -103,6 +108,8 @@ The rewrite itself changes two source files on `main` through the path scrub
   - 6 in WebTools #55 and #58;
   - 5 in `SpartanLaboratories/.github`;
   - those in this repository's documents and issues (findings 5 §3.D).
+
+  > **Dated note, 2026-11-09.** The moved issues' bodies and comments do change: a transfer rewrites their references to full names, and after the walk they name the target repository's temporary name, `SpartanLaboratories/KotlinBottools-next#N`, for the cited issues that moved, and `SpartanLaboratories/KotlinBottools#N` for the pull-request numbers that stay behind as placeholders (architecture §7.4). The latter resolve to the fresh repository after the swap, since every number is reproduced and the name is taken over; whether the former resolve after the rename depends on the rehearsal's measurement, and if they do not, the rewrite-and-swap unit has the options architecture §7.4 names. Whether text in other repositories citing a moved issue is rewritten is unmeasured.
 - **Links that name the planning branch** (`blob/docs/issue-1-bottools-consolidation/...`) stop
   resolving when #2's landing merges and deletes that branch. There are 56 of them:
   - 3 in #1's body and 1 in its comments;
@@ -200,6 +207,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 8. `residual-report-and-cleanup`
 
 `preparation` has landed; what it leaves for the units after it is in [its consequences, §4](21-preparation/consequences.md#4-sibling-units-and-neighbouring-issues).
+
+`transfer-rehearsal` has run; what it leaves for the units after it is in [its consequences, §4](22-transfer-rehearsal/consequences.md#4-sibling-units-and-neighbouring-issues), and the known gaps of its tool, which `kotlinbottools-rewrite-and-swap` closes before reusing it, are in [§5](22-transfer-rehearsal/consequences.md#5-known-gaps).
 
 **Neighbouring issues:**
 
