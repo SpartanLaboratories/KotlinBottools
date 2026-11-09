@@ -143,12 +143,22 @@ on a 2020 thread and a 2026 project log, read accurately. The fixture's first tr
   name (`SpartanLaboratories/phase0-rehearsal-b#1`) and every other bare reference in the same text
   became the source's full name: #6's body grew from 9,072 to 13,366 bytes (13 references naming the
   target, 100 naming the source, none left bare) and #10's has one of each. The issues that do not
-  cite the moved issue are byte-identical, and no source comment cited it, so comments in the source
-  were not seen.
-- **The same rule is reported from 2021:** "#B => bz-archive#B and #A => llvm-project#A", and, once
-  the citing issue itself moves into the target, "llvm-project#A => #A"
+  cite the moved issue are byte-identical. A rewritten source issue's comments are rewritten with
+  it: #7's comment, which cites no moved issue, was rewritten when #2 moved.
+- **A reference naming the target does not become bare.** A 2021 report gives the rule "#B =>
+  bz-archive#B and #A => llvm-project#A", and, once the citing issue itself moves into the target,
+  "llvm-project#A => #A"
   ([LLVM mailing list, 2021-12-03](https://lists.llvm.org/pipermail/cfe-dev/2021-December/069518.html)).
-  The later steps of the rehearsal measure that second half here.
+  The first half holds and the second does not: #3, the third to move, cites #2, which had already
+  moved, and its body in the target reads `SpartanLaboratories/phase0-rehearsal-b#2`
+  (`SpartanLaboratories/phase0-rehearsal-a#8` and `#10` for the numbers still in the source).
+- **Issues already in the target are rewritten as well.** #1's first comment, citing #3, read the
+  source's full name after the first transfer and the target's after the third.
+
+So a transfer's references end up naming the repository that holds the cited issue at that moment.
+The plan's item check maps every reference naming either fixture repository back to bare `#N`
+([`../plan.md`](../plan.md), Design, "What a transfer does to references"), and the swap's reads
+measure whether those names still resolve after the renames.
 
 ---
 

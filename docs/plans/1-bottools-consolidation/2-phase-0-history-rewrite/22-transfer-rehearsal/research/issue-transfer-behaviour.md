@@ -48,7 +48,7 @@ Tiers: **D** documented by GitHub (docs, changelog or reference); **S** stated b
   - A label missing in the target was not created by `gh issue transfer` ("a label missing from the destination was not created", a commenter on the gist above), which is what the source above implies.
   - Body text is not rewritten: the 2020 thread says "shorthand plaintext remains" and the 2026 run rewrote its `#N` references by hand after the transfer. A bare `#N` in the moved body then points at the target's `#N`.
 
-    > **Dated note, 2026-11-08.** This did not hold in the build: a transfer qualifies the moved issue's references with the source repository's full name ([README, Did not hold in the build](README.md#did-not-hold-in-the-build)).
+    > **Dated note, 2026-11-09.** This did not hold in the build: a transfer rewrites the moved issue's references to the full name of the repository holding the cited issue, the source's or the target's ([README, Did not hold in the build](README.md#did-not-hold-in-the-build)).
   - Old global node ids stop resolving: "`transferIssue` invalidates the issue's old global node ID" (postguard#288).
 - **U.** Comment authors, order and timestamps as read back (the documentation says only "retained"); the reaction, pin, lock, project-item and issue-type state; the exact due-date matching rule for a milestone with no due date (the walk's `1.0.0` has none: matched by name and a null date, expected but not documented); the new node id and URL.
 
@@ -126,7 +126,7 @@ Refusal texts seen when writing links (other tools' logs, [StephanMeijer/meneerh
 - **Link re-creation.** Check before every write; read node ids fresh; `addSubIssue` takes the parent's `issueId` and the child's `subIssueId`; `addBlockedBy` is written from the blocked side with `issueId` and `blockingIssueId`. Treat "duplicate sub-issues" and "has already been taken" as present. Treat "may only have one parent" as stale. Keep a pause between writes (3 seconds is the one reported safe pace), and wait at least a minute after a `403` or `429` without `retry-after`.
 - **Compare before and after, per issue.** Number (must equal); title; body hash (no `#N` rewriting expected); state, `stateReason`, `closedAt`; labels by name; milestone title and due date; assignees; comments in order (author login, `createdAt`, body hash, count); `issueType`, reactions, lock and pin state, project items; the old URL's REST status and `location`; the old and new node id; the full link set by `(repository, number)` in both directions. Exclude `updatedAt`.
 
-  > **Dated note, 2026-11-08.** The body hash needs the rewriting described in the note under §3.3 taken into account ([README, Did not hold in the build](README.md#did-not-hold-in-the-build)).
+  > **Dated note, 2026-11-09.** The body hash needs the rewriting described in the note under §3.3 taken into account ([README, Did not hold in the build](README.md#did-not-hold-in-the-build)).
 - **What the real walk inherits.** Whatever the rehearsal shows for the six shapes of 3.4, including cross-visibility links, decides whether re-creating the 75 links of the plan is needed as a step or as a check.
 
 ## 7. Load-bearing claims
