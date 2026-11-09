@@ -104,10 +104,122 @@ sub-issue hierarchy.
 
 ## Verification results
 
-Added once the findings exist.
+All 55 load-bearing claims of the three findings files were re-opened at their sources on
+2026-11-09 and hold: 17 in [`issue-transfer-behaviour.md`](issue-transfer-behaviour.md), 13 in
+[`rename-visibility-archive-sequence.md`](rename-visibility-archive-sequence.md) and 25 in
+[`fixture-and-read-api-forms.md`](fixture-and-read-api-forms.md). Each documentation claim was read
+at its pinned commit and on `main`; each `gh` claim at tag `v2.100.0`; each schema claim by
+introspection; each community report at its thread; each of the repository observations was
+repeated. None failed.
+
+Caveats that travel with claims that hold, stated wherever the claim is used below:
+
+- The "GitHub staff" label on the 2024 statement that sub-issues can be cross-repository could not
+  be confirmed for that one author; the text is exact, and a second, confirmed staff statement and
+  the REST schema say the same.
+- The GitHub staff statement that new repositories take priority over redirects is relayed by
+  community users, in the same thread as a 2024 Support reply that says the same.
+- The transfer-throttling advice and the report of throttling after about twenty transfers are one
+  maintainer's statement and one user's report.
+
+Claims about this repository and this organisation were checked directly: the organisation allows
+members to change repository visibility, the signed-in account is an organisation owner with
+administrator permission on KotlinBottools, and `MagicBot#2` reads cross-repository "blocked by"
+links to KotlinBottools issues today.
 
 ---
 
 ## Summary
 
-Added once the findings have been verified.
+### 1. What a transfer does to numbers, closed issues and links
+
+- **Documented** ([findings](issue-transfer-behaviour.md) §3): write access to both repositories
+  and the same owner are required; a private repository's issue cannot move to a public one;
+  comments and assignees stay; labels and milestones stay if the target has them (labels by name,
+  milestones by name and due date); the old URL redirects. Nothing is documented about the number a
+  transferred issue receives, about closed issues, or about sub-issue or "blocked by" links, in
+  either direction.
+- **Numbers.** A transfer creates a new issue in the target, which takes the next number of the
+  target's sequence: three public reports show it, including 25 transfers from a public repository
+  into an empty private one landing on `#1` to `#25` on 2026-11-08. It is not documented. A wrong
+  number cannot be repaired, so the walk checks the target's highest number before each step and the
+  landed number after it.
+- **Closed issues.** The transfer page speaks only of open issues, the one report found says closed
+  issues transfer, and nothing states the state on arrival. The rehearsal measures three outcomes
+  (closed with its reason, closed without it, open) and keeps the design's reopen, transfer and
+  close route as the fallback for a refusal, with a close on the target for an arrival as open.
+- **Links.** Reports from 2026 agree that a moved child keeps its parent as a cross-repository link,
+  and that the link settles asynchronously, so a first read after a transfer is not to be believed.
+  One report disagrees ("does not survive ... even parent-first"), and it gives no direction or
+  settle time; the reports do not cover a parent that moves while its children stay, nor "blocked
+  by" at all. The walk therefore records what each link did at each step, after two equal reads a
+  few seconds apart, and the reconciliation re-creates whatever is missing and removes whatever is
+  stale. No report describes a transfer refused because of its links, so the remove-links route is
+  a fallback for a refusal that nothing suggests.
+- **Spanning repositories.** Both link kinds may span repositories of one owner (REST schema,
+  GitHub staff, and the cross-repository links KotlinBottools and MagicBot hold today). Whether a
+  link may span a public and a private repository is not documented anywhere; the fixture's
+  stay-behind public issue, linked both ways to moved private issues, measures it.
+- **Public into private** is not refused by the documented rule, and one report shows it working
+  on 2026-11-08. The rehearsal proves it in the real direction.
+- **Limits** that bind nothing here: 100 sub-issues per parent, eight nesting levels, 50 links per
+  dependency type. The walk's reads assume no depth.
+
+### 2. The rename swap with the source made private
+
+- **Order** ([findings](rename-visibility-archive-sequence.md) §6): rename the source to its legacy
+  name, make it private, archive it, rename the target onto the old name, archive the target.
+  Archiving must come after every other change to a repository: GitHub says changes need an
+  unarchive first, and a visibility change on an archived repository was refused with a 403 in
+  2021 and again in 2026. Nothing forces an order between the source's rename and its privacy
+  change; rename first keeps every failure state reversible and matches the design.
+- **Writes** are one REST call shape, addressed to the repository's name at that moment:
+  `PATCH repos/{owner}/{repo}` with `name`, `visibility` or `archived` (typed, `-F archived=true`).
+- **Proof is by id, never by name.** `gh api` follows a renamed repository's `301` silently, and
+  once another repository takes a name it answers directly, so a name-based read cannot tell the
+  difference. Every read-back compares the repository id. An unauthenticated `404` by name, by id
+  and on the web proves a repository is no longer public.
+- **A transferred issue's old URL** answers `301` on REST to the issue's new home, a `302` on the
+  web; `gh api` follows it silently and `gh api --verbose` shows the hop, with the token redacted,
+  so that is the form used. The proof compares the answer's number and repository, not the status
+  alone.
+- **What only the rehearsal can show:** whether a rename onto a name freed moments earlier succeeds
+  (documented only for creating a repository under the old name, which is one step short of what
+  the design's §2.4 and §7.5 say; this is the swap's central unknown, and a refusal has no remedy
+  but a request to GitHub Support); what a transferred issue's redirect shows once the target is
+  renamed; whether a visibility change alters that redirect or the links; and how long a read-back
+  takes to reflect a write.
+- **Git** `ls-remote` of a renamed repository's old name is answered directly rather than
+  redirected, so it proves content but not identity, and on an empty target proves nothing; the
+  rehearsal does not use it.
+
+### 3. The API forms
+
+- **Writes** ([findings](fixture-and-read-api-forms.md) §6): REST through `gh api` for repositories,
+  labels, milestones, issues, comments, closing and reopening, the branch, the commit, the pull
+  request and its merge; GraphQL `transferIssue`, `addSubIssue` and `addBlockedBy` for the transfer
+  and the links. REST takes label names and a milestone number and returns the new `number`, `id`
+  and `node_id` in one response.
+- **Reads** are one GraphQL query per page of a repository's issues, flat: each issue states its own
+  `parent`, `subIssues`, `blockedBy` and `blocking` with the other side's repository and number.
+  The hierarchy is the set of such edges, compared as sets, so no depth is assumed anywhere, and a
+  nested page that would be truncated is a failure. It costs one point per page. The number census
+  uses REST, because GraphQL `issues` omits pull requests.
+- **Pacing:** one request at a time; a read-back after each write; at least 3 s after a write and
+  10 s after a transfer; on a secondary rate limit, read back first, then wait as GitHub directs
+  (else 60 s, then doubling) and stop after four attempts.
+- **Windows and Python:** no leading slash on `gh api` paths; `-f` for strings and `-F` only for
+  booleans, integers and `@file`; UTF-8 set explicitly on files, `subprocess` and the interpreter.
+- **What does not fit:** `gh issue transfer` (three requests, a name-addressed target and a URL as
+  its only output); `gh issue edit --add-sub-issue` and `--parent` (they silently re-parent a child,
+  through `replaceParent: true`); `gh issue view --json` (it truncates "blocked by" and "blocking"
+  at 50); a recursive read of the hierarchy (it assumes a traversal bound and costs many more
+  calls).
+
+### What the design takes from this
+
+The walk is built for every outcome of a transfer, not for a forecast of it: the checks before and
+after each step are fixed, the record of what each link did is the result, the routes for a closed
+issue and for a link-related refusal are fallbacks, and reconciliation is a step of the design, so
+that whatever GitHub does at a transfer, the final link set is what is compared. The rename stage
+follows the order above, with every step read back by repository id.
