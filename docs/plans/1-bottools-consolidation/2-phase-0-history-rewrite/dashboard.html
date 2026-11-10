@@ -17,7 +17,7 @@
    what the change means downstream (plan.json "impact": effects, adaptation, API changes, conversion steps).
    The board renders at load from plan.json, embedded verbatim below (plan/scripts/embed.js). Never hand-edit a board.
    Tokens, header, chips, KPIs, tabs, stage, inspector, legends (.legend on every tab and on the strip), Context and footer are
-   the system templates'. Colour plan (GUIDANCE.md §1): --sys-1..6 are the systems' registry slots, identical to the system
+   the system templates'. Colour plan (GUIDANCE.md §1): --sys-1..12 are the systems' registry slots, identical to the system
    boards'; --good / --warning / --serious / --critical are status, always beside a glyph and a word; --accent marks the work
    in progress (a FullPulse: an accent Ring and an interior that breathe) and, on a tracking board, the next unit up (a still outer
    Ring and an UP NEXT tag), and nothing else. --wk-<family>-a / -b are the kinds of work of a landed board's Timeline tile (planning, build,
@@ -29,14 +29,14 @@
   --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
   --accent:#6d47e0;
   --on:#0e1420; --focus:#2a78d6; --link:#2a78d6;
-  --sys-1:#2a78d6;--sys-2:#653184;--sys-3:#0d7680;--sys-4:#1d2660;--sys-5:#9656aa;--sys-6:#1a9ec7;
+  --sys-1:#2a78d6;--sys-2:#653184;--sys-3:#0d7680;--sys-4:#1d2660;--sys-5:#9656aa;--sys-6:#1a9ec7;--sys-7:#203d4b;--sys-8:#7700c7;--sys-9:#008a81;--sys-10:#7780f8;--sys-11:#271ea9;--sys-12:#09534e;
   --wk-planning-a:#5596de;--wk-planning-b:#1d5cab;--wk-build-a:#1f9294;--wk-build-b:#0c5c61;--wk-checking-a:#b67ad0;--wk-checking-b:#84409f;--wk-landing-a:#2e3d99;--wk-landing-b:#1d2870;
   --wk-other-a:color-mix(in srgb,var(--ink) 40%,var(--surface));--wk-other-b:var(--ink);
   --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:ui-monospace,"Cascadia Mono",Consolas,"SF Mono",monospace;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141b;--surface:#171c25;--surface-2:#1f2530;--ink:#eef1f6;--ink-2:#b8c0ce;--muted:#8a93a5;--line:#2a313d;--hair:rgba(255,255,255,.10);--accent:#a58bff;--on:#eef1f6;--focus:#3987e5;--link:#6aa6f0;--sys-1:#3987e5;--sys-2:#8a44d8;--sys-3:#1f8089;--sys-4:#b4bef5;--sys-5:#a86fb8;--sys-6:#31b5f4;--wk-planning-a:#3a7fd0;--wk-planning-b:#80b6f0;--wk-build-a:#1a8a8c;--wk-build-b:#4cc4c2;--wk-checking-a:#a35cbd;--wk-checking-b:#d095e6;--wk-landing-a:#b8c4fa;--wk-landing-b:#d4dcfd;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#10141b;--surface:#171c25;--surface-2:#1f2530;--ink:#eef1f6;--ink-2:#b8c0ce;--muted:#8a93a5;--line:#2a313d;--hair:rgba(255,255,255,.10);--accent:#a58bff;--on:#eef1f6;--focus:#3987e5;--link:#6aa6f0;--sys-1:#3987e5;--sys-2:#8a44d8;--sys-3:#1f8089;--sys-4:#b4bef5;--sys-5:#a86fb8;--sys-6:#31b5f4;--wk-planning-a:#3a7fd0;--wk-planning-b:#80b6f0;--wk-build-a:#1a8a8c;--wk-build-b:#4cc4c2;--wk-checking-a:#a35cbd;--wk-checking-b:#d095e6;--wk-landing-a:#b8c4fa;--wk-landing-b:#d4dcfd;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141b;--surface:#171c25;--surface-2:#1f2530;--ink:#eef1f6;--ink-2:#b8c0ce;--muted:#8a93a5;--line:#2a313d;--hair:rgba(255,255,255,.10);--accent:#a58bff;--on:#eef1f6;--focus:#3987e5;--link:#6aa6f0;--sys-1:#3987e5;--sys-2:#8a44d8;--sys-3:#1f8089;--sys-4:#b4bef5;--sys-5:#a86fb8;--sys-6:#31b5f4;--sys-7:#9ae2f4;--sys-8:#c790d0;--sys-9:#11978e;--sys-10:#245eff;--sys-11:#8365bd;--sys-12:#00c7ba;--wk-planning-a:#3a7fd0;--wk-planning-b:#80b6f0;--wk-build-a:#1a8a8c;--wk-build-b:#4cc4c2;--wk-checking-a:#a35cbd;--wk-checking-b:#d095e6;--wk-landing-a:#b8c4fa;--wk-landing-b:#d4dcfd;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10141b;--surface:#171c25;--surface-2:#1f2530;--ink:#eef1f6;--ink-2:#b8c0ce;--muted:#8a93a5;--line:#2a313d;--hair:rgba(255,255,255,.10);--accent:#a58bff;--on:#eef1f6;--focus:#3987e5;--link:#6aa6f0;--sys-1:#3987e5;--sys-2:#8a44d8;--sys-3:#1f8089;--sys-4:#b4bef5;--sys-5:#a86fb8;--sys-6:#31b5f4;--sys-7:#9ae2f4;--sys-8:#c790d0;--sys-9:#11978e;--sys-10:#245eff;--sys-11:#8365bd;--sys-12:#00c7ba;--wk-planning-a:#3a7fd0;--wk-planning-b:#80b6f0;--wk-build-a:#1a8a8c;--wk-build-b:#4cc4c2;--wk-checking-a:#a35cbd;--wk-checking-b:#d095e6;--wk-landing-a:#b8c4fa;--wk-landing-b:#d4dcfd;color-scheme:dark}
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--sans);padding-block:0 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -106,11 +106,11 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .chip.status.built{border-left-color:var(--good)}
 .chip.status.abandoned{border-left-color:var(--critical)}
 .chip[data-sys]{border-left:4px solid var(--c)}
-/* a tracking board's status chip is its chain's progress (plan/RULES.md §3, "The chain's progress"), with a thin bar of units landed */
+/* a tracking board's status chip is its chain's progress (plan/RULES.md §3, "The chain's progress"), with a StepBar of its units */
 .chip.progress{line-height:1.45;padding:5px 8px}
 .chip.progress.done{border-left-color:var(--good)}
-.chip .cbar{display:block;height:4px;margin-top:4px;border-radius:2px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
-.chip .cbar i{display:block;height:100%;background:var(--good)}
+.chip .stepbar{margin:6px 0 1px}
+.chip .stepbar>li{min-height:20px;padding:2px 14px 2px 18px;font-size:10.5px}
 /* The header's two halves (GUIDANCE.md §6, "The header"): from 940 px the intro (the title, the issue line, the function) fills the
    left half and the tags stand in the right half beside it, each a small card with its label over its value, growing to fill its line, a
    long one across the half (.wide); under 940 px the two stack and the tags wrap as chips, the label before the value. The topbar (the breadcrumb, the
@@ -148,15 +148,6 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .wip-detail{margin:6px 0 4px;font-size:13px;color:var(--ink);max-width:110ch}
 .wip-wait{margin:6px 0 4px;font-size:13px;color:var(--ink);font-weight:600}
 .wip-sub{font:700 10.5px var(--mono);letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin:8px 0 2px}
-.steps{list-style:none;margin:4px 0 2px;padding:0;display:flex;flex-wrap:wrap;gap:6px 0;align-items:center}
-.steps li{display:inline-flex;align-items:center;font:11.5px var(--mono);color:var(--ink-2);white-space:nowrap}
-.steps li+li::before{content:"";display:inline-block;width:16px;border-top:2px solid var(--ink-2);margin:0 4px}
-.steps li.todo+li::before,.steps li.cur+li.todo::before{border-top-style:dashed;border-top-color:var(--muted)}
-.steps .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;flex:none;background:var(--ink-2);border:2px solid var(--ink-2)}
-.steps li.todo{color:var(--muted)}
-.steps li.todo .dot{background:none;border:2px dashed var(--muted)}
-.steps li.cur{color:var(--ink);font-weight:700}
-.steps li.cur .dot{background:var(--accent);border-color:var(--accent)}
 /* The StepBar (nomenclature/ui.md, StepBar; dashboards-skill/54): the steps of a sequence in order, each a chevron with its name inside,
    done, current or to come. An ordered list, the current step aria-current="step", each step's state said in words to a screen reader
    (.sb-st). It stands on a line of its own and wraps inside itself at phone width, never widening the board; a long name wraps inside its
@@ -177,12 +168,6 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .legend i.sbk::after{z-index:-1;inset:var(--sb-w);background:var(--sb-fill);clip-path:polygon(1px 0,calc(100% - 5px) 0,100% 50%,calc(100% - 5px) 100%,1px 100%,6.5px 50%)}
 .legend i.sbk.cur{--sb-edge:var(--ink);--sb-fill:color-mix(in srgb,var(--ink) 7%,var(--surface));--sb-w:2px}
 .legend i.sbk.todo{--sb-edge:repeating-linear-gradient(90deg,var(--muted) 0 3px,transparent 3px 5px);--sb-fill:var(--surface)}
-.chain{list-style:none;margin:4px 0 2px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.chain li a,.chain li span.u{display:inline-flex;align-items:center;gap:5px;font:11.5px var(--mono);padding:3px 7px;border:1px solid var(--line);border-left:4px solid var(--c,var(--muted));border-radius:4px;background:var(--surface);text-decoration:none;color:var(--ink-2)}
-.chain li.pending a,.chain li.pending span.u{border-style:dashed;border-left-style:solid}
-.chain li.done a{color:var(--ink)}
-.chain li.fullpulse,.chain li.held,.chain li.upnext-ring{border-radius:4px}
-.chain li.fullpulse a,.chain li.fullpulse span.u{background:transparent}
 .wip-facts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0;font-size:12.5px;color:var(--ink-2)}
 /* Info cards (plan/RULES.md §3): each fact of the strip, a card or the step panel is a small card of its own, its label before its
    value. */
@@ -226,8 +211,6 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .wipcard-t a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
 .wipcard-t a:hover{border-bottom-color:var(--ink)}
 .wipcard .wip-sub{margin-top:10px}
-.wipcard .chip-bar{display:block;height:5px;margin:4px 0 6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;max-width:420px}
-.wipcard .chip-bar i{display:block;height:100%;background:var(--good)}
 .wipcard .run{margin-top:2px}
 .wipcard.wait ul{margin:4px 0 0;padding-left:18px;font-size:13px;color:var(--ink)}
 .wipcard.wait li{margin:4px 0}
@@ -237,7 +220,6 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .wip.wipcards>.legend{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 12px;margin-top:8px}
 .run{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font:11px var(--mono);color:var(--muted)}
 .inspector .run{margin:0 0 4px}
-.inspector .steps{margin:6px 0 4px}
 .inspector .stepbar{margin:6px 0 4px}
 /* An issue board's strip and its step panel (plan/RULES.md §3, "The step panel"): the strip on the left half, the panel breaking the
    current step down on the right; one column below 940 px. The legend runs under both. A board that has landed or was cancelled
@@ -257,7 +239,7 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .sp p.sp-sum{color:var(--ink);font-weight:600}
 .sp p.sp-wait{color:var(--ink);font-weight:600}
 .sp a{text-decoration:none;border-bottom:1px solid var(--line)}
-.sp .steps{margin:6px 0 4px}
+.sp .stepbar{margin:6px 0 4px}
 .sp-list{list-style:none;margin:6px 0 2px;padding:0;display:grid;gap:4px}
 .sp-list>li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 8px;align-items:baseline;padding:4px 0;border-top:1px solid var(--hair);min-width:0}
 .sp-list>li:first-child{border-top:0}
@@ -272,6 +254,58 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .sp-opts{margin:3px 0 0;padding-left:16px;font-weight:400;color:var(--ink-2)}
 /* the questions a halt put to you, in the panel of the step it halted in (plan/RULES.md §3, wip.asked) */
 .sp-asked{margin:6px 0 8px}
+/* the stage list of the WIP Panel, the collapsing items of the step Panel (plan/RULES.md §3, "The stage list", "Collapsing"), the Now Chip */
+.stg-strip{margin-top:10px;padding-top:2px;border-top:1px solid var(--hair)}
+.stg-rows{list-style:none;margin:5px 0 0;padding:0;display:grid;gap:0}
+.stg-row{display:grid;grid-template-columns:2.2em minmax(0,1fr) auto;gap:1px 8px;align-items:baseline;padding:5px 8px;border-top:1px solid var(--hair);border-radius:0;min-width:0;cursor:pointer}
+.stg-row:first-child{border-top:0}
+.stg-row:not(.fullpulse):hover{background:var(--surface-2)}
+.stg-row.cur{border-top-color:transparent;border-radius:5px}
+.stg-row.cur+.stg-row{border-top-color:transparent}
+.stg-row .id{font:700 12px var(--mono);color:var(--ink)}
+.stg-open{appearance:none;background:none;border:0;padding:0;margin:0;font:600 13px/1.35 var(--sans);text-align:left;color:var(--ink);cursor:pointer;min-width:0;overflow-wrap:anywhere}
+.stg-open:focus-visible{outline:2px solid var(--focus);outline-offset:1px;border-radius:2px}
+.stg-row .br{grid-column:2/-1;font-size:12px;line-height:1.35;color:var(--ink-2);overflow-wrap:anywhere;min-width:0}
+.stg-row .br code{font-size:11px}
+.stg-row.todo .id,.stg-row.todo .stg-open{color:var(--ink-2)}
+.stg-list>li{display:block;padding:0}
+.stg-s{display:flex;align-items:center;gap:8px;padding:6px 2px;border-radius:3px;min-width:0}
+summary.stg-s{list-style:none;cursor:pointer}
+summary.stg-s::-webkit-details-marker{display:none}
+summary.stg-s:hover{background:var(--surface-2)}
+summary.stg-s:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.stg-s .id{font:700 12px var(--mono);color:var(--ink)}
+.stg-s .nm{flex:1 1 auto;color:var(--ink);min-width:0;overflow-wrap:anywhere}
+.stg-list li.todo>details>.stg-s .nm,.stg-list li.todo>details>.stg-s .id,.stg-list li.todo>.stg-s .nm,.stg-list li.todo>.stg-s .id{color:var(--ink-2)}
+.stg-list li.cur>details>.stg-s .nm,.stg-list li.cur>.stg-s .nm{font-weight:600}
+.stg-s .ct{font:11px var(--mono);color:var(--muted);white-space:nowrap}
+.stg-s .chev{flex:none;width:1em;text-align:center;font:11px/1 var(--mono);color:var(--muted);transition:transform .12s;display:inline-block}
+.stg-d[open]>summary .chev{transform:rotate(90deg)}
+.stg-b{padding:2px 2px 9px 28px;font-size:12.5px;color:var(--ink-2)}
+.stg-b p{margin:2px 0 6px}
+.stg-b .wip-facts{margin:6px 0 0}
+.stg-h{font:700 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:7px 0 3px}
+.stg-h .verdict-pill{text-transform:none;letter-spacing:.02em;margin-left:6px}
+.stg-rl{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.stg-rl>li{min-width:0}
+.stg-rl .rn{color:var(--ink);overflow-wrap:anywhere}
+.sp .stg-rl small{display:block;font:11.5px/1.35 var(--sans);color:var(--ink-2);margin-top:1px;overflow-wrap:anywhere}
+.stg-steps{list-style:none;margin:2px 0 6px;padding:0;display:grid;gap:3px}
+.stg-steps>li{display:flex;align-items:center;gap:7px;min-width:0;font-size:12.5px;color:var(--ink-2)}
+.stg-steps>li .q{min-width:0;overflow-wrap:anywhere}
+.stg-steps .sdot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--ink-2);border:2px solid var(--ink-2)}
+.stg-steps>li.todo .sdot{background:none;border:2px dashed var(--muted)}
+.stg-steps>li.unk .sdot{background:none;border:1px solid var(--line)}
+.stg-steps>li.cur{color:var(--ink);font-weight:600}
+.stg-steps>li.cur .sdot{background:var(--accent);border-color:var(--accent);animation:dot-fullpulse 2s ease-in-out infinite}
+.sp.sp-held .stg-steps>li.cur .sdot{animation:none;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent)}
+@media (prefers-reduced-motion:reduce){.stg-steps>li.cur .sdot{animation:none}}
+.sp-now{margin:6px 0 8px}
+.chip.now{display:block;font:13px/1.4 var(--sans);color:var(--ink);padding:6px 9px}
+.chip.now .ck{margin-right:6px}
+.legend .chip.now{display:inline-block;padding:2px 6px;font-size:10px}
+@media (prefers-reduced-motion:reduce){.stg-s .chev{transition:none}}
+@media (max-width:520px){.stg-s .ct{display:none}.stg-b{padding-left:6px}}
 .wipcard.wait li .wq{margin:3px 0 0;padding-left:16px;font-size:12.5px;color:var(--ink-2)}
 .sp-opts li{margin:1px 0}
 .sp.sp-held .sp-list li.cur .dot{animation:none;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent)}
@@ -292,7 +326,12 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .sp-back:hover{background:var(--surface-2)}
 .sp.past{border-left-color:var(--ink)}
 .sp-visit+.sp-visit{border-top:1px solid var(--line);margin-top:10px;padding-top:8px}
-.sp-visit>h4{font:700 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.sp-visit h4{font:700 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+details.sp-visit>summary h4{margin:0;flex:none}
+details.sp-visit>summary .nm{font-size:12.5px;color:var(--ink-2)}
+.sp-vb{padding:2px 0 4px}
+.stg-row.static{cursor:default}
+.stg-row .stg-nm{font:600 13px/1.35 var(--sans);color:var(--ink);min-width:0;overflow-wrap:anywhere}
 .wipmain.landed{border-left-color:var(--good)}
 @media (prefers-reduced-motion:reduce){.sp-list li.cur .dot{animation:none!important;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent),0 0 8px 3px color-mix(in srgb,var(--accent) 45%,transparent)}}
 
@@ -307,17 +346,13 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 @keyframes dot-fullpulse{0%,100%{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent)}50%{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent),0 0 10px 5px color-mix(in srgb,var(--accent) 55%,transparent)}}
 .fullpulse{animation:fullpulse 2s ease-in-out infinite;background-color:color-mix(in srgb,var(--accent) 7%,var(--surface))}
 .col-fullpulse{animation:col-fullpulse 2s ease-in-out infinite;background-color:color-mix(in srgb,var(--accent) 4%,var(--surface))}
-.steps li.cur.fullpulse,.steps li.cur.held{animation:none;box-shadow:none;background:none}
-.steps li.cur.fullpulse .dot{animation:dot-fullpulse 2s ease-in-out infinite}
 .held{box-shadow:inset 0 0 0 2px var(--accent)}
-.steps li.cur.held .dot{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent)}
 .upnext-ring{box-shadow:0 0 0 1.5px color-mix(in srgb,var(--accent) 70%,transparent),0 0 12px 3px color-mix(in srgb,var(--accent) 32%,transparent)}
 .tag-next{display:inline-block;font:700 9.5px/1 var(--mono);letter-spacing:.08em;padding:3px 5px;border-radius:3px;border:1px solid var(--accent);color:var(--accent);background:var(--surface);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){
-  .fullpulse,.col-fullpulse,.steps li.cur.fullpulse .dot{animation:none!important}
+  .fullpulse,.col-fullpulse{animation:none!important}
   .fullpulse{box-shadow:inset 0 0 0 2px var(--accent),inset 0 0 14px 4px color-mix(in srgb,var(--accent) 40%,transparent)}
-  .col-fullpulse{box-shadow:inset 0 0 0 1.5px var(--accent),inset 0 0 9px 2px color-mix(in srgb,var(--accent) 26%,transparent)}
-  .steps li.cur.fullpulse .dot{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent),0 0 8px 3px color-mix(in srgb,var(--accent) 45%,transparent)}}
+  .col-fullpulse{box-shadow:inset 0 0 0 1.5px var(--accent),inset 0 0 9px 2px color-mix(in srgb,var(--accent) 26%,transparent)}}
 /* The StepBar's marks (dashboards-skill/54; GUIDANCE.md §1): the current step at work carries the FullPulse, its edge the solid accent
    Ring and its fill the accent wash breathing; while its run waits on you, the Ring alone, still (.held); under reduced motion the wash
    holds at its middle strength. A finished step on the progress strip is a button showing it in the step panel; the one shown is ringed
@@ -331,6 +366,15 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .stepbar>li>.stepbtn:focus-visible{outline:2px solid var(--focus);outline-offset:1px;border-radius:2px}
 .stepbar>li.sel{--sb-edge:var(--ink);--sb-w:2.5px;font-weight:700}
 .stepbar>li.sel>.stepbtn{color:var(--ink);text-decoration-color:var(--ink)}
+/* A tracking issue's chain (plan/RULES.md §3, "The chain is a StepBar"): a chevron's link to its unit's board or issue, its unit's system swatch,
+   and the unit up next, its to-come dashes in the accent with its UP NEXT tag: the still mark, which never breathes. */
+.stepbar>li>a{color:inherit;border-bottom:0;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;overflow-wrap:anywhere}
+.stepbar>li>a:hover{text-decoration-color:var(--ink)}
+.stepbar>li>a:focus-visible{outline:2px solid var(--focus);outline-offset:1px;border-radius:2px}
+.stepbar>li>.sb-sys{flex:none;width:8px;height:8px;border-radius:2px;margin-right:5px;background:var(--c,var(--muted))}
+.stepbar>li>.sb-g{flex:none;margin-left:5px}
+.stepbar>li>.tag-next{flex:none;margin-left:6px}
+.stepbar>li.upnext-ring{box-shadow:none;--sb-edge:repeating-linear-gradient(90deg,color-mix(in srgb,var(--accent) 70%,transparent) 0 5px,transparent 5px 9px);--sb-w:2px}
 .legend i.sbk.acc{--sb-edge:var(--accent);--sb-w:2px;--sb-fill:color-mix(in srgb,var(--accent) 22%,var(--surface))}
 .legend i.sbk.ring{--sb-edge:var(--accent);--sb-w:2px;--sb-fill:var(--surface)}
 .legend i.sbk.sel{--sb-edge:var(--ink);--sb-w:2.5px}
@@ -396,8 +440,7 @@ h1 a.ghn:hover{border-bottom-color:var(--ink)}
 .tl-approx{color:var(--muted);font-weight:600}
 .tl-step>.tl-dur{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap}
 .kpi-tile .legend.tl-steps>span.tl-note{display:block;color:var(--muted);margin-top:5px;break-inside:avoid}
-/* a statement's reference whose section number is read from its link's anchor alone (its file not there to read): "(§42?)" */
-.legend b.srefk{font:600 10.5px var(--mono);color:var(--link)}
+/* a statement's reference whose section number is read from its link's anchor alone (its file not there to read): "§42?" */
 /* …and a Verdict statement's, drawn as its section chip: "§42?" (dashboards-skill/53) */
 .legend b.section-chip{font:600 10px/1.35 var(--mono);color:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:0 5px;letter-spacing:.04em}
 .legend i.segk.dash{background:none;border:1.5px dashed var(--sc,var(--muted));height:7px}
@@ -504,7 +547,6 @@ a.more:hover{text-decoration:underline}
 .legend i.wait{border-color:var(--warning);background:color-mix(in srgb,var(--warning) 25%,var(--surface))}
 .legend i.runbar{width:4px;height:14px;border:0;border-radius:0;background:var(--accent)}
 .legend i.runbar.halt{background:var(--warning)}
-.legend i.bar{height:6px;border:1px solid var(--line);background:linear-gradient(90deg,var(--good) 55%,var(--surface-2) 55%)}
 .legend .verdict-pill,.legend .badge{align-self:center}
 
 /* status pills: the colour is the left bar and a tint; the glyph and the word carry the meaning (never colour alone) */
@@ -594,9 +636,10 @@ a.more:hover{text-decoration:underline}
 .cell .meta .count-label.zero b{color:var(--muted);font-weight:400}
 /* A unit's landing on a tracking board's As built cell (plan/RULES.md §3, "The units' landings"; dashboards-skill/53): the PR chip and the
    merge chip above the summary, copied from the unit's own board (unit.landing), neutral chips with the kind chip's look. */
-.cell .landing-chips{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 5px}
-.cell .landing-chips :is(.pr-chip,.merge-chip){font:600 10px var(--mono);color:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:1px 5px;letter-spacing:.04em;text-decoration:none;min-width:0;max-width:100%;overflow-wrap:anywhere}
-.cell .landing-chips a:is(.pr-chip,.merge-chip):hover{border-color:var(--ink-2);color:var(--ink)}
+.landing-chips{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 5px}
+.inspector .landing-chips,.bcard .landing-chips{margin:0 0 6px}
+.landing-chips :is(.pr-chip,.merge-chip){font:600 10px var(--mono);color:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:1px 5px;letter-spacing:.04em;text-decoration:none;min-width:0;max-width:100%;overflow-wrap:anywhere}
+.landing-chips a:is(.pr-chip,.merge-chip):hover{border-color:var(--ink-2);color:var(--ink)}
 .cell::before{content:"";position:absolute;left:calc(-1 * var(--cg) - 1px);top:50%;width:var(--cg);border-top:2px solid var(--ink-2)}
 .cell::after{content:"";position:absolute;left:-6px;top:calc(50% - 5px);width:10px;height:10px;border-radius:50%;background:var(--ink-2)}
 .cell.gap::before{display:none}
@@ -623,7 +666,7 @@ a.more:hover{text-decoration:underline}
 .cell.verdict.charging.still::before{animation:none}
 .legend i.chg{width:30px;height:18px;border:0;border-radius:0;clip-path:polygon(0 26%,64% 26%,64% 0,100% 50%,64% 100%,64% 74%,0 74%);background:repeating-linear-gradient(90deg,var(--accent) 0 3px,transparent 3px 5px)}
 @media (prefers-reduced-motion:reduce){.cell.verdict.charging::before{animation:none!important}}
-/* Statements (plan/RULES.md §2, "Statements"): a Verdict cell lists its statements, bullets or numbered, each ending with its "(§…)"
+/* Statements (plan/RULES.md §2, "Statements"): a Verdict cell lists its statements, bullets or numbered, each ending with its section chip
    reference to the plan section it rests on (a link; a plain click shows that section's excerpt in the inspector); the As built cell
    answers each with one statement marked with its adaptation, the as-built titles' glyph and word. */
 .stmts{margin:0;padding-left:17px;display:grid;gap:3px}
@@ -634,10 +677,8 @@ a.more:hover{text-decoration:underline}
 .stmts.marked>li>.verdict-pill{font-size:9.5px;padding:1px 5px}
 .stmts.marked.num>li{grid-template-columns:auto auto minmax(0,1fr)}
 .stmts .n{font:600 10.5px var(--mono);color:var(--muted)}
-a.sref{font:600 10.5px var(--mono);color:var(--link);text-decoration:none;white-space:normal;overflow-wrap:anywhere;border-bottom:0!important}
-a.sref:hover{text-decoration:underline}
 /* The Verdict's section chip (plan/RULES.md §2, "Statements"; dashboards-skill/53): a Verdict statement's reference as a neutral chip,
-   "§R2", with the gap's kind chip's look, never the link blue; it opens the section's excerpt as the "(§4.2)" reference does. */
+   "§R2", with the gap's kind chip's look, never the link blue; it opens the section's excerpt. */
 a.section-chip{display:inline-block;font:600 10px/1.35 var(--mono);color:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:0 5px;letter-spacing:.04em;text-decoration:none;max-width:100%;overflow-wrap:anywhere;vertical-align:baseline;border-bottom:1px solid var(--line)!important}
 a.section-chip:hover,a.section-chip:focus-visible{border-color:var(--ink-2)!important;color:var(--ink)}
 .inspector .stmts{margin:0 0 8px;font-size:13px;color:var(--ink)}
@@ -1020,8 +1061,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   "wip": {
     "step": "implementation",
     "since": "2026-11-08T21:15:43Z",
-    "updated": "2026-11-08T21:15:43Z",
-    "detail": "0 of 8 units landed; #21 in progress; #22 up next.",
+    "updated": "2026-11-08T23:59:00Z",
+    "detail": "1 of 8 units landed; #22 in progress; #23 up next.",
     "steps": [
       "sizing",
       "interview",
@@ -1035,7 +1076,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "landed"
     ],
     "current": [
-      "preparation.built"
+      "transfer-rehearsal.built"
     ],
     "questions": [],
     "research": null,
@@ -1231,7 +1272,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         }
       ]
     },
-    "next": "transfer-rehearsal",
+    "next": "kotlinbottools-rewrite-and-swap",
     "qa": [],
     "qaMax": 3,
     "waitingOn": null,
@@ -1457,6 +1498,16 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "date": "2026-11-08",
       "column": "built",
       "label": "#21 started"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "#21 landed"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "#22 started"
     }
   ],
   "rows": [
@@ -1474,513 +1525,9 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "issue": 21,
         "board": "21-preparation/dashboard.html",
         "folder": "21-preparation/",
-        "live": {
-          "step": "document",
-          "since": "2026-11-08T22:59:18Z",
-          "updated": "2026-11-08T23:18:38Z",
-          "detail": "Document: 6 of 6 tasks done; every task done.",
-          "steps": [
-            "sizing",
-            "interview",
-            "research",
-            "plan",
-            "branch",
-            "implementation",
-            "qa",
-            "remediation",
-            "document",
-            "landing",
-            "merge",
-            "landed"
-          ],
-          "waitingOn": null,
-          "resume": null,
-          "qa": [
-            {
-              "pass": 1,
-              "verdict": "changes-requested",
-              "date": "2026-11-08",
-              "at": "2026-11-08T22:40:00Z",
-              "findings": {
-                "test": 6,
-                "code": 5
-              },
-              "severity": {
-                "minor": 9,
-                "other": 2
-              },
-              "route": "re-plan-then-remediation"
-            },
-            {
-              "pass": 2,
-              "verdict": "running",
-              "date": "2026-11-08",
-              "at": "2026-11-08T22:40:31Z",
-              "findings": {}
-            },
-            {
-              "pass": 3,
-              "verdict": "changes-requested",
-              "date": "2026-11-08",
-              "at": "2026-11-08T22:57:17Z",
-              "findings": {
-                "test": 0,
-                "code": 3
-              },
-              "severity": {
-                "minor": 3,
-                "other": 0
-              },
-              "route": "on-the-spot"
-            }
-          ],
-          "qaMax": 3,
-          "status": "building",
-          "branch": "chore/issue-21-preparation",
-          "event": {
-            "name": "document",
-            "at": "2026-11-08T23:18:38Z",
-            "note": "6 of 6 tasks done"
-          },
-          "plan": {
-            "state": "re-pass",
-            "from": "qa",
-            "pass": 1,
-            "since": "2026-11-08T22:40:00Z"
-          },
-          "stages": [
-            {
-              "id": "S1",
-              "name": "Workspace, tool files and version pins",
-              "state": "done",
-              "rows": [
-                "workspace",
-                "git-and-runtimes",
-                "scan-wrapper"
-              ]
-            },
-            {
-              "id": "S2",
-              "name": "git-filter-repo",
-              "state": "done",
-              "rows": [
-                "filter-repo"
-              ]
-            },
-            {
-              "id": "S3",
-              "name": "gitleaks and canary",
-              "state": "done",
-              "rows": [
-                "gitleaks",
-                "scan-wrapper"
-              ]
-            },
-            {
-              "id": "S4",
-              "name": "Path-scrub expressions and fixture rehearsal",
-              "state": "done",
-              "rows": [
-                "filter-repo",
-                "path-scrub"
-              ]
-            },
-            {
-              "id": "S5",
-              "name": "Path lists",
-              "state": "done",
-              "rows": [
-                "path-lists"
-              ]
-            },
-            {
-              "id": "S6",
-              "name": "Authentication, mirrors and backups",
-              "state": "done",
-              "rows": [
-                "authentication",
-                "backups"
-              ]
-            },
-            {
-              "id": "S7",
-              "name": "Legacy data copy",
-              "state": "done",
-              "rows": [
-                "legacy-data-copy"
-              ]
-            },
-            {
-              "id": "S8",
-              "name": "Manifests, expectation rows and positive controls",
-              "state": "done",
-              "rows": [
-                "manifests",
-                "positive-controls"
-              ]
-            },
-            {
-              "id": "S9",
-              "name": "Closing checks",
-              "state": "done",
-              "rows": [
-                "backups",
-                "counts-only-records"
-              ]
-            }
-          ],
-          "remediation": {
-            "pass": 3,
-            "route": "on-the-spot"
-          },
-          "document": {
-            "tasks": [
-              {
-                "id": "documentation-review",
-                "name": "Documentation review",
-                "state": "done"
-              },
-              {
-                "id": "reconcile-documentation",
-                "name": "Reconcile documentation",
-                "state": "done"
-              },
-              {
-                "id": "reconcile-plan",
-                "name": "As-built record and consequences",
-                "state": "done"
-              },
-              {
-                "id": "readme-changelog",
-                "name": "README and CHANGELOG: documents only, no entry",
-                "state": "done"
-              },
-              {
-                "id": "state-boards",
-                "name": "State boards",
-                "state": "done"
-              },
-              {
-                "id": "document-landing",
-                "name": "Document commit",
-                "state": "done"
-              }
-            ]
-          },
-          "history": {
-            "sizing": [
-              {
-                "since": null,
-                "ended": "2026-11-08T21:15:43Z",
-                "endedBy": "sized",
-                "to": "plan"
-              }
-            ],
-            "plan": [
-              {
-                "since": "2026-11-08T21:15:43Z",
-                "ended": "2026-11-08T22:05:48Z",
-                "endedBy": "plan-accepted",
-                "to": "branch",
-                "event": {
-                  "name": "sized",
-                  "at": "2026-11-08T21:15:43Z"
-                },
-                "detail": "Local preparation for the history rewrite: pinned tools, workspace, backup mirrors, the legacy data copy and the manifests. Nothing is written to GitHub except this unit's documents.",
-                "plan": {
-                  "state": "re-pass",
-                  "from": "parent",
-                  "since": "2026-11-08T21:15:43Z"
-                }
-              }
-            ],
-            "branch": [
-              {
-                "since": "2026-11-08T22:05:48Z",
-                "ended": "2026-11-08T22:06:10Z",
-                "endedBy": "branch-cut",
-                "to": "implementation",
-                "event": {
-                  "name": "plan-accepted",
-                  "at": "2026-11-08T22:05:48Z"
-                },
-                "detail": "The plan runs as nine pinned stage scripts. The parent design still fits and the upstream pins are unchanged.",
-                "branch": "chore/issue-21-preparation"
-              }
-            ],
-            "implementation": [
-              {
-                "since": "2026-11-08T22:06:10Z",
-                "ended": "2026-11-08T22:12:20Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-08T22:11:56Z",
-                  "note": "S9 reported done; Quality Review next"
-                },
-                "detail": "All nine stages passed with no stop and no deviation. Six backups unchanged; the three data copies verified by blob id; five manifests equal the research table.",
-                "stages": [
-                  {
-                    "id": "S1",
-                    "name": "Workspace, tool files and version pins",
-                    "state": "done",
-                    "rows": [
-                      "workspace",
-                      "git-and-runtimes",
-                      "scan-wrapper"
-                    ]
-                  },
-                  {
-                    "id": "S2",
-                    "name": "git-filter-repo",
-                    "state": "done",
-                    "rows": [
-                      "filter-repo"
-                    ]
-                  },
-                  {
-                    "id": "S3",
-                    "name": "gitleaks and canary",
-                    "state": "done",
-                    "rows": [
-                      "gitleaks",
-                      "scan-wrapper"
-                    ]
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Path-scrub expressions and fixture rehearsal",
-                    "state": "done",
-                    "rows": [
-                      "filter-repo",
-                      "path-scrub"
-                    ]
-                  },
-                  {
-                    "id": "S5",
-                    "name": "Path lists",
-                    "state": "done",
-                    "rows": [
-                      "path-lists"
-                    ]
-                  },
-                  {
-                    "id": "S6",
-                    "name": "Authentication, mirrors and backups",
-                    "state": "done",
-                    "rows": [
-                      "authentication",
-                      "backups"
-                    ]
-                  },
-                  {
-                    "id": "S7",
-                    "name": "Legacy data copy",
-                    "state": "done",
-                    "rows": [
-                      "legacy-data-copy"
-                    ]
-                  },
-                  {
-                    "id": "S8",
-                    "name": "Manifests, expectation rows and positive controls",
-                    "state": "done",
-                    "rows": [
-                      "manifests",
-                      "positive-controls"
-                    ]
-                  },
-                  {
-                    "id": "S9",
-                    "name": "Closing checks",
-                    "state": "done",
-                    "rows": [
-                      "backups",
-                      "counts-only-records"
-                    ]
-                  }
-                ]
-              }
-            ],
-            "qa": [
-              {
-                "since": "2026-11-08T22:12:20Z",
-                "ended": "2026-11-08T22:40:00Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-08T22:12:20Z",
-                  "note": "Quality Review 1: running"
-                },
-                "detail": "Quality Review 1 running.",
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-08",
-                    "at": "2026-11-08T22:40:00Z",
-                    "findings": {
-                      "test": 6,
-                      "code": 5
-                    },
-                    "severity": {
-                      "minor": 9,
-                      "other": 2
-                    },
-                    "route": "re-plan-then-remediation"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-08T22:40:31Z",
-                "ended": "2026-11-08T22:57:17Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-08T22:51:10Z",
-                  "note": "Quality Review 3: running"
-                },
-                "detail": "The second review asked for wording only: the exemption for generated boards' commit ids now covers every such field, and three smaller statements were corrected. No script changed.",
-                "qa": [
-                  {
-                    "pass": 2,
-                    "verdict": "running",
-                    "date": "2026-11-08",
-                    "at": "2026-11-08T22:40:31Z",
-                    "findings": {}
-                  },
-                  {
-                    "pass": 3,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-08",
-                    "at": "2026-11-08T22:57:17Z",
-                    "findings": {
-                      "test": 0,
-                      "code": 3
-                    },
-                    "severity": {
-                      "minor": 3,
-                      "other": 0
-                    },
-                    "route": "on-the-spot"
-                  }
-                ]
-              }
-            ],
-            "remediation": [
-              {
-                "since": "2026-11-08T22:40:00Z",
-                "ended": "2026-11-08T22:40:31Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-08T22:40:00Z",
-                  "note": "Quality Review 1: changes-requested"
-                },
-                "detail": "Every acceptance criterion recomputed from the records matched and the local preparation is sound. The findings are plan wording that claims more than the scripts check, and differing accounts of what the landing adds.",
-                "remediation": {
-                  "pass": 1,
-                  "route": "re-plan-then-remediation",
-                  "steps": [
-                    {
-                      "name": "Plan wording and landing account corrected",
-                      "state": "current"
-                    }
-                  ]
-                },
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-08",
-                    "at": "2026-11-08T22:40:00Z",
-                    "findings": {
-                      "test": 6,
-                      "code": 5
-                    },
-                    "severity": {
-                      "minor": 9,
-                      "other": 2
-                    },
-                    "route": "re-plan-then-remediation"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-08T22:57:17Z",
-                "ended": "2026-11-08T22:59:18Z",
-                "endedBy": "document",
-                "to": "document",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-08T22:57:17Z",
-                  "note": "Quality Review 3: changes-requested"
-                },
-                "detail": "All the documents are closed. Three excerpts on this unit's issue board still quote the replaced plan.",
-                "remediation": {
-                  "pass": 3,
-                  "route": "on-the-spot"
-                },
-                "qa": [
-                  {
-                    "pass": 3,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-08",
-                    "at": "2026-11-08T22:57:17Z",
-                    "findings": {
-                      "test": 0,
-                      "code": 3
-                    },
-                    "severity": {
-                      "minor": 3,
-                      "other": 0
-                    },
-                    "route": "on-the-spot"
-                  }
-                ]
-              }
-            ]
-          },
-          "rowNames": {
-            "workspace": "The workspace and the data folder",
-            "git-and-runtimes": "git pinned; Python, pip and gh recorded",
-            "filter-repo": "git-filter-repo 2.47.0, proved on a fixture",
-            "gitleaks": "gitleaks v8.30.1",
-            "scan-wrapper": "The scan wrapper, the canary and the saved scripts",
-            "path-scrub": "The path-scrub expression file",
-            "path-lists": "The six root-anchored path lists",
-            "authentication": "Non-interactive access to the six repositories",
-            "backups": "A mirror and an untouched backup of each of the six",
-            "legacy-data-copy": "The legacy data copy and `COPY-VERIFIED`",
-            "manifests": "Manifests and expectation rows of the five static repositories",
-            "positive-controls": "The positive-control scans",
-            "counts-only-records": "Records that carry counts only"
-          },
-          "recon": {
-            "interview": {
-              "reconstructed": true,
-              "ended": null,
-              "trail": [],
-              "milestones": []
-            },
-            "research": {
-              "reconstructed": true,
-              "ended": "2026-10-21",
-              "trail": [],
-              "milestones": [
-                {
-                  "date": "2026-10-21",
-                  "label": "Research verified, in #2's run",
-                  "ref": "../research/README.md",
-                  "note": "written on this board at sized from #2's research summary (§3.2, §3.3, §3.5, §3.6) and architecture §2.3, §2.4, §5, §6.1 to §6.3, with this unit's row in §15"
-                }
-              ]
-            }
-          }
+        "landing": {
+          "pr": 30,
+          "merge": "3b62b678be429c4a59ac0d08c5449a0bd6c50ea8"
         }
       },
       "gap": {
@@ -2132,8 +1679,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "link": "architecture.md#15-decomposition"
       },
       "asBuilt": {
-        "state": "pending",
-        "summary": "To be filed as a sub-issue of #2 once this plan lands; first in landing order."
+        "state": "landed",
+        "summary": "Built as planned, with no deviation, and all of it local to this machine: the toolchain at its pins (git-filter-repo 2.47.0, gitleaks 8.30.1), the saved tools, the six proved path lists, six mirrors with untouched backups, the legacy data copy verified by blob id, and the five static repositories' manifests, expectation rows and positive controls. Nothing on GitHub changed but this unit's own documents and boards."
       }
     },
     {
@@ -2149,7 +1696,1017 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "blockedBy": [
           21
         ],
-        "issue": 22
+        "issue": 22,
+        "board": "22-transfer-rehearsal/dashboard.html",
+        "folder": "22-transfer-rehearsal/",
+        "live": {
+          "step": "document",
+          "since": "2026-11-09T23:16:07Z",
+          "updated": "2026-11-10T00:11:35Z",
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "steps": [
+            "sizing",
+            "interview",
+            "research",
+            "plan",
+            "branch",
+            "implementation",
+            "qa",
+            "remediation",
+            "document",
+            "landing",
+            "merge",
+            "landed"
+          ],
+          "waitingOn": null,
+          "resume": null,
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-09",
+              "at": "2026-11-09T07:17:29Z",
+              "findings": {},
+              "severity": {
+                "minor": 13,
+                "other": 3
+              },
+              "note": "Every acceptance criterion is met and no recorded result is untrue; the self-test leaves the result gate and the failure paths of the post checks unchecked. Test check: 14 findings, 3 of them not minor; code check: 2 minor; the 87 self-test checks passed."
+            },
+            {
+              "pass": 2,
+              "verdict": "changes-requested",
+              "date": "2026-11-09",
+              "at": "2026-11-09T07:47:51Z",
+              "findings": {},
+              "severity": {
+                "minor": 6,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "note": "The tool is unchanged and its 87 self-test checks pass; the known-gaps record for the next unit needed six small wording additions, made in place. Test check: no findings; code check: 6 minor, all wording."
+            }
+          ],
+          "qaMax": 3,
+          "status": "building",
+          "branch": "chore/issue-22-transfer-rehearsal",
+          "event": {
+            "name": "document",
+            "at": "2026-11-10T00:11:35Z",
+            "note": "6 of 6 tasks done"
+          },
+          "interview": [
+            {
+              "text": "Does KotlinBottools stay public until the swap?",
+              "options": [
+                "Private again now, before the first write; the rehearsal stays as designed",
+                "Public until the swap; a public source and private target are rehearsed, and the source goes private before archiving",
+                "Drop the swap and rewrite in place; the parent design is re-planned"
+              ],
+              "answer": "The repository stays public until the swap, and the rehearsal proves a public source moving to a private target",
+              "asked": "2026-11-09T00:15:00Z",
+              "answered": "2026-11-09T01:08:58Z"
+            },
+            {
+              "text": "Does the fixture carry a second level of sub-issues?",
+              "options": [
+                "One level, as specified",
+                "Add a middle node"
+              ],
+              "answer": "The fixture nests sub-issues to mixed depth and the walk handles any depth",
+              "asked": "2026-11-09T00:15:00Z",
+              "answered": "2026-11-09T01:08:58Z"
+            },
+            {
+              "text": "After a failed step, does everything stop?",
+              "options": [
+                "Stop at the first failed step, archive both, hand back",
+                "Stop the walk at the failure, still run link re-creation and the rename swap, archive both, hand back every result"
+              ],
+              "answer": "After a failed step the walk stops but link re-creation and the rename swap still run",
+              "asked": "2026-11-09T00:15:00Z",
+              "answered": "2026-11-09T01:08:58Z"
+            }
+          ],
+          "asked": [
+            {
+              "step": "implementation",
+              "text": "How should the rehearsal proceed after the transfer rewrote bare issue references?",
+              "options": [
+                "Revise the plan: compare after mapping the rewritten references back, then resume the walk",
+                "Take the stopped-walk path as written and hand back"
+              ],
+              "answer": "Revise the plan: the item check compares the text after mapping the rewritten references back, and the walk resumes at the second transfer on the same repositories",
+              "asked": "2026-11-09T04:35:07Z",
+              "answered": "2026-11-09T04:40:00Z"
+            },
+            {
+              "step": "implementation",
+              "text": "How should the rehearsal proceed now that references to already-moved issues keep the target's full name?",
+              "options": [
+                "Revise the plan again: accept any form naming either fixture repository, and measure after the swap whether the target-named references still resolve",
+                "Take the stopped-walk path as written and hand back"
+              ],
+              "answer": "Revise the plan again: the item check accepts references naming either fixture repository, and the rename swap measures whether the target-named references still resolve",
+              "asked": "2026-11-09T05:00:57Z",
+              "answered": "2026-11-09T05:05:00Z"
+            },
+            {
+              "step": "implementation",
+              "text": "How should the rename swap proceed while anonymous repository web pages answer 504?",
+              "options": [
+                "Wait and retry the unchanged check",
+                "Revise the plan: judge privacy on the API reads and record the web read without judging it",
+                "Hand back here"
+              ],
+              "answer": "Wait and retry the unchanged check, about every 30 minutes for up to two hours",
+              "asked": "2026-11-09T05:43:56Z",
+              "answered": "2026-11-09T05:46:00Z"
+            }
+          ],
+          "stages": [
+            {
+              "id": "S0",
+              "name": "Local readiness",
+              "state": "done",
+              "rows": [
+                "rehearsal-tool",
+                "requested-writes"
+              ]
+            },
+            {
+              "id": "S1",
+              "name": "Repositories, labels and milestone",
+              "state": "done",
+              "rows": [
+                "rehearsal-repositories",
+                "item-content",
+                "requested-writes"
+              ]
+            },
+            {
+              "id": "S2",
+              "name": "The fixture",
+              "state": "done",
+              "rows": [
+                "fixture",
+                "requested-writes"
+              ],
+              "finished": "2026-11-09T04:32:16Z",
+              "report": "The fixture equals its specification: numbers 1 to 10 (nine issues and one merged pull request), four comments, seven sub-issue and four blocked-by links, two closed issues."
+            },
+            {
+              "id": "S3",
+              "name": "The walk",
+              "state": "done",
+              "rows": [
+                "number-walk",
+                "pull-request-placeholder",
+                "closed-issue",
+                "item-content",
+                "links",
+                "failure-behaviour",
+                "requested-writes"
+              ],
+              "started": "2026-11-09T04:32:16Z"
+            },
+            {
+              "id": "S4",
+              "name": "Link reconciliation",
+              "state": "done",
+              "rows": [
+                "links",
+                "requested-writes"
+              ],
+              "finished": "2026-11-09T05:33:06Z",
+              "report": "All nine numbers are in the target on their own numbers, the placeholder and both closed issues included, and every one of the eleven links was kept across the walk with none to re-create."
+            },
+            {
+              "id": "S5",
+              "name": "The rename swap",
+              "state": "done",
+              "rows": [
+                "rename-swap",
+                "requested-writes"
+              ],
+              "started": "2026-11-09T05:33:06Z",
+              "finished": "2026-11-09T07:01:03Z",
+              "report": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived."
+            },
+            {
+              "id": "S6",
+              "name": "Close-out",
+              "state": "done",
+              "rows": [
+                "rehearsal-repositories",
+                "pass-condition",
+                "failure-behaviour",
+                "requested-writes"
+              ],
+              "finished": "2026-11-09T07:01:03Z",
+              "report": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived."
+            }
+          ],
+          "remediation": {
+            "pass": 2,
+            "route": "on-the-spot"
+          },
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done",
+                "started": "2026-11-09T23:16:07Z",
+                "finished": "2026-11-09T23:19:41Z"
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-09T23:19:41Z",
+                "finished": "2026-11-09T23:26:48Z"
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-09T23:26:48Z",
+                "finished": "2026-11-09T23:51:21Z",
+                "report": "The as-built record, consequences and research notes now carry the rehearsal's measurements; the README and the changelog need no change for a documents-only landing."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-09T23:51:21Z",
+                "report": "The as-built record, consequences and research notes now carry the rehearsal's measurements; the README and the changelog need no change for a documents-only landing."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-09T23:51:21Z",
+                "finished": "2026-11-10T00:10:35Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-10T00:10:35Z",
+                "finished": "2026-11-10T00:11:35Z"
+              }
+            ]
+          },
+          "history": {
+            "sizing": [
+              {
+                "since": null,
+                "ended": "2026-11-08T23:59:00Z",
+                "endedBy": "sized",
+                "to": "interview"
+              }
+            ],
+            "interview": [
+              {
+                "since": "2026-11-08T23:59:00Z",
+                "ended": "2026-11-09T00:15:00Z",
+                "endedBy": "halted",
+                "to": "interview",
+                "event": {
+                  "name": "sized",
+                  "at": "2026-11-08T23:59:00Z"
+                },
+                "detail": "Sized; the interview starts.",
+                "interview": [
+                  {
+                    "text": "Does KotlinBottools stay public until the swap?",
+                    "options": [
+                      "Private again now, before the first write; the rehearsal stays as designed",
+                      "Public until the swap; a public source and private target are rehearsed, and the source goes private before archiving",
+                      "Drop the swap and rewrite in place; the parent design is re-planned"
+                    ],
+                    "answer": "The repository stays public until the swap, and the rehearsal proves a public source moving to a private target",
+                    "asked": "2026-11-09T00:15:00Z",
+                    "answered": "2026-11-09T01:08:58Z"
+                  },
+                  {
+                    "text": "Does the fixture carry a second level of sub-issues?",
+                    "options": [
+                      "One level, as specified",
+                      "Add a middle node"
+                    ],
+                    "answer": "The fixture nests sub-issues to mixed depth and the walk handles any depth",
+                    "asked": "2026-11-09T00:15:00Z",
+                    "answered": "2026-11-09T01:08:58Z"
+                  },
+                  {
+                    "text": "After a failed step, does everything stop?",
+                    "options": [
+                      "Stop at the first failed step, archive both, hand back",
+                      "Stop the walk at the failure, still run link re-creation and the rename swap, archive both, hand back every result"
+                    ],
+                    "answer": "After a failed step the walk stops but link re-creation and the rename swap still run",
+                    "asked": "2026-11-09T00:15:00Z",
+                    "answered": "2026-11-09T01:08:58Z"
+                  }
+                ],
+                "held": true
+              },
+              {
+                "since": "2026-11-09T01:08:58Z",
+                "ended": "2026-11-09T01:12:00Z",
+                "endedBy": "research-planning",
+                "to": "research",
+                "event": {
+                  "name": "resumed",
+                  "at": "2026-11-09T01:08:58Z"
+                },
+                "detail": "The repository stays public until the swap, and the rehearsal proves a public source moving to a private target; the fixture nests sub-issues to mixed depth and the walk handles any depth; after a failed step the walk stops but link re-creation and the rename swap still run.",
+                "interview": [
+                  {
+                    "text": "Does KotlinBottools stay public until the swap?",
+                    "options": [
+                      "Private again now, before the first write; the rehearsal stays as designed",
+                      "Public until the swap; a public source and private target are rehearsed, and the source goes private before archiving",
+                      "Drop the swap and rewrite in place; the parent design is re-planned"
+                    ],
+                    "answer": "The repository stays public until the swap, and the rehearsal proves a public source moving to a private target",
+                    "asked": "2026-11-09T00:15:00Z",
+                    "answered": "2026-11-09T01:08:58Z"
+                  },
+                  {
+                    "text": "Does the fixture carry a second level of sub-issues?",
+                    "options": [
+                      "One level, as specified",
+                      "Add a middle node"
+                    ],
+                    "answer": "The fixture nests sub-issues to mixed depth and the walk handles any depth",
+                    "asked": "2026-11-09T00:15:00Z",
+                    "answered": "2026-11-09T01:08:58Z"
+                  },
+                  {
+                    "text": "After a failed step, does everything stop?",
+                    "options": [
+                      "Stop at the first failed step, archive both, hand back",
+                      "Stop the walk at the failure, still run link re-creation and the rename swap, archive both, hand back every result"
+                    ],
+                    "answer": "After a failed step the walk stops but link re-creation and the rename swap still run",
+                    "asked": "2026-11-09T00:15:00Z",
+                    "answered": "2026-11-09T01:08:58Z"
+                  }
+                ]
+              }
+            ],
+            "research": [
+              {
+                "since": "2026-11-09T01:12:00Z",
+                "ended": "2026-11-09T02:29:56Z",
+                "endedBy": "researched",
+                "to": "plan",
+                "event": {
+                  "name": "verification-started",
+                  "at": "2026-11-09T01:36:00Z"
+                },
+                "detail": "Research: verifying 3 findings.",
+                "research": {
+                  "phase": "complete",
+                  "drafted": 0,
+                  "since": {
+                    "planning": "2026-11-09T01:12:00Z",
+                    "research": "2026-11-09T01:14:00Z",
+                    "verification": "2026-11-09T01:36:00Z",
+                    "complete": "2026-11-09T02:29:56Z"
+                  }
+                },
+                "questions": [
+                  {
+                    "question": "issue-transfer-behaviour",
+                    "rows": [],
+                    "findings": "research/issue-transfer-behaviour.md",
+                    "state": "complete",
+                    "started": "2026-11-09T01:14:00Z",
+                    "returned": "2026-11-09T01:32:00Z"
+                  },
+                  {
+                    "question": "rename-visibility-archive-sequence",
+                    "rows": [],
+                    "findings": "research/rename-visibility-archive-sequence.md",
+                    "state": "complete",
+                    "started": "2026-11-09T01:14:00Z",
+                    "returned": "2026-11-09T01:32:00Z"
+                  },
+                  {
+                    "question": "fixture-and-read-api-forms",
+                    "rows": [],
+                    "findings": "research/fixture-and-read-api-forms.md",
+                    "state": "complete",
+                    "started": "2026-11-09T01:14:00Z",
+                    "returned": "2026-11-09T01:40:00Z"
+                  }
+                ]
+              }
+            ],
+            "plan": [
+              {
+                "since": "2026-11-09T02:29:56Z",
+                "ended": "2026-11-09T02:29:56Z",
+                "endedBy": "plan-accepted",
+                "to": "branch",
+                "event": {
+                  "name": "researched",
+                  "at": "2026-11-09T02:29:56Z"
+                },
+                "detail": "Research verified; the plan next.",
+                "plan": {
+                  "state": "writing",
+                  "since": "2026-11-09T02:29:56Z"
+                }
+              }
+            ],
+            "branch": [
+              {
+                "since": "2026-11-09T02:29:56Z",
+                "ended": "2026-11-09T02:29:56Z",
+                "endedBy": "branch-cut",
+                "to": "implementation",
+                "event": {
+                  "name": "plan-accepted",
+                  "at": "2026-11-09T02:29:56Z"
+                },
+                "detail": "Plan accepted; the branch is cut next.",
+                "branch": "chore/issue-22-transfer-rehearsal"
+              }
+            ],
+            "implementation": [
+              {
+                "since": "2026-11-09T02:29:56Z",
+                "ended": "2026-11-09T04:35:07Z",
+                "endedBy": "halted",
+                "to": "implementation",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-09T04:32:16Z",
+                  "note": "S2 reported done; S3 current"
+                },
+                "detail": "The fixture equals its specification: numbers 1 to 10 (nine issues and one merged pull request), four comments, seven sub-issue and four blocked-by links, two closed issues.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Local readiness",
+                    "state": "done",
+                    "rows": [
+                      "rehearsal-tool",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S1",
+                    "name": "Repositories, labels and milestone",
+                    "state": "done",
+                    "rows": [
+                      "rehearsal-repositories",
+                      "item-content",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S2",
+                    "name": "The fixture",
+                    "state": "done",
+                    "rows": [
+                      "fixture",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S3",
+                    "name": "The walk",
+                    "state": "current",
+                    "rows": [
+                      "number-walk",
+                      "pull-request-placeholder",
+                      "closed-issue",
+                      "item-content",
+                      "links",
+                      "failure-behaviour",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Link reconciliation",
+                    "state": "todo",
+                    "rows": [
+                      "links",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S5",
+                    "name": "The rename swap",
+                    "state": "todo",
+                    "rows": [
+                      "rename-swap",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Close-out",
+                    "state": "todo",
+                    "rows": [
+                      "rehearsal-repositories",
+                      "pass-condition",
+                      "failure-behaviour",
+                      "requested-writes"
+                    ]
+                  }
+                ],
+                "held": true,
+                "asked": [
+                  {
+                    "text": "How should the rehearsal proceed after the transfer rewrote bare issue references?",
+                    "options": [
+                      "Revise the plan: compare after mapping the rewritten references back, then resume the walk",
+                      "Take the stopped-walk path as written and hand back"
+                    ],
+                    "answer": "Revise the plan: the item check compares the text after mapping the rewritten references back, and the walk resumes at the second transfer on the same repositories",
+                    "asked": "2026-11-09T04:35:07Z",
+                    "answered": "2026-11-09T04:40:00Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-09T04:40:00Z",
+                "ended": "2026-11-09T05:00:57Z",
+                "endedBy": "halted",
+                "to": "implementation",
+                "event": {
+                  "name": "resumed",
+                  "at": "2026-11-09T04:40:00Z"
+                },
+                "detail": "The maintainer chose to revise the plan: the item check compares text after mapping the rewritten references back, then the walk resumes at the second transfer on the same repositories.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Local readiness",
+                    "state": "done",
+                    "rows": [
+                      "rehearsal-tool",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S1",
+                    "name": "Repositories, labels and milestone",
+                    "state": "done",
+                    "rows": [
+                      "rehearsal-repositories",
+                      "item-content",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S2",
+                    "name": "The fixture",
+                    "state": "done",
+                    "rows": [
+                      "fixture",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S3",
+                    "name": "The walk",
+                    "state": "current",
+                    "rows": [
+                      "number-walk",
+                      "pull-request-placeholder",
+                      "closed-issue",
+                      "item-content",
+                      "links",
+                      "failure-behaviour",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Link reconciliation",
+                    "state": "todo",
+                    "rows": [
+                      "links",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S5",
+                    "name": "The rename swap",
+                    "state": "todo",
+                    "rows": [
+                      "rename-swap",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Close-out",
+                    "state": "todo",
+                    "rows": [
+                      "rehearsal-repositories",
+                      "pass-condition",
+                      "failure-behaviour",
+                      "requested-writes"
+                    ]
+                  }
+                ],
+                "held": true,
+                "asked": [
+                  {
+                    "text": "How should the rehearsal proceed now that references to already-moved issues keep the target's full name?",
+                    "options": [
+                      "Revise the plan again: accept any form naming either fixture repository, and measure after the swap whether the target-named references still resolve",
+                      "Take the stopped-walk path as written and hand back"
+                    ],
+                    "answer": "Revise the plan again: the item check accepts references naming either fixture repository, and the rename swap measures whether the target-named references still resolve",
+                    "asked": "2026-11-09T05:00:57Z",
+                    "answered": "2026-11-09T05:05:00Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-09T05:05:00Z",
+                "ended": "2026-11-09T05:43:56Z",
+                "endedBy": "halted",
+                "to": "implementation",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-09T05:33:06Z",
+                  "note": "S4 reported done; S5 current"
+                },
+                "detail": "All nine numbers are in the target on their own numbers, the placeholder and both closed issues included, and every one of the eleven links was kept across the walk with none to re-create.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Local readiness",
+                    "state": "done",
+                    "rows": [
+                      "rehearsal-tool",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S1",
+                    "name": "Repositories, labels and milestone",
+                    "state": "done",
+                    "rows": [
+                      "rehearsal-repositories",
+                      "item-content",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S2",
+                    "name": "The fixture",
+                    "state": "done",
+                    "rows": [
+                      "fixture",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S3",
+                    "name": "The walk",
+                    "state": "done",
+                    "rows": [
+                      "number-walk",
+                      "pull-request-placeholder",
+                      "closed-issue",
+                      "item-content",
+                      "links",
+                      "failure-behaviour",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Link reconciliation",
+                    "state": "done",
+                    "rows": [
+                      "links",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S5",
+                    "name": "The rename swap",
+                    "state": "current",
+                    "rows": [
+                      "rename-swap",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Close-out",
+                    "state": "todo",
+                    "rows": [
+                      "rehearsal-repositories",
+                      "pass-condition",
+                      "failure-behaviour",
+                      "requested-writes"
+                    ]
+                  }
+                ],
+                "held": true,
+                "asked": [
+                  {
+                    "text": "How should the rename swap proceed while anonymous repository web pages answer 504?",
+                    "options": [
+                      "Wait and retry the unchanged check",
+                      "Revise the plan: judge privacy on the API reads and record the web read without judging it",
+                      "Hand back here"
+                    ],
+                    "answer": "Wait and retry the unchanged check, about every 30 minutes for up to two hours",
+                    "asked": "2026-11-09T05:43:56Z",
+                    "answered": "2026-11-09T05:46:00Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-09T05:46:00Z",
+                "ended": "2026-11-09T07:01:18Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-09T07:01:03Z",
+                  "note": "S6 reported done; Quality Review next"
+                },
+                "detail": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Local readiness",
+                    "state": "done",
+                    "rows": [
+                      "rehearsal-tool",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S1",
+                    "name": "Repositories, labels and milestone",
+                    "state": "done",
+                    "rows": [
+                      "rehearsal-repositories",
+                      "item-content",
+                      "requested-writes"
+                    ]
+                  },
+                  {
+                    "id": "S2",
+                    "name": "The fixture",
+                    "state": "done",
+                    "rows": [
+                      "fixture",
+                      "requested-writes"
+                    ],
+                    "finished": "2026-11-09T04:32:16Z",
+                    "report": "The fixture equals its specification: numbers 1 to 10 (nine issues and one merged pull request), four comments, seven sub-issue and four blocked-by links, two closed issues."
+                  },
+                  {
+                    "id": "S3",
+                    "name": "The walk",
+                    "state": "done",
+                    "rows": [
+                      "number-walk",
+                      "pull-request-placeholder",
+                      "closed-issue",
+                      "item-content",
+                      "links",
+                      "failure-behaviour",
+                      "requested-writes"
+                    ],
+                    "started": "2026-11-09T04:32:16Z"
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Link reconciliation",
+                    "state": "done",
+                    "rows": [
+                      "links",
+                      "requested-writes"
+                    ],
+                    "finished": "2026-11-09T05:33:06Z",
+                    "report": "All nine numbers are in the target on their own numbers, the placeholder and both closed issues included, and every one of the eleven links was kept across the walk with none to re-create."
+                  },
+                  {
+                    "id": "S5",
+                    "name": "The rename swap",
+                    "state": "done",
+                    "rows": [
+                      "rename-swap",
+                      "requested-writes"
+                    ],
+                    "started": "2026-11-09T05:33:06Z",
+                    "finished": "2026-11-09T07:01:03Z",
+                    "report": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived."
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Close-out",
+                    "state": "done",
+                    "rows": [
+                      "rehearsal-repositories",
+                      "pass-condition",
+                      "failure-behaviour",
+                      "requested-writes"
+                    ],
+                    "finished": "2026-11-09T07:01:03Z",
+                    "report": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived."
+                  }
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "since": "2026-11-09T07:01:18Z",
+                "ended": "2026-11-09T07:17:29Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-09T07:01:18Z",
+                  "note": "Quality Review 1: running"
+                },
+                "detail": "Quality Review 1 running.",
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-09",
+                    "at": "2026-11-09T07:17:29Z",
+                    "findings": {},
+                    "severity": {
+                      "minor": 13,
+                      "other": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-09T07:41:39Z",
+                "ended": "2026-11-09T07:47:51Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-09T07:41:39Z",
+                  "note": "Quality Review 2: running"
+                },
+                "detail": "Quality Review 2 running.",
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-09",
+                    "at": "2026-11-09T07:47:51Z",
+                    "findings": {},
+                    "severity": {
+                      "minor": 6,
+                      "other": 0
+                    },
+                    "route": "on-the-spot"
+                  }
+                ]
+              }
+            ],
+            "remediation": [
+              {
+                "since": "2026-11-09T07:17:29Z",
+                "ended": "2026-11-09T07:41:39Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-09T07:17:29Z",
+                  "note": "Quality Review 1: changes-requested"
+                },
+                "detail": "Every acceptance criterion is met and no recorded result is untrue; the self-test leaves the result gate and the failure paths of the post checks unchecked.",
+                "remediation": {
+                  "pass": 1
+                },
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-09",
+                    "at": "2026-11-09T07:17:29Z",
+                    "findings": {},
+                    "severity": {
+                      "minor": 13,
+                      "other": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-09T07:47:51Z",
+                "ended": "2026-11-09T07:48:46Z",
+                "endedBy": "document",
+                "to": "document",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-09T07:47:51Z",
+                  "note": "Quality Review 2: changes-requested"
+                },
+                "detail": "The tool is unchanged and its 87 self-test checks pass; the known-gaps record for the next unit needs six small wording additions.",
+                "remediation": {
+                  "pass": 2,
+                  "route": "on-the-spot"
+                },
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-09",
+                    "at": "2026-11-09T07:47:51Z",
+                    "findings": {},
+                    "severity": {
+                      "minor": 6,
+                      "other": 0
+                    },
+                    "route": "on-the-spot"
+                  }
+                ]
+              }
+            ],
+            "document": [
+              {
+                "since": "2026-11-09T07:48:46Z",
+                "ended": "2026-11-09T07:49:14Z",
+                "endedBy": "run-restarted",
+                "to": "document",
+                "event": {
+                  "name": "document",
+                  "at": "2026-11-09T07:48:46Z",
+                  "note": "0 of 6 tasks done"
+                },
+                "detail": "Document: 0 of 6 tasks done.",
+                "document": {
+                  "tasks": [
+                    {
+                      "id": "documentation-review",
+                      "name": "Documentation review",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "reconcile-documentation",
+                      "name": "Reconcile documentation",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "reconcile-plan",
+                      "name": "Reconcile plan",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "readme-changelog",
+                      "name": "README and CHANGELOG",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "state-boards",
+                      "name": "State boards",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "document-landing",
+                      "name": "Document commit",
+                      "state": "todo"
+                    }
+                  ]
+                },
+                "outage": "the session stopped; a new session took the run up from its handoff"
+              }
+            ]
+          },
+          "rowNames": {
+            "rehearsal-tool": "The rehearsal tool and its checks",
+            "rehearsal-repositories": "The two throwaway repositories",
+            "fixture": "The fixture in the source",
+            "number-walk": "Issues transferred in numeric order, each on its own number",
+            "pull-request-placeholder": "A closed placeholder at the pull request's number",
+            "closed-issue": "The closed issue's route through a transfer",
+            "item-content": "Body, state, comments, labels and milestone on every item",
+            "links": "Sub-issue and \"blocked by\" links, kept or re-created",
+            "rename-swap": "The rename swap, its ids read back at each name",
+            "pass-condition": "The pass condition and the per-step results",
+            "failure-behaviour": "What still runs after a failed step",
+            "requested-writes": "The GitHub writes the unit depends on"
+          }
+        }
       },
       "gap": {
         "kind": "risk",
@@ -2190,8 +2747,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "architecture.md#72-the-rehearsal",
               "heading": "7.2 The rehearsal",
-              "paragraph": "Two throwaway private repositories, `phase0-rehearsal-a` (the source) and `phase0-rehearsal-b` (the target, empty), prove the transfer mechanics on the shapes the real walk meets.",
-              "hash": "c7c83e5f6814"
+              "paragraph": "Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b` (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
+              "hash": "07fbdf11fac6"
             }
           },
           {
@@ -2200,8 +2757,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "architecture.md#72-the-rehearsal",
               "heading": "7.2 The rehearsal",
-              "paragraph": "Two throwaway private repositories, `phase0-rehearsal-a` (the source) and `phase0-rehearsal-b` (the target, empty), prove the transfer mechanics on the shapes the real walk meets.",
-              "hash": "c7c83e5f6814"
+              "paragraph": "Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b` (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
+              "hash": "07fbdf11fac6"
             }
           },
           {
@@ -2210,8 +2767,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "architecture.md#72-the-rehearsal",
               "heading": "7.2 The rehearsal",
-              "paragraph": "Two throwaway private repositories, `phase0-rehearsal-a` (the source) and `phase0-rehearsal-b` (the target, empty), prove the transfer mechanics on the shapes the real walk meets.",
-              "hash": "c7c83e5f6814"
+              "paragraph": "Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b` (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
+              "hash": "07fbdf11fac6"
             }
           },
           {
@@ -2220,8 +2777,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "architecture.md#72-the-rehearsal",
               "heading": "7.2 The rehearsal",
-              "paragraph": "Two throwaway private repositories, `phase0-rehearsal-a` (the source) and `phase0-rehearsal-b` (the target, empty), prove the transfer mechanics on the shapes the real walk meets.",
-              "hash": "c7c83e5f6814"
+              "paragraph": "Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b` (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
+              "hash": "07fbdf11fac6"
             }
           },
           {
@@ -2408,7 +2965,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
               "ref": "architecture.md#74-the-number-walk-and-the-links",
               "heading": "7.4 The number walk and the links",
               "paragraph": "Before the walk:",
-              "hash": "63a65e14c668"
+              "hash": "a385ef439a51"
             }
           },
           {
@@ -2418,7 +2975,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
               "ref": "architecture.md#75-renames-archive-visibility-scanning",
               "heading": "7.5 Renames, archive, visibility, scanning",
               "paragraph": "The renames:",
-              "hash": "182b1466aec6"
+              "hash": "54b888b5aa08"
             }
           },
           {
@@ -2654,7 +3211,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
               "ref": "architecture.md#75-renames-archive-visibility-scanning",
               "heading": "7.5 Renames, archive, visibility, scanning",
               "paragraph": "The renames:",
-              "hash": "182b1466aec6"
+              "hash": "54b888b5aa08"
             }
           },
           {
@@ -2664,7 +3221,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "4e094e8df2fa"
+              "hash": "92da9a9547a1"
             }
           },
           {
@@ -2756,7 +3313,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "4e094e8df2fa"
+              "hash": "92da9a9547a1"
             }
           },
           {
@@ -2850,7 +3407,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "4e094e8df2fa"
+              "hash": "92da9a9547a1"
             }
           },
           {
@@ -2944,7 +3501,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
               "ref": "architecture.md#124-the-report",
               "heading": "12.4 The report",
               "paragraph": "Each rewrite unit's as-built record carries its repositories' rows. Unit 8 compiles them into one table and posts it on #2.",
-              "hash": "30f506600980"
+              "hash": "c364e8c63ba3"
             }
           },
           {
@@ -3096,15 +3653,74 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     "units": [
       {
         "unit": "preparation",
-        "basis": "plan",
-        "summary": "Local preparation: no module is published and no version moves. The unit writes nothing to GitHub but its own documents, reads the six repositories, and leaves the tools, backups, lists, manifests and verified data copy the later units consume.",
+        "basis": "as-built",
+        "summary": "Local preparation: no module was published and no version moved. The unit wrote nothing to GitHub but its own documents and boards, read the six repositories, and left the tools, backups, lists, manifests and verified data copy the later units consume.",
         "release": {
           "bump": "none",
           "version": null,
           "note": "no module is published and no version moves"
         },
-        "source": "21-preparation/consequences.md §1 to §4",
-        "link": "21-preparation/consequences.md#2-blast-radius"
+        "source": "21-preparation/consequences.md §1 to §4; 21-preparation/final-implementation.md",
+        "link": "21-preparation/consequences.md#2-blast-radius",
+        "changes": [
+          {
+            "what": "CPython 3.13 was not added on this machine.",
+            "why": "The fixture rehearsal passed on Python 3.14.7, so the fallback that would install it did not run.",
+            "when": "Implementation",
+            "ref": "21-preparation/consequences.md#22-this-machine"
+          },
+          {
+            "what": "The landing edits the parent's documents and carries generated boards.",
+            "why": "It adds one line to the parent's `consequences.md` and a dated note on the generated boards' commit ids to its `architecture.md`, and ten generated board files record this unit's state.",
+            "when": "Document",
+            "ref": "21-preparation/consequences.md#24-documents-and-generated-boards"
+          },
+          {
+            "what": "`transfer-rehearsal` (#22) consumes this unit's results.",
+            "why": "It is blocked by this unit and takes what every later unit takes, plus the proven authentication and the scan tools at their fixed names.",
+            "when": "Document",
+            "ref": "21-preparation/consequences.md#4-sibling-units-and-neighbouring-issues"
+          },
+          {
+            "what": "What each of the four later units consumes is stated unit by unit.",
+            "why": "Only `gkb2-gkb-rewrite` and `bottools-trumpbot-support-rewrite` consume the backups, manifests and expectation rows the planned entry named for all four.",
+            "when": "Document",
+            "ref": "21-preparation/consequences.md#4-sibling-units-and-neighbouring-issues"
+          },
+          {
+            "what": "`kotlinbottools-rewrite-and-swap` (#23) also consumes the runner, the log and the fixture's expected scrub counts.",
+            "why": "The reconciled consequences list them beside the expression file; the planned entry left them out.",
+            "when": "Landing",
+            "ref": "21-preparation/consequences.md#4-sibling-units-and-neighbouring-issues"
+          },
+          {
+            "what": "`repository-hygiene` (#24) consumes what every later unit does, and the proven authentication.",
+            "why": "The reconciled consequences list them; the planned entry named only `secret_scan.py` and `gitleaks.toml`.",
+            "when": "Landing",
+            "ref": "21-preparation/consequences.md#4-sibling-units-and-neighbouring-issues"
+          }
+        ]
+      },
+      {
+        "unit": "transfer-rehearsal",
+        "basis": "plan",
+        "summary": "Two throwaway repositories and nothing else on GitHub: no module is published and no version moves, and KotlinBottools and every other repository stay as they are. The unit measures how a transfer treats numbers, closed issues and links and whether the rename swap holds, and leaves the tool and the results for the next unit.",
+        "release": {
+          "bump": "none",
+          "version": null,
+          "note": "no module is published and no version moves"
+        },
+        "source": "22-transfer-rehearsal/consequences.md §1 to §4",
+        "link": "22-transfer-rehearsal/consequences.md#2-blast-radius"
+      }
+    ],
+    "changes": [
+      {
+        "unit": "preparation",
+        "when": "#21 landing",
+        "none": true,
+        "why": "The unit built what its plan set out, with no deviation, and changed nothing outside this machine but its own documents and boards. The dated note on the generated boards' commit ids treats them as the older documents' ids, which the initiative's impact already records.",
+        "ref": "21-preparation/final-implementation.md#4-deviations-from-the-plan"
       }
     ]
   },
@@ -3496,8 +4112,8 @@ const QA={approved:{g:"✓",label:"approved",cls:"good"},"changes-requested":{g:
 const PASS_NAME="Quality Review", REVIEW="review", passName=n=>`${PASS_NAME} ${n}`, passNames=l=>l.length===1?passName(l[0]):`${PASS_NAME}s ${l.join(", ")}`;
 const STEP_NAME={sizing:"Sizing",interview:"Interview",research:"Research",architecture:"Architecture","sub-issues":"Sub-issues",boards:"Boards",plan:"Plan",branch:"Branch",implementation:"Implementation",qa:PASS_NAME,remediation:"Correction",document:"Document",landing:"Landing","state-boards":"State boards",merge:"Merge",landed:"Landed",halted:"Waiting on you",escalated:"Escalated",cancelled:"Cancelled"};
 const ROUTE_NAME={"on-the-spot":"Correction",remediation:"Correction","re-plan-then-remediation":"Resolution"};
-/* the routes' older ids, read as the new ones (dashboards-skill/33): a board written before them */
-const ROUTE_OLD={"rookie-dev":"remediation","planner-then-rookie-dev":"re-plan-then-remediation"}, routeKey=r=>ROUTE_OLD[r]||r;
+/* the routes' older ids, read as the new ones (dashboards-skill/33): a board written before them; an older id ends in -dev, and one starting plan re-passes the plan first */
+const routeKey=r=>typeof r==="string"&&/-dev$/.test(r)?(/^plan/.test(r)?"re-plan-then-remediation":"remediation"):r;
 const routeName=r=>ROUTE_NAME[routeKey(r)]||ROUTE_NAME.remediation;
 const remediationName=(r,p)=>{ const n=parseInt(p,10); return Number.isInteger(n)&&n>1?`${routeName(r)} of ${passName(n)}`:routeName(r); };
 /* a step by its name; c {route, pass} names a remediation visit (no pass: the step, bare) */
@@ -3506,8 +4122,8 @@ const stepLabel=(s,c)=>!s?"":s==="remediation"?(c&&c.pass!=null?remediationName(
 const haltLabel=(s,c)=>s==="remediation"?routeName(c&&c.route):stepLabel(s,c);
 const REMEDIATION_NOTE="Correction or Resolution after a Quality Review; each step is recorded as it runs";
 const PROGRESS_NOTE="a progress note: a report of the work as it happens";
-/* a Quality Review's checks by the check, "documentation check", "code check", "test check" (dashboards-skill/52; passnames.js NOTE_WORK) */
-const NOTE_WORK={planner:"planning",interviewer:"interview",researcher:"research",verifier:"verification",architect:"architecture","plan-writer":"plan writing","rookie-dev":"implementation","test-inspector":"test check",qa:PASS_NAME,"code-reviewer":"code check","documentation-reviewer":"documentation check"};
+/* a progress note by the work it reports, [the stem its file name begins with, the label]: stems, so the board carries no file's name (noteLabel()). A Quality Review's checks by the check, "documentation check", "code check", "test check" (dashboards-skill/52; passnames.js NOTE_WORK, verify/cases-check-labels.js holds noteLabel() to it) */
+const NOTE_WORK=[["plann","planning"],["interview","interview"],["research","research"],["verif","verification"],["archit","architecture"],["plan-wr","plan writing"],["rookie-d","implementation"],["test-insp","test check"],["qa",PASS_NAME],["code-rev","code check"],["documentation-rev","documentation check"]];
 const EVENT_STEP={sized:"sizing","research-planning":"research","research-started":"research","research-returned":"research","research-verifying":"research","research-complete":"research",interview:"interview","architecture-signed-off":"architecture","sub-issues-filed":"sub-issues","boards-created":"boards","plan-accepted":"plan","branch-cut":"branch","implementation-stage":"implementation","qa-pass":"qa",document:"document",landing:"landing","state-boards":"state-boards",merge:"merge",landed:"landed"};
 function raisedWords(raised){ const s=String(raised==null?"":raised).trim(); if(!s) return ""; let m=/^implementation-stage(?:\s+(\S+))?$/i.exec(s);
   if(m) return `raised during ${STEP_NAME.implementation}${m[1]?`, stage ${/^S\d+$/i.test(m[1])?m[1].slice(1):m[1]}`:""}`;
@@ -3621,13 +4237,13 @@ function stmtLabel(s){ if(s&&typeof s.label==="string"&&s.label.trim()) return s
   const n=refNumShown(s); if(n) return n.label+(n.from==="anchor"?"?":"");
   const a=String((s&&s.ref)||"").split("#")[1]; return a?"§ "+a:"§"; }
 const refMarkNote=s=>{ const n=refNumShown(s)||{label:"§"}, d=n.label.slice(1); return `the section number is read from the link's anchor alone: its file was not there to read, and the anchor drops a heading number's dots, so ${d} may be ${d.length>1?d.split("").join("."):d}`; };
-/* a Verdict statement ends with its section chip, "§R2" (dashboards-skill/53); an As built statement with its reference in parentheses, "(§4.2)" */
-const stmtRef=(s,row,col,i)=>{ if(!(s&&typeof s.ref==="string"&&relLink(s.ref))) return ""; const chip=col==="verdict";
-  return ` <a class="${chip?"section-chip":"sref"}" href="${esc(s.ref)}" data-row="${esc(row)}" data-col="${col}" data-i="${i}" title="${nameText(s.excerpt&&s.excerpt.heading?s.excerpt.heading:s.ref)}${refMarked(s)?` (${esc(refMarkNote(s))})`:""}: click for the section's excerpt">${chip?esc(stmtLabel(s)):`(${esc(stmtLabel(s))})`}</a>`; };
+/* a Verdict or an As built statement ends with its section chip, "§R2" (plan/RULES.md §2, "Statements") */
+const stmtRef=(s,row,col,i)=>{ if(!(s&&typeof s.ref==="string"&&relLink(s.ref))) return "";
+  return ` <a class="section-chip" href="${esc(s.ref)}" data-row="${esc(row)}" data-col="${col}" data-i="${i}" title="${nameText(s.excerpt&&s.excerpt.heading?s.excerpt.heading:s.ref)}${refMarked(s)?` (${esc(refMarkNote(s))})`:""}: click for the section's excerpt">${esc(stmtLabel(s))}</a>`; };
 /* the legend entry of a marked reference, where the statements drawn carry one */
 const REF_MARK_WHY="a section number read from its link alone: the plan file was not there to tell §4.2 from §42";
-/* verdict: the Verdict statements drawn (their section chips), built: the As built ones (their "(§n)" references) */
-const refKey=(verdict,built)=>(verdict.some(refMarked)?`<span><b class="section-chip">§n?</b> ${REF_MARK_WHY}</span>`:"")+((built||[]).some(refMarked)?`<span><b class="srefk">(§n?)</b> ${REF_MARK_WHY}</span>`:"");
+/* one entry for the statements drawn, Verdict and As built alike: both end with the section chip */
+const refKey=(...lists)=>lists.flat().some(refMarked)?`<span><b class="section-chip">§n?</b> ${REF_MARK_WHY}</span>`:"";
 /* a cell's, a card's or the inspector's statements: the verdict's, or the as built ones with their marks; "" when the row has none */
 function stmtsHtml(r,col){ const x=col==="verdict"?r.verdict:r.asBuilt, all=stmtsRaw(x), num=((r.verdict||{}).list==="numbered");
   if(!all.some(stmtOk)) return "";
@@ -3660,12 +4276,15 @@ function optDef(r,o){ const s=o.verdict==="deferred"?settlement(r,o):null; const
 let SYSTEMS=[];
 const sysOf=slug=>SYSTEMS.find(s=>s.slug===slug);
 /* an archived system holds no slot (GUIDANCE.md §1): neutral, whatever an entry written before it was archived records */
-const sysLit=s=>!!s&&s.status!=="archived"&&s.slot>=1&&s.slot<=6;
-function sysColour(slug){ const s=sysOf(slug); return sysLit(s)?`var(--sys-${s.slot})`:"var(--muted)"; }
+/* a system named Internal Tooling, and every system under it (top names it), takes no slot and is drawn in the plain ink (GUIDANCE.md §1; palette.js isPlainName()) */
+const sysPlain=s=>!!s&&s.status!=="archived"&&/^internal tooling$/i.test(String(s.top||s.name||"").trim());
+const sysLit=s=>sysPlain(s)||(!!s&&s.status!=="archived"&&s.slot>=1&&s.slot<=12);
+const sysK=s=>sysPlain(s)?"plain":s.slot;
+function sysColour(slug){ const s=sysOf(slug); return sysPlain(s)?"var(--ink)":sysLit(s)?`var(--sys-${s.slot})`:"var(--muted)"; }
 const sysName=slug=>{ const s=sysOf(slug); return s?s.name:(slug||"—"); };
 function paint(root){ (root||document).querySelectorAll("[data-sys]").forEach(e=>{ e.style.setProperty("--c",sysColour(e.dataset.sys)); const s=sysOf(e.dataset.sys); e.classList.toggle("sys-archived",!!s&&s.status==="archived"); }); }
 /* Legend: one entry per colour group present (a system's parts share their top-level system's slot). */
-function sysKey(slugs,cls){ const seen=new Map(); slugs.forEach(sl=>{ const s=sysOf(sl)||{slug:sl,name:sl}; const arch=s.status==="archived", k=sysLit(s)?"s"+s.slot:arch?"a":"n"; const nm=sysLit(s)?(s.top||s.name):arch?`${s.name} (⊟ archived)`:`${s.name} (no system colour)`; if(!seen.has(k)) seen.set(k,{c:sysColour(sl),names:new Set()}); seen.get(k).names.add(nm); });
+function sysKey(slugs,cls){ const seen=new Map(); slugs.forEach(sl=>{ const s=sysOf(sl)||{slug:sl,name:sl}; const arch=s.status==="archived", k=sysLit(s)?"s"+sysK(s):arch?"a":"n"; const nm=sysLit(s)?(s.top||s.name):arch?`${s.name} (⊟ archived)`:`${s.name} (no system colour)`; if(!seen.has(k)) seen.set(k,{c:sysColour(sl),names:new Set()}); seen.get(k).names.add(nm); });
   return [...seen.values()].map(v=>`<span><i class="${cls||"sbar"}" style="--c:${v.c}"></i>${esc([...v.names].join(", "))}</span>`).join(""); }
 
 /* ---------- Work in progress: the glowing cells ----------
@@ -3785,7 +4404,6 @@ function researchFact(w){ const qs=questionsOf(w), R=w&&w.research;
 const OPEN_PT={g:"!",label:"open",cls:"warning"};
 const KEY_OPEN=`<span>${pill(OPEN_PT)} an open point raised during the run, not resolved yet</span>`;
 const IV={answered:{g:"✓",label:"answered",cls:"neutral"},waiting:{g:"?",label:"waiting on you",cls:"warning"}};
-const STAGE_DOT={done:"done",current:"cur",todo:"todo"};
 const OWN_PANEL_STEPS=["document","landing","state-boards","merge","sub-issues","boards"];
 const NEXT_STEP={qa:`${STEP_NAME.document}, or a Correction or Resolution if the ${REVIEW} requests changes`,remediation:`${PASS_NAME}: the next ${REVIEW}`,document:STEP_NAME.landing,landing:STEP_NAME.merge,"state-boards":STEP_NAME.merge,"merge":STEP_NAME.landed,"boards":`${STEP_NAME.landing}: the tracking plan's own`};
 /* A tracking board's own step after its plan's merge (plan/RULES.md §3): "sub-issues", each unit being filed as a sub-issue; on an older board also
@@ -3838,7 +4456,7 @@ const waitingQs=R=>{ const S=R&&R.step==="halted"?R.resume:null; if(!S) return [
    other step by its name, "Implementation", "Architecture", never its id (dashboards-skill/51, dated 51) */
 const resumeAt=(s,c)=>haltLabel(s,c);
 const PANEL={
-  sizing:R=>`<p>The issue is being sized: its systems and how much planning it takes.</p>${R.detail?`<p>${rich(R.detail)}</p>`:""}`,
+  sizing:R=>`<p>The issue is being sized: its systems and how much planning it takes.</p>`,
   interview:(R,o,keys)=>{ const iv=Array.isArray(R.interview)?R.interview.filter(q=>q&&q.text):[];
     if(!iv.length) return `<p>No interview question recorded yet.</p>`;
     return questionsHtml(iv,keys,"interview"); },
@@ -3846,7 +4464,7 @@ const PANEL={
     const phase=Rs.phase||(st.includes("verifying")?"verification":st.length&&st.every(x=>x==="complete")?"complete":st.some(x=>x!=="planning")?"research":st.length?"planning":"");
     const line=["planning","research","verification"], at=phase==="complete"?3:line.indexOf(phase);
     /* a finished step's view (o.past): every phase it reached is done, nothing glows */
-    let h=`<ol class="steps" aria-label="The research StepBar">${line.map((x,j)=>{ const c=o.past?(j<=at?"done":"todo"):j<at?"done":j===at?"cur":"todo"; return `<li class="${c}${c==="cur"?(o.held?" held":" fullpulse"):""}"${c==="cur"?' aria-current="step"':""}><span class="dot" aria-hidden="true"></span>${x}</li>`; }).join("")}</ol>`;
+    let h=`<ol class="stepbar" aria-label="The research StepBar">${line.map((x,j)=>{ const c=o.past?(j<=at?"done":"todo"):j<at?"done":j===at?"cur":"todo"; return `<li class="${c}${c==="cur"?(o.held?" held":" fullpulse"):""}"${c==="cur"?' aria-current="step"':""}>${x}${sbState(c)}</li>`; }).join("")}</ol>`;
     const began=line.filter(x=>Rs.since&&Rs.since[x]).map(x=>`${x} from <span class="nw">${when(Rs.since[x])}</span>`); if(began.length) h+=`<p class="sp-when">${began.join(" · ")}</p>`;
     if(at<0) h+=`<p>No research event recorded yet.</p>`;
     if(phase==="planning") h+=`<p class="sp-sum">Planning the research questions${Rs.drafted!=null?`: ${esc(Rs.drafted)} drafted so far`:""}.</p>`;
@@ -3858,17 +4476,14 @@ const PANEL={
   architecture:(R,o)=>`<p>The architecture weighs the options and decomposes the work into its units; the step ends at its sign-off.</p>${o.options!=null?`<p class="sp-sum">${o.options} option${o.options===1?"":"s"} weighed so far</p>`:""}`,
   plan:(R,o,keys)=>{ const P=R.plan||{}, V=R.verdicts, re=P.state==="re-pass";
     const first=re?`re-pass ${P.from==="qa"?`after ${esc(passName(P.pass||"?"))}`:P.from==="parent"?(o.parent?`from #${esc(o.parent)}'s plan`:"from the parent's plan"):P.from==="existing"?`verifying the existing plan${P.against?` against ${esc(P.against)}`:""}`:""}`:"plan writing";
-    let h=`<ol class="steps" aria-label="The plan's stages"><li class="cur${o.held?" held":" fullpulse"}" aria-current="step"><span class="dot" aria-hidden="true"></span>${first}</li><li class="todo"><span class="dot" aria-hidden="true"></span>plan accepted</li></ol>`;
+    let h=`<ol class="stepbar" aria-label="The plan StepBar"><li class="cur${o.held?" held":" fullpulse"}" aria-current="step">${first}${sbState("cur")}</li><li class="todo">plan accepted${sbState("todo")}</li></ol>`;
     if(re) h+=`<p>${P.from==="qa"?`The plan is re-passed to answer ${esc(passName(P.pass||"?"))}'s findings${R.remediation&&routeKey(R.remediation.route)==="re-plan-then-remediation"?`; the fixes and the next ${REVIEW} follow`:""}.`:P.from==="existing"?`The plan already written is verified${P.against?` against <code>${esc(P.against)}</code> as it stands now`:" against the code as it stands now"}, and each delta recorded.`:`The plan this unit takes from its parent's architecture is verified, and the unit's own written.`}</p>`;
     if(V&&V.total) { h+=`<p class="sp-sum">${V.written} of ${V.total} verdict${V.total===1?"":"s"} written</p>`; if(o.unwritten&&o.unwritten.length&&V.written<V.total) h+=`<p>Still to write: ${o.unwritten.slice(0,6).map(codeOnly).join(", ")}${o.unwritten.length>6?`, and ${o.unwritten.length-6} more`:""}.</p>`; }
     return h; },
-  branch:()=>`<p>The plan is accepted; the branch is cut next and the build starts.</p>`,
-  implementation:(R,o)=>{ const sg=Array.isArray(R.stages)?R.stages.filter(x=>x&&typeof x==="object"):[];
-    let h=""; if(!sg.length) h+=`<p>Its stages are in the plan; none recorded here yet.</p>`;
-    else { const cur=sg.findIndex(x=>x.state==="current"), done=sg.filter(x=>x.state==="done").length;
-      h+=`<p class="sp-sum">${cur>=0?`Stage ${esc(sg[cur].id||cur+1)} of ${sg.length}`:`${done} of ${plural(sg.length,"stage")} done`}${cur>=0?` · ${done} done`:""}</p>`;
-      h+=spList(sg.map((x,i)=>spItem(STAGE_DOT[x.state]||"todo",dotMark,`${x.id?`<b>${esc(x.id)}</b> `:""}${rich(x.name||"")}${x.state==="done"?" · done":x.state==="current"?" · in progress":" · to come"}`,(Array.isArray(x.rows)&&x.rows.length?`touches ${x.rows.map(id=>codeOnly(o.rowName(id))).join(", ")}`:"")))); }
-    return h; },
+  branch:()=>`<p>Plan accepted; the branch is confirmed next.</p>`,
+  implementation:(R,o,keys)=>{ const sg=stgList(R); if(!sg.length) return `<p>Its stages are in the plan; none recorded here yet.</p>`;
+    const cur=sg.findIndex(x=>x.state==="current"), done=sg.filter(x=>x.state==="done").length;
+    return `<p class="sp-sum">${cur>=0?`Stage ${esc(sg[cur].id||cur+1)} of ${sg.length}`:`${done} of ${plural(sg.length,"stage")} done`}${cur>=0?` · ${done} done`:""}</p>`+stageItems(R,sg,o,keys); },
   qa:(R,o,keys)=>{ const qa=Array.isArray(R.qa)?R.qa:[], running=qa.length&&qa[qa.length-1].verdict==="running";
     let h=`<p class="sp-sum">${esc(passName(running?qa[qa.length-1].pass:qa.length+1))} running${R.qaMax?` · at most ${esc(R.qaMax)} ${REVIEW}s`:""}</p>`;
     h+=qa.map(p=>qaBlock(p,keys)).join("");
@@ -3884,7 +4499,7 @@ const PANEL={
     let h=`<p class="sp-sum">Answering ${esc(passName(n||"?"))}${last?` · ${(QA[last.verdict]||QA.running).label}`:""}</p>`;
     if(ROUTE[route]) h+=`<p>Route: ${esc(ROUTE[route].label)}.</p>`;
     if(last) h+=qaBlock(last,keys);
-    h+=spList(steps.map(x=>spItem(STAGE_DOT[x.state]||"todo",dotMark,`${rich(stepName(x))}${x.state==="done"?" · done":x.state==="current"?" · in progress":" · to come"}`,"")));
+    h+=subItems(steps,o,keys,"remediation","sub-step");
     if(!(Array.isArray(M.steps)&&M.steps.length)) h+=`<p>${esc(REMEDIATION_NOTE)}.</p>`;
     /* the Corrections and Resolutions before this one, each frozen when it ended (wip.history.remediation, plan/RULES.md §3, "Finished steps") */
     const prev=visitsOf(R,"remediation").filter(V=>V.remediation&&V.remediation.pass!==n);
@@ -3896,7 +4511,7 @@ const PANEL={
      before them) reads its landing as all three. */
   /* the Document step (plan/RULES.md §3, §4; dashboards-skill/35), between qa and the land: its tasks (wip.document.tasks), done, current
      (several may run in parallel) and to come, the state boards among them */
-  document:(R,o)=>{ const ts=R.document&&Array.isArray(R.document.tasks)?R.document.tasks.filter(x=>x&&typeof x==="object"):[];
+  document:(R,o,keys)=>{ const ts=R.document&&Array.isArray(R.document.tasks)?R.document.tasks.filter(x=>x&&typeof x==="object"):[];
     let h=`<p>The documents are brought up to the build on the branch: the documentation reviewed and reconciled, the Dokka check, the plan and its consequences reconciled, the README and the CHANGELOG, and the state boards as built, then the Document commit that carries them.</p>`;
     /* the last qa pass's test report, a build output: plain text, its copy linked on this machine (dashboards-skill/35) */
     const lq=(Array.isArray(R.qa)?R.qa:[]).filter(p=>p&&p.report).slice(-1)[0];
@@ -3904,7 +4519,7 @@ const PANEL={
     if(!ts.length) return h+`<p>No task recorded yet.</p>`;
     const done=ts.filter(x=>x.state==="done").length, cur=ts.filter(x=>x.state==="current").length;
     h+=`<p class="sp-sum">${done} of ${ts.length} task${ts.length===1?"":"s"} done${cur>1?` · ${cur} in parallel`:""}</p>`;
-    return h+spList(ts.map(x=>spItem(STAGE_DOT[x.state]||"todo",dotMark,`${rich(x.name||x.id||"")}${x.state==="done"?" · done":x.state==="current"?" · in progress":" · to come"}`,""))); },
+    return h+subItems(ts,o,keys,"document","task"); },
   landing:R=>{ const qa=Array.isArray(R.qa)?R.qa:[], last=qa.length?qa[qa.length-1]:null, acc=!!(R.event&&R.event.name==="landing"), pr=acc&&/PR #(\d+)/.exec(String(R.event.note||"")), split=(R.steps||[]).includes("merge"), doc=(R.steps||[]).includes("document");
     if(doc) return `<p>The documents and the state boards are on the branch; ${acc?`the land is accepted${pr?` (${prlink(pr[1])})`:""}: the branch carries the code, the version bump, the reconciled documents and the state boards`:"the land follows"}; the merge is next.</p>`;
     return `<p>${last?`${esc(passName(last.pass))} approved`:`The ${REVIEW} approved`}; ${split?(acc?`the land is accepted${pr?` (${prlink(pr[1])})`:""}: the branch brought up to date, the code, the version bump and the reconciled documents committed on it`:"the land follows: the branch brought up to date, the code, the version bump and the reconciled documents committed on it"):(acc?`the land is accepted and being merged${pr?` in ${prlink(pr[1])}`:""}, its state boards refreshed on the branch before the merge`:"the land follows: its state boards refreshed on the branch, then the merge")}.</p>`; },
@@ -3912,7 +4527,72 @@ const PANEL={
   merge:R=>{ const pr=R.event&&R.event.name==="merge"&&/PR #(\d+)/.exec(String(R.event.note||"")); return `<p>The pull request${pr?` ${prlink(pr[1])}`:""} is being merged; landed follows the merge.</p>`; },
   "sub-issues":(R,o)=>`<p>The plan has landed: each unit of its architecture is filed as a sub-issue of this one. A unit's board appears when its run starts.</p>`+unitProgress(R,o,"filed"),
   boards:(R,o)=>`<p>Each unit's board was created ahead of its run, from this issue's documents: its Gap and Considered columns, not started.</p>`+unitProgress(R,o,"boards"),
-  _:R=>R.detail?`<p>${rich(R.detail)}</p>`:`<p>Nothing recorded for this step.</p>`};
+  _:R=>R.detail?"":`<p>Nothing recorded for this step.</p>`};
+/* ---------- The stage list and the collapsing items (plan/RULES.md §3, "The stage list", "Collapsing") ----------
+   The WIP Panel lists each stage of the run at the implementation step: its number, name and status, and its brief, the plan's stage table's
+   wording copied verbatim at branch-cut (a plan with no table gives no brief); a tracking board's unit Card lists the number, the name and the
+   status alone. A click on a stage opens it in the step Panel. The step Panel's stages, a remediation's sub-steps, the Document step's tasks and
+   a finished Implementation view are collapsing items: number, name, status; the active ones open, the others closed, a reader's choice kept
+   across the live redraw (DISC_OPEN, by key). A finished stage's status Pill: kind "work" neutral, "done"; kind "check" the result its closing
+   event reported, green or red; no result recorded reads as a work stage does. */
+const NOW_KEY_CHIP=`<span class="chip now"><span class="ck">Now</span></span>`;
+const KEY_NOW=`<span>${NOW_KEY_CHIP} the run's latest report, pulsing while it works, still while it waits on you</span>`;
+const STG_PILL={done:{g:"✓",label:"done",cls:"ink"},passed:{g:"✓",label:"passed",cls:"good"},failed:{g:"✕",label:"failed",cls:"critical"},current:STATES["in-progress"],todo:{g:"…",label:"to come",cls:"neutral",dash:true}};
+const STG_WORD={done:n=>`a ${n} finished`,passed:n=>`a check ${n} that passed`,failed:n=>`a check ${n} that failed`,current:n=>`a ${n} at work now`,todo:n=>`dashed: a ${n} to come`};
+const stgState=x=>x.state==="done"?(x.kind==="check"&&STG_PILL[x.result]?x.result:"done"):x.state==="current"?"current":"todo";
+const stgCls=x=>x.state==="done"?"done":x.state==="current"?"cur":"todo";
+function stgPill(x,keys,noun){ const c=stgState(x); if(keys) keys.add(`<span>${pill(STG_PILL[c])} ${STG_WORD[c](noun)}</span>`); return pill(STG_PILL[c]); }
+const stgList=R=>Array.isArray(R&&R.stages)?R.stages.filter(x=>x&&typeof x==="object"):[];
+const KEY_DISC=`<span><span class="mono" aria-hidden="true">▸</span> click a row to open or close its detail</span>`;
+const KEY_STG_OPEN=`<span><span class="mono" aria-hidden="true">▸</span> click a stage to open it in the step Panel</span>`;
+const KEY_STG_RUN=`<span><i class="gl"></i>a stage in a FullPulse: at work now</span>`;
+const KEY_STG_HELD=`<span><i class="hold"></i>a stage, the Ring alone: paused while the run waits on you</span>`;
+const KEY_STG_STEP=`<span><i class="gl"></i>the step of the stage at work now, from the run's progress note</span>`;
+/* the stages at a glance, in the WIP Panel. o: run, the key of the run ("own" or a unit's issue); compact, on a tracking board's unit Card */
+function stageStrip(R,step,keys,held,o){ const sg=stgList(R); if(step!=="implementation"||!sg.length) return "";
+  const cur=sg.find(x=>x.state==="current"), done=sg.filter(x=>x.state==="done").length;
+  if(cur) keys.add(held?KEY_STG_HELD:KEY_STG_RUN); keys.add(KEY_STG_OPEN);
+  return `<div class="stg-strip" role="group" aria-label="The plan's stages at a glance"><div class="wip-sub">Stages · ${done} of ${sg.length} done${cur?` · ${esc(cur.id)} ${held?"paused":"in progress"}`:""}</div><ol class="stg-rows">${sg.map(x=>{ const c=stgCls(x), nm=codeOnly(x.name||""), plain=String(x.name||"").replace(/`/g,"");
+    return `<li class="stg-row ${c}${x.state==="current"?(held?" held":" fullpulse"):""}" data-run="${esc(o.run)}" data-stage="${esc(x.id)}"><b class="id">${esc(x.id)}</b><button type="button" class="stg-open" aria-label="${esc(x.id)} ${esc(plain)}: open it in the step Panel">${nm}</button>${stgPill(x,keys,"stage")}${!o.compact&&x.brief?`<span class="br">${rich(x.brief)}</span>`:""}</li>`; }).join("")}</ol></div>`; }
+/* the item state a reader chose, by key; the active ones open by default */
+const DISC_OPEN=new Map();
+document.addEventListener("click",e=>{ const s=e.target.closest&&e.target.closest("summary.stg-s"); if(s&&s.parentElement.dataset.key) DISC_OPEN.set(s.parentElement.dataset.key,!s.parentElement.open); },true);
+function discItem(o){ const open=DISC_OPEN.has(o.key)?DISC_OPEN.get(o.key):!!o.cur, head=`${dotMark}${o.id?`<b class="id">${esc(o.id)}</b>`:""}<span class="nm">${o.name}</span>${o.meta?`<span class="ct">${o.meta}</span>`:""}${o.pill}`;
+  return `<li class="${o.cls}"${o.stage?` data-stage="${esc(o.stage)}"`:""}>${o.body?`<details class="stg-d" data-key="${esc(o.key)}"${open?" open":""}><summary class="stg-s">${head}<span class="chev" aria-hidden="true">▸</span></summary><div class="stg-b">${o.body}</div></details>`:`<div class="stg-s stg-plain">${head}<span class="chev" aria-hidden="true"></span></div>`}</li>`; }
+const discList=items=>items.length?`<ol class="sp-list stg-list">${items.join("")}</ol>`:"";
+const stgChip=(l,v)=>`<span><span class="l">${l}</span>${v}</span>`;
+const stampChips=x=>[okStamp(x.started)?stgChip("started",`<span class="nw">${when(x.started)}</span>`):"",okStamp(x.finished)&&x.state==="done"?stgChip("finished",`<span class="nw">${when(x.finished)}</span>`):""].filter(Boolean);
+const reportHtml=x=>x.state==="done"&&typeof x.report==="string"&&x.report.trim()?`<div class="stg-h">At its end</div><p>${rich(x.report)}</p>`:"";
+/* the position inside the current stage: the stage's steps (the stage table's), the current one the step a live progress note names (docs/plans/.live/progress/, its "step"); on a board with no note the steps stand unmarked */
+function stageStepsHtml(x,o,keys){ const st=Array.isArray(x.steps)?x.steps.filter(s=>s&&typeof s.id==="string"):[]; if(!st.length) return "";
+  const said=Object.values(PROG[o.issue]||{}).map(p=>p&&p.step).filter(s=>typeof s==="string"), at=st.map((s,i)=>said.includes(s.id)?i:-1).filter(i=>i>=0), first=at.length?Math.min(...at):-1;
+  if(at.length) keys.add(KEY_STG_STEP);
+  return `<div class="stg-h">Inside the stage</div><ol class="stg-steps">${st.map((s,i)=>{ const c=!at.length?"unk":at.includes(i)?"cur":i<first?"done":"todo"; return `<li class="${c}"${c==="cur"?' aria-current="step"':""}><i class="sdot" aria-hidden="true"></i><span class="q">${codeOnly(s.name||s.id)}</span></li>`; }).join("")}</ol>`; }
+/* a stage's detail, opened in the step Panel: at its end its report; while it runs where it stands; the Rows it touches, as they stand on this board; when it started and finished; its section of the plan */
+function stageBody(R,x,o,keys){ const local=o.own||o.issue===PLAN.issue, rows=Array.isArray(x.rows)?x.rows:[]; let h=reportHtml(x);
+  if(x.state==="current"&&!o.past) h+=stageStepsHtml(x,o,keys);
+  if(rows.length){ const rs=rows.map(id=>{ const r=local?ROWS.find(y=>y.id===id):null; return {id,r,s:r?stateOf(r):null,sum:r&&r.asBuilt&&r.asBuilt.summary}; }), states=[...new Set(rs.map(y=>y.s).filter(Boolean))], one=states.length===1?states[0]:null;
+    states.forEach(s=>keys.add(`<span>${badge(s)} ${esc(STATES[s].desc)}</span>`));
+    h+=`<div class="stg-h">${o.past||x.state==="done"?"Touched":x.state==="todo"?"Will touch":"Touches"} ${rows.length} Row${rows.length===1?"":"s"}${one?` ${badge(one)}`:""}</div><ul class="stg-rl">${rs.map(y=>`<li>${y.s&&!one?badge(y.s)+" ":""}<span class="rn">${codeOnly(o.rowName(y.id))}</span>${y.sum?`<small>${rich(y.sum)}</small>`:""}</li>`).join("")}</ul>`; }
+  const fx=stampChips(x); if(typeof x.ref==="string"&&x.ref.trim()) fx.push(stgChip("in the plan",refAt(x.ref,"plan.md · "+x.id,o.base)));
+  if(fx.length) h+=`<div class="wip-facts">${fx.join("")}</div>`;
+  return h; }
+/* a sub-step's or a task's detail: its report and its times, where they were recorded */
+function itemBody(x){ const fx=stampChips(x); return reportHtml(x)+(fx.length?`<div class="wip-facts">${fx.join("")}</div>`:""); }
+const discKey=(o,what,id)=>`${o.past?`past:${o.key||"own"}:${o.visit==null?"r":o.visit}`:`live:${o.issue}`}:${what}:${id}`;
+/* the stages of a run, collapsing: the live step Panel (o.past unset: the current stage open) and a finished Implementation view (o.past: every one closed) */
+function stageItems(R,sg,o,keys){ if(sg.length) keys.add(KEY_DISC);
+  return discList(sg.map(x=>{ const n=Array.isArray(x.rows)?x.rows.length:0, kx=o.past&&x.state!=="done"; if(kx) keys.add(KEY_PAST_TODO);
+    return discItem({key:discKey(o,"stage",x.id||x.name),cls:o.past?(x.state==="done"?"done":"todo"):stgCls(x),id:x.id,stage:x.id,name:rich(x.name||""),meta:n?`${n} Row${n===1?"":"s"}`:"",pill:kx?pill(STG_PILL.todo,"",pastPill(x.state)):stgPill(x,keys,"stage"),cur:!o.past&&x.state==="current",body:stageBody(R,x,o,keys)}); })); }
+/* a remediation's sub-steps or the Document step's tasks, collapsing */
+function subItems(list,o,keys,what,noun){ if(list.length) keys.add(KEY_DISC);
+  return discList(list.map((x,i)=>{ const kx=o.past&&x.state!=="done"; if(kx) keys.add(KEY_PAST_TODO);
+    return discItem({key:discKey(o,what,x.id||stepName(x)||i),cls:o.past?(x.state==="done"?"done":"todo"):stgCls(x),name:rich(stepName(x)||x.id||""),pill:kx?pill(STG_PILL.todo,"",pastPill(x.state)):stgPill(x,keys,noun),cur:!o.past&&x.state==="current",body:itemBody(x)}); })); }
+const pastPill=st=>st==="current"?"in progress when the step ended":"not started";
+/* a click on a stage of the WIP Panel opens it in the step Panel, back from a finished step where one was shown */
+function openStage(run,stage){ const issue=run==="own"?PLAN.issue:run, key=`live:${issue}:stage:${stage}`; if(SEL&&SEL.run===run) SEL=null; DISC_OPEN.set(key,true); renderWip();
+  const d=[...document.querySelectorAll("#wip details.stg-d")].find(x=>x.dataset.key===key); if(d){ d.open=true; const s=d.querySelector("summary"); s.focus({preventScroll:true}); s.scrollIntoView({block:"nearest"}); } }
+
 function stepPanel(R,o){ o=o||{}; const k=R.step||"", held=["halted","escalated"].includes(k), S=held?(R.resume||""):k, keys=o.keys||new Set();
   const opts={...o,held}, title=stepTitle(S,runCtx(R));
   /* the heading is the step's title alone (plan/RULES.md §3, "The step panel"); a unit's panel names its unit to assistive technology */
@@ -3921,7 +4601,10 @@ function stepPanel(R,o){ o=o||{}; const k=R.step||"", held=["halted","escalated"
   if(k==="halted"){ h+=`<p class="sp-wait">⏸ Held still at ${esc(S?haltLabel(S,runCtx(R)):"its step")}: it waits on you for ${rich(R.waitingOn||R.detail||"(not stated)")}</p>`; }
   if(k==="escalated") h+=`<p class="sp-wait">⇧ Escalated from ${esc(S?title:"its step")}: held still while the issue's scope is re-decided.</p>`;
   /* the questions a halt in this step put to you, with their options (wip.asked; the interview's are its own panel's) */
-  if(S!=="interview") h+=askedBlock(askedShown(R,S),keys);
+  /* the latest report (wip.detail) as the pulsing Now Chip, where the answered questions stood: a question still waiting stays, the answered ones are
+     on the finished visit's snapshot (plan/RULES.md §3, "The Now Chip") */
+  if(R.detail&&(k!=="halted"||R.waitingOn)){ keys.add(KEY_NOW); h+=`<p class="sp-now"><span class="chip now${held?" held":" fullpulse"}"><span class="ck">Now</span> ${rich(R.detail)}</span></p>`; }
+  if(S!=="interview") h+=askedBlock(askedShown(R,S).filter(q=>!qAnsweredOf(q)),keys);
   h+=(PANEL[S]||PANEL._)(R,opts,keys);
   /* the open points (wip.open, plan/RULES.md §3): raised during the run, shown at every step until resolved; the trail keeps them after */
   const op=(Array.isArray(R.open)?R.open:[]).filter(x=>x&&typeof x==="object"&&typeof x.text==="string"&&x.text.trim()&&!x.resolved);
@@ -4012,8 +4695,6 @@ function checkSel(){ if(!SEL) return; const x=selRun(SEL.run); if(!x||!finishedO
 const selFor=key=>SEL&&SEL.run===key?SEL.step:null;
 const KEY_SEL=`<span><i class="sbk sel"></i>ringed in ink: the finished step the panel shows</span>`;
 const KEY_PAST_TODO=`<span><i class="node hollow"></i>dashed: not done when the step ended</span>`;
-const pastWord=st=>st==="done"?" · done":st==="current"?" · in progress when the step ended":" · not started";
-const pastItems=(list,o,keys)=>spList(list.map(x=>{ const d=x.state==="done"; if(!d) keys.add(KEY_PAST_TODO); return spItem(d?"done":"todo",dotMark,`${x.id?`<b>${esc(x.id)}</b> `:""}${rich(stepName(x))}${pastWord(x.state)}`,Array.isArray(x.rows)&&x.rows.length?`touched ${x.rows.map(id=>codeOnly(o.rowName(id))).join(", ")}`:""); }));
 /* each step's finished visit, from its snapshot */
 const PAST={
   sizing:V=>`<p>Sized${V.to?`: the run starts at ${esc(V.to)}`:""}.</p>`,
@@ -4022,16 +4703,16 @@ const PAST={
   architecture:V=>`<p>The architecture weighed the options and decomposed the work into its units.</p>`,
   plan:(V,o)=>{ const P=V.plan||{}, re=P.state==="re-pass", acc=V.endedBy==="plan-accepted";
     const first=re?`re-pass ${P.from==="qa"?`after ${esc(passName(P.pass||"?"))}`:P.from==="parent"?(o.parent?`from #${esc(o.parent)}'s plan`:"from the parent's plan"):P.from==="existing"?`verifying the existing plan${P.against?` against ${esc(P.against)}`:""}`:""}`:"plan writing";
-    return `<ol class="steps" aria-label="The plan's stages"><li class="done"><span class="dot" aria-hidden="true"></span>${first}</li><li class="${acc?"done":"todo"}"><span class="dot" aria-hidden="true"></span>plan accepted</li></ol>${acc?"":`<p>The plan was not accepted in this visit.</p>`}`; },
+    return `<ol class="stepbar" aria-label="The plan StepBar"><li class="done">${first}${sbState("done")}</li><li class="${acc?"done":"todo"}">plan accepted${sbState(acc?"done":"todo")}</li></ol>${acc?"":`<p>The plan was not accepted in this visit.</p>`}`; },
   branch:V=>V.branch?`<p>The branch: <code>${esc(V.branch)}</code>.</p>`:`<p>No branch is recorded for this step.</p>`,
   implementation:(V,o,keys)=>{ const sg=Array.isArray(V.stages)?V.stages.filter(x=>x&&typeof x==="object"):[]; if(!sg.length) return `<p>No stage was recorded.</p>`;
-    return `<p class="sp-sum">${sg.filter(x=>x.state==="done").length} of ${plural(sg.length,"stage")} done</p>`+pastItems(sg,o,keys); },
+    return `<p class="sp-sum">${sg.filter(x=>x.state==="done").length} of ${plural(sg.length,"stage")} done</p>`+stageItems(V,sg,{...o,past:true},keys); },
   qa:(V,o,keys)=>{ const qa=Array.isArray(V.qa)?V.qa.filter(p=>p&&typeof p==="object"):[]; return qa.length?qa.map(p=>qaBlock(p,keys)).join(""):`<p>No ${REVIEW} verdict was recorded in this visit.</p>`; },
   remediation:(V,o,keys)=>{ const M=V.remediation||{}, p=(Array.isArray(V.qa)?V.qa:[])[0], steps=Array.isArray(M.steps)?M.steps.filter(x=>x&&typeof x==="object"):[];
     let h=`<p class="sp-sum">Answering ${esc(passName(M.pass||"?"))}</p>`; if(ROUTE[M.route]) h+=`<p>Route: ${esc(ROUTE[M.route].label)}.</p>`; if(p) h+=qaBlock(p,keys);
-    return h+(steps.length?pastItems(steps,o,keys):`<p>No sub-step was recorded.</p>`); },
+    return h+(steps.length?subItems(steps,{...o,past:true},keys,"remediation","sub-step"):`<p>No sub-step was recorded.</p>`); },
   document:(V,o,keys)=>{ const ts=V.document&&Array.isArray(V.document.tasks)?V.document.tasks.filter(x=>x&&typeof x==="object"):[]; if(!ts.length) return `<p>No task was recorded.</p>`;
-    return `<p class="sp-sum">${ts.filter(x=>x.state==="done").length} of ${ts.length} task${ts.length===1?"":"s"} done</p>`+pastItems(ts,o,keys); },
+    return `<p class="sp-sum">${ts.filter(x=>x.state==="done").length} of ${ts.length} task${ts.length===1?"":"s"} done</p>`+subItems(ts,{...o,past:true},keys,"document","task"); },
   landing:V=>{ const pr=V.event&&V.event.name==="landing"&&/PR #(\d+)/.exec(String(V.event.note||"")), steps=PLAN.wip&&Array.isArray(PLAN.wip.steps)?PLAN.wip.steps:[], split=steps.includes("merge");
     if(steps.includes("document")) return `<p>The land was accepted${pr?` (${prlink(pr[1])})`:""}: the branch carried the code, the version bump, the reconciled documents and the state boards.</p>`;
     return split?`<p>The ${REVIEW} had approved; the land was accepted${pr?` (${prlink(pr[1])})`:""}: the branch brought up to date, the code, the version bump and the reconciled documents committed on it.</p>`:`<p>The ${REVIEW} had approved; ${V.event&&V.event.name==="landing"?`the land was accepted${pr?` and merged in ${prlink(pr[1])}`:" and merged"}`:"the merge followed"}.</p>`; },
@@ -4042,9 +4723,9 @@ const PAST={
   _:V=>V.detail?`<p>${rich(V.detail)}</p>`:""};
 const VISIT_WORD={qa:`${REVIEW}s`,remediation:"visits"};
 function visitHtml(S,V,i,n,o,keys){ const grp=(l,v)=>`<span><span class="l">${l}</span>${v}</span>`;
-  let h=`<div class="sp-visit">`;
-  if(n>1) h+=`<h4>${S==="remediation"&&V.remediation?esc(remediationName(V.remediation.route,V.remediation.pass)):S==="qa"&&Array.isArray(V.qa)&&V.qa.length?esc(passNames(V.qa.map(p=>p.pass))):`Visit ${i+1} of ${n}`}</h4>`;
-  h+=(PAST[S]||PAST._)(V,o,keys);
+  /* several visits collapse, the latest open (plan/RULES.md §3, "Finished steps"); one visit stands open, with no head of its own */
+  let h="";
+  h+=(PAST[S]||PAST._)(V,{...o,visit:i},keys);
   /* the questions the halt that ended this visit put to you (a snapshot's asked) */
   if(Array.isArray(V.asked)) h+=askedBlock(V.asked.filter(q=>q&&typeof q.text==="string"&&q.text.trim()),keys);
   if(V.detail&&S!=="sizing") h+=`<p>${rich(V.detail)}</p>`;
@@ -4056,7 +4737,37 @@ function visitHtml(S,V,i,n,o,keys){ const grp=(l,v)=>`<span><span class="l">${l}
        2026-11-05); a halt stays, as the outcome of the visit it ends */
     grp(V.held&&!V.outage?"ended, waiting on you":"ended",`<span class="nw">${when(V.ended)}</span>${V.endedBy&&!V.outage?` · by <code>${esc(V.endedBy)}</code>`:""}`),
     V.to&&V.to!==S?grp("then",esc(stepLabel(V.to,{route:runCtx(V).route}))):""].filter(Boolean);
-  return h+`<div class="wip-facts sp-facts">${info.join("")}</div></div>`; }
+  h+=`<div class="wip-facts sp-facts">${info.join("")}</div>`;
+  if(n<2) return `<div class="sp-visit">${h}</div>`;
+  const key=visitKey(o.key||"own",S,i), open=DISC_OPEN.has(key)?DISC_OPEN.get(key):i===n-1, gist=visitGist(S,V); keys.add(KEY_DISC);
+  return `<details class="stg-d sp-visit" data-key="${esc(key)}" data-visit="${i}"${open?" open":""}><summary class="stg-s"><h4>${esc(visitName(S,V,i,n))}</h4><span class="nm">${esc(gist)}</span>${visitEnd(V,keys)}<span class="chev" aria-hidden="true">▸</span></summary><div class="sp-vb">${h}</div></details>`; }
+/* a visit's name, short account and how it ended: the head of its collapsing item in the step Panel and its row in the WIP Panel's brief */
+const visitKey=(run,S,i)=>`past:${run}:${S}:visit:${i}`;
+const visitName=(S,V,i,n)=>S==="remediation"&&V.remediation?remediationName(V.remediation.route,V.remediation.pass):S==="qa"&&Array.isArray(V.qa)&&V.qa.length?passNames(V.qa.map(p=>p.pass)):`Visit ${i+1} of ${n}`;
+function visitGist(S,V){ const of=a=>Array.isArray(a)?a.filter(x=>x&&typeof x==="object"):[], done=x=>x.state==="done", cnt=(a,word,verb,f)=>a.length?`${a.filter(f||done).length} of ${plural(a.length,word)} ${verb}`:"";
+  if(S==="implementation") return cnt(of(V.stages),"stage","done");
+  if(S==="remediation") return cnt(of((V.remediation||{}).steps),"sub-step","done");
+  if(S==="document") return cnt(of((V.document||{}).tasks),"task","done");
+  if(S==="research") return cnt(questionsOf(V),"question","returned",q=>q.findings!=null);
+  if(S==="interview") return cnt(of(V.interview),"question","answered",qAnsweredOf);
+  if(S==="qa"){ const p=of(V.qa)[0]; return p?findingsWords(p.findings,p.severity,true)||"":""; }
+  if(S==="plan") return V.endedBy==="plan-accepted"?"plan accepted":V.endedBy?"not accepted in this visit":"";
+  if(S==="branch") return V.branch?`branch ${V.branch}`:"";
+  if(V.units) return `${V.units.done} of ${plural(V.units.total,"unit")}`;
+  return ""; }
+const VISIT_HELD={g:"⏸",label:"waited on you",cls:"neutral"};
+const KEY_VISIT_HELD=`<span>${pill(VISIT_HELD)} the visit ended at a question put to you</span>`;
+function visitEnd(V,keys){ const p=Array.isArray(V.qa)?V.qa.filter(x=>x&&typeof x==="object")[0]:null; if(p&&QA[p.verdict]){ keys.add(`<span>${pill(QA[p.verdict])} ${REVIEW} verdict</span>`); return pill(QA[p.verdict]); } if(V.held&&!V.outage){ keys.add(KEY_VISIT_HELD); return pill(VISIT_HELD); } return ""; }
+/* the finished step at a glance, in the WIP Panel beside its step Panel (plan/RULES.md §3, "Finished steps"): a row per visit, its account, how it ended and its last report; a click on a row opens that visit in the step Panel. */
+function pastBrief(R,S,o){ const vs=visitsOf(R,S), keys=o.keys, title=stepTitle(S,{route:runCtx(R).route}); if(vs.length) { const n=vs.length, ended=vs[n-1].ended;
+    return `<div class="stg-strip sp-brief" role="group" aria-label="${esc(title)}: the finished step at a glance"><div class="wip-sub">${esc(title)} · finished${n>1?` · ${n} ${VISIT_WORD[S]||"visits"}`:""}${okStamp(ended)?` · <span class="nw">${when(ended)}</span>`:""}</div><ol class="stg-rows">${vs.map((V,i)=>{ const named=n>1&&(S==="qa"||S==="remediation"), gist=visitGist(S,V), head=named?visitName(S,V,i,n):(gist||visitName(S,V,i,n));
+      const tail=okStamp(V.ended)?`<span class="nw">ended ${when(V.ended)}</span>`:"", text=[named&&gist?esc(gist):"",V.detail&&S!=="sizing"?rich(V.detail):"",tail].filter(Boolean).join(" · ");
+      return `<li class="stg-row done${n>1?"":" static"}"${n>1?` data-run="${esc(o.key||"own")}" data-step="${esc(S)}" data-visit="${i}"`:""}><b class="id">${i+1}</b>${n>1?`<button type="button" class="stg-open" aria-label="Visit ${i+1}: ${esc(head)}: open it in the step Panel">${esc(head)}</button>`:`<span class="stg-nm">${esc(head)}</span>`}${visitEnd(V,keys)}${text?`<span class="br">${text}</span>`:""}</li>`; }).join("")}</ol></div>`; }
+  const rc=pastRecon(R,S,o), parts=[rc.trail&&rc.trail.length?plural(rc.trail.length,"trail entry").replace("entrys","entries"):"",rc.milestones&&rc.milestones.length?plural(rc.milestones.length,"milestone"):"",visitGist(S,rc)].filter(Boolean);
+  return `<div class="stg-strip sp-brief" role="group" aria-label="${esc(title)}: the finished step at a glance"><div class="wip-sub">${esc(title)} · finished · reconstructed from the history</div><p class="wip-detail">${parts.length?esc(parts.join(" · ")):"The history records nothing for this step."}</p></div>`; }
+/* a click on a row of the brief opens that visit in the step Panel */
+function openVisit(run,S,i){ const key=visitKey(run,S,i); DISC_OPEN.set(key,true); renderWip();
+  const d=[...document.querySelectorAll("#wip details.sp-visit")].find(x=>x.dataset.key===key); if(d){ d.open=true; const s=d.querySelector("summary"); s.focus({preventScroll:true}); s.scrollIntoView({block:"nearest"}); } }
 /* a finished step with no snapshot: what survives, reduced */
 function reconHtml(S,rc,o,keys){ let h=""; const at=x=>x.date?when(x.date):"";
   if(S==="sizing"&&rc.sized) h+=`<p>Sized <span class="nw">${when(rc.sized)}</span>.</p>`;
@@ -4065,7 +4776,7 @@ function reconHtml(S,rc,o,keys){ let h=""; const at=x=>x.date?when(x.date):"";
   if(S==="research"&&Array.isArray(rc.questions)&&rc.questions.length){ h+=`<p class="sp-sum">${rc.questions.length} question${rc.questions.length===1?"":"s"} in the trail</p>`;
     h+=spList(rc.questions.map(q=>{ if(!q.findings) keys.add(KEY_PAST_TODO); return spItem(q.findings?"done":"todo",dotMark,`<code>${esc(q.question)}</code>`,q.findings?refAt(q.findings,"findings",o.base):"no findings in the trail"); })); }
   if(S==="branch"&&rc.branch) h+=`<p>The branch: <code>${esc(rc.branch)}</code>.</p>`;
-  if(S==="implementation"&&Array.isArray(rc.stages)&&rc.stages.length) h+=`<p class="sp-sum">The stages as the board holds them now</p>`+pastItems(rc.stages,o,keys);
+  if(S==="implementation"&&Array.isArray(rc.stages)&&rc.stages.length) h+=`<p class="sp-sum">The stages as the board holds them now</p>`+stageItems(null,rc.stages,{...o,past:true},keys);
   if(S==="qa"&&Array.isArray(rc.qa)&&rc.qa.length) h+=rc.qa.map(p=>qaBlock(p,keys)).join("");
   if(S==="remediation"&&Array.isArray(rc.qa)&&rc.qa.length) h+=rc.qa.map(p=>`<p class="sp-sum">Answering ${esc(passName(p.pass))}${ROUTE[p.route]?` · ${esc(ROUTE[p.route].label)}`:""}</p>`+qaBlock(p,keys)).join("");
   if(["sub-issues","boards"].includes(S)&&rc.units) h+=(PAST[S])({units:rc.units});
@@ -4073,8 +4784,9 @@ function reconHtml(S,rc,o,keys){ let h=""; const at=x=>x.date?when(x.date):"";
   if(rc.trail&&rc.trail.length) h+=`<p class="sp-sum">The trail</p>`+spList(rc.trail.map(t=>spItem("done",dotMark,rich(t.label),[at(t),t.ref?refAt(t.ref,"",o.base):""].filter(Boolean).join(" · "))));
   return h||`<p>The history records nothing for this step.</p>`; }
 /* The panel of a finished step S of the run R: its visits (each Correction or Resolution, each Quality Review apart) or its reconstruction, under the viewing line. */
+const pastRecon=(R,S,o)=>o.own?reconStep(PLAN,S):(R.recon&&R.recon[S])||{reconstructed:true,ended:null,trail:[],milestones:[]};
 function pastPanel(R,S,o){ o=o||{}; const keys=o.keys||new Set(), vs=visitsOf(R,S);
-  const rc=vs.length?null:o.own?reconStep(PLAN,S):(R.recon&&R.recon[S])||{reconstructed:true,ended:null,trail:[],milestones:[]};
+  const rc=vs.length?null:pastRecon(R,S,o);
   const ended=vs.length?vs[vs.length-1].ended:rc.ended, who=o.unitIssue?`#${esc(o.unitIssue)}'s `:"", title=stepTitle(S,{route:runCtx(R).route});
   let h=`<div class="${["sp","past",o.cls].filter(Boolean).join(" ")}" data-step="${esc(S)}" data-view="${rc?"reconstructed":"snapshot"}"${o.row?` style="--r:${o.row}"`:""} role="group" aria-label="${esc(o.label||"The finished step shown")}: ${esc(title)}">`;
   h+=`<p class="sp-view"><span>viewing: <b>${who}${esc(title)}</b>${ended?` · finished <span class="nw">${when(ended)}</span>`:""}${rc?" · reconstructed from the history":vs.length>1?` · ${vs.length} ${VISIT_WORD[S]||"visits"}`:""}</span><button type="button" class="sp-back" data-run="${esc(o.key||"own")}">back to now</button></p>`;
@@ -4097,12 +4809,24 @@ const KEY_CHG=()=>`<span><i class="chg"></i>charging arrow: its verdict being wr
    landed. Before any unit starts: "planned · 11 units"; once all have landed: "landed · 11 of 11". Every #n is a lone #n: it opens
    the issue's board when there is one (ilink). */
 /* The chain's counts, shared by the header chip and the WIP strip's phase card: units landed of the units counted (dropped and
-   deferred ones apart), the units in progress, and the percentage the bar fills. */
+   deferred ones apart), and the units in progress. */
 function chainCounts(){ const units=ROWS.filter(r=>r.unit), out=k=>count(units,r=>stateOf(r)===k);
   const counted=units.filter(r=>!["dropped","deferred"].includes(stateOf(r))&&!leftForLater(r)), landed=count(counted,unitLanded), M=counted.length, left=count(units,leftForLater);
   const extra=[out("dropped")?`${out("dropped")} dropped`:"",out("deferred")?`${out("deferred")} deferred`:"",left?`${left} left for later`:""].filter(Boolean);
-  return {units,landed,M,extra,complete:out("complete"),pct:M?Math.round(100*landed/M):0}; }
-function chainChip(){ const {units,landed,M,extra}=chainCounts();
+  return {units,counted,landed,M,extra,complete:out("complete")}; }
+/* The chain is a StepBar (plan/RULES.md §3, "The chain is a StepBar"): the counted units in landing order, one chevron each, done where landed,
+   current where the unit's run is under way or it is complete and not merged, to come else; dropped, deferred and left for later stand out of it,
+   counted apart beside it. The phase's Card draws it with each chevron the unit's name linking its board or issue, its system's swatch and its
+   marks (o.marks: the FullPulse, the Ring alone while held, the still up-next mark with its Tag). The header's chain Chip draws it unmarked, each
+   chevron the unit's issue number the sentence beside it names (a lone #n, opening the board). */
+const chainUnitState=r=>unitLanded(r)?"done":(rowActive(r)&&!LANDED&&!STOPPED)||["complete","in-progress","partially-built"].includes(stateOf(r))?"cur":"todo";
+function chainSteps(rows,o){ o=o||{}; if(!rows.length) return "";
+  return `<ol class="stepbar" aria-label="#${esc(PLAN.issue)}: its units in landing order">${rows.map(r=>{ const st=chainUnitState(r), on=rowActive(r)&&!LANDED&&!STOPPED, comp=st==="cur"&&stateOf(r)==="complete", next=!!o.marks&&st==="todo"&&isNext(r);
+    const mark=!o.marks?"":on?(PAUSED||runPaused(r)?" held":" fullpulse"):next?" upnext-ring":"", word=st==="done"?"landed":comp?"complete, not merged":st==="cur"?"in progress":"to come";
+    const href=r.unit.issue?boardOf(r.unit.issue)||ghUrl(r.unit.issue):"", nm=codeOnly(r.name||r.unit.slug||r.id);
+    const label=o.marks?(href?`<a href="${esc(href)}"${/^https?:/.test(href)?' target="_blank" rel="noopener"':""}>${nm}</a>`:nm):r.unit.issue?ilink(r.unit.issue):esc(r.unit.n!=null?r.unit.n:(r.unit.slug||r.id));
+    return `<li class="${st}${mark}"${st==="cur"?' aria-current="step"':""}${o.marks?"":` title="${nameText(r)}"`}>${o.marks?`<i class="sb-sys" data-sys="${esc(r.system||"")}" aria-hidden="true"></i>`:""}${label}${comp?`<span class="sb-g" aria-hidden="true">${STATES.complete.g}</span>`:""}${next?TAG_NEXT:""}<span class="sb-st">, ${word}</span></li>`; }).join("")}</ol>`; }
+function chainChip(){ const {units,counted,landed,M,extra}=chainCounts();
   const cur=LANDED||STOPPED?[]:units.filter(rowActive);
   const done=LANDED||(M>0&&landed===M), started=landed>0||cur.length>0||units.some(r=>stateOf(r)==="complete");
   const runWord=r=>{ const L=runOf(r); if(!L) return "in progress"; const k=runKind(L); return k==="halted"?"waiting on you":k==="escalated"?"escalated":k==="cancelled"?"run cancelled":`in progress${L.step?` (${esc(stepLabel(L.step,runCtx(L)))})`:""}`; }; /* the unit's step by its name, as its run Pill names it (dashboards-skill/51) */
@@ -4112,8 +4836,7 @@ function chainChip(){ const {units,landed,M,extra}=chainCounts();
   else if(STOPPED) txt=[`<b>cancelled</b> · ${landed} of ${M} landed`,...extra];
   else if(!started) txt=[`<b>planned</b> · ${M?`${M} unit${M===1?"":"s"}`:"no units yet"}`,...extra];
   else txt=[`<b>${landed} of ${M} landed</b>`,...cur.map(r=>`${u(r)} ${runWord(r)}`),NEXT_ROW?`${u(NEXT_ROW)} up next${openBlockers(NEXT_ROW).length?`, blocked by ${openBlockers(NEXT_ROW).map(bref).join(", ")}`:""}`:"",...extra];
-  const pct=chainCounts().pct;
-  return `<span class="chip status progress wide${done?" done":!started?" planned":""}"><span class="ck">tracking issue · chain</span> ${txt.filter(Boolean).join(" · ")}<span class="cbar" role="img" aria-label="${landed} of ${plural(M,"unit")} landed"><i style="width:${pct}%"></i></span></span>`; }
+  return `<div class="chip status progress wide${done?" done":!started?" planned":""}"><span class="ck">tracking issue · chain</span> ${txt.filter(Boolean).join(" · ")}${chainSteps(counted)}</div>`; }
 let OPTS=[];
 const count=(arr,f)=>arr.filter(f).length;
 function renderHeader(){
@@ -4167,21 +4890,19 @@ function stepsLine(steps,cur,o){ o=o||{}; const i=steps.indexOf(cur), held=o.hel
    Every part of the run writes docs/plans/.live/progress/<issue>/<name>.js in its checkout every 10 minutes it runs, one line
    setting window.PROGRESS["<name>"] to its note (who, issue, times, done, left, estimate), and deletes it when it finishes. While the run is
    live and the board is a local copy, each live poll reads the names the issue's folder holds from its index.js (plan/scripts/progress-index.js
-   keeps it, with no event: a board from disk cannot list a folder, and a note's slug is its writer's own) and probes those and the names the
-   run is known to have: one per kind of work, one per research question, one per stage (a missing file is simply no note). Each note is an info card of the
+   keeps it, with no event: a board from disk cannot list a folder, and a note's slug is its writer's own) and probes those (a missing file is simply no note,
+   and with no index the panel lists none). Each note is an info card of the
    step panel: its work, how long it has run, what is done, what is left, its estimate and when it wrote; a note not updated for over 20
-   minutes is drawn muted. A tracking board probes each unit in progress under the unit's own issue. The names below are
-   file names only: a note is shown by the work it reports (noteLabel(), NOTE_WORK under names:begin: "research ·
+   minutes is drawn muted. A tracking board probes each unit in progress under the unit's own issue. The names are
+   file names only, none of them in this script: a note is shown by the work it reports (noteLabel(), NOTE_WORK under names:begin: "research ·
    <slug>", "implementation · s2"; a Quality Review's checks "documentation check", "code check", "test check", dashboards-skill/52), never by
    its file's name (no internal names on a board, dashboards-skill/33). */
-const AGENTS=["planner","interviewer","researcher","verifier","architect","plan-writer","rookie-dev","test-inspector","qa","code-reviewer","documentation-reviewer"];
-const noteLabel=name=>{ const n=String(name||""), b=Object.keys(NOTE_WORK).sort((x,y)=>y.length-x.length).find(k=>n===k||n.startsWith(k+"-")); return b?NOTE_WORK[b]+(n.length>b.length?" · "+n.slice(b.length+1):""):"progress"; };
+const noteLabel=name=>{ const n=String(name||""); for(const [s,w] of NOTE_WORK){ const m=new RegExp(`^${s}[a-z]*(?=-|$)`).exec(n); if(m) return w+(n.length>m[0].length?" · "+n.slice(m[0].length+1):""); } return "progress"; };
 const PROG_STALE_MS=20*60000;
 let PROG={};
 const KEY_PROG=`<span><i class="progk"></i>${esc(PROGRESS_NOTE)}</span>`;
 const KEY_PROG_STALE=`<span><i class="progk stale"></i>muted: no update for over 20 minutes</span>`;
-function progNames(R,listed){ R=R||{}; const qs=questionsOf(R).map(q=>"researcher-"+q.question), st=(Array.isArray(R.stages)?R.stages:[]).filter(x=>x&&x.id).map(x=>"rookie-dev-"+String(x.id).toLowerCase());
-  return [...new Set([...AGENTS,...qs,...st,...(Array.isArray(listed)?listed:[])])].filter(n=>typeof n==="string"&&/^[a-z0-9][a-z0-9-]*$/.test(n)); }
+function progNames(listed){ return [...new Set(Array.isArray(listed)?listed:[])].filter(n=>typeof n==="string"&&/^[a-z0-9][a-z0-9-]*$/.test(n)); }
 function loadNoteNames(issue){ return new Promise(res=>{ const k=String(issue), sc=document.createElement("script"); try{ if(window.PROGRESS_NAMES) delete window.PROGRESS_NAMES[k]; }catch(e){}
   sc.src=`${UP}docs/plans/.live/progress/${issue}/index.js?t=${Date.now()}`;
   sc.onload=()=>{ const v=(window.PROGRESS_NAMES||{})[k]; sc.remove(); res(Array.isArray(v)?v:[]); }; sc.onerror=()=>{ sc.remove(); res([]); }; document.head.appendChild(sc); }); }
@@ -4190,7 +4911,7 @@ function loadNote(issue,name){ return new Promise(res=>{ const sc=document.creat
   sc.onload=()=>{ const v=(window.PROGRESS||{})[name]; sc.remove(); res(v&&typeof v==="object"&&!Array.isArray(v)?v:null); }; sc.onerror=()=>{ sc.remove(); res(null); }; document.head.appendChild(sc); }); }
 async function pollProgress(){ if(!(runLive()&&LIVE_LOCAL)) return;
   const runs=[[PLAN.issue,WIP],...(TRACKING?ROWS.filter(r=>r.unit&&r.unit.issue&&runOf(r)).map(r=>[r.unit.issue,runOf(r)]):[])], next={};
-  for(const [n,R] of runs){ const names=progNames(R,await loadNoteNames(n)), got=await Promise.all(names.map(x=>loadNote(n,x))); names.forEach((x,i)=>{ if(got[i]) (next[n]=next[n]||{})[x]=got[i]; }); }
+  for(const [n] of runs){ const names=progNames(await loadNoteNames(n)), got=await Promise.all(names.map(x=>loadNote(n,x))); names.forEach((x,i)=>{ if(got[i]) (next[n]=next[n]||{})[x]=got[i]; }); }
   if(JSON.stringify(next)!==JSON.stringify(PROG)){ PROG=next; renderWip(); } }
 function progressHtml(issue,keys){ const notes=Object.entries(PROG[issue]||{}); if(!notes.length) return ""; const now=Date.now(), span=ms=>{ const m=Math.max(0,Math.round(ms/60000)); return m<90?`${m} min`:`${Math.round(m/60)} h`; };
   const items=notes.map(([name,p])=>{ const at=Date.parse(String(p.at||"")), st=Date.parse(String(p.started||"")), stale=isNaN(at)||now-at>PROG_STALE_MS; keys.add(KEY_PROG); if(stale) keys.add(KEY_PROG_STALE);
@@ -4200,7 +4921,7 @@ function renderWip(){
   const w=$("#wip"), st=STEP||"—"; w.className="wip"; w.dataset.step=st;
   /* the finished step shown (SEL), kept while it is still finished; the focus on a strip button survives the redraw */
   PICKS=0; checkSel();
-  const fa=document.activeElement, refocus=fa&&w.contains(fa)?(fa.classList.contains("stepbtn")?["pick",fa.dataset.run,fa.dataset.step]:fa.classList.contains("sp-back")?["back"]:null):null;
+  const fa=document.activeElement, refocus=fa&&w.contains(fa)?(fa.classList.contains("stepbtn")?["pick",fa.dataset.run,fa.dataset.step]:fa.classList.contains("sp-back")?["back"]:fa.matches("summary.stg-s")?["disc",fa.parentElement.dataset.key]:fa.classList.contains("stg-open")?(fa.parentElement.dataset.visit!=null?["stgv",fa.parentElement.dataset.run,fa.parentElement.dataset.visit]:["stg",fa.parentElement.dataset.run,fa.parentElement.dataset.stage]):null):null;
   const special=STEP_SPECIAL[LANDED?"landed":st];
   if(special) w.classList.add(special.cls);
   const steps=WIP.steps&&WIP.steps.length?WIP.steps:STEP_ORDER;
@@ -4209,6 +4930,8 @@ function renderWip(){
   /* the head line's "since" is left out while the board's own step panel is drawn beside it: the panel says it (plan/RULES.md §3) */
   const units0=TRACKING?ROWS.filter(r=>r.unit):[];
   const ownPanelShown=!LANDED&&!STOPPED&&(units0.length?OWN_PANEL_STEPS.includes(ownStep):!NOT_STARTED);
+  /* the latest report is said once, by the live step Panel beside it (its Now Chip, plan/RULES.md §3); a strip with no live Panel beside it keeps it */
+  const detailHere=WIP.detail&&(!HALTED||WIP.waitingOn)&&!(ownPanelShown&&!selFor("own"));
   const since=WIP.since&&(!ownPanelShown||selFor("own"))?` · since <span class="nw">${when(WIP.since)}</span>`:"";
   const headLine=`<div class="wip-head">${head}<span>step <b>${esc(stepLabel(LANDED?"landed":st,runCtx(WIP)))}</b>${since}</span>${WIP.updated?`<span class="upd">updated ${when(WIP.updated)}</span>`:""}</div>`;
   const legend=[];
@@ -4241,13 +4964,11 @@ function renderWip(){
     runs=act.filter(runOf);
     let ph=`<div class="wipcard phase${special?" "+special.cls:""}"><div class="wipcard-t"><span class="k">#${esc(PLAN.issue)} · the tracking issue's own phase</span></div>${headLine}`;
     if(st==="escalated") ph+=`<p class="wip-wait">Escalated: the run waits while the issue's scope is re-decided.</p>`;
-    ph+=own+(WIP.detail&&(!HALTED||WIP.waitingOn)?`<p class="wip-detail">${rich(WIP.detail)}</p>`:"");
-    ph+=`<div class="wip-sub">The chain · ${C.landed} of ${plural(C.M,"unit")} landed${C.complete?` · ${C.complete} complete, not merged`:""}${C.extra.length?` · ${esc(C.extra.join(" · "))}`:""}</div><span class="chip-bar" role="img" aria-label="${C.landed} of ${plural(C.M,"unit")} landed"><i style="width:${C.pct}%"></i></span>`;
-    ph+=`<ol class="chain">${units.map(r=>{ const s=stateOf(r), on=rowActive(r), href=r.unit.issue?boardOf(r.unit.issue)||ghUrl(r.unit.issue):""; const inner=`${esc(r.unit.n!=null?r.unit.n:"")}${r.unit.issue?` · #${esc(r.unit.issue)}`:""} ${esc(r.unit.slug||r.id)}${s!=="pending"?` ${STATES[s].g}`:""}${isNext(r)?` ${TAG_NEXT}`:""}`; const tag=href?`<a href="${esc(href)}"${/^https?:/.test(href)?' target="_blank" rel="noopener"':""} data-sys="${esc(r.system)}">${inner}</a>`:`<span class="u" data-sys="${esc(r.system)}">${inner}</span>`; return `<li class="${s==="pending"?"pending":"done"}${on&&!LANDED?(PAUSED||runPaused(r)?" held":" fullpulse"):isNext(r)?" upnext-ring":""}">${tag}</li>`; }).join("")}</ol>`;
-    const phase=ph+factsHtml+`</div>`; let rowN=0;
-    legend.push(sysKey(units.map(r=>r.system)),units.some(r=>stateOf(r)==="pending")?`<span><i class="pln"></i>dashed: unit not built, or not started</span>`:"");
-    [...new Set(units.map(stateOf))].filter(k=>k!=="pending").forEach(k=>legend.push(`<span>${badge(k)} ${esc(STATES[k].desc)}</span>`));
-    if(C.M) legend.push(`<span><i class="bar"></i>green bar: units landed of all units</span>`);
+    ph+=own+(detailHere?`<p class="wip-detail">${rich(WIP.detail)}</p>`:"");
+    ph+=`<div class="wip-sub">The chain · ${C.landed} of ${plural(C.M,"unit")} landed${C.complete?` · ${C.complete} complete, not merged`:""}${C.extra.length?` · ${esc(C.extra.join(" · "))}`:""}</div>`;
+    ph+=chainSteps(C.counted,{marks:true});
+    const phase=ph+factsHtml+(selFor("own")?pastBrief(WIP,selFor("own"),{key:"own",own:true,keys:pkeys}):"")+`</div>`; let rowN=0;
+    { const cs=new Set(C.counted.map(chainUnitState)); legend.push(sysKey(C.counted.map(r=>r.system)),cs.has("done")?`<span><i class="sbk"></i>a unit, in landing order: landed</span>`:"",cs.has("cur")?`<span><i class="sbk cur"></i>bold: a unit in progress, or complete and not merged${C.counted.some(r=>stateOf(r)==="complete")?` (${STATES.complete.g})`:""}</span>`:"",cs.has("todo")?`<span><i class="sbk todo"></i>dashed: a unit to come</span>`:""); }
     /* the tracking issue's own finished step, picked on its phase's steps line (plan/RULES.md §3, "Finished steps"): a row of its own
        beside the phase, first, in the unit's and the panel's shares; at its own sub-issues or boards step it takes the own panel's place */
     const ovRow=selFor("own");
@@ -4261,12 +4982,14 @@ function renderWip(){
         if(held) b+=`<p class="note">What it waits on is under “Waiting on you”.</p>`;
         if(k==="escalated") b+=`<p class="wip-wait">Escalated: the run waits while the issue's scope is re-decided.</p>`;
         if(k!=="cancelled") b+=stepsLine(L.steps&&L.steps.length?L.steps:STEP_ORDER,held||k==="escalated"?(L.resume||""):L.step,{held:held||k==="escalated",ctx:runCtx(L),label:`#${r.unit.issue}: its pipeline steps`,pick:{key:String(r.unit.issue),R:L,status:L.status}});
-        if(L.detail) b+=`<p class="wip-detail">${rich(L.detail)}</p>`;
+        if(L.detail&&selFor(String(r.unit.issue))) b+=`<p class="wip-detail">${rich(L.detail)}</p>`;
         /* no "since" group while the unit's step panel is drawn beside the card (it always is, from its mirror): the panel says it */
         const f=[researchFact(L),L.updated?`<span><span class="l">updated</span><span class="nw">${when(L.updated)}</span></span>`:"",
           qaShown(L).length?`<span><span class="l">${PASS_NAME}s</span>${qaShown(L).map(qaPill).join(" ")}${L.qaMax?` <small>of at most ${esc(L.qaMax)}</small>`:""}</span>`:"",
           L.branch&&!unitLanded(r)?`<span><span class="l">branch</span><code>${esc(L.branch)}</code></span>`:""].filter(Boolean);
         if(f.length) b+=`<div class="wip-facts">${f.join("")}</div>`;
+        b+=stageStrip(L,held||k==="escalated"?(L.resume||""):L.step,pkeys,held||k==="escalated",{run:String(r.unit.issue),compact:true});
+        if(selFor(String(r.unit.issue))) b+=pastBrief(L,selFor(String(r.unit.issue)),{key:String(r.unit.issue),keys:pkeys});
       }
       h+=b+`</div>`;
       /* the unit's step panel beside it, from its mirror (plan/RULES.md §3), in place of the up-next card */
@@ -4296,7 +5019,7 @@ function renderWip(){
     if(HALTED) h+=`<p class="wip-wait">Waiting on you: ${rich(WIP.waitingOn||WIP.detail||"(not stated)")}</p>`;
     if(st==="escalated") h+=`<p class="wip-wait">Escalated: the run waits while the issue's scope is re-decided.</p>`;
     /* while halted the wait line shows waitingOn, falling back to the detail: the detail is drawn too unless it is that fallback */
-    h+=own+(WIP.detail&&(!HALTED||WIP.waitingOn)?`<p class="wip-detail">${rich(WIP.detail)}</p>`:"")+factsHtml;
+    h+=own+(detailHere?`<p class="wip-detail">${rich(WIP.detail)}</p>`:"")+factsHtml+stageStrip(WIP,shownStep,pkeys,HALTED||st==="escalated",{run:"own"})+(selFor("own")?pastBrief(WIP,selFor("own"),{key:"own",own:true,keys:pkeys}):"");
     if(HALTED) legend.push(`<span><i class="wait"></i>yellow strip: waiting on you</span>`);
     /* the strip on the left half, the step panel on the right (plan/RULES.md §3); a landed or cancelled board has no current step */
     if(NOT_STARTED) h+=`<p class="wip-detail">Its board was laid from ${PLAN.parent&&PLAN.parent.issue?`${ilink(PLAN.parent.issue)}'s`:"its tracking issue's"} documents; its run starts when it is sized.</p>`;
@@ -4324,11 +5047,11 @@ function renderWip(){
   [...new Set(runs.flatMap(r=>qaShown(runOf(r))).map(p=>p.verdict))].filter(v=>QA[v]&&!latest.has(v)).forEach(v=>legend.push(`<span>${pill(QA[v],"",`${passName("N")} · ${QA[v].label}`)} an earlier ${PASS_NAME} of the unit's run</span>`));
   w.innerHTML=h+`<div class="legend">${[...new Set(legend.filter(Boolean))].join("")}</div>`;
   paint(w);
-  if(refocus){ const b=refocus[0]==="back"?w.querySelector(".sp-back"):[...w.querySelectorAll(".stepbtn")].find(x=>x.dataset.run===refocus[1]&&x.dataset.step===refocus[2]); if(b) b.focus(); }
+  if(refocus){ const b=refocus[0]==="back"?w.querySelector(".sp-back"):refocus[0]==="disc"?[...w.querySelectorAll("summary.stg-s")].find(x=>x.parentElement.dataset.key===refocus[1]):refocus[0]==="stg"||refocus[0]==="stgv"?[...w.querySelectorAll(".stg-row")].filter(x=>x.dataset.run===refocus[1]&&(refocus[0]==="stg"?x.dataset.stage===refocus[2]:x.dataset.visit===refocus[2])).map(x=>x.querySelector(".stg-open"))[0]:[...w.querySelectorAll(".stepbtn")].find(x=>x.dataset.run===refocus[1]&&x.dataset.step===refocus[2]); if(b) b.focus(); }
 }
 /* the finished steps' buttons and "back to now" (plan/RULES.md §3, "Finished steps"): one listener on the strip, which outlives its redraws */
 (function(){ const w=$("#wip"); if(!w) return;
-  w.addEventListener("click",e=>{ const b=e.target.closest(".stepbtn"); if(b&&w.contains(b)){ pickStep(b.dataset.run,b.dataset.step); return; } if(e.target.closest(".sp-back")) backToNow(); });
+  w.addEventListener("click",e=>{ const b=e.target.closest(".stepbtn"); if(b&&w.contains(b)){ pickStep(b.dataset.run,b.dataset.step); return; } if(e.target.closest(".sp-back")){ backToNow(); return; } const g=e.target.closest(".stg-row[data-stage]"); if(g&&w.contains(g)&&!e.target.closest("a")){ openStage(g.dataset.run,g.dataset.stage); return; } const v=e.target.closest(".stg-row[data-visit]"); if(v&&w.contains(v)&&!e.target.closest("a")) openVisit(v.dataset.run,v.dataset.step,v.dataset.visit); });
   w.addEventListener("keydown",e=>{ if(e.key==="Escape"&&SEL){ e.preventDefault(); backToNow(); } }); })();
 
 /* ---------- KPIs ---------- */
@@ -4605,7 +5328,7 @@ const builtMark=r=>{ const g=cellGlow(r.id,"built"); return g+(/ fullpulse| held
 function cellVerdict(r){ const v=r.verdict||{}, w=verdictOf(r), leave=w==="leave", chg=!w&&CHARGING(); return `<div class="cell verdict${leave?" leave":""}${chg?` charging${PAUSED?" still":""}`:""}${cellGlow(r.id,"verdict")}" role="button" tabindex="0" data-row="${esc(r.id)}" data-col="verdict" aria-label="Verdict: ${nameText(r)}${w?"":", not yet written"}"><div class="kick">3 · VERDICT${w?` <span class="kind">${leave?"leave as is":"build"}</span>`:""}</div><div class="sum">${verdictBody(r)}</div><div class="meta"><span>${countLabel((v.steps||[]).length,"step")} · ${countLabel((v.tests||[]).length,"test")} · ${countLabel((v.risks||[]).length,"risk")}</span>${moreLink(v.link,"plan")}</div></div>`; }
 function cellBuilt(r){ const st=stateOf(r), b=r.asBuilt||{}, S=STATES[st]; const extra=st==="deferred"&&b.issue?` → ${ilink(b.issue)}`:"";
   const link=b.link||(r.unit&&(unitHref(r)||r.unit.folder))||"";
-  return `<div class="cell built ${S.cls}${st==="pending"?" pending":""}${st==="deferred"?" deferred":""}${builtMark(r)}" role="button" tabindex="0" data-row="${esc(r.id)}" data-col="built" aria-label="As built: ${nameText(r)}, ${S.label}${isNext(r)?", up next":""}${runOf(r)?`, its run: ${esc(runShort(runOf(r)).slice(2))}`:""}"><div class="kick">4 · AS BUILT ${badge(st,extra)}${nextTags(r)}</div>${landingChips(r)}<div class="sum">${builtBody(r,st)}</div>${runLine(r)}<div class="meta"><span>${plural((b.changes||[]).length,"change")} · ${plural((b.commits||[]).length,"commit")}</span>${moreLink(link,r.unit?(unitHref(r)?"board":"folder"):"record")}</div></div>`; }
+  return `<div class="cell built ${S.cls}${st==="pending"?" pending":""}${st==="deferred"?" deferred":""}${builtMark(r)}" role="button" tabindex="0" data-row="${esc(r.id)}" data-col="built" aria-label="As built: ${nameText(r)}, ${S.label}${isNext(r)?", up next":""}${runOf(r)?`, its run: ${esc(runShort(runOf(r)).slice(2))}`:""}"><div class="kick">4 · AS BUILT ${badge(st,extra)}${nextTags(r)}</div>${landingChips(r)}<div class="sum">${builtBody(r,st)}</div>${runLine(r)}<div class="meta"><span>${countLabel((b.changes||[]).length,"change")} · ${countLabel((b.commits||[]).length,"commit")}</span>${moreLink(link,r.unit?(unitHref(r)?"board":"folder"):"record")}</div></div>`; }
 const GROUP_ORDER=["Code","Tests","Documents","Release","Left for later"];
 function grouped(){ const groups=[]; ROWS.forEach(r=>{ const g=r.group||""; let G=groups.find(x=>x.name===g); if(!G){ G={name:g,rows:[]}; groups.push(G); } G.rows.push(r); });
   /* an issue board orders its groups Code, Tests, Documents, Release, Left for later; a tracking board keeps landing order */
@@ -4671,7 +5394,7 @@ function select(rowId,col,optId){
 }
 /* A statement's reference (plan/RULES.md §2, "Statements"): a plain click shows, in the inspector, the excerpt embed.js copied from the
    plan section it rests on, beside the link that opens the section; a modified click (a new tab, a new window) follows the link. */
-function bindRefs(root){ (root||document).querySelectorAll("a.sref,a.section-chip").forEach(a=>a.addEventListener("click",e=>{ if(e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey) return;
+function bindRefs(root){ (root||document).querySelectorAll("a.section-chip").forEach(a=>a.addEventListener("click",e=>{ if(e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey) return;
   e.preventDefault(); e.stopPropagation(); const cell=document.querySelector(`#board .cell[data-row="${CSS.escape(a.dataset.row)}"][data-col="${a.dataset.col}"]`);
   if(a.closest("#board")){ document.querySelectorAll("#board .cell.sel, #board .opt.sel").forEach(x=>x.classList.remove("sel")); if(cell) cell.classList.add("sel"); }
   inspectRef(a.dataset.row,a.dataset.col,+a.dataset.i); try{ history.replaceState(null,"","#"+a.dataset.row+"."+a.dataset.col+".s"+a.dataset.i); }catch(x){} })); }
@@ -4691,7 +5414,7 @@ function inspectOption(r,o){ if(!o){ inspect(`<div class="kicker">2 · CONSIDERE
 function inspectVerdict(r){ const v=r.verdict||{}, w=verdictOf(r);
   inspect(`<div class="kicker">3 · VERDICT${w?` · ${w==="leave"?"LEAVE AS IS":"BUILD"}`:""}</div><div class="name">${codeOnly(r.name)}</div><div class="vis">${whereOf(r)}</div>${w&&stmtsOf(v).length?stmtsHtml(r,"verdict"):`<p class="lead">${w?rich(v.summary):"Not yet written."}</p>`}${v.defense?`<p>${rich(v.defense)}</p>`:""}<dl>${v.steps&&v.steps.length?`<dt>Steps</dt><dd><ol class="steps-list">${v.steps.map(s=>`<li><b>${esc(s.id||"·")}</b><span>${rich(s.what||"")}${fileTree(s.files)}${s.check?`<span class="check">${rich(s.check)}</span>`:""}${s.link?` ${moreLink(s.link,"in the plan")}`:""}</span></li>`).join("")}</ol></dd>`:""}${v.tests&&v.tests.length?`<dt>Tests</dt><dd>${list(v.tests)}</dd>`:""}${v.leaves&&v.leaves.length?`<dt>Leaves to other units</dt><dd>${list(v.leaves)}</dd>`:""}${v.risks&&v.risks.length?`<dt>Risks and what bounds them</dt><dd>${list(v.risks)}</dd>`:""}${v.source?`<dt>Source</dt><dd>${refHtml(v.source)}</dd>`:""}${v.link?`<dt>Detail</dt><dd>${refHtml(v.link)}</dd>`:""}</dl>`); }
 function inspectBuilt(r){ const b=r.asBuilt||{}, st=stateOf(r), a=PLAN.asBuilt||{}, u=r.unit;
-  inspect(`<div class="kicker">4 · AS BUILT${a.sha?` · AT ${esc(a.sha).toUpperCase()}`:""}</div><div class="name">${codeOnly(r.name)}</div><div class="vis">${badge(st,st==="deferred"&&b.issue?` → ${ilink(b.issue)}`:"")} ${esc(STATES[st].desc)}</div>${stmtsOf(b).length?buildingLead(r,st,"lead")+stmtsHtml(r,"built"):`<p class="lead">${rich(b.summary||(st==="pending"?"Not built yet.":""))}</p>`}<dl>${b.changes&&b.changes.length?`<dt>Changes from the verdict</dt><dd><ol>${b.changes.map(c=>`<li><b>${rich(c.what||"")}</b>${c.why?` — ${rich(c.why)}`:""}${c.when||c.ref||c.link?`<br><small>${esc(c.when||"")}${c.ref?` · ${refHtml(c.ref)}`:""}${c.link?` · ${refHtml(c.link,"the reason")}`:""}</small>`:""}</li>`).join("")}</ol></dd>`:""}${ftTree(b.files).kids.length?`<dt>Files</dt><dd>${fileTree(b.files)}</dd>`:""}${b.tests?`<dt>Tests</dt><dd>${rich(b.tests)}</dd>`:""}${b.commits&&b.commits.length?`<dt>Commits</dt><dd>${b.commits.map(c=>refHtml(c)).join(" · ")}</dd>`:""}${b.verified?`<dt>Verified</dt><dd>${rich(b.verified)}</dd>`:""}${b.issue?`<dt>Moved to</dt><dd>${ilink(b.issue)}</dd>`:""}${u?`<dt>Unit</dt><dd>${esc(u.n)}. ${u.issue?pair(u.issue,u.slug||r.id):esc(u.slug||"")}${u.blockedBy&&u.blockedBy.length?`<br>depends on <span class="deplist">${unitDeps(r).map(x=>`<span>${bref(x)} ${depPill(x)}</span>`).join("")}</span>`:""}${unitHolds(r).length?`<br>blocks · enables <span class="deplist">${unitHolds(r).map(x=>`<span>${bref(x)} ${pill(HOLD[unitLanded(r)?"enables":"blocks"])}</span>`).join("")}</span>`:""}${(u.blockedBy||[]).length||unitHolds(r).length?`<div class="legend">${depKeys(unitDeps(r),unitHolds(r).length?[unitLanded(r)?"enables":"blocks"]:[]).join("")}</div>`:""}${u.versions?`<br>versions: ${rich(u.versions)}`:""}${u.branch&&!unitLanded(r)?`<br>branch <code>${esc(u.branch)}</code>`:""}${u.board?"":`<br>${u.folder?refHtml(u.folder,"its folder"):"no plan folder yet"}`}</dd>`:""}${runOf(r)?inspectRun(r):""}${b.link?`<dt>Detail</dt><dd>${refHtml(b.link)}</dd>`:""}</dl>`); }
+  inspect(`<div class="kicker">4 · AS BUILT${a.sha?` · AT ${esc(a.sha).toUpperCase()}`:""}</div><div class="name">${codeOnly(r.name)}</div><div class="vis">${badge(st,st==="deferred"&&b.issue?` → ${ilink(b.issue)}`:"")} ${esc(STATES[st].desc)}</div>${landingChips(r)}${stmtsOf(b).length?buildingLead(r,st,"lead")+stmtsHtml(r,"built"):`<p class="lead">${rich(b.summary||(st==="pending"?"Not built yet.":""))}</p>`}<dl>${b.changes&&b.changes.length?`<dt>Changes from the verdict</dt><dd><ol>${b.changes.map(c=>`<li><b>${rich(c.what||"")}</b>${c.why?` — ${rich(c.why)}`:""}${c.when||c.ref||c.link?`<br><small>${esc(c.when||"")}${c.ref?` · ${refHtml(c.ref)}`:""}${c.link?` · ${refHtml(c.link,"the reason")}`:""}</small>`:""}</li>`).join("")}</ol></dd>`:""}${ftTree(b.files).kids.length?`<dt>Files</dt><dd>${fileTree(b.files)}</dd>`:""}${b.tests?`<dt>Tests</dt><dd>${rich(b.tests)}</dd>`:""}${b.commits&&b.commits.length?`<dt>Commits</dt><dd>${b.commits.map(c=>refHtml(c)).join(" · ")}</dd>`:""}${b.verified?`<dt>Verified</dt><dd>${rich(b.verified)}</dd>`:""}${b.issue?`<dt>Moved to</dt><dd>${ilink(b.issue)}</dd>`:""}${u?`<dt>Unit</dt><dd>${esc(u.n)}. ${u.issue?pair(u.issue,u.slug||r.id):esc(u.slug||"")}${u.blockedBy&&u.blockedBy.length?`<br>depends on <span class="deplist">${unitDeps(r).map(x=>`<span>${bref(x)} ${depPill(x)}</span>`).join("")}</span>`:""}${unitHolds(r).length?`<br>blocks · enables <span class="deplist">${unitHolds(r).map(x=>`<span>${bref(x)} ${pill(HOLD[unitLanded(r)?"enables":"blocks"])}</span>`).join("")}</span>`:""}${(u.blockedBy||[]).length||unitHolds(r).length?`<div class="legend">${depKeys(unitDeps(r),unitHolds(r).length?[unitLanded(r)?"enables":"blocks"]:[]).join("")}</div>`:""}${u.versions?`<br>versions: ${rich(u.versions)}`:""}${u.branch&&!unitLanded(r)?`<br>branch <code>${esc(u.branch)}</code>`:""}${u.board?"":`<br>${u.folder?refHtml(u.folder,"its folder"):"no plan folder yet"}`}</dd>`:""}${runOf(r)?inspectRun(r):""}${b.link?`<dt>Detail</dt><dd>${refHtml(b.link)}</dd>`:""}</dl>`); }
 /* the inspector's entry for a unit's run, from its mirror: the pill, its qa passes, the step, its steps (no mark) and its detail */
 function inspectRun(r){ const L=runOf(r);
   return `<dt>Its run now · from its board</dt><dd><div class="run">${runPill(L)}${runAt(L)}${qaShown(L).map(qaPill).join("")}</div>step <b>${esc(stepLabel(L.step,runCtx(L))||"—")}</b>${L.since?` since ${when(L.since)}`:""}${L.updated?` · updated ${when(L.updated)}`:""}${L.branch?` · branch <code>${esc(L.branch)}</code>`:""}${runBlock(r,true)}</dd>`; }
@@ -4720,7 +5443,7 @@ function renderBuilt(){
   /* a column address glows round the cards as a whole (plan/RULES.md §3), never each card */
   $("#built-list").className="bcards"+(CURRENT.includes("built")?" colbox"+colGlowCls("built"):"");
   $("#built-list").innerHTML=rows.length?rows.map(r=>{ const b=r.asBuilt||{}, st=stateOf(r);
-    return `<div class="bcard st-${st}${builtMark(r).replace(/ colcell-fullpulse( colheld)?/,"")}" data-sys="${esc(r.system||"")}" data-row="${esc(r.id)}" tabindex="0" role="button" aria-label="${nameText(r)}: ${STATES[st].label}${isNext(r)?", up next":""}"><div class="bh"><span class="nm">${r.unit&&r.unit.n!=null?`${esc(r.unit.n)} · `:""}${codeOnly(r.name)}</span>${badge(st,st==="deferred"&&b.issue?` → ${ilink(b.issue)}`:"")}${nextTags(r)}${r.where?`<span class="wh">${codeOnly(r.where)}</span>`:""}</div>${stmtsOf(b).length?buildingLead(r,st,"blead")+stmtsHtml(r,"built"):`<p>${rich(b.summary||(st==="pending"?"Not built yet.":""))}</p>`}${runLine(r)}${b.changes&&b.changes.length?`<ol class="changes">${b.changes.map(c=>`<li><b>${rich(c.what||"")}</b>${c.why?` — ${rich(c.why)}`:""}<small>${esc(c.when||"")}${c.ref?` · ${refHtml(c.ref)}`:""}</small></li>`).join("")}</ol>`:""}<div class="meta">${[b.commits&&b.commits.length?`commits ${b.commits.map(c=>refHtml(c)).join(" ")}`:"",b.files&&b.files.length?`${b.files.length} file${b.files.length>1?"s":""}`:"",b.verified?"verified":"",moreLink(b.link||(r.unit&&(unitHref(r)||r.unit.folder)),r.unit?(unitHref(r)?"board":"folder"):"record")].filter(Boolean).join(" · ")}</div></div>`; }).join(""):`<p class="lede">No row in this state.</p>`;
+    return `<div class="bcard st-${st}${builtMark(r).replace(/ colcell-fullpulse( colheld)?/,"")}" data-sys="${esc(r.system||"")}" data-row="${esc(r.id)}" tabindex="0" role="button" aria-label="${nameText(r)}: ${STATES[st].label}${isNext(r)?", up next":""}"><div class="bh"><span class="nm">${r.unit&&r.unit.n!=null?`${esc(r.unit.n)} · `:""}${codeOnly(r.name)}</span>${badge(st,st==="deferred"&&b.issue?` → ${ilink(b.issue)}`:"")}${nextTags(r)}${r.where?`<span class="wh">${codeOnly(r.where)}</span>`:""}</div>${landingChips(r)}${stmtsOf(b).length?buildingLead(r,st,"blead")+stmtsHtml(r,"built"):`<p>${rich(b.summary||(st==="pending"?"Not built yet.":""))}</p>`}${runLine(r)}${b.changes&&b.changes.length?`<ol class="changes">${b.changes.map(c=>`<li><b>${rich(c.what||"")}</b>${c.why?` — ${rich(c.why)}`:""}<small>${esc(c.when||"")}${c.ref?` · ${refHtml(c.ref)}`:""}</small></li>`).join("")}</ol>`:""}<div class="meta">${[b.commits&&b.commits.length?`commits ${b.commits.map(c=>refHtml(c)).join(" ")}`:"",b.files&&b.files.length?`${b.files.length} file${b.files.length>1?"s":""}`:"",b.verified?"verified":"",moreLink(b.link||(r.unit&&(unitHref(r)||r.unit.folder)),r.unit?(unitHref(r)?"board":"folder"):"record")].filter(Boolean).join(" · ")}</div></div>`; }).join(""):`<p class="lede">No row in this state.</p>`;
   paint($("#built-list")); bindRefs($("#built-list"));
   document.querySelectorAll("#built-list .bcard").forEach(c=>{ const go=()=>{ INSPECTED={k:"built",row:c.dataset.row}; inspectBuilt(ROWS.find(x=>x.id===c.dataset.row)); }; c.addEventListener("click",e=>{ if(e.target.closest("a")) return; go(); }); c.addEventListener("keydown",e=>{ if(e.target!==c) return; if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }); });
   const IC=impactChanges();

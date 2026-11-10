@@ -69,13 +69,17 @@
    and GitHub keeps serving every pre-rewrite object of a repository by id (findings 3 §3.1,
    §3.3). The rewritten history therefore reaches the public through a new repository whose
    object store starts empty:
-   - the pre-rewrite repository is renamed `KotlinBottools-legacy`, kept private and archived;
+   - the pre-rewrite repository is renamed `KotlinBottools-legacy`, made private and archived
+     (§7.5);
    - the new repository takes the name `KotlinBottools`, becomes public, and gets GitHub secret
      scanning and push protection;
    - every number the pre-rewrite repository has used is reproduced in the new one. Its issues
      move with their comments, labels, milestone and links, and each of its pull requests is
      reproduced by a placeholder issue at the same number;
    - no repository is deleted.
+
+   > **Dated note, 2026-11-09.** The pre-rewrite repository has been public since 2026-11-08 and stays public until the swap (§2.1). Its purge-listed files and old objects are readable by anyone until then. The swap makes it private as it becomes `KotlinBottools-legacy` (§7.5), and the residual report states the window (§12.4). The rewritten history still reaches the public only through the new repository.
+
 3. **Machine-local paths replaced in KotlinBottools.** KotlinBottools' rewrite also replaces two
    kinds of machine-local path with neutral forms. It does so in every file of every commit, the
    current tree included, and in every commit message:
@@ -144,6 +148,8 @@
 3. **Every number of the pre-rewrite repository is reproduced in the public repository.**
    - Each issue is on its own number, in its state, with its body, comments, labels and
      milestone.
+
+     > **Dated note, 2026-11-09.** "With its body" means the text apart from the references a transfer rewrites, which the walk maps back before comparing (§7.4).
    - Each pull request is reproduced by a closed placeholder issue at its number.
    - Every sub-issue and "blocked by" relationship recorded before the first transfer is
      present.
@@ -174,12 +180,14 @@ findings 3 §3.2, §3.8, §3.10; findings 4 §3.6, §6.3, §6.5; findings 5 §3.
 
 | Repository | Visibility | Branches | Pull-request refs | Commits (branches) | Surviving paths / blobs after the rewrite | Purged blobs |
 |---|---|---|---|---|---|---|
-| KotlinBottools | private, id 562658298 | `main`, `docs/issue-1-bottools-consolidation` | none; no pull request has ever existed | 20 on `main`; the planning branch grows with every planning commit | derived at rewrite time (rule: commits after = T − 2) | 346 at the research baseline |
+| KotlinBottools | public since 2026-11-08 (private before that), id 562658298 | `main`, `docs/issue-1-bottools-consolidation` | none; no pull request has ever existed | 20 on `main`; the planning branch grows with every planning commit | derived at rewrite time (rule: commits after = T − 2) | 346 at the research baseline |
 | GKB2 | public | `master` | `refs/pull/6/head` | 32 → 30 | 82 / 211 | 81 (70 stay reachable through the pull-request ref) |
 | GKB | public | `master` | none | 11 → 9 | 60 / 113 | 58 |
 | BotTools | public | `main`, `Working-Branch` | `refs/pull/2/head`, `refs/pull/3/head` | 16 → 15 | 82 / 145 | 39 (all 39 stay reachable through the pull-request refs) |
 | TrumpBot | private | `main`, `feature/pokercommand` | none | 11 → 9 | 56 / 106 | 199 |
 | Support | private | `main` | none | 2 → 1 | 29 / 29 | 7,259 |
+
+> **Dated note, 2026-11-09.** KotlinBottools has been public since 2026-11-08: its activity feed's `PublicEvent` falls between feed events of 01:46Z and 21:53Z that day. Anonymous requests to the repository, its files, its archive and its activity page answer 200, and its `main` still tracks the files the rewrite purges, so those files and the pre-rewrite objects stay anonymously readable until the swap (§7.5). Secret scanning and push protection are off on it. The walk's source is therefore a public repository and its target a private one (§7.2). The public window goes into the residual report (§12.4).
 
 - No repository has a fork, a tag, branch protection or a ruleset.
 - Secret scanning is off on the three public repositories.
@@ -273,6 +281,8 @@ findings 3 §3.2, §3.8, §3.10; findings 4 §3.6, §6.3, §6.5; findings 5 §3.
   - GraphQL has `transferIssue`, `addSubIssue` and `addBlockedBy`;
   - renaming a repository redirects its old name, and a repository created or renamed under that
     old name takes the name, so the redirect stops working.
+
+  > **Dated note, 2026-11-09.** Beyond what the documentation says, a transfer also rewrites issue references, in the moved issue and in the texts that cite it. The rehearsal measured it (§7.4).
 - **git on this machine** (findings 4 §3.1, §3.3, §3.5, §3.6):
   - `git gc --prune=now` keeps everything reachable from refs, `HEAD`, the index, reflogs and
     rebase files;
@@ -690,6 +700,8 @@ backup (findings 3 §6.3). Every result is a tally; no id or body is printed.
   - against `KotlinBottools-legacy`, authenticated only, every old id is expected to answer 200,
     as it is private.
 
+  > **Dated note, 2026-11-09.** The pre-rewrite repository is public until the swap (§2.1), so until then its old ids answer anonymously as well. Once it is renamed and made private at the swap (§7.5), the authenticated expectation above holds and the anonymous answer becomes 404. The report (§12.4) states the window during which the old objects were anonymously readable, and that no measurement can exclude a copy taken during it.
+
 The report table (§12.4) goes into the units' as-built records and into the report on #2.
 
 ### 6.7 Cleanup
@@ -745,12 +757,14 @@ stateDiagram-v2
 
 ### 7.2 The rehearsal
 
-Two throwaway private repositories, `phase0-rehearsal-a` (the source) and `phase0-rehearsal-b`
-(the target, empty), prove the transfer mechanics on the shapes the real walk meets.
+Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b`
+(the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.
 
 - **The fixture in A:**
   - a tracking issue with the `type: tracking` label, and sub-issues under it: one with
-    `type: feature` and the `1.0.0` milestone (no due date), one with neither, and one closed;
+    `type: feature` and the `1.0.0` milestone (no due date), one with neither, and one closed. The
+    sub-issues nest at least two levels deep, in a mixed shape with some branches deeper than
+    others;
   - comments on the tracking issue;
   - "blocked by" links among them in both directions;
   - one merged pull request that takes a number between issues;
@@ -771,7 +785,7 @@ Two throwaway private repositories, `phase0-rehearsal-a` (the source) and `phase
     links are removed and recorded, and the links are re-created afterwards. Both paths are
     acceptable, because the real walk re-creates dropped links anyway.
 - **The rename swap,** rehearsed on the same pair:
-  - A is renamed to `phase0-rehearsal-a-legacy` and archived;
+  - A is renamed to `phase0-rehearsal-a-legacy`, made private and archived, each step read back;
   - B is renamed to `phase0-rehearsal-a`;
   - the ids are read back at each name, and the old URL of a transferred issue must redirect to
     its new home.
@@ -782,6 +796,10 @@ Two throwaway private repositories, `phase0-rehearsal-a` (the source) and `phase
 
   Anything else stops the rehearsal unit, which hands back with the per-step results, and the
   swap does not start.
+
+> **Dated note, 2026-11-09.** The rehearsal's source repository is public and its target private because the real walk's source is (§2.1). The walk and the link checks read the hierarchy flat, issue by issue, so they work at any depth. A failed step stops the walk there; the link re-creation on what moved and the rename swap still run on what exists; both repositories are archived at the end; and every shape's result goes into the hand-back.
+
+> **Dated note, 2026-11-09.** "Intact" cannot mean byte-identical: a transfer rewrites references in the moved text. The item check compares bodies and comments with those references mapped back, against the text read before the walk began (§7.4).
 
 Both repositories remain, private and archived, and are listed as a follow-up for the
 organisation administrator: deleting them needs the `delete_repo` scope, which the phase neither
@@ -840,17 +858,25 @@ Today the numbers are issues #1 to #19. By the swap they also include:
 
 Every mutation is checked before it is made, so a re-run after an interruption is idempotent.
 
+> **Dated note, 2026-11-09.** The rehearsal's transfers measured what the documentation omits: a transfer rewrites issue references in the texts that cite a moved issue, in both repositories. In a moved issue's own body and comments, a bare reference to an issue still in the source becomes the source repository's full name, and a reference to an issue that has already moved names the target's full name. In the source, an issue citing a moved issue is rewritten when that issue moves: the reference to it becomes the target's full name and the text's other bare references the source's full name, its comments with it. An issue already in the target is rewritten too when an issue it cites moves later. A 2021 report that a reference naming the target is made bare when its holder moves into the target did not hold ([LLVM mailing list](https://lists.llvm.org/pipermail/cfe-dev/2021-December/069518.html)).
+>
+> For the real walk the source is `KotlinBottools` and the target `KotlinBottools-next`, the target's temporary name. When the walk ends, the moved issues' texts name `SpartanLaboratories/KotlinBottools-next#N` for the issues they cite that moved, permanently, and `SpartanLaboratories/KotlinBottools#N` for the pull-request numbers that stay behind as placeholders; the source's not-yet-moved issues carry the target's name meanwhile. After the swap `SpartanLaboratories/KotlinBottools` names the fresh repository, so the references naming the source resolve to the fresh repository's same number, the same item or a pull request's placeholder. The rehearsal's swap measured both kinds ([its as-built record, §3.8](22-transfer-rehearsal/final-implementation.md#38-what-references-reach-after-the-renames)). Once its target had taken the source's name, every reference naming the target's temporary name still reached its item, through the redirect the rename leaves on that name. A reference naming the source reached the renamed target's same number: the placeholder, for the pull request's number, and nothing, for the one issue the rehearsal left in the source (the real walk leaves none). A public precedent shows the same resolution over a longer time: an older `nodejs/node` issue citing `joyent/node#8555`, a repository renamed since, renders as a link to the renamed repository under its current name (read 2026-11-09), while the rehearsal's rendered links, minutes after its rename, still carried the temporary name and the id of the item they name. The redirect lasts while no repository takes the temporary name; a repository created under it, or renamed onto it as the rehearsal's target was onto the source's, takes the name over ([research](22-transfer-rehearsal/research/rename-visibility-archive-sequence.md#7-load-bearing-claims), claims 1 and 3). So the references naming `KotlinBottools-next` resolve after the swap, and the options for the rewrite-and-swap unit (§15 unit 3) are: to leave them on that redirect and keep the name free; to rewrite the affected bodies and comments after the walk (the requests this design lists in §3 include an issue-body edit but no comment edit, so rewriting comments would first need a new request); or to rename the repositories before the walk, so that the transfers write the final name. Which applies is that unit's plan to decide.
+>
+> The checks must account for this. The body hash of each issue is taken before the first transfer, as the link table above already does, and the moved issue's body is compared with it after mapping every reference that names the source or the target repository, in any form, back to bare `#N` (a comment's text, where compared, the same way); the source's current text is never the reference, since earlier transfers change it. Any other difference in the text stays a difference. The gates' name and path scans read these texts, and the rewritten references add only repository names. Whether text in another repository that cites a moved issue is rewritten is not measured (the rehearsal has only its two repositories); such a citation resolves by name and number either way (§12.2).
+
 ### 7.5 Renames, archive, visibility, scanning
 
 **The renames:**
 
-1. The old repository is renamed `KotlinBottools-legacy`, its id is verified at the new name, and
-   it is archived. `archived` true makes it read-only; its pull requests, milestone and labels
-   stay, and no issue remains in it.
+1. The old repository is renamed `KotlinBottools-legacy`, its id is verified at the new name, it
+   is made private and read back, and it is archived. `archived` true makes it read-only; its pull
+   requests, milestone and labels stay, and no issue remains in it.
 2. The new repository is renamed `KotlinBottools`. Its id at that name must be the recorded fresh
    id and not 562658298, and `git ls-remote` of
    `https://github.com/SpartanLaboratories/KotlinBottools.git` must list heads equal to
    `ref-map`'s new column.
+
+> **Dated note, 2026-11-09.** The old repository is public until this point (§2.1), so step 1 makes it private, read back, between its rename and its archiving. The rehearsal (§7.2) proves that order on the same shape. The step applies wherever this design lists the renames (§7.1, §8, §15 unit 3); it is a repository-visibility request (§11).
 
 GitHub documents that a repository created or renamed under a renamed repository's old name takes
 the name, and the old redirect stops working. The clone's `origin` URL therefore needs no change
@@ -1126,8 +1152,11 @@ branch into `main` of the pre-rewrite repository.
 - **What it is:** the parent roadmap's planning pull request, opened before the rewrite rather
   than after it.
 - **Its `refs/pull/<n>/*`** pin pre-rewrite history in the pre-rewrite repository only. That
-  repository becomes `KotlinBottools-legacy`, private and archived, so the pinned objects never
-  become public.
+  repository is public until the swap, so until then the pinned objects are public, as all its
+  objects are. It then becomes `KotlinBottools-legacy`, private and archived, and the pinned
+  objects leave public reach.
+
+  > **Dated note, 2026-11-09.** The statement that the pinned objects never become public no longer holds: the repository has been public since 2026-11-08 (§2.1), and the pull-request refs of the landings before the swap are public until the swap.
 - **The fresh repository** never receives a `refs/pull/*`. The pipeline deletes the mirror's
   copies before the push, and GitHub hides them from pushes anyway.
 - **Its merge** deletes the planning branch, so the 56 issue links that name that branch are
@@ -1177,7 +1206,7 @@ recorded as a dated callout in the parent documents, which lands with #2's own l
 | No GitHub Support ticket. | `architecture.md` §1.3, §11 steps 2 and 4, §14 unit 0, §15 (two rows), §16 "GitHub Support"; `roadmap.md` header and Phase 0; `consequences.md` §2.1, §3.1 item 4 |
 | The legacy data in an ordinary local folder, rather than an access-restricted location. | `architecture.md` §11 step 1, §15; `roadmap.md` Phase 0; `consequences.md` §2.4, §3.1 item 4 |
 | The exit criterion as §1.2 criterion 1 states it, branches and tags clean with the pull-request residual counted, rather than "no pull-request ref reaches a purged blob". | `architecture.md` §1.4 criterion 6, §11; `roadmap.md` Phase 0 "Done when" |
-| KotlinBottools made public as a fresh repository, every number reproduced, and the pre-rewrite repository kept private and archived as `KotlinBottools-legacy`. | `architecture.md` §1.3, §11, §14 unit 0, §15 |
+| KotlinBottools made public as a fresh repository, every number reproduced, and the pre-rewrite repository made private and archived as `KotlinBottools-legacy` at the swap. | `architecture.md` §1.3, §11, §14 unit 0, §15 |
 | The planning pull request landing before the rewrite rather than after it. | `architecture.md` §1.3, §11 step 2; `roadmap.md` header and Phase 0 |
 | Phase 0 carried out as sub-issues of #2, Phase 1 unblocked once the rewrite-and-swap unit lands. | `roadmap.md` Phase 0 "Unblocks" |
 | The pruned-commit count of ten rather than six. | parent research §3.3, §6.3 |
@@ -1208,6 +1237,8 @@ Issues #1 (its Phase 0 line) and #2 (its body, including the plan-folder line, w
   the same way. #55's one link to the planning branch is pointed at `main`.
 - **`SpartanLaboratories/.github`.** Its five citations of `KotlinBottools#1` keep resolving.
 
+> **Dated note, 2026-11-09.** The references a transfer writes into the moved issues' own text name the target by its temporary name, `KotlinBottools-next`, and the source for the pull-request numbers that stay behind as placeholders; §7.4 says what each resolves to after the swap and what is left to decide.
+
 ### 12.3 Phase 1's starting point
 
 Phase 1 starts from the rewritten `main` on the fresh repository, which holds the planning
@@ -1232,7 +1263,8 @@ For each repository, the table carries:
 - for GKB2 and BotTools, the pull-request residual: the blobs reachable only through the
   pull-request refs;
 - for KotlinBottools, the fresh repository's "not found" tallies and the legacy repository's
-  "served, private" tallies.
+  "served, private" tallies, and the public window: the period during which the pre-rewrite
+  repository was public (§2.1) and its old objects anonymously readable.
 
 It states what the exit tests proved, and what they cannot prove (findings 3 §6.4):
 
@@ -1271,7 +1303,7 @@ command.
 | A new public repository under another name, KotlinBottools kept private | breaks the name and every `KotlinBottools#N` citation and URL in MagicBot, WebTools, the `.github` mirror and the documents |
 | Delete and recreate under the same name | needs the `delete_repo` scope, and keeps nothing the rename does not keep; the rename keeps the old repository as the private resolver of the dated citations |
 | Transfer only issues #1 to #19 and renumber everything after them | changes the numbers of #2's sub-issues and with them their plan-folder names and every citation of them; the placeholders keep every number at the cost of one closed issue per pull request |
-| The planning pull request after the rewrite, from the rewritten branch | the pre-rewrite repository is kept private as `KotlinBottools-legacy`, so its pull-request refs never become public; landing the planning documents first lets every unit plan inside the folder on `main` |
+| The planning pull request after the rewrite, from the rewritten branch | the pre-rewrite repository is made private as `KotlinBottools-legacy` at the swap, so its pull-request refs stop being public then; landing the planning documents first lets every unit plan inside the folder on `main` |
 | Keep the planning branch after its merge, so that the 56 links naming it keep resolving | the links would show a frozen copy of the documents while `main` moves on; pointing them at `main` keeps them current before and after the swap |
 | Twelve units: the toolchain, the backups and the data copy apart; the KotlinBottools rewrite, the rehearsal, the swap and the realignment apart; the TrumpBot clone and the report apart | every landing adds commits to KotlinBottools, so a landing between its mirror clone and its push would be lost from the rewritten history, and the swap unit's own landing cannot precede the realignment; the KotlinBottools rewrite, swap and realignment are therefore one unit. Grouping the preparation and keeping the TrumpBot clone with TrumpBot's rewrite also means fewer pull-request numbers to reproduce |
 | Rehearse with three repositories (a stand-alone "foreign" one) | the fourth issue that stays in the source repository gives the cross-repository shape after the transfer, and the real walk reads and re-creates every link regardless |
@@ -1285,6 +1317,8 @@ command.
 | Rely on gitleaks' exit status, or on `git reset`/`git gc` exit status on Windows | each is 0 on failure in the cases the phase meets (findings 2 §3.3, findings 4 §3.6); counts and proofs decide |
 | The gitleaks GitHub Action; a job inside a shared `ci.yml`; a global allowlist; `-v` | the action needs an organisation licence; a shared file collides with Phase 1's; a path allowlist disables every rule for the paths it names; `-v` prints paths and identities (findings 2 §6) |
 | The workspace at a drive's root, for short paths | folders at a drive's root grant `Authenticated Users` modify, and the backups hold what the rewrite removes |
+
+> **Dated note, 2026-11-09.** The first row's exposure has happened by another route: the pre-rewrite repository has been public since 2026-11-08 (§2.1). The swap remains the only route that takes the old objects out of public reach without a Support ticket: a force-push in place would leave them served by id with no documented expiry (§2.4), whereas the old repository goes private at the swap (§7.5).
 
 ---
 

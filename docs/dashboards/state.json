@@ -1,7 +1,7 @@
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "chore/issue-21-preparation", "sha": "a12958a", "date": "2026-11-08T22:58:50Z"},
-  "lastAmended": {"issue": 21, "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests", "sha": "a12958a"},
-  "written": {"sha": "a12958a"}
+  "asIs": {"ref": "chore/issue-22-transfer-rehearsal", "sha": "e6ef04a", "date": "2026-11-09T07:50:05Z"},
+  "lastAmended": {"issue": 22, "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories", "sha": "e6ef04a"},
+  "written": {"sha": "e6ef04a"}
 }

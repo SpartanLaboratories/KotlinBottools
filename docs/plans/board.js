@@ -3,11 +3,11 @@ window.dashboardLive&&window.dashboardLive("board",
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-08T23:12:00Z",
-  "asOf": "2026-11-08",
+  "generated": "2026-11-10T00:09:20Z",
+  "asOf": "2026-11-10",
   "tree": {
-    "ref": "chore/issue-21-preparation",
-    "sha": "a12958a"
+    "ref": "chore/issue-22-transfer-rehearsal",
+    "sha": "e6ef04a"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -20,6 +20,15 @@ window.dashboardLive&&window.dashboardLive("board",
       "top": "KotlinBottools",
       "status": "built",
       "board": "docs/dashboards/index.html"
+    },
+    {
+      "slug": "repository-swap",
+      "name": "Repository swap",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
     }
   ],
   "groups": [
@@ -67,23 +76,23 @@ window.dashboardLive&&window.dashboardLive("board",
       "branch": null,
       "system": null,
       "step": "implementation",
-      "detail": "0 of 8 units landed; #21 in progress; #22 up next.",
+      "detail": "1 of 8 units landed; #22 in progress; #23 up next.",
       "since": "2026-11-08T21:15:43Z",
-      "updated": "2026-11-08T21:15:43Z",
+      "updated": "2026-11-08T23:59:00Z",
       "qa": [],
       "qaMax": 3,
       "status": "building",
       "fixOf": null,
       "landed": null,
       "reconciliation": {
-        "state": "planned",
-        "landed": 0,
+        "state": "partial",
+        "landed": 1,
         "total": 8
       },
       "active": false,
       "chain": {
         "total": 8,
-        "landed": 0,
+        "landed": 1,
         "dropped": 0,
         "deferred": 0,
         "left": 0,
@@ -91,17 +100,17 @@ window.dashboardLive&&window.dashboardLive("board",
         "done": false,
         "current": [
           {
-            "issue": 21,
-            "slug": "preparation",
+            "issue": 22,
+            "slug": "transfer-rehearsal",
             "step": "document"
           }
         ],
         "next": {
-          "issue": 22,
-          "slug": "transfer-rehearsal",
+          "issue": 23,
+          "slug": "kotlinbottools-rewrite-and-swap",
           "blockedBy": [
             {
-              "issue": 21
+              "issue": 22
             }
           ]
         },
@@ -110,13 +119,13 @@ window.dashboardLive&&window.dashboardLive("board",
             "n": 1,
             "issue": 21,
             "name": "Preparation",
-            "state": "current"
+            "state": "done"
           },
           {
             "n": 2,
             "issue": 22,
             "name": "Transfer rehearsal",
-            "state": "todo"
+            "state": "current"
           },
           {
             "n": 3,
@@ -163,7 +172,8 @@ window.dashboardLive&&window.dashboardLive("board",
     {
       "issue": 21,
       "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
-      "state": "OPEN",
+      "state": "CLOSED",
+      "stateReason": "COMPLETED",
       "created": "2026-11-08",
       "parent": 2,
       "waitsOn": [],
@@ -171,17 +181,17 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 22,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         }
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation/",
-      "branch": "chore/issue-21-preparation",
+      "branch": null,
       "system": "kotlinbottools",
-      "step": "document",
-      "detail": "Document: 2 of 6 tasks done; Documentation review, State boards in parallel.",
-      "since": "2026-11-08T22:59:18Z",
-      "updated": "2026-11-08T23:06:27Z",
+      "step": "landed",
+      "detail": "Landed in PR #30.",
+      "since": "2026-11-08T23:23:04Z",
+      "updated": "2026-11-08T23:23:04Z",
       "qa": [
         {
           "pass": 1,
@@ -222,15 +232,20 @@ window.dashboardLive&&window.dashboardLive("board",
         }
       ],
       "qaMax": 3,
-      "status": "building",
+      "status": "landed",
       "fixOf": null,
-      "landed": null,
+      "landed": {
+        "pr": 30,
+        "merge": "3b62b678be429c4a59ac0d08c5449a0bd6c50ea8",
+        "version": null,
+        "date": "2026-11-08"
+      },
       "reconciliation": {
-        "state": "partial",
+        "state": "as-built",
         "landed": null,
         "total": null
       },
-      "active": true,
+      "active": false,
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 1
@@ -244,8 +259,10 @@ window.dashboardLive&&window.dashboardLive("board",
       "waitsOn": [
         {
           "issue": 21,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-08T23:23:05Z",
+          "build": "clear",
           "locality": "local-repository"
         }
       ],
@@ -256,25 +273,53 @@ window.dashboardLive&&window.dashboardLive("board",
           "hold": "blocks"
         }
       ],
-      "board": null,
-      "folder": null,
-      "branch": null,
-      "system": "kotlinbottools",
-      "step": null,
-      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 1.",
-      "qa": [],
-      "qaMax": null,
-      "status": "next",
-      "landed": null,
-      "reconciliation": null,
-      "active": false,
-      "next": true,
-      "blockedBy": [
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/22-transfer-rehearsal/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/22-transfer-rehearsal/",
+      "branch": "chore/issue-22-transfer-rehearsal",
+      "system": "repository-swap",
+      "step": "document",
+      "detail": "Document: 4 of 6 tasks done; State boards current.",
+      "since": "2026-11-09T23:16:07Z",
+      "updated": "2026-11-09T23:52:02Z",
+      "qa": [
         {
-          "issue": 21
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-09",
+          "at": "2026-11-09T07:17:29Z",
+          "findings": {},
+          "severity": {
+            "minor": 13,
+            "other": 3
+          },
+          "note": "Every acceptance criterion is met and no recorded result is untrue; the self-test leaves the result gate and the failure paths of the post checks unchecked. Test check: 14 findings, 3 of them not minor; code check: 2 minor; the 87 self-test checks passed."
+        },
+        {
+          "pass": 2,
+          "verdict": "changes-requested",
+          "date": "2026-11-09",
+          "at": "2026-11-09T07:47:51Z",
+          "findings": {},
+          "severity": {
+            "minor": 6,
+            "other": 0
+          },
+          "route": "on-the-spot",
+          "note": "The tool is unchanged and its 87 self-test checks pass; the known-gaps record for the next unit needed six small wording additions, made in place. Test check: no findings; code check: 6 minor, all wording.",
+          "inPlace": "fixed"
         }
       ],
-      "systemName": "KotlinBottools",
+      "qaMax": 3,
+      "status": "building",
+      "fixOf": null,
+      "landed": null,
+      "reconciliation": {
+        "state": "partial",
+        "landed": null,
+        "total": null
+      },
+      "active": true,
+      "systemName": "Repository swap",
       "group": "2",
       "order": 2
     },
@@ -312,10 +357,16 @@ window.dashboardLive&&window.dashboardLive("board",
       "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 2, and Phase 1 may start once it has landed.",
       "qa": [],
       "qaMax": null,
-      "status": "not-started",
+      "status": "next",
       "landed": null,
       "reconciliation": null,
       "active": false,
+      "next": true,
+      "blockedBy": [
+        {
+          "issue": 22
+        }
+      ],
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 3
@@ -433,7 +484,7 @@ window.dashboardLive&&window.dashboardLive("board",
     },
     {
       "issue": 27,
-      "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
+      "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
       "state": "OPEN",
       "created": "2026-11-08",
       "parent": 2,
@@ -614,7 +665,8 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 21,
           "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
-          "state": "OPEN"
+          "state": "CLOSED",
+          "stateReason": "COMPLETED"
         },
         {
           "issue": 22,
@@ -643,7 +695,7 @@ window.dashboardLive&&window.dashboardLive("board",
         },
         {
           "issue": 27,
-          "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
+          "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
           "state": "OPEN"
         },
         {

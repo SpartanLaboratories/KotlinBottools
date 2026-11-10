@@ -10,7 +10,7 @@
 /* Supersystem / repository state board template (dashboards skill, system set: system/RULES.md): the Systems tab first, then the six core tabs adapted to the
    level (how the systems compose, run, decide, interact and live), the guarantee cards with one row per system, then Context.
    Draft A2: the C4 model tab is rendered at runtime from the Structurizr DSL embedded below (a verbatim copy of workspace.dsl).
-   Colour plan: --sys-1..6 are the systems' slots (registry order, see sysColour), --ph-1..3 the ordinal phase ramp
+   Colour plan: --sys-1..12 are the systems' slots (registry order, see sysColour), --ph-1..3 the ordinal phase ramp
    (Lifecycles), --good / --warning / --serious / --critical are status (outcomes only, always beside a label). Dashed = planned, and nothing else: lifelines, returns and frames are solid. */
 :root{
   --bg:#f3f5f8; --surface:#fcfcfd; --surface-2:#eef1f6; --ink:#0e1420; --ink-2:#4a5468; --muted:#7d879a;
@@ -447,12 +447,12 @@ footer code{color:var(--ink-2)}
 </style>
 <style>
 /* System colours: one categorical slot per top-level system, in registry order (sysColour below); a child system takes its
-   top-level ancestor's slot, and the seventh top-level system on folds into the neutral --muted. Everything drawn for a system
+   top-level ancestor's slot, and the thirteenth top-level system on folds into the neutral --muted. Everything drawn for a system
    sets --c from its slot, so a system keeps one colour on every tab. Palette slots 7 and 8 stay unused here: violet is the
    phase ramp, red sits next to critical. */
-:root{--sys-1:#2a78d6;--sys-2:#653184;--sys-3:#0d7680;--sys-4:#1d2660;--sys-5:#9656aa;--sys-6:#1a9ec7}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sys-1:#3987e5;--sys-2:#8a44d8;--sys-3:#1f8089;--sys-4:#b4bef5;--sys-5:#a86fb8;--sys-6:#31b5f4}}
-:root[data-theme="dark"]{--sys-1:#3987e5;--sys-2:#8a44d8;--sys-3:#1f8089;--sys-4:#b4bef5;--sys-5:#a86fb8;--sys-6:#31b5f4}
+:root{--sys-1:#2a78d6;--sys-2:#653184;--sys-3:#0d7680;--sys-4:#1d2660;--sys-5:#9656aa;--sys-6:#1a9ec7;--sys-7:#203d4b;--sys-8:#7700c7;--sys-9:#008a81;--sys-10:#7780f8;--sys-11:#271ea9;--sys-12:#09534e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sys-1:#3987e5;--sys-2:#8a44d8;--sys-3:#1f8089;--sys-4:#b4bef5;--sys-5:#a86fb8;--sys-6:#31b5f4;--sys-7:#9ae2f4;--sys-8:#c790d0;--sys-9:#11978e;--sys-10:#245eff;--sys-11:#8365bd;--sys-12:#00c7ba}}
+:root[data-theme="dark"]{--sys-1:#3987e5;--sys-2:#8a44d8;--sys-3:#1f8089;--sys-4:#b4bef5;--sys-5:#a86fb8;--sys-6:#31b5f4;--sys-7:#9ae2f4;--sys-8:#c790d0;--sys-9:#11978e;--sys-10:#245eff;--sys-11:#8365bd;--sys-12:#00c7ba}
 .syscards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .syscard{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0;border-top:3px solid var(--c,var(--muted))}
 .syscard:hover{border-color:var(--ink-2)}
@@ -513,7 +513,7 @@ footer code{color:var(--ink-2)}
 <header>
   <div class="crumbs">KotlinBottools</div>
   <h1>KotlinBottools</h1>
-  <p class="function">A Kotlin Discord bot framework on JDA — text and slash commands, XML-backed guild and member data, event responders and polling services — and the ten planned systems that purge the six bot repositories' histories of secrets and data before KotlinBottools is made public as a fresh repository.</p>
+  <p class="function">A Kotlin Discord bot framework on JDA — text and slash commands, XML-backed guild and member data, event responders and polling services — and its planned Internal Tooling, ten systems in four groups that purge the six bot repositories' histories of secrets and data before KotlinBottools is made public as a fresh repository.</p>
   <div class="chips">
     <span class="chip"><span class="ck">systems</span> <b id="sys-count">…</b></span>
     <span class="chip"><span class="ck">platform</span> <b>Kotlin 2.1.10 · JDA 5.6.1 · build 7.5-SNAPSHOT</b></span>
@@ -666,93 +666,121 @@ footer code{color:var(--ink-2)}
   <div class="guarantee-cards">
     <div class="guarantee-card"><h3>Failure model</h3>
       <table class="gtbl"><tbody>
+        <tr data-part="sys:internal-tooling"><th><span class="sw" data-sys="internal-tooling"></span>internal-tooling</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:workspace-lifecycle"><th><span class="sw" data-sys="workspace-lifecycle"></span>workspace-lifecycle</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:rewrite-and-cut-over"><th><span class="sw" data-sys="rewrite-and-cut-over"></span>rewrite-and-cut-over</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:exposure-proof"><th><span class="sw" data-sys="exposure-proof"></span>exposure-proof</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>Extension points</h3>
       <table class="gtbl"><tbody>
+        <tr data-part="sys:internal-tooling"><th><span class="sw" data-sys="internal-tooling"></span>internal-tooling</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:workspace-lifecycle"><th><span class="sw" data-sys="workspace-lifecycle"></span>workspace-lifecycle</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:rewrite-and-cut-over"><th><span class="sw" data-sys="rewrite-and-cut-over"></span>rewrite-and-cut-over</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:exposure-proof"><th><span class="sw" data-sys="exposure-proof"></span>exposure-proof</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>Test levels <small>none yet</small></h3>
       <div class="scroll"><table class="gtbl"><thead><tr><th>System</th><th class="n">L1 gating</th><th class="n">L2 component</th><th class="n">L3 integration</th><th class="n">L4a deterministic</th><th class="n">L4b e2e</th><th class="n">L4c non-functional</th><th class="n">L5 UAT</th></tr></thead><tbody>
+        <tr data-part="sys:internal-tooling"><th><span class="sw" data-sys="internal-tooling"></span>internal-tooling</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:workspace-lifecycle"><th><span class="sw" data-sys="workspace-lifecycle"></span>workspace-lifecycle</th><td colspan="7">planned — no tests yet</td></tr>
         <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td colspan="7">planned — no tests yet</td></tr>
         <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td colspan="7">planned — no tests yet</td></tr>
         <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td colspan="7">planned — no tests yet</td></tr>
-        <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td colspan="7">planned — no tests yet</td></tr>
-        <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td colspan="7">planned — no tests yet</td></tr>
-        <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td colspan="7">planned — no tests yet</td></tr>
         <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:rewrite-and-cut-over"><th><span class="sw" data-sys="rewrite-and-cut-over"></span>rewrite-and-cut-over</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td colspan="7">planned — no tests yet</td></tr>
         <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td colspan="7">planned — no tests yet</td></tr>
         <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:exposure-proof"><th><span class="sw" data-sys="exposure-proof"></span>exposure-proof</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td colspan="7">planned — no tests yet</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td colspan="7">planned — no tests yet</td></tr>
       </tbody></table></div></div>
     <div class="guarantee-card"><h3>Compatibility &amp; versioning</h3>
       <table class="gtbl"><tbody>
+        <tr data-part="sys:internal-tooling"><th><span class="sw" data-sys="internal-tooling"></span>internal-tooling</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:workspace-lifecycle"><th><span class="sw" data-sys="workspace-lifecycle"></span>workspace-lifecycle</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:rewrite-and-cut-over"><th><span class="sw" data-sys="rewrite-and-cut-over"></span>rewrite-and-cut-over</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:exposure-proof"><th><span class="sw" data-sys="exposure-proof"></span>exposure-proof</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>Thread safety</h3>
       <table class="gtbl"><tbody>
+        <tr data-part="sys:internal-tooling"><th><span class="sw" data-sys="internal-tooling"></span>internal-tooling</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:workspace-lifecycle"><th><span class="sw" data-sys="workspace-lifecycle"></span>workspace-lifecycle</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:rewrite-and-cut-over"><th><span class="sw" data-sys="rewrite-and-cut-over"></span>rewrite-and-cut-over</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:exposure-proof"><th><span class="sw" data-sys="exposure-proof"></span>exposure-proof</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>Resources to close</h3>
       <table class="gtbl"><tbody>
+        <tr data-part="sys:internal-tooling"><th><span class="sw" data-sys="internal-tooling"></span>internal-tooling</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:workspace-lifecycle"><th><span class="sw" data-sys="workspace-lifecycle"></span>workspace-lifecycle</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:rewrite-and-cut-over"><th><span class="sw" data-sys="rewrite-and-cut-over"></span>rewrite-and-cut-over</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:exposure-proof"><th><span class="sw" data-sys="exposure-proof"></span>exposure-proof</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>On your classpath</h3>
       <table class="gtbl"><tbody>
+        <tr data-part="sys:internal-tooling"><th><span class="sw" data-sys="internal-tooling"></span>internal-tooling</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:workspace-lifecycle"><th><span class="sw" data-sys="workspace-lifecycle"></span>workspace-lifecycle</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:backups-and-manifests"><th><span class="sw" data-sys="backups-and-manifests"></span>backups-and-manifests</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:legacy-data-copy"><th><span class="sw" data-sys="legacy-data-copy"></span>legacy-data-copy</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:rewrite-and-cut-over"><th><span class="sw" data-sys="rewrite-and-cut-over"></span>rewrite-and-cut-over</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:rewrite-pipeline"><th><span class="sw" data-sys="rewrite-pipeline"></span>rewrite-pipeline</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built in the repository</td></tr>
+        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:exposure-proof"><th><span class="sw" data-sys="exposure-proof"></span>exposure-proof</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:cleanup"><th><span class="sw" data-sys="cleanup"></span>cleanup</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:repository-swap"><th><span class="sw" data-sys="repository-swap"></span>repository-swap</th><td>planned — nothing built yet</td></tr>
-        <tr data-part="sys:clone-realignment"><th><span class="sw" data-sys="clone-realignment"></span>clone-realignment</th><td>planned — nothing built yet</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
   </div>
@@ -761,7 +789,7 @@ footer code{color:var(--ink-2)}
 <section class="context">
   <h2>Context</h2>
   <div class="cards">
-    <div class="card"><h3>Roadmap <small>2 items · 26 issues · 2026-11-08</small></h3>
+    <div class="card"><h3>Roadmap <small>2 items · 26 issues · 2026-11-09</small></h3>
       <ol class="roadmap">
         <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/1" target="_blank" rel="noopener">#1</a><span><a data-board="1">BotTools consolidation &amp; MagicBot (tracking)</a> <small>tracking issue · its phases in the <a href="../plans/1-bottools-consolidation/roadmap.md">roadmap</a></small> <span class="chainprog" data-landed="0" data-total="18"><span data-unit="current">Phase 0</span><span data-unit="todo">Phase 1</span><span data-unit="todo">Phase 2</span><span data-unit="todo">Phase 3</span><span data-unit="todo">Phase 4</span><span data-unit="todo">Phase 5</span><span data-unit="todo">Phase 6a</span><span data-unit="todo">Phase 6b</span><span data-unit="todo">Phase 7</span><span data-unit="todo">Phase 8</span><span data-unit="todo">Phase 9</span><span data-unit="todo">Phase 10</span><span data-unit="todo">Phase 11</span><span data-unit="todo">Phase 12</span><span data-unit="todo">Phase 17</span><span data-unit="todo">Phase 18</span><span data-unit="todo">Phase 19</span><span data-unit="todo">Phase 23</span></span></span><span class="tags"><span class="badge">open</span></span></div>
           <ul class="issues">
@@ -784,26 +812,27 @@ footer code{color:var(--ink-2)}
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/18" target="_blank" rel="noopener">#18</a><span><a data-board="18">Phase 19 — Poker plugin: playable Texas hold 'em (Experimental)</a></span><span class="tags"><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/19" target="_blank" rel="noopener">#19</a><span><a data-board="19">Phase 23 — Desktop manager on SpartanUI and SpartanGraphics (unscheduled)</a></span><span class="tags"><span class="badge">open</span></span></li>
           </ul></li>
-        <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/2" target="_blank" rel="noopener">#2</a><span><a data-board="2">Phase 0 — History rewrite: purge secrets and data from the six bot repositories</a> <small>tracking issue · its units in landing order</small> <span class="chainprog" data-landed="0" data-total="8"><span data-unit="current">Preparation</span><span data-unit="todo">Transfer rehearsal</span><span data-unit="todo">KotlinBottools rewrite and swap</span><span data-unit="todo">Repository hygiene</span><span data-unit="todo">Make KotlinBottools public</span><span data-unit="todo">Rewrite GKB2 and GKB</span><span data-unit="todo">Rewrite BotTools, TrumpBot and Support</span><span data-unit="todo">Residual report and cleanup</span></span></span><span class="tags"><span class="badge">open</span></span></div>
+        <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/2" target="_blank" rel="noopener">#2</a><span><a data-board="2">Phase 0 — History rewrite: purge secrets and data from the six bot repositories</a> <small>tracking issue · its units in landing order</small> <span class="chainprog" data-landed="1" data-total="8"><span data-unit="done">Preparation</span><span data-unit="current">Transfer rehearsal</span><span data-unit="todo">KotlinBottools rewrite and swap</span><span data-unit="todo">Repository hygiene</span><span data-unit="todo">Make KotlinBottools public</span><span data-unit="todo">Rewrite GKB2 and GKB</span><span data-unit="todo">Rewrite BotTools, TrumpBot and Support</span><span data-unit="todo">Residual report and cleanup</span></span></span><span class="tags"><span class="badge">open</span></span></div>
           <ul class="issues">
-            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/21" target="_blank" rel="noopener">#21</a><span><a data-board="21">Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests</a></span><span class="tags"><span class="badge" data-sys="toolchain">toolchain</span><span class="badge" data-sys="backups-and-manifests">backups-and-manifests</span><span class="badge" data-sys="legacy-data-copy">legacy-data-copy</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/21" target="_blank" rel="noopener">#21</a><span><a data-board="21">Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests</a></span><span class="tags"><span class="badge" data-sys="toolchain">toolchain</span><span class="badge" data-sys="backups-and-manifests">backups-and-manifests</span><span class="badge" data-sys="legacy-data-copy">legacy-data-copy</span><span class="badge">closed</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/22" target="_blank" rel="noopener">#22</a><span><a data-board="22">Phase 0 · 2 — Transfer rehearsal on two throwaway repositories</a></span><span class="tags"><span class="badge" data-sys="repository-swap">repository-swap</span><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/23" target="_blank" rel="noopener">#23</a><span><a data-board="23">Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment</a></span><span class="tags"><span class="badge" data-sys="backups-and-manifests">backups-and-manifests</span><span class="badge" data-sys="rewrite-pipeline">rewrite-pipeline</span><span class="badge" data-sys="privacy-gate">privacy-gate</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="repository-swap">repository-swap</span><span class="badge" data-sys="clone-realignment">clone-realignment</span><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/24" target="_blank" rel="noopener">#24</a><span><a data-board="24">Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG</a></span><span class="tags"><span class="badge" data-sys="privacy-gate">privacy-gate</span><span class="badge" data-sys="repository-hygiene">repository-hygiene</span><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/25" target="_blank" rel="noopener">#25</a><span><a data-board="25">Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection</a></span><span class="tags"><span class="badge" data-sys="privacy-gate">privacy-gate</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="repository-swap">repository-swap</span><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/26" target="_blank" rel="noopener">#26</a><span><a data-board="26">Phase 0 · 6 — Rewrite GKB2 and GKB</a></span><span class="tags"><span class="badge" data-sys="rewrite-pipeline">rewrite-pipeline</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge">open</span></span></li>
-            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/27" target="_blank" rel="noopener">#27</a><span><a data-board="27">Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone</a></span><span class="tags"><span class="badge" data-sys="rewrite-pipeline">rewrite-pipeline</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="clone-realignment">clone-realignment</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/27" target="_blank" rel="noopener">#27</a><span><a data-board="27">Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone</a></span><span class="tags"><span class="badge" data-sys="rewrite-pipeline">rewrite-pipeline</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="clone-realignment">clone-realignment</span><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/28" target="_blank" rel="noopener">#28</a><span><a data-board="28">Phase 0 · 8 — Residual-exposure report and workspace cleanup</a></span><span class="tags"><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="cleanup">cleanup</span><span class="badge">open</span></span></li>
           </ul>
-          <p class="more">Units 3 to 5 follow unit 2 in that order; units 6 and 7 follow unit 3, in that order, and unit 8 follows units 5 and 7 (<a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md">architecture</a> §15). The ten systems on the Systems tab are all planned: <a data-issue="21">#21</a> set up the toolchain, the backups and manifests and the legacy data copy on the working machine, outside every repository, so the repository holds no code of them and they stay drawn dashed.</p></li>
+          <p class="more">Units 3 to 5 follow unit 2 in that order; units 6 and 7 follow unit 3, in that order, and unit 8 follows units 5 and 7 (<a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md">architecture</a> §15). The ten systems on the Systems tab sit in the four groups of Internal Tooling, and all are planned: <a data-issue="21">#21</a> set up the toolchain, the backups and manifests and the legacy data copy on the working machine, and <a data-issue="22">#22</a> rehearsed the repository swap's number walk and rename order on two throwaway repositories with a tool kept there, both outside every repository, so the repository holds no code of them and they stay drawn dashed.</p></li>
       </ol></div>
-    <div class="card"><h3>Unscheduled issues <small>1 open · 2026-11-08</small></h3>
+    <div class="card"><h3>Unscheduled issues <small>1 open · 2026-11-09</small></h3>
       <ul class="issues"><li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/29" target="_blank" rel="noopener">#29</a><span><a data-board="29">Adopt the organization's Dokka and project site standard</a></span><span class="tags"><span class="badge" data-sys="kotlinbottools">kotlinbottools</span><span class="badge">open</span></span></li></ul></div>
     <div class="card"><h3>Plans and documents</h3>
       <ul class="docs">
         <li><a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md">#2 architecture</a> · <a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/consequences.md">consequences</a> · <a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/research/README.md">research</a> — the ten planned systems drawn dashed here (§6, §7, §9, §10) and the eight units (§15)</li>
         <li><a href="../plans/1-bottools-consolidation/architecture.md">#1 architecture</a> · <a href="../plans/1-bottools-consolidation/roadmap.md">roadmap</a> · <a href="../plans/1-bottools-consolidation/consequences.md">consequences</a> — the consolidation's design and its phases</li>
-        <li><a data-workboard>Repository work board</a> — every planning and development run · <a data-issue="2">#2</a> tracking board — the eight units of the history rewrite · <a data-issue="21">#21</a> issue board — the preparation unit, which last amended this board</li>
+        <li><a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/22-transfer-rehearsal/final-implementation.md">#22 as built</a> · <a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/22-transfer-rehearsal/consequences.md">consequences</a> — what the transfer rehearsal measured: numbers, links, issue references, the rename swap and old URLs, and the tool's known gaps</li>
+        <li><a data-workboard>Repository work board</a> — every planning and development run · <a data-issue="2">#2</a> tracking board — the eight units of the history rewrite · <a data-issue="21">#21</a> issue board — the preparation unit · <a data-issue="22">#22</a> issue board — the transfer rehearsal, which last amended this board</li>
         <li><a href="../../README.md">README</a> — features, setup, the command system and the data access</li>
         <li><a href="systems.json"><code>systems.json</code></a> — the registry this board is built from · <a href="workspace.dsl"><code>workspace.dsl</code></a> — the C4 model in the C4 tab</li>
       </ul></div>
@@ -817,75 +846,91 @@ footer code{color:var(--ink-2)}
 <script type="application/json" id="systems">
 {
   "repo": "SpartanLaboratories/KotlinBottools",
-  "updated": "2026-11-08",
+  "updated": "2026-11-09",
   "systems": [
     {"slug": "kotlinbottools", "name": "KotlinBottools", "kind": "repo", "parent": null, "status": "built",
      "function": "A Kotlin Discord bot framework on JDA: hierarchical text and slash commands, XML-backed guild and member data, event responders and polling services, built by one Gradle build at 7.5-SNAPSHOT.",
      "paths": ["."], "version": null,
-     "asIs": {"ref": "chore/issue-21-preparation", "sha": "a12958a", "date": "2026-11-08T22:58:50Z"},
-     "lastAmended": {"issue": 21, "sha": "a12958a"},
+     "asIs": {"ref": "chore/issue-22-transfer-rehearsal", "sha": "e6ef04a", "date": "2026-11-09T07:50:05Z"},
+     "lastAmended": {"issue": 22, "sha": "e6ef04a"},
      "board": "index.html", "dsl": "workspace.dsl"},
 
-    {"slug": "toolchain", "name": "Toolchain", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "toolchain", "name": "Toolchain", "kind": "system", "parent": "workspace-lifecycle", "status": "planned", "visibility": "internal-repo",
      "function": "Install, verify and pin every tool, and prove each check is not blind before it is trusted.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.1", "placement": "WS/tools and the user-scheme pip install, outside every repository",
                    "units": [{"unit": 1, "slug": "preparation", "subIssue": 21}]},
      "c4": {"workspace.dsl": "kbt.toolchain"}},
-    {"slug": "backups-and-manifests", "name": "Backups and manifests", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "backups-and-manifests", "name": "Backups and manifests", "kind": "system", "parent": "workspace-lifecycle", "status": "planned", "visibility": "internal-repo",
      "function": "Take one untouched mirror per repository and derive from it everything the rewrite is judged against.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.2", "placement": "WS/backup and DATA/manifests, outside every repository",
                    "units": [{"unit": 1, "slug": "preparation", "subIssue": 21}, {"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}]},
      "c4": {"workspace.dsl": "kbt.backups"}},
-    {"slug": "legacy-data-copy", "name": "Legacy data copy", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "legacy-data-copy", "name": "Legacy data copy", "kind": "system", "parent": "workspace-lifecycle", "status": "planned", "visibility": "internal-repo",
      "function": "Preserve BotData.xml and guildData/ byte-exactly from three revisions before anything is rewritten.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.3", "placement": "DATA, outside every repository",
                    "units": [{"unit": 1, "slug": "preparation", "subIssue": 21}]},
      "c4": {"workspace.dsl": "kbt.dataCopy"}},
-    {"slug": "rewrite-pipeline", "name": "Rewrite pipeline", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "rewrite-pipeline", "name": "Rewrite pipeline", "kind": "system", "parent": "rewrite-and-cut-over", "status": "planned", "visibility": "internal-repo",
      "function": "Turn one backup-mirrored repository into a pushed, proven, rewritten repository, or stop before its push.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.4", "placement": "WS/mirror, WS/fresh and DATA/rewrite, outside every repository",
                    "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 6, "slug": "gkb2-gkb-rewrite", "subIssue": 26}, {"unit": 7, "slug": "bottools-trumpbot-support-rewrite", "subIssue": 27}]},
      "c4": {"workspace.dsl": "kbt.pipeline"}},
-    {"slug": "privacy-gate", "name": "Privacy gate and id-reference check", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "privacy-gate", "name": "Privacy gate and id-reference check", "kind": "system", "parent": "exposure-proof", "status": "planned", "visibility": "internal-repo",
      "function": "Prove, by count, that nothing that becomes public with KotlinBottools names a guild, a member or a legacy id, and that nothing new cites a pre-rewrite id.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.5", "placement": "WS/tools and DATA/run/gate, outside every repository",
                    "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 4, "slug": "repository-hygiene", "subIssue": 24}, {"unit": 5, "slug": "kotlinbottools-publish", "subIssue": 25}]},
      "c4": {"workspace.dsl": "kbt.gate"}},
-    {"slug": "residual-exposure", "name": "Residual-exposure measurement", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "residual-exposure", "name": "Residual-exposure measurement", "kind": "system", "parent": "exposure-proof", "status": "planned", "visibility": "internal-repo",
      "function": "Measure what GitHub still serves of each old history and report it in counts.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.6", "placement": "DATA/rewrite, outside every repository",
                    "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 5, "slug": "kotlinbottools-publish", "subIssue": 25}, {"unit": 6, "slug": "gkb2-gkb-rewrite", "subIssue": 26}, {"unit": 7, "slug": "bottools-trumpbot-support-rewrite", "subIssue": 27}, {"unit": 8, "slug": "residual-report-and-cleanup", "subIssue": 28}]},
      "c4": {"workspace.dsl": "kbt.residual"}},
-    {"slug": "cleanup", "name": "Cleanup", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "cleanup", "name": "Cleanup", "kind": "system", "parent": "workspace-lifecycle", "status": "planned", "visibility": "internal-repo",
      "function": "Leave the machine with the data folder and records, the two realigned clones, and nothing else of the phase.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "6.7", "placement": "WS and DATA, outside every repository",
                    "units": [{"unit": 8, "slug": "residual-report-and-cleanup", "subIssue": 28}]},
      "c4": {"workspace.dsl": "kbt.cleanup"}},
-    {"slug": "repository-swap", "name": "Repository swap", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "repository-swap", "name": "Repository swap", "kind": "system", "parent": "rewrite-and-cut-over", "status": "planned", "visibility": "internal-repo",
      "function": "Make the rewritten KotlinBottools public as a fresh repository without losing a number or a link.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "7", "placement": "GitHub; DATA/run/swap and DATA/run/rehearsal",
                    "units": [{"unit": 2, "slug": "transfer-rehearsal", "subIssue": 22}, {"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 5, "slug": "kotlinbottools-publish", "subIssue": 25}]},
      "c4": {"workspace.dsl": "kbt.swap"}},
-    {"slug": "clone-realignment", "name": "Clone realignment", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "clone-realignment", "name": "Clone realignment", "kind": "system", "parent": "rewrite-and-cut-over", "status": "planned", "visibility": "internal-repo",
      "function": "Bring this working directory onto the rewritten history in place, so that no push from it can carry old history, and replace the TrumpBot clone with a fresh one at the same path.",
      "paths": [],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "9", "placement": "this working directory, the local TrumpBot clone and DATA/run/realign",
                    "units": [{"unit": 3, "slug": "kotlinbottools-rewrite-and-swap", "subIssue": 23}, {"unit": 7, "slug": "bottools-trumpbot-support-rewrite", "subIssue": 27}]},
      "c4": {"workspace.dsl": "kbt.realign"}},
-    {"slug": "repository-hygiene", "name": "Repository hygiene", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+    {"slug": "repository-hygiene", "name": "Repository hygiene", "kind": "system", "parent": "internal-tooling", "status": "planned", "visibility": "internal-repo",
      "function": "Author the in-repo files and the README and changelog edits that land on main through their unit's pull request: a root-anchored .gitignore, .gitleaks.toml, and the secret-scan workflow with its scan wrapper.",
      "paths": [".gitleaks.toml", ".github/scripts/secret_scan.py", ".github/workflows/secret-scan.yml"],
      "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md", "section": "10", "placement": ".gitignore, .gitleaks.toml, .github/scripts/secret_scan.py, .github/workflows/secret-scan.yml, README.md, CHANGELOG.md",
                    "units": [{"unit": 4, "slug": "repository-hygiene", "subIssue": 24}]},
-     "c4": {"workspace.dsl": "kbt.hygiene"}}
+     "c4": {"workspace.dsl": "kbt.hygiene"}},
+    {"slug": "internal-tooling", "name": "Internal Tooling", "kind": "supersystem", "parent": "kotlinbottools", "status": "planned", "visibility": "internal-repo",
+     "function": "The tooling that runs the Phase 0 history rewrite from this repository, in four groups: the workspace's lifecycle, the rewrite and cut-over, the exposure proofs, and the repository's hygiene files.",
+     "paths": [],
+     "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md"}},
+    {"slug": "workspace-lifecycle", "name": "Workspace lifecycle", "kind": "supersystem", "parent": "internal-tooling", "status": "planned", "visibility": "internal-repo",
+     "function": "Prepare the ground before anything is rewritten and clear it afterwards: pinned tools, untouched backups and the preserved data in, the workspace out.",
+     "paths": [],
+     "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md"}},
+    {"slug": "rewrite-and-cut-over", "name": "Rewrite and cut-over", "kind": "supersystem", "parent": "internal-tooling", "status": "planned", "visibility": "internal-repo",
+     "function": "Replace the old histories and move everything onto them: each repository rewritten and proven, KotlinBottools made public as a fresh repository, the local clones realigned.",
+     "paths": [],
+     "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md"}},
+    {"slug": "exposure-proof", "name": "Exposure proof", "kind": "supersystem", "parent": "internal-tooling", "status": "planned", "visibility": "internal-repo",
+     "function": "Say by count what is exposed: that what becomes public names nothing it should not, and what GitHub still serves of each old history.",
+     "paths": [],
+     "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md"}}
   ]
 }
 </script>
@@ -896,16 +941,16 @@ footer code{color:var(--ink-2)}
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "chore/issue-21-preparation", "sha": "a12958a", "date": "2026-11-08T22:58:50Z"},
-  "lastAmended": {"issue": 21, "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests", "sha": "a12958a"},
-  "written": {"sha": "a12958a"}
+  "asIs": {"ref": "chore/issue-22-transfer-rehearsal", "sha": "e6ef04a", "date": "2026-11-09T07:50:05Z"},
+  "lastAmended": {"issue": 22, "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories", "sha": "e6ef04a"},
+  "written": {"sha": "e6ef04a"}
 }
 </script>
 
 <!-- A verbatim copy of workspace.dsl (scripts/embed.js … dsl). -->
 <script type="text/plain" id="dsl">
 // KotlinBottools — C4 model as code (Structurizr DSL): the repository's systems and how they interact. Source of truth for docs/dashboards/index.html.
-// As-is at KotlinBottools chore/issue-21-preparation a12958a (2026-11-08): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture, every one planned and drawn dashed. Code is authoritative on any conflict.
+// As-is at KotlinBottools chore/issue-22-transfer-rehearsal e6ef04a (2026-11-09): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture, every one planned and drawn dashed. Code is authoritative on any conflict.
 workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the planned systems that purge the bot repositories' histories before KotlinBottools is made public." {
 
     !identifiers hierarchical
@@ -1009,7 +1054,7 @@ const REPO="https://github.com/"+REG.repo;
    and the title opens the board, written <a data-board="N">title</a> by hand, plain text while the issue has none. A lone #n opens
    the board when one exists and the GitHub issue otherwise: ilink(n), or <a data-issue="N">#N</a> by hand. linkIssues() resolves
    the hand-written ones at load. */
-const BOARDS={"2":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html","21":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation/dashboard.html"}; // fill: issue number → its issue board relative to this board, on this one line, e.g. {"38":"../../plans/38-slug/dashboard.html"}
+const BOARDS={"2":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html","21":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation/dashboard.html","22":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/22-transfer-rehearsal/dashboard.html"}; // fill: issue number → its issue board relative to this board, on this one line, e.g. {"38":"../../plans/38-slug/dashboard.html"}
 /* the newest board of each issue on this machine (plan/RULES.md §1, "The newest board on this machine"): docs/plans/.live/boards.js, beside the
    live marker, which board.js --live writes in every checkout; opened from disk, an issue's link opens it (a run in flight in a worktree,
    a landed issue's live view copy) before BOARDS, the boards as committed; a published copy has no marker */
@@ -1060,16 +1105,19 @@ $("#sys-count").textContent=`${SYSTEMS.filter(s=>s.status==="built").length} bui
 /* ---------- System colours ----------
    One categorical slot per top-level system (one whose parent is not itself on this board), by its place in registry order; a child takes its
    top-level ancestor's slot. An archived system holds no slot and is drawn neutral, solid and faded; what its place frees goes to the next
-   system with none (a seventh top-level system on), so archiving one moves no other system's colour (system/scripts/palette.js colourSlots(),
+   system with none (a thirteenth top-level system on), so archiving one moves no other system's colour (system/scripts/palette.js colourSlots(),
    the same rule). Six slots: a system with none left, and any slug the registry does not know, fold into the neutral "other". Every element drawn for a system sets --c from here — paintSystems() does it for hand-written [data-sys]
    elements — so a system keeps one colour on every tab. */
-const SLOTS=6, bySlug=slug=>SYSTEMS.find(s=>s.slug===slug);
-function sysTop(slug){ const s=bySlug(slug); if(!s||s.status==="archived") return null; let h=s,c=s; while(bySlug(c.parent)){ c=bySlug(c.parent); if(c.status!=="archived") h=c; } return h; }
-const TOPS=SYSTEMS.filter(s=>!bySlug(s.parent));
+const SLOTS=12, bySlug=slug=>SYSTEMS.find(s=>s.slug===slug);
+/* a system named Internal Tooling, and every system under it, takes no slot and no place, and is drawn in the plain ink (GUIDANCE.md §1; palette.js isPlainName()) */
+function sysPlainOf(slug){ let c=bySlug(slug), n=0; if(!c||c.status==="archived") return null; while(c&&n++<64){ if(c.status!=="archived"&&/^internal tooling$/i.test(String(c.name||"").trim())) return c; c=bySlug(c.parent); } return null; }
+function sysPlain(slug){ return !!sysPlainOf(slug); }
+function sysTop(slug){ const s=bySlug(slug); if(!s||s.status==="archived"||sysPlain(slug)) return null; let h=s,c=s; while(bySlug(c.parent)){ c=bySlug(c.parent); if(c.status!=="archived") h=c; } return h; }
+const TOPS=SYSTEMS.filter(s=>!bySlug(s.parent)&&!sysPlain(s.slug));
 const SLOT_OF=(()=>{ const m=new Map(), hs=[...new Set(SYSTEMS.map(s=>sysTop(s.slug)).filter(Boolean))]; hs.forEach(h=>{ const i=TOPS.indexOf(h); if(i>=0&&i<SLOTS) m.set(h.slug,i+1); });
   const free=[]; for(let n=1;n<=SLOTS;n++) if(![...m.values()].includes(n)) free.push(n); hs.filter(h=>!m.has(h.slug)).forEach(h=>{ if(free.length) m.set(h.slug,free.shift()); }); return m; })();
 const sysSlot=slug=>{ const h=sysTop(slug); return (h&&SLOT_OF.get(h.slug))||0; };
-function sysColour(slug){ const n=sysSlot(slug); return n?`var(--sys-${n})`:"var(--muted)"; }
+function sysColour(slug){ if(sysPlain(slug)) return "var(--ink)"; const n=sysSlot(slug); return n?`var(--sys-${n})`:"var(--muted)"; }
 const isArchivedSys=slug=>{ const s=bySlug(slug); return !!s&&s.status==="archived"; };
 /* Planned, from the data (system/RULES.md §2, "Planned parts"): an item tied to a system (sys:"slug" on a structure box, a thread, a flow's
    end, a lifeline; data-part="sys:<slug>" on hand-written HTML) is planned while the registry says the system is, so apply-state.js
@@ -1084,8 +1132,8 @@ function applyParts(root){ (root||document).querySelectorAll("[data-part]").forE
   document.querySelectorAll(".thread[data-t]").forEach(e=>{ const t=MODEL.threads[e.dataset.t]; if(t) e.classList.toggle("planned",isPlanned(t)); }); }
 function paintSystems(root){ (root||document).querySelectorAll("[data-sys]").forEach(e=>{ e.style.setProperty("--c",sysColour(e.dataset.sys)); e.classList.toggle("archived",isArchivedSys(e.dataset.sys)); }); }
 /* Legend entries for a set of systems: one per top-level system, in slot order, then "other" when any folded. */
-function sysKey(slugs,cls){ const hs=[...new Set(slugs.map(sysTop).filter(Boolean))].filter(h=>sysSlot(h.slug)).sort((a,b)=>sysSlot(a.slug)-sysSlot(b.slug)), arch=slugs.some(isArchivedSys), more=slugs.some(s=>!sysSlot(s)&&!isArchivedSys(s));
-  return hs.map(t=>`<span><i class="${cls||"sys"}" style="--c:${sysColour(t.slug)}"></i>${esc(t.name)}</span>`).join("")+(arch?`<span><i class="${cls||"sys"} archived" style="--c:var(--muted)"></i><span class="archtag">⊟ archived</span> neutral, no colour of its own</span>`:"")+(more?`<span><i class="${cls||"sys"}" style="--c:var(--muted)"></i>other systems</span>`:""); }
+function sysKey(slugs,cls){ const hs=[...new Set(slugs.map(sysTop).filter(Boolean))].filter(h=>sysSlot(h.slug)).sort((a,b)=>sysSlot(a.slug)-sysSlot(b.slug)), arch=slugs.some(isArchivedSys), more=slugs.some(s=>!sysSlot(s)&&!isArchivedSys(s)&&!sysPlain(s)), plain=[...new Set(slugs.map(sysPlainOf).filter(Boolean))];
+  return hs.map(t=>`<span><i class="${cls||"sys"}" style="--c:${sysColour(t.slug)}"></i>${esc(t.name)}</span>`).join("")+plain.map(t=>`<span><i class="${cls||"sys"}" style="--c:var(--ink)"></i>${esc(t.name)}</span>`).join("")+(arch?`<span><i class="${cls||"sys"} archived" style="--c:var(--muted)"></i><span class="archtag">⊟ archived</span> neutral, no colour of its own</span>`:"")+(more?`<span><i class="${cls||"sys"}" style="--c:var(--muted)"></i>other systems</span>`:""); }
 
 /* The Systems tab (system/RULES.md §3, §7; dashboards-skill/35, promoted from the WebTools repository state board): the systems
    grouped by their visibility (the registry's "visibility": public, consumed by another organization; internal-org, consumed only by other
@@ -1111,7 +1159,7 @@ function sysCard(s){
   const plan=planned&&(s.plannedBy||{}).issue&&boardOf(s.plannedBy.issue);
   const meta=(planned
     ? [plan?`planned · <a href="${esc(plan)}">its plan</a>`:"planned", ...(partsBoard?[`<a href="${esc(own)}">its built parts' board</a>`]:[]), ...unitsOf(s).map(unitLink), ...((s.plannedBy||{}).placement?[`placement <code>${esc(s.plannedBy.placement)}</code>`]:[])]
-    : [esc(s.version?`v${s.version}`+(s.published&&s.published!==s.version?` (Central ${s.published})`:"")+(s.unreleased?" · unreleased":""):(s.toolchain||"")), s.asIs?`as-is ${esc(s.asIs.ref)} @ ${esc(s.asIs.sha)} · ${s.asIs.landed===false?"not yet landed":when(s.asIs.date)}`:""]).concat(role?[`<b class="role">${esc(role)}</b>`]:[]).filter(Boolean);
+    : [esc(s.version?`v${s.version}`+(s.published&&s.published!==s.version?` (Central ${s.published})`:"")+(s.unreleased?" · unreleased":""):(s.toolchain||"")), s.asIs?`as-is ${esc(s.asIs.ref)} @ ${esc(s.asIs.sha)} · ${when(s.asIs.date)}`:""]).concat(role?[`<b class="role">${esc(role)}</b>`]:[]).filter(Boolean);
   // A built system the repository gives no board yet is a card, not a link (never a dead href="#").
   const tag=linked?"a":"span", href=linked?` href="${esc(own)}"`:"";
   /* an archived system (status "archived": no longer developed) is a solid, faded card with its ⊟ archived tag, never dashed (dashed is planned) */
@@ -1158,21 +1206,26 @@ const MODEL = {
   // Structure box id → DSL element id.
   c4:{toolchain:"kbt.toolchain",backups:"kbt.backups",dataCopy:"kbt.dataCopy",pipeline:"kbt.pipeline",gate:"kbt.gate",residual:"kbt.residual",cleanup:"kbt.cleanup",swap:"kbt.swap",realign:"kbt.realign",hygiene:"kbt.hygiene"},
   structure:{
-    // Every box is a planned system of the Phase 0 history-rewrite architecture (§6, §7, §9, §10), drawn dashed from the registry.
-    height:590,
-    lanes:[["PREPARE",30,40,"start"],["REWRITE AND MEASURE",280,40,"start"],["GATE, SWAP, REALIGN",530,40,"start"],["LAND",770,40,"start"]],
-    notes:[{x:30,y:566,lines:["Every system is planned, nothing is built yet; all but the hygiene files live outside the repository, in the workspace and the data folder."]}],
+    // Every box is a planned system of the Phase 0 history-rewrite architecture (§6, §7, §9, §10), drawn dashed from the registry; the outer box is
+    // Internal Tooling, holding the three groups and Repository hygiene (systems.json), placed so that no arrow crosses a box.
+    height:540,
+    lanes:[],
+    notes:[{x:24,y:500,lines:["Every system is planned and nothing is built in the repository: all but the hygiene files live outside it, in the workspace and the data folder.","The transfer rehearsal ran there too, on two throwaway repositories."]}],
     nodes:[
-      {id:"toolchain",sys:"toolchain",x:30,y:60,w:210,h:56,t:"Toolchain",s:"planned · unit 1",d:{role:"Installs, verifies and pins git-filter-repo 2.47.0, gitleaks v8.30.1 and the scripts; the canary and the fixture rehearsal prove each check is not blind before it is trusted (architecture §6.1)."}},
-      {id:"backups",sys:"backups-and-manifests",x:30,y:200,w:210,h:56,t:"Backups and manifests",s:"planned · units 1, 3",d:{role:"One untouched mirror per repository, and from it the manifest of purged blob ids, the expectation row and the positive-control scan the rewrite is judged against (§6.2)."}},
-      {id:"dataCopy",sys:"legacy-data-copy",x:30,y:340,w:210,h:56,t:"Legacy data copy",s:"planned · unit 1",d:{role:"BotData.xml and guildData/ copied byte-exactly from three revisions and verified; COPY-VERIFIED is the precondition of every step that deletes or rewrites anything (§6.3)."}},
-      {id:"pipeline",sys:"rewrite-pipeline",x:280,y:130,w:210,h:56,t:"Rewrite pipeline",s:"planned · units 3, 6, 7",d:{role:"The same gated stages for all six repositories, from the list proof to the exit tests; KotlinBottools adds the path scrub in the same run, Gate 1 and the fresh repository as its push target (§6.4)."}},
-      {id:"residual",sys:"residual-exposure",x:280,y:340,w:210,h:56,t:"Residual-exposure measurement",s:"planned · units 3, 5–8",d:{role:"Status-only probes of every old tip, first-changed commit and a sample of manifest blobs, and the fresh mirror's reachability counts, reported as tallies (§6.6)."}},
-      {id:"gate",sys:"privacy-gate",x:530,y:60,w:210,h:56,t:"Privacy gate",s:"planned · units 3, 4, 5",d:{role:"Three gate runs that count guild, member and id hits over what becomes public with KotlinBottools, and the id-reference check with Gate 3 (§6.5)."}},
-      {id:"swap",sys:"repository-swap",x:530,y:200,w:210,h:56,t:"Repository swap",s:"planned · units 2, 3, 5",d:{role:"The rehearsal, the fresh repository, the number walk and link reconciliation, the renames and archive, then the visibility and scanning settings (§7)."}},
-      {id:"realign",sys:"clone-realignment",x:530,y:340,w:210,h:56,t:"Clone realignment",s:"planned · units 3, 7",d:{role:"This working directory moved onto the rewritten history in place, with the push-safety proof before any push; the TrumpBot clone replaced at the same path (§9)."}},
-      {id:"hygiene",sys:"repository-hygiene",x:770,y:130,w:200,h:56,t:"Repository hygiene",s:"planned · unit 4",d:{role:"The root-anchored .gitignore, .gitleaks.toml, the scan wrapper and the Secret scan workflow, the README edit and a new CHANGELOG.md, landed on the fresh repository's main (§10)."}},
-      {id:"cleanup",sys:"cleanup",x:395,y:470,w:210,h:56,t:"Cleanup",s:"planned · unit 8",d:{role:"Re-verifies the data folder, copies the tools into it, deletes the workspace and confirms the deletion (§6.7)."}}
+      {id:"tooling",sys:"internal-tooling",container:true,x:12,y:44,w:976,h:428,t:"Internal Tooling",s:"planned · four groups",d:{role:"The tooling that runs the Phase 0 history rewrite from this repository, in four groups: the workspace's lifecycle, the rewrite and cut-over, the exposure proofs, and the repository's hygiene files."}},
+      {id:"lifecycle",sys:"workspace-lifecycle",container:true,x:24,y:96,w:210,h:362,t:"Workspace lifecycle",s:"planned · four systems",d:{role:"Prepare the ground before anything is rewritten and clear it afterwards: pinned tools, untouched backups and the preserved data in, the workspace out."}},
+      {id:"cutover",sys:"rewrite-and-cut-over",container:true,x:238,y:96,w:424,h:362,t:"Rewrite and cut-over",s:"planned · three systems",d:{role:"Replace the old histories and move everything onto them: each repository rewritten and proven, KotlinBottools made public as a fresh repository, the local clones realigned."}},
+      {id:"exposure",sys:"exposure-proof",container:true,x:666,y:96,w:210,h:202,t:"Exposure proof",s:"planned · two systems",d:{role:"Say by count what is exposed: that what becomes public names nothing it should not, and what GitHub still serves of each old history."}},
+      {id:"cleanup",sys:"cleanup",x:34,y:150,w:190,h:56,t:"Cleanup",s:"planned · unit 8",d:{role:"Re-verifies the data folder, copies the tools into it, deletes the workspace and confirms the deletion (§6.7)."}},
+      {id:"dataCopy",sys:"legacy-data-copy",x:34,y:230,w:190,h:56,t:"Legacy data copy",s:"planned · unit 1",d:{role:"BotData.xml and guildData/ copied byte-exactly from three revisions and verified; COPY-VERIFIED is the precondition of every step that deletes or rewrites anything (§6.3)."}},
+      {id:"backups",sys:"backups-and-manifests",x:34,y:310,w:190,h:56,t:"Backups and manifests",s:"planned · units 1, 3",d:{role:"One untouched mirror per repository, and from it the manifest of purged blob ids, the expectation row and the positive-control scan the rewrite is judged against (§6.2)."}},
+      {id:"toolchain",sys:"toolchain",x:34,y:390,w:190,h:56,t:"Toolchain",s:"planned · unit 1",d:{role:"Installs, verifies and pins git-filter-repo 2.47.0, gitleaks v8.30.1 and the scripts; the canary and the fixture rehearsal prove each check is not blind before it is trusted (architecture §6.1)."}},
+      {id:"swap",sys:"repository-swap",x:248,y:150,w:190,h:56,t:"Repository swap",s:"planned · units 2, 3, 5",d:{role:"The fresh repository, the number walk and link reconciliation, the renames with the old repository made private before it is archived, then the visibility and scanning settings (§7). The transfer rehearsal ran the walk and the rename order on two throwaway repositories, with a tool outside the repository."}},
+      {id:"pipeline",sys:"rewrite-pipeline",x:248,y:310,w:190,h:56,t:"Rewrite pipeline",s:"planned · units 3, 6, 7",d:{role:"The same gated stages for all six repositories, from the list proof to the exit tests; KotlinBottools adds the path scrub in the same run, Gate 1 and the fresh repository as its push target (§6.4)."}},
+      {id:"realign",sys:"clone-realignment",x:462,y:390,w:190,h:56,t:"Clone realignment",s:"planned · units 3, 7",d:{role:"This working directory moved onto the rewritten history in place, with the push-safety proof before any push; the TrumpBot clone replaced at the same path (§9)."}},
+      {id:"residual",sys:"residual-exposure",x:676,y:150,w:190,h:56,t:"Residual exposure",s:"planned · units 3, 5–8",d:{role:"Status-only probes of every old tip, first-changed commit and a sample of manifest blobs, and the fresh mirror's reachability counts, reported as tallies (§6.6)."}},
+      {id:"gate",sys:"privacy-gate",x:676,y:230,w:190,h:56,t:"Privacy gate",s:"planned · units 3, 4, 5",d:{role:"Three gate runs that count guild, member and id hits over what becomes public with KotlinBottools, and the id-reference check with Gate 3 (§6.5)."}},
+      {id:"hygiene",sys:"repository-hygiene",x:676,y:350,w:190,h:56,t:"Repository hygiene",s:"planned · unit 4",d:{role:"The root-anchored .gitignore, .gitleaks.toml, the scan wrapper and the Secret scan workflow, the README edit and a new CHANGELOG.md, landed on the fresh repository's main (§10)."}}
     ],
     deps:[
       ["backups","toolchain","pinned gitleaks"],
@@ -1607,7 +1660,7 @@ function renderFlow(){
 /* The legend for the flow on screen: shapes, then each end colour with the systems or levels that use it, lit and faded, and planned
    only where a node is (an edge is drawn planned only beside a planned node). */
 function flowKey(F){
-  const ends=new Map(); Object.values(F.nodes).filter(n=>n.k==="t").forEach(n=>{ const c=endCol(n), l=ends.get(c)||[], name=n.sys?((sysTop(n.sys)||{}).name||n.sys):n.lvl; if(name&&!l.includes(name)) l.push(name); ends.set(c,l); });
+  const ends=new Map(); Object.values(F.nodes).filter(n=>n.k==="t").forEach(n=>{ const c=endCol(n), l=ends.get(c)||[], name=n.sys?((sysPlainOf(n.sys)||sysTop(n.sys)||{}).name||n.sys):n.lvl; if(name&&!l.includes(name)) l.push(name); ends.set(c,l); });
   $("#flow-key").innerHTML=`<span><i class="hex"></i>decision</span><span><i></i>step</span>`+[...ends].map(([c,l])=>`<span><i class="end" style="border-left-color:${c}"></i>ends · ${esc(l.join(" · ")||"outcome")}</span>`).join("")+`<span><i class="ln on"></i>the path these inputs take</span><span><i class="ln off"></i>not taken</span>`+(Object.values(F.nodes).some(isPlanned)?`<span><i class="pln"></i>planned, not built</span>`:"");
 }
 function highlightFlow(){
@@ -1658,8 +1711,8 @@ $("#seq-next").addEventListener("click",()=>gotoStep(seq.cur+1));
 $("#seq-play").addEventListener("click",e=>{ const b=e.currentTarget; if(seq.timer){ clearInterval(seq.timer); seq.timer=null; b.textContent="play"; b.setAttribute("aria-pressed","false"); } else { seq.timer=setInterval(()=>gotoStep(seq.cur+1),1600); b.textContent="pause"; b.setAttribute("aria-pressed","true"); } });
 
 /* ---------- The stamps (state.json) ----------
-   The header's chips: the version (a system board), the as-is stamp ("<ref> @ <sha> · <date>", or "<branch> @ <sha> · not yet landed" while
-   the board shows a feature branch) and, while the panels were written at another commit than the stamp names, "written at <sha>". A chip
+   The header's chips: the version (a system board), the as-is stamp ("<ref> @ <sha> · <date>")
+   and, while the panels were written at another commit than the stamp names, "written at <sha>". A chip
    with nothing to say is removed. The last amendment names an issue, so it is said in the Context Panel, never in the header: the board
    above Context is as-is and names no issue (system/RULES.md §2, §6); its number opens the GitHub issue, its title the issue board
    (linkIssues() resolves it at load). A header chip for it left by an older template is removed. */
@@ -1667,7 +1720,7 @@ function renderState(){
   const S=STATE||{}, a=S.asIs||{}, la=S.lastAmended||{}, w=S.written||{};
   const set=(id,html)=>{ const e=document.getElementById(id); if(!e) return; if(!html){ e.remove(); return; } e.hidden=false; e.innerHTML=html; };
   set("chip-version",S.version?`<span class="ck">version</span> <b>${esc(S.version)}</b>`:"");
-  set("chip-asis",a.sha?`<span class="ck">as-is at</span> <b>${esc(a.ref||"?")} @ ${esc(a.sha)}</b> · ${a.landed===false?"not yet landed":when(a.date)}`:"");
+  set("chip-asis",a.sha?`<span class="ck">as-is at</span> <b>${esc(a.ref||"?")} @ ${esc(a.sha)}</b> · ${when(a.date)}`:"");
   set("chip-written",w.sha&&a.sha&&w.sha!==a.sha?`<span class="ck">written at</span> <b>${esc(w.sha)}</b>`:"");
   const old=document.getElementById("chip-amended"); if(old) old.remove();
   const ctx=document.querySelector("section.context"); let p=document.getElementById("ctx-amended");
