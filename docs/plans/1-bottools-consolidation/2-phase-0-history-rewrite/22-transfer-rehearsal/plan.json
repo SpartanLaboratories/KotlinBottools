@@ -8,7 +8,7 @@
   "title": "Transfer rehearsal",
   "issueTitle": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories",
   "function": "Nobody knows how an issue transfer treats numbers, closed issues and links, and the number-preserving swap of KotlinBottools rests on them. This run proves those mechanics first, on two throwaway repositories of the organisation, a public source and a private, empty target: a fixture with the shapes the real walk meets, the numbers walked in order, a pull request's number reproduced by a closed placeholder, every dropped link re-created, and the rename swap rehearsed, both repositories left private and archived. Unit 2 of #2, with no version moved; unit 3 starts only if it passes.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-08T23:59:00Z",
   "parent": {
     "issue": 2,
@@ -21,7 +21,40 @@
     "sha": "3b62b67",
     "date": "2026-11-08"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "9af27b286ede1c153ff4e0d6f034fbc872996c15",
+    "merge": "9af27b286ede1c153ff4e0d6f034fbc872996c15",
+    "pr": 31,
+    "date": "2026-11-10",
+    "at": "2026-11-10T00:15:12Z",
+    "commits": [
+      {
+        "sha": "83761f7",
+        "at": "2026-11-09T01:15:20Z",
+        "step": "research"
+      },
+      {
+        "sha": "81c43b9",
+        "at": "2026-11-09T01:31:53Z",
+        "step": "research"
+      },
+      {
+        "sha": "3d4a2da",
+        "at": "2026-11-09T01:42:25Z",
+        "step": "research"
+      },
+      {
+        "sha": "44321c1",
+        "at": "2026-11-09T04:56:34Z",
+        "step": "research"
+      },
+      {
+        "sha": "de8d6f0",
+        "at": "2026-11-09T05:19:18Z",
+        "step": "research"
+      }
+    ]
+  },
   "systems": [
     {
       "slug": "repository-swap",
@@ -33,10 +66,10 @@
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-09T23:16:07Z",
-    "updated": "2026-11-10T00:11:35Z",
-    "detail": "Document: 6 of 6 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-10T00:15:12Z",
+    "updated": "2026-11-10T00:15:12Z",
+    "detail": "Landed in PR #31.",
     "steps": [
       "sizing",
       "interview",
@@ -51,9 +84,7 @@
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [
@@ -179,9 +210,8 @@
     },
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-10T00:11:35Z",
-      "note": "6 of 6 tasks done"
+      "name": "landed",
+      "at": "2026-11-10T00:15:12Z"
     },
     "history": {
       "sizing": [
@@ -914,6 +944,93 @@
             ]
           },
           "outage": "the session stopped; a new session took the run up from its handoff"
+        },
+        {
+          "since": "2026-11-09T23:16:07Z",
+          "ended": "2026-11-10T00:14:07Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-10T00:11:35Z",
+            "note": "6 of 6 tasks done"
+          },
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done",
+                "started": "2026-11-09T23:16:07Z",
+                "finished": "2026-11-09T23:19:41Z"
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-09T23:19:41Z",
+                "finished": "2026-11-09T23:26:48Z"
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-09T23:26:48Z",
+                "finished": "2026-11-09T23:51:21Z",
+                "report": "The as-built record, consequences and research notes now carry the rehearsal's measurements; the README and the changelog need no change for a documents-only landing."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-09T23:51:21Z",
+                "report": "The as-built record, consequences and research notes now carry the rehearsal's measurements; the README and the changelog need no change for a documents-only landing."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-09T23:51:21Z",
+                "finished": "2026-11-10T00:10:35Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-10T00:10:35Z",
+                "finished": "2026-11-10T00:11:35Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-10T00:14:07Z",
+          "ended": "2026-11-10T00:15:00Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-10T00:14:07Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-10T00:15:00Z",
+          "ended": "2026-11-10T00:15:12Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "merge",
+            "at": "2026-11-10T00:15:00Z",
+            "note": "merging PR #31"
+          },
+          "detail": "Merge: merging it in PR #31."
         }
       ]
     },
@@ -1105,6 +1222,13 @@
       "date": "2026-11-09",
       "ref": "plan.md",
       "note": "seven stages, S0 to S6, every GitHub write a request, the tool saved from the plan and checked before anything runs"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-10",
+      "ref": "PR #31",
+      "note": "merged as 9af27b2"
     }
   ],
   "trail": [
@@ -1285,6 +1409,23 @@
       "date": "2026-11-10",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Merge: merging it in PR #31",
+      "ref": "PR #31"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Landed in PR #31, merge 9af27b2",
+      "ref": "PR #31"
     }
   ],
   "rows": [
@@ -2995,7 +3136,7 @@
     }
   ],
   "impact": {
-    "basis": "plan",
+    "basis": "as-built",
     "summary": "Two throwaway repositories and nothing else on GitHub: no module is published, no version moves, and the landing changes documents and generated boards only. KotlinBottools and every other repository stay as they are. The tool and the results outlive this unit, and the next unit takes them, with what the run measured and the tool's known gaps (`consequences.md` §4, §5).",
     "none": null,
     "release": {
@@ -3080,14 +3221,15 @@
     ],
     "api": [],
     "conversion": [],
-    "source": "consequences.md §1 to §4; plan.md §7.1",
+    "source": "consequences.md §1 to §6; final-implementation.md §2 to §4",
     "link": "consequences.md#2-blast-radius",
     "changes": [
       {
         "what": "The next unit also takes what a transfer does to issue references, the tool's known gaps to close before reusing it, a job of its own, and the decision on the moved text that names `KotlinBottools-next`.",
         "why": "The run measured the rewriting of references, which the documentation omits, and what those references reach after the renames; the tool's gaps were recorded rather than fixed, as it ran exactly as planned.",
         "when": "S3 to S5",
-        "entry": "downstream.5"
+        "entry": "downstream.5",
+        "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
       }
     ]
   },
@@ -3225,7 +3367,8 @@
     ]
   },
   "issueBoards": {
-    "21": "../21-preparation/dashboard.html"
+    "21": "../21-preparation/dashboard.html",
+    "23": "../23-kotlinbottools-rewrite-and-swap/dashboard.html"
   },
   "links": {
     "workBoard": "../../../index.html",

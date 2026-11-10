@@ -26,8 +26,8 @@
   "wip": {
     "step": "implementation",
     "since": "2026-11-08T21:15:43Z",
-    "updated": "2026-11-08T23:59:00Z",
-    "detail": "1 of 8 units landed; #22 in progress; #23 up next.",
+    "updated": "2026-11-10T01:12:41Z",
+    "detail": "2 of 8 units landed; #23 in progress; #24 up next.",
     "steps": [
       "sizing",
       "interview",
@@ -41,7 +41,7 @@
       "landed"
     ],
     "current": [
-      "transfer-rehearsal.built"
+      "kotlinbottools-rewrite-and-swap.built"
     ],
     "questions": [],
     "research": null,
@@ -237,7 +237,7 @@
         }
       ]
     },
-    "next": "kotlinbottools-rewrite-and-swap",
+    "next": "repository-hygiene",
     "qa": [],
     "qaMax": 3,
     "waitingOn": null,
@@ -473,6 +473,16 @@
       "date": "2026-11-08",
       "column": "built",
       "label": "#22 started"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "#22 landed"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "#23 started"
     }
   ],
   "rows": [
@@ -499,10 +509,10 @@
         "kind": "missing",
         "summary": "Nothing the rewrite needs is in place. Neither `git filter-repo` nor `gitleaks` is installed, the legacy data has not been copied out, and no backup or manifest exists to judge a rewrite against. Both tools exit 0 in cases that are failures, so their checks have to be proven before they are trusted.",
         "evidence": [
-          "architecture.md:235 — neither `git filter-repo` nor `gitleaks` is installed",
-          "architecture.md:97 — the legacy data is to be preserved before any rewrite",
-          "architecture.md:244 — filter-repo exits 0 even when nothing matched",
-          "architecture.md:254 — gitleaks exits 0 with \"no leaks found\" when its internal `git log` fails"
+          "`architecture.md:235` — neither `git filter-repo` nor `gitleaks` is installed",
+          "`architecture.md:97` — the legacy data is to be preserved before any rewrite",
+          "`architecture.md:244` — filter-repo exits 0 even when nothing matched",
+          "`architecture.md:254` — gitleaks exits 0 with \"no leaks found\" when its internal `git log` fails"
         ],
         "source": "architecture.md §2.3, §2.4",
         "link": "architecture.md#23-tools-on-the-machine"
@@ -664,1022 +674,18 @@
         "issue": 22,
         "board": "22-transfer-rehearsal/dashboard.html",
         "folder": "22-transfer-rehearsal/",
-        "live": {
-          "step": "document",
-          "since": "2026-11-09T23:16:07Z",
-          "updated": "2026-11-10T00:11:35Z",
-          "detail": "Document: 6 of 6 tasks done; every task done.",
-          "steps": [
-            "sizing",
-            "interview",
-            "research",
-            "plan",
-            "branch",
-            "implementation",
-            "qa",
-            "remediation",
-            "document",
-            "landing",
-            "merge",
-            "landed"
-          ],
-          "waitingOn": null,
-          "resume": null,
-          "qa": [
-            {
-              "pass": 1,
-              "verdict": "changes-requested",
-              "date": "2026-11-09",
-              "at": "2026-11-09T07:17:29Z",
-              "findings": {},
-              "severity": {
-                "minor": 13,
-                "other": 3
-              },
-              "note": "Every acceptance criterion is met and no recorded result is untrue; the self-test leaves the result gate and the failure paths of the post checks unchecked. Test check: 14 findings, 3 of them not minor; code check: 2 minor; the 87 self-test checks passed."
-            },
-            {
-              "pass": 2,
-              "verdict": "changes-requested",
-              "date": "2026-11-09",
-              "at": "2026-11-09T07:47:51Z",
-              "findings": {},
-              "severity": {
-                "minor": 6,
-                "other": 0
-              },
-              "route": "on-the-spot",
-              "note": "The tool is unchanged and its 87 self-test checks pass; the known-gaps record for the next unit needed six small wording additions, made in place. Test check: no findings; code check: 6 minor, all wording."
-            }
-          ],
-          "qaMax": 3,
-          "status": "building",
-          "branch": "chore/issue-22-transfer-rehearsal",
-          "event": {
-            "name": "document",
-            "at": "2026-11-10T00:11:35Z",
-            "note": "6 of 6 tasks done"
-          },
-          "interview": [
-            {
-              "text": "Does KotlinBottools stay public until the swap?",
-              "options": [
-                "Private again now, before the first write; the rehearsal stays as designed",
-                "Public until the swap; a public source and private target are rehearsed, and the source goes private before archiving",
-                "Drop the swap and rewrite in place; the parent design is re-planned"
-              ],
-              "answer": "The repository stays public until the swap, and the rehearsal proves a public source moving to a private target",
-              "asked": "2026-11-09T00:15:00Z",
-              "answered": "2026-11-09T01:08:58Z"
-            },
-            {
-              "text": "Does the fixture carry a second level of sub-issues?",
-              "options": [
-                "One level, as specified",
-                "Add a middle node"
-              ],
-              "answer": "The fixture nests sub-issues to mixed depth and the walk handles any depth",
-              "asked": "2026-11-09T00:15:00Z",
-              "answered": "2026-11-09T01:08:58Z"
-            },
-            {
-              "text": "After a failed step, does everything stop?",
-              "options": [
-                "Stop at the first failed step, archive both, hand back",
-                "Stop the walk at the failure, still run link re-creation and the rename swap, archive both, hand back every result"
-              ],
-              "answer": "After a failed step the walk stops but link re-creation and the rename swap still run",
-              "asked": "2026-11-09T00:15:00Z",
-              "answered": "2026-11-09T01:08:58Z"
-            }
-          ],
-          "asked": [
-            {
-              "step": "implementation",
-              "text": "How should the rehearsal proceed after the transfer rewrote bare issue references?",
-              "options": [
-                "Revise the plan: compare after mapping the rewritten references back, then resume the walk",
-                "Take the stopped-walk path as written and hand back"
-              ],
-              "answer": "Revise the plan: the item check compares the text after mapping the rewritten references back, and the walk resumes at the second transfer on the same repositories",
-              "asked": "2026-11-09T04:35:07Z",
-              "answered": "2026-11-09T04:40:00Z"
-            },
-            {
-              "step": "implementation",
-              "text": "How should the rehearsal proceed now that references to already-moved issues keep the target's full name?",
-              "options": [
-                "Revise the plan again: accept any form naming either fixture repository, and measure after the swap whether the target-named references still resolve",
-                "Take the stopped-walk path as written and hand back"
-              ],
-              "answer": "Revise the plan again: the item check accepts references naming either fixture repository, and the rename swap measures whether the target-named references still resolve",
-              "asked": "2026-11-09T05:00:57Z",
-              "answered": "2026-11-09T05:05:00Z"
-            },
-            {
-              "step": "implementation",
-              "text": "How should the rename swap proceed while anonymous repository web pages answer 504?",
-              "options": [
-                "Wait and retry the unchanged check",
-                "Revise the plan: judge privacy on the API reads and record the web read without judging it",
-                "Hand back here"
-              ],
-              "answer": "Wait and retry the unchanged check, about every 30 minutes for up to two hours",
-              "asked": "2026-11-09T05:43:56Z",
-              "answered": "2026-11-09T05:46:00Z"
-            }
-          ],
-          "stages": [
-            {
-              "id": "S0",
-              "name": "Local readiness",
-              "state": "done",
-              "rows": [
-                "rehearsal-tool",
-                "requested-writes"
-              ]
-            },
-            {
-              "id": "S1",
-              "name": "Repositories, labels and milestone",
-              "state": "done",
-              "rows": [
-                "rehearsal-repositories",
-                "item-content",
-                "requested-writes"
-              ]
-            },
-            {
-              "id": "S2",
-              "name": "The fixture",
-              "state": "done",
-              "rows": [
-                "fixture",
-                "requested-writes"
-              ],
-              "finished": "2026-11-09T04:32:16Z",
-              "report": "The fixture equals its specification: numbers 1 to 10 (nine issues and one merged pull request), four comments, seven sub-issue and four blocked-by links, two closed issues."
-            },
-            {
-              "id": "S3",
-              "name": "The walk",
-              "state": "done",
-              "rows": [
-                "number-walk",
-                "pull-request-placeholder",
-                "closed-issue",
-                "item-content",
-                "links",
-                "failure-behaviour",
-                "requested-writes"
-              ],
-              "started": "2026-11-09T04:32:16Z"
-            },
-            {
-              "id": "S4",
-              "name": "Link reconciliation",
-              "state": "done",
-              "rows": [
-                "links",
-                "requested-writes"
-              ],
-              "finished": "2026-11-09T05:33:06Z",
-              "report": "All nine numbers are in the target on their own numbers, the placeholder and both closed issues included, and every one of the eleven links was kept across the walk with none to re-create."
-            },
-            {
-              "id": "S5",
-              "name": "The rename swap",
-              "state": "done",
-              "rows": [
-                "rename-swap",
-                "requested-writes"
-              ],
-              "started": "2026-11-09T05:33:06Z",
-              "finished": "2026-11-09T07:01:03Z",
-              "report": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived."
-            },
-            {
-              "id": "S6",
-              "name": "Close-out",
-              "state": "done",
-              "rows": [
-                "rehearsal-repositories",
-                "pass-condition",
-                "failure-behaviour",
-                "requested-writes"
-              ],
-              "finished": "2026-11-09T07:01:03Z",
-              "report": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived."
-            }
-          ],
-          "remediation": {
-            "pass": 2,
-            "route": "on-the-spot"
-          },
-          "document": {
-            "tasks": [
-              {
-                "id": "documentation-review",
-                "name": "Documentation review",
-                "state": "done",
-                "started": "2026-11-09T23:16:07Z",
-                "finished": "2026-11-09T23:19:41Z"
-              },
-              {
-                "id": "reconcile-documentation",
-                "name": "Reconcile documentation",
-                "state": "done",
-                "started": "2026-11-09T23:19:41Z",
-                "finished": "2026-11-09T23:26:48Z"
-              },
-              {
-                "id": "reconcile-plan",
-                "name": "Reconcile plan",
-                "state": "done",
-                "started": "2026-11-09T23:26:48Z",
-                "finished": "2026-11-09T23:51:21Z",
-                "report": "The as-built record, consequences and research notes now carry the rehearsal's measurements; the README and the changelog need no change for a documents-only landing."
-              },
-              {
-                "id": "readme-changelog",
-                "name": "README and CHANGELOG",
-                "state": "done",
-                "finished": "2026-11-09T23:51:21Z",
-                "report": "The as-built record, consequences and research notes now carry the rehearsal's measurements; the README and the changelog need no change for a documents-only landing."
-              },
-              {
-                "id": "state-boards",
-                "name": "State boards",
-                "state": "done",
-                "started": "2026-11-09T23:51:21Z",
-                "finished": "2026-11-10T00:10:35Z"
-              },
-              {
-                "id": "document-landing",
-                "name": "Document commit",
-                "state": "done",
-                "started": "2026-11-10T00:10:35Z",
-                "finished": "2026-11-10T00:11:35Z"
-              }
-            ]
-          },
-          "history": {
-            "sizing": [
-              {
-                "since": null,
-                "ended": "2026-11-08T23:59:00Z",
-                "endedBy": "sized",
-                "to": "interview"
-              }
-            ],
-            "interview": [
-              {
-                "since": "2026-11-08T23:59:00Z",
-                "ended": "2026-11-09T00:15:00Z",
-                "endedBy": "halted",
-                "to": "interview",
-                "event": {
-                  "name": "sized",
-                  "at": "2026-11-08T23:59:00Z"
-                },
-                "detail": "Sized; the interview starts.",
-                "interview": [
-                  {
-                    "text": "Does KotlinBottools stay public until the swap?",
-                    "options": [
-                      "Private again now, before the first write; the rehearsal stays as designed",
-                      "Public until the swap; a public source and private target are rehearsed, and the source goes private before archiving",
-                      "Drop the swap and rewrite in place; the parent design is re-planned"
-                    ],
-                    "answer": "The repository stays public until the swap, and the rehearsal proves a public source moving to a private target",
-                    "asked": "2026-11-09T00:15:00Z",
-                    "answered": "2026-11-09T01:08:58Z"
-                  },
-                  {
-                    "text": "Does the fixture carry a second level of sub-issues?",
-                    "options": [
-                      "One level, as specified",
-                      "Add a middle node"
-                    ],
-                    "answer": "The fixture nests sub-issues to mixed depth and the walk handles any depth",
-                    "asked": "2026-11-09T00:15:00Z",
-                    "answered": "2026-11-09T01:08:58Z"
-                  },
-                  {
-                    "text": "After a failed step, does everything stop?",
-                    "options": [
-                      "Stop at the first failed step, archive both, hand back",
-                      "Stop the walk at the failure, still run link re-creation and the rename swap, archive both, hand back every result"
-                    ],
-                    "answer": "After a failed step the walk stops but link re-creation and the rename swap still run",
-                    "asked": "2026-11-09T00:15:00Z",
-                    "answered": "2026-11-09T01:08:58Z"
-                  }
-                ],
-                "held": true
-              },
-              {
-                "since": "2026-11-09T01:08:58Z",
-                "ended": "2026-11-09T01:12:00Z",
-                "endedBy": "research-planning",
-                "to": "research",
-                "event": {
-                  "name": "resumed",
-                  "at": "2026-11-09T01:08:58Z"
-                },
-                "detail": "The repository stays public until the swap, and the rehearsal proves a public source moving to a private target; the fixture nests sub-issues to mixed depth and the walk handles any depth; after a failed step the walk stops but link re-creation and the rename swap still run.",
-                "interview": [
-                  {
-                    "text": "Does KotlinBottools stay public until the swap?",
-                    "options": [
-                      "Private again now, before the first write; the rehearsal stays as designed",
-                      "Public until the swap; a public source and private target are rehearsed, and the source goes private before archiving",
-                      "Drop the swap and rewrite in place; the parent design is re-planned"
-                    ],
-                    "answer": "The repository stays public until the swap, and the rehearsal proves a public source moving to a private target",
-                    "asked": "2026-11-09T00:15:00Z",
-                    "answered": "2026-11-09T01:08:58Z"
-                  },
-                  {
-                    "text": "Does the fixture carry a second level of sub-issues?",
-                    "options": [
-                      "One level, as specified",
-                      "Add a middle node"
-                    ],
-                    "answer": "The fixture nests sub-issues to mixed depth and the walk handles any depth",
-                    "asked": "2026-11-09T00:15:00Z",
-                    "answered": "2026-11-09T01:08:58Z"
-                  },
-                  {
-                    "text": "After a failed step, does everything stop?",
-                    "options": [
-                      "Stop at the first failed step, archive both, hand back",
-                      "Stop the walk at the failure, still run link re-creation and the rename swap, archive both, hand back every result"
-                    ],
-                    "answer": "After a failed step the walk stops but link re-creation and the rename swap still run",
-                    "asked": "2026-11-09T00:15:00Z",
-                    "answered": "2026-11-09T01:08:58Z"
-                  }
-                ]
-              }
-            ],
-            "research": [
-              {
-                "since": "2026-11-09T01:12:00Z",
-                "ended": "2026-11-09T02:29:56Z",
-                "endedBy": "researched",
-                "to": "plan",
-                "event": {
-                  "name": "verification-started",
-                  "at": "2026-11-09T01:36:00Z"
-                },
-                "detail": "Research: verifying 3 findings.",
-                "research": {
-                  "phase": "complete",
-                  "drafted": 0,
-                  "since": {
-                    "planning": "2026-11-09T01:12:00Z",
-                    "research": "2026-11-09T01:14:00Z",
-                    "verification": "2026-11-09T01:36:00Z",
-                    "complete": "2026-11-09T02:29:56Z"
-                  }
-                },
-                "questions": [
-                  {
-                    "question": "issue-transfer-behaviour",
-                    "rows": [],
-                    "findings": "research/issue-transfer-behaviour.md",
-                    "state": "complete",
-                    "started": "2026-11-09T01:14:00Z",
-                    "returned": "2026-11-09T01:32:00Z"
-                  },
-                  {
-                    "question": "rename-visibility-archive-sequence",
-                    "rows": [],
-                    "findings": "research/rename-visibility-archive-sequence.md",
-                    "state": "complete",
-                    "started": "2026-11-09T01:14:00Z",
-                    "returned": "2026-11-09T01:32:00Z"
-                  },
-                  {
-                    "question": "fixture-and-read-api-forms",
-                    "rows": [],
-                    "findings": "research/fixture-and-read-api-forms.md",
-                    "state": "complete",
-                    "started": "2026-11-09T01:14:00Z",
-                    "returned": "2026-11-09T01:40:00Z"
-                  }
-                ]
-              }
-            ],
-            "plan": [
-              {
-                "since": "2026-11-09T02:29:56Z",
-                "ended": "2026-11-09T02:29:56Z",
-                "endedBy": "plan-accepted",
-                "to": "branch",
-                "event": {
-                  "name": "researched",
-                  "at": "2026-11-09T02:29:56Z"
-                },
-                "detail": "Research verified; the plan next.",
-                "plan": {
-                  "state": "writing",
-                  "since": "2026-11-09T02:29:56Z"
-                }
-              }
-            ],
-            "branch": [
-              {
-                "since": "2026-11-09T02:29:56Z",
-                "ended": "2026-11-09T02:29:56Z",
-                "endedBy": "branch-cut",
-                "to": "implementation",
-                "event": {
-                  "name": "plan-accepted",
-                  "at": "2026-11-09T02:29:56Z"
-                },
-                "detail": "Plan accepted; the branch is cut next.",
-                "branch": "chore/issue-22-transfer-rehearsal"
-              }
-            ],
-            "implementation": [
-              {
-                "since": "2026-11-09T02:29:56Z",
-                "ended": "2026-11-09T04:35:07Z",
-                "endedBy": "halted",
-                "to": "implementation",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-09T04:32:16Z",
-                  "note": "S2 reported done; S3 current"
-                },
-                "detail": "The fixture equals its specification: numbers 1 to 10 (nine issues and one merged pull request), four comments, seven sub-issue and four blocked-by links, two closed issues.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Local readiness",
-                    "state": "done",
-                    "rows": [
-                      "rehearsal-tool",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S1",
-                    "name": "Repositories, labels and milestone",
-                    "state": "done",
-                    "rows": [
-                      "rehearsal-repositories",
-                      "item-content",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S2",
-                    "name": "The fixture",
-                    "state": "done",
-                    "rows": [
-                      "fixture",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S3",
-                    "name": "The walk",
-                    "state": "current",
-                    "rows": [
-                      "number-walk",
-                      "pull-request-placeholder",
-                      "closed-issue",
-                      "item-content",
-                      "links",
-                      "failure-behaviour",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Link reconciliation",
-                    "state": "todo",
-                    "rows": [
-                      "links",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S5",
-                    "name": "The rename swap",
-                    "state": "todo",
-                    "rows": [
-                      "rename-swap",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S6",
-                    "name": "Close-out",
-                    "state": "todo",
-                    "rows": [
-                      "rehearsal-repositories",
-                      "pass-condition",
-                      "failure-behaviour",
-                      "requested-writes"
-                    ]
-                  }
-                ],
-                "held": true,
-                "asked": [
-                  {
-                    "text": "How should the rehearsal proceed after the transfer rewrote bare issue references?",
-                    "options": [
-                      "Revise the plan: compare after mapping the rewritten references back, then resume the walk",
-                      "Take the stopped-walk path as written and hand back"
-                    ],
-                    "answer": "Revise the plan: the item check compares the text after mapping the rewritten references back, and the walk resumes at the second transfer on the same repositories",
-                    "asked": "2026-11-09T04:35:07Z",
-                    "answered": "2026-11-09T04:40:00Z"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-09T04:40:00Z",
-                "ended": "2026-11-09T05:00:57Z",
-                "endedBy": "halted",
-                "to": "implementation",
-                "event": {
-                  "name": "resumed",
-                  "at": "2026-11-09T04:40:00Z"
-                },
-                "detail": "The maintainer chose to revise the plan: the item check compares text after mapping the rewritten references back, then the walk resumes at the second transfer on the same repositories.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Local readiness",
-                    "state": "done",
-                    "rows": [
-                      "rehearsal-tool",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S1",
-                    "name": "Repositories, labels and milestone",
-                    "state": "done",
-                    "rows": [
-                      "rehearsal-repositories",
-                      "item-content",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S2",
-                    "name": "The fixture",
-                    "state": "done",
-                    "rows": [
-                      "fixture",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S3",
-                    "name": "The walk",
-                    "state": "current",
-                    "rows": [
-                      "number-walk",
-                      "pull-request-placeholder",
-                      "closed-issue",
-                      "item-content",
-                      "links",
-                      "failure-behaviour",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Link reconciliation",
-                    "state": "todo",
-                    "rows": [
-                      "links",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S5",
-                    "name": "The rename swap",
-                    "state": "todo",
-                    "rows": [
-                      "rename-swap",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S6",
-                    "name": "Close-out",
-                    "state": "todo",
-                    "rows": [
-                      "rehearsal-repositories",
-                      "pass-condition",
-                      "failure-behaviour",
-                      "requested-writes"
-                    ]
-                  }
-                ],
-                "held": true,
-                "asked": [
-                  {
-                    "text": "How should the rehearsal proceed now that references to already-moved issues keep the target's full name?",
-                    "options": [
-                      "Revise the plan again: accept any form naming either fixture repository, and measure after the swap whether the target-named references still resolve",
-                      "Take the stopped-walk path as written and hand back"
-                    ],
-                    "answer": "Revise the plan again: the item check accepts references naming either fixture repository, and the rename swap measures whether the target-named references still resolve",
-                    "asked": "2026-11-09T05:00:57Z",
-                    "answered": "2026-11-09T05:05:00Z"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-09T05:05:00Z",
-                "ended": "2026-11-09T05:43:56Z",
-                "endedBy": "halted",
-                "to": "implementation",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-09T05:33:06Z",
-                  "note": "S4 reported done; S5 current"
-                },
-                "detail": "All nine numbers are in the target on their own numbers, the placeholder and both closed issues included, and every one of the eleven links was kept across the walk with none to re-create.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Local readiness",
-                    "state": "done",
-                    "rows": [
-                      "rehearsal-tool",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S1",
-                    "name": "Repositories, labels and milestone",
-                    "state": "done",
-                    "rows": [
-                      "rehearsal-repositories",
-                      "item-content",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S2",
-                    "name": "The fixture",
-                    "state": "done",
-                    "rows": [
-                      "fixture",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S3",
-                    "name": "The walk",
-                    "state": "done",
-                    "rows": [
-                      "number-walk",
-                      "pull-request-placeholder",
-                      "closed-issue",
-                      "item-content",
-                      "links",
-                      "failure-behaviour",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Link reconciliation",
-                    "state": "done",
-                    "rows": [
-                      "links",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S5",
-                    "name": "The rename swap",
-                    "state": "current",
-                    "rows": [
-                      "rename-swap",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S6",
-                    "name": "Close-out",
-                    "state": "todo",
-                    "rows": [
-                      "rehearsal-repositories",
-                      "pass-condition",
-                      "failure-behaviour",
-                      "requested-writes"
-                    ]
-                  }
-                ],
-                "held": true,
-                "asked": [
-                  {
-                    "text": "How should the rename swap proceed while anonymous repository web pages answer 504?",
-                    "options": [
-                      "Wait and retry the unchanged check",
-                      "Revise the plan: judge privacy on the API reads and record the web read without judging it",
-                      "Hand back here"
-                    ],
-                    "answer": "Wait and retry the unchanged check, about every 30 minutes for up to two hours",
-                    "asked": "2026-11-09T05:43:56Z",
-                    "answered": "2026-11-09T05:46:00Z"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-09T05:46:00Z",
-                "ended": "2026-11-09T07:01:18Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-09T07:01:03Z",
-                  "note": "S6 reported done; Quality Review next"
-                },
-                "detail": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Local readiness",
-                    "state": "done",
-                    "rows": [
-                      "rehearsal-tool",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S1",
-                    "name": "Repositories, labels and milestone",
-                    "state": "done",
-                    "rows": [
-                      "rehearsal-repositories",
-                      "item-content",
-                      "requested-writes"
-                    ]
-                  },
-                  {
-                    "id": "S2",
-                    "name": "The fixture",
-                    "state": "done",
-                    "rows": [
-                      "fixture",
-                      "requested-writes"
-                    ],
-                    "finished": "2026-11-09T04:32:16Z",
-                    "report": "The fixture equals its specification: numbers 1 to 10 (nine issues and one merged pull request), four comments, seven sub-issue and four blocked-by links, two closed issues."
-                  },
-                  {
-                    "id": "S3",
-                    "name": "The walk",
-                    "state": "done",
-                    "rows": [
-                      "number-walk",
-                      "pull-request-placeholder",
-                      "closed-issue",
-                      "item-content",
-                      "links",
-                      "failure-behaviour",
-                      "requested-writes"
-                    ],
-                    "started": "2026-11-09T04:32:16Z"
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Link reconciliation",
-                    "state": "done",
-                    "rows": [
-                      "links",
-                      "requested-writes"
-                    ],
-                    "finished": "2026-11-09T05:33:06Z",
-                    "report": "All nine numbers are in the target on their own numbers, the placeholder and both closed issues included, and every one of the eleven links was kept across the walk with none to re-create."
-                  },
-                  {
-                    "id": "S5",
-                    "name": "The rename swap",
-                    "state": "done",
-                    "rows": [
-                      "rename-swap",
-                      "requested-writes"
-                    ],
-                    "started": "2026-11-09T05:33:06Z",
-                    "finished": "2026-11-09T07:01:03Z",
-                    "report": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived."
-                  },
-                  {
-                    "id": "S6",
-                    "name": "Close-out",
-                    "state": "done",
-                    "rows": [
-                      "rehearsal-repositories",
-                      "pass-condition",
-                      "failure-behaviour",
-                      "requested-writes"
-                    ],
-                    "finished": "2026-11-09T07:01:03Z",
-                    "report": "All seven stages passed. The rename onto the freed name was accepted, old issue URLs reach the new home, and both rehearsal repositories are private and archived."
-                  }
-                ]
-              }
-            ],
-            "qa": [
-              {
-                "since": "2026-11-09T07:01:18Z",
-                "ended": "2026-11-09T07:17:29Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-09T07:01:18Z",
-                  "note": "Quality Review 1: running"
-                },
-                "detail": "Quality Review 1 running.",
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-09",
-                    "at": "2026-11-09T07:17:29Z",
-                    "findings": {},
-                    "severity": {
-                      "minor": 13,
-                      "other": 3
-                    }
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-09T07:41:39Z",
-                "ended": "2026-11-09T07:47:51Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-09T07:41:39Z",
-                  "note": "Quality Review 2: running"
-                },
-                "detail": "Quality Review 2 running.",
-                "qa": [
-                  {
-                    "pass": 2,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-09",
-                    "at": "2026-11-09T07:47:51Z",
-                    "findings": {},
-                    "severity": {
-                      "minor": 6,
-                      "other": 0
-                    },
-                    "route": "on-the-spot"
-                  }
-                ]
-              }
-            ],
-            "remediation": [
-              {
-                "since": "2026-11-09T07:17:29Z",
-                "ended": "2026-11-09T07:41:39Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-09T07:17:29Z",
-                  "note": "Quality Review 1: changes-requested"
-                },
-                "detail": "Every acceptance criterion is met and no recorded result is untrue; the self-test leaves the result gate and the failure paths of the post checks unchecked.",
-                "remediation": {
-                  "pass": 1
-                },
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-09",
-                    "at": "2026-11-09T07:17:29Z",
-                    "findings": {},
-                    "severity": {
-                      "minor": 13,
-                      "other": 3
-                    }
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-09T07:47:51Z",
-                "ended": "2026-11-09T07:48:46Z",
-                "endedBy": "document",
-                "to": "document",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-09T07:47:51Z",
-                  "note": "Quality Review 2: changes-requested"
-                },
-                "detail": "The tool is unchanged and its 87 self-test checks pass; the known-gaps record for the next unit needs six small wording additions.",
-                "remediation": {
-                  "pass": 2,
-                  "route": "on-the-spot"
-                },
-                "qa": [
-                  {
-                    "pass": 2,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-09",
-                    "at": "2026-11-09T07:47:51Z",
-                    "findings": {},
-                    "severity": {
-                      "minor": 6,
-                      "other": 0
-                    },
-                    "route": "on-the-spot"
-                  }
-                ]
-              }
-            ],
-            "document": [
-              {
-                "since": "2026-11-09T07:48:46Z",
-                "ended": "2026-11-09T07:49:14Z",
-                "endedBy": "run-restarted",
-                "to": "document",
-                "event": {
-                  "name": "document",
-                  "at": "2026-11-09T07:48:46Z",
-                  "note": "0 of 6 tasks done"
-                },
-                "detail": "Document: 0 of 6 tasks done.",
-                "document": {
-                  "tasks": [
-                    {
-                      "id": "documentation-review",
-                      "name": "Documentation review",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "reconcile-documentation",
-                      "name": "Reconcile documentation",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "reconcile-plan",
-                      "name": "Reconcile plan",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "readme-changelog",
-                      "name": "README and CHANGELOG",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "state-boards",
-                      "name": "State boards",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "document-landing",
-                      "name": "Document commit",
-                      "state": "todo"
-                    }
-                  ]
-                },
-                "outage": "the session stopped; a new session took the run up from its handoff"
-              }
-            ]
-          },
-          "rowNames": {
-            "rehearsal-tool": "The rehearsal tool and its checks",
-            "rehearsal-repositories": "The two throwaway repositories",
-            "fixture": "The fixture in the source",
-            "number-walk": "Issues transferred in numeric order, each on its own number",
-            "pull-request-placeholder": "A closed placeholder at the pull request's number",
-            "closed-issue": "The closed issue's route through a transfer",
-            "item-content": "Body, state, comments, labels and milestone on every item",
-            "links": "Sub-issue and \"blocked by\" links, kept or re-created",
-            "rename-swap": "The rename swap, its ids read back at each name",
-            "pass-condition": "The pass condition and the per-step results",
-            "failure-behaviour": "What still runs after a failed step",
-            "requested-writes": "The GitHub writes the unit depends on"
-          }
+        "landing": {
+          "pr": 31,
+          "merge": "9af27b286ede1c153ff4e0d6f034fbc872996c15"
         }
       },
       "gap": {
         "kind": "risk",
         "summary": "Nobody knows how an issue transfer treats numbers and links. GitHub documents that a transfer keeps comments, labels and milestones, but nothing about numbers, closed issues, or sub-issue and \"blocked by\" links, and the number-preserving swap rests on them.",
         "evidence": [
-          "architecture.md:267 — nothing is documented about numbers, or about sub-issue and \"blocked by\" links",
-          "architecture.md:288 — the assumption that transfers land on their source numbers, shown by the rehearsal",
-          "consequences.md:232 — the issue transfers' behaviour is a known gap the rehearsal settles"
+          "`architecture.md:267` — nothing is documented about numbers, or about sub-issue and \"blocked by\" links",
+          "`architecture.md:288` — the assumption that transfers land on their source numbers, shown by the rehearsal",
+          "`consequences.md:232` — the issue transfers' behaviour is a known gap the rehearsal settles"
         ],
         "source": "architecture.md §2.4, §3",
         "link": "architecture.md#3-assumptions"
@@ -1767,8 +773,8 @@
         "link": "architecture.md#15-decomposition"
       },
       "asBuilt": {
-        "state": "pending",
-        "summary": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 1."
+        "state": "landed",
+        "summary": "The rehearsal ran on two throwaway repositories and passed: every item landed on its own number with the placeholder at #4, the closed issues arrived closed, all 11 links were kept with none re-created, and the rename swap held by id, both repositories left private and archived. It measured what a transfer does to issue references, and leaves the tool, its known gaps recorded, and the results for the next unit. One deviation: two reads before the swap were taken while a third had stopped on GitHub's web page answering 504. Nothing changed in KotlinBottools or any other repository."
       }
     },
     {
@@ -1784,17 +790,912 @@
         "blockedBy": [
           22
         ],
-        "issue": 23
+        "issue": 23,
+        "board": "23-kotlinbottools-rewrite-and-swap/dashboard.html",
+        "folder": "23-kotlinbottools-rewrite-and-swap/",
+        "live": {
+          "step": "implementation",
+          "since": "2026-11-10T20:02:19Z",
+          "updated": "2026-11-10T22:32:23Z",
+          "detail": "Both tools now order equal names totally; the corrected privacy gate gives the same labels and byte-identical output as before, and its list order and the allow-list's hash of the legacy lists no longer change between runs. Local readiness is being re-run from the start of its tool checks.",
+          "steps": [
+            "sizing",
+            "interview",
+            "research",
+            "plan",
+            "branch",
+            "implementation",
+            "qa",
+            "remediation",
+            "document",
+            "landing",
+            "merge",
+            "landed"
+          ],
+          "waitingOn": null,
+          "resume": null,
+          "qa": [],
+          "qaMax": 3,
+          "status": "building",
+          "branch": "chore/issue-23-history-rewrite",
+          "event": {
+            "name": "implementation-stage",
+            "at": "2026-11-10T22:32:23Z",
+            "note": "s0 current"
+          },
+          "asked": [
+            {
+              "step": "plan",
+              "text": "References the walk writes under the temporary name KotlinBottools-next",
+              "options": [
+                "(a) leave them on the redirect",
+                "(b) restore the moved texts afterwards",
+                "(c) rename before the walk"
+              ],
+              "answer": "Left on the redirect; `KotlinBottools-next` stays reserved.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "step": "plan",
+              "text": "What the work boards do while nothing in this checkout may change (from the mirror clone to the realignment)",
+              "options": [
+                "(i) live view only, tracked boards caught up afterwards",
+                "(ii) held until the realignment ends",
+                "(iii) written, set aside, rebuilt"
+              ],
+              "answer": "The live view only; the tracked boards are brought up to date after the realignment.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "step": "plan",
+              "text": "Pre-rewrite merge-commit ids in the resolution comments of #2, #21 and #22",
+              "options": [
+                "A accept with a dated note",
+                "B repoint the permalinks",
+                "C remove the permalinks"
+              ],
+              "answer": "Accepted, with a dated note.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "step": "plan",
+              "text": "Dead links to the deleted planning branch in issue bodies",
+              "options": [
+                "fix in this unit before the walk",
+                "record open; fix in one later pass before the repository goes public"
+              ],
+              "answer": "Recorded open, and fixed in one later pass before the repository becomes public.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "step": "plan",
+              "text": "Wiki setting of the fresh repository",
+              "options": [
+                "off",
+                "on"
+              ],
+              "answer": "Off.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "step": "plan",
+              "text": "Default Actions workflow permissions of the fresh repository",
+              "options": [
+                "read",
+                "write",
+                "leave the default and record it"
+              ],
+              "answer": "Read.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "step": "plan",
+              "text": "Placeholder text for pull requests #20, #30 and #31",
+              "options": [
+                "the rehearsal's form",
+                "also carry the pull request's title and that it was merged"
+              ],
+              "answer": "It also carries the pull request's title and that it was merged.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "step": "plan",
+              "text": "Who writes the privacy gate's reviewed allow-list, which Gate 1 and Gate 2 need?",
+              "options": [
+                "(a) the owner writes it before the run starts, from a first gate run read at the owner's own console",
+                "(b) the run proposes entries from the gate's masked first-run output and the owner confirms each before Gate 1"
+              ],
+              "answer": "The run proposes the entries from the gate's masked first-run output, and the owner confirms each before Gate 1.",
+              "asked": "2026-11-10T19:27:15Z",
+              "answered": "2026-11-10T19:46:35Z"
+            }
+          ],
+          "stages": [
+            {
+              "id": "s0",
+              "name": "Local readiness",
+              "state": "current",
+              "rows": [
+                "path-scrub",
+                "privacy-gates",
+                "rehearsal-tool",
+                "requested-writes"
+              ],
+              "brief": "The tools are saved and verified, the pins, data copy and backups are as recorded, every self-test passes, the names are free, the job is open and the privacy gate's allow-list is confirmed",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "bootstrap",
+                  "name": "Save and hash the tools"
+                },
+                {
+                  "id": "local-ready",
+                  "name": "Pins, data copy, expression file, backups"
+                },
+                {
+                  "id": "selftests",
+                  "name": "Walk tool, scrub tools, allow-list tool, shell scripts"
+                },
+                {
+                  "id": "source",
+                  "name": "The source's identity"
+                },
+                {
+                  "id": "names",
+                  "name": "The two names are unused"
+                },
+                {
+                  "id": "rate",
+                  "name": "Rate-limit headroom"
+                },
+                {
+                  "id": "job",
+                  "name": "The job is open with its actions defined"
+                },
+                {
+                  "id": "allow-proposal",
+                  "name": "Propose the allow-list entries from the gate's masked output"
+                },
+                {
+                  "id": "allow-confirm",
+                  "name": "The owner confirms or rejects each key"
+                },
+                {
+                  "id": "allow-write",
+                  "name": "Write the list and its record"
+                },
+                {
+                  "id": "allow-verify",
+                  "name": "Verify it against the corpus"
+                }
+              ],
+              "ref": "plan.md#s0--local-readiness",
+              "started": "2026-11-10T20:02:19Z"
+            },
+            {
+              "id": "s1",
+              "name": "The pre-clone commit",
+              "state": "todo",
+              "rows": [
+                "nothing-lands",
+                "path-scrub"
+              ],
+              "brief": "Everything pending is committed on the topic branch and pushed, and the window opens",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "precommit",
+                  "name": "Commit and push the pending documents and boards"
+                }
+              ],
+              "ref": "plan.md#s1--the-pre-clone-commit"
+            },
+            {
+              "id": "s2",
+              "name": "Mirror, backup, manifest, expectation and control",
+              "state": "todo",
+              "rows": [
+                "fresh-mirror-and-backup"
+              ],
+              "brief": "KotlinBottools' own mirror and untouched backup, its manifest, its expectation row by rule, and its positive control",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "mirror",
+                  "name": "Move unit 1's copies aside and take the mirror and backup"
+                },
+                {
+                  "id": "manifest",
+                  "name": "Manifest and expectation row"
+                },
+                {
+                  "id": "control",
+                  "name": "Positive control and kept findings"
+                }
+              ],
+              "ref": "plan.md#s2--mirror-backup-manifest-expectation-and-control"
+            },
+            {
+              "id": "s3",
+              "name": "The scrub's before-counts",
+              "state": "todo",
+              "rows": [
+                "purge-rewrite",
+                "path-scrub"
+              ],
+              "brief": "The scrub matches in both path kinds, the commits it would empty are counted, and the post-run blob set is predicted",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "scrub-before",
+                  "name": "Before-counts"
+                }
+              ],
+              "ref": "plan.md#s3--the-scrubs-before-counts"
+            },
+            {
+              "id": "s4",
+              "name": "The rewrite",
+              "state": "todo",
+              "rows": [
+                "purge-rewrite",
+                "path-scrub"
+              ],
+              "brief": "One filter-repo run purges and scrubs, and every post-run check, including the fidelity check, passes",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "rewrite",
+                  "name": "The invocation and the post-run checks"
+                }
+              ],
+              "ref": "plan.md#s4--the-rewrite"
+            },
+            {
+              "id": "s5",
+              "name": "Gate 1",
+              "state": "todo",
+              "rows": [
+                "privacy-gates"
+              ],
+              "brief": "The confirmed allow-list is checked, and the rewritten mirror, the five static backups' messages and identities and the old repository's texts hold no name, guild or id, and the accepted ids are listed",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "dump-old",
+                  "name": "Dump the old repository's texts"
+                },
+                {
+                  "id": "gate-1",
+                  "name": "Gate 1 and the accepted ids"
+                }
+              ],
+              "ref": "plan.md#s5--gate-1"
+            },
+            {
+              "id": "s6",
+              "name": "The fresh repository",
+              "state": "todo",
+              "rows": [
+                "fresh-repository",
+                "nothing-lands"
+              ],
+              "brief": "A private empty repository is created and set, the mirror is pushed without force and verified on two channels, and the default branch is set",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "fresh-create",
+                  "name": "Create it"
+                },
+                {
+                  "id": "fresh-settings",
+                  "name": "Apply and read back the settings"
+                },
+                {
+                  "id": "push-prep",
+                  "name": "Push preparation"
+                },
+                {
+                  "id": "fresh-push",
+                  "name": "The mirror push"
+                },
+                {
+                  "id": "push-verify",
+                  "name": "Per-ref verification"
+                },
+                {
+                  "id": "fresh-default",
+                  "name": "Default branch and its read-back"
+                }
+              ],
+              "ref": "plan.md#s6--the-fresh-repository"
+            },
+            {
+              "id": "s7",
+              "name": "Fresh mirror and exit tests",
+              "state": "todo",
+              "rows": [
+                "purge-rewrite",
+                "path-scrub",
+                "fresh-repository"
+              ],
+              "brief": "A fresh mirror passes the exit tests, and no pre-rewrite id resolves in the fresh repository",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "exit-tests",
+                  "name": "Fresh mirror"
+                },
+                {
+                  "id": "manifest",
+                  "name": "manifest"
+                }
+              ],
+              "ref": "plan.md#s7--fresh-mirror-and-exit-tests"
+            },
+            {
+              "id": "s8",
+              "name": "The realignment proven on two scratch clones",
+              "state": "todo",
+              "rows": [
+                "realignment",
+                "push-safety"
+              ],
+              "brief": "The realignment scripts and the realignment request are proven on two scratch clones before they touch this checkout",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "dry-run",
+                  "name": "Scripts on the first scratch clone"
+                },
+                {
+                  "id": "scratch-clone",
+                  "name": "Second scratch clone"
+                },
+                {
+                  "id": "realign-scratch",
+                  "name": "The realignment request on it"
+                }
+              ],
+              "ref": "plan.md#s8--the-realignment-proven-on-two-scratch-clones"
+            },
+            {
+              "id": "s9",
+              "name": "Before the walk",
+              "state": "todo",
+              "rows": [
+                "number-walk",
+                "links",
+                "moved-text-references"
+              ],
+              "brief": "The milestone and labels exist, and the census, link table, baseline, accepted ids and cross-repository references are recorded",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "labels-fresh",
+                  "name": "The three labels"
+                },
+                {
+                  "id": "ms-fresh",
+                  "name": "The milestone"
+                },
+                {
+                  "id": "census",
+                  "name": "Numbers 1 to N"
+                },
+                {
+                  "id": "baseline",
+                  "name": "Texts, links and states before the first transfer"
+                },
+                {
+                  "id": "accepted",
+                  "name": "The accepted ids"
+                },
+                {
+                  "id": "xrefs-before",
+                  "name": "Cross-repository references"
+                }
+              ],
+              "ref": "plan.md#s9--before-the-walk"
+            },
+            {
+              "id": "s10",
+              "name": "The walk",
+              "state": "todo",
+              "rows": [
+                "number-walk",
+                "moved-text-references"
+              ],
+              "brief": "Every number 1 to N is on its number in the fresh repository, issues transferred and pull requests reproduced by closed placeholders",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "walk",
+                  "name": "transfer-N or placeholder-N for each number in order"
+                }
+              ],
+              "ref": "plan.md#s10--the-walk"
+            },
+            {
+              "id": "s11",
+              "name": "Link reconciliation",
+              "state": "todo",
+              "rows": [
+                "links"
+              ],
+              "brief": "Every recorded relationship is present on both sides, kept or re-created",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "links-r1",
+                  "name": "Round one"
+                },
+                {
+                  "id": "links-r2",
+                  "name": "Round two"
+                },
+                {
+                  "id": "links-r3",
+                  "name": "Round three"
+                }
+              ],
+              "ref": "plan.md#s11--link-reconciliation"
+            },
+            {
+              "id": "s12",
+              "name": "Gate 2 and the closing reads",
+              "state": "todo",
+              "rows": [
+                "privacy-gates",
+                "moved-text-references",
+                "nothing-lands"
+              ],
+              "brief": "The moved texts pass the gate, the numbers and texts are re-read, and the cross-repository references are counted again",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "gate-2",
+                  "name": "Dump and gate the fresh repository's texts"
+                },
+                {
+                  "id": "reads",
+                  "name": "Numbers, items and references"
+                }
+              ],
+              "ref": "plan.md#s12--gate-2-and-the-closing-reads"
+            },
+            {
+              "id": "s13",
+              "name": "The renames and the archive",
+              "state": "todo",
+              "rows": [
+                "renames"
+              ],
+              "brief": "The old repository is renamed, private and archived; the fresh one is named KotlinBottools with its recorded id and heads",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "rename-old",
+                  "name": "Rename the old repository"
+                },
+                {
+                  "id": "private-old",
+                  "name": "Make it private"
+                },
+                {
+                  "id": "archive-old",
+                  "name": "Archive it"
+                },
+                {
+                  "id": "rename-fresh",
+                  "name": "Rename the fresh repository"
+                },
+                {
+                  "id": "swap-reads",
+                  "name": "Identity, URLs, heads and settings snapshot"
+                }
+              ],
+              "ref": "plan.md#s13--the-renames-and-the-archive"
+            },
+            {
+              "id": "s14",
+              "name": "Residual measurements",
+              "state": "todo",
+              "rows": [
+                "residual-measurement"
+              ],
+              "brief": "The old ids' answers in the fresh and legacy repositories, the activity feed and the public window are recorded",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "residuals",
+                  "name": "The probes and the report row"
+                }
+              ],
+              "ref": "plan.md#s14--residual-measurements"
+            },
+            {
+              "id": "s15",
+              "name": "This checkout's realignment",
+              "state": "todo",
+              "rows": [
+                "realignment",
+                "push-safety",
+                "object-deletion"
+              ],
+              "brief": "This checkout is on the rewritten history and passes the push-safety proof, its object deletion proven or deferred",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "copy-local",
+                  "name": "Copy the untracked and ignored files"
+                },
+                {
+                  "id": "realign-main",
+                  "name": "The realignment request"
+                },
+                {
+                  "id": "proofs",
+                  "name": "Push-safety and object-deletion proofs"
+                }
+              ],
+              "ref": "plan.md#s15--this-checkouts-realignment"
+            },
+            {
+              "id": "s16",
+              "name": "Close-out",
+              "state": "todo",
+              "rows": [
+                "number-walk",
+                "links",
+                "renames"
+              ],
+              "brief": "Every number, placeholder, link, rename and proof is recomputed from final reads, and the window ends",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "result",
+                  "name": "The final gate"
+                },
+                {
+                  "id": "close-local",
+                  "name": "Legacy refs, checksums"
+                }
+              ],
+              "ref": "plan.md#s16--close-out"
+            }
+          ],
+          "open": [
+            {
+              "text": "Moved issue text will name the temporary repository name KotlinBottools-next: rename before the walk, rewrite after, or accept the redirect (architecture §7.4); the plan decides.",
+              "raised": "sized",
+              "resolved": "2026-11-10T02:30:00Z"
+            },
+            {
+              "text": "The write permissions for this unit are not yet granted.",
+              "raised": "sized",
+              "resolved": "2026-11-10T20:08:36Z"
+            },
+            {
+              "text": "The privacy gate's reviewed allow-list does not exist yet; Gate 1 and Gate 2 need it.",
+              "raised": "halted",
+              "resolved": "2026-11-10T19:46:35Z"
+            },
+            {
+              "text": "A made-up test id in the plan's own text surfaced as an allow-list key; the plan is amended to build it at run time.",
+              "raised": "implementation-stage s0",
+              "resolved": "2026-11-10T21:31:54Z"
+            },
+            {
+              "text": "The allow-list proposal printed a corpus file name that is a legacy word; the tools are amended to mask it.",
+              "raised": "implementation-stage s0",
+              "resolved": "2026-11-10T21:31:54Z"
+            },
+            {
+              "text": "The allow-list record's hash and the privacy gate's name indexes depend on a sort that ties on names differing only in case; both tools get a total order.",
+              "raised": "implementation-stage s0",
+              "resolved": "2026-11-10T22:32:23Z"
+            }
+          ],
+          "history": {
+            "sizing": [
+              {
+                "since": null,
+                "ended": "2026-11-10T01:12:41Z",
+                "endedBy": "sized",
+                "to": "plan"
+              }
+            ],
+            "plan": [
+              {
+                "since": "2026-11-10T01:12:41Z",
+                "ended": "2026-11-10T02:00:00Z",
+                "endedBy": "halted",
+                "to": "plan",
+                "event": {
+                  "name": "sized",
+                  "at": "2026-11-10T01:12:41Z"
+                },
+                "detail": "Sized; the plan starts.",
+                "open": [
+                  {
+                    "text": "Moved issue text will name the temporary repository name KotlinBottools-next: rename before the walk, rewrite after, or accept the redirect (architecture §7.4); the plan decides.",
+                    "raised": "sized"
+                  },
+                  {
+                    "text": "The write permissions for this unit are not yet granted.",
+                    "raised": "sized"
+                  }
+                ],
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-10T01:12:41Z"
+                },
+                "held": true,
+                "asked": [
+                  {
+                    "text": "References the walk writes under the temporary name KotlinBottools-next",
+                    "options": [
+                      "(a) leave them on the redirect",
+                      "(b) restore the moved texts afterwards",
+                      "(c) rename before the walk"
+                    ],
+                    "answer": "Left on the redirect; `KotlinBottools-next` stays reserved.",
+                    "asked": "2026-11-10T02:00:00Z",
+                    "answered": "2026-11-10T02:30:00Z"
+                  },
+                  {
+                    "text": "What the work boards do while nothing in this checkout may change (from the mirror clone to the realignment)",
+                    "options": [
+                      "(i) live view only, tracked boards caught up afterwards",
+                      "(ii) held until the realignment ends",
+                      "(iii) written, set aside, rebuilt"
+                    ],
+                    "answer": "The live view only; the tracked boards are brought up to date after the realignment.",
+                    "asked": "2026-11-10T02:00:00Z",
+                    "answered": "2026-11-10T02:30:00Z"
+                  },
+                  {
+                    "text": "Pre-rewrite merge-commit ids in the resolution comments of #2, #21 and #22",
+                    "options": [
+                      "A accept with a dated note",
+                      "B repoint the permalinks",
+                      "C remove the permalinks"
+                    ],
+                    "answer": "Accepted, with a dated note.",
+                    "asked": "2026-11-10T02:00:00Z",
+                    "answered": "2026-11-10T02:30:00Z"
+                  },
+                  {
+                    "text": "Dead links to the deleted planning branch in issue bodies",
+                    "options": [
+                      "fix in this unit before the walk",
+                      "record open; fix in one later pass before the repository goes public"
+                    ],
+                    "answer": "Recorded open, and fixed in one later pass before the repository becomes public.",
+                    "asked": "2026-11-10T02:00:00Z",
+                    "answered": "2026-11-10T02:30:00Z"
+                  },
+                  {
+                    "text": "Wiki setting of the fresh repository",
+                    "options": [
+                      "off",
+                      "on"
+                    ],
+                    "answer": "Off.",
+                    "asked": "2026-11-10T02:00:00Z",
+                    "answered": "2026-11-10T02:30:00Z"
+                  },
+                  {
+                    "text": "Default Actions workflow permissions of the fresh repository",
+                    "options": [
+                      "read",
+                      "write",
+                      "leave the default and record it"
+                    ],
+                    "answer": "Read.",
+                    "asked": "2026-11-10T02:00:00Z",
+                    "answered": "2026-11-10T02:30:00Z"
+                  },
+                  {
+                    "text": "Placeholder text for pull requests #20, #30 and #31",
+                    "options": [
+                      "the rehearsal's form",
+                      "also carry the pull request's title and that it was merged"
+                    ],
+                    "answer": "It also carries the pull request's title and that it was merged.",
+                    "asked": "2026-11-10T02:00:00Z",
+                    "answered": "2026-11-10T02:30:00Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-10T02:00:00Z",
+                "ended": "2026-11-10T02:04:54Z",
+                "endedBy": "research-planning",
+                "to": "research",
+                "event": {
+                  "name": "resumed",
+                  "at": "2026-11-10T02:30:00Z"
+                },
+                "detail": "References under the temporary name are left on the redirect; board events in the frozen window go to the live view only; the 26 old commit ids in resolution comments are accepted under a dated note; the dead planning-branch links are fixed outside this unit, in a later pass before the repository goes public; wiki off; default workflow permissions read; placeholders carry the pull request's title and that it was merged.",
+                "open": [
+                  {
+                    "text": "The write permissions for this unit are not yet granted.",
+                    "raised": "sized"
+                  }
+                ],
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-10T01:12:41Z"
+                }
+              },
+              {
+                "since": "2026-11-10T19:27:15Z",
+                "ended": "2026-11-10T19:27:15Z",
+                "endedBy": "halted",
+                "to": "plan",
+                "event": {
+                  "name": "researched",
+                  "at": "2026-11-10T02:27:49Z"
+                },
+                "detail": "Research verified; the plan next.",
+                "open": [
+                  {
+                    "text": "The write permissions for this unit are not yet granted.",
+                    "raised": "sized"
+                  }
+                ],
+                "plan": {
+                  "state": "writing",
+                  "since": "2026-11-10T02:27:49Z"
+                },
+                "held": true,
+                "asked": [
+                  {
+                    "text": "Who writes the privacy gate's reviewed allow-list, which Gate 1 and Gate 2 need?",
+                    "options": [
+                      "(a) the owner writes it before the run starts, from a first gate run read at the owner's own console",
+                      "(b) the run proposes entries from the gate's masked first-run output and the owner confirms each before Gate 1"
+                    ],
+                    "answer": "The run proposes the entries from the gate's masked first-run output, and the owner confirms each before Gate 1.",
+                    "asked": "2026-11-10T19:27:15Z",
+                    "answered": "2026-11-10T19:46:35Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-10T19:46:35Z",
+                "ended": "2026-11-10T20:01:04Z",
+                "endedBy": "plan-accepted",
+                "to": "branch",
+                "event": {
+                  "name": "resumed",
+                  "at": "2026-11-10T19:46:35Z"
+                },
+                "detail": "The allow-list is proposed by the run from the gate's masked first-run output, and the owner confirms each entry before Gate 1; the plan is being amended to build that in.",
+                "open": [
+                  {
+                    "text": "The write permissions for this unit are not yet granted.",
+                    "raised": "sized"
+                  }
+                ],
+                "plan": {
+                  "state": "writing",
+                  "since": "2026-11-10T02:27:49Z"
+                }
+              }
+            ],
+            "research": [
+              {
+                "since": "2026-11-10T02:04:54Z",
+                "ended": "2026-11-10T02:27:49Z",
+                "endedBy": "researched",
+                "to": "plan",
+                "event": {
+                  "name": "verification-started",
+                  "at": "2026-11-10T02:22:30Z"
+                },
+                "detail": "Research: verifying 1 finding.",
+                "open": [
+                  {
+                    "text": "The write permissions for this unit are not yet granted.",
+                    "raised": "sized"
+                  }
+                ],
+                "research": {
+                  "phase": "complete",
+                  "drafted": 0,
+                  "since": {
+                    "planning": "2026-11-10T02:04:54Z",
+                    "research": "2026-11-10T02:06:07Z",
+                    "verification": "2026-11-10T02:22:30Z",
+                    "complete": "2026-11-10T02:27:49Z"
+                  }
+                },
+                "questions": [
+                  {
+                    "question": "fresh-repository-settings",
+                    "rows": [
+                      "fresh-repository",
+                      "requested-writes"
+                    ],
+                    "findings": "research/fresh-repository-settings.md",
+                    "state": "complete",
+                    "started": "2026-11-10T02:06:07Z",
+                    "returned": "2026-11-10T02:22:06Z"
+                  }
+                ]
+              }
+            ],
+            "branch": [
+              {
+                "since": "2026-11-10T20:01:04Z",
+                "ended": "2026-11-10T20:02:19Z",
+                "endedBy": "branch-cut",
+                "to": "implementation",
+                "event": {
+                  "name": "plan-accepted",
+                  "at": "2026-11-10T20:01:04Z"
+                },
+                "detail": "Plan accepted; the branch is confirmed next.",
+                "open": [
+                  {
+                    "text": "The write permissions for this unit are not yet granted.",
+                    "raised": "sized"
+                  }
+                ],
+                "branch": "chore/issue-23-history-rewrite"
+              }
+            ]
+          },
+          "deviations": 0,
+          "rowNames": {
+            "fresh-mirror-and-backup": "KotlinBottools' own mirror, backup, manifest, expectation and positive control",
+            "nothing-lands": "Nothing lands on KotlinBottools while the unit runs",
+            "purge-rewrite": "The purge, with the pipeline's checks before and after",
+            "path-scrub": "Machine-local paths replaced in every file and commit message",
+            "privacy-gates": "Privacy gates 1 and 2",
+            "fresh-repository": "The fresh repository: created, set, pushed and proven",
+            "residual-measurement": "What GitHub still serves of the old history, in counts",
+            "number-walk": "Every number reproduced: issues transferred, pull requests by closed placeholders",
+            "links": "Sub-issue and \"blocked by\" links, inside and across repositories",
+            "moved-text-references": "The references a transfer writes into the moved texts",
+            "renames": "The renames: the old repository to `KotlinBottools-legacy`, the fresh one to `KotlinBottools`",
+            "realignment": "This working directory realigned onto the rewritten history",
+            "push-safety": "The push-safety proof before the unit's own landing",
+            "object-deletion": "The old objects' deletion, or its deferred step",
+            "rehearsal-tool": "The rehearsal's tool, its known gaps closed before reuse",
+            "requested-writes": "The GitHub writes the unit depends on"
+          },
+          "recon": {
+            "interview": {
+              "reconstructed": true,
+              "ended": null,
+              "trail": [],
+              "milestones": []
+            }
+          }
+        }
       },
       "gap": {
         "kind": "risk",
         "summary": "KotlinBottools' history holds the data to purge, and GitHub would keep serving it. The repository is private with 346 purged blobs at the research baseline; GitHub serves unreferenced objects by id with no documented expiry and publishes a repository's activity when it becomes public, so a force-push followed by a visibility change would publish the old history. This working directory tracks 41 of the files to purge.",
         "evidence": [
-          "architecture.md:172 — KotlinBottools: private, 346 purged blobs at the research baseline",
-          "architecture.md:259 — GitHub serves unreferenced objects by id on every route",
-          "architecture.md:261 — GitHub publishes a repository's activity when it becomes public",
-          "architecture.md:219 — the purge list removes 41 tracked files from this working tree",
-          "architecture.md:77 — machine-local folder and account-name paths are replaced in every file and commit message of KotlinBottools"
+          "`architecture.md:172` — KotlinBottools: private, 346 purged blobs at the research baseline",
+          "`architecture.md:259` — GitHub serves unreferenced objects by id on every route",
+          "`architecture.md:261` — GitHub publishes a repository's activity when it becomes public",
+          "`architecture.md:219` — the purge list removes 41 tracked files from this working tree",
+          "`architecture.md:77` — machine-local folder and account-name paths are replaced in every file and commit message of KotlinBottools"
         ],
         "source": "architecture.md §2.1, §2.2, §2.4",
         "link": "architecture.md#2-current-state"
@@ -1980,7 +1881,7 @@
       },
       "asBuilt": {
         "state": "pending",
-        "summary": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 2, and Phase 1 may start once it has landed."
+        "summary": "Filed as #23. Its plan is accepted (2026-11-10): seventeen stages, from local readiness through the rewrite, the fresh repository, the walk and the renames to this working directory's realignment and the close-out; the run is implementing, and nothing becomes public through it."
       }
     },
     {
@@ -2002,9 +1903,9 @@
         "kind": "missing",
         "summary": "KotlinBottools has no guard against committing its data again. It has no secret scan and no `.github/` directory, its README describes files the rewrite removes from the repository, and it has no changelog.",
         "evidence": [
-          "architecture.md:221 — no `.github/` directory exists on either branch",
-          "architecture.md:1073 — the README's project-structure entries that become false",
-          "architecture.md:1074 — `CHANGELOG.md` would be the repository's first changelog"
+          "`architecture.md:221` — no `.github/` directory exists on either branch",
+          "`architecture.md:1073` — the README's project-structure entries that become false",
+          "`architecture.md:1074` — `CHANGELOG.md` would be the repository's first changelog"
         ],
         "source": "architecture.md §2.2, §10",
         "link": "architecture.md#10-repository-hygiene-artefacts"
@@ -2131,8 +2032,8 @@
         "kind": "missing",
         "summary": "KotlinBottools is private and unscanned. GitHub enables no scanning setting on its own for an organisation-owned repository, and the setting exists only once the repository is public.",
         "evidence": [
-          "architecture.md:172 — KotlinBottools is private",
-          "architecture.md:262 — no scanning setting is enabled on its own, and it exists only once the repository is public"
+          "`architecture.md:172` — KotlinBottools is private",
+          "`architecture.md:262` — no scanning setting is enabled on its own, and it exists only once the repository is public"
         ],
         "source": "architecture.md §2.1, §2.4",
         "link": "architecture.md#24-verified-outside-world-facts"
@@ -2233,8 +2134,8 @@
         "kind": "risk",
         "summary": "GKB2 and GKB still carry purged paths in their histories. GKB2 holds 81 purged blobs, 70 of them reachable through its pull-request ref, and GKB 58; both are public.",
         "evidence": [
-          "architecture.md:173 — GKB2: public, 81 purged blobs, 70 reachable through `refs/pull/6/head`",
-          "architecture.md:174 — GKB: public, 58 purged blobs"
+          "`architecture.md:173` — GKB2: public, 81 purged blobs, 70 reachable through `refs/pull/6/head`",
+          "`architecture.md:174` — GKB: public, 58 purged blobs"
         ],
         "source": "architecture.md §2.1",
         "link": "architecture.md#21-the-six-repositories"
@@ -2325,10 +2226,10 @@
         "kind": "risk",
         "summary": "BotTools, TrumpBot and Support still carry purged paths in their histories. BotTools holds 39 purged blobs, all reachable through its pull-request refs; TrumpBot 199 and Support 7,259. The local TrumpBot clone holds the old history.",
         "evidence": [
-          "architecture.md:175 — BotTools: public, 39 purged blobs, all reachable through its pull-request refs",
-          "architecture.md:176 — TrumpBot: private, 199 purged blobs",
-          "architecture.md:177 — Support: private, 7,259 purged blobs",
-          "architecture.md:224 — the local TrumpBot clone"
+          "`architecture.md:175` — BotTools: public, 39 purged blobs, all reachable through its pull-request refs",
+          "`architecture.md:176` — TrumpBot: private, 199 purged blobs",
+          "`architecture.md:177` — Support: private, 7,259 purged blobs",
+          "`architecture.md:224` — the local TrumpBot clone"
         ],
         "source": "architecture.md §2.1, §2.2",
         "link": "architecture.md#21-the-six-repositories"
@@ -2430,9 +2331,9 @@
         "kind": "missing",
         "summary": "No record says what GitHub still serves of the old histories. The phase requires the residual exposure measured and reported rather than assumed away, and its workspace holds a copy of everything the rewrite removes for as long as the units take.",
         "evidence": [
-          "architecture.md:106 — the residual exposure is measured and reported, not assumed away",
-          "architecture.md:680 — the expected pull-request residual: 70 of 81 for GKB2, 39 of 39 for BotTools",
-          "architecture.md:1330 — the workspace holds the old objects until the last unit deletes it"
+          "`architecture.md:106` — the residual exposure is measured and reported, not assumed away",
+          "`architecture.md:680` — the expected pull-request residual: 70 of 81 for GKB2, 39 of 39 for BotTools",
+          "`architecture.md:1330` — the workspace holds the old objects until the last unit deletes it"
         ],
         "source": "architecture.md §1.1, §6.6, §16",
         "link": "architecture.md#11-what-the-phase-must-achieve"
@@ -2528,7 +2429,7 @@
         "kind": "repository",
         "system": null,
         "effect": "breaking",
-        "summary": "Every commit id changes, as each root commit holds a purged path; ten commits are pruned and every branch survives. Pre-rewrite ids already cited stay as dated citations that resolve only in the private legacy repository.",
+        "summary": "Every commit id changes, as each root commit holds a purged path; ten commits are pruned and every branch survives. Pre-rewrite ids already cited stay as dated citations that resolve only in the private legacy repository. KotlinBottools has been public since 2026-11-08, so its pre-rewrite objects stay anonymously readable until the swap, a window the residual report states.",
         "link": "consequences.md#21-the-six-repositories"
       },
       {
@@ -2544,7 +2445,7 @@
         "kind": "repository",
         "system": null,
         "effect": "behaviour",
-        "summary": "The public `KotlinBottools` is a new repository with a new id and the old settings and access; stars and watchers start empty. `KotlinBottools-legacy` keeps the pre-rewrite history, its pull requests, milestone and labels, private and archived.",
+        "summary": "The public `KotlinBottools` is a new repository with a new id and the old settings and access; stars and watchers start empty. Until the swap the pre-rewrite repository stays public under its current name; the swap makes it private between its rename and its archiving, and `KotlinBottools-legacy` keeps the pre-rewrite history, its pull requests, milestone and labels, private and archived.",
         "link": "consequences.md#22-kotlinbottools-the-public-repository-and-the-legacy-repository"
       },
       {
@@ -2552,7 +2453,7 @@
         "kind": "repository",
         "system": null,
         "effect": "behaviour",
-        "summary": "Every number is reproduced, pull requests by closed placeholders, and dropped relationships are re-created, so citations keep resolving. The 56 links that name the planning branch stop resolving when it is deleted and are pointed at `main`.",
+        "summary": "Every number is reproduced, pull requests by closed placeholders, and dropped relationships are re-created, so citations keep resolving. A transfer rewrites the references in the moved text to full names: after the walk they name `KotlinBottools-next` for the issues that moved, which keep resolving through the rename's redirect while no repository takes that name. The 56 links that name the planning branch stop resolving when it is deleted and are pointed at `main`.",
         "link": "consequences.md#23-issue-numbers-and-links"
       },
       {
@@ -2668,15 +2569,36 @@
       },
       {
         "unit": "transfer-rehearsal",
-        "basis": "plan",
-        "summary": "Two throwaway repositories and nothing else on GitHub: no module is published and no version moves, and KotlinBottools and every other repository stay as they are. The unit measures how a transfer treats numbers, closed issues and links and whether the rename swap holds, and leaves the tool and the results for the next unit.",
+        "basis": "as-built",
+        "summary": "Two throwaway repositories and nothing else on GitHub: no module was published and no version moved, and KotlinBottools and every other repository stayed as they were. The rehearsal passed, measured how a transfer treats numbers, closed issues, links and references and that the rename swap holds, and leaves the tool, with its known gaps, and the results for the next unit.",
         "release": {
           "bump": "none",
           "version": null,
           "note": "no module is published and no version moves"
         },
-        "source": "22-transfer-rehearsal/consequences.md §1 to §4",
-        "link": "22-transfer-rehearsal/consequences.md#2-blast-radius"
+        "source": "22-transfer-rehearsal/consequences.md §1 to §6; 22-transfer-rehearsal/final-implementation.md §2 to §4",
+        "link": "22-transfer-rehearsal/consequences.md#2-blast-radius",
+        "changes": [
+          {
+            "what": "The next unit also takes what a transfer does to issue references, the tool's known gaps to close before reusing it, a job of its own, and the decision on the moved text that names `KotlinBottools-next`.",
+            "why": "The run measured the rewriting of references, which the documentation omits, and what those references reach after the renames; the tool's gaps were recorded rather than fixed, as it ran exactly as planned.",
+            "when": "S3 to S5",
+            "ref": "22-transfer-rehearsal/consequences.md#4-sibling-units-and-neighbouring-issues"
+          }
+        ]
+      },
+      {
+        "unit": "kotlinbottools-rewrite-and-swap",
+        "basis": "plan",
+        "summary": "No module is published and no version moves; the landing changes documents and generated boards only. KotlinBottools becomes a fresh private repository holding the rewritten history and every number, the pre-rewrite repository becomes `KotlinBottools-legacy`, private and archived, which ends its public window, and this working directory is realigned. Moved issue texts name `KotlinBottools-next` for good, so that name stays reserved, and public links to KotlinBottools issues answer \"not found\" until the publication unit.",
+        "release": {
+          "bump": "none",
+          "version": null,
+          "note": "no module is published and no version moves"
+        },
+        "compat": "notable",
+        "source": "23-kotlinbottools-rewrite-and-swap/consequences.md §1 to §6",
+        "link": "23-kotlinbottools-rewrite-and-swap/consequences.md#2-blast-radius"
       }
     ],
     "changes": [
@@ -2686,6 +2608,30 @@
         "none": true,
         "why": "The unit built what its plan set out, with no deviation, and changed nothing outside this machine but its own documents and boards. The dated note on the generated boards' commit ids treats them as the older documents' ids, which the initiative's impact already records.",
         "ref": "21-preparation/final-implementation.md#4-deviations-from-the-plan"
+      },
+      {
+        "unit": "transfer-rehearsal",
+        "entry": "downstream.0",
+        "when": "#22 landing",
+        "what": "KotlinBottools' pre-rewrite objects are anonymously readable until the swap.",
+        "why": "KotlinBottools has been public since 2026-11-08 and stays so until the swap; the window cannot be undone, so the residual report states it.",
+        "ref": "consequences.md#21-the-six-repositories"
+      },
+      {
+        "unit": "transfer-rehearsal",
+        "entry": "downstream.2",
+        "when": "#22 landing",
+        "what": "The pre-rewrite repository is public until the swap, which makes it private between its rename and its archiving.",
+        "why": "The repository became public on 2026-11-08, and the rehearsal proved the order rename, private, archive on a public source and a private target.",
+        "ref": "consequences.md#22-kotlinbottools-the-public-repository-and-the-legacy-repository"
+      },
+      {
+        "unit": "transfer-rehearsal",
+        "entry": "downstream.3",
+        "when": "#22 landing",
+        "what": "The moved issues' bodies and comments change: a transfer rewrites their references to full names.",
+        "why": "The rehearsal measured it, which the documentation omits; after the renames the references naming the target's temporary name still reached their items, through the redirect the rename leaves on that name. Whether to leave them on it is the rewrite-and-swap unit's decision.",
+        "ref": "consequences.md#23-issue-numbers-and-links"
       }
     ]
   },

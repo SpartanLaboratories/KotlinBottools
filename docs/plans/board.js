@@ -3,11 +3,11 @@ window.dashboardLive&&window.dashboardLive("board",
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-10T00:09:20Z",
+  "generated": "2026-11-10T01:13:45Z",
   "asOf": "2026-11-10",
   "tree": {
-    "ref": "chore/issue-22-transfer-rehearsal",
-    "sha": "e6ef04a"
+    "ref": "chore/issue-23-history-rewrite",
+    "sha": "9af27b2"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -76,9 +76,9 @@ window.dashboardLive&&window.dashboardLive("board",
       "branch": null,
       "system": null,
       "step": "implementation",
-      "detail": "1 of 8 units landed; #22 in progress; #23 up next.",
+      "detail": "2 of 8 units landed; #23 in progress; #24 up next.",
       "since": "2026-11-08T21:15:43Z",
-      "updated": "2026-11-08T23:59:00Z",
+      "updated": "2026-11-10T01:12:41Z",
       "qa": [],
       "qaMax": 3,
       "status": "building",
@@ -86,13 +86,13 @@ window.dashboardLive&&window.dashboardLive("board",
       "landed": null,
       "reconciliation": {
         "state": "partial",
-        "landed": 1,
+        "landed": 2,
         "total": 8
       },
       "active": false,
       "chain": {
         "total": 8,
-        "landed": 1,
+        "landed": 2,
         "dropped": 0,
         "deferred": 0,
         "left": 0,
@@ -100,17 +100,17 @@ window.dashboardLive&&window.dashboardLive("board",
         "done": false,
         "current": [
           {
-            "issue": 22,
-            "slug": "transfer-rehearsal",
-            "step": "document"
+            "issue": 23,
+            "slug": "kotlinbottools-rewrite-and-swap",
+            "step": "plan"
           }
         ],
         "next": {
-          "issue": 23,
-          "slug": "kotlinbottools-rewrite-and-swap",
+          "issue": 24,
+          "slug": "repository-hygiene",
           "blockedBy": [
             {
-              "issue": 22
+              "issue": 23
             }
           ]
         },
@@ -125,13 +125,13 @@ window.dashboardLive&&window.dashboardLive("board",
             "n": 2,
             "issue": 22,
             "name": "Transfer rehearsal",
-            "state": "current"
+            "state": "done"
           },
           {
             "n": 3,
             "issue": 23,
             "name": "KotlinBottools rewrite and swap",
-            "state": "todo"
+            "state": "current"
           },
           {
             "n": 4,
@@ -180,7 +180,9 @@ window.dashboardLive&&window.dashboardLive("board",
       "blocks": [
         {
           "issue": 22,
-          "state": "OPEN",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-10T00:15:13Z",
           "hold": "enables"
         }
       ],
@@ -253,7 +255,8 @@ window.dashboardLive&&window.dashboardLive("board",
     {
       "issue": 22,
       "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories",
-      "state": "OPEN",
+      "state": "CLOSED",
+      "stateReason": "COMPLETED",
       "created": "2026-11-08",
       "parent": 2,
       "waitsOn": [
@@ -270,17 +273,17 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 23,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         }
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/22-transfer-rehearsal/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/22-transfer-rehearsal/",
-      "branch": "chore/issue-22-transfer-rehearsal",
+      "branch": null,
       "system": "repository-swap",
-      "step": "document",
-      "detail": "Document: 4 of 6 tasks done; State boards current.",
-      "since": "2026-11-09T23:16:07Z",
-      "updated": "2026-11-09T23:52:02Z",
+      "step": "landed",
+      "detail": "Landed in PR #31.",
+      "since": "2026-11-10T00:15:12Z",
+      "updated": "2026-11-10T00:15:12Z",
       "qa": [
         {
           "pass": 1,
@@ -310,15 +313,20 @@ window.dashboardLive&&window.dashboardLive("board",
         }
       ],
       "qaMax": 3,
-      "status": "building",
+      "status": "landed",
       "fixOf": null,
-      "landed": null,
+      "landed": {
+        "pr": 31,
+        "merge": "9af27b286ede1c153ff4e0d6f034fbc872996c15",
+        "version": null,
+        "date": "2026-11-10"
+      },
       "reconciliation": {
-        "state": "partial",
+        "state": "as-built",
         "landed": null,
         "total": null
       },
-      "active": true,
+      "active": false,
       "systemName": "Repository swap",
       "group": "2",
       "order": 2
@@ -332,8 +340,10 @@ window.dashboardLive&&window.dashboardLive("board",
       "waitsOn": [
         {
           "issue": 22,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-10T00:15:13Z",
+          "build": "clear",
           "locality": "local-repository"
         }
       ],
@@ -349,24 +359,21 @@ window.dashboardLive&&window.dashboardLive("board",
           "hold": "blocks"
         }
       ],
-      "board": null,
-      "folder": null,
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/",
       "branch": null,
       "system": "kotlinbottools",
-      "step": null,
-      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 2, and Phase 1 may start once it has landed.",
+      "step": "plan",
+      "detail": "Sized; the plan starts.",
+      "since": "2026-11-10T01:12:41Z",
+      "updated": "2026-11-10T01:12:41Z",
       "qa": [],
-      "qaMax": null,
-      "status": "next",
+      "qaMax": 3,
+      "status": "planning",
+      "fixOf": null,
       "landed": null,
       "reconciliation": null,
-      "active": false,
-      "next": true,
-      "blockedBy": [
-        {
-          "issue": 22
-        }
-      ],
+      "active": true,
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 3
@@ -400,10 +407,16 @@ window.dashboardLive&&window.dashboardLive("board",
       "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 3.",
       "qa": [],
       "qaMax": null,
-      "status": "not-started",
+      "status": "next",
       "landed": null,
       "reconciliation": null,
       "active": false,
+      "next": true,
+      "blockedBy": [
+        {
+          "issue": 23
+        }
+      ],
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 4
@@ -671,7 +684,8 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 22,
           "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories",
-          "state": "OPEN"
+          "state": "CLOSED",
+          "stateReason": "COMPLETED"
         },
         {
           "issue": 23,

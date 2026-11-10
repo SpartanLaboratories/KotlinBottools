@@ -1,0 +1,3166 @@
+/* plan.js: plan.json as a script, written by plan/scripts/embed.js beside the board for its live view (plan/RULES.md §1). Do not edit: edit plan.json and re-embed. */
+window.dashboardLive&&window.dashboardLive("plan",
+{
+  "schema": "plan-board/1",
+  "repo": "SpartanLaboratories/KotlinBottools",
+  "issue": 23,
+  "slug": "23-kotlinbottools-rewrite-and-swap",
+  "folder": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap",
+  "kind": "issue",
+  "title": "KotlinBottools rewrite and swap",
+  "issueTitle": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
+  "function": "KotlinBottools' history holds the data the phase purges, and the repository has been public since 2026-11-08, so its purge-listed files and old objects are readable by anyone until they leave it; a force-push would not take them out of reach, since GitHub keeps serving old objects by id. This run rewrites KotlinBottools in a fresh mirror, purging the listed paths and replacing machine-local paths in every file and commit message, and pushes the result to a fresh private repository. It reproduces every issue and pull-request number there with its links, renames the old repository to `KotlinBottools-legacy`, private and archived, gives the fresh one the name, and realigns this working directory onto the rewritten history before its own landing, the first on the fresh repository. Unit 3 of #2, with no version moved; nothing becomes public through it, and Phase 1 may start once it has landed.",
+  "status": "building",
+  "sized": "2026-11-10T01:12:41Z",
+  "parent": {
+    "issue": 2,
+    "board": "../dashboard.html"
+  },
+  "fixOf": null,
+  "branch": "chore/issue-23-history-rewrite",
+  "baseline": {
+    "ref": "main",
+    "sha": "9af27b286ede1c153ff4e0d6f034fbc872996c15",
+    "date": "2026-11-09"
+  },
+  "asBuilt": null,
+  "systems": [
+    {
+      "slug": "kotlinbottools",
+      "name": "KotlinBottools",
+      "slot": 0,
+      "top": "KotlinBottools",
+      "status": "built",
+      "board": "docs/dashboards/index.html"
+    },
+    {
+      "slug": "backups-and-manifests",
+      "name": "Backups and manifests",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    },
+    {
+      "slug": "rewrite-pipeline",
+      "name": "Rewrite pipeline",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    },
+    {
+      "slug": "privacy-gate",
+      "name": "Privacy gate and id-reference check",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    },
+    {
+      "slug": "residual-exposure",
+      "name": "Residual-exposure measurement",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    },
+    {
+      "slug": "repository-swap",
+      "name": "Repository swap",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    },
+    {
+      "slug": "clone-realignment",
+      "name": "Clone realignment",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    }
+  ],
+  "wip": {
+    "step": "implementation",
+    "since": "2026-11-10T20:02:19Z",
+    "updated": "2026-11-10T22:32:23Z",
+    "detail": "Both tools now order equal names totally; the corrected privacy gate gives the same labels and byte-identical output as before, and its list order and the allow-list's hash of the legacy lists no longer change between runs. Local readiness is being re-run from the start of its tool checks.",
+    "steps": [
+      "sizing",
+      "interview",
+      "research",
+      "plan",
+      "branch",
+      "implementation",
+      "qa",
+      "remediation",
+      "document",
+      "landing",
+      "merge",
+      "landed"
+    ],
+    "current": [
+      "path-scrub.built",
+      "privacy-gates.built",
+      "rehearsal-tool.built",
+      "requested-writes.built"
+    ],
+    "questions": [],
+    "research": null,
+    "interview": [],
+    "plan": null,
+    "stages": [
+      {
+        "id": "s0",
+        "name": "Local readiness",
+        "state": "current",
+        "rows": [
+          "path-scrub",
+          "privacy-gates",
+          "rehearsal-tool",
+          "requested-writes"
+        ],
+        "brief": "The tools are saved and verified, the pins, data copy and backups are as recorded, every self-test passes, the names are free, the job is open and the privacy gate's allow-list is confirmed",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "bootstrap",
+            "name": "Save and hash the tools"
+          },
+          {
+            "id": "local-ready",
+            "name": "Pins, data copy, expression file, backups"
+          },
+          {
+            "id": "selftests",
+            "name": "Walk tool, scrub tools, allow-list tool, shell scripts"
+          },
+          {
+            "id": "source",
+            "name": "The source's identity"
+          },
+          {
+            "id": "names",
+            "name": "The two names are unused"
+          },
+          {
+            "id": "rate",
+            "name": "Rate-limit headroom"
+          },
+          {
+            "id": "job",
+            "name": "The job is open with its actions defined"
+          },
+          {
+            "id": "allow-proposal",
+            "name": "Propose the allow-list entries from the gate's masked output"
+          },
+          {
+            "id": "allow-confirm",
+            "name": "The owner confirms or rejects each key"
+          },
+          {
+            "id": "allow-write",
+            "name": "Write the list and its record"
+          },
+          {
+            "id": "allow-verify",
+            "name": "Verify it against the corpus"
+          }
+        ],
+        "ref": "plan.md#s0--local-readiness",
+        "started": "2026-11-10T20:02:19Z"
+      },
+      {
+        "id": "s1",
+        "name": "The pre-clone commit",
+        "state": "todo",
+        "rows": [
+          "nothing-lands",
+          "path-scrub"
+        ],
+        "brief": "Everything pending is committed on the topic branch and pushed, and the window opens",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "precommit",
+            "name": "Commit and push the pending documents and boards"
+          }
+        ],
+        "ref": "plan.md#s1--the-pre-clone-commit"
+      },
+      {
+        "id": "s2",
+        "name": "Mirror, backup, manifest, expectation and control",
+        "state": "todo",
+        "rows": [
+          "fresh-mirror-and-backup"
+        ],
+        "brief": "KotlinBottools' own mirror and untouched backup, its manifest, its expectation row by rule, and its positive control",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "mirror",
+            "name": "Move unit 1's copies aside and take the mirror and backup"
+          },
+          {
+            "id": "manifest",
+            "name": "Manifest and expectation row"
+          },
+          {
+            "id": "control",
+            "name": "Positive control and kept findings"
+          }
+        ],
+        "ref": "plan.md#s2--mirror-backup-manifest-expectation-and-control"
+      },
+      {
+        "id": "s3",
+        "name": "The scrub's before-counts",
+        "state": "todo",
+        "rows": [
+          "purge-rewrite",
+          "path-scrub"
+        ],
+        "brief": "The scrub matches in both path kinds, the commits it would empty are counted, and the post-run blob set is predicted",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "scrub-before",
+            "name": "Before-counts"
+          }
+        ],
+        "ref": "plan.md#s3--the-scrubs-before-counts"
+      },
+      {
+        "id": "s4",
+        "name": "The rewrite",
+        "state": "todo",
+        "rows": [
+          "purge-rewrite",
+          "path-scrub"
+        ],
+        "brief": "One filter-repo run purges and scrubs, and every post-run check, including the fidelity check, passes",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "rewrite",
+            "name": "The invocation and the post-run checks"
+          }
+        ],
+        "ref": "plan.md#s4--the-rewrite"
+      },
+      {
+        "id": "s5",
+        "name": "Gate 1",
+        "state": "todo",
+        "rows": [
+          "privacy-gates"
+        ],
+        "brief": "The confirmed allow-list is checked, and the rewritten mirror, the five static backups' messages and identities and the old repository's texts hold no name, guild or id, and the accepted ids are listed",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "dump-old",
+            "name": "Dump the old repository's texts"
+          },
+          {
+            "id": "gate-1",
+            "name": "Gate 1 and the accepted ids"
+          }
+        ],
+        "ref": "plan.md#s5--gate-1"
+      },
+      {
+        "id": "s6",
+        "name": "The fresh repository",
+        "state": "todo",
+        "rows": [
+          "fresh-repository",
+          "nothing-lands"
+        ],
+        "brief": "A private empty repository is created and set, the mirror is pushed without force and verified on two channels, and the default branch is set",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "fresh-create",
+            "name": "Create it"
+          },
+          {
+            "id": "fresh-settings",
+            "name": "Apply and read back the settings"
+          },
+          {
+            "id": "push-prep",
+            "name": "Push preparation"
+          },
+          {
+            "id": "fresh-push",
+            "name": "The mirror push"
+          },
+          {
+            "id": "push-verify",
+            "name": "Per-ref verification"
+          },
+          {
+            "id": "fresh-default",
+            "name": "Default branch and its read-back"
+          }
+        ],
+        "ref": "plan.md#s6--the-fresh-repository"
+      },
+      {
+        "id": "s7",
+        "name": "Fresh mirror and exit tests",
+        "state": "todo",
+        "rows": [
+          "purge-rewrite",
+          "path-scrub",
+          "fresh-repository"
+        ],
+        "brief": "A fresh mirror passes the exit tests, and no pre-rewrite id resolves in the fresh repository",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "exit-tests",
+            "name": "Fresh mirror"
+          },
+          {
+            "id": "manifest",
+            "name": "manifest"
+          }
+        ],
+        "ref": "plan.md#s7--fresh-mirror-and-exit-tests"
+      },
+      {
+        "id": "s8",
+        "name": "The realignment proven on two scratch clones",
+        "state": "todo",
+        "rows": [
+          "realignment",
+          "push-safety"
+        ],
+        "brief": "The realignment scripts and the realignment request are proven on two scratch clones before they touch this checkout",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "dry-run",
+            "name": "Scripts on the first scratch clone"
+          },
+          {
+            "id": "scratch-clone",
+            "name": "Second scratch clone"
+          },
+          {
+            "id": "realign-scratch",
+            "name": "The realignment request on it"
+          }
+        ],
+        "ref": "plan.md#s8--the-realignment-proven-on-two-scratch-clones"
+      },
+      {
+        "id": "s9",
+        "name": "Before the walk",
+        "state": "todo",
+        "rows": [
+          "number-walk",
+          "links",
+          "moved-text-references"
+        ],
+        "brief": "The milestone and labels exist, and the census, link table, baseline, accepted ids and cross-repository references are recorded",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "labels-fresh",
+            "name": "The three labels"
+          },
+          {
+            "id": "ms-fresh",
+            "name": "The milestone"
+          },
+          {
+            "id": "census",
+            "name": "Numbers 1 to N"
+          },
+          {
+            "id": "baseline",
+            "name": "Texts, links and states before the first transfer"
+          },
+          {
+            "id": "accepted",
+            "name": "The accepted ids"
+          },
+          {
+            "id": "xrefs-before",
+            "name": "Cross-repository references"
+          }
+        ],
+        "ref": "plan.md#s9--before-the-walk"
+      },
+      {
+        "id": "s10",
+        "name": "The walk",
+        "state": "todo",
+        "rows": [
+          "number-walk",
+          "moved-text-references"
+        ],
+        "brief": "Every number 1 to N is on its number in the fresh repository, issues transferred and pull requests reproduced by closed placeholders",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "walk",
+            "name": "transfer-N or placeholder-N for each number in order"
+          }
+        ],
+        "ref": "plan.md#s10--the-walk"
+      },
+      {
+        "id": "s11",
+        "name": "Link reconciliation",
+        "state": "todo",
+        "rows": [
+          "links"
+        ],
+        "brief": "Every recorded relationship is present on both sides, kept or re-created",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "links-r1",
+            "name": "Round one"
+          },
+          {
+            "id": "links-r2",
+            "name": "Round two"
+          },
+          {
+            "id": "links-r3",
+            "name": "Round three"
+          }
+        ],
+        "ref": "plan.md#s11--link-reconciliation"
+      },
+      {
+        "id": "s12",
+        "name": "Gate 2 and the closing reads",
+        "state": "todo",
+        "rows": [
+          "privacy-gates",
+          "moved-text-references",
+          "nothing-lands"
+        ],
+        "brief": "The moved texts pass the gate, the numbers and texts are re-read, and the cross-repository references are counted again",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "gate-2",
+            "name": "Dump and gate the fresh repository's texts"
+          },
+          {
+            "id": "reads",
+            "name": "Numbers, items and references"
+          }
+        ],
+        "ref": "plan.md#s12--gate-2-and-the-closing-reads"
+      },
+      {
+        "id": "s13",
+        "name": "The renames and the archive",
+        "state": "todo",
+        "rows": [
+          "renames"
+        ],
+        "brief": "The old repository is renamed, private and archived; the fresh one is named KotlinBottools with its recorded id and heads",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "rename-old",
+            "name": "Rename the old repository"
+          },
+          {
+            "id": "private-old",
+            "name": "Make it private"
+          },
+          {
+            "id": "archive-old",
+            "name": "Archive it"
+          },
+          {
+            "id": "rename-fresh",
+            "name": "Rename the fresh repository"
+          },
+          {
+            "id": "swap-reads",
+            "name": "Identity, URLs, heads and settings snapshot"
+          }
+        ],
+        "ref": "plan.md#s13--the-renames-and-the-archive"
+      },
+      {
+        "id": "s14",
+        "name": "Residual measurements",
+        "state": "todo",
+        "rows": [
+          "residual-measurement"
+        ],
+        "brief": "The old ids' answers in the fresh and legacy repositories, the activity feed and the public window are recorded",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "residuals",
+            "name": "The probes and the report row"
+          }
+        ],
+        "ref": "plan.md#s14--residual-measurements"
+      },
+      {
+        "id": "s15",
+        "name": "This checkout's realignment",
+        "state": "todo",
+        "rows": [
+          "realignment",
+          "push-safety",
+          "object-deletion"
+        ],
+        "brief": "This checkout is on the rewritten history and passes the push-safety proof, its object deletion proven or deferred",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "copy-local",
+            "name": "Copy the untracked and ignored files"
+          },
+          {
+            "id": "realign-main",
+            "name": "The realignment request"
+          },
+          {
+            "id": "proofs",
+            "name": "Push-safety and object-deletion proofs"
+          }
+        ],
+        "ref": "plan.md#s15--this-checkouts-realignment"
+      },
+      {
+        "id": "s16",
+        "name": "Close-out",
+        "state": "todo",
+        "rows": [
+          "number-walk",
+          "links",
+          "renames"
+        ],
+        "brief": "Every number, placeholder, link, rename and proof is recomputed from final reads, and the window ends",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "result",
+            "name": "The final gate"
+          },
+          {
+            "id": "close-local",
+            "name": "Legacy refs, checksums"
+          }
+        ],
+        "ref": "plan.md#s16--close-out"
+      }
+    ],
+    "remediation": null,
+    "open": [
+      {
+        "text": "Moved issue text will name the temporary repository name KotlinBottools-next: rename before the walk, rewrite after, or accept the redirect (architecture §7.4); the plan decides.",
+        "raised": "sized",
+        "resolved": "2026-11-10T02:30:00Z"
+      },
+      {
+        "text": "The write permissions for this unit are not yet granted.",
+        "raised": "sized",
+        "resolved": "2026-11-10T20:08:36Z"
+      },
+      {
+        "text": "The privacy gate's reviewed allow-list does not exist yet; Gate 1 and Gate 2 need it.",
+        "raised": "halted",
+        "resolved": "2026-11-10T19:46:35Z"
+      },
+      {
+        "text": "A made-up test id in the plan's own text surfaced as an allow-list key; the plan is amended to build it at run time.",
+        "raised": "implementation-stage s0",
+        "resolved": "2026-11-10T21:31:54Z"
+      },
+      {
+        "text": "The allow-list proposal printed a corpus file name that is a legacy word; the tools are amended to mask it.",
+        "raised": "implementation-stage s0",
+        "resolved": "2026-11-10T21:31:54Z"
+      },
+      {
+        "text": "The allow-list record's hash and the privacy gate's name indexes depend on a sort that ties on names differing only in case; both tools get a total order.",
+        "raised": "implementation-stage s0",
+        "resolved": "2026-11-10T22:32:23Z"
+      }
+    ],
+    "event": {
+      "name": "implementation-stage",
+      "at": "2026-11-10T22:32:23Z",
+      "note": "s0 current"
+    },
+    "history": {
+      "sizing": [
+        {
+          "since": null,
+          "ended": "2026-11-10T01:12:41Z",
+          "endedBy": "sized",
+          "to": "plan"
+        }
+      ],
+      "plan": [
+        {
+          "since": "2026-11-10T01:12:41Z",
+          "ended": "2026-11-10T02:00:00Z",
+          "endedBy": "halted",
+          "to": "plan",
+          "event": {
+            "name": "sized",
+            "at": "2026-11-10T01:12:41Z"
+          },
+          "detail": "Sized; the plan starts.",
+          "open": [
+            {
+              "text": "Moved issue text will name the temporary repository name KotlinBottools-next: rename before the walk, rewrite after, or accept the redirect (architecture §7.4); the plan decides.",
+              "raised": "sized"
+            },
+            {
+              "text": "The write permissions for this unit are not yet granted.",
+              "raised": "sized"
+            }
+          ],
+          "plan": {
+            "state": "re-pass",
+            "from": "parent",
+            "since": "2026-11-10T01:12:41Z"
+          },
+          "held": true,
+          "asked": [
+            {
+              "text": "References the walk writes under the temporary name KotlinBottools-next",
+              "options": [
+                "(a) leave them on the redirect",
+                "(b) restore the moved texts afterwards",
+                "(c) rename before the walk"
+              ],
+              "answer": "Left on the redirect; `KotlinBottools-next` stays reserved.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "text": "What the work boards do while nothing in this checkout may change (from the mirror clone to the realignment)",
+              "options": [
+                "(i) live view only, tracked boards caught up afterwards",
+                "(ii) held until the realignment ends",
+                "(iii) written, set aside, rebuilt"
+              ],
+              "answer": "The live view only; the tracked boards are brought up to date after the realignment.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "text": "Pre-rewrite merge-commit ids in the resolution comments of #2, #21 and #22",
+              "options": [
+                "A accept with a dated note",
+                "B repoint the permalinks",
+                "C remove the permalinks"
+              ],
+              "answer": "Accepted, with a dated note.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "text": "Dead links to the deleted planning branch in issue bodies",
+              "options": [
+                "fix in this unit before the walk",
+                "record open; fix in one later pass before the repository goes public"
+              ],
+              "answer": "Recorded open, and fixed in one later pass before the repository becomes public.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "text": "Wiki setting of the fresh repository",
+              "options": [
+                "off",
+                "on"
+              ],
+              "answer": "Off.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "text": "Default Actions workflow permissions of the fresh repository",
+              "options": [
+                "read",
+                "write",
+                "leave the default and record it"
+              ],
+              "answer": "Read.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            },
+            {
+              "text": "Placeholder text for pull requests #20, #30 and #31",
+              "options": [
+                "the rehearsal's form",
+                "also carry the pull request's title and that it was merged"
+              ],
+              "answer": "It also carries the pull request's title and that it was merged.",
+              "asked": "2026-11-10T02:00:00Z",
+              "answered": "2026-11-10T02:30:00Z"
+            }
+          ]
+        },
+        {
+          "since": "2026-11-10T02:00:00Z",
+          "ended": "2026-11-10T02:04:54Z",
+          "endedBy": "research-planning",
+          "to": "research",
+          "event": {
+            "name": "resumed",
+            "at": "2026-11-10T02:30:00Z"
+          },
+          "detail": "References under the temporary name are left on the redirect; board events in the frozen window go to the live view only; the 26 old commit ids in resolution comments are accepted under a dated note; the dead planning-branch links are fixed outside this unit, in a later pass before the repository goes public; wiki off; default workflow permissions read; placeholders carry the pull request's title and that it was merged.",
+          "open": [
+            {
+              "text": "The write permissions for this unit are not yet granted.",
+              "raised": "sized"
+            }
+          ],
+          "plan": {
+            "state": "re-pass",
+            "from": "parent",
+            "since": "2026-11-10T01:12:41Z"
+          }
+        },
+        {
+          "since": "2026-11-10T19:27:15Z",
+          "ended": "2026-11-10T19:27:15Z",
+          "endedBy": "halted",
+          "to": "plan",
+          "event": {
+            "name": "researched",
+            "at": "2026-11-10T02:27:49Z"
+          },
+          "detail": "Research verified; the plan next.",
+          "open": [
+            {
+              "text": "The write permissions for this unit are not yet granted.",
+              "raised": "sized"
+            }
+          ],
+          "plan": {
+            "state": "writing",
+            "since": "2026-11-10T02:27:49Z"
+          },
+          "held": true,
+          "asked": [
+            {
+              "text": "Who writes the privacy gate's reviewed allow-list, which Gate 1 and Gate 2 need?",
+              "options": [
+                "(a) the owner writes it before the run starts, from a first gate run read at the owner's own console",
+                "(b) the run proposes entries from the gate's masked first-run output and the owner confirms each before Gate 1"
+              ],
+              "answer": "The run proposes the entries from the gate's masked first-run output, and the owner confirms each before Gate 1.",
+              "asked": "2026-11-10T19:27:15Z",
+              "answered": "2026-11-10T19:46:35Z"
+            }
+          ]
+        },
+        {
+          "since": "2026-11-10T19:46:35Z",
+          "ended": "2026-11-10T20:01:04Z",
+          "endedBy": "plan-accepted",
+          "to": "branch",
+          "event": {
+            "name": "resumed",
+            "at": "2026-11-10T19:46:35Z"
+          },
+          "detail": "The allow-list is proposed by the run from the gate's masked first-run output, and the owner confirms each entry before Gate 1; the plan is being amended to build that in.",
+          "open": [
+            {
+              "text": "The write permissions for this unit are not yet granted.",
+              "raised": "sized"
+            }
+          ],
+          "plan": {
+            "state": "writing",
+            "since": "2026-11-10T02:27:49Z"
+          }
+        }
+      ],
+      "research": [
+        {
+          "since": "2026-11-10T02:04:54Z",
+          "ended": "2026-11-10T02:27:49Z",
+          "endedBy": "researched",
+          "to": "plan",
+          "event": {
+            "name": "verification-started",
+            "at": "2026-11-10T02:22:30Z"
+          },
+          "detail": "Research: verifying 1 finding.",
+          "open": [
+            {
+              "text": "The write permissions for this unit are not yet granted.",
+              "raised": "sized"
+            }
+          ],
+          "research": {
+            "phase": "complete",
+            "drafted": 0,
+            "since": {
+              "planning": "2026-11-10T02:04:54Z",
+              "research": "2026-11-10T02:06:07Z",
+              "verification": "2026-11-10T02:22:30Z",
+              "complete": "2026-11-10T02:27:49Z"
+            }
+          },
+          "questions": [
+            {
+              "question": "fresh-repository-settings",
+              "rows": [
+                "fresh-repository",
+                "requested-writes"
+              ],
+              "findings": "research/fresh-repository-settings.md",
+              "state": "complete",
+              "started": "2026-11-10T02:06:07Z",
+              "returned": "2026-11-10T02:22:06Z"
+            }
+          ]
+        }
+      ],
+      "branch": [
+        {
+          "since": "2026-11-10T20:01:04Z",
+          "ended": "2026-11-10T20:02:19Z",
+          "endedBy": "branch-cut",
+          "to": "implementation",
+          "event": {
+            "name": "plan-accepted",
+            "at": "2026-11-10T20:01:04Z"
+          },
+          "detail": "Plan accepted; the branch is confirmed next.",
+          "open": [
+            {
+              "text": "The write permissions for this unit are not yet granted.",
+              "raised": "sized"
+            }
+          ],
+          "branch": "chore/issue-23-history-rewrite"
+        }
+      ]
+    },
+    "next": null,
+    "qa": [],
+    "qaMax": 3,
+    "waitingOn": null,
+    "resume": null,
+    "blockers": {
+      "waitsOn": [],
+      "blocks": []
+    },
+    "landing": null,
+    "asked": [
+      {
+        "step": "plan",
+        "text": "References the walk writes under the temporary name KotlinBottools-next",
+        "options": [
+          "(a) leave them on the redirect",
+          "(b) restore the moved texts afterwards",
+          "(c) rename before the walk"
+        ],
+        "answer": "Left on the redirect; `KotlinBottools-next` stays reserved.",
+        "asked": "2026-11-10T02:00:00Z",
+        "answered": "2026-11-10T02:30:00Z"
+      },
+      {
+        "step": "plan",
+        "text": "What the work boards do while nothing in this checkout may change (from the mirror clone to the realignment)",
+        "options": [
+          "(i) live view only, tracked boards caught up afterwards",
+          "(ii) held until the realignment ends",
+          "(iii) written, set aside, rebuilt"
+        ],
+        "answer": "The live view only; the tracked boards are brought up to date after the realignment.",
+        "asked": "2026-11-10T02:00:00Z",
+        "answered": "2026-11-10T02:30:00Z"
+      },
+      {
+        "step": "plan",
+        "text": "Pre-rewrite merge-commit ids in the resolution comments of #2, #21 and #22",
+        "options": [
+          "A accept with a dated note",
+          "B repoint the permalinks",
+          "C remove the permalinks"
+        ],
+        "answer": "Accepted, with a dated note.",
+        "asked": "2026-11-10T02:00:00Z",
+        "answered": "2026-11-10T02:30:00Z"
+      },
+      {
+        "step": "plan",
+        "text": "Dead links to the deleted planning branch in issue bodies",
+        "options": [
+          "fix in this unit before the walk",
+          "record open; fix in one later pass before the repository goes public"
+        ],
+        "answer": "Recorded open, and fixed in one later pass before the repository becomes public.",
+        "asked": "2026-11-10T02:00:00Z",
+        "answered": "2026-11-10T02:30:00Z"
+      },
+      {
+        "step": "plan",
+        "text": "Wiki setting of the fresh repository",
+        "options": [
+          "off",
+          "on"
+        ],
+        "answer": "Off.",
+        "asked": "2026-11-10T02:00:00Z",
+        "answered": "2026-11-10T02:30:00Z"
+      },
+      {
+        "step": "plan",
+        "text": "Default Actions workflow permissions of the fresh repository",
+        "options": [
+          "read",
+          "write",
+          "leave the default and record it"
+        ],
+        "answer": "Read.",
+        "asked": "2026-11-10T02:00:00Z",
+        "answered": "2026-11-10T02:30:00Z"
+      },
+      {
+        "step": "plan",
+        "text": "Placeholder text for pull requests #20, #30 and #31",
+        "options": [
+          "the rehearsal's form",
+          "also carry the pull request's title and that it was merged"
+        ],
+        "answer": "It also carries the pull request's title and that it was merged.",
+        "asked": "2026-11-10T02:00:00Z",
+        "answered": "2026-11-10T02:30:00Z"
+      },
+      {
+        "step": "plan",
+        "text": "Who writes the privacy gate's reviewed allow-list, which Gate 1 and Gate 2 need?",
+        "options": [
+          "(a) the owner writes it before the run starts, from a first gate run read at the owner's own console",
+          "(b) the run proposes entries from the gate's masked first-run output and the owner confirms each before Gate 1"
+        ],
+        "answer": "The run proposes the entries from the gate's masked first-run output, and the owner confirms each before Gate 1.",
+        "asked": "2026-11-10T19:27:15Z",
+        "answered": "2026-11-10T19:46:35Z"
+      }
+    ],
+    "waits": [
+      {
+        "step": "plan",
+        "since": "2026-11-10T02:00:00Z",
+        "ended": "2026-11-10T02:30:00Z",
+        "by": "halted"
+      },
+      {
+        "step": "plan",
+        "since": "2026-11-10T19:27:15Z",
+        "ended": "2026-11-10T19:46:35Z",
+        "by": "halted"
+      }
+    ],
+    "outages": [
+      {
+        "step": "plan",
+        "since": "2026-11-10T02:30:00Z",
+        "ended": "2026-11-10T19:27:15Z",
+        "reason": "the session ended and a new session took the run up"
+      }
+    ]
+  },
+  "milestones": [
+    {
+      "column": "gap",
+      "label": "Research verified",
+      "date": "2026-11-10",
+      "ref": "research/README.md",
+      "note": "one question, on the fresh repository's creation, settings and read-backs, with its findings file; 25 load-bearing claims re-opened at their sources, 23 holding, one failing and one unclear, neither of those two carrying the design; every other input cited from the earlier findings, current at the same tool versions"
+    },
+    {
+      "column": "gap",
+      "label": "Research verified, in #2's run",
+      "date": "2026-10-21",
+      "ref": "../research/README.md",
+      "note": "written on this board at sized from #2's research summary (§3.2, §3.4, §3.5, §3.6, §3.9) and its architecture's current state (§2), with this unit's row in §15 and what units 1 and 2 hand on"
+    },
+    {
+      "column": "considered",
+      "label": "Architecture signed off, in #2's run",
+      "date": "2026-11-07",
+      "ref": "../architecture.md",
+      "note": "the options #2's architecture weighed for this unit: §6.4, §7, §9 and §14, with the choice for the references naming the temporary repository name left to this unit's plan (§7.4); the plan adds to them at plan acceptance"
+    },
+    {
+      "column": "verdict",
+      "label": "Plan accepted",
+      "date": "2026-11-10",
+      "ref": "plan.md",
+      "note": "seventeen stages, S0 to S16, every write to GitHub or this checkout a request read back by id, the tools saved from the plan and checked before anything runs, and the allow-list proposed by the run and confirmed key by key"
+    }
+  ],
+  "trail": [
+    {
+      "date": "2026-11-10",
+      "column": "gap",
+      "label": "Sized; the plan starts"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "verdict",
+      "label": "Halted at the plan: waiting on you (the interview answers)"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "verdict",
+      "label": "Resumed at the plan"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Open point resolved: Moved issue text will name the temporary repository name KotlinBottools-next: rename before the walk, rewrite after, or accept the redirect (architecture §7.4); the plan decides."
+    },
+    {
+      "date": "2026-11-10",
+      "column": "gap",
+      "label": "Research planning: 0 questions drafted"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "gap",
+      "label": "Research started: `fresh-repository-settings`"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "gap",
+      "label": "Research returned: `fresh-repository-settings`",
+      "ref": "research/fresh-repository-settings.md"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "gap",
+      "label": "Verification started: 1 finding"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "gap",
+      "label": "Research verified; the plan next",
+      "ref": "research/README.md"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "verdict",
+      "label": "Halted at the plan: waiting on you (the owner's decision on the privacy gate's allow-list)"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Open point resolved: The privacy gate's reviewed allow-list does not exist yet; Gate 1 and Gate 2 need it."
+    },
+    {
+      "date": "2026-11-10",
+      "column": "verdict",
+      "label": "Plan accepted",
+      "ref": "plan.md"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Branch `chore/issue-23-history-rewrite` cut; implementation starts at s0"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "s0 current: Local readiness"
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Open point resolved: The write permissions for this unit are not yet granted."
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Open point resolved: A made-up test id in the plan's own text surfaced as an allow-list key; the plan is amended to build it at run time."
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Open point resolved: The allow-list proposal printed a corpus file name that is a legacy word; the tools are amended to mask it."
+    },
+    {
+      "date": "2026-11-10",
+      "column": "built",
+      "label": "Open point resolved: The allow-list record's hash and the privacy gate's name indexes depend on a sort that ties on names differing only in case; both tools get a total order."
+    }
+  ],
+  "rows": [
+    {
+      "id": "fresh-mirror-and-backup",
+      "group": "Start",
+      "name": "KotlinBottools' own mirror, backup, manifest, expectation and positive control",
+      "system": "backups-and-manifests",
+      "where": "`BotWS/backup/KotlinBottools.git` · `BotLegacyData/manifests`",
+      "gap": {
+        "kind": "missing",
+        "summary": "Nothing the rewrite is judged against exists yet for KotlinBottools' current history. The preparation unit's KotlinBottools mirror serves the data copy only, every landing since has added commits, and KotlinBottools' expectation row is derived by rule rather than taken from the research's table.",
+        "evidence": [
+          "`../architecture.md:503` — KotlinBottools is mirrored again at the start of its rewrite, because every landing before then adds commits to it",
+          "`../architecture.md:525` — for KotlinBottools the expectation row is derived by rule",
+          "`../architecture.md:183` — surviving paths and blobs derived at rewrite time, commits after = T − 2; 346 purged blobs at the research baseline",
+          "`../21-preparation/consequences.md:92` — this unit takes its own fresh KotlinBottools mirror and backup at its start, replacing the preparation unit's copies"
+        ],
+        "source": "../architecture.md §6.2",
+        "link": "../architecture.md#62-backups-and-manifests"
+      },
+      "options": [
+        {
+          "id": "own-mirror-at-start",
+          "name": "A fresh mirror and untouched backup at the unit's start, with its manifest, expectation row and positive-control scan",
+          "verdict": "accepted",
+          "why": "The rewrite then holds every commit up to its start, and the backup is the control of every \"all missing\" proof and the source of the probes' id lists.",
+          "source": "../architecture.md §6.2, §15",
+          "link": "../architecture.md#62-backups-and-manifests"
+        },
+        {
+          "id": "reuse-preparation-mirror",
+          "name": "Rewrite the preparation unit's KotlinBottools mirror",
+          "verdict": "declined",
+          "why": "It predates the landings of units 1 and 2 and #2's own, which the rewritten history would then lose.",
+          "source": "../architecture.md §6.2, §11",
+          "link": "../architecture.md#62-backups-and-manifests"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The preparation unit's KotlinBottools mirror and backup are moved aside, never deleted, and this unit takes its own mirror clone and untouched backup, with the listing at the clone.",
+            "ref": "plan.md#s2--mirror-backup-manifest-expectation-and-control",
+            "excerpt": {
+              "ref": "plan.md#s2--mirror-backup-manifest-expectation-and-control",
+              "heading": "S2 — Mirror, backup, manifest, expectation and control",
+              "paragraph": "Run it in the background; it reads GitHub (`git clone --mirror` and one `ls-remote`), scans with gitleaks and ends in minutes.",
+              "hash": "aa8c32ab315b"
+            }
+          },
+          {
+            "text": "The manifest of every purged blob and the expectation row by rule, commits after = T − P with P = 2 + E, are written from the untouched backup and cross-checked against the manifest's counts and `rev-list`.",
+            "ref": "plan.md#current-state",
+            "excerpt": {
+              "ref": "plan.md#current-state",
+              "heading": "Current state",
+              "paragraph": "GitHub, as read on 2026-11-09 and 2026-11-10 (counts only; the run reads every one of them again at its stage):",
+              "hash": "b8faf8048256"
+            }
+          },
+          {
+            "text": "The positive control runs KotlinBottools' named probes on the untouched backup; findings in kept files are recorded by rule id and count, never a stop here.",
+            "ref": "plan.md#s2--mirror-backup-manifest-expectation-and-control",
+            "excerpt": {
+              "ref": "plan.md#s2--mirror-backup-manifest-expectation-and-control",
+              "heading": "S2 — Mirror, backup, manifest, expectation and control",
+              "paragraph": "Run it in the background; it reads GitHub (`git clone --mirror` and one `ls-remote`), scans with gitleaks and ends in minutes.",
+              "hash": "aa8c32ab315b"
+            }
+          }
+        ],
+        "defense": "KotlinBottools takes commits until the unit starts, so only a mirror taken at its start holds every commit the rewrite must keep, and the untouched backup is the control of every later proof.",
+        "steps": [
+          {
+            "id": "S2",
+            "what": "Move the earlier copies aside, take the mirror and backup, write the manifest and the expectation row, and run the positive control.",
+            "check": "`STAGE S2 OK`",
+            "link": "plan.md#s2--mirror-backup-manifest-expectation-and-control"
+          }
+        ],
+        "tests": [
+          "L3 integration — the expectation row cross-checked against the manifest builder's counts and `rev-list` on the real backup",
+          "L4a deterministic — the expectation by rule, T − P"
+        ],
+        "risks": [
+          "A mirror or backup already in the way stops the stage; the earlier copies are moved, never deleted"
+        ],
+        "source": "plan.md §7.4 S2, Current state",
+        "link": "plan.md#s2--mirror-backup-manifest-expectation-and-control"
+      }
+    },
+    {
+      "id": "nothing-lands",
+      "group": "Start",
+      "name": "Nothing lands on KotlinBottools while the unit runs",
+      "system": "rewrite-pipeline",
+      "where": "KotlinBottools' heads and highest number",
+      "gap": {
+        "kind": "risk",
+        "summary": "A commit or a numbered item that reaches KotlinBottools while the unit runs is lost. A landing between the mirror clone and the push would be missing from the rewritten history, and an item numbered after the walk read its number list would be missing from the fresh repository.",
+        "evidence": [
+          "`../architecture.md:1177` — nothing lands on KotlinBottools while unit 3 runs; its mirror clone is taken at its start",
+          "`../architecture.md:1184` — the heads must still equal the mirror's old tips before the push, and the highest number must still be N before the renames",
+          "`../architecture.md:1356` — the systems-level risk of a landing or a new numbered item while unit 3 runs"
+        ],
+        "source": "../architecture.md §11",
+        "link": "../architecture.md#11-version-control"
+      },
+      "options": [
+        {
+          "id": "one-unit-checked",
+          "name": "The rewrite, the swap and the realignment as one unit, the heads checked before the push and the highest number before the renames",
+          "verdict": "accepted",
+          "why": "Nothing lands between the clone and the push, and the two checks catch anything that did.",
+          "source": "../architecture.md §11, §14",
+          "link": "../architecture.md#11-version-control"
+        },
+        {
+          "id": "split-units",
+          "name": "Separate units for the KotlinBottools rewrite, the swap and the realignment",
+          "verdict": "declined",
+          "why": "Every landing adds commits to KotlinBottools, so a landing between its mirror clone and its push would be lost from the rewritten history, and the swap's own landing cannot precede the realignment.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "Everything pending is committed on the topic branch and pushed before the mirror clone; from then until the realignment's push-safety proof, no commit is made and no tracked file changes in this checkout.",
+            "ref": "plan.md#the-frozen-window",
+            "excerpt": {
+              "ref": "plan.md#the-frozen-window",
+              "heading": "The frozen window",
+              "paragraph": "The window opens when `precommit` is `done` (S1) and closes when S15's push-safety proof has passed. Inside it:",
+              "hash": "0b33982b04f5"
+            }
+          },
+          {
+            "text": "Board events inside that window go to the git-ignored live view only, and the tracked boards are brought up to date after the realignment.",
+            "ref": "plan.md#the-frozen-window",
+            "excerpt": {
+              "ref": "plan.md#the-frozen-window",
+              "heading": "The frozen window",
+              "paragraph": "The window opens when `precommit` is `done` (S1) and closes when S15's push-safety proof has passed. Inside it:",
+              "hash": "0b33982b04f5"
+            }
+          },
+          {
+            "text": "The push preparation stops on a pre-rewrite head that is not `ref-map`'s old column, and the closing reads stop when the source's highest number has changed.",
+            "ref": "plan.md#risks-and-edge-cases",
+            "excerpt": {
+              "ref": "plan.md#risks-and-edge-cases",
+              "heading": "Risks and edge cases",
+              "paragraph": "A number lands elsewhere or an item loses something (the central risk). The walk checks every number before the next; a difference stops it, and the stop table gives the state; the rehearsal measured the transfer's behaviour on the same shapes, and this walk adds what the rehearsal's fixture did not cover: a target that already holds a pushed history, placeholders next to each other (#30 and #31) and at the top number, 31 numbers instead of ten, links with issues in a third repository, and references written as URLs in the moved texts. Each is checked on its number, not assumed. · A landing …",
+              "hash": "2fb0223f1233"
+            }
+          },
+          {
+            "text": "The unit's landing is the first pull request on the fresh repository, after the realignment.",
+            "ref": "plan.md#version-control",
+            "excerpt": {
+              "ref": "plan.md#version-control",
+              "heading": "Version control",
+              "paragraph": "Branch: `chore/issue-23-history-rewrite` (it exists, with the research commits). · Commit sequence: · Before the mirror clone (S1): one commit on the topic branch through the `commit` request, with the exact paths the script derives: this plan, this unit's `consequences.md`, its issue board files, and the board files already modified in this checkout (generated boards, all of them pending and not part of any other change). It is pushed to the pre-rewrite repository, and the mirror push carries it through the rewrite to the fresh repository. The plan is committed in this same commit, so `git …",
+              "hash": "764c1d724631"
+            }
+          }
+        ],
+        "defense": "The rewrite, the swap and the realignment stay one unit, as the parent design decided; the window and the two reads make \"nothing lands\" a checked condition rather than an assumption.",
+        "steps": [
+          {
+            "id": "S1",
+            "what": "Commit and push the pending documents and boards in one commit; the window opens.",
+            "check": "`STAGE S1 OK`",
+            "link": "plan.md#s1--the-pre-clone-commit"
+          },
+          {
+            "id": "S6",
+            "what": "Read the pre-rewrite heads against `ref-map`'s old column before the push.",
+            "check": "`STAGE S6-prep OK`",
+            "link": "plan.md#s6--the-fresh-repository"
+          },
+          {
+            "id": "S12",
+            "what": "Read that the source's highest number is still N before the renames.",
+            "check": "`check stage S12`",
+            "link": "plan.md#s12--gate-2-and-the-closing-reads"
+          }
+        ],
+        "tests": [
+          "L3 integration — the heads read before the push and the highest number read before the renames"
+        ],
+        "risks": [
+          "A commit made inside the window is not in `commit-map`: the realignment's preflight stops on it and the unit restarts from a fresh mirror"
+        ],
+        "source": "plan.md Design, The frozen window; §7.4 S1",
+        "link": "plan.md#the-frozen-window"
+      }
+    },
+    {
+      "id": "purge-rewrite",
+      "group": "The rewrite",
+      "name": "The purge, with the pipeline's checks before and after",
+      "system": "rewrite-pipeline",
+      "where": "`BotWS/mirror/KotlinBottools.git` · `BotLegacyData/rewrite/KotlinBottools`",
+      "gap": {
+        "kind": "risk",
+        "summary": "KotlinBottools' history still holds the data the phase purges, and it is public. The repository has been public since 2026-11-08 with 346 purged blobs at the research baseline, and its `main` still tracks the purge-listed files, so they and the old objects are anonymously readable until they leave it.",
+        "evidence": [
+          "`../architecture.md:183` — KotlinBottools: public since 2026-11-08, 346 purged blobs at the research baseline",
+          "`../architecture.md:190` — anonymous requests to the repository, its files and its archive answer 200, and `main` still tracks the files the rewrite purges",
+          "`../architecture.md:232` — the purge list removes 41 tracked files from this working tree",
+          "`../architecture.md:257` — git-filter-repo exits 0 even when nothing matched, so counts decide"
+        ],
+        "source": "../architecture.md §2.1, §2.4",
+        "link": "../architecture.md#21-the-six-repositories"
+      },
+      "options": [
+        {
+          "id": "pipeline-stages",
+          "name": "The pipeline's stages 1 to 5 in a mirror: list proof and pre-run checks, positive control, one `git filter-repo --sensitive-data-removal --invert-paths` invocation, post-run checks, push preparation",
+          "verdict": "accepted",
+          "why": "Each stage is a gate; a failure stops the repository before its push and discards its mirror, and the backup stays.",
+          "source": "../architecture.md §6.4",
+          "link": "../architecture.md#64-the-rewrite-pipeline-per-repository"
+        },
+        {
+          "id": "trust-exit-status",
+          "name": "Rely on the tools' exit status",
+          "verdict": "declined",
+          "why": "Each is 0 on failure in the cases the phase meets; counts and proofs decide.",
+          "source": "../architecture.md §2.4, §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "One `git filter-repo --sensitive-data-removal --invert-paths` invocation runs in the mirror, the path scrub in the same run, with standard input from `/dev/null` and no `--force`, after the pre-run checks.",
+            "ref": "plan.md#the-tools",
+            "excerpt": {
+              "ref": "plan.md#the-tools",
+              "heading": "The tools",
+              "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
+              "hash": "c384eeab02aa"
+            }
+          },
+          {
+            "text": "Counts decide the result: commits after = T − P, every list entry counting 0, `fsck` clean, `expect_check.py` PASS and every manifest blob missing, with the backup as the control.",
+            "ref": "plan.md#s4--the-rewrite",
+            "excerpt": {
+              "ref": "plan.md#s4--the-rewrite",
+              "heading": "S4 — The rewrite",
+              "paragraph": "One invocation, exactly the one of Design, then every post-run check listed there, with the expectation of `expect.env`. It runs in the background (a minute or two). If any check fails, the mirror is discarded (`rm -rf \"$WS/mirror/KotlinBottools.git\"`), the cause is fixed, and S2's mirror step is re-run (§7.5): a second filter-repo run in the same mirror stops by design.",
+              "hash": "fa39d8e2ceae"
+            }
+          },
+          {
+            "text": "A fresh mirror of the fresh repository passes the exit tests: refs equal to `ref-map`'s new column, no purged blob reachable, gitleaks clean on branches, tags and every ref.",
+            "ref": "plan.md#s7--fresh-mirror-and-exit-tests",
+            "excerpt": {
+              "ref": "plan.md#s7--fresh-mirror-and-exit-tests",
+              "heading": "S7 — Fresh mirror and exit tests",
+              "paragraph": "Run it in the background. It takes a fresh mirror of the fresh repository (`WS/fresh/KotlinBottools.git`), expects its refs to be `ref-map`'s new column, heads only, and its commit count to be T − P; runs `fsck`; `expect_check.py` with the scrub-adjusted counts; the manifest compared with the objects reachable from branches and tags (0) and from every ref (0); the scrub's zero count again over every ref of the fresh mirror; the gitleaks scans of branches and tags and of every ref, which must be `RESULT: CLEAN` and equal (no pull-request ref exists); a default-rule finding in a kept file is …",
+              "hash": "48c0f3b95ce0"
+            }
+          },
+          {
+            "text": "A failed check discards the mirror and keeps the backup, and the stage re-runs from the mirror step.",
+            "ref": "plan.md#75-re-running",
+            "excerpt": {
+              "ref": "plan.md#75-re-running",
+              "heading": "7.5 Re-running",
+              "paragraph": "A stop is fixed first; then the unit is continued as the table says. Every `request` runs its pre-check, so a write that is already done prints `SKIP` and is never repeated; no duplicate issue, label or repository can be created.",
+              "hash": "feabdc42e4d5"
+            }
+          }
+        ],
+        "defense": "The parent design's pipeline, each stage a gate before the push; nothing is written to GitHub before the fresh repository's creation, so every stage before it can be re-run.",
+        "steps": [
+          {
+            "id": "S3",
+            "what": "Count and predict what the run must produce: P, E and the post-run blob set.",
+            "check": "`STAGE S3 OK`",
+            "link": "plan.md#s3--the-scrubs-before-counts"
+          },
+          {
+            "id": "S4",
+            "what": "Run the one invocation and every post-run check.",
+            "check": "`STAGE S4 OK`",
+            "link": "plan.md#s4--the-rewrite"
+          },
+          {
+            "id": "S7",
+            "what": "Take a fresh mirror of the fresh repository and run the exit tests.",
+            "check": "`STAGE S7 OK`",
+            "link": "plan.md#s7--fresh-mirror-and-exit-tests"
+          }
+        ],
+        "tests": [
+          "L2 component — `kselftest.sh` runs the S3 and S4 scripts end to end on a fixture",
+          "L3 integration — the post-run checks on the real mirror",
+          "L4b end-to-end — the exit tests on a fresh mirror of the fresh repository"
+        ],
+        "risks": [
+          "git-filter-repo exits 0 when nothing matched: counts and proofs decide, never an exit status"
+        ],
+        "source": "plan.md Design, The tools; §7.4 S3, S4, S7",
+        "link": "plan.md#s4--the-rewrite"
+      }
+    },
+    {
+      "id": "path-scrub",
+      "group": "The rewrite",
+      "name": "Machine-local paths replaced in every file and commit message",
+      "system": "rewrite-pipeline",
+      "where": "every commit of KotlinBottools · `build.gradle.kts` · `GuildDataParser.kt` · the planning documents",
+      "gap": {
+        "kind": "risk",
+        "summary": "KotlinBottools' history names this machine's folders, and it becomes public through the fresh repository. Hundreds of (commit, file) pairs name the project-checkouts folder or a user-profile folder, nearly all in the planning documents, two files on `main` among them, and the scrub has run only on a fixture.",
+        "evidence": [
+          "`../architecture.md:219` — 157 (commit, file) pairs name a user-profile folder, 476 the project-checkouts folder, 25 its dash-mangled form",
+          "`../architecture.md:221` — on `main`, `build.gradle.kts` and `GuildDataParser.kt` hold such a path",
+          "`../architecture.md:83` — the rewrite replaces both kinds in every file of every commit and in every commit message",
+          "`../consequences.md:236` — the path scrub has been proved only on a fixture until this unit runs it on the real history",
+          "`../21-preparation/consequences.md:92` — this unit takes the expression file with its pinned size and hash and the fixture's expected scrub counts"
+        ],
+        "source": "../architecture.md §1.1 item 3, §2.1",
+        "link": "../architecture.md#11-what-the-phase-must-achieve"
+      },
+      "options": [
+        {
+          "id": "scrub-same-invocation",
+          "name": "`--replace-text` and `--replace-message` in the same invocation, `regex:` lines only, proved by the before-counts, the fidelity check and a zero count on every ref",
+          "verdict": "accepted",
+          "why": "The purge and the scrub produce one rewritten history, and a scrub that replaces text it should not, or misses a form, stops the unit before the push.",
+          "source": "../architecture.md §6.1, §6.4",
+          "link": "../architecture.md#64-the-rewrite-pipeline-per-repository"
+        },
+        {
+          "id": "keep-local-paths",
+          "name": "Leave the machine-local paths in the committed documents",
+          "verdict": "declined",
+          "why": "Settled at the architecture's sign-off: the KotlinBottools rewrite also replaces them in every file and commit.",
+          "source": "../architecture.md §1.1 item 3",
+          "link": "../architecture.md#11-what-the-phase-must-achieve"
+        },
+        {
+          "id": "glob-or-account",
+          "name": "Express the scrub as `glob:` lines, or name this machine's account in the expression file",
+          "verdict": "declined",
+          "why": "`glob:` lines hit filter-repo 2.47.0's Python 3.14 defect, and an account-specific line would put the account name into a file that must stay unshared.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        },
+        {
+          "id": "unreleased-or-python-313",
+          "name": "Run the scrub with filter-repo's unreleased `main`, or under Python 3.13",
+          "verdict": "declined",
+          "why": "Neither is needed, since the defect is confined to `glob:` expressions; Python 3.13 stays the fallback the fixture rehearsal can call for.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        },
+        {
+          "id": "scrub-all-six",
+          "name": "Scrub the other five repositories as well",
+          "verdict": "declined",
+          "why": "GKB2, GKB and BotTools are public already, and TrumpBot and Support stay private; only KotlinBottools becomes newly public.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "in-progress"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "`--replace-text` and `--replace-message` run in the same invocation, with the three `regex:` expressions of the pinned expression file, which is never printed.",
+            "ref": "plan.md#the-tools",
+            "excerpt": {
+              "ref": "plan.md#the-tools",
+              "heading": "The tools",
+              "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
+              "hash": "c384eeab02aa"
+            }
+          },
+          {
+            "text": "The before-counts must find both path kinds above zero, and `scrub_check.py predict` predicts E, the post-run blob set and the number of blobs the scrub changes.",
+            "ref": "plan.md#s3--the-scrubs-before-counts",
+            "excerpt": {
+              "ref": "plan.md#s3--the-scrubs-before-counts",
+              "heading": "S3 — The scrub's before-counts",
+              "paragraph": "It counts, with `scrub_count.py`, for each of the three expressions the (commit, file) pairs, the matches and the commit-message lines across every ref of the untouched backup: the project-checkouts form and the user-profile form each above zero (the dash-mangled form's count is recorded and may be zero); runs `scrub_check.py predict` (the commits the purge prunes, which must be 2; E, the commits the scrub alone would make empty; the surviving paths; the predicted post-run blob set and the number of surviving blobs the scrub changes; the one binary blob, the wrapper jar); and writes …",
+              "hash": "531a67703b01"
+            }
+          },
+          {
+            "text": "After the run: a zero count of all three expressions over every file and commit message of every ref, the fidelity check passing, and the changed-blob count equal to the prediction; the zero count again on the fresh mirror.",
+            "ref": "plan.md#s4--the-rewrite",
+            "excerpt": {
+              "ref": "plan.md#s4--the-rewrite",
+              "heading": "S4 — The rewrite",
+              "paragraph": "One invocation, exactly the one of Design, then every post-run check listed there, with the expectation of `expect.env`. It runs in the background (a minute or two). If any check fails, the mirror is discarded (`rm -rf \"$WS/mirror/KotlinBottools.git\"`), the cause is fixed, and S2's mirror step is re-run (§7.5): a second filter-repo run in the same mirror stops by design.",
+              "hash": "fa39d8e2ceae"
+            }
+          },
+          {
+            "text": "This plan and every file the pre-clone commit carries match none of the expressions, checked at local readiness and before the commit, so the rewrite leaves the committed plan unchanged.",
+            "ref": "plan.md#the-path-scrub-guard",
+            "excerpt": {
+              "ref": "plan.md#the-path-scrub-guard",
+              "heading": "The path-scrub guard",
+              "paragraph": "The scrub applies to every file of the history, and this plan is committed before the mirror clone. `scrub_check.py files EXPR PATH...` counts the three expressions over files (counts only, exit 1 on a match); `k0-ready.sh` runs it over every file of this unit's folder and every modified tracked file the pre-clone commit will carry, and the pre-check of `precommit` counts the same over the paths it puts in the request and over the whole folder, so a match stops before the commit. The realignment's prediction therefore expects exactly the files the scrub changes in the tracked tree, …",
+              "hash": "c73f3d13c39d"
+            }
+          }
+        ],
+        "defense": "KotlinBottools' history is the only one that becomes newly public, and its documents name this machine's folders; the scrub's semantics are reproduced exactly, so its effect is predicted before the run and checked after it.",
+        "steps": [
+          {
+            "id": "S0",
+            "what": "Count the expressions over this unit's folder and the files the pre-clone commit will carry.",
+            "check": "`STAGE S0-local OK`",
+            "link": "plan.md#s0--local-readiness"
+          },
+          {
+            "id": "S3",
+            "what": "Take the before-counts and the prediction.",
+            "check": "`STAGE S3 OK`",
+            "link": "plan.md#s3--the-scrubs-before-counts"
+          },
+          {
+            "id": "S4",
+            "what": "Check the zero counts, the fidelity and the changed-blob count after the run.",
+            "check": "`STAGE S4 OK`",
+            "link": "plan.md#s4--the-rewrite"
+          },
+          {
+            "id": "S7",
+            "what": "Count the expressions again on the fresh mirror.",
+            "check": "`STAGE S7 OK`",
+            "link": "plan.md#s7--fresh-mirror-and-exit-tests"
+          }
+        ],
+        "tests": [
+          "L2 component — the `scrub_check.py` self-test with the real git-filter-repo on a fixture",
+          "L4a deterministic — `scrub_check.py predict` against git-filter-repo's semantics",
+          "L3 integration — the zero counts and the fidelity check on the real mirror"
+        ],
+        "risks": [
+          "`build.gradle.kts` and `GuildDataParser.kt` change content in every commit that holds them; a local build that relied on the local Maven repository line needs a local override"
+        ],
+        "source": "plan.md Design, The tools, The path-scrub guard; §7.4 S3, S4",
+        "link": "plan.md#s3--the-scrubs-before-counts"
+      }
+    },
+    {
+      "id": "privacy-gates",
+      "group": "The rewrite",
+      "name": "Privacy gates 1 and 2",
+      "system": "privacy-gate",
+      "where": "the rewritten mirror · the fresh repository's issues, placeholders and comments · `BotLegacyData/run/gate`",
+      "gap": {
+        "kind": "missing",
+        "summary": "Nothing yet proves that what becomes public with KotlinBottools names no guild, member or legacy id. The names live in the data the phase preserves, and the rewritten history and the moved issue texts have not been scanned for them.",
+        "evidence": [
+          "`../architecture.md:653` — the gate's lists, built in memory from the data folder: 6 guild folders, 240 member names and 25 id-shaped numbers at the research baseline",
+          "`../architecture.md:665` — Gate 1 runs over the rewritten mirror and the old repository's texts before KotlinBottools' push",
+          "`../architecture.md:666` — Gate 2 runs over the fresh repository's issues, placeholders and comments before the renames"
+        ],
+        "source": "../architecture.md §6.5",
+        "link": "../architecture.md#65-privacy-gate-and-id-reference-check"
+      },
+      "options": [
+        {
+          "id": "two-gates-by-count",
+          "name": "Gate 1 before the push and Gate 2 before the renames, whole-word hits masked and counted, a reviewed allow-list the only suppression",
+          "verdict": "accepted",
+          "why": "Either gate exits non-zero on any other hit and stops the unit before the step it guards, and nothing it prints names what it found.",
+          "source": "../architecture.md §6.5",
+          "link": "../architecture.md#65-privacy-gate-and-id-reference-check"
+        }
+      ],
+      "asBuilt": {
+        "state": "in-progress"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The allow-list is built at local readiness, before the window opens: the run proposes each key from the gate's masked output, and the owner confirms or rejects each one, with no word printed.",
+            "ref": "plan.md#the-allow-list",
+            "excerpt": {
+              "ref": "plan.md#the-allow-list",
+              "heading": "The allow-list",
+              "paragraph": "The privacy gate (`privacy_gate.py`, the preparation unit's tool at its recorded hash, unchanged) fails on any member name, guild folder or standalone id of the legacy data it meets. Its only suppression is an allow-list of words the reviewer has judged not to be personal data (ordinary words, a repository name, the template guild folder, public constants such as the Steam64 base). The gate never prints a name, and an entry that is a real name hides a leak, so the list is built by proposal and confirmation, never by the run's own judgement, and no word is printed or written anywhere but the …",
+              "hash": "cda3d1bb2881"
+            }
+          },
+          {
+            "text": "A rejected key leaves its hits blocking and stops the unit before the window opens, with nothing written anywhere.",
+            "ref": "plan.md#the-allow-list",
+            "excerpt": {
+              "ref": "plan.md#the-allow-list",
+              "heading": "The allow-list",
+              "paragraph": "The privacy gate (`privacy_gate.py`, the preparation unit's tool at its recorded hash, unchanged) fails on any member name, guild folder or standalone id of the legacy data it meets. Its only suppression is an allow-list of words the reviewer has judged not to be personal data (ordinary words, a repository name, the template guild folder, public constants such as the Steam64 base). The gate never prints a name, and an entry that is a real name hides a leak, so the list is built by proposal and confirmation, never by the run's own judgement, and no word is printed or written anywhere but the …",
+              "hash": "cda3d1bb2881"
+            }
+          },
+          {
+            "text": "Gate 1 reads the rewritten mirror, the five static backups' commit messages and identities and the old repository's texts, and must report 0 blocking hits.",
+            "ref": "plan.md#s5--gate-1",
+            "excerpt": {
+              "ref": "plan.md#s5--gate-1",
+              "heading": "S5 — Gate 1",
+              "paragraph": "Precondition: the allow-list confirmed at S0. The script's first command is `allow-step check` (it stops unless `allow.txt` is the recorded one, every key of the latest proposal has a decision and the record holds exactly the confirmed keys). Then:",
+              "hash": "656e72a47dc2"
+            }
+          },
+          {
+            "text": "The 26 pre-rewrite ids in three moved resolution comments are listed under the data folder and accepted; an id anywhere else is a stop.",
+            "ref": "plan.md#s5--gate-1",
+            "excerpt": {
+              "ref": "plan.md#s5--gate-1",
+              "heading": "S5 — Gate 1",
+              "paragraph": "Precondition: the allow-list confirmed at S0. The script's first command is `allow-step check` (it stops unless `allow.txt` is the recorded one, every key of the latest proposal has a decision and the record holds exactly the confirmed keys). Then:",
+              "hash": "656e72a47dc2"
+            }
+          },
+          {
+            "text": "Gate 2 reads the fresh repository's issues, placeholders and comments before the renames; a match of the scrub's expressions there is recorded as a follow-up.",
+            "ref": "plan.md#s12--gate-2-and-the-closing-reads",
+            "excerpt": {
+              "ref": "plan.md#s12--gate-2-and-the-closing-reads",
+              "heading": "S12 — Gate 2 and the closing reads",
+              "paragraph": "`dump fresh T`: `ok dump fresh: issues 31, comments 8, pulls 0, …` (the issues list includes the placeholders). · `k12-gate2`: `GATE: 0 blocking hit(s)`, exit 0; and `RECORD the scrub's expressions over the fresh repository's issue, placeholder, pull-request and comment texts: … texts, … matches (expected 0; a match is a follow-up)`; `STAGE S12-gate OK`. · `check stage S12`: `ok S12: numbers 1 to 31 in the fresh repository, the source holds 3 pull requests only, every moved item equals its text before the walk`; it stops if the fresh repository's numbers are not 1 … N, the source holds an …",
+              "hash": "67612bd880c2"
+            }
+          }
+        ],
+        "defense": "The gate's only suppression is a reviewed list, so a word is allowed only once the owner has confirmed its key, and nothing the gates print names what they found.",
+        "steps": [
+          {
+            "id": "S0",
+            "what": "Propose the allow-list, record the owner's decision on each key, write the list and verify it against the corpus.",
+            "check": "`allow-list confirmed`",
+            "link": "plan.md#s0--local-readiness"
+          },
+          {
+            "id": "S5",
+            "what": "Run Gate 1 and record the accepted ids.",
+            "check": "`STAGE S5 OK`",
+            "link": "plan.md#s5--gate-1"
+          },
+          {
+            "id": "S12",
+            "what": "Run Gate 2 over the fresh repository's texts.",
+            "check": "`STAGE S12-gate OK`",
+            "link": "plan.md#s12--gate-2-and-the-closing-reads"
+          }
+        ],
+        "tests": [
+          "L2 component — the `allow_tool.py` self-test on made-up legacy data through the real gate",
+          "L5 UAT — the owner's confirmation or rejection of each proposed key"
+        ],
+        "risks": [
+          "A key Gate 1 meets that no one decided stops the stage until the owner has answered"
+        ],
+        "source": "plan.md Design, The allow-list; §7.4 S0, S5, S12",
+        "link": "plan.md#the-allow-list"
+      }
+    },
+    {
+      "id": "fresh-repository",
+      "group": "The fresh repository",
+      "name": "The fresh repository: created, set, pushed and proven",
+      "system": "repository-swap",
+      "where": "`KotlinBottools-next`, private · `BotWS/fresh/KotlinBottools.git`",
+      "gap": {
+        "kind": "risk",
+        "summary": "A rewrite pushed in place would leave the old objects served. GitHub serves unreferenced objects by id on every route with no documented expiry and publishes a repository's activity when it becomes public, so only a repository whose object store starts empty takes the old history out of public reach without a support ticket. Nor does a new repository arrive with the old one's settings: the creation call carries only part of them, a private repository of this organisation inherits `write` workflow permissions and reads forking off, REST reads its wiki as off whatever is stored, and which branch becomes the default after a push of several branches is undocumented.",
+        "evidence": [
+          "`../architecture.md:272` — GitHub serves unreferenced objects by id on every route, with no documented expiry",
+          "`../architecture.md:274` — it publishes a repository's activity when the repository becomes public",
+          "`../architecture.md:1321` — the swap remains the only route that takes the old objects out of public reach without a support ticket",
+          "`../architecture.md:822` — the F0 probe proves that no pre-rewrite id resolves in the fresh repository",
+          "`research/README.md:102` — `POST orgs/{org}/repos` has no default branch, no `allow_update_branch`, no `web_commit_signoff_required`, no `allow_forking` and no discussions switch, and the Actions permissions are separate endpoints",
+          "`research/README.md:106` — a repository the organisation created private and empty reads almost every required value; the two that differ are the default workflow permissions, `write`, and forking, off",
+          "`research/fresh-repository-settings.md:167` — the organisation predates the 2023 read-only default, so its repositories inherit `write`",
+          "`research/README.md:122` — on a private repository of a Free organisation REST `has_wiki` reads `false` whatever is stored, while GraphQL shows the stored value",
+          "`research/README.md:142` — which branch becomes the default when one push creates several branches is documented nowhere"
+        ],
+        "source": "../research/README.md §3.4, ../architecture.md §2.4, research/README.md",
+        "link": "../research/README.md#34-github-after-the-push-and-the-visibility-change"
+      },
+      "options": [
+        {
+          "id": "fresh-repo-swap",
+          "name": "Push the rewritten mirror to a fresh private repository under a temporary name, set to the old one's settings, proven on a fresh mirror and by the F0 probe",
+          "verdict": "accepted",
+          "why": "Its object store starts empty, its id becomes the key of every later check, and the old repository never receives a push.",
+          "source": "../architecture.md §7.1, §7.3",
+          "link": "../architecture.md#73-the-fresh-repository"
+        },
+        {
+          "id": "public-in-place",
+          "name": "Make KotlinBottools public in place after the force-push",
+          "verdict": "declined",
+          "why": "It publishes every pre-rewrite object to anyone with one old id, which the activity feed and a four-digit prefix supply.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        },
+        {
+          "id": "other-name",
+          "name": "A new public repository under another name, KotlinBottools kept private",
+          "verdict": "declined",
+          "why": "It breaks the name and every `KotlinBottools#N` citation and URL in MagicBot, WebTools, the `.github` mirror and the documents.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The fresh repository is created private and empty as `KotlinBottools-next`, and its id becomes the key of every later check; the name is read before any retry, since a creation is not idempotent.",
+            "ref": "plan.md#s6--the-fresh-repository",
+            "excerpt": {
+              "ref": "plan.md#s6--the-fresh-repository",
+              "heading": "S6 — The fresh repository",
+              "paragraph": "STEPs, in this order, with their commands between them:",
+              "hash": "9382b5db812d"
+            }
+          },
+          {
+            "text": "It takes the old repository's settings, except the wiki, off, and the default Actions workflow permissions, `read`, with Actions not approving pull requests, each read back by id on REST and GraphQL.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "f7f1b9e84865"
+            }
+          },
+          {
+            "text": "The rewritten history reaches it by one mirror push without `--force`, its dry run's tally required first, then verified per ref on two channels.",
+            "ref": "plan.md#s6--the-fresh-repository",
+            "excerpt": {
+              "ref": "plan.md#s6--the-fresh-repository",
+              "heading": "S6 — The fresh repository",
+              "paragraph": "STEPs, in this order, with their commands between them:",
+              "hash": "9382b5db812d"
+            }
+          },
+          {
+            "text": "`main` is set as the default branch after the push, the branch GitHub chose recorded first.",
+            "ref": "plan.md#s6--the-fresh-repository",
+            "excerpt": {
+              "ref": "plan.md#s6--the-fresh-repository",
+              "heading": "S6 — The fresh repository",
+              "paragraph": "STEPs, in this order, with their commands between them:",
+              "hash": "9382b5db812d"
+            }
+          },
+          {
+            "text": "The F0 probe shows that no pre-rewrite id is served there, with a positive and a negative control.",
+            "ref": "plan.md#s7--fresh-mirror-and-exit-tests",
+            "excerpt": {
+              "ref": "plan.md#s7--fresh-mirror-and-exit-tests",
+              "heading": "S7 — Fresh mirror and exit tests",
+              "paragraph": "Run it in the background. It takes a fresh mirror of the fresh repository (`WS/fresh/KotlinBottools.git`), expects its refs to be `ref-map`'s new column, heads only, and its commit count to be T − P; runs `fsck`; `expect_check.py` with the scrub-adjusted counts; the manifest compared with the objects reachable from branches and tags (0) and from every ref (0); the scrub's zero count again over every ref of the fresh mirror; the gitleaks scans of branches and tags and of every ref, which must be `RESULT: CLEAN` and equal (no pull-request ref exists); a default-rule finding in a kept file is …",
+              "hash": "48c0f3b95ce0"
+            }
+          }
+        ],
+        "defense": "Only a repository whose object store starts empty takes the old history out of public reach; the research gave each setting its request and read-back, and the old repository never receives a push.",
+        "steps": [
+          {
+            "id": "S6",
+            "what": "Create the repository, apply and read back its settings, prepare and make the mirror push, verify it per ref, set the default branch.",
+            "check": "`STAGE S6 OK`",
+            "link": "plan.md#s6--the-fresh-repository"
+          },
+          {
+            "id": "S7",
+            "what": "Run the exit tests and the F0 probe on a fresh mirror.",
+            "check": "`STAGE S7 OK`",
+            "link": "plan.md#s7--fresh-mirror-and-exit-tests"
+          }
+        ],
+        "tests": [
+          "L3 integration — the settings tables read back by id, the push tally, the per-ref verification and the F0 probe"
+        ],
+        "risks": [
+          "The mirror push and the settings request run for the first time; their target is the temporary repository, which a re-run can use again"
+        ],
+        "source": "plan.md Requirements 2; §7.4 S6, S7",
+        "link": "plan.md#s6--the-fresh-repository"
+      }
+    },
+    {
+      "id": "residual-measurement",
+      "group": "The fresh repository",
+      "name": "What GitHub still serves of the old history, in counts",
+      "system": "residual-exposure",
+      "where": "`BotLegacyData/rewrite/KotlinBottools` · the fresh and the legacy repository",
+      "gap": {
+        "kind": "risk",
+        "summary": "The old history's exposure cannot be assumed away; it has to be measured. The pre-rewrite repository has been public since 2026-11-08, so its old objects answer anonymously until the swap, and no measurement can exclude a copy taken in that window.",
+        "evidence": [
+          "`../architecture.md:697` — against the fresh repository every old id is expected to answer 404, and against the legacy repository 200, authenticated only",
+          "`../architecture.md:703` — until the swap the old ids answer anonymously as well; the report states the window",
+          "`../consequences.md:66` — the public window cannot be undone, and no measurement can exclude a copy taken during it"
+        ],
+        "source": "../architecture.md §6.6, §12.4",
+        "link": "../architecture.md#66-residual-exposure-measurement"
+      },
+      "options": [
+        {
+          "id": "status-only-probes",
+          "name": "Status-only probes of every old tip, every first-changed commit and a sample of purged blobs, against both repositories, with the public window in the unit's record",
+          "verdict": "accepted",
+          "why": "Every result is a tally, so no id or body is printed, and the report states what the probes cannot prove.",
+          "source": "../architecture.md §6.6, §12.4",
+          "link": "../architecture.md#66-residual-exposure-measurement"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "After the renames, status-only probes of every old tip, every first-changed commit and up to 60 manifest blobs: not found in the fresh repository, served in the legacy one only with authentication.",
+            "ref": "plan.md#s14--residual-measurements",
+            "excerpt": {
+              "ref": "plan.md#s14--residual-measurements",
+              "heading": "S14 — Residual measurements",
+              "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against `KotlinBottools-legacy`, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is …",
+              "hash": "7ad5ae798b13"
+            }
+          },
+          {
+            "text": "The fresh repository's activity feed holds no old id, and the public window runs from 2026-11-08 to the moment the legacy repository is made private.",
+            "ref": "plan.md#s14--residual-measurements",
+            "excerpt": {
+              "ref": "plan.md#s14--residual-measurements",
+              "heading": "S14 — Residual measurements",
+              "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against `KotlinBottools-legacy`, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is …",
+              "hash": "7ad5ae798b13"
+            }
+          },
+          {
+            "text": "An unexpected answer is recorded, never a stop, and the record states what the probes cannot prove.",
+            "ref": "plan.md#s14--residual-measurements",
+            "excerpt": {
+              "ref": "plan.md#s14--residual-measurements",
+              "heading": "S14 — Residual measurements",
+              "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against `KotlinBottools-legacy`, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is …",
+              "hash": "7ad5ae798b13"
+            }
+          }
+        ],
+        "defense": "Exposure is measured in tallies, so nothing printed names an id or a body.",
+        "steps": [
+          {
+            "id": "S14",
+            "what": "Run the probes and write the report row.",
+            "check": "`STAGE S14 OK`",
+            "link": "plan.md#s14--residual-measurements"
+          }
+        ],
+        "tests": [
+          "L3 integration — the probes against both repositories, authenticated and anonymous"
+        ],
+        "risks": [
+          "No measurement can exclude a copy taken while the repository was public"
+        ],
+        "source": "plan.md §7.4 S14",
+        "link": "plan.md#s14--residual-measurements"
+      }
+    },
+    {
+      "id": "number-walk",
+      "group": "The walk",
+      "name": "Every number reproduced: issues transferred, pull requests by closed placeholders",
+      "system": "repository-swap",
+      "where": "KotlinBottools to `KotlinBottools-next`, numbers 1 to N",
+      "gap": {
+        "kind": "risk",
+        "summary": "Every citation of a KotlinBottools number stays right only if every number survives the swap. The numbers now run past #19 to #2's pull request, its sub-issues and the units' landings, issues and pull requests share one sequence, and the rehearsal walked only ten numbers with one pull request.",
+        "evidence": [
+          "`../architecture.md:844` — today the numbers are issues #1 to #19; by the swap they include #2's pull request, its sub-issues and the units' landings",
+          "`../architecture.md:734` — nothing numbered is created in the new repository except the walk until it ends, as issues and pull requests share one sequence",
+          "`../22-transfer-rehearsal/final-implementation.md:102` — the rehearsal's closed issues arrived closed, with their reason",
+          "`../22-transfer-rehearsal/consequences.md:120` — the fixture covered ten numbers and one pull request, where the real walk has thirty and more, with placeholders side by side and at the top"
+        ],
+        "source": "../architecture.md §7.4",
+        "link": "../architecture.md#74-the-number-walk-and-the-links"
+      },
+      "options": [
+        {
+          "id": "walk-in-order",
+          "name": "Walk 1 to N in order, transferring each issue as it stands and creating a closed placeholder at each pull request's number, each item checked on its number before the next",
+          "verdict": "accepted",
+          "why": "The rehearsal showed issues landing on their numbers, closed ones arriving closed, and a placeholder keeping the sequence aligned; every mutation is checked first, so a re-run is idempotent.",
+          "source": "../architecture.md §7.4",
+          "link": "../architecture.md#74-the-number-walk-and-the-links"
+        },
+        {
+          "id": "renumber",
+          "name": "Transfer only issues #1 to #19 and renumber everything after them",
+          "verdict": "declined",
+          "why": "It changes the numbers of #2's sub-issues, their plan-folder names and every citation of them; placeholders keep every number at the cost of one closed issue per pull request.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "Before the walk the census reads N, 31 on 2026-11-10, and the baseline keeps every issue's text, state, labels, milestone and comments under the data folder.",
+            "ref": "plan.md#s9--before-the-walk",
+            "excerpt": {
+              "ref": "plan.md#s9--before-the-walk",
+              "heading": "S9 — Before the walk",
+              "paragraph": "STEPs: `labels-fresh`, `ms-fresh`; each `request`, send, `reply`, `check post`. Then:",
+              "hash": "22457e7a3dc2"
+            }
+          },
+          {
+            "text": "Numbers 1 to N are walked in order: each issue transferred onto its own number, each pull request's number reproduced by an issue closed as not planned that names its title and merge date and where it is in the legacy repository.",
+            "ref": "plan.md#s10--the-walk",
+            "excerpt": {
+              "ref": "plan.md#s10--the-walk",
+              "heading": "S10 — The walk",
+              "paragraph": "Numbers 1 … N in order, one STEP each. The key of each number is `transfer-<n>` for an issue and `placeholder-<n>` for a pull request; print the list from the census:",
+              "hash": "adecb742eb11"
+            }
+          },
+          {
+            "text": "Each number is checked before the next: on its number, and equal to its text before the walk with references mapped back; a difference stops the walk there.",
+            "ref": "plan.md#s10--the-walk",
+            "excerpt": {
+              "ref": "plan.md#s10--the-walk",
+              "heading": "S10 — The walk",
+              "paragraph": "Numbers 1 … N in order, one STEP each. The key of each number is `transfer-<n>` for an issue and `placeholder-<n>` for a pull request; print the list from the census:",
+              "hash": "adecb742eb11"
+            }
+          },
+          {
+            "text": "The close-out recomputes every number and placeholder from final reads, never from the step records.",
+            "ref": "plan.md#s16--close-out",
+            "excerpt": {
+              "ref": "plan.md#s16--close-out",
+              "heading": "S16 — Close-out",
+              "paragraph": "`result`: recomputes, from final reads taken now, every shape: the numbers (the fresh repository holds 1 … N and the source's pull requests only), the placeholders (each: number, title, body, closed, `not_planned`, not a pull request), the issues (each equals its text before the walk with references mapped back), the closed issues (state and reason), the labels and milestone, the links (91 edges, settled, consistent), the cross-repository links, the identity (the fresh id at `KotlinBottools`, not 562658298; the legacy repository private and archived) and the old URLs; prints `ok <shape>` for …",
+              "hash": "26934ae49c7f"
+            }
+          }
+        ],
+        "defense": "Every citation of a KotlinBottools number stays right only if every number survives; the rehearsal showed issues landing on their numbers and a placeholder keeping the sequence, and each step reads before it writes, so a re-run never repeats one.",
+        "steps": [
+          {
+            "id": "S9",
+            "what": "Create the labels and milestone, then take the census, the baseline and the accepted ids.",
+            "check": "`STAGE S9 OK`",
+            "link": "plan.md#s9--before-the-walk"
+          },
+          {
+            "id": "S10",
+            "what": "Transfer or reproduce each number in order, checking each before the next.",
+            "check": "`STAGE S10 OK`",
+            "link": "plan.md#s10--the-walk"
+          },
+          {
+            "id": "S16",
+            "what": "Recompute every shape from final reads.",
+            "check": "`RESULT OK`",
+            "link": "plan.md#s16--close-out"
+          }
+        ],
+        "tests": [
+          "L2 component — the `swap.py` self-test against an in-memory stand-in for GitHub",
+          "L3 integration — the item check on every number",
+          "L4b end-to-end — the result gate recomputed from final reads"
+        ],
+        "risks": [
+          "A number lands elsewhere or an item loses something: the walk stops there, every earlier number on its own and nothing public"
+        ],
+        "source": "plan.md Requirements 3; §7.4 S9, S10, S16",
+        "link": "plan.md#s10--the-walk"
+      }
+    },
+    {
+      "id": "links",
+      "group": "The walk",
+      "name": "Sub-issue and \"blocked by\" links, inside and across repositories",
+      "system": "repository-swap",
+      "where": "the fresh repository · MagicBot and WebTools issues",
+      "gap": {
+        "kind": "risk",
+        "summary": "Nothing documented says a transfer keeps an issue's links, and the rehearsal never re-created one. Its fixture kept all 11 links, so the re-creation path, the one that writes to MagicBot and WebTools issues, has not run.",
+        "evidence": [
+          "`../consequences.md:102` — the 18 sub-issue links under #1, 36 \"blocked by\" links inside the repository, 19 with MagicBot and 2 with WebTools #55, plus #2's sub-issue links and the units' own",
+          "`../architecture.md:854` — the cross-repository links are created from the side that is blocked",
+          "`../22-transfer-rehearsal/final-implementation.md:109` — the rehearsal kept every link at every transfer",
+          "`../22-transfer-rehearsal/consequences.md:192` — link re-creation was not exercised by the live run"
+        ],
+        "source": "../architecture.md §7.4",
+        "link": "../architecture.md#74-the-number-walk-and-the-links"
+      },
+      "options": [
+        {
+          "id": "reconcile-from-table",
+          "name": "Dump the link table before the walk, read every relationship after it and create what is missing, the cross-repository ones from the blocked side, the totals equal to the table's",
+          "verdict": "accepted",
+          "why": "Every recorded relationship is present at the end, kept or re-created, and a link that cannot be re-created stops the unit with the missing rows.",
+          "source": "../architecture.md §7.4, §7.6",
+          "link": "../architecture.md#74-the-number-walk-and-the-links"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The link table is read before the first transfer: 91 edges, 26 sub-issue links, 44 \"blocked by\" links inside the repository, 19 with MagicBot issues and 2 with WebTools issue 55.",
+            "ref": "plan.md#s9--before-the-walk",
+            "excerpt": {
+              "ref": "plan.md#s9--before-the-walk",
+              "heading": "S9 — Before the walk",
+              "paragraph": "STEPs: `labels-fresh`, `ms-fresh`; each `request`, send, `reply`, `check post`. Then:",
+              "hash": "22457e7a3dc2"
+            }
+          },
+          {
+            "text": "Up to three rounds, each from a settled read, remove stale links first and add the missing ones; a cross-repository link is written on the blocked side, so MagicBot and WebTools receive relationship requests only.",
+            "ref": "plan.md#s11--link-reconciliation",
+            "excerpt": {
+              "ref": "plan.md#s11--link-reconciliation",
+              "heading": "S11 — Link reconciliation",
+              "paragraph": "From a settled read it computes, against the link table with every moved end in the fresh repository, the relationships to remove (stale) and to add (missing), removes first, and writes one request per repository that has work: `links-r1-s` (the source), `links-r1-t` (the fresh repository), `links-r1-m` (MagicBot) and `links-r1-w` (WebTools); a cross-repository link is written on the blocked side, so a MagicBot or WebTools issue's `blockedBy` gains the fresh repository's issue and those requests' `target` is MagicBot or WebTools. For each file written: send, `sw reply <key> …`; then `sw check …",
+              "hash": "79a2ed820877"
+            }
+          },
+          {
+            "text": "Links still missing after three rounds are recorded by number and kind, and the unit goes on to Gate 2.",
+            "ref": "plan.md#s11--link-reconciliation",
+            "excerpt": {
+              "ref": "plan.md#s11--link-reconciliation",
+              "heading": "S11 — Link reconciliation",
+              "paragraph": "From a settled read it computes, against the link table with every moved end in the fresh repository, the relationships to remove (stale) and to add (missing), removes first, and writes one request per repository that has work: `links-r1-s` (the source), `links-r1-t` (the fresh repository), `links-r1-m` (MagicBot) and `links-r1-w` (WebTools); a cross-repository link is written on the blocked side, so a MagicBot or WebTools issue's `blockedBy` gains the fresh repository's issue and those requests' `target` is MagicBot or WebTools. For each file written: send, `sw reply <key> …`; then `sw check …",
+              "hash": "79a2ed820877"
+            }
+          }
+        ],
+        "defense": "No documentation says a transfer keeps an issue's links, so every relationship is compared with the table and repaired where it is missing, on both sides.",
+        "steps": [
+          {
+            "id": "S11",
+            "what": "Run the link rounds until the settled edge set equals the table's.",
+            "check": "`STAGE S11 OK`",
+            "link": "plan.md#s11--link-reconciliation"
+          },
+          {
+            "id": "S16",
+            "what": "Read the links again in the close-out.",
+            "check": "`RESULT OK`",
+            "link": "plan.md#s16--close-out"
+          }
+        ],
+        "tests": [
+          "L2 component — the link rounds, settle at its bound and inconsistent edges in the `swap.py` self-test",
+          "L3 integration — the settled edge set read against the table"
+        ],
+        "risks": [
+          "The re-creation path has never run live; each round is read back before the next"
+        ],
+        "source": "plan.md Requirements 4; §7.4 S9, S11",
+        "link": "plan.md#s11--link-reconciliation"
+      }
+    },
+    {
+      "id": "moved-text-references",
+      "group": "The walk",
+      "name": "The references a transfer writes into the moved texts",
+      "system": "repository-swap",
+      "where": "the moved issues' bodies and comments",
+      "gap": {
+        "kind": "risk",
+        "summary": "A transfer rewrites the references in the texts it moves, so after the walk they name the temporary name. The moved texts name `KotlinBottools-next#N` for every moved issue they cite, permanently, reaching it only through the redirect the rename leaves while no repository takes that name.",
+        "evidence": [
+          "`../architecture.md:861` — a transfer rewrites issue references in the texts that cite a moved issue, in both repositories",
+          "`../architecture.md:863` — the references naming `KotlinBottools-next` resolve after the swap; the unit's plan decides between three options",
+          "`../architecture.md:865` — the checks map every reference naming the source or the target back to bare `#N` before comparing",
+          "`../22-transfer-rehearsal/consequences.md:218` — the open follow-up for this unit"
+        ],
+        "source": "../architecture.md §7.4",
+        "link": "../architecture.md#74-the-number-walk-and-the-links"
+      },
+      "options": [
+        {
+          "id": "leave-on-redirect",
+          "name": "Leave the references on the redirect and keep the temporary name free",
+          "verdict": "accepted",
+          "why": "Settled by this unit's plan: the moved texts keep what the transfers write and nothing edits them, so the name stays reserved for good.",
+          "source": "plan.md Requirements",
+          "link": "plan.md#requirements"
+        },
+        {
+          "id": "rewrite-after-walk",
+          "name": "Rewrite the affected bodies and comments after the walk",
+          "verdict": "declined",
+          "why": "It needs a request that edits an existing comment, which the request protocol does not have, as well as issue-body edits; kept as a possible follow-up, not planned.",
+          "source": "consequences.md §6",
+          "link": "consequences.md#6-follow-ups"
+        },
+        {
+          "id": "rename-before-walk",
+          "name": "Rename the repositories before the walk, so that the transfers write the final name",
+          "verdict": "declined",
+          "why": "The plan keeps the parent design's order: the fresh repository is proven under the temporary name, and the walk, the links and Gate 2 come before either repository changes name.",
+          "source": "plan.md Requirements, Shape of the procedure",
+          "link": "plan.md#shape-of-the-procedure"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The moved texts keep the references the transfers write, `KotlinBottools-next#N`, and nothing in this unit edits or restores them.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "f7f1b9e84865"
+            }
+          },
+          {
+            "text": "`KotlinBottools-next` stays reserved permanently: no repository is created under that name or renamed onto it.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "f7f1b9e84865"
+            }
+          },
+          {
+            "text": "The item check maps every reference naming the source or the target, in any form, back to bare `#N` before comparing a text with the one read before the first transfer.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "f7f1b9e84865"
+            }
+          },
+          {
+            "text": "Texts in MagicBot, WebTools and the organisation's `.github` repository that cite KotlinBottools issues are counted before and after the walk: measured, never edited.",
+            "ref": "plan.md#s12--gate-2-and-the-closing-reads",
+            "excerpt": {
+              "ref": "plan.md#s12--gate-2-and-the-closing-reads",
+              "heading": "S12 — Gate 2 and the closing reads",
+              "paragraph": "`dump fresh T`: `ok dump fresh: issues 31, comments 8, pulls 0, …` (the issues list includes the placeholders). · `k12-gate2`: `GATE: 0 blocking hit(s)`, exit 0; and `RECORD the scrub's expressions over the fresh repository's issue, placeholder, pull-request and comment texts: … texts, … matches (expected 0; a match is a follow-up)`; `STAGE S12-gate OK`. · `check stage S12`: `ok S12: numbers 1 to 31 in the fresh repository, the source holds 3 pull requests only, every moved item equals its text before the walk`; it stops if the fresh repository's numbers are not 1 … N, the source holds an …",
+              "hash": "67612bd880c2"
+            }
+          }
+        ],
+        "defense": "The references resolve through the redirect the rename leaves; restoring them would need a request that edits a comment, which the request protocol does not have, and renaming before the walk would break the order the parent design set.",
+        "steps": [
+          {
+            "id": "S9",
+            "what": "Count the cross-repository references before the walk.",
+            "check": "`STAGE S9 OK`",
+            "link": "plan.md#s9--before-the-walk"
+          },
+          {
+            "id": "S12",
+            "what": "Count them again and read what the names in the moved texts resolve to.",
+            "check": "`check stage S12`",
+            "link": "plan.md#s12--gate-2-and-the-closing-reads"
+          }
+        ],
+        "tests": [
+          "L4a deterministic — the reference mapping, every form back to bare `#N`",
+          "L3 integration — the item check and the reference reads on the real texts"
+        ],
+        "risks": [
+          "A repository created under `KotlinBottools-next` would break every reference the walk leaves"
+        ],
+        "source": "plan.md Requirements, Rules this unit keeps",
+        "link": "plan.md#requirements"
+      }
+    },
+    {
+      "id": "renames",
+      "group": "The swap",
+      "name": "The renames: the old repository to `KotlinBottools-legacy`, the fresh one to `KotlinBottools`",
+      "system": "repository-swap",
+      "where": "`KotlinBottools-legacy`, private and archived · `KotlinBottools`",
+      "gap": {
+        "kind": "risk",
+        "summary": "Between the two renames the name resolves to the wrong repository. Until the fresh repository takes `KotlinBottools`, the name reaches the legacy one through the rename's redirect, and the old repository is public until it is made private in the swap.",
+        "evidence": [
+          "`../architecture.md:871` — the old repository is renamed, its id verified, made private and read back, then archived; the fresh one is renamed and verified by id and heads",
+          "`../architecture.md:879` — the privacy step comes between the old repository's rename and its archiving",
+          "`../architecture.md:883` — the id check guards the window during which the name resolves to the legacy repository",
+          "`../22-transfer-rehearsal/final-implementation.md:153` — the rehearsal's rename onto the freed name was accepted, about six minutes after it was released"
+        ],
+        "source": "../architecture.md §7.5",
+        "link": "../architecture.md#75-renames-archive-visibility-scanning"
+      },
+      "options": [
+        {
+          "id": "rename-private-archive-rename",
+          "name": "Rename the old repository away, make it private, archive it, then give the fresh one the name, each step read back by id",
+          "verdict": "accepted",
+          "why": "The rehearsal proved that order on the same shape, and the legacy repository stays as the private resolver of the dated citations.",
+          "source": "../architecture.md §7.5",
+          "link": "../architecture.md#75-renames-archive-visibility-scanning"
+        },
+        {
+          "id": "delete-recreate",
+          "name": "Delete and recreate under the same name",
+          "verdict": "declined",
+          "why": "It needs the `delete_repo` scope and keeps nothing the rename does not; the rename keeps the old repository as the private resolver of the dated citations.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The old repository is renamed `KotlinBottools-legacy`, made private and archived, then the fresh one is renamed `KotlinBottools`, each step read back by repository id.",
+            "ref": "plan.md#s13--the-renames-and-the-archive",
+            "excerpt": {
+              "ref": "plan.md#s13--the-renames-and-the-archive",
+              "heading": "S13 — The renames and the archive",
+              "paragraph": "STEPs in this order, each followed by the identity read named after it (a rename and a visibility change take a moment to read back; the read polls):",
+              "hash": "fbfee8d46e1b"
+            }
+          },
+          {
+            "text": "Making the legacy repository private ends its public window, and the time is recorded.",
+            "ref": "plan.md#s13--the-renames-and-the-archive",
+            "excerpt": {
+              "ref": "plan.md#s13--the-renames-and-the-archive",
+              "heading": "S13 — The renames and the archive",
+              "paragraph": "STEPs in this order, each followed by the identity read named after it (a rename and a visibility change take a moment to read back; the read polls):",
+              "hash": "fbfee8d46e1b"
+            }
+          },
+          {
+            "text": "At the final name the fresh repository's heads equal `ref-map`'s new column, and its settings equal the B2 snapshot apart from the name and URL fields.",
+            "ref": "plan.md#s13--the-renames-and-the-archive",
+            "excerpt": {
+              "ref": "plan.md#s13--the-renames-and-the-archive",
+              "heading": "S13 — The renames and the archive",
+              "paragraph": "STEPs in this order, each followed by the identity read named after it (a rename and a visibility change take a moment to read back; the read polls):",
+              "hash": "fbfee8d46e1b"
+            }
+          },
+          {
+            "text": "The close-out checks that the legacy repository's refs equal the listing at the mirror clone, that no issue is left in it, and that it is private and archived.",
+            "ref": "plan.md#s16--close-out",
+            "excerpt": {
+              "ref": "plan.md#s16--close-out",
+              "heading": "S16 — Close-out",
+              "paragraph": "`result`: recomputes, from final reads taken now, every shape: the numbers (the fresh repository holds 1 … N and the source's pull requests only), the placeholders (each: number, title, body, closed, `not_planned`, not a pull request), the issues (each equals its text before the walk with references mapped back), the closed issues (state and reason), the labels and milestone, the links (91 edges, settled, consistent), the cross-repository links, the identity (the fresh id at `KotlinBottools`, not 562658298; the legacy repository private and archived) and the old URLs; prints `ok <shape>` for …",
+              "hash": "26934ae49c7f"
+            }
+          }
+        ],
+        "defense": "The rehearsal proved this order on the same shape, and the legacy repository stays as the private resolver of the dated citations.",
+        "steps": [
+          {
+            "id": "S13",
+            "what": "Rename, make private and archive the old repository, rename the fresh one, and read identity, URLs, heads and settings.",
+            "check": "`STAGE S13 OK`",
+            "link": "plan.md#s13--the-renames-and-the-archive"
+          },
+          {
+            "id": "S16",
+            "what": "Check the legacy repository's refs and that no issue is left in it.",
+            "check": "`STAGE S16-local OK`",
+            "link": "plan.md#s16--close-out"
+          }
+        ],
+        "tests": [
+          "L3 integration — the identity reads by id, by name and unauthenticated after each step"
+        ],
+        "risks": [
+          "Between the two renames the name reaches the legacy repository: every check compares ids"
+        ],
+        "source": "plan.md Requirements 5; §7.4 S13, S16",
+        "link": "plan.md#s13--the-renames-and-the-archive"
+      }
+    },
+    {
+      "id": "realignment",
+      "group": "This clone",
+      "name": "This working directory realigned onto the rewritten history",
+      "system": "clone-realignment",
+      "where": "this working directory · `BotLegacyData/run/realign`",
+      "gap": {
+        "kind": "risk",
+        "summary": "This working directory still holds the old history and the files the rewrite removes. Its refs and reflogs reach the pre-rewrite commits, it tracks 41 purge-listed files, and the project stays open in IntelliJ IDEA while the unit runs.",
+        "evidence": [
+          "`../architecture.md:232` — the purge list removes 41 tracked files from the working tree",
+          "`../architecture.md:235` — the project is open in IntelliJ IDEA, so it stays open while the units run",
+          "`../architecture.md:290` — on Windows a locked file makes `git reset --hard` and `git gc` exit 0 while leaving the file or the old pack behind"
+        ],
+        "source": "../research/README.md §3.5, ../architecture.md §2.2",
+        "link": "../research/README.md#35-the-clones-the-data-copy-and-the-manifests"
+      },
+      "options": [
+        {
+          "id": "in-place",
+          "name": "Realign in place: preflight, fetch from the fresh repository checked by id and heads, reset, then purge the old objects",
+          "verdict": "accepted",
+          "why": "The IDE project and the working notes keyed to this path stay valid, and push safety comes from reference state alone.",
+          "source": "../architecture.md §9.1, §9.2",
+          "link": "../architecture.md#91-choice-in-place"
+        },
+        {
+          "id": "sibling-clone",
+          "name": "Clone the fresh repository to a sibling path",
+          "verdict": "declined",
+          "why": "It leaves a dead clone holding the old objects, while the IDE project and the working notes on this machine stay keyed to this path.",
+          "source": "../architecture.md §9.1",
+          "link": "../architecture.md#91-choice-in-place"
+        },
+        {
+          "id": "replace-dotgit",
+          "name": "Replace this clone's `.git` with a fresh clone's",
+          "verdict": "declined",
+          "why": "The tracked files the rewrite removes would stay behind as untracked files, and it renames `.git` while the IDE holds it.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The realignment scripts are proven on two scratch clones of the untouched backup before the walk: a local dry run on the first, then the request on the second.",
+            "ref": "plan.md#s8--the-realignment-proven-on-two-scratch-clones",
+            "excerpt": {
+              "ref": "plan.md#s8--the-realignment-proven-on-two-scratch-clones",
+              "heading": "S8 — The realignment proven on two scratch clones",
+              "paragraph": "The scratch clones are clones of the untouched backup, set up like this checkout (`main` and the topic branch, the topic branch checked out, `origin` at the fresh repository, untracked and ignored files present).",
+              "hash": "570d1feda8ac"
+            }
+          },
+          {
+            "text": "This checkout's untracked and ignored files are copied to the data folder first; then one request runs the preflight, the fetch, the move, its verification, the object deletion and the push-safety proof.",
+            "ref": "plan.md#s15--this-checkouts-realignment",
+            "excerpt": {
+              "ref": "plan.md#s15--this-checkouts-realignment",
+              "heading": "S15 — This checkout's realignment",
+              "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
+              "hash": "ae8929603fbd"
+            }
+          },
+          {
+            "text": "Unlike the saved scripts, the preflight records the IDE and `git.exe` state instead of stopping, the fetch uses `gh auth git-credential` alone, and the fresh repository's id and heads are checked before `fetch --prune`.",
+            "ref": "plan.md#current-state",
+            "excerpt": {
+              "ref": "plan.md#current-state",
+              "heading": "Current state",
+              "paragraph": "GitHub, as read on 2026-11-09 and 2026-11-10 (counts only; the run reads every one of them again at its stage):",
+              "hash": "b8faf8048256"
+            }
+          },
+          {
+            "text": "Exactly the predicted tracked files leave or change content, 41 removed and `build.gradle.kts` and `GuildDataParser.kt` changed at today's tip, and the untracked and ignored files stay as they were.",
+            "ref": "plan.md#s15--this-checkouts-realignment",
+            "excerpt": {
+              "ref": "plan.md#s15--this-checkouts-realignment",
+              "heading": "S15 — This checkout's realignment",
+              "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
+              "hash": "ae8929603fbd"
+            }
+          }
+        ],
+        "defense": "In place keeps the IDE project and the working notes valid, and proving it on scratch clones first means the realignment of this checkout, which needs the final names, runs last with every script already exercised.",
+        "steps": [
+          {
+            "id": "S8",
+            "what": "Run the realignment on two scratch clones, locally and through the request.",
+            "check": "`STAGE S8-scratch-scratch OK`",
+            "link": "plan.md#s8--the-realignment-proven-on-two-scratch-clones"
+          },
+          {
+            "id": "S15",
+            "what": "Copy the untracked and ignored files, then realign this checkout through the request.",
+            "check": "`STAGE KR3B OK`",
+            "link": "plan.md#s15--this-checkouts-realignment"
+          }
+        ],
+        "tests": [
+          "L2 component — the realignment scripts on fixture clones in `kselftest.sh`",
+          "L3 integration — the dry run and the request on the scratch clones",
+          "L5 UAT — the owner opens the project in the IDE and confirms the rewritten history"
+        ],
+        "risks": [
+          "A stop after the fetch leaves the checkout partly moved; the block is re-run once after the cause is gone"
+        ],
+        "source": "plan.md §7.4 S8, S15; Current state",
+        "link": "plan.md#s15--this-checkouts-realignment"
+      }
+    },
+    {
+      "id": "push-safety",
+      "group": "This clone",
+      "name": "The push-safety proof before the unit's own landing",
+      "system": "clone-realignment",
+      "where": "this working directory's refs, reflogs and `.git` text",
+      "gap": {
+        "kind": "risk",
+        "summary": "A push from this clone before it is realigned would carry old history to the fresh repository. The unit's own landing is the first push from it.",
+        "evidence": [
+          "`../architecture.md:1358` — a push from this clone before it is realigned is a systems-level risk",
+          "`../architecture.md:1024` — the push-safety proof must pass before any push leaves this clone, and is the precondition of the unit's own landing"
+        ],
+        "source": "../architecture.md §9.2",
+        "link": "../architecture.md#92-procedure-and-the-push-safety-proof"
+      },
+      "options": [
+        {
+          "id": "proof-by-refs",
+          "name": "Prove by reference state that no ref, reflog, stash or text in `.git` names a changed or pruned commit, and that `origin` is the fresh repository by id",
+          "verdict": "accepted",
+          "why": "A push sends only what the refs it updates reach, so no push can carry old history whether or not the old objects are deleted yet.",
+          "source": "../architecture.md §9.2",
+          "link": "../architecture.md#92-procedure-and-the-push-safety-proof"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "No ref, reflog, stash or text in `.git` outside `objects/` names a changed, pruned or first-changed commit, every branch tip is a rewritten commit, and `origin` is the fresh repository by id.",
+            "ref": "plan.md#s15--this-checkouts-realignment",
+            "excerpt": {
+              "ref": "plan.md#s15--this-checkouts-realignment",
+              "heading": "S15 — This checkout's realignment",
+              "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
+              "hash": "ae8929603fbd"
+            }
+          },
+          {
+            "text": "The proof must pass before any push leaves this checkout, whatever the object deletion recorded, and it is the precondition of the unit's own landing.",
+            "ref": "plan.md#s15--this-checkouts-realignment",
+            "excerpt": {
+              "ref": "plan.md#s15--this-checkouts-realignment",
+              "heading": "S15 — This checkout's realignment",
+              "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
+              "hash": "ae8929603fbd"
+            }
+          }
+        ],
+        "defense": "A push sends only what the refs it updates reach, so the proof holds whether or not the old objects are deleted yet.",
+        "steps": [
+          {
+            "id": "S8",
+            "what": "Run the proof on the scratch clone.",
+            "check": "`STAGE KR5 OK`",
+            "link": "plan.md#s8--the-realignment-proven-on-two-scratch-clones"
+          },
+          {
+            "id": "S15",
+            "what": "Run the proof on this checkout.",
+            "check": "`STAGE KR5 OK`",
+            "link": "plan.md#s15--this-checkouts-realignment"
+          }
+        ],
+        "tests": [
+          "L3 integration — `kr5-proof.sh` on the scratch clone, then on this checkout"
+        ],
+        "risks": [
+          "A push before the proof passes could carry old history; none is made until it does"
+        ],
+        "source": "plan.md §7.4 S15",
+        "link": "plan.md#s15--this-checkouts-realignment"
+      }
+    },
+    {
+      "id": "object-deletion",
+      "group": "This clone",
+      "name": "The old objects' deletion, or its deferred step",
+      "system": "clone-realignment",
+      "where": "this working directory's object store",
+      "gap": {
+        "kind": "risk",
+        "summary": "The IDE may hold a pack open while the old objects are deleted. `git gc` then exits 0 and leaves the old pack behind, so the deletion cannot be judged by its exit status.",
+        "evidence": [
+          "`../architecture.md:1048` — an IDE process holding a pack or object file open during `git gc` leaves the old pack behind",
+          "`../architecture.md:1060` — if the proofs do not pass, the record states it and the plan gives the exact commands to run once the IDE is closed",
+          "`../consequences.md:252` — the object deletion may be deferred; until then the clone holds unreachable old objects no push can carry"
+        ],
+        "source": "../architecture.md §9.3, §9.4",
+        "link": "../architecture.md#94-the-deferred-step"
+      },
+      "options": [
+        {
+          "id": "detect-and-defer",
+          "name": "Judge the deletion by counts and proofs, and record a blocked one as deferred with its exact commands",
+          "verdict": "accepted",
+          "why": "Push safety never depends on the deletion, so a blocked one is recorded, not a stop.",
+          "source": "../architecture.md §9.3, §9.4",
+          "link": "../architecture.md#94-the-deferred-step"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "The deletion is judged by `count-objects`, `fsck` and every old commit and manifest blob missing, with the backup as the control, never by an exit status.",
+            "ref": "plan.md#s15--this-checkouts-realignment",
+            "excerpt": {
+              "ref": "plan.md#s15--this-checkouts-realignment",
+              "heading": "S15 — This checkout's realignment",
+              "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
+              "hash": "ae8929603fbd"
+            }
+          },
+          {
+            "text": "A failed proof is recorded and deferred with its exact commands, to be run once the IDE is closed.",
+            "ref": "plan.md#s15--this-checkouts-realignment",
+            "excerpt": {
+              "ref": "plan.md#s15--this-checkouts-realignment",
+              "heading": "S15 — This checkout's realignment",
+              "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
+              "hash": "ae8929603fbd"
+            }
+          }
+        ],
+        "defense": "Push safety never depends on the deletion, so a deletion the IDE blocks is recorded, not a stop.",
+        "steps": [
+          {
+            "id": "S15",
+            "what": "Expire the reflogs, prune, and prove every old object missing, or record the deferred step.",
+            "check": "`STAGE KR4 OK` or `STAGE KR4 RECORDED`",
+            "link": "plan.md#s15--this-checkouts-realignment"
+          }
+        ],
+        "tests": [
+          "L3 integration — the object-deletion proofs on the scratch clones and on this checkout"
+        ],
+        "risks": [
+          "Until a deferred step runs, this checkout holds unreachable old objects that no push can carry"
+        ],
+        "source": "plan.md §7.4 S15",
+        "link": "plan.md#s15--this-checkouts-realignment"
+      }
+    },
+    {
+      "id": "rehearsal-tool",
+      "group": "Tools and access",
+      "name": "The rehearsal's tool, its known gaps closed before reuse",
+      "system": "repository-swap",
+      "where": "`BotWS/tools/rehearsal/rehearsal.py`",
+      "gap": {
+        "kind": "debt",
+        "summary": "The tool the rehearsal ran has known gaps that the real walk would meet. Its settle check reports settled at its read bound, its result gate can pass without establishing a criterion, and its self-test leaves the failure paths and link re-creation unchecked.",
+        "evidence": [
+          "`../22-transfer-rehearsal/consequences.md:137` — `settle()` always reports settled at its read bound",
+          "`../22-transfer-rehearsal/consequences.md:189` — what the live run did not exercise: link re-creation, the fallback routes, the reopen route",
+          "`../consequences.md:211` — the tool's known gaps, which this unit closes before reusing it"
+        ],
+        "source": "../22-transfer-rehearsal/consequences.md §5",
+        "link": "../22-transfer-rehearsal/consequences.md#the-tools-known-gaps-for-kotlinbottools-rewrite-and-swap-23"
+      },
+      "options": [
+        {
+          "id": "close-gaps-then-reuse",
+          "name": "Close every known gap of the tool and its self-test before the walk reuses it",
+          "verdict": "accepted",
+          "why": "The rehearsal handed the tool on as reusable on that condition.",
+          "source": "../consequences.md §4",
+          "link": "../consequences.md#4-sibling-units-and-neighbouring-issues"
+        }
+      ],
+      "asBuilt": {
+        "state": "in-progress"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "`swap.py` is derived from the rehearsal's tool with every known gap closed: settle reports unsettled at its bound, the result gate recomputes every shape from reads taken at its run, and a resumed placeholder is skipped.",
+            "ref": "plan.md#the-tools",
+            "excerpt": {
+              "ref": "plan.md#the-tools",
+              "heading": "The tools",
+              "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
+              "hash": "c384eeab02aa"
+            }
+          },
+          {
+            "text": "Unauthenticated reads retry a bounded number of times and record the read as unreachable, never as an answer.",
+            "ref": "plan.md#the-tools",
+            "excerpt": {
+              "ref": "plan.md#the-tools",
+              "heading": "The tools",
+              "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
+              "hash": "c384eeab02aa"
+            }
+          },
+          {
+            "text": "Its self-test covers the failure paths, the link rounds and the result gate, and a mutation run showed its checks fail when the logic they guard breaks; it must pass before any write.",
+            "ref": "plan.md#the-tools",
+            "excerpt": {
+              "ref": "plan.md#the-tools",
+              "heading": "The tools",
+              "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
+              "hash": "c384eeab02aa"
+            }
+          },
+          {
+            "text": "Every tool is saved from the plan's appendix and checked by size and sha256 before anything runs.",
+            "ref": "plan.md#how-the-scripts-reach-the-machine",
+            "excerpt": {
+              "ref": "plan.md#how-the-scripts-reach-the-machine",
+              "heading": "How the scripts reach the machine",
+              "paragraph": "The scripts live in this plan and in the workspace, never in a repository. Appendix A holds each tool in a fenced block whose info string carries `file=<name>`. The S0 bootstrap saves each block byte for byte with carriage returns stripped and checks it against its recorded size and sha256 before anything runs. It must run from inside the working tree that holds this plan. · The runner is the preparation unit's `run-stage.sh`: `bash \"$TOOLS/run-stage.sh\" <name> [args]` runs `$TOOLS/<name>.sh`, writes a start line, the output and `== <name> exit=<n>` to the console and appends them to …",
+              "hash": "abdf88ea08b2"
+            }
+          }
+        ],
+        "defense": "The rehearsal handed its tool on as reusable once its gaps were closed, and the real walk meets every one of them.",
+        "steps": [
+          {
+            "id": "S0",
+            "what": "Save and hash the tools and run every self-test.",
+            "check": "`STAGE S0-kselftest OK`",
+            "link": "plan.md#s0--local-readiness"
+          }
+        ],
+        "tests": [
+          "L1 gating — every tool's size and sha256 at the bootstrap",
+          "L2 component — the `swap.py` self-test, 537 checks"
+        ],
+        "risks": [
+          "A failing self-test stops local readiness before any write"
+        ],
+        "source": "plan.md Design, The tools",
+        "link": "plan.md#the-tools"
+      }
+    },
+    {
+      "id": "requested-writes",
+      "group": "Tools and access",
+      "name": "The GitHub writes the unit depends on",
+      "system": "repository-swap",
+      "where": "repository creation, settings, renames and archiving · mirror push · transfers and placeholders · relationships · this clone's realignment",
+      "gap": {
+        "kind": "risk",
+        "summary": "The unit's writes to GitHub and to this clone go through requests whose scope does not yet reach KotlinBottools. The rehearsal's scope named only its own repositories, and the real walk needs one naming KotlinBottools and the fresh repository. The token itself suffices for the fresh repository: every call needs only `repo`, the collaborator list `read:org` too, but a repeated creation is not idempotent and the token cannot delete, and the organisation's own Actions settings cannot be read with it.",
+        "evidence": [
+          "`../consequences.md:227` — the requests the later units need: mirror pushes, repository creation and renames, transfers and placeholders, relationships, a checkout's realignment",
+          "`../22-transfer-rehearsal/consequences.md:212` — a scope of its own for this unit, naming KotlinBottools and the fresh repository",
+          "`../architecture.md:1132` — every write to shared repository state is a request carrying the plan's procedure, inputs and checks",
+          "`research/README.md:135` — every call needs `repo`, which the token has, and the organisation's own Actions settings answer 403 without `admin:org`",
+          "`research/README.md:112` — a repeated creation is not idempotent and the token cannot delete, so the name is read before any retry"
+        ],
+        "source": "../architecture.md §3, §11, research/README.md",
+        "link": "../architecture.md#11-version-control"
+      },
+      "options": [
+        {
+          "id": "requested-and-read-back",
+          "name": "Every write sent as a request carrying the plan's procedure and checks, and verified by reading GitHub or the checkout before the next step",
+          "verdict": "accepted",
+          "why": "The unit does its local work itself; one that meets a missing request stops before the write and hands back.",
+          "source": "../architecture.md §3, §11",
+          "link": "../architecture.md#11-version-control"
+        }
+      ],
+      "asBuilt": {
+        "state": "in-progress"
+      },
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "Every write to GitHub and to this checkout is a request the walk tool generates just before it is sent, carrying its procedure, inputs and checks, and verified by reading back.",
+            "ref": "plan.md#the-requests",
+            "excerpt": {
+              "ref": "plan.md#the-requests",
+              "heading": "The requests",
+              "paragraph": "A request is a JSON document that `swap.py` generates into `DATA/run/swap/requests/<key>.json` immediately before it is sent. The run sends the file's contents as one request and waits for the reply; on `done` the check of §7.4 runs.",
+              "hash": "715d7dc1b7df"
+            }
+          },
+          {
+            "text": "A job granted for this unit names its fourteen actions and its scope: KotlinBottools under its three names, MagicBot and WebTools for links only, this checkout and the second scratch clone; local readiness stops with nothing written unless it is open.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "f7f1b9e84865"
+            }
+          },
+          {
+            "text": "Every request reads a repository's id by its name before writing, so a write never lands on a repository that has since taken the name.",
+            "ref": "plan.md#the-requests",
+            "excerpt": {
+              "ref": "plan.md#the-requests",
+              "heading": "The requests",
+              "paragraph": "A request is a JSON document that `swap.py` generates into `DATA/run/swap/requests/<key>.json` immediately before it is sent. The run sends the file's contents as one request and waits for the reply; on `done` the check of §7.4 runs.",
+              "hash": "715d7dc1b7df"
+            }
+          },
+          {
+            "text": "The realignment's hard reset is allowed only by that grant, and no `--force` is used anywhere.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "f7f1b9e84865"
+            }
+          }
+        ],
+        "defense": "The unit does its local work itself and writes only through requests, each read back, so every write is one the plan specified.",
+        "steps": [
+          {
+            "id": "S0",
+            "what": "Confirm the job is open with every action defined.",
+            "check": "`the job phase-0-kotlinbottools-swap is open`",
+            "link": "plan.md#s0--local-readiness"
+          }
+        ],
+        "tests": [
+          "L3 integration — every write read back before the next step"
+        ],
+        "risks": [
+          "The grant is not open yet; local readiness stops before any write until it is"
+        ],
+        "source": "plan.md Requirements, Design, The requests",
+        "link": "plan.md#the-requests"
+      }
+    },
+    {
+      "id": "visibility-change",
+      "group": "Left for later",
+      "name": "The fresh repository made public, with secret scanning and push protection",
+      "system": "repository-swap",
+      "where": "unit 5, #25",
+      "gap": {
+        "kind": "missing",
+        "summary": "The fresh repository is private when this unit ends. Making it public waits on the hygiene change and the last privacy gate, so nothing becomes public through this unit.",
+        "evidence": [
+          "`../architecture.md:886` — the visibility change is its own unit, after the hygiene change has landed",
+          "`../architecture.md:645` — in KotlinBottools a default-rule finding in a kept file stops the work before the visibility change",
+          "`research/README.md:127` — forking cannot be set while the repository is private and matches the old repository only from the change to public on, which the later unit reads again",
+          "`research/fresh-repository-settings.md:205` — `security_and_analysis` reads `null` while the repository is private and appears only once it is public"
+        ],
+        "source": "../architecture.md §7.5, §15",
+        "link": "../architecture.md#75-renames-archive-visibility-scanning"
+      },
+      "options": [
+        {
+          "id": "in-unit-5",
+          "name": "Left to `kotlinbottools-publish`, #25, after `repository-hygiene`, #24",
+          "verdict": "accepted",
+          "why": "Gate 3 and the id-reference check then run over everything the phase put on the repository before it becomes public.",
+          "source": "../architecture.md §7.5, §15",
+          "link": "../architecture.md#15-decomposition"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "leave",
+        "statements": [
+          {
+            "text": "The fresh repository is private when this unit ends; making it public, with secret scanning and push protection, is left to #25, after #24 has landed.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "Restoring the moved issue texts' references to a bare form or to the final name, and any issue-text edit (the open follow-ups above). No `edit-issue-body` request and no comment edit is sent. · The hygiene files, the visibility change of the fresh repository, secret scanning, Gate 3 and the id-reference check: later units. · The rewrite of the other five repositories, and TrumpBot's clone. · Deleting the pre-rewrite repository, the fresh repository's old temporary name's redirect, or the throwaway repositories of the rehearsal (the token has no `delete_repo` scope). · Editing MagicBot's or …",
+              "hash": "c4d2d8dbc2f7"
+            }
+          },
+          {
+            "text": "Its forking and wiki settings are handed on, to be read again after the change to public.",
+            "ref": "plan.md#interfaces-with-sibling-units",
+            "excerpt": {
+              "ref": "plan.md#interfaces-with-sibling-units",
+              "heading": "Interfaces with sibling units",
+              "paragraph": "Expects from `preparation` (#21, as built):",
+              "hash": "78f8b23a10f2"
+            }
+          },
+          {
+            "text": "The open issue-text edits, the 56 links that name the deleted planning branch, #1's body and #2's folder line, are left for one later pass before the repository becomes public.",
+            "ref": "plan.md#sequencing-and-follow-ups",
+            "excerpt": {
+              "ref": "plan.md#sequencing-and-follow-ups",
+              "heading": "Sequencing and follow-ups",
+              "paragraph": "Order. S0 to S16 as the table; nothing is written to GitHub before S6; the window is S1 to the end of S15; the Document step and the landing follow S16.",
+              "hash": "d0fba22c0dc1"
+            }
+          }
+        ],
+        "defense": "Nothing becomes public through this unit.",
+        "source": "plan.md Non-goals, Interfaces with sibling units",
+        "link": "plan.md#non-goals"
+      }
+    },
+    {
+      "id": "older-document-ids",
+      "group": "Left for later",
+      "name": "The pre-rewrite ids cited in the older documents",
+      "system": "privacy-gate",
+      "where": "the documents committed before the phase",
+      "gap": {
+        "kind": "debt",
+        "summary": "The older documents cite pre-rewrite commit ids that the fresh repository cannot resolve. They resolve only in the private legacy repository once the swap is done.",
+        "evidence": [
+          "`../architecture.md:336` — no replacement of the pre-rewrite ids cited in older documents; they resolve only in the private legacy repository"
+        ],
+        "source": "../architecture.md §4",
+        "link": "../architecture.md#4-non-goals"
+      },
+      "options": [
+        {
+          "id": "dated-citations",
+          "name": "Leave them as dated citations, outside the id-reference check's scope",
+          "verdict": "accepted",
+          "why": "The legacy repository stays private and archived as their resolver.",
+          "source": "../architecture.md §4, §6.5",
+          "link": "../architecture.md#4-non-goals"
+        },
+        {
+          "id": "rewrite-old-ids",
+          "name": "Rewrite the pre-rewrite ids out of the older documents, or map the maintainer's address with `--mailmap`",
+          "verdict": "declined",
+          "why": "The ids resolve only in the private legacy repository, and the address is already public in three repositories.",
+          "source": "../architecture.md §14",
+          "link": "../architecture.md#14-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "pending"
+      },
+      "verdict": {
+        "kind": "leave",
+        "statements": [
+          {
+            "text": "The pre-rewrite ids in the older documents and in the three moved resolution comments stay as dated citations, resolving only in the private legacy repository.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "f7f1b9e84865"
+            }
+          },
+          {
+            "text": "The list of the 26 accepted ids stays under the data folder and goes to #25, whose id-reference check accounts for exactly these.",
+            "ref": "plan.md#interfaces-with-sibling-units",
+            "excerpt": {
+              "ref": "plan.md#interfaces-with-sibling-units",
+              "heading": "Interfaces with sibling units",
+              "paragraph": "Expects from `preparation` (#21, as built):",
+              "hash": "78f8b23a10f2"
+            }
+          }
+        ],
+        "defense": "The legacy repository stays private and archived as their resolver.",
+        "source": "plan.md Requirements, Interfaces with sibling units",
+        "link": "plan.md#requirements"
+      }
+    }
+  ],
+  "impact": {
+    "basis": "plan",
+    "summary": "No module is published and no version moves; the landing changes documents and generated boards only. On GitHub, KotlinBottools becomes a fresh private repository holding the rewritten history and every number, and the pre-rewrite repository becomes `KotlinBottools-legacy`, private and archived, which ends its public window. This checkout is realigned onto the rewritten history, and the later units take the fresh repository, the allow-list and the pipeline as it ran (`consequences.md` §2 to §4).",
+    "none": null,
+    "release": {
+      "bump": "none",
+      "version": null,
+      "note": "no module is published and no version moves"
+    },
+    "downstream": [
+      {
+        "who": "The pre-rewrite repository",
+        "kind": "repository",
+        "system": "repository-swap",
+        "effect": "behaviour",
+        "summary": "Renamed `KotlinBottools-legacy`, made private, then archived. It keeps its refs as they were at the mirror clone, its three merged pull requests, its milestone, labels and activity feed, and no issue is left in it. Its public window, open since 2026-11-08, ends when it is made private.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "KotlinBottools, the fresh repository",
+        "kind": "repository",
+        "system": "repository-swap",
+        "effect": "additive",
+        "summary": "Created private as `KotlinBottools-next` and renamed `KotlinBottools`, with a new repository id. It holds the rewritten `main` and topic branch, the 28 transferred issues and closed placeholders on the pull requests' numbers 20, 30 and 31, the `1.0.0` milestone and three custom labels, and the old repository's settings except the wiki, off, and the Actions workflow permissions, read-only. It stays private until the publication unit.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "KotlinBottools' history",
+        "kind": "repository",
+        "system": "rewrite-pipeline",
+        "effect": "behaviour",
+        "summary": "Rewritten: the purge-listed paths leave every commit, and the machine-local paths in `build.gradle.kts` and `GuildDataParser.kt` are replaced in every commit that holds them. Nothing that runs on another machine changes.",
+        "link": "consequences.md#1-published-artifacts"
+      },
+      {
+        "who": "Readers of public links to KotlinBottools issues",
+        "kind": "consumer",
+        "system": "repository-swap",
+        "effect": "behaviour",
+        "summary": "From the swap until the publication unit, every public link to a KotlinBottools issue (49 citations in MagicBot, 6 in WebTools, 5 in the organisation's `.github` repository) answers \"not found\" to anyone without access, as the fresh repository is private.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "The moved issue texts",
+        "kind": "repository",
+        "system": "repository-swap",
+        "effect": "behaviour",
+        "summary": "Once the walk ends, every reference to a moved issue reads `SpartanLaboratories/KotlinBottools-next#N`, permanently, reaching its issue through the redirect the rename leaves, which holds only while no repository takes that name.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "The 26 pre-rewrite ids in three resolution comments",
+        "kind": "repository",
+        "system": "privacy-gate",
+        "effect": "behaviour",
+        "summary": "The merge-commit ids inside permalinks in the resolution comments of #2, #21 and #22 move with the issues and stay; in the fresh repository they resolve to nothing, so those permalinks open only for someone with access to the legacy repository.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "MagicBot and WebTools",
+        "kind": "repository",
+        "system": null,
+        "effect": "none",
+        "summary": "Every sub-issue and \"blocked by\" link is present at the end, kept or re-created; where a transfer drops a link with one of their issues, that relationship is written again. No code, document or issue text of theirs changes.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "This checkout",
+        "kind": "repository",
+        "system": "clone-realignment",
+        "effect": "behaviour",
+        "summary": "Realigned in place: the 41 tracked files the purge removes leave the working tree, two files change content through the scrub, the refs and reflogs move to the rewritten history and `origin` is the fresh repository by id; the old objects are deleted or stay unreachable until a deferred step runs. Untracked and ignored files are unchanged.",
+        "link": "consequences.md#23-this-checkout"
+      },
+      {
+        "who": "This machine",
+        "kind": "operator",
+        "system": "backups-and-manifests",
+        "effect": "additive",
+        "summary": "This unit's mirror, untouched backup, fresh mirror, tools and scratch clones in the workspace, and its records, the allow-list and the accepted ids' list in the data folder, under the user profile and outside every repository; nothing in them is committed, printed or quoted.",
+        "link": "consequences.md#22-this-machine"
+      },
+      {
+        "who": "`repository-hygiene` (#24) and Phase 1 (#3)",
+        "kind": "consumer",
+        "system": null,
+        "effect": "additive",
+        "summary": "Start from the rewritten `main` on the fresh repository under `KotlinBottools`, with this checkout realigned; nothing lands on KotlinBottools until this unit has.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "who": "`kotlinbottools-publish` (#25)",
+        "kind": "consumer",
+        "system": null,
+        "effect": "additive",
+        "summary": "Takes the fresh repository's id and settings snapshot, the count and location of the 26 accepted ids, the allow-list with the record of each decision, the second gate's result and the scrub's zero counts, any default-rule finding in a kept file, and the open issue-text edits to make before its visibility change.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "who": "`gkb2-gkb-rewrite` (#26), `bottools-trumpbot-support-rewrite` (#27) and `residual-report-and-cleanup` (#28)",
+        "kind": "consumer",
+        "system": null,
+        "effect": "additive",
+        "summary": "The rewrite units take the pipeline as this unit ran it, the mirror push proven and the five static backups untouched; the last unit takes KotlinBottools' report row with its public window, any deferred step and the reserved name.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      }
+    ],
+    "adaptation": [
+      {
+        "who": "The organisation's repository names",
+        "system": "repository-swap",
+        "need": "required",
+        "summary": "No repository may ever be created under `KotlinBottools-next` or renamed onto it: every reference the walk leaves in the moved texts reaches its issue through the redirect on that name.",
+        "link": "consequences.md#6-follow-ups"
+      },
+      {
+        "who": "A local build that relied on the scrubbed Maven repository line",
+        "system": "rewrite-pipeline",
+        "need": "required",
+        "summary": "`build.gradle.kts` names a placeholder where it named this machine's folder, so such a build needs a local override, a follow-up for the hygiene unit and Phase 1.",
+        "link": "plan.md#risks-and-edge-cases"
+      },
+      {
+        "who": "This checkout, if the object deletion is deferred",
+        "system": "clone-realignment",
+        "need": "required",
+        "summary": "The deferred step's commands are run once IntelliJ IDEA is closed; until then the checkout holds unreachable old objects that no push can carry.",
+        "link": "consequences.md#6-follow-ups"
+      },
+      {
+        "who": "Existing code",
+        "system": null,
+        "need": "none",
+        "summary": "No existing code adopts anything from this unit; its tools are reused by the later rewrite units as the worked example of the pipeline.",
+        "link": "consequences.md#3-adoption"
+      }
+    ],
+    "api": [],
+    "conversion": [],
+    "source": "consequences.md §1 to §6; plan.md Requirements, Risks and edge cases",
+    "link": "consequences.md#2-blast-radius"
+  },
+  "tests": null,
+  "roadmap": {
+    "issue": 2,
+    "title": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
+    "asOf": "2026-11-10",
+    "items": [
+      {
+        "issue": 21,
+        "title": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
+        "state": "CLOSED",
+        "stateReason": "COMPLETED"
+      },
+      {
+        "issue": 22,
+        "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories",
+        "state": "CLOSED",
+        "stateReason": "COMPLETED"
+      },
+      {
+        "issue": 23,
+        "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
+        "state": "OPEN"
+      },
+      {
+        "issue": 24,
+        "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
+        "state": "OPEN"
+      },
+      {
+        "issue": 25,
+        "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection",
+        "state": "OPEN"
+      },
+      {
+        "issue": 26,
+        "title": "Phase 0 · 6 — Rewrite GKB2 and GKB",
+        "state": "OPEN"
+      },
+      {
+        "issue": 27,
+        "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
+        "state": "OPEN"
+      },
+      {
+        "issue": 28,
+        "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
+        "state": "OPEN"
+      }
+    ]
+  },
+  "followUps": [],
+  "documents": [],
+  "notes": {
+    "corrections": [
+      {
+        "what": "The moved-text references Row listed the parent design's comparison rule (each moved text compared with its text before the first transfer, references mapped back) as its accepted option, though the parent design left the choice for the references open to this unit's plan and the comparison is the check every one of those options keeps. It is no longer an option of the Row: the plan states it in the Verdict, and the three options the parent design left open carry the plan's settlement.",
+        "when": "2026-11-10"
+      },
+      {
+        "what": "The open point \"The write permissions for this unit are not yet granted.\" was recorded as resolved at 2026-11-10T20:05:00Z, the run's estimate rather than a clock reading, as the run itself corrected. It is recorded at 2026-11-10T20:08:36Z, when the grant was given; no event's time moves with it.",
+        "when": "2026-11-10"
+      },
+      {
+        "what": "The open points \"A made-up test id in the plan's own text surfaced as an allow-list key\" and \"The allow-list proposal printed a corpus file name that is a legacy word\" are recorded as resolved at 2026-11-10T21:31:54Z, when their resolution was reported. They were resolved earlier, when the plan amendment was completed; no clock reading of that moment exists, so the report time stands.",
+        "when": "2026-11-10"
+      }
+    ]
+  },
+  "issueBoards": {
+    "21": "../21-preparation/dashboard.html",
+    "22": "../22-transfer-rehearsal/dashboard.html"
+  },
+  "links": {
+    "workBoard": "../../../index.html",
+    "repoBoard": "../../../../dashboards/index.html",
+    "boards": {
+      "kotlinbottools": "../../../../dashboards/index.html"
+    }
+  }
+}
+);
