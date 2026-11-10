@@ -72,6 +72,8 @@ Evidence for the child-moves row:
 
 Evidence for the parent-moves row: [loopsmithai/loopsmith#3](https://github.com/loopsmithai/loopsmith/issues/3) (2026-09-05): "The parent/sub-issue link **does not** survive `transferIssue`, even parent-first. The probe suggested otherwise — a false positive from linking the pair moments before transferring." The text gives no direction, settle time or repository layout, so it cannot be set against the other four reports; one possible reading is that it was read before the link had settled. A 2022 report of a lost parent on transfer ([community discussion 9703](https://github.com/orgs/community/discussions/9703)) is about the retired task-list feature and does not apply.
 
+> **Dated note, 2026-11-09.** This did not hold in the build: the fixture's parent moved first and kept its sub-issue links ([README, Did not hold in the build](README.md#did-not-hold-in-the-build)).
+
 Refusal texts seen when writing links (other tools' logs, [StephanMeijer/meneerhenk#632](https://github.com/StephanMeijer/meneerhenk/issues/632), 2026-10-16): "Issue may not contain duplicate sub-issues" (the link already exists) and, for blockers, "Validation failed: Target issue has already been taken" (the blocker already exists). From the transfer reports: "Sub issue may only have one parent" (the child still lists another parent).
 
 **No report of a transfer being refused because of links was found.** The brief's third option (remove the links first) therefore rests on no observed refusal.

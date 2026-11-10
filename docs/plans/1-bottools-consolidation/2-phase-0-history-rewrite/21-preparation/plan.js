@@ -10,7 +10,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   "title": "Preparation",
   "issueTitle": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
   "function": "Nothing the history rewrite needs is in place: neither `git filter-repo` nor `gitleaks` is installed, there is no workspace or data folder, no backup of the six repositories, no copy of the legacy data and no manifest to judge a rewrite against. This run pins and proves the tools, writes the path-scrub expressions and the six path lists, proves non-interactive access, takes a mirror and an untouched backup of each repository, copies `BotData.xml` and `guildData/` from three revisions byte for byte, and derives the manifests, expectation rows and positive-control scans of the five static repositories. Unit 1 of #2: local work with no version moved, and nothing written to GitHub except this unit's documents.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-08T21:15:43Z",
   "parent": {
     "issue": 2,
@@ -23,7 +23,13 @@ window.dashboardLive&&window.dashboardLive("plan",
     "sha": "1a74516",
     "date": "2026-11-07"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "3b62b678be429c4a59ac0d08c5449a0bd6c50ea8",
+    "merge": "3b62b678be429c4a59ac0d08c5449a0bd6c50ea8",
+    "pr": 30,
+    "date": "2026-11-08",
+    "at": "2026-11-08T23:23:04Z"
+  },
   "systems": [
     {
       "slug": "kotlinbottools",
@@ -35,10 +41,10 @@ window.dashboardLive&&window.dashboardLive("plan",
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-08T22:59:18Z",
-    "updated": "2026-11-08T23:18:38Z",
-    "detail": "Document: 6 of 6 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-08T23:23:04Z",
+    "updated": "2026-11-08T23:23:04Z",
+    "detail": "Landed in PR #30.",
     "steps": [
       "sizing",
       "interview",
@@ -53,9 +59,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -152,9 +156,8 @@ window.dashboardLive&&window.dashboardLive("plan",
     },
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-08T23:18:38Z",
-      "note": "6 of 6 tasks done"
+      "name": "landed",
+      "at": "2026-11-08T23:23:04Z"
     },
     "history": {
       "sizing": [
@@ -432,6 +435,82 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           ]
         }
+      ],
+      "document": [
+        {
+          "since": "2026-11-08T22:59:18Z",
+          "ended": "2026-11-08T23:21:08Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-08T23:18:38Z",
+            "note": "6 of 6 tasks done"
+          },
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done"
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done"
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "As-built record and consequences",
+                "state": "done"
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG: documents only, no entry",
+                "state": "done"
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-08T23:21:08Z",
+          "ended": "2026-11-08T23:22:55Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-08T23:21:08Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-08T23:22:55Z",
+          "ended": "2026-11-08T23:23:04Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "merge",
+            "at": "2026-11-08T23:22:55Z",
+            "note": "merging PR #30"
+          },
+          "detail": "Merge: merging it in PR #30."
+        }
       ]
     },
     "next": null,
@@ -538,6 +617,13 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-08",
       "ref": "plan.md",
       "note": "nine pinned stage scripts run in order; the parent design still fits and the upstream pins are unchanged"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-08",
+      "ref": "PR #30",
+      "note": "merged as 3b62b67"
     }
   ],
   "trail": [
@@ -612,6 +698,23 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-08",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Merge: merging it in PR #30",
+      "ref": "PR #30"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Landed in PR #30, merge 3b62b67",
+      "ref": "PR #30"
     }
   ],
   "rows": [
@@ -2658,7 +2761,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     }
   ],
   "impact": {
-    "basis": "plan",
+    "basis": "as-built",
     "summary": "Local preparation with no published effect: no module is published, no version moves, and the landing changes documents and generated boards only. The unit writes nothing else to GitHub and only reads the six repositories. On this machine it leaves git-filter-repo installed and creates the workspace and the data folder, whose results the phase's later units consume.",
     "none": null,
     "release": {
@@ -2712,7 +2815,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "consumer",
         "system": "kotlinbottools",
         "effect": "additive",
-        "summary": "Uses the installed tools, the saved tools, the six lists, the expression file, the `env.sh` contract and `COPY-VERIFIED`, and takes its own fresh KotlinBottools mirror and backup at its start.",
+        "summary": "Uses what every later unit uses: the installed and saved tools, the `env.sh` contract, the six lists, `COPY-VERIFIED`, the runner and the log. It also uses the expression file with its pinned size and hash and the fixture's expected scrub counts, and takes its own fresh KotlinBottools mirror and backup at its start, replacing this unit's copies of those two.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       },
       {
@@ -2720,7 +2823,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "consumer",
         "system": "kotlinbottools",
         "effect": "additive",
-        "summary": "Takes `secret_scan.py` and `gitleaks.toml` from the workspace copies this unit saved.",
+        "summary": "Uses what every later unit uses: the installed and saved tools, the `env.sh` contract, the six lists, `COPY-VERIFIED`, the runner and the log. It also uses the proven non-interactive authentication, and `secret_scan.py` and `gitleaks.toml` at their fixed names.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       },
       {
@@ -2743,7 +2846,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     ],
     "api": [],
     "conversion": [],
-    "source": "consequences.md §1 to §4; plan.md Interfaces with sibling units",
+    "source": "consequences.md §1 to §4; final-implementation.md",
     "link": "consequences.md#2-blast-radius",
     "changes": [
       {
@@ -2772,6 +2875,20 @@ window.dashboardLive&&window.dashboardLive("plan",
         "what": "What each of the four later units consumes is stated unit by unit.",
         "why": "Only `gkb2-gkb-rewrite` and `bottools-trumpbot-support-rewrite` consume the backups, manifests and expectation rows the planned entry named for all four.",
         "when": "Document",
+        "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "entry": "downstream.5",
+        "what": "`kotlinbottools-rewrite-and-swap` (#23) also consumes the runner, the log and the fixture's expected scrub counts.",
+        "why": "The reconciled consequences list them beside the expression file; the planned entry left them out.",
+        "when": "Landing",
+        "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "entry": "downstream.6",
+        "what": "`repository-hygiene` (#24) consumes what every later unit does, and the proven authentication.",
+        "why": "The reconciled consequences list them; the planned entry named only `secret_scan.py` and `gitleaks.toml`.",
+        "when": "Landing",
         "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
       }
     ]

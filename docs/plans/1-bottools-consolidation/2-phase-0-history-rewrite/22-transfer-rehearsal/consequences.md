@@ -6,8 +6,9 @@
   *"Phase 0 · 2 — Transfer rehearsal on two throwaway repositories"*, a sub-issue of
   [#2](https://github.com/SpartanLaboratories/KotlinBottools/issues/2).
 - **What this document is:** what this unit does to its surroundings and leaves behind: the blast
-  radius on GitHub and on this machine, what the later units of the phase take from it, the follow-ups
-  and the known gaps. It is written with the plan and brought up to date once the unit has run.
+  radius on GitHub and on this machine, what the later units of the phase take from it, the known gaps
+  and the follow-ups, as the unit ran. What it built and measured is in
+  [`final-implementation.md`](final-implementation.md).
 - **Related:**
   - [`plan.md`](plan.md): the procedure, its stages, checks and interfaces;
   - [`research/README.md`](research/README.md): the evidence;
@@ -55,16 +56,18 @@ Neither changes. The procedure reads this checkout only to save its tool from [`
 ### 2.4 Documents and generated boards
 
 The landing changes what [plan §7.1](plan.md#71-repository-changes) lists: this unit's documents and
-research, the dated notes on the parent's `architecture.md` and `consequences.md` that record that
-KotlinBottools has been public since 2026-11-08 and what follows for the swap, one line in the
-parent's `consequences.md`, and the regenerated boards.
+research; the dated notes of 2026-11-09 on the parent's `architecture.md` and `consequences.md`, which
+record that KotlinBottools has been public since 2026-11-08 and what follows for the swap, what a
+transfer does to issue references, and what those references reach after the swap; one line in the
+parent's `consequences.md`; and the regenerated boards.
 
 ---
 
 ## 3. Adoption
 
 No existing code adopts anything from this unit. The tool's flat read, its edge-set comparison, its
-settle rule and its pacing are built to be reused by `kotlinbottools-rewrite-and-swap` (§4).
+settle rule and its pacing are built to be reused by `kotlinbottools-rewrite-and-swap` (§4), once the
+tool's known gaps (§5) are closed.
 
 ---
 
@@ -73,15 +76,19 @@ settle rule and its pacing are built to be reused by `kotlinbottools-rewrite-and
 **What the later units take from this unit** (the contract is
 [plan, Interfaces with sibling units](plan.md#interfaces-with-sibling-units); this is its summary):
 
-- **`kotlinbottools-rewrite-and-swap`** (#23) starts only when this unit's result passes. It takes:
+- **`kotlinbottools-rewrite-and-swap`** (#23) starts only when this unit's result passes, and it
+  passes ([as-built record, §2](final-implementation.md#2-acceptance)). It takes:
   - the measured behaviour of a public-to-private issue transfer: the numbers each transfer landed
-    on, the closed-issue route, what each link kind did at each step, whether a link may span a public
+    on, the closed-issue route, what each link kind did at each step, the links that spanned a public
     and a private repository, the redirect of a transferred issue's old URL, and what a transfer does
-    to the references in the moved text and in the source (architecture §7.4);
+    to the references in the moved text and in the source
+    ([as-built record, §3](final-implementation.md#3-measurements); architecture §7.4);
   - the rename order, with the privacy step (rename, private, archive, then the target's rename), and
-    whether a rename onto a name freed moments earlier succeeds;
-  - the reusable tool and the pattern of the requests;
-  - the list of request actions it also needs ([plan, Interfaces with sibling units](plan.md#interfaces-with-sibling-units)).
+    the outcome of the rename onto a name freed minutes earlier
+    ([as-built record, §3.6](final-implementation.md#36-the-rename-swap));
+  - the tool, for reuse once its known gaps (§5) are closed, and the pattern of the requests;
+  - the list of request actions it also needs ([plan, Interfaces with sibling units](plan.md#interfaces-with-sibling-units));
+  - the follow-ups of §6 that name it.
 - **`residual-report-and-cleanup`** (#28) takes the two rehearsal repositories as a follow-up and
   carries KotlinBottools' public window in its report (architecture §12.4).
 - **`repository-hygiene`, `kotlinbottools-publish`, `gkb2-gkb-rewrite` and
@@ -94,17 +101,22 @@ this unit. Nothing here changes MagicBot or WebTools.
 
 ## 5. Known gaps
 
-- **Six of the request actions this unit needs are not defined yet:** `create-issue`, `create-label`,
-  `create-milestone`, `close-issue`, `reopen-issue` and `fixture-pull-request`
-  ([plan, Assumptions](plan.md#assumptions)). The unit also needs the job it runs under to be open. It
-  stops before its first write until they exist.
-- **What only the run can show.** The behaviour of a transfer with these links, of a transfer out of a
-  public repository, of links across a public and a private repository, and of a rename onto a name
-  just freed is not documented. The unit measures each and hands back its result
-  ([research README](research/README.md#summary)).
-- **Whether references naming the target's temporary name resolve after the rename.** A transfer
-  leaves them in the moved text for good; the swap's reads measure it (plan, Design, "The rename
-  swap"). The result goes to the rewrite-and-swap unit.
+**Settled by the run:** what a transfer did to numbers, closed issues, links and references, and what the
+swap did to names, old URLs and references, none of which the documentation settles
+([as-built record, §3](final-implementation.md#3-measurements)). The research reports the build
+contradicted are in [the research README](research/README.md#did-not-hold-in-the-build).
+
+**The plan's assumptions** ([plan, Assumptions](plan.md#assumptions)): none failed. The job was open with
+its actions, the six actions the plan proposed among them, and every request's procedure ran as received;
+the public issues landed on the target's next numbers; every reference in the moved text named one of the
+two fixture repositories; every settle ended within two reads and every read-back by id within one; nothing
+else touched the rehearsal repositories or their names; no rate limit was met; and the pull request became
+mergeable within its request's poll. `reopen-issue` was never sent. The four `ids pre` stops came from
+GitHub's web page answering 504, not from a read-back
+([as-built record, §4](final-implementation.md#4-deviations-from-the-plan)).
+
+**Still open:**
+
 - **What the fixture does not cover.** The target is commit-less, unlike the real target; there is
   one merged pull request, while the real walk has placeholders next to each other and at the top
   number; the fixture is ten numbers, while the real walk has thirty and more, so the walk's pacing is
@@ -125,8 +137,8 @@ plan's Appendix A; `plan.md:N` is a line of [`plan.md`](plan.md).
 - **`settle()` always reports settled at its read bound (line 195).** `prev` is set on every pass, so at
   the bound `prev[0] == key` holds, `settled` is `True` and `unsettled` is empty; a stand-in whose edges
   change on every read shows it. The promise of plan.md:221, 406 and 995–997 does not hold at the bound,
-  and plan.md:1082–1085 hands `settle` on as reusable. This run was not affected: all 14 snapshots
-  settled after 2 equal reads, against a bound of 8.
+  and plan.md:1082–1085 hands `settle` on as reusable. This run was not affected: every settle ended
+  well inside the bound of 8 ([as-built record, §3.4](final-implementation.md#34-links)).
 - **The `result` gate (`cmd_result`, lines 666–696) can report PASS without establishing a criterion.**
   It needs to recompute each shape from the final read.
   - "private and archived" (line 685) reads constants from the `IDS` table (line 614), reached only after
@@ -143,8 +155,9 @@ plan's Appendix A; `plan.md:N` is a line of [`plan.md`](plan.md).
 - **A resumed `request placeholder-4` stops where the plan promises a skip.** `h_placeholder` (lines
   325–328) returns `conflict` once the target's highest number is above 4; plan.md:912 promises `SKIP`.
 - **`unauth` (lines 596–598, 612–613)** treats a 5xx as a wrong answer, which fails closed and caused
-  the four `ids pre` stops, and a timeout or `URLError` is not caught (line 598 catches only
-  `HTTPError`), so it would end in a traceback with no stop record.
+  the four `ids pre` stops ([as-built record, §4](final-implementation.md#4-deviations-from-the-plan)),
+  and a timeout or `URLError` is not caught (line 598 catches only `HTTPError`), so it would end in a
+  traceback with no stop record.
 
 **In the self-test**
 
@@ -173,19 +186,47 @@ plan's Appendix A; `plan.md:N` is a line of [`plan.md`](plan.md).
   - plan.md:971: the bounded settle; and "every procedure pauses", which is checked for two forms only
     (lines 848–850).
 
-**Not exercised by the live run,** so the rehearsal is no evidence for them:
+**Not exercised by the live run,** so the rehearsal is no evidence for them
+([as-built record, §3.1, §3.3 and §3.4](final-implementation.md#3-measurements)):
 
-- link re-creation (0 adds, 0 removes, no `links-r*` request);
+- link re-creation, with its `links-r*` requests;
 - the fallback routes;
-- the full-body retention of a refusal (every reply was `done`);
-- the closed-issue reopen route (both closed issues arrived closed, with their reason).
+- the full-body retention of a refusal;
+- the closed-issue reopen route, with its `reopen-issue` request.
 
 ---
 
 ## 6. Follow-ups
 
-- **The two rehearsal repositories.** Deleting them, if they are not wanted, needs the `delete_repo`
-  scope ([parent consequences §6](../consequences.md#6-follow-ups)).
-- **The text of #22.** Its body says both repositories are private; the design makes the source public
-  until the swap, so the body wants correcting by an issue edit.
-- **The six actions,** if the run finds any of them still undefined.
+**Closed:**
+
+- **A request to GitHub Support,** for a refused rename onto the freed name
+  ([plan, Sequencing and follow-ups](plan.md#sequencing-and-follow-ups)): not needed, since the rename was
+  accepted ([as-built record, §3.6](final-implementation.md#36-the-rename-swap)).
+- **The six actions the plan proposed** were defined before the run, so the follow-up for undefined
+  ones is void.
+- **The text of #22** now describes the source as created public and made private in the swap.
+
+**Open, for `kotlinbottools-rewrite-and-swap` (#23):**
+
+- **A job of its own.** This unit's job names only the three rehearsal repositories. The real walk's
+  requests need a job whose scope names KotlinBottools and the fresh repository and whose actions are the
+  ones [plan, Interfaces with sibling units](plan.md#interfaces-with-sibling-units) lists for that unit.
+- **The tool's known gaps** (§5), closed before the tool is reused.
+- **The inherited results** ([as-built record, §3](final-implementation.md#3-measurements)), read before
+  that unit's plan is written.
+- **The moved text that names `KotlinBottools-next`.** After the real walk the moved issues' texts name
+  the target's temporary name for every moved issue they cite. The rehearsal shows such references still
+  reaching their item after the rename, through the redirect the rename leaves on the temporary name
+  ([as-built record, §3.8](final-implementation.md#38-what-references-reach-after-the-renames)), and that
+  redirect lasts only while no repository takes the name
+  ([research, rename sequence, claims 1 and 3](research/rename-visibility-archive-sequence.md#7-load-bearing-claims)).
+  That unit's plan decides between leaving them on the redirect and keeping the name free, rewriting them
+  after the walk, and renaming before the walk so that the transfers write the final name
+  ([architecture §7.4](../architecture.md#74-the-number-walk-and-the-links)).
+
+**Open, for `residual-report-and-cleanup` (#28):**
+
+- **The two rehearsal repositories,** `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a`, private and
+  archived. Deleting them, if they are not wanted, needs the `delete_repo` scope
+  ([parent consequences §6](../consequences.md#6-follow-ups)).

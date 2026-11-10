@@ -2,7 +2,7 @@
 
 The questions this unit's plan rests on that need evidence from outside this repository. Each is
 answered by its own findings file in this folder. The verification of the claims those findings
-rest on, and the summary of what they establish, follow below once the findings exist.
+rest on, what did not hold in the build, and the summary of what they establish follow below.
 
 **What is already established and not asked again.** The parent design's research covers what a
 transfer is documented to keep (comments, assignees, matching labels and milestones, the old URL's
@@ -132,8 +132,8 @@ links to KotlinBottools issues today.
 **"Body text is not rewritten"** ([`issue-transfer-behaviour.md`](issue-transfer-behaviour.md) §3.3,
 and §6's "no `#N` rewriting expected"). The statement was not among the 55 claims above: it rested
 on a 2020 thread and a 2026 project log, read accurately. The fixture's first transfer, on
-2026-11-09, shows the opposite, and the plan's item check is corrected for it
-([`../plan.md`](../plan.md), Design, "What a transfer does to references"):
+2026-11-09, shows the opposite, and the plan's item check accounts for it
+([`../plan.md`](../plan.md#the-tool), Design, "The tool", "What a transfer does to references"):
 
 - **In the moved issue,** each bare `#N` in the body and in the comments became the source
   repository's full name: `#4` became `SpartanLaboratories/phase0-rehearsal-a#4`. The body grew from
@@ -157,8 +157,17 @@ on a 2020 thread and a 2026 project log, read accurately. The fixture's first tr
 
 So a transfer's references end up naming the repository that holds the cited issue at that moment.
 The plan's item check maps every reference naming either fixture repository back to bare `#N`
-([`../plan.md`](../plan.md), Design, "What a transfer does to references"), and the swap's reads
-measure whether those names still resolve after the renames.
+([`../plan.md`](../plan.md#the-tool), Design, "The tool", "What a transfer does to references"), and the swap's reads
+measured what those names reach after the renames
+([as-built record, §3.8](../final-implementation.md#38-what-references-reach-after-the-renames)).
+
+**"The parent/sub-issue link does not survive `transferIssue`, even parent-first"**
+([`issue-transfer-behaviour.md`](issue-transfer-behaviour.md) §3.4 and its claim 13, the one report on a
+parent that moves while its children stay). The quote holds at its source, but what it reports did not hold
+in the build: #1, the parent of #2, #3, #6 and #7, moved first, and its four sub-issue links read `kept`
+after that transfer and after every later one, as did every other fixture link
+([as-built record, §3.4](../final-implementation.md#34-links)). The delay that claim 12 reports was not seen
+either: the first read after each transfer already held every link.
 
 ---
 

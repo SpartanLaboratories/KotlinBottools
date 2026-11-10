@@ -1002,7 +1002,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   "title": "Preparation",
   "issueTitle": "Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests",
   "function": "Nothing the history rewrite needs is in place: neither `git filter-repo` nor `gitleaks` is installed, there is no workspace or data folder, no backup of the six repositories, no copy of the legacy data and no manifest to judge a rewrite against. This run pins and proves the tools, writes the path-scrub expressions and the six path lists, proves non-interactive access, takes a mirror and an untouched backup of each repository, copies `BotData.xml` and `guildData/` from three revisions byte for byte, and derives the manifests, expectation rows and positive-control scans of the five static repositories. Unit 1 of #2: local work with no version moved, and nothing written to GitHub except this unit's documents.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-08T21:15:43Z",
   "parent": {
     "issue": 2,
@@ -1015,7 +1015,13 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     "sha": "1a74516",
     "date": "2026-11-07"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "3b62b678be429c4a59ac0d08c5449a0bd6c50ea8",
+    "merge": "3b62b678be429c4a59ac0d08c5449a0bd6c50ea8",
+    "pr": 30,
+    "date": "2026-11-08",
+    "at": "2026-11-08T23:23:04Z"
+  },
   "systems": [
     {
       "slug": "kotlinbottools",
@@ -1027,10 +1033,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-08T22:59:18Z",
-    "updated": "2026-11-08T23:18:38Z",
-    "detail": "Document: 6 of 6 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-08T23:23:04Z",
+    "updated": "2026-11-08T23:23:04Z",
+    "detail": "Landed in PR #30.",
     "steps": [
       "sizing",
       "interview",
@@ -1045,9 +1051,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -1144,9 +1148,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     },
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-08T23:18:38Z",
-      "note": "6 of 6 tasks done"
+      "name": "landed",
+      "at": "2026-11-08T23:23:04Z"
     },
     "history": {
       "sizing": [
@@ -1424,6 +1427,82 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             }
           ]
         }
+      ],
+      "document": [
+        {
+          "since": "2026-11-08T22:59:18Z",
+          "ended": "2026-11-08T23:21:08Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-08T23:18:38Z",
+            "note": "6 of 6 tasks done"
+          },
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done"
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done"
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "As-built record and consequences",
+                "state": "done"
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG: documents only, no entry",
+                "state": "done"
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-08T23:21:08Z",
+          "ended": "2026-11-08T23:22:55Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-08T23:21:08Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-08T23:22:55Z",
+          "ended": "2026-11-08T23:23:04Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "merge",
+            "at": "2026-11-08T23:22:55Z",
+            "note": "merging PR #30"
+          },
+          "detail": "Merge: merging it in PR #30."
+        }
       ]
     },
     "next": null,
@@ -1530,6 +1609,13 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "date": "2026-11-08",
       "ref": "plan.md",
       "note": "nine pinned stage scripts run in order; the parent design still fits and the upstream pins are unchanged"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-08",
+      "ref": "PR #30",
+      "note": "merged as 3b62b67"
     }
   ],
   "trail": [
@@ -1604,6 +1690,23 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "date": "2026-11-08",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Merge: merging it in PR #30",
+      "ref": "PR #30"
+    },
+    {
+      "date": "2026-11-08",
+      "column": "built",
+      "label": "Landed in PR #30, merge 3b62b67",
+      "ref": "PR #30"
     }
   ],
   "rows": [
@@ -3650,7 +3753,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     }
   ],
   "impact": {
-    "basis": "plan",
+    "basis": "as-built",
     "summary": "Local preparation with no published effect: no module is published, no version moves, and the landing changes documents and generated boards only. The unit writes nothing else to GitHub and only reads the six repositories. On this machine it leaves git-filter-repo installed and creates the workspace and the data folder, whose results the phase's later units consume.",
     "none": null,
     "release": {
@@ -3704,7 +3807,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "kind": "consumer",
         "system": "kotlinbottools",
         "effect": "additive",
-        "summary": "Uses the installed tools, the saved tools, the six lists, the expression file, the `env.sh` contract and `COPY-VERIFIED`, and takes its own fresh KotlinBottools mirror and backup at its start.",
+        "summary": "Uses what every later unit uses: the installed and saved tools, the `env.sh` contract, the six lists, `COPY-VERIFIED`, the runner and the log. It also uses the expression file with its pinned size and hash and the fixture's expected scrub counts, and takes its own fresh KotlinBottools mirror and backup at its start, replacing this unit's copies of those two.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       },
       {
@@ -3712,7 +3815,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "kind": "consumer",
         "system": "kotlinbottools",
         "effect": "additive",
-        "summary": "Takes `secret_scan.py` and `gitleaks.toml` from the workspace copies this unit saved.",
+        "summary": "Uses what every later unit uses: the installed and saved tools, the `env.sh` contract, the six lists, `COPY-VERIFIED`, the runner and the log. It also uses the proven non-interactive authentication, and `secret_scan.py` and `gitleaks.toml` at their fixed names.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       },
       {
@@ -3735,7 +3838,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     ],
     "api": [],
     "conversion": [],
-    "source": "consequences.md §1 to §4; plan.md Interfaces with sibling units",
+    "source": "consequences.md §1 to §4; final-implementation.md",
     "link": "consequences.md#2-blast-radius",
     "changes": [
       {
@@ -3764,6 +3867,20 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "what": "What each of the four later units consumes is stated unit by unit.",
         "why": "Only `gkb2-gkb-rewrite` and `bottools-trumpbot-support-rewrite` consume the backups, manifests and expectation rows the planned entry named for all four.",
         "when": "Document",
+        "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "entry": "downstream.5",
+        "what": "`kotlinbottools-rewrite-and-swap` (#23) also consumes the runner, the log and the fixture's expected scrub counts.",
+        "why": "The reconciled consequences list them beside the expression file; the planned entry left them out.",
+        "when": "Landing",
+        "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "entry": "downstream.6",
+        "what": "`repository-hygiene` (#24) consumes what every later unit does, and the proven authentication.",
+        "why": "The reconciled consequences list them; the planned entry named only `secret_scan.py` and `gitleaks.toml`.",
+        "when": "Landing",
         "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
       }
     ]
@@ -4093,8 +4210,8 @@ const QA={approved:{g:"✓",label:"approved",cls:"good"},"changes-requested":{g:
 const PASS_NAME="Quality Review", REVIEW="review", passName=n=>`${PASS_NAME} ${n}`, passNames=l=>l.length===1?passName(l[0]):`${PASS_NAME}s ${l.join(", ")}`;
 const STEP_NAME={sizing:"Sizing",interview:"Interview",research:"Research",architecture:"Architecture","sub-issues":"Sub-issues",boards:"Boards",plan:"Plan",branch:"Branch",implementation:"Implementation",qa:PASS_NAME,remediation:"Correction",document:"Document",landing:"Landing","state-boards":"State boards",merge:"Merge",landed:"Landed",halted:"Waiting on you",escalated:"Escalated",cancelled:"Cancelled"};
 const ROUTE_NAME={"on-the-spot":"Correction",remediation:"Correction","re-plan-then-remediation":"Resolution"};
-/* the routes' older ids, read as the new ones (dashboards-skill/33): a board written before them */
-const ROUTE_OLD={"rookie-dev":"remediation","planner-then-rookie-dev":"re-plan-then-remediation"}, routeKey=r=>ROUTE_OLD[r]||r;
+/* the routes' older ids, read as the new ones (dashboards-skill/33): a board written before them; an older id ends in -dev, and one starting plan re-passes the plan first */
+const routeKey=r=>typeof r==="string"&&/-dev$/.test(r)?(/^plan/.test(r)?"re-plan-then-remediation":"remediation"):r;
 const routeName=r=>ROUTE_NAME[routeKey(r)]||ROUTE_NAME.remediation;
 const remediationName=(r,p)=>{ const n=parseInt(p,10); return Number.isInteger(n)&&n>1?`${routeName(r)} of ${passName(n)}`:routeName(r); };
 /* a step by its name; c {route, pass} names a remediation visit (no pass: the step, bare) */
@@ -4103,8 +4220,8 @@ const stepLabel=(s,c)=>!s?"":s==="remediation"?(c&&c.pass!=null?remediationName(
 const haltLabel=(s,c)=>s==="remediation"?routeName(c&&c.route):stepLabel(s,c);
 const REMEDIATION_NOTE="Correction or Resolution after a Quality Review; each step is recorded as it runs";
 const PROGRESS_NOTE="a progress note: a report of the work as it happens";
-/* a Quality Review's checks by the check, "documentation check", "code check", "test check" (dashboards-skill/52; passnames.js NOTE_WORK) */
-const NOTE_WORK={planner:"planning",interviewer:"interview",researcher:"research",verifier:"verification",architect:"architecture","plan-writer":"plan writing","rookie-dev":"implementation","test-inspector":"test check",qa:PASS_NAME,"code-reviewer":"code check","documentation-reviewer":"documentation check"};
+/* a progress note by the work it reports, [the stem its file name begins with, the label]: stems, so the board carries no file's name (noteLabel()). A Quality Review's checks by the check, "documentation check", "code check", "test check" (dashboards-skill/52; passnames.js NOTE_WORK, verify/cases-check-labels.js holds noteLabel() to it) */
+const NOTE_WORK=[["plann","planning"],["interview","interview"],["research","research"],["verif","verification"],["archit","architecture"],["plan-wr","plan writing"],["rookie-d","implementation"],["test-insp","test check"],["qa",PASS_NAME],["code-rev","code check"],["documentation-rev","documentation check"]];
 const EVENT_STEP={sized:"sizing","research-planning":"research","research-started":"research","research-returned":"research","research-verifying":"research","research-complete":"research",interview:"interview","architecture-signed-off":"architecture","sub-issues-filed":"sub-issues","boards-created":"boards","plan-accepted":"plan","branch-cut":"branch","implementation-stage":"implementation","qa-pass":"qa",document:"document",landing:"landing","state-boards":"state-boards",merge:"merge",landed:"landed"};
 function raisedWords(raised){ const s=String(raised==null?"":raised).trim(); if(!s) return ""; let m=/^implementation-stage(?:\s+(\S+))?$/i.exec(s);
   if(m) return `raised during ${STEP_NAME.implementation}${m[1]?`, stage ${/^S\d+$/i.test(m[1])?m[1].slice(1):m[1]}`:""}`;
@@ -4764,21 +4881,19 @@ function stepsLine(steps,cur,o){ o=o||{}; const i=steps.indexOf(cur), held=o.hel
    Every part of the run writes docs/plans/.live/progress/<issue>/<name>.js in its checkout every 10 minutes it runs, one line
    setting window.PROGRESS["<name>"] to its note (who, issue, times, done, left, estimate), and deletes it when it finishes. While the run is
    live and the board is a local copy, each live poll reads the names the issue's folder holds from its index.js (plan/scripts/progress-index.js
-   keeps it, with no event: a board from disk cannot list a folder, and a note's slug is its writer's own) and probes those and the names the
-   run is known to have: one per kind of work, one per research question, one per stage (a missing file is simply no note). Each note is an info card of the
+   keeps it, with no event: a board from disk cannot list a folder, and a note's slug is its writer's own) and probes those (a missing file is simply no note,
+   and with no index the panel lists none). Each note is an info card of the
    step panel: its work, how long it has run, what is done, what is left, its estimate and when it wrote; a note not updated for over 20
-   minutes is drawn muted. A tracking board probes each unit in progress under the unit's own issue. The names below are
-   file names only: a note is shown by the work it reports (noteLabel(), NOTE_WORK under names:begin: "research ·
+   minutes is drawn muted. A tracking board probes each unit in progress under the unit's own issue. The names are
+   file names only, none of them in this script: a note is shown by the work it reports (noteLabel(), NOTE_WORK under names:begin: "research ·
    <slug>", "implementation · s2"; a Quality Review's checks "documentation check", "code check", "test check", dashboards-skill/52), never by
    its file's name (no internal names on a board, dashboards-skill/33). */
-const AGENTS=["planner","interviewer","researcher","verifier","architect","plan-writer","rookie-dev","test-inspector","qa","code-reviewer","documentation-reviewer"];
-const noteLabel=name=>{ const n=String(name||""), b=Object.keys(NOTE_WORK).sort((x,y)=>y.length-x.length).find(k=>n===k||n.startsWith(k+"-")); return b?NOTE_WORK[b]+(n.length>b.length?" · "+n.slice(b.length+1):""):"progress"; };
+const noteLabel=name=>{ const n=String(name||""); for(const [s,w] of NOTE_WORK){ const m=new RegExp(`^${s}[a-z]*(?=-|$)`).exec(n); if(m) return w+(n.length>m[0].length?" · "+n.slice(m[0].length+1):""); } return "progress"; };
 const PROG_STALE_MS=20*60000;
 let PROG={};
 const KEY_PROG=`<span><i class="progk"></i>${esc(PROGRESS_NOTE)}</span>`;
 const KEY_PROG_STALE=`<span><i class="progk stale"></i>muted: no update for over 20 minutes</span>`;
-function progNames(R,listed){ R=R||{}; const qs=questionsOf(R).map(q=>"researcher-"+q.question), st=(Array.isArray(R.stages)?R.stages:[]).filter(x=>x&&x.id).map(x=>"rookie-dev-"+String(x.id).toLowerCase());
-  return [...new Set([...AGENTS,...qs,...st,...(Array.isArray(listed)?listed:[])])].filter(n=>typeof n==="string"&&/^[a-z0-9][a-z0-9-]*$/.test(n)); }
+function progNames(listed){ return [...new Set(Array.isArray(listed)?listed:[])].filter(n=>typeof n==="string"&&/^[a-z0-9][a-z0-9-]*$/.test(n)); }
 function loadNoteNames(issue){ return new Promise(res=>{ const k=String(issue), sc=document.createElement("script"); try{ if(window.PROGRESS_NAMES) delete window.PROGRESS_NAMES[k]; }catch(e){}
   sc.src=`${UP}docs/plans/.live/progress/${issue}/index.js?t=${Date.now()}`;
   sc.onload=()=>{ const v=(window.PROGRESS_NAMES||{})[k]; sc.remove(); res(Array.isArray(v)?v:[]); }; sc.onerror=()=>{ sc.remove(); res([]); }; document.head.appendChild(sc); }); }
@@ -4787,7 +4902,7 @@ function loadNote(issue,name){ return new Promise(res=>{ const sc=document.creat
   sc.onload=()=>{ const v=(window.PROGRESS||{})[name]; sc.remove(); res(v&&typeof v==="object"&&!Array.isArray(v)?v:null); }; sc.onerror=()=>{ sc.remove(); res(null); }; document.head.appendChild(sc); }); }
 async function pollProgress(){ if(!(runLive()&&LIVE_LOCAL)) return;
   const runs=[[PLAN.issue,WIP],...(TRACKING?ROWS.filter(r=>r.unit&&r.unit.issue&&runOf(r)).map(r=>[r.unit.issue,runOf(r)]):[])], next={};
-  for(const [n,R] of runs){ const names=progNames(R,await loadNoteNames(n)), got=await Promise.all(names.map(x=>loadNote(n,x))); names.forEach((x,i)=>{ if(got[i]) (next[n]=next[n]||{})[x]=got[i]; }); }
+  for(const [n] of runs){ const names=progNames(await loadNoteNames(n)), got=await Promise.all(names.map(x=>loadNote(n,x))); names.forEach((x,i)=>{ if(got[i]) (next[n]=next[n]||{})[x]=got[i]; }); }
   if(JSON.stringify(next)!==JSON.stringify(PROG)){ PROG=next; renderWip(); } }
 function progressHtml(issue,keys){ const notes=Object.entries(PROG[issue]||{}); if(!notes.length) return ""; const now=Date.now(), span=ms=>{ const m=Math.max(0,Math.round(ms/60000)); return m<90?`${m} min`:`${Math.round(m/60)} h`; };
   const items=notes.map(([name,p])=>{ const at=Date.parse(String(p.at||"")), st=Date.parse(String(p.started||"")), stale=isNaN(at)||now-at>PROG_STALE_MS; keys.add(KEY_PROG); if(stale) keys.add(KEY_PROG_STALE);

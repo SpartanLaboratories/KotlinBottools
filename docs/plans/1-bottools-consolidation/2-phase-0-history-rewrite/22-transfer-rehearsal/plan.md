@@ -4,7 +4,7 @@
   *"Phase 0 · 2 — Transfer rehearsal on two throwaway repositories"*, a sub-issue of
   [#2](https://github.com/SpartanLaboratories/KotlinBottools/issues/2) (parent chain #22 → #2 → #1).
 - **Architecture:** [`../architecture.md`](../architecture.md), unit `transfer-rehearsal` (§15, order 2), with
-  §7.2 (the rehearsal, as amended by its dated note of 2026-11-08), §7.4 (the real walk it rehearses), §7.5
+  §7.2 (the rehearsal, as amended by its dated notes of 2026-11-09), §7.4 (the real walk it rehearses), §7.5
   (the renames, as amended), §7.6 (the hand-back states), §5.1 (`DATA/run/rehearsal/`) and §11 (requests).
   Its consequences are in [`../consequences.md`](../consequences.md); the evidence is the three findings files
   under [`research/`](research/README.md), whose Summary is this plan's design input.
@@ -15,7 +15,7 @@
   walk that moves it, the re-creation of every link, the rename swap, and both repositories left private and
   archived — as a literal procedure of seven stages that an implementer and the run carry out without making
   a decision, with the results recorded in `DATA/run/rehearsal/`.
-- **Status:** planning only.
+- **Status:** run on 2026-11-09; what it built and measured is in [`final-implementation.md`](final-implementation.md).
 - **Target version:** none (nothing is versioned; no product code, test source or build file changes).
 
 This unit writes to GitHub, and only through requests. The implementer types the local commands: the
@@ -287,9 +287,9 @@ flowchart TD
 
 ### The requests
 
-Every write is one request to the request protocol. A request is a JSON document that the tool generates into
-`DATA/run/rehearsal/requests/<key>.json` immediately before it is sent. The run sends the file's contents and
-waits for the reply; on `done` the check of §7.4 runs.
+Every write is one request to the request protocol, sent under a job. A **job** is a named, scoped grant recorded under `SpartanLaboratories/KotlinBottools`: its scope lists the repositories its requests may touch and the actions they may use; each request names it in `permissionReason`, and the job is open while the grant is in force.
+An **action** is a named kind of write that the request protocol carries out (`create-repo`, `transfer-issue`, `rename-repo` and the rest of the table below); an action is defined when the protocol has it. A request is a JSON document that the tool generates into
+`DATA/run/rehearsal/requests/<key>.json` immediately before it is sent. The run sends the file's contents and waits for the reply; on `done` the check of §7.4 runs.
 
 **Fields of every request**
 
@@ -299,11 +299,11 @@ waits for the reply; on `done` the check of §7.4 runs.
 | `github` | `SpartanLaboratories/KotlinBottools`, the repository the job is recorded under |
 | `action` | the action's name (table below) |
 | `target` | the repository the write applies to, as `owner/name`, by the name it holds at that moment |
-| `issue` | for `transfer-issue` and `comment`, the issue's number in the fixture repository; otherwise 22 |
+| `issue` | for `transfer-issue` and `comment`, the issue's number in the fixture repository; otherwise 22, this unit's issue number |
 | `procedure` | the literal `gh api` commands, in order, run in one shell (a command that sets a variable is on the same line as the command that uses it); it uses `gh api` for everything and pauses at least 3 s between writes and 10 s after a transfer |
 | `inputs` | `key` (the request's key), and `files` (file name → exact text) where a command reads `@file` |
 | `checks` | the facts the reply must show; where a command reads `@file`, the first check tells the run to write each entry of `inputs.files` byte for byte (UTF-8, no BOM, LF, no trailing newline) into the working folder |
-| `v`, `id`, `attempt`, `from`, `repo` | supplied by the run: `id` is `<sender>/22/<key>`, `attempt` is the number of stored replies for the key plus one |
+| `v`, `id`, `attempt`, `from`, `repo` | supplied by the run: the request protocol's envelope, added when the file is sent; the tool does not write them and this unit does not check them (`from` here is unrelated to the `from` of a `relationships` entry); `id` is `<sender>/22/<key>`, 22 being this unit's issue number, `attempt` is the number of stored replies for the key plus one |
 
 Fields of one action only: `source` (`transfer-issue`: the source repository); `number`, `title`, `body`
 (`placeholder-issue`; `number` also names the issue to change in `close-issue`, `reopen-issue` and the first
@@ -628,9 +628,9 @@ The landing changes documents and generated boards only, through the repository'
   research folder (`research/`, already committed on this branch), and the issue board files (`plan.json`,
   `plan.js`, `dashboard.html`) beside them.
 - **Outside this folder:** one line in the parent's `consequences.md` linking to this unit's `consequences.md`;
-  the dated notes the parent's `architecture.md` and `consequences.md` carry for 2026-11-08 (the repository
-  public since that date, the rehearsal's public source, the privacy step of the swap, and the walk and link
-  checks that read the hierarchy flat, issue by issue; they are already written and ride with this landing); and
+  the dated notes of 2026-11-09 the parent's `architecture.md` and `consequences.md` carry (the repository public
+  since 2026-11-08, the rehearsal's public source, the privacy step of the swap, and the walk and link checks that read the hierarchy flat, issue by issue; and what a transfer does to issue references:
+  `architecture.md` §1.2 criterion 3, §2.4, §7.2, §7.4 and §12.2, and the note under `consequences.md`'s citations list), all already written and riding with this landing; and
   the generated boards the landing regenerates (the repository work board `docs/plans/board.js`, `board.json`
   and `index.html`; the parent folder's and unit 1's issue boards; the state boards under `docs/dashboards/`).
 
@@ -646,7 +646,7 @@ Under the user profile, outside every repository:
 
 ### 7.3 Conventions for every stage
 
-- **Shell.** Git Bash, through the shell tool. Each call starts a new shell, so every call begins with this
+- **Shell.** Git Bash. Each call starts a fresh shell, so every call begins with this
   definition (`rs` for "run a rehearsal step"; it writes the output to the console and to `as-run.log`):
 
   ```bash
@@ -681,7 +681,7 @@ Under the user profile, outside every repository:
   stage except the one the stops table names, and report the stage id, the key, the first `STOP` line and the
   numbers on it. The state each stop leaves is in Design, "Stops and the state each leaves", and the re-run rule
   is in §7.5.
-- **Timeouts.** Every call runs in the foreground with the shell tool's timeout at 600000 ms. A `check post` of
+- **Timeouts.** Every call runs in the foreground with a 10-minute timeout. A `check post` of
   a transfer takes 15 to 60 seconds, a `ROUTE retry` wait is its own call.
 - **What is never done.** No command of this plan writes to GitHub: only a request does. No `gh issue transfer`,
   `gh issue edit` or `gh issue view --json` is typed. No request is sent without the `PROCEED` line that
@@ -857,7 +857,7 @@ rs refs pre
 200 for the public source and 404 for the private target), the `RECORD old names answer` line, and one `ok    url
 pre: …` line for each followed URL.
 
-Then, in this order, each STEP followed by its two reads:
+Then, in this order, each STEP followed by the reads the table names:
 
 | STEP | then |
 |---|---|
@@ -1050,7 +1050,7 @@ asserted beforehand.
 - **Commit sequence,** each a coherent unit:
   1. this plan and the unit's `consequences.md`, with the issue board files (the plan rides with the first stage
      of the work it describes);
-  2. the dated notes and the one line in the parent's `consequences.md` and `architecture.md`;
+  2. the dated notes of 2026-11-09 in the parent's `architecture.md` and `consequences.md`, and the one line in the parent's `consequences.md`;
   3. after the run, the as-built record and the reconciled `consequences.md`;
   4. the regenerated boards.
 - **Who commits:** the procedure commits and pushes nothing. The repository's normal landing carries the
