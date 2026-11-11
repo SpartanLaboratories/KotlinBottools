@@ -20,7 +20,8 @@
   pre-rewrite repository private and archived as `KotlinBottools-legacy`; and the realignment of this checkout onto the
   rewritten history. It is a literal procedure of seventeen stages, with its tools, that an implementer and the run
   carry out without making a decision.
-- **Status:** planning only.
+- **Status:** built. What was built and measured, and every departure from this plan, is in [`final-implementation.md`](final-implementation.md);
+  what the unit leaves behind is in [`consequences.md`](consequences.md).
 - **Target version:** none. Nothing is versioned; no product code, test source or build file changes. The landing changes
   documents and generated boards only.
 
@@ -82,10 +83,10 @@ and waits for its reply. The plan never performs a GitHub write itself and never
   window opens, over everything Gate 1 will read before the rewrite. A rejected key leaves its hits blocking: S0 then stops with nothing written anywhere and
   the unit hands back, because a real name in what becomes public needs a decision about the texts and the history. S5 starts from the confirmed list and stops
   if the gate meets a key no one decided.
-- **The 26 accepted ids.** The resolution comments on #2, #21 and #22 hold 26 pre-rewrite merge-commit ids inside
-  permalinks. They move with the issues and stay. This unit records their count, the three comments they sit in and their
-  list (in `DATA` only, never committed or printed), and hands the list to the publication unit, whose id-reference check
-  accounts for exactly these 26.
+- **The accepted ids.** The resolution comments on #2, #21 and #22 hold 26 occurrences of 3 distinct pre-rewrite merge-commit
+  ids inside permalinks. They move with the issues and stay. This unit records their counts, the three comments they sit in and
+  their list (in `DATA` only, never committed or printed), and hands the list to the publication unit, whose id-reference check
+  accounts for exactly these 26 occurrences of 3 ids.
 - **Outside this unit.** The 56 links that still name the deleted planning branch (3 in #1's body, 2 in each of #2 to #19,
   16 in MagicBot #1 to #8, 1 in WebTools #55), #1's body naming that branch, and #2's plan-folder line still reading
   `0-<slug>` move as they are. They are open follow-ups for one later pass of issue-text edits on the fresh repository
@@ -213,7 +214,7 @@ is one below; a closed issue arrives closed with its reason; the links all stay 
 repositories; references in the moved text are rewritten to full names; the renames and archive order, and identity by
 repository id ([as-built record §3](../22-transfer-rehearsal/final-implementation.md#3-measurements)). Its known gaps
 ([consequences §5](../22-transfer-rehearsal/consequences.md)) are closed in this unit's own tool, `swap.py`
-(Design, "The walk tool").
+(Design, "The tools", "The closed gaps").
 
 **The privacy gate's name order.** The gate (`privacy_gate.py`, the preparation unit's tool) builds its member and guild lists from sets and sorts them case-insensitively
 (`key=str.lower`), and its name expressions by length alone, so names that tie on those keys keep the order of the set, which depends on the per-process hash seed; under
@@ -226,7 +227,7 @@ map holds the Steam64 base at ID#0; their decisions stand. This unit's copy of t
 `(-length, lower-case, exact)` in `alt()`, which makes the order total; its command line, output format and masking are unchanged, its output over this unit's folder is
 byte-identical to the old gate's, and nothing else in it depends on the seed (its other sorts and dict orders follow the corpus). `allow_tool.py` uses the same total order for the lists hash and for resolving keys, and refuses a gate that does not order equal names totally.
 
-**The saved realignment scripts** (`realign-1-preflight.sh` to `realign-4-purge.sh`) depart from architecture §9.2 in four
+**The saved realignment scripts** (`realign-1-preflight.sh` to `realign-4-purge.sh`) depart from architecture §9.2 in five
 ways, which this unit's own copies (`kr1-preflight.sh` to `kr5-proof.sh`, Appendix A) correct: (1) the running-`git.exe`
 check and the open-handle check are recorded, not stops; (2) the fetch and the `ls-remote` before it use `gh auth git-credential` as the only credential
 helper (architecture §6.1), so that no Git Credential Manager window can open in a run that cannot answer one, where the saved script used the checkout's own helper; (3) the fresh
@@ -248,11 +249,11 @@ item 9, dated note). This plan cites commits by subject, never by id.
 **Self-tests, run before this plan was written** (from a sandbox standing in for the user profile, on fixtures the tests
 build themselves; no real history, no real repository):
 
-- `swap.py selftest`: `ok    selftest: 539 checks passed`, and a mutation harness showed that its checks fail when the logic they
+- `swap.py selftest`: `ok    selftest: 564 checks passed`, and a mutation harness showed that its checks fail when the logic they
   guard is broken.
 - `allow_tool.py selftest`: `ok    allow_tool selftest: 50 checks passed`, on made-up legacy data and a fixture corpus with planted hits, through the real gate.
 - `scrub_check.py selftest`: `ok    scrub_check selftest: 17 checks passed`.
-- `kselftest.sh`: `ok    kselftest: 113 checks passed`, covering `kept_findings.py` on a finding in a kept file, the
+- `kselftest.sh`: `ok    kselftest: 131 checks passed`, covering `kept_findings.py` on a finding in a kept file, the
   rewrite scripts (S3, S4) end to end on a fixture with the scrub, Gate 1's script, the push preparation and verification, the
   allow-list proposal, confirmation, write and verification with corpus labels and places printed masked, the
   exit tests with the F0 probe, the scratch clone and the realignment scripts on fixture clones, and their stops.
@@ -276,7 +277,7 @@ build themselves; no real history, no real repository):
 | A10 | The service's grant lifts its rule against `git reset --hard` for the realignment's job. | The `realign-checkout` request is refused (`refused`); nothing moved; the owner decides, and the realignment is the last stage so that nothing before it depends on it. |
 | A11 | `gh auth git-credential` serves the fetch of the private fresh repository from a checkout and from a scratch clone. | S8's dry run stops at `kr2-fetch.sh` before anything moves; nothing public has changed. |
 | A12 | The names the gate meets are ordinary words, a repository name, the template guild folder, and the Steam64 base, as the research found. | The owner rejects the key (a name that looks like a person or a server), and S0 stops before the window opens with nothing written; the unit hands back. |
-| A13 | The default-rule findings of gitleaks in kept files are none; a custom-rule finding cannot occur after the purge. | A default-rule finding is recorded by rule id and count at S7 and stops the publication unit's visibility change, not this unit; a custom-rule finding stops S7 (a purged kind of file survived). |
+| A13 | The default-rule findings of gitleaks in kept files are none; a custom-rule finding cannot occur after the purge. | A default-rule finding is recorded by rule id and count at S7 and holds the publication unit's visibility change, not this unit, except a `private-key` finding, which stops S7 (a private key in a kept file is a secret in what becomes public); a custom-rule finding stops S7 (a purged kind of file survived). |
 | A14 | No landing, issue or pull request is created on KotlinBottools between the mirror clone and the end of the walk. | S6's preparation stops on a head that is not `ref-map`'s old column; S9's census and S12's highest-number check stop on a number that is not in the census; the unit restarts from a fresh mirror. |
 
 ---
@@ -542,6 +543,7 @@ prints and ends the script):
 | `k7-exit.sh` | S7 | the fresh mirror, exit tests and the F0 probe |
 | `k8-scratch.sh` | S8 | a scratch clone of the backup set up like this checkout |
 | `kr1-preflight.sh`, `kr2-fetch.sh`, `kr3-premove.sh`, `kr3-postmove.sh`, `kr3b-verify.sh`, `kr4-purge.sh`, `kr5-proof.sh` | S8, S15 | the realignment: preflight, fetch, the move in two parts around the request's own reset line, verification, purge, push-safety proof (`quiet` mode answers by exit status) |
+| `k12-gate2.sh` | S12 | Gate 2: the privacy gate over the fresh repository's texts through `allow_tool.py run`, and the scrub's count over the same texts |
 | `k14-residual.sh` | S14 | the residual probes and the report row |
 | `k16-close.sh` | S16 | the legacy repository's refs, the checksum lists |
 | `privacy_gate.py` | S0, S5, S12 | the preparation unit's gate with the order of equal names made total; the bootstrap saves it over `$TOOLS/privacy_gate.py`, and `k0-ready.sh` leaves it out of the reused-tools table because the bootstrap has already checked it against this plan's recorded size and sha256 |
@@ -564,7 +566,7 @@ verify`); and the number of surviving blobs the scrub changed equal to the predi
 
 ### The allow-list
 
-The privacy gate (`privacy_gate.py`, the preparation unit's tool at its recorded hash, unchanged) fails on any member name, guild folder or standalone id of the
+The privacy gate (`privacy_gate.py`, the preparation unit's tool with the order of equal names made total, saved by this unit's bootstrap) fails on any member name, guild folder or standalone id of the
 legacy data it meets. Its only suppression is an allow-list of words the reviewer has judged not to be personal data (ordinary words, a repository name, the
 template guild folder, public constants such as the Steam64 base). The gate never prints a name, and an entry that is a real name hides a leak, so the list is
 built by proposal and confirmation, never by the run's own judgement, and no word is printed or written anywhere but the list itself.
@@ -629,7 +631,8 @@ The window opens when `precommit` is `done` (S1) and closes when S15's push-safe
 - a tool correction is saved to `WS/tools` with its size and sha256 recorded in `DATA/run/swap/tool-corrections.txt`, and enters
   this plan and the as-built record after S15;
 - the realignment's preflight stops on any tracked change, and so does the request service's own guard immediately before
-  the move; the untracked and ignored files are compared across the move.
+  the move; the untracked and ignored files are compared across the move, by name outside the folders an open IDE, the Kotlin
+  daemon and Gradle write to at any moment (`.idea`, `.gradle`, `.kotlin`, `build`, `out`, at any depth), and by count inside them.
 
 ### Workspace and data layout
 
@@ -701,7 +704,10 @@ prints its corpus labels (the folder of a `--repo`, the basename of a `--file` o
 `allow_tool.py`, which masks every legacy word in every line it prints, labels and places included, with the gate's own `mask()`. Never printed or quoted: an issue's or
 comment's text, a pre-rewrite commit id, a blob id, a path, a name, a rule's match, a token. The expression file is never
 printed. `swap.py` filters the `--verbose` output of `gh api` to its `< HTTP` and `< Location` lines. Rule ids and counts of
-gitleaks findings are printed; paths and values are not.
+gitleaks findings are printed; paths and values are not. A `STOP` from a failed `gh` call carries what GitHub answered, cut to 1,500
+characters, and `gh`'s own error line, cut to 300: GitHub's error body is its message about the request (status, message and a
+documentation link), never the text of an issue, and every request the tool makes names repositories by name or id and items by
+number, so the line stays inside this rule.
 
 ### Stops and the state each leaves
 
@@ -714,7 +720,7 @@ gitleaks findings are printed; paths and values are not.
 | S3–S4 | a before-count at zero, a prediction that differs, any post-run check | nothing on GitHub; the mirror is discarded, the backup stays | fix the cause, remove the mirror, re-run from S2's mirror step |
 | S5 | the allow-list is not confirmed (`allow-step check`), a new key the gate meets that no one decided, an id outside #2, #21 and #22 | nothing on GitHub | for a new key the run has already printed the proposal for this corpus: the owner answers each key, then write, verify and S5 again; a hit is never allow-listed by the run |
 | S6 | `fresh-create` conflict or refusal; `fresh-settings` differing; `k6-fresh.sh prep` differing; `fresh-push` failure; verification differing | the temporary repository exists, private, empty or holding the rewritten history; the old repository untouched | `fresh-create` is never repeated blind (the name is read first); a push that left part of the refs is never repeated blind: read the state, then a re-run of the mirror push to the same repository is idempotent (every ref is new, then up to date), or another temporary name is used |
-| S7 | a check of the exit tests, a custom-rule finding, a served old id | as S6 | read the cause; a served old id is a stop that hands back |
+| S7 | a check of the exit tests, a custom-rule or `private-key` finding, a served old id | as S6 | read the cause; a served old id is a stop that hands back |
 | S8 | a script or a request on a scratch clone | nothing public changed | fix, re-run S8 |
 | S9 | a census gap, a link table inconsistent, labels or milestone differing | labels and milestone possibly created; no number in the fresh repository | fix, re-run S9 (idempotent) |
 | S10 | an item *k* lands on the wrong number or loses anything; a refusal with no route | items 1 to *k*−1 on their numbers; item *k* in the source or on another number; the rest in the source; nothing public; no rename | `check stage S10` prints `RECORDED walk-stopped-at=k`; the options belong to the organisation's administrator: continue with renumbered citations, or move the issues back, which cannot restore their numbers; no later stage runs |
@@ -732,7 +738,7 @@ gitleaks findings are printed; paths and values are not.
 One repository (created `KotlinBottools-next`, renamed `KotlinBottools`, private, with the old repository's settings less the
 wiki and the Actions write permission), its mirror-pushed history (two branches, no tag, no pull-request ref), the three
 custom labels and one milestone, 28 transferred issues with their comments, three closed placeholder issues, link
-repairs in the fresh repository and, for the cross-repository links, in MagicBot and WebTools; the old repository's rename, its
+repairs where a transfer drops a link, in the fresh repository and, for the cross-repository links, in MagicBot and WebTools; the old repository's rename, its
 change to private and its archive. It sends no comment, no issue-body edit and no deletion.
 
 ---
@@ -745,13 +751,13 @@ The landing changes documents and generated boards only, through the repository'
 
 - **In this folder:** this `plan.md`, `consequences.md`, the as-built record `final-implementation.md`, the research folder
   (`research/`, already committed on the topic branch), and the issue board files (`plan.json`, `plan.js`,
-  `dashboard.html`) beside them; the replaced plans, `superseded/plan-1-2026-11-10.md` and `superseded/plan-2-2026-11-10.md`.
+  `dashboard.html`) beside them; the replaced plans, `superseded/plan-1-2026-11-10.md`, `superseded/plan-2-2026-11-10.md` and `superseded/plan-3-2026-11-11.md`.
 - **Outside this folder**, all written after the realignment, never inside the window: one link line for this unit in the
   parent's `consequences.md` §4; a dated note in `21-preparation/consequences.md` that names this unit and links to it and says what its corrected gate makes no longer current (the recorded size
   and sha256 of `privacy_gate.py` in the preparation unit's records, and its name order inside case-only groups); a dated note under the parent `consequences.md` §5's first known-gaps bullet (the
   protocol now defines every request the units need; which ones the rehearsal and this unit exercised; which remain
   unexercised: `repo-security`, `edit-issue-body`, `replace-clone`, and any this run did not reach); dated notes on the parent
-  `architecture.md`: §1.1 item 9 and the "Public material" line (the 26 accepted ids in three moved resolution comments), §6.4 stage 6 (the push to the empty fresh repository uses `--mirror` without `--force`, every ref being new),
+  `architecture.md`: §1.1 item 9 and the "Public material" line (26 occurrences of 3 distinct pre-rewrite ids in three moved resolution comments), §6.4 stage 6 (the push to the empty fresh repository uses `--mirror` without `--force`, every ref being new),
   §7.4 (the moved texts keep the names the transfers write; `KotlinBottools-next` stays reserved), §9.2 and §11 (the topic
   branch carries the commits made before the mirror clone), and any other section the build departs from; the regenerated
   boards.
@@ -834,32 +840,32 @@ block() { awk -v n="$1" 'substr($0,1,3)=="```"{ if (p) exit; s=" file=" n; if (l
 check() { [ "$(wc -c < "$1" | tr -d ' ')" = "$2" ] && [ "$(sha256sum "$1" | cut -d' ' -f1)" = "$3" ] && echo "ok    $(basename "$1") ($2 bytes)" || { echo "STOP  $(basename "$1") differs"; exit 1; }; }
 while read -r name dest size sha; do block "$name" "$T/$dest"; check "$T/$dest" "$size" "$sha"; done <<'ROWS'
 swap-step.sh swap-step.sh 381 6abb3fdf829c5fbeff05a8bf8ba071d1d19e58e8929982b7cc0fb888b287fd10
-swap.py swap/swap.py 168131 a3e10fbdbf45129d0fb97a2bf34bc9b455816afc265ecb54f2af6eb6e25b7d7a
+swap.py swap/swap.py 177954 05698846872cfa30613a68c184aafbbdb71a147630d8a13ed2634b931cee6c65
 scrub_check.py scrub_check.py 23670 2789a65c3de12fbf4e4b031ba13a8682a991a072a4c564ac6506cccc2fe1375b
 privacy_gate.py privacy_gate.py 11615 0caea1411a4f3db7a32a0ac54e41d65b6df427545df16c7233d539a860747760
 allow-step.sh allow-step.sh 282 7cc2ef03bced01dd6f11c0603fd858a48c01a974c47388a228cd3af41a7113cf
 allow_tool.py allow_tool.py 41825 a9ca21099ed4b1504579aa543d25fee1b2b6579b7ea0518a40fbc31fd25e886d
 kcorpus.sh kcorpus.sh 3461 194c2ec53c83fca6a25e0c5a0b7b5d441889dbe77813d503855c580b31200e62
-klib.sh klib.sh 3025 ba2946f38541602daf9be05d9efc94cdf0bc3403957493afc1b2f2973eb86ce2
+klib.sh klib.sh 3651 445011f5207ae1e6adaa81cb7e53c2ca718545f75d6d14131cc3df2472760617
 k0-ready.sh k0-ready.sh 6942 cb04f4c91cb73983abadf9a94f782d9bd03ada2aade6565b471cf2bdbf5186c3
-kselftest.sh kselftest.sh 34180 022094b98cde41c3230d9b2ed97192414fb935c012cdcf3365709a23891ab3b9
+kselftest.sh kselftest.sh 41892 a98dc7214725d8c586a7184d92a9214842b624306245f7ef59a89507b24973b0
 k2-mirror.sh k2-mirror.sh 5629 e37b5116534ea62923a754e66a471a2a1340ead10ba6901a617d542be9980071
 k3-scrub-before.sh k3-scrub-before.sh 3438 010456f38fda2e2e2f034bb5a22794ba2a0bae16b39df2b2bba0cb9cb6ed3855
 k4-rewrite.sh k4-rewrite.sh 7152 6c9a4904539ddd820ff73e914903b386d24f2e0f2a8a76fded3a0696bd130656
 k5-gate1.sh k5-gate1.sh 3109 17e00e869c3c027688970722c19c463dbc748e62ec360b789893a3f88dd33f97
-k6-fresh.sh k6-fresh.sh 6448 c7ea58727cdab96396f530762e0247477ae8111d8eeaa3f1189b2084c8b1c876
-k7-exit.sh k7-exit.sh 6664 c875580296fae76d9791ae9903d5fbc2d27ccbeddce6f6fbc62562fd8d004a0f
+k6-fresh.sh k6-fresh.sh 7060 2f587bc891a2cdd7acb817b6b5a87c1a460ddb96d1597f8eb7061b05d5dc7674
+k7-exit.sh k7-exit.sh 6679 91001e071acb83ff8fc23fdae19f86f1bf82c9df4b1632586c5809ac1997ca22
 k8-scratch.sh k8-scratch.sh 2442 50a0eb1c0c5edc93654318014739773dd91f0e101a114a2a1451d4ce8d17a5c9
-k12-gate2.sh k12-gate2.sh 2216 1c72bf2fdda34bd5107bf6174a491705fe334a871a321ad9e718d2c1e9f40f3b
-k14-residual.sh k14-residual.sh 5332 d5c7bb2f953e88220f006d163770c3e4d6425489ea1c73c2b08926749f1be0de
-k16-close.sh k16-close.sh 2210 324b653d04ba662a8de263066962abf5a039363488f59d9a09402f00fb1f769a
-kr1-preflight.sh kr1-preflight.sh 4088 beefb25eb16058a9dc4471d2704a2d24ff5de0707218abffd8a979459972fdb2
+k12-gate2.sh k12-gate2.sh 2310 305d3457b312015a9e063ddae9ac46dd34ce96c68190a6e934980098f7806c70
+k14-residual.sh k14-residual.sh 5634 038144443bb2c3902f6817c824e8374d99802c54a5452dc73e1224a19a216ea7
+k16-close.sh k16-close.sh 2382 f5f190d674892b911f61946cf5ac05378e53eb1428a188b8f8afc9ec793d294c
+kr1-preflight.sh kr1-preflight.sh 4114 ea23f4e5729c82fa62a74cf16daad51a5205a42c946a50fdd767eb5341421d09
 kr2-fetch.sh kr2-fetch.sh 2733 58b5da34fed644cbe8f64144194329ab538f90b42c387c580dcead130efd4a07
-kr3-premove.sh kr3-premove.sh 1796 6235a0becb8e59831b75dd396a8541b36cddfb01e85dfdf12a3ab1120c0e06d9
-kr3-postmove.sh kr3-postmove.sh 1295 b716434cd88a8c9b79278d4d42423b4ec59c9fa5e1d4406c2d9c676278916b25
-kr3b-verify.sh kr3b-verify.sh 2399 64f77b7864454d9bac311c0ff8e00ee04fbb5967d555794b98b0f36409932da1
+kr3-premove.sh kr3-premove.sh 2019 2e3eb41063d47b80a6bc0fa3c6796aa669ee0ac100bfbdd659300c32dc7b5e2f
+kr3-postmove.sh kr3-postmove.sh 1387 9a8189e79913c0e590f8c842aa83ef60f45f5edd43b0e197079adb0aff9aaa4d
+kr3b-verify.sh kr3b-verify.sh 2718 598daef04ed30a904b3543e01abde35047f54dfbb0e2f7fe0f1edbccf5338856
 kr4-purge.sh kr4-purge.sh 2203 665bb42765f3c315095b57e67f648585a72eb9eafa181b97c8ffccc8062f9367
-kr5-proof.sh kr5-proof.sh 2740 7e872471778b8ce1153dcd8893ff49d02cb06bf2df8e6568ae8b7c5e7f303e9f
+kr5-proof.sh kr5-proof.sh 3068 e9adfab183816c7d209f847bb6839f75fd42cf6fedac68a08bbac468e9689749
 ROWS
 ```
 
@@ -884,12 +890,12 @@ sw check rate
   the recorded sha256), the purge list (11 lines, 115 bytes), the five static backups against their checksum lists, the path scrub's three expressions counted over every file of this unit's folder and of the pre-clone commit (`expr=1 files_with_match=0 matches=0` and so on; a match is a stop), then
   `RECORD IntelliJ IDEA running: <0|1>; git.exe processes: <n>` and `STAGE S0-local OK`. The IDE state is recorded for
   S15 and changes nothing here.
-- **`sw selftest`:** `ok    selftest: 539 checks passed`.
+- **`sw selftest`:** `ok    selftest: 564 checks passed`.
 - **`scrub_check.py selftest`:** `ok    scrub_check selftest: 17 checks passed` (about 20 seconds).
 - **`ak selftest`:** `ok    allow_tool selftest: 50 checks passed`.
-- **`ks kselftest`:** `ok    kselftest: 113 checks passed`, then `STAGE S0-kselftest OK`. It runs the shell scripts on fixtures
+- **`ks kselftest`:** `ok    kselftest: 131 checks passed`, then `STAGE S0-kselftest OK`. It runs the shell scripts on fixtures
   in a sandbox it builds under `WS/tmp/kselftest` (and deletes), with a stand-in for `gh` and local repositories for GitHub,
-  and takes about ten minutes. It reads no real history.
+  and takes about four minutes. It reads no real history.
 - **`sw smoke`:** two `ok    smoke: …` lines with counts of `SpartanLaboratories/KotlinBottools` (printed, not compared; on
   2026-11-10: 28 issues read by node id and by name, 31 numbers of which 3 are pull requests, 91 edges (26 sub-issue, 65
   blocked-by) with ends in MagicBot and WebTools, no inconsistent edge inside the repository and none one-sided, 12 labels,
@@ -1059,12 +1065,12 @@ scanned with `--file`, and the files are deleted once the gate has passed), runs
 `GATE: 0 blocking hit(s)` with exit status 0. If the gate still meets a key no one decided, the script prints `RECORD Gate 1 meets a name or id that no one decided`, runs `allow_tool.py propose s5`
 and stops: the owner answers each key, then `ak decide`, `ak write`, `ak verify s5` and S5 again. It then extracts the 40-hexadecimal ids of the moved comments (not of issue bodies
 and titles, which must hold none; not of the pull requests' own texts, which are not carried over) into
-`DATA/run/swap/accepted-ids-s5.txt` and prints `RECORD accepted pre-rewrite ids in the moved comments: <occurrences> occurrences, 26
+`DATA/run/swap/accepted-ids-s5.txt` and prints `RECORD accepted pre-rewrite ids in the moved comments: 26 occurrences, 3
 distinct, in 3 comments of issues [2, 21, 22]; in issue bodies and titles: 0`. An id in a comment of any other issue, or any id in
 a body or title, is a stop.
 
 **Expected output:** the gate's counts (masked, no name), `ok    the gate's verdict line`, the `RECORD accepted …` line, `STAGE S5 OK`.
-The list stays in `DATA`: its count (26) and the three comments go to the as-built record and to the publication unit.
+The list stays in `DATA`: its counts (26 occurrences of 3 distinct ids) and the three comments go to the as-built record and to the publication unit.
 
 #### S6 — The fresh repository
 
@@ -1087,7 +1093,7 @@ STEPs, in this order, with their commands between them:
    `!` would be a real failure), expects only heads locally, equal to `ref-map`'s new column, states the expected tally (`new` =
    the number of heads; nothing forced, deleted or rejected), expects the pre-rewrite repository's heads (read with `git ls-remote`,
    `gh auth git-credential` as the only helper) to equal `ref-map`'s old column (nothing landed since the clone), records its
-   pull-request refs against the clone's listing, adds the `fresh` remote (origin stays the old repository) and runs `fsck`.
+   pull-request refs against the clone's listing (both read whatever separates their columns, merge refs left out: GitHub recomputes them), adds the `fresh` remote (origin stays the old repository) and runs `fsck`.
 4. `fresh-push`. The request's procedure checks the remote, runs the push as a dry run and then for real (`--porcelain --mirror`,
    no `--force`), tallies each with `porcelain_tally.awk`, and requires the dry run's tally to be `new=<heads> forced=0 deleted=0
    rejected=0 done=1 pull_lines=0 other_refs=0 bad=0`, the push's flags to equal the dry run's, exit status 0 and `Done` present.
@@ -1100,11 +1106,13 @@ STEPs, in this order, with their commands between them:
 
    `STAGE S6-verify OK`: `git ls-remote --refs` of the fresh repository and the REST `branches` listing both equal `ref-map`'s new
    column; no ref points at a pre-rewrite commit; no pull-request ref exists in the fresh repository; the pre-rewrite repository's
-   heads and pull-request refs are as before the push.
+   heads and pull-request refs are as before the push (the pull-request lists read the same way as at `prep`).
 6. `fresh-settings` again (`sw check pre fresh-settings` prints `SKIP`; `sw check post fresh-settings` re-reads the table after the push and
    saves the snapshot `after-push`: the values that do not depend on the push are unchanged).
 7. `fresh-default`. Before the write the tool records which branch GitHub made the default (`default-seen` in `steps.jsonl`); the
-   request sets `main`; the post check reads table B2 and diffs it with B1: only the emptiness and default-branch fields may differ.
+   request sets `main`; the post check reads table B2 and diffs it with B1: apart from the fields of GitHub's repository representation that are
+   not settings (a per-read clone token, never stored; the language and licence GitHub detects; counts, times and size: `NOT_SETTINGS` in
+   `swap.py`), only the emptiness and default-branch fields may differ.
 
 ```bash
 sw check stage S6
@@ -1122,12 +1130,14 @@ Run it in the background. It takes a fresh mirror of the fresh repository (`WS/f
 T − P; runs `fsck`; `expect_check.py` with the scrub-adjusted counts; the manifest compared with the objects reachable from
 branches and tags (0) and from every ref (0); the scrub's zero count again over every ref of the fresh mirror; the gitleaks scans
 of branches and tags and of every ref, which must be `RESULT: CLEAN` and equal (no pull-request ref exists); a default-rule
-finding in a kept file is recorded by rule id and count (it stops the publication unit's visibility change, not this unit) and a
-custom-rule finding stops. Then the F0 probe: status-only authenticated requests for every pre-rewrite tip, every first-changed
+finding in a kept file is recorded by rule id and count (it holds the publication unit's visibility change, not this unit), except a
+`private-key` finding, which stops, as a custom-rule finding does. Then the F0 probe: status-only authenticated requests for every pre-rewrite tip, every first-changed
 commit and an evenly spaced sample of at most 60 manifest blobs, against the fresh repository, with a positive control (a
 rewritten tip: 200) and a negative control (an id that does not exist: 404 or 422); no id may be served.
 
-**Expected output:** `ok    gitleaks: RESULT: CLEAN on branches and on every ref`, `ok    probe control-positive: every id is served`,
+**Expected output:** `ok    gitleaks: RESULT: CLEAN on branches and on every ref`, or, with a default-rule finding in a kept file, both scans
+`RESULT: FINDINGS`, the findings by rule id and count, `ok    no finding of a custom rule (a purged kind of file that survived)` (the check counts `private-key` with the custom rules) and
+`RECORD default-rule findings in kept files, …`; then `ok    probe control-positive: every id is served`,
 `ok    probe old-tips: no id is served` (and for `first-changed`, `manifest-sample`, `control-negative`), `tips=… first_changed=…
 blob_sample=… served=0`, `STAGE S7 OK`.
 
@@ -1145,7 +1155,7 @@ done
 ```
 
 `STAGE S8-scratch-dry OK`, then in order `STAGE KR1 OK`, `STAGE KR2 OK`, `STAGE KR3PRE OK`, the reset (its standard error discarded), `STAGE KR3POST OK`, `STAGE KR3B OK` (exactly the predicted tracked files left and changed
-content, the untracked and ignored files unchanged), `STAGE KR4 OK` (or `STAGE KR4 RECORDED deferred=<n>`, recorded) and `STAGE KR5 OK`.
+content, the untracked and ignored files outside the IDE and build folders unchanged and those inside them counted), `STAGE KR4 OK` (or `STAGE KR4 RECORDED deferred=<n>`, recorded) and `STAGE KR5 OK`.
 The dry run exercises `gh auth git-credential` against the fresh repository (A11). Then the request on the second
 clone:
 
@@ -1165,12 +1175,18 @@ line in the service's form `git -C <clone> reset --hard <ref>` (Design, "The req
 
 #### S9 — Before the walk
 
-STEPs: `labels-fresh`, `ms-fresh`; each `request`, send, `reply`, `check post`. Then:
+STEP `labels-fresh`: `request`, send, `reply`, `check post`. Then:
 
 ```bash
 sw check rate
 sw census
 sw baseline
+```
+
+Then STEP `ms-fresh`. The milestone's description is the source's, which `baseline` records, so `request ms-fresh` stops before
+`baseline` has run ("an earlier step has not been recorded"). Then:
+
+```bash
 sw accepted
 cmp -s "$DATA/run/swap/accepted-ids-s5.txt" "$DATA/run/swap/accepted-ids.txt" && echo "ok    the accepted ids equal S5's"
 sw xrefs before
@@ -1186,7 +1202,8 @@ sw check stage S9
   `ok    baseline: 28 issues, 8 comments, 91 edges (26 sub-issue, 65 blocked-by; 21 with MagicBot/WebTools), 3 labels, 1 milestone with … open and …
   closed issues`. It stops on any other edge count, on an edge with a repository no job scope names, on an edge the other
   repository does not report the same way, and on a label or milestone that is not the design's.
-- **`accepted`:** `RECORD accepted ids: … occurrences, 26 distinct, in 3 comments of issues [2, 21, 22]`.
+- **`accepted`:** `RECORD accepted ids: 26 occurrences, 3 distinct, in 3 comments of issues [2, 21, 22]` (other counts add the note
+  `; the design records 26 occurrences of 3 ids in 3 comments`).
 - **`xrefs before`:** `RECORD xrefs before: {…}`: for MagicBot, WebTools and `.github`, the number of texts, the number of references
   to KotlinBottools issues by the name form used, and a hash of those texts. Counts only; measured again after the walk to show
   whether the transfers rewrote them.
@@ -1208,7 +1225,9 @@ check of a transfer: the item landed on n (a wrong number stops the walk at it);
 (title, body, state, labels, milestone, comment count, every comment), every reference that names the source or the target in any
 form mapped back to bare `#N` before the comparison and any other difference a stop; the links settled and classified (`kept`,
 `repointed`, `dropped`, `unsettled`, `stale`); the references measured. Post check of a placeholder: number, title, body, closed,
-`not_planned`, not a pull request. A closed issue's arrival is recorded (`closed/COMPLETED` needs nothing; otherwise `NEXT close-t-<n>` or
+`not_planned`, not a pull request. The placeholder request's own first line checks the highest number again on GitHub, as the largest of all
+the fresh repository's numbers (a transferred issue keeps its creation time, so the newest issue is not the highest number once a
+placeholder sits below transferred issues); a placeholder created but not yet closed is resumed by its guarded close alone. A closed issue's arrival is recorded (`closed/COMPLETED` needs nothing; otherwise `NEXT close-t-<n>` or
 `NEXT reopen-t-<n>` and the check again; a refusal of its transfer runs the reopen route).
 
 **Expected output per transfer:** `ok    transfer-<n>: T#<n> equals the item read before the walk (…)`, `ok    transfer-<n>: links, 2 reads, settled=True:
@@ -1292,7 +1311,8 @@ sw check stage S13
   unauthenticated by name, by id and on the web; the time written to `legacy-private-at` ends its public window.
 - **`urls after-rename-fresh`:** `ok    url …` lines: the old URL of one transferred open and one transferred closed issue, by each name that
   still resolves, lands on the issue's new home (recorded hops).
-- **`snapshot after-rename B2 counts`:** `ok    snapshot after-rename: the settings read back as designed and equal B2 apart from the name and URL fields`.
+- **`snapshot after-rename B2 counts`:** `ok    snapshot after-rename: the settings read back as designed and equal B2 apart from the name and URL fields`
+  (the fields that are not settings, `NOT_SETTINGS`, and the open-issue counts are left out of the comparison too).
 - **`k6-fresh verify` with the final names:** `git ls-remote https://github.com/SpartanLaboratories/KotlinBottools.git` heads equal `ref-map`'s new
   column; the legacy repository's heads and pull-request refs are the recorded ones; the id at `KotlinBottools` is the recorded fresh
   id and not 562658298.
@@ -1317,6 +1337,7 @@ objects, that cached views are gone, that no third-party copy exists, that secre
 the repository while it was public).
 
 **Expected output:** `fresh, authenticated: …` notes as `ok`, the `fresh activity feed: … distinct ids, before_in_old=0`, the tallies, the public window, `STAGE S14 OK`.
+A protocol-v2 channel that answers neither "served" nor "not served" is recorded as `unreadable`, never counted as not served.
 
 #### S15 — This checkout's realignment
 
@@ -1329,11 +1350,11 @@ First, copy this checkout's untracked and ignored files to `DATA` (a safety copy
 
 ```bash
 D="$DATA/run/realign-files"; mkdir -p "$D"
-( cd "$KBT" && git ls-files -o -z > "$D/list.z" && tar --null -T "$D/list.z" -cf "$D/untracked-and-ignored.tar" ) ; echo "tar status=$?"
-echo "ok    $(tr -cd '\0' < "$D/list.z" | wc -c | tr -d ' ') files listed, $(tar -tf "$D/untracked-and-ignored.tar" | wc -l | tr -d ' ') in the archive"
+( cd "$KBT" && git ls-files -o -z > "$D/list.z" && tar --force-local --null -T "$D/list.z" -cf "$D/untracked-and-ignored.tar" ) ; echo "tar status=$?"
+echo "ok    $(tr -cd '\0' < "$D/list.z" | wc -c | tr -d ' ') files listed, $(tar --force-local -tf "$D/untracked-and-ignored.tar" | wc -l | tr -d ' ') in the archive"
 ```
 
-The two counts must be equal. **No board event and no agent start while the request runs:** the untracked-and-ignored set is compared across
+The two counts must be equal. **No board event and no other program started while the request runs:** the untracked-and-ignored set is compared across
 the move, and the live view of the boards is part of it. Then the STEP `realign-main`:
 
 ```bash
@@ -1364,7 +1385,7 @@ The request runs the scripts in order through the runner, the hard reset between
    `git -C <clone> reset --hard refs/remotes/origin/<topic branch>` with its standard error discarded (`2>/dev/null`: a reset that cannot delete a file names its path, and purged paths carry guild folder names; the discarding belongs to the output rule); the
    postmove requires HEAD at the target and moves the other branch by `update-ref`. A failed delete or update is caught by `kr3b-verify.sh`, not by the exit status, which a locked file on Windows leaves
    at 0: exactly the predicted tracked files left the working tree and none remains on disk ("removed files still on disk" is 0), exactly the predicted files changed content, the tracked files equal `HEAD`
-   (`git status --porcelain --untracked-files=no` is empty), the untracked and ignored set is unchanged, every branch is at its target. Benign warnings (line-ending conversion notices) can no longer stop the move.
+   (`git status --porcelain --untracked-files=no` is empty), the untracked and ignored set is unchanged by name outside the IDE and build folders and counted inside them, every branch is at its target (both compared yes or no, so no commit id is printed). Benign warnings (line-ending conversion notices) can no longer stop the move.
 4. `kr4-purge.sh`: `ORIG_HEAD` and `FETCH_HEAD` deleted; `git reflog expire --expire=now --all`; `git gc --prune=now`; `count-objects` must
    show one pack, no garbage and no loose objects; `fsck` passes; every first-changed commit, every changed or pruned commit and every
    manifest blob missing, with the backup as the control; no old id as text anywhere in `.git` outside `objects/`. A failed proof here is
@@ -1402,7 +1423,7 @@ lines, and the owner is given these commands, to be run once IntelliJ is closed,
    `DATA/manifests/`, which must report all missing (`ktally` in `klib.sh` is the function).
 
 Until it is done this checkout holds unreachable old objects that no push can carry. **The window ends here:** the push-safety proof has
-passed, the tracked boards may be brought up to date, and the Document step may begin after S16.
+passed, the tracked boards may be brought up to date, and the work on the documents may begin after S16.
 
 #### S16 — Close-out
 
@@ -1417,10 +1438,11 @@ FRESH_ID="$(fid)" ks k16-close
   cross-repository links, the identity (the fresh id at `KotlinBottools`, not 562658298; the legacy repository private and archived) and the old URLs;
   prints `ok    <shape>` for each, `refusals recorded: <n>`, and `RESULT OK`. A shape that fails prints `FAIL  <shape>` and the unit hands back with
   `result.json`.
-- **`k16-close`:** the legacy repository's refs equal the listing taken at the mirror clone, no issue is left in it, it is private and archived,
+- **`k16-close`:** the legacy repository's refs equal the listing taken at the mirror clone (pull-request merge refs left out on both sides), no
+  issue is left in it (a failed read of its issue listing is a stop, not zero issues), it is private and archived,
   `KotlinBottools` resolves to the fresh id, and the checksum lists of the records are written; `STAGE S16-local OK`.
 
-The unit's result is these final reads and nothing recorded earlier. Then the Document step: the as-built record, the reconciled consequences,
+The unit's result is these final reads and nothing recorded earlier. Then the documents: the as-built record, the reconciled consequences,
 the dated notes and the link line (§7.1), the regenerated boards, and the landing.
 
 ### 7.5 Re-running
@@ -1482,17 +1504,17 @@ The four documentation rings, for a change that adds no code to any repository:
 | 1. In-editor navigation | nothing in a repository; the tools' scripts carry header comments and `region` markers (Appendix A) |
 | 2. Component and API contracts | the tools' docstrings and usage lines in Appendix A (`swap.py`, `scrub_check.py`, the stage scripts); no public API of any library changes |
 | 3. Boundary and protocol | the table of requests (Design) is the contract with the request protocol for this unit: every action it exercises, with its fields, pre-write check and read-back; the parent `consequences.md` §5 note records which requests units 2 and 3 have exercised |
-| 4. Architectural topology | dated notes on the parent `architecture.md` (§1.1 item 9 and the "Public material" line, §7.4, §9.2 and §11), the reconciled `consequences.md`, and the regenerated boards |
+| 4. Architectural topology | dated notes on the parent `architecture.md` (§1.1 item 9 and the "Public material" line, §6.4 stage 6, §7.4, §9.2 and §11), the reconciled `consequences.md`, and the regenerated boards |
 
 **In this folder:** `plan.md`; `consequences.md` (written with the plan, reconciled once the unit has run); `research/`
-(committed); the issue board files; the replaced plans, `superseded/plan-1-2026-11-10.md` and `superseded/plan-2-2026-11-10.md`; after the realignment, the as-built record `final-implementation.md`.
+(committed); the issue board files; the replaced plans, `superseded/plan-1-2026-11-10.md`, `superseded/plan-2-2026-11-10.md` and `superseded/plan-3-2026-11-11.md`; after the realignment, the as-built record `final-implementation.md`.
 
-**Outside this folder, all written in the Document step after the realignment, never inside the window** (the dated note on architecture §6.4 stage 6 is among them: the push to the empty fresh repository uses `--mirror` without `--force`, every ref being new): one link line for this unit in the
+**Outside this folder, all written after the realignment, never inside the window** (the dated note on architecture §6.4 stage 6 is among them: the push to the empty fresh repository uses `--mirror` without `--force`, every ref being new): one link line for this unit in the
 parent `consequences.md` §4; a dated note in `21-preparation/consequences.md` naming this unit and linking to it, which says what the corrected gate makes no longer current (the recorded size and sha256 of
 `privacy_gate.py` in the preparation unit's records, and its name order inside case-only groups); a dated note under the parent `consequences.md` §5's first known-gaps bullet ("The requests that units 2 to 8 need do
 not exist yet…"), in the style of that file's 2026-11-09 notes, recording that the protocol now defines every request the units need, which ones
 units 2 and 3 have exercised, and which remain unexercised (`repo-security`, `edit-issue-body`, `replace-clone`, and any this run did not reach);
-dated notes on the parent `architecture.md` §1.1 item 9 and the "Public material" line (the boards' exception extends to the 26 pre-rewrite ids
+dated notes on the parent `architecture.md` §1.1 item 9 and the "Public material" line (the boards' exception extends to 26 occurrences of 3 distinct pre-rewrite ids
 in three moved resolution comments), §7.4 (the moved texts keep the names the transfers write; `KotlinBottools-next` stays reserved), §9.2 and
 §11 (the topic branch carries the commits made before the mirror clone), and any other section the build departs from; the regenerated boards
 (the repository work board, the parent folder's and the earlier units' issue boards, this unit's, the state boards under `docs/dashboards/`).
@@ -1510,7 +1532,7 @@ No product code changes; the tools' self-tests and the stages' checks are the te
 | Level | Package segment (the tools have no packages; the segment names the folder a level would have) | What proves it here | Limits |
 |---|---|---|---|
 | 1. Gating | `testing.gating` | before any write, at S0: every tool's size and sha256 (the bootstrap and `k0-ready.sh`), the version pins, `bash -n` of every script (inside `kselftest.sh`'s run of them), `sw selftest`, `scrub_check.py selftest`, `ks kselftest` | proves the tools are the tested ones; says nothing about GitHub |
-| 2. Component | `testing.component` | `swap.py`'s self-test (539 checks) against an in-memory stand-in for GitHub: the result gate, the post-check failure paths, `judge` and every handler, command-level stops, link rounds, settle at its bound, inconsistent edges, `diff_item` negatives, the nested-connection stop; `scrub_check.py`'s self-test (17 checks) with the real filter-repo on a fixture; `allow_tool.py`'s self-test (50 checks) on made-up legacy data through the real gate (propose, decide, write, the gate passing, a rejected key blocking, `check` stopping on an unanswered key, a wrong resolution and a changed legacy list caught, the order of names identical under six hash seeds and different under the old order, the gate's output byte-identical to the old order's on fixtures with and without case-only groups, and the old order's the same under three seeds, the verdict read only from a line that is exactly one, `verify` telling a gate that did not complete from one that found blocking hits); `kselftest.sh` (113 checks): `kept_findings.py`, the S3 and S4 scripts end to end on a fixture with the scrub, Gate 1 and Gate 2 with planted names and ids, push preparation and verification, the exit tests and the F0 probe, the residual and close-out scripts (a passing run of each, and runs that record or stop), the realignment's split move with the reset line in the service's form and its stops, all with stand-ins for `gh` and `curl`, the path-scrub guard of S0, the scratch clone, the realignment scripts on fixture clones and every stop they have | the stand-ins are not GitHub: a behaviour GitHub differs on is found by the integration level; each check label states a behaviour, and the walk tool's checks were shown to fail when the logic they guard is broken (a mutation run) |
+| 2. Component | `testing.component` | `swap.py`'s self-test (564 checks) against an in-memory stand-in for GitHub: the result gate, the post-check failure paths, `judge` and every handler, command-level stops, link rounds, settle at its bound, inconsistent edges, `diff_item` negatives, the nested-connection stop; `scrub_check.py`'s self-test (17 checks) with the real filter-repo on a fixture; `allow_tool.py`'s self-test (50 checks) on made-up legacy data through the real gate (propose, decide, write, the gate passing, a rejected key blocking, `check` stopping on an unanswered key, a wrong resolution and a changed legacy list caught, the order of names identical under six hash seeds and different under the old order, the gate's output byte-identical to the old order's on fixtures with and without case-only groups, and the old order's the same under three seeds, the verdict read only from a line that is exactly one, `verify` telling a gate that did not complete from one that found blocking hits); `kselftest.sh` (131 checks): `kept_findings.py`, the S3 and S4 scripts end to end on a fixture with the scrub, Gate 1 and Gate 2 with planted names and ids, push preparation and verification, the exit tests and the F0 probe, the residual and close-out scripts (a passing run of each, and runs that record or stop), the realignment's split move with the reset line in the service's form and its stops, all with stand-ins for `gh` and `curl`, the path-scrub guard of S0, the scratch clone, the realignment scripts on fixture clones and every stop they have; the corrections made during the run each have checks that fail on the code they replaced (a placeholder's guard run in bash, the snapshot fields that are not settings, CRLF and letter case in compared texts, the reason of an open issue, LF records, the IDE and build folders counted, pull-request lists read whatever separates their columns, fail-closed reads in `kr5`, `k12`, `k14` and `k16`, no commit id in a stop) | the stand-ins are not GitHub: a behaviour GitHub differs on is found by the integration level; each check label states a behaviour, and the walk tool's checks were shown to fail when the logic they guard is broken (a mutation run) |
 | 3. Integration | `testing.integration` | each stage's reads and read-backs against the real services: `smoke`, the census, the baseline, the fresh repository's settings tables (REST and GraphQL by id), the push's tally, the per-ref verification on two channels, the F0 and residual probes, the identity reads at each name, the item check on every number, the link rounds; S8's dry run and its request on a scratch clone, which exercise the realignment scripts and the request service before this checkout | each write is verified by reading it back; nothing is assumed from a reply's status |
 | 4a. Deterministic | `testing.deterministic` | the pure functions: edge mapping and classification, `diff_item`, the reference mapping (every form back to bare `#N`), the placeholder text, the refusal routes; `scrub_check.py predict` against filter-repo's semantics; the counts `expect` compares | none beyond the fixtures' coverage |
 | 4b. End to end | `testing.e2e` | the run S0 to S16 ending in `RESULT OK`, recomputed from final reads; the scratch clone's complete realignment before the checkout's | a single run, no repeat |
@@ -1546,19 +1568,19 @@ History keeps copies of the removed files outside git (stated in the as-built re
 - **Rate limits.** The walk reads both repositories flat after each step. Headroom is checked at S0 and S9 (at least 1500 each); a GraphQL budget under 300
   mid-walk is a pause until the reset, not a stop.
 - **Wire and compatibility.** A mirror push without `--force` to an empty repository cannot overwrite anything. The fresh repository never receives a
-  `refs/pull/*`; the legacy repository keeps its own. Public links to KotlinBottools issues from MagicBot (49 citations), WebTools (6) and `.github` (5) answer
+  `refs/pull/*`; the legacy repository keeps its own. Public links to KotlinBottools issues from MagicBot (50 references in its issue texts before the walk), WebTools (6) and `.github` (none in its issue texts) answer
   "not found" to anyone without access from the swap until the publication unit, because the fresh repository stays private.
 - **The moved texts' references.** After the walk they name `KotlinBottools-next#N` permanently. They resolve only through the redirect the rename leaves, which
   holds while no repository takes that name: the name stays reserved.
-- **The 26 pre-rewrite ids in three comments** resolve to nothing in the fresh repository; their permalinks open only for someone with access to the legacy
+- **The 3 distinct pre-rewrite ids, 26 occurrences in three comments,** resolve to nothing in the fresh repository; their permalinks open only for someone with access to the legacy
   repository. Accepted and recorded.
 - **Public window.** The pre-rewrite repository has been public since 2026-11-08 and stays public until S13; its old objects were anonymously readable
   throughout. No measurement can exclude a copy taken in that window; the report row states it.
 - **Cross-repository impact.** MagicBot and WebTools receive `link-issues` requests (relationships only, 21 edges at most) and nothing else; the transfers may
   rewrite references in their texts (measured, not edited).
-- **A default-rule gitleaks finding in a kept file** is recorded and stops the publication unit's visibility change; a custom-rule finding stops S7.
+- **A default-rule gitleaks finding in a kept file** is recorded and holds the publication unit's visibility change, except a `private-key` finding, which stops S7, as a custom-rule finding does.
 - **A tool correction inside the window.** It is saved in the workspace and recorded under `DATA`; the plan's Appendix keeps the version the run started with
-  until the Document step.
+  until the documents are brought up to date after the realignment.
 
 ---
 
@@ -1571,12 +1593,11 @@ History keeps copies of the removed files outside git (stated in the as-built re
      pending and not part of any other change). It is pushed to the pre-rewrite repository, and the mirror push carries it through the rewrite to the fresh
      repository. The plan is committed in this same commit, so `git log --follow` binds the plan to the work it describes.
   2. **Nothing from the mirror clone** until the realignment and its push-safety proof have passed.
-  3. **After the realignment,** on the realigned topic branch, which now tracks the fresh repository: the Document step's commits (the as-built record, the
+  3. **After the realignment,** on the realigned topic branch, which now tracks the fresh repository: the commits of the documents (the as-built record, the
      reconciled `consequences.md`, the parent documents' dated notes and link line, the regenerated boards) and the landing: a single pull request on the
      fresh repository, its first (expected number 32), closing #23 only, of type `docs:`, with no version.
 - **Unrelated pre-existing working-tree changes:** none beyond the generated board files of this and the earlier units, which S1's commit carries on purpose
   (the window forbids leaving them uncommitted). Anything else modified at S1 is a stop and a separate commit.
-  the as-built record before the landing exists.
 
 ---
 
@@ -1600,9 +1621,9 @@ pattern (a topic branch carried through the rewrite by the pre-clone commit and 
 this unit has.
 
 **Provides to `kotlinbottools-publish` (#25):** the corrected privacy gate in the workspace (its Gate 3 uses it, through `allow_tool.py run`); the fresh repository's id; the B2 settings snapshot (`DATA/run/swap/snapshots/settings-B2.json`, with the
-post-rename snapshot); the list (in `DATA/run/swap/accepted-ids.txt`) and count (26) of the accepted pre-rewrite ids in the moved comments of #2, #21 and #22,
+post-rename snapshot); the list (in `DATA/run/swap/accepted-ids.txt`) of the 3 distinct accepted pre-rewrite ids and their count (26 occurrences) in the moved comments of #2, #21 and #22,
 which its id-reference check accounts for exactly; Gate 2's result (`DATA/run/gate/gate2.txt`); the allow-list (`DATA/run/gate/allow.txt`, with `allow.record` and `allow-decisions.txt`), which its Gate 3 reads (Gate 3 runs the gate through `allow_tool.py run`, never `privacy_gate.py` printed raw, so that no corpus label prints a legacy word), a new key there taking the same path (`allow-step propose`, the owner's answers, `write`, `verify`, `check`); the scrub's zero counts (the mirror, the fresh mirror and the
-texts); any default-rule finding in a kept file (`DATA/rewrite/KotlinBottools/default-rule-findings.txt`, its stop condition); the moved texts naming
+texts); any default-rule finding in a kept file (`DATA/rewrite/KotlinBottools/default-rule-findings.txt`), which holds its visibility change; the moved texts naming
 `KotlinBottools-next` (its Gate 3 reads them); `allow_forking` and the wiki, to re-read after the flip; and the open issue-text edits (the 56 branch links, #1's
 body, #2's folder line), to be made before the flip.
 
@@ -1618,17 +1639,9 @@ checksum lists.
 
 ## Sequencing and follow-ups
 
-**Order.** S0 to S16 as the table; nothing is written to GitHub before S6; the window is S1 to the end of S15; the Document step and the landing follow S16.
+**Order.** S0 to S16 as the table; nothing is written to GitHub before S6; the window is S1 to the end of S15; the documents and the landing follow S16.
 
-**Follow-ups, deliberately left:**
-
-- One pass of issue-text edits on the fresh repository before it becomes public (the 56 links that name the deleted planning branch, #1's body, #2's folder
-  line). It needs `edit-issue-body` (and a comment edit if a comment holds one), which this unit does not send.
-- Restoring the moved texts' references to a bare form or the final name: at most a possible follow-up, not planned.
-- The rehearsal's two repositories, private and archived, for the organisation's administrator to delete (`delete_repo` is out of scope).
-- The deferred object-deletion step, if the proofs recorded it, to be run once IntelliJ is closed.
-- A local build override, if a local build depended on the scrubbed Maven repository line.
-- The scrub's expressions counted over the issue texts: a match is an issue edit on request.
+**Follow-ups, deliberately left:** in [consequences §6](consequences.md#6-follow-ups), each with what it needs.
 
 ---
 
@@ -1641,39 +1654,39 @@ None.
 ## Appendix A — The tools and their runner
 
 Every file below is saved by the S0 bootstrap, byte for byte with carriage returns stripped, to the path in the second column under `WS/tools/`, and checked against its
-size and sha256. Self-tests run before these values were recorded: `swap.py selftest` printed `ok    selftest: 539 checks passed`; `scrub_check.py selftest` printed
+size and sha256. Self-tests run before these values were recorded: `swap.py selftest` printed `ok    selftest: 564 checks passed`; `scrub_check.py selftest` printed
 `ok    scrub_check selftest: 17 checks passed`; `allow_tool.py selftest` printed `ok    allow_tool selftest: 50 checks passed`; `kselftest.sh` printed
-`ok    kselftest: 113 checks passed`.
+`ok    kselftest: 131 checks passed`.
 
 | File | Saved to | Bytes | sha256 | Role |
 |---|---|---|---|---|
 | `swap-step.sh` | `swap-step.sh` | 381 | `6abb3fdf829c5fbeff05a8bf8ba071d1d19e58e8929982b7cc0fb888b287fd10` | the runner of the walk tool |
-| `swap.py` | `swap/swap.py` | 168131 | `a3e10fbdbf45129d0fb97a2bf34bc9b455816afc265ecb54f2af6eb6e25b7d7a` | the walk tool: census, link table, baseline, requests, checks, results |
+| `swap.py` | `swap/swap.py` | 177954 | `05698846872cfa30613a68c184aafbbdb71a147630d8a13ed2634b931cee6c65` | the walk tool: census, link table, baseline, requests, checks, results |
 | `scrub_check.py` | `scrub_check.py` | 23670 | `2789a65c3de12fbf4e4b031ba13a8682a991a072a4c564ac6506cccc2fe1375b` | the scrub's prediction, fidelity and index-effects tool |
 | `privacy_gate.py` | `privacy_gate.py` | 11615 | `0caea1411a4f3db7a32a0ac54e41d65b6df427545df16c7233d539a860747760` | the privacy gate: the preparation unit's, with the order of equal names made total |
 | `allow-step.sh` | `allow-step.sh` | 282 | `7cc2ef03bced01dd6f11c0603fd858a48c01a974c47388a228cd3af41a7113cf` | the runner of the allow-list tool |
 | `allow_tool.py` | `allow_tool.py` | 41825 | `a9ca21099ed4b1504579aa543d25fee1b2b6579b7ea0518a40fbc31fd25e886d` | the allow-list tool: propose, decide, write, verify, check |
 | `kcorpus.sh` | `kcorpus.sh` | 3461 | `194c2ec53c83fca6a25e0c5a0b7b5d441889dbe77813d503855c580b31200e62` | S0, S5, S12: the corpus arguments of one run of the privacy gate |
-| `klib.sh` | `klib.sh` | 3025 | `ba2946f38541602daf9be05d9efc94cdf0bc3403957493afc1b2f2973eb86ce2` | functions shared by this unit's scripts |
+| `klib.sh` | `klib.sh` | 3651 | `445011f5207ae1e6adaa81cb7e53c2ca718545f75d6d14131cc3df2472760617` | functions shared by this unit's scripts |
 | `k0-ready.sh` | `k0-ready.sh` | 6942 | `cb04f4c91cb73983abadf9a94f782d9bd03ada2aade6565b471cf2bdbf5186c3` | S0: the local readiness checks |
-| `kselftest.sh` | `kselftest.sh` | 34180 | `022094b98cde41c3230d9b2ed97192414fb935c012cdcf3365709a23891ab3b9` | S0: the shell scripts' self-test on fixtures, in a sandbox |
+| `kselftest.sh` | `kselftest.sh` | 41892 | `a98dc7214725d8c586a7184d92a9214842b624306245f7ef59a89507b24973b0` | S0: the shell scripts' self-test on fixtures, in a sandbox |
 | `k2-mirror.sh` | `k2-mirror.sh` | 5629 | `e37b5116534ea62923a754e66a471a2a1340ead10ba6901a617d542be9980071` | S2: mirror, backup, manifest, expectation row, positive control |
 | `k3-scrub-before.sh` | `k3-scrub-before.sh` | 3438 | `010456f38fda2e2e2f034bb5a22794ba2a0bae16b39df2b2bba0cb9cb6ed3855` | S3: the scrub's before-counts and the prediction |
 | `k4-rewrite.sh` | `k4-rewrite.sh` | 7152 | `6c9a4904539ddd820ff73e914903b386d24f2e0f2a8a76fded3a0696bd130656` | S4: the rewrite and its post-run checks |
 | `k5-gate1.sh` | `k5-gate1.sh` | 3109 | `17e00e869c3c027688970722c19c463dbc748e62ec360b789893a3f88dd33f97` | S5: Gate 1 and the accepted ids |
-| `k6-fresh.sh` | `k6-fresh.sh` | 6448 | `c7ea58727cdab96396f530762e0247477ae8111d8eeaa3f1189b2084c8b1c876` | S6, S13: push preparation and per-ref verification |
-| `k7-exit.sh` | `k7-exit.sh` | 6664 | `c875580296fae76d9791ae9903d5fbc2d27ccbeddce6f6fbc62562fd8d004a0f` | S7: fresh mirror, exit tests, the F0 probe |
+| `k6-fresh.sh` | `k6-fresh.sh` | 7060 | `2f587bc891a2cdd7acb817b6b5a87c1a460ddb96d1597f8eb7061b05d5dc7674` | S6, S13: push preparation and per-ref verification |
+| `k7-exit.sh` | `k7-exit.sh` | 6679 | `91001e071acb83ff8fc23fdae19f86f1bf82c9df4b1632586c5809ac1997ca22` | S7: fresh mirror, exit tests, the F0 probe |
 | `k8-scratch.sh` | `k8-scratch.sh` | 2442 | `50a0eb1c0c5edc93654318014739773dd91f0e101a114a2a1451d4ce8d17a5c9` | S8: a scratch clone set up like this checkout |
-| `k12-gate2.sh` | `k12-gate2.sh` | 2216 | `1c72bf2fdda34bd5107bf6174a491705fe334a871a321ad9e718d2c1e9f40f3b` | S12: Gate 2 and the scrub's count over the texts |
-| `k14-residual.sh` | `k14-residual.sh` | 5332 | `d5c7bb2f953e88220f006d163770c3e4d6425489ea1c73c2b08926749f1be0de` | S14: the residual probes and the report row |
-| `k16-close.sh` | `k16-close.sh` | 2210 | `324b653d04ba662a8de263066962abf5a039363488f59d9a09402f00fb1f769a` | S16: the local half of the close-out |
-| `kr1-preflight.sh` | `kr1-preflight.sh` | 4088 | `beefb25eb16058a9dc4471d2704a2d24ff5de0707218abffd8a979459972fdb2` | S8, S15: realignment preflight |
+| `k12-gate2.sh` | `k12-gate2.sh` | 2310 | `305d3457b312015a9e063ddae9ac46dd34ce96c68190a6e934980098f7806c70` | S12: Gate 2 and the scrub's count over the texts |
+| `k14-residual.sh` | `k14-residual.sh` | 5634 | `038144443bb2c3902f6817c824e8374d99802c54a5452dc73e1224a19a216ea7` | S14: the residual probes and the report row |
+| `k16-close.sh` | `k16-close.sh` | 2382 | `f5f190d674892b911f61946cf5ac05378e53eb1428a188b8f8afc9ec793d294c` | S16: the local half of the close-out |
+| `kr1-preflight.sh` | `kr1-preflight.sh` | 4114 | `ea23f4e5729c82fa62a74cf16daad51a5205a42c946a50fdd767eb5341421d09` | S8, S15: realignment preflight |
 | `kr2-fetch.sh` | `kr2-fetch.sh` | 2733 | `58b5da34fed644cbe8f64144194329ab538f90b42c387c580dcead130efd4a07` | S8, S15: realignment fetch |
-| `kr3-premove.sh` | `kr3-premove.sh` | 1796 | `6235a0becb8e59831b75dd396a8541b36cddfb01e85dfdf12a3ab1120c0e06d9` | S8, S15: realignment move, part one (checks before the reset) |
-| `kr3-postmove.sh` | `kr3-postmove.sh` | 1295 | `b716434cd88a8c9b79278d4d42423b4ec59c9fa5e1d4406c2d9c676278916b25` | S8, S15: realignment move, part two (after the reset) |
-| `kr3b-verify.sh` | `kr3b-verify.sh` | 2399 | `64f77b7864454d9bac311c0ff8e00ee04fbb5967d555794b98b0f36409932da1` | S8, S15: what the move did, against the prediction |
+| `kr3-premove.sh` | `kr3-premove.sh` | 2019 | `2e3eb41063d47b80a6bc0fa3c6796aa669ee0ac100bfbdd659300c32dc7b5e2f` | S8, S15: realignment move, part one (checks before the reset) |
+| `kr3-postmove.sh` | `kr3-postmove.sh` | 1387 | `9a8189e79913c0e590f8c842aa83ef60f45f5edd43b0e197079adb0aff9aaa4d` | S8, S15: realignment move, part two (after the reset) |
+| `kr3b-verify.sh` | `kr3b-verify.sh` | 2718 | `598daef04ed30a904b3543e01abde35047f54dfbb0e2f7fe0f1edbccf5338856` | S8, S15: what the move did, against the prediction |
 | `kr4-purge.sh` | `kr4-purge.sh` | 2203 | `665bb42765f3c315095b57e67f648585a72eb9eafa181b97c8ffccc8062f9367` | S8, S15: object deletion and its proofs |
-| `kr5-proof.sh` | `kr5-proof.sh` | 2740 | `7e872471778b8ce1153dcd8893ff49d02cb06bf2df8e6568ae8b7c5e7f303e9f` | S8, S15: the push-safety proof |
+| `kr5-proof.sh` | `kr5-proof.sh` | 3068 | `e9adfab183816c7d209f847bb6839f75fd42cf6fedac68a08bbac468e9689749` | S8, S15: the push-safety proof |
 
 ### `swap-step.sh`
 
@@ -1692,8 +1705,9 @@ exec python -X utf8 -I "$TOOLS/swap/swap.py" "$@"
 """swap.py -- the KotlinBottools number walk's one tool: census, link table, baseline, requests, checks, results.
 
 usage (through run-stage.sh, which logs): bash "$TOOLS/run-stage.sh" swap-step <subcommand> [args]
-  selftest | smoke | request KEY | reply KEY STATUS | check pre|post KEY | check names|rate|protocol JOB ACTIONS|meta|stage ID
-  census | baseline | xrefs LABEL | read LABEL | settle LABEL | links ROUND | ids LABEL | urls LABEL | dump LABEL ROLE | result
+  selftest | smoke | request KEY | reply KEY STATUS (the reply text on stdin) | check pre|post KEY | check source|names|rate|stage ID
+  check protocol JOB open defined | census | baseline | accepted | xrefs LABEL | refs LABEL | snapshot LABEL [OTHER [counts]]
+  read LABEL | settle LABEL | links ROUND | ids LABEL | urls LABEL | dump LABEL ROLE | result
 KEY names a request and carries its number (transfer-5, placeholder-20, links-r1-t, rename-old, ...).
 Exit 0 = fine, 1 = a STOP line was printed (an expected failure); a bug is an ordinary traceback.
 Prints counts, numbers, repository ids and fixed markers only. The texts of the issues are read into DATA and never printed.
@@ -1724,7 +1738,7 @@ LINKISH = re.compile(r"sub.?issue|parent|blocked|blocking|dependenc|relationship
 NAMES_RX = "|".join(map(re.escape, sorted((SRC, LEGACY, TMP, FINAL), key=len, reverse=True)))
 # every reference naming the source or the target in any form: owner/name#N, name#N (not inside a URL), issue and pull URLs
 OUR_REF = re.compile(r"(?<![\w/.-])(?:" + re.escape(ORG) + r"/)?(?:" + NAMES_RX + r")#(\d+)\b"
-                     + "|https://github\\.com/" + re.escape(ORG) + "/(?:" + NAMES_RX + r")/(?:issues|pull)/(\d+)\b")
+                     + "|https://github\\.com/" + re.escape(ORG) + "/(?:" + NAMES_RX + r")/(?:issues|pull)/(\d+)\b", re.I)      # GitHub's owner and repository names ignore letter case
 ANY_REF = re.compile(r"(?<![\w/.#-])([\w.-]+/[\w.-]+)?#(\d+)\b")
 
 
@@ -1738,10 +1752,10 @@ class DiskFS:
         with open(path, encoding="utf-8") as f: return f.read()
     def write(self, path, text):
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(path, "w", encoding="utf-8") as f: f.write(text)
+        with open(path, "w", encoding="utf-8", newline="\n") as f: f.write(text)      # LF on every platform: some records are compared byte for byte
     def append(self, path, text):
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(path, "a", encoding="utf-8") as f: f.write(text)
+        with open(path, "a", encoding="utf-8", newline="\n") as f: f.write(text)
     def readloose(self, path):
         with open(path, encoding="utf-8", errors="replace") as f: return f.read()
     def exists(self, path): return os.path.exists(path)
@@ -1771,11 +1785,14 @@ def rjson(p, default=None):
 def log(**rec): FS.append(rpath("steps.jsonl"), json.dumps({"ts": now(), **rec}, ensure_ascii=False) + "\n")
 def records(what):
     """Every record of one kind, in file order: a result is computed from the LAST record of a key, failures included."""
-    try: return [r for r in map(json.loads, filter(str.strip, FS.read(rpath("steps.jsonl")).splitlines())) if r["what"] == what]
+    try: return [r for r in map(json.loads, filter(str.strip, FS.read(rpath("steps.jsonl")).split("\n"))) if r["what"] == what]      # split on LF only: splitlines also splits at U+2028, U+2029 and NEL, which json.dumps leaves in a text
     except FileNotFoundError: return []
 def last(what, **kv):
     """The last record of a kind whose fields equal kv, or None."""
     return next((r for r in reversed(records(what)) if all(r.get(k) == v for k, v in kv.items())), None)
+def first_arrivals():
+    """How each closed issue first arrived: an item check run again after a close or reopen route logs the state the route left, not the arrival."""
+    return {str(r["n"]): r["arrival"] for r in reversed(records("closed-arrival"))}
 def load():
     st = {"repos": {}, "moved": {}, "attempts": {}, "routes": {}, "names_free": False, "job": None, **(rjson("state.json") or {})}
     st["moved"] = {int(k): v for k, v in st["moved"].items()}
@@ -1868,7 +1885,7 @@ def shape(nd, rolemap):
     def rf(x):
         n = x["repository"]["nameWithOwner"]
         return f"{rolemap[n]}#{x['number']}" if n in rolemap else f"{n.split('/')[-1] if n.startswith(ORG + '/') else n}#{x['number']}"
-    b, cs = nd["body"] or "", nd["comments"]["nodes"]
+    b, cs = nb(nd["body"] or ""), [{**c, "body": nb(c["body"] or "")} for c in nd["comments"]["nodes"]]      # CRLF and trailing blanks never count: a transfer is not shown to keep them
     return {"n": nd["number"], "node": nd["id"], "title": nd["title"], "bytes": len(b.encode("utf-8")), "sha": sha(b),
             "mbytes": len(unqualify(b).encode("utf-8")), "msha": sha(unqualify(b)), "mcomments": [sha(unqualify(c["body"])) for c in cs],
             "refs": refs_in(b) + [r for c in cs for r in refs_in(c["body"])],
@@ -1946,7 +1963,10 @@ def ext_inconsistent(edges, st):
 def diff_item(base, got):
     """Where a moved item differs from its text read before the walk. Body and comments are compared after the references naming the source
     or the target are mapped back to bare #N (C1), byte for byte otherwise. -> list of 'field: why' strings, empty when equal."""
-    out = [f"{k}: {base[k]!r} != {got[k]!r}" for k in ("title", "state", "reason", "labels", "ms") if base[k] != got[k]]
+    # stateReason counts only when the issue is closed on either side (an open issue reads REOPENED or null, whatever a transfer did); the title, labels and
+    # milestone are texts and names, so only the field is named (the output rule), the state and the reason are GitHub's own words
+    out = [(f"{k}: {base[k]!r} != {got[k]!r}" if k in ("state", "reason") else f"{k}: differs") for k in ("title", "state", "reason", "labels", "ms")
+           if base[k] != got[k] and (k != "reason" or "CLOSED" in (base["state"], got["state"]))]
     if (base["bytes"], base["sha"]) != (got["mbytes"], got["msha"]):
         out.append(f"body: before {base['bytes']} bytes, now {got['bytes']} bytes, {got['mbytes']} after mapping references back, hash differs")
     if len(base["comments"]) != len(got["comments"]): out.append(f"comments: count {len(base['comments'])} != {len(got['comments'])}")
@@ -1994,7 +2014,9 @@ def req(st, key, action, target, procedure, checks, issue=23, files=None, **extr
     d.update({k: v for k, v in extra.items() if v is not None})
     if files: checks = ["first write each entry of inputs.files byte for byte (UTF-8, no BOM, LF, no trailing newline) into the working folder"] + checks
     return {**d, "procedure": procedure, "inputs": {"key": key, **({"files": files} if files else {}), **ie}, "checks": checks}
-HIGHEST = lambda repo: f"$(gh api 'repos/{repo}/issues?state=all&per_page=1&sort=created&direction=desc' --jq '.[0].number // 0')"
+# the highest number in a repository: the largest of all its numbers. A transferred issue keeps its creation time and a placeholder is created now, so the
+# newest issue is not the highest number once a placeholder sits below transferred issues (20, then 21 to 29 by transfer, then 30).
+HIGHEST = lambda repo: f"$(gh api 'repos/{repo}/issues?state=all&per_page=100' --paginate --jq '.[].number' | tr -d '\\r' | awk 'BEGIN{{n=0}} $1+0>n{{n=$1+0}} END{{print n}}')"
 GITNET = "git -c credential.helper= -c 'credential.helper=!gh auth git-credential'"
 def q_id(repo, n):
     return ("$(gh api graphql -f query='query($o:String!,$n:String!,$num:Int!){repository(owner:$o,name:$n){issue(number:$num){id}}}' "
@@ -2083,11 +2105,13 @@ def b_transfer(st, d, n):
                [f"exit=0, the reply's number is {n} and its repository id is {t['node_id']}", "on exit=1 print the whole body and do not retry"], issue=n, source=rfull(st, "S"))
 def b_placeholder(st, d, n):
     r, (title, body) = rfull(st, "T"), d["text"]
-    return req(st, f"placeholder-{n}", "placeholder-issue", r, [
+    create = [] if d.get("exists") else [         # a placeholder created but not yet closed gets only its guarded close: its guard would read n, not n - 1
         f"test \"{HIGHEST(r)}\" = {n - 1}",
-        f"gh api repos/{r}/issues -F title=@title.txt -F body=@body.md --jq '[.number,.state]|@tsv'   # the number must be {n}", "sleep 3",
+        f"gh api repos/{r}/issues -F title=@title.txt -F body=@body.md --jq '[.number,.state]|@tsv'   # the number must be {n}", "sleep 3"]
+    return req(st, f"placeholder-{n}", "placeholder-issue", r, create + [
         f"test \"$(gh api repos/{r}/issues/{n} --jq .title)\" = \"$(cat title.txt)\" && gh api --method PATCH repos/{r}/issues/{n} -f state=closed -f state_reason=not_planned --jq '[.number,.state,.state_reason]|@tsv'", "sleep 3"],
-        [f"the created number is {n}", "the issue on that number is closed only if its title is the placeholder's", "the issue ends closed with state_reason not_planned"], files={"title.txt": title, "body.md": body}, number=n, title=title, body=body)
+        ([] if d.get("exists") else [f"the created number is {n}"]) + ["the issue on that number is closed only if its title is the placeholder's", "the issue ends closed with state_reason not_planned"],
+        files={"title.txt": title, "body.md": body}, number=n, title=title, body=body)
 def b_repo_op(st, d, op):
     rid, r = d["id"], f"{ORG}/{d['name']}"; new = {"rename-old": LEGACY, "rename-fresh": FINAL}.get(op)
     flag = {"private-old": "-f visibility=private", "archive-old": "-F archived=true"}.get(op, f"-f name={new}")
@@ -2188,12 +2212,17 @@ def h_fresh_create(st):
     st["repos"]["T"] = {"id": d["id"], "node_id": d["node_id"], "name": d["name"]}; save(st)
     return "done", {"id": d["id"], "visibility": d["visibility"]}
 
+# Fields of GitHub's repository representation that are not settings. temp_clone_token is a new token on every read; the others GitHub sets or updates
+# on its own: the push and update times and the size, the language and the licence it detects in the content, and the counts of stars, watchers, forks and
+# subscribers. settings_snapshot stores none of the per-read and time fields; snapshot_diff ignores all of them, in snapshots saved before this list too.
+NOT_STORED = ("pushed_at", "updated_at", "size", "temp_clone_token")
+NOT_SETTINGS = NOT_STORED + ("language", "license", "stargazers_count", "watchers_count", "watchers", "forks_count", "forks", "network_count", "subscribers_count")
 def settings_snapshot(st):
-    """Everything the settings request must have set, read by repository id: REST repository (without the volatile fields), Actions, workflow
+    """Everything the settings request must have set, read by repository id: REST repository (without NOT_STORED), Actions, workflow
     permissions, the GraphQL values REST masks, and access. A dict of plain JSON."""
     rid, nid = st["repos"]["T"]["id"], st["repos"]["T"]["node_id"]
     repo = api(f"repositories/{rid}")
-    for k in ("pushed_at", "updated_at", "size"): repo.pop(k, None)
+    for k in NOT_STORED: repo.pop(k, None)
     g = gql("query($id:ID!){node(id:$id){... on Repository{databaseId hasWikiEnabled hasDiscussionsEnabled hasIssuesEnabled hasProjectsEnabled forkingAllowed isEmpty defaultBranchRef{name}}}}", id=nid)["node"]
     collab = [f"{c['login']}:{c['role_name']}" for c in api(f"repositories/{rid}/collaborators")]
     return {"repo": repo, "actions": api(f"repositories/{rid}/actions/permissions"), "workflow": api(f"repositories/{rid}/actions/permissions/workflow"),
@@ -2221,13 +2250,13 @@ def settings_diffs(snap, phase):
     if phase == "B2": want += [("default_branch", r["default_branch"], "main"), ("isEmpty", g["isEmpty"], False), ("defaultBranchRef", g["defaultBranchRef"], {"name": "main"})]
     return [f"{k}: want {w_!r}, got {got!r}" for k, got, w_ in want if got != w_]
 def snapshot_diff(a, b, allow_counts=False):
-    """Fields that differ between two settings snapshots of one repository, apart from the name and the URL fields a rename changes
-    (and, with allow_counts, the open-issue counts a walk changes). -> sorted list of 'section.field'."""
+    """Fields that differ between two settings snapshots of one repository, apart from the fields that are not settings (NOT_SETTINGS), the name
+    and the URL fields a rename changes (and, with allow_counts, the open-issue counts a walk changes). -> sorted list of 'section.field'."""
     out = []
     for sec in ("repo", "actions", "workflow", "graphql"):
         for k in sorted(set(a[sec]) | set(b[sec])):
             if a[sec].get(k) == b[sec].get(k): continue
-            if sec == "repo" and (k in ("name", "full_name", "url") or k.endswith("_url") or (allow_counts and k in ("open_issues", "open_issues_count"))): continue
+            if sec == "repo" and (k in NOT_SETTINGS or k in ("name", "full_name", "url") or k.endswith("_url") or (allow_counts and k in ("open_issues", "open_issues_count"))): continue
             out.append(f"{sec}.{k}")
     out += [f"{k}" for k in ("collaborators", "direct", "teams", "invitations", "topics") if a[k] != b[k]]
     return out
@@ -2260,10 +2289,11 @@ def h_labels(st):
     state = "conflict" if odd or not DEFAULTS <= set(have) else "done" if not miss else "partial" if len(miss) < len(want) else "todo"
     return state, {"missing": miss, "odd": odd}
 def h_milestone(st):
-    ms = (rjson("meta.json") or {}).get("milestone") or {"title": MS_TITLE, "description": ""}
+    ms = (rjson("meta.json") or {}).get("milestone")
+    if not ms: raise KeyError("baseline")          # the description is the source's, which baseline records: ms-fresh runs after baseline
     got = [m for m in api(f"repositories/{st['repos']['T']['id']}/milestones?state=all") if m["title"] == ms["title"]]
     if not got: return "todo", {"ms": ms}
-    if (got[0]["description"] or "") != ms["description"] or got[0]["due_on"] is not None or got[0]["state"] != "open": return "conflict", {"milestone": got[0]}
+    if nb(got[0]["description"] or "") != nb(ms["description"] or "") or got[0]["due_on"] is not None or got[0]["state"] != "open": return "conflict", {"milestone": got[0]}
     st["ms_number"] = got[0]["number"]; save(st)
     return "done", {"number": got[0]["number"], "ms": ms}
 def h_state(st, role, n, want):
@@ -2296,7 +2326,7 @@ def h_placeholder(st, n):
         t = api(f"repositories/{st['repos']['T']['id']}/issues/{n}")
         if "pull_request" in t or t["title"] != title: return "conflict", {"why": f"T#{n} is not this placeholder"}
         good = t["state"] == "closed" and t["state_reason"] == "not_planned" and t["body"].replace("\r\n", "\n") == body
-        return ("done" if good else "partial"), {"text": (title, body)}
+        return ("done" if good else "partial"), {"text": (title, body), "exists": True}
     return ("todo", {"text": (title, body)}) if hb == n - 1 else ("conflict", {"highest": hb, "want": n - 1})
 def h_unlink(st, n):
     touching = sorted(e for e in world(st)["edges"] if f"S#{n}" in e[1:]); return ("todo" if touching else "done"), {"edges": touching}
@@ -2409,9 +2439,10 @@ def check_step(st, when, key):
     s = settle(st, "after-" + key) if key.startswith("transfer-") else None
     st["_w"] = s and s["world"]
     state, d, b, g = judge(key, st)
+    shown = {**d, "clone": g[0]} if key.startswith("realign-") else d      # the output rule: a realign check names its clone by its tag (scratch, main), never by its path
     if state != "done":                                                      # the request did not finish: send it again, three tries at most
         k = st["attempts"][f"post:{key}"] = st["attempts"].get(f"post:{key}", 0) + 1; save(st)
-        if k >= 3: raise Stop(f"{key}: still {state} after {k} checks: {json.dumps(d, ensure_ascii=False)[:600]}")
+        if k >= 3: raise Stop(f"{key}: still {state} after {k} checks: {json.dumps(shown, ensure_ascii=False)[:600]}")
         print(f"NEXT  request {key} again (found {state}, check {k} of 3)"); return 0
     if key.startswith("transfer-"):
         n = int(g[0]); st["moved"][n] = d["landed"]; save(st)
@@ -2440,7 +2471,7 @@ def check_step(st, when, key):
         good = (t["number"], t["title"], t["body"].replace("\r\n", "\n"), t["state"], t["state_reason"], "pull_request" in t) == (n, title, body, "closed", "not_planned", False)
         log(what="placeholder", n=n, ok=good)
         if not good: raise Stop(f"{key}: the placeholder at {n} differs from its text, state or reason")
-    ok(f"{key}: done {json.dumps(d, ensure_ascii=False)[:300]}"); log(what="post", key=key, ok=True, detail=d); return 0
+    ok(f"{key}: done {json.dumps(shown, ensure_ascii=False)[:300]}"); log(what="post", key=key, ok=True, detail=d); return 0
 def links_post(st, key):
     rnd = int(re.match(r"links-r(\d)", key).group(1)); s = settle(st, f"links-r{rnd}-after")
     exp, act = expected(table().get("edges", []), set(st["moved"])), s["world"]["edges"]
@@ -2612,7 +2643,7 @@ def rest_all(path):
     if rc: raise fail("gh api " + path, rc, out, err)
     pages = json.loads(out) if out.strip() else []
     return [x for p in pages for x in (p if isinstance(p, list) else [p])]
-XREF = re.compile(r"(?<![\w/.-])(?:" + re.escape(ORG) + r"/)?(" + NAMES_RX + r")#(\d+)\b|github\.com/" + re.escape(ORG) + r"/(" + NAMES_RX + r")/(?:issues|pull)/(\d+)\b")
+XREF = re.compile(r"(?<![\w/.-])(?:" + re.escape(ORG) + r"/)?(" + NAMES_RX + r")#(\d+)\b|github\.com/" + re.escape(ORG) + r"/(" + NAMES_RX + r")/(?:issues|pull)/(\d+)\b", re.I)
 def cmd_xrefs(a):
     """How many references to KotlinBottools issues the texts of other repositories hold, by the name they use; and a hash of those texts, to see
     whether a transfer rewrote them. Counts only."""
@@ -2680,6 +2711,10 @@ def cmd_baseline(a):
        f"with {mss[0]['open_issues']} open and {mss[0]['closed_issues']} closed issues")
     log(what="baseline", issues=len(base), edges=len(edges)); return 0
 HEX40 = re.compile(r"(?<![0-9A-Za-z])[0-9a-f]{40}(?![0-9A-Za-z])")
+def accepted_note(found, places):
+    """The RECORD line of the accepted ids, with a note when they are not the design's: 26 occurrences of 3 distinct ids in 3 comments."""
+    return (f"RECORD accepted ids: {len(found)} occurrences, {len(set(found))} distinct, in {len(places)} comments of issues {sorted({int(n) for n, _ in places})}"
+            + ("" if (len(found), len(set(found)), len(places)) == (26, 3, 3) else "; the design records 26 occurrences of 3 ids in 3 comments"))
 def cmd_accepted(a):
     """The pre-rewrite commit ids that sit inside the texts of the moved issues: where they are, how many, and the list (into DATA only)."""
     t = rjson("texts-before.json") or {}; found, places = [], {}
@@ -2691,7 +2726,7 @@ def cmd_accepted(a):
     outside = sorted({int(n) for n, _ in places} - {2, 21, 22})
     if outside: raise Stop(f"accepted ids: commit ids sit in the comments of {outside}, not only of #2, #21 and #22")
     FS.write(rpath("accepted-ids.txt"), "\n".join(sorted(set(found))) + ("\n" if found else ""))
-    print(f"RECORD accepted ids: {len(found)} occurrences, {len(set(found))} distinct, in {len(places)} comments of issues {sorted({int(n) for n, _ in places})}" + ("" if len(set(found)) == 26 and len(places) == 3 else "; the design records 26 ids in 3 comments"))
+    print(accepted_note(found, places))
     log(what="accepted-ids", occurrences=len(found), distinct=len(set(found)), comments=len(places)); return 0
 def cmd_refs(a):
     """What the references in the moved texts reach now: every distinct owner/name#N, resolved by the API (a rename's redirect followed), compared by issue id with the item
@@ -2722,7 +2757,7 @@ def cmd_result(a):
     sh["issues"] = {"pass": not bad and bool(base), "differences": bad, "count": len([x for x in c.get("items", []) if x["kind"] == "issue"])}
     closed = {n: (b["state"], b["reason"]) for n, b in base.items() if b["state"] == "CLOSED"}
     sh["closed-issues"] = {"pass": bool(closed) and all((w["issues"].get(f"T#{n}") or {}).get("state") == "CLOSED" and w["issues"][f"T#{n}"]["reason"] == r for n, (_, r) in closed.items()),
-                           "arrivals": {str(r["n"]): r["arrival"] for r in records("closed-arrival")}}
+                           "arrivals": first_arrivals()}
     tl = {x["name"]: (x["color"], x["description"] or "") for x in api(f"repositories/{st['repos']['T']['id']}/labels?per_page=100")}
     ms = [m for m in api(f"repositories/{st['repos']['T']['id']}/milestones?state=all") if m["title"] == MS_TITLE]
     msn = sum(1 for b in base.values() if b["ms"])
@@ -2784,6 +2819,7 @@ class Fake:
     HEX = "0123456789abcdef0123456789abcdef01234567"
     def __init__(self, **mode):
         self.mode, self.lag, self.calls, self.thr = mode, mode.get("lag", 0), [], mode.get("throttle", 0)
+        self.reads = 0                                       # repository reads so far: each carries a new temp_clone_token, as GitHub's do
         self.repos = {SRC_ID: self.new_repo(SRC_ID, SRC, False)}
         self.repos[SRC_ID]["labels"] = {n: (c, d) for n, c, d in LABELS} | {n: ("ffffff", "") for n in DEFAULTS}
         self.repos[SRC_ID]["ms"] = {"title": MS_TITLE, "description": "the first release", "due_on": None, "state": "open", "number": 1}
@@ -2847,9 +2883,10 @@ class Fake:
         else: self.edges.discard(e)
     # --- the reads
     def rest_repo(self, rid):
-        r = self.repos[rid]
+        r = self.repos[rid]; self.reads += 1
         return {"id": rid, "node_id": r["node"], "name": r["name"], "full_name": self.full(rid), "private": r["private"], "visibility": "private" if r["private"] else "public",
                 "archived": r["archived"], "fork": False, "default_branch": r["default_branch"], "size": 0 if not r["branches"] else 9, "pushed_at": "x", "updated_at": "y",
+                "temp_clone_token": f"token-of-read-{self.reads}", "language": "Kotlin" if r["branches"] else None, "license": None, "subscribers_count": 1, "network_count": 0,
                 "html_url": f"https://github.com/{self.full(rid)}", **{k: v for k, v in r["settings"].items() if k not in ("actions", "workflow")}, "open_issues": 3, "open_issues_count": 3}
     def issue_rest(self, rid, n):
         i = self.repos[rid]["issues"][n]
@@ -3031,11 +3068,36 @@ def pure(t):
             "mcomments": [sha("c1")], "comments": [[sha("c1"), "who", "2026-01-01T00:00:00Z"]]}
     b = base_for_compare(base)
     t("diff_item: an unchanged item has no difference", [], diff_item(b, base))
-    for field, change, want in (("title", {"title": "U"}, "title"), ("state", {"state": "CLOSED"}, "state"), ("reason", {"reason": "COMPLETED"}, "reason"), ("labels", {"labels": ["b"]}, "labels"),
+    for field, change, want in (("title", {"title": "U"}, "title"), ("state", {"state": "CLOSED"}, "state"), ("reason", {"state": "CLOSED", "reason": "COMPLETED"}, "reason"), ("labels", {"labels": ["b"]}, "labels"),
                                 ("milestone", {"ms": None}, "ms"), ("body", {"msha": sha("x")}, "body"), ("comment count", {"comments": [], "mcomments": []}, "comments"),
                                 ("comment body", {"mcomments": [sha("c2")]}, "comment 1"), ("comment author", {"comments": [[sha("c1"), "other", "2026-01-01T00:00:00Z"]]}, "comment 1")):
         t(f"diff_item finds a difference in the {field}", True, any(d.startswith(want) for d in diff_item(b, {**base, **change})))
     two = {**b, "comments": b["comments"] * 2, "mcomments": b["mcomments"] * 2}
+    with tempfile.TemporaryDirectory() as d_:
+        fs_ = DiskFS(); fs_.write(d_ + "/a.txt", "x\ny\n"); fs_.append(d_ + "/a.txt", "z\n")
+        t("DiskFS writes LF on every platform (accepted-ids.txt is compared byte for byte with a file written with LF)", b"x\ny\nz\n", open(d_ + "/a.txt", "rb").read())
+    def node_(n, body, comments=(), state="OPEN", reason=None):
+        pg = lambda xs: {"totalCount": len(xs), "pageInfo": {"hasNextPage": False, "endCursor": None}, "nodes": xs}
+        return {"id": f"I_{n}", "number": n, "title": "t", "body": body, "state": state, "stateReason": reason, "createdAt": "2026-11-01T00:00:00Z", "closedAt": None, "labels": pg([]),
+                "milestone": None, "comments": pg([{"id": "c", "databaseId": i, "body": c, "createdAt": f"2026-11-01T00:00:0{i}Z", "author": {"login": "u"}} for i, c in enumerate(comments)]),
+                "parent": None, "subIssues": pg([]), "blockedBy": pg([]), "blocking": pg([])}
+    role_ = {f"{ORG}/{SRC}": "S", f"{ORG}/{TMP}": "T"}
+    same = lambda a_, b_: diff_item(base_for_compare(shape(a_, role_)), shape(b_, role_))
+    t("diff_item: CRLF in a body and a comment before the move and LF after is no difference", [],
+      same(node_(2, "See #3\r\nand #4\r\n", ["Comment\r\nsee #5"]), node_(2, f"See {src}#3\nand {tmp_}#4\n", [f"Comment\nsee {src}#5"])))
+    t("diff_item: a reference in another letter case maps back too (owner, name and URL)", [],
+      same(node_(2, f"see {ORG.lower()}/{SRC.lower()}#7 and https://github.com/{ORG.upper()}/{SRC}/issues/8"), node_(2, f"see {tmp_}#7 and https://github.com/{ORG}/{SRC}/issues/8")))
+    t("diff_item: an open issue read REOPENED before the move and null after is no difference", [], same(node_(2, "x", reason="REOPENED"), node_(2, "x")))
+    t("diff_item: a closed issue that arrives with another reason still is", True, any(d.startswith("reason") for d in same(node_(2, "x", state="CLOSED", reason="COMPLETED"), node_(2, "x", state="CLOSED", reason="NOT_PLANNED"))))
+    t("diff_item prints no title, label or milestone, only that the field differs (the output rule)", [],
+      [d for d in diff_item(b, {**base, "title": "Hidden title", "labels": ["hidden-label"], "ms": ["hidden-ms", None]}) if "Hidden" in d or "hidden" in d])
+    try: log(what="sep-test", text="a b\u0085c"); got_ = records("sep-test")[-1]["text"]
+    except ValueError: got_ = "unreadable"
+    t("records: a record whose text holds a line or paragraph separator reads back whole", "a b\u0085c", got_)
+    log(what="closed-arrival", n=5, arrival="open", source="COMPLETED"); log(what="closed-arrival", n=5, arrival="closed/COMPLETED", source="COMPLETED")
+    t("the result keeps how a closed issue first arrived, not the state a close route left", {"5": "open"}, first_arrivals())
+    t("accepted: the design's numbers, 26 occurrences of 3 ids in 3 comments, carry no note; others do", ("", True),
+      (accepted_note(["a"] * 20 + ["b"] * 4 + ["c"] * 2, {("2", 0): 20, ("21", 0): 4, ("22", 0): 2}).split("]", 1)[1], "the design records" in accepted_note(["a"] * 26, {("2", 0): 26})))
     t("diff_item finds comments out of order", True, any(d.startswith("comments: createdAt") for d in diff_item(two, {**base, "comments": [[sha("c1"), "who", "2026-01-02T00:00:00Z"], [sha("c1"), "who", "2026-01-01T00:00:00Z"]], "mcomments": [sha("c1")] * 2})))
     exp = expected([["sub", "K#1", "K#2"], ["blk", "K#2", "MagicBot#12"], ["blk", "WebTools#5", "K#1"]], {1})
     t("expected: moved ends map to the target, the rest to the source, other repositories unchanged", {("sub", "T#1", "S#2"), ("blk", "S#2", "MagicBot#12"), ("blk", "WebTools#5", "T#1")}, exp)
@@ -3067,6 +3129,9 @@ def pure(t):
     t("snapshot_diff: a rename changes only name and URL fields; the open-issue count only when allowed", ([], ["repo.open_issues"]), (snapshot_diff(snapA, snapB, True), snapshot_diff(snapA, snapB)))
     t("snapshot_diff: any other field is reported", ["repo.x"], snapshot_diff(snapA, {**snapB, "repo": {**snapB["repo"], "open_issues": 1, "x": 2}}))
     t("snapshot_diff: access and topics are compared", ["collaborators", "topics"], snapshot_diff(snapA, {**snapA, "collaborators": [], "topics": ["t"]}))
+    t("snapshot_diff: the fields that are not settings are ignored (a per-read token, the detected language and licence, the counts of stars, watchers, forks and subscribers)",
+      [], snapshot_diff(snapA, {**snapA, "repo": {**snapA["repo"], **{k: "moved" for k in NOT_SETTINGS}}}))
+    t("snapshot_diff: a token present in an older snapshot only is ignored too", [], snapshot_diff({**snapA, "repo": {**snapA["repo"], "temp_clone_token": "t1"}}, snapA))
     e1, e2 = {("sub", "S#1", "S#2")}, {("sub", "S#1", "S#3")}
     t("settle reports unsettled at its bound, with the difference of the last two reads", (False, 4, e1 | e2), settle_bound(e1, e2, 4))
     t("settle with a bound of 1 still reads twice", (True, 2), settle_bound(e1, e1, 1)[:2])
@@ -3134,10 +3199,14 @@ def walk(t, stops, fk, mode):
     t(P("fresh-push: the heads read back equal the rewritten tips"), (True, True), (any("fresh-push: done" in x for x in pl), load().get("pushed")))
     ql, pl = R.step("fresh-default")
     t(P("fresh-default: what GitHub made the default is recorded before the write, B2 is read back"), (True, "main", True), (any("fresh-default: done" in x for x in pl), last("default-seen")["default_branch"], load().get("b2_done")))
+    b1, b2 = rjson("snapshots/settings-B1.json"), rjson("snapshots/settings-B2.json")
+    t(P("fresh-default passes although the language GitHub detects moved from none to Kotlin with the push; no snapshot stores the per-read token"),
+      (None, "Kotlin", False, False), (b1["repo"].get("language"), b2["repo"].get("language"), "temp_clone_token" in b1["repo"], "temp_clone_token" in b2["repo"]))
     ql, pl = R.step("labels-fresh"); t(P("labels-fresh creates the three labels with the source's colours"), (True, True), (any("labels-fresh: done" in x for x in pl), all(T["labels"][n] == (c, d) for n, c, d in LABELS)))
     rc, l = go(cmd_check, "stage", "S6"); t(P("stage S6 is OK"), "STAGE S6 OK", l[-1])
     # --- S9
     rc, l = go(cmd_census); t(P("census: N=9, six issues (five open), three pull requests"), True, any("N=9; 6 issues (5 open), 3 pull requests" in x for x in l))
+    rc, l = go(cmd_request, "ms-fresh"); stops(P("ms-fresh before baseline is refused: the milestone's description is the source's, which baseline records"), "not been recorded", l)
     rc, l = go(cmd_baseline); t(P("baseline: edges by kind and the external repositories"), True, any(f"{SELF_EDGES} edges (3 sub-issue, 4 blocked-by; 3 with MagicBot/WebTools)" in x for x in l))
     t(P("the baseline holds each issue and the table names every end K# or by its repository"), (6, True), (len(baseline()), all(parse(r)[0] in ("K", "MagicBot", "WebTools") for e in table()["edges"] for r in e[1:])))
     rc, l = go(cmd_accepted); t(P("the pre-rewrite ids in the texts: one id in one comment of #2"), True, any("1 occurrences, 1 distinct, in 1 comments of issues [2]" in x for x in l))
@@ -3297,6 +3366,13 @@ def failures(t, stops):
     t("realign request: the reset line has exactly the form `git -C <path> reset --hard <ref> 2>/dev/null`, and the path is the one in `repo` and `worktree`, for the scratch clone and for this checkout", (True, True, SC, MA, SC, MA, SC, MA),
       (bool(ms), bool(mm), ms and ms.group(1), mm and mm.group(1), rq["repo"], rm["repo"], rq["worktree"], rm["worktree"]))
     t("realign request: no other line runs a reset, and nothing reads the clone's path from anywhere but the one string", (1, True), (sum("reset" in c for c in rq["procedure"]), all(c.count(SC) <= 2 for c in rq["procedure"])))
+    rc, l = Run(None).cmd(lambda a: check_step(st, "post", "realign-main"))
+    sh0 = SH; SH = lambda cmd, env=None: 0; rc2, l2 = Run(None).cmd(lambda a: check_step(st, "post", "realign-scratch")); SH = sh0
+    t("check post realign: the done line names the clone by its tag, never by its path (the output rule)",
+      ([f'ok    realign-main: done {{"clone": "main", "fresh_name": "{FINAL}"}}'], [f'ok    realign-scratch: done {{"clone": "scratch", "fresh_name": "{TMP}"}}']), (l, l2))
+    ls = [Run(None).cmd(lambda a: check_step(st, "post", "realign-scratch"))[1] for _ in range(3)]; st["attempts"].pop("post:realign-scratch", None); save(st)
+    t("check post realign: a proof that keeps failing stops on the third check, naming the clone by its tag, never by its path", (True, False),
+      (any(x.startswith("STOP") and '"clone": "scratch"' in x for x in ls[2]), any(SC in x for y in ls for x in y)))
     rq = b_placeholder(st, {"text": ("a title", "a body")}, 20)
     t("placeholder request: the close is on the same command line as a test of the issue's title, and no comment tells the service to skip the create", (True, False),
       (any(c.startswith("test ") and "title.txt" in c and "--method PATCH" in c and "state=closed" in c for c in rq["procedure"]), any("skip the create" in c for c in rq["procedure"])))
@@ -3350,7 +3426,20 @@ def handlers(t, stops):
     for n in (1, 2, 3): T["issues"][n] = plain()
     t("h_placeholder: the target at the number below is todo", "todo", h_placeholder(st, 4)[0])
     title, body = placeholder_text(4, {"4": item(4)}); T["issues"][4] = {**plain(), "title": title, "body": body}
-    t("h_placeholder: the right text but open is partial", "partial", h_placeholder(st, 4)[0]); fk.state(tid, 4, "closed", "not_planned")
+    t("h_placeholder: the right text but open is partial, and says the placeholder exists", ("partial", True), (lambda r_: (r_[0], r_[1].get("exists")))(h_placeholder(st, 4)))
+    pq = b_placeholder(st, {"text": (title, body), "exists": True}, 4)["procedure"]
+    t("an open placeholder is resumed by its guarded close alone: no highest-number guard and no create", (False, False, True),
+      (any("issues?state=all" in c for c in pq), any("-F title=@title.txt" in c for c in pq), any("state_reason=not_planned" in c and "cat title.txt" in c for c in pq)))
+    import shutil; bash_ = shutil.which("bash"); t("bash is on PATH for the guard checks", True, bool(bash_))
+    def guard(line, numbers, newest):
+        """One `test "$(gh api …)" = N` line run in bash with gh standing in: a newest-first read answers the newest issue, a full listing every number."""
+        stub = "gh() { case \"$*\" in *sort=created*) echo \"$NEWEST\" ;; *) printf '%s\\n' $ALL ;; esac; }; "
+        r_ = subprocess.run([bash_, "-c", stub + line + "; echo rc=$?"], capture_output=True, text=True, env={**os.environ, "NEWEST": str(newest), "ALL": " ".join(map(str, numbers))})
+        return r_.stdout.strip().endswith("rc=0")
+    g30 = b_placeholder(st, {"text": ("t", "b")}, 30)["procedure"][0]
+    t("placeholder-30's guard holds when 1 to 29 are there and the newest issue is the placeholder at 20 (21 to 29 came by transfer, with their old creation times)", True, guard(g30, range(1, 30), 20))
+    t("and it fails once 30 is there", False, guard(g30, range(1, 31), 30))
+    fk.state(tid, 4, "closed", "not_planned")
     t("h_placeholder: closed with the reason is done", "done", h_placeholder(st, 4)[0])
     for n in (5, 6, 7, 8): T["issues"][n] = plain()
     t9 = placeholder_text(9, {"9": item(9)}); T["issues"][9] = {**plain(), "title": t9[0], "body": t9[1], "state": "closed", "reason": "not_planned"}
@@ -4570,6 +4659,14 @@ SRC_ID=562658298
 NOTES=0
 note() { if [ "$2" = "$3" ]; then echo "ok    $1"; else echo "RECORD $1: expected '$2', got '$3'"; NOTES=$((NOTES+1)); fi; }
 
+# KVOLATILE: the folders an open IDE, the Kotlin daemon and Gradle write to at any moment, at any depth. `git reset --hard` never creates or deletes an
+# untracked or ignored file, so the move counts the files in these folders instead of comparing their names.
+KVOLATILE='(^|/)(\.idea|\.gradle|\.kotlin|build|out)/'
+
+# klisting: a `git ls-remote` listing as the close-out compares it, saved or live: CR stripped, pull-request merge refs left out (the server recomputes
+# them, as k6-fresh.sh's pull_list does), sorted bytewise.
+klisting() { tr -d '\r' | grep -v -E "$(printf '\t')refs/pull/[0-9]+/merge\$" | LC_ALL=C sort; }
+
 # kfresh_identity ID NAME: stop unless repository ID is OWNER/NAME, is not the pre-rewrite repository, and NAME resolves to ID.
 kfresh_identity() {
   local id="$1" name="$2" got by
@@ -4713,7 +4810,8 @@ echo "STAGE S0-local OK"
 . "$(cygpath -m "$USERPROFILE")/BotWS/tools/env.sh"
 # kselftest.sh -- S0: this unit's shell scripts on a throwaway fixture, in a sandbox that stands in for the user profile.
 # What it proves: kept_findings.py on a finding in a kept file; the rewrite scripts (S3, S4) end to end on the fixture, scrub included; the
-# realignment scripts (kr1 to kr5) on a clone of the fixture, with a stand-in for gh and local repositories for GitHub; their stops.
+# realignment scripts (kr1 to kr5) on a clone of the fixture, with a stand-in for gh and local repositories for GitHub; their stops. The fixture's server
+# holds pull-request refs (two heads and a merge ref), so the clone's listing carries them tab-separated, as git writes it.
 # It writes only under $WS/tmp/kselftest, which it deletes at the end, and prints counts and fixed markers only.
 . "$TOOLS/lib.sh"
 V_REAL="$DATA/run/tool-versions.txt"
@@ -4773,8 +4871,8 @@ if [ "$1" = api ] && [ "$2" = "repositories/${STUB_ID:-7777}" ]; then echo "Spar
 if [ "$1" = api ] && [ "$2" = "repos/SpartanLaboratories/${STUB_NAME:-KotlinBottools-next}" ]; then echo "${STUB_ID:-7777}"; exit 0; fi
 if [ "$1" = api ] && [ "$2" = "repositories/${STUB_ID:-7777}/branches?per_page=100" ]; then git --git-dir "$STUB_FRESH" for-each-ref --format='%(objectname) %(refname)' refs/heads; exit 0; fi
 if [ "$1" = api ] && [ "$2" = "repos/SpartanLaboratories/KotlinBottools-legacy" ]; then echo 562658298; exit 0; fi
-if [ "$1" = api ] && [ "$2" = "repositories/562658298" ]; then echo "${STUB_LEGACY_PRIVATE:-true} ${STUB_LEGACY_ARCHIVED:-true}"; exit 0; fi
-if [ "$1" = api ] && [ "$2" = "repositories/562658298/issues?state=all&per_page=100" ]; then echo "${STUB_LEGACY_ISSUES:-0}"; exit 0; fi
+if [ "$1" = api ] && [ "$2" = "repositories/562658298" ]; then printf '%s\t%s\r\n' "${STUB_LEGACY_PRIVATE:-true}" "${STUB_LEGACY_ARCHIVED:-true}"; exit 0; fi
+if [ "$1" = api ] && [ "$2" = "repositories/562658298/issues?state=all&per_page=100" ]; then [ -n "$STUB_LEGACY_ISSUES_FAIL" ] && { echo "gh: HTTP 502" >&2; exit 1; }; echo "${STUB_LEGACY_ISSUES:-0}"; exit 0; fi
 if [ "$1" = api ] && [ "$2" = "repos/SpartanLaboratories/KotlinBottools/activity?per_page=100" ]; then cat "${STUB_ACTIVITY:-/dev/null}"; exit 0; fi
 exit 1
 GH
@@ -4787,6 +4885,7 @@ for a in "$@"; do u="$a"; case "$a" in Authorization*|-u) auth=1 ;; @*) req="${a
 legacy=0; case "$u" in *KotlinBottools-legacy*) legacy=1 ;; esac
 list="$STUB_SERVED"; [ "$legacy" = 1 ] && list="$STUB_SERVED_LEGACY"
 if [ "$post" = 1 ]; then
+  [ -n "$STUB_WANT_BROKEN" ] && { echo "Invalid username or password."; exit 0; }
   id="$(tr -c '0-9a-f' ' ' < "$req" | grep -o -E '[0-9a-f]{40}' | head -n 1)"
   if grep -q -x "$id" "$list" 2>/dev/null; then echo packfile; else echo "not our ref"; fi; exit 0
 fi
@@ -4802,7 +4901,11 @@ for r in GKB2 GKB BotTools TrumpBot Support; do cp -f "$LIST" "$WS/lists/$r-purg
 for r in $REPOS_STATIC; do
   git clone -q --mirror --no-local "$SB/old.git" "$BKROOT/$r.git"; mkdir -p "$OUT/$r"; ( cd "$BKROOT/$r.git" && find . -type f -print0 | sort -z | xargs -0 sha256sum ) > "$OUT/$r/backup.SHA256SUMS"
 done
-git ls-remote "$SB/old.git" > "$RM/ls-remote-at-clone.txt"; ( cd "$BK" && find . -type f -print0 | sort -z | xargs -0 sha256sum ) > "$RM/backup.SHA256SUMS"
+# pull-request refs on the fixture's server, as GitHub keeps them (two heads and a merge ref), before the listing taken at the clone
+OG() { git --git-dir "$SB/old.git" "$@"; }
+OG update-ref refs/pull/2/head "$(OG rev-parse main)"; OG update-ref refs/pull/3/head "$(OG rev-parse chore/issue-23-history-rewrite)"; OG update-ref refs/pull/3/merge "$(OG rev-parse main)"
+git ls-remote "$SB/old.git" > "$RM/ls-remote-at-clone.txt"; t "the clone's listing holds the three pull-request refs, tab-separated as git writes it" 3 "$(grep -c "$(printf '\t')refs/pull/" "$RM/ls-remote-at-clone.txt")"
+( cd "$BK" && find . -type f -print0 | sort -z | xargs -0 sha256sum ) > "$RM/backup.SHA256SUMS"
 export LIST_LINES=6
 mkdir -p "$SB/unit/research"; echo "clean plan text" > "$SB/unit/plan.md"; echo "clean" > "$SB/unit/research/r.md"; export K0_UNIT_DIR="$SB/unit" K0_TOP="$SB/nogit"
 out="$(bash "$TOOLS/k0-ready.sh" 2>&1 | tr -d '\r')"; t "k0 ends STAGE S0-local OK: every tool at its recorded hash, the pins, the data copy, the expression file, the backups" "STAGE S0-local OK" "$(echo "$out" | tail -n 1)"
@@ -4865,6 +4968,8 @@ out="$(bash "$TOOLS/k12-gate2.sh" 2>&1 | tr -d '\r')"; t "k12 (Gate 2) ends STAG
 t "k12 counted no match of the scrub's expressions in clean texts" 1 "$(echo "$out" | grep -c ': 2 texts, 0 matches ')"
 printf '[{"number":1,"title":"a title","body":"see Z:/fixture/projects/x for it"}]' > "$G/fresh-issues.json"
 out="$(bash "$TOOLS/k12-gate2.sh" 2>&1 | tr -d '\r')"; t "k12 records a match of the scrub's expressions and does not stop" 1 "$(echo "$out" | grep -c -E ': 2 texts, [1-9][0-9]* matches ')"
+echo '[1]' > "$G/fresh-comments.json"; out="$(bash "$TOOLS/k12-gate2.sh" 2>&1 | tr -d '\r')"; echo '[]' > "$G/fresh-comments.json"
+t "k12 stops when the count of the scrub's expressions cannot be taken (a dump the count cannot read)" "STOP  the count of the scrub's expressions over the fresh texts failed" "$(echo "$out" | grep '^STOP' | head -n 1)"
 printf '[{"number":1,"title":"a title","body":"Zorbulaxian is here"}]' > "$G/fresh-issues.json"
 out="$(bash "$TOOLS/k12-gate2.sh" 2>&1 | tr -d '\r')"; t "k12 on a member name in a fresh text: the proposal for this corpus runs, then the stop" "1 STOP  the gate's verdict line" "$(echo "$out" | grep -c '^ok    proposal s12: 1 keys') $(echo "$out" | grep '^STOP' | cut -c1-29)"
 unset KC_TOP KC_UNIT
@@ -4908,15 +5013,21 @@ out="$(kr co1 kr4-purge)"; t "kr4 ends STAGE KR4 OK: one pack, no garbage, every
 out="$(kr co1 kr5-proof)"; t "kr5 ends STAGE KR5 OK: the push-safety proof holds" "STAGE KR5 OK" "$(echo "$out" | tail -n 1)"
 t "kr5 quiet now answers 0" 0 "$(REALIGN_CLONE="$SB/co1" REALIGN_TAG=co1 bash "$TOOLS/kr5-proof.sh" quiet; echo $?)"
 t "and prints nothing" 0 "$(REALIGN_CLONE="$SB/co1" REALIGN_TAG=co1 bash "$TOOLS/kr5-proof.sh" quiet | wc -c | tr -d ' ')"
+mkdir -p "$SB/co1/.git/refs/tags"; echo deadbeefdeadbeefdeadbeefdeadbeefdeadbeef > "$SB/co1/.git/refs/tags/broken"
+t "kr5 fails closed when git cannot walk the history (a tag at a missing object)" 1 "$(REALIGN_CLONE="$SB/co1" REALIGN_TAG=co1 bash "$TOOLS/kr5-proof.sh" quiet; echo $?)"
+rm -f "$SB/co1/.git/refs/tags/broken"
+cp -p "$RM/commit-map" "$SB/commit-map.keep"; awk 'NR==1{print; next} {print $2" "$2}' "$SB/commit-map.keep" > "$RM/commit-map"      # every id mapped to itself: no changed commit, so the changed-commit id file comes out empty; the walk is intact
+t "kr5 quiet answers 1 when the changed-commit id file is empty and the history walk is intact (the id files must not be empty)" "1 0" "$(REALIGN_CLONE="$SB/co1" REALIGN_TAG=co1 bash "$TOOLS/kr5-proof.sh" quiet; echo $?) $(wc -c < "$WS/tmp/realign-co1/old-changed.txt" | tr -d ' ')"
+cp -p "$SB/commit-map.keep" "$RM/commit-map"
 # --- stops
 mkco co2; echo dirty >> "$SB/co2/$(git -C "$SB/co2" ls-files | grep -v '^docs/' | grep -v -E '\.(png|dat|jar)$' | head -1)"
 out="$(kr co2 kr1-preflight)"; t "kr1 stops on a tracked change" "STOP  tracked files unchanged: expected '0', got '1'" "$(echo "$out" | tail -n 1)"
 mkco co3; out="$(STUB_ID=9999 kr co3 kr1-preflight)"; t "kr1 does not read the id (kr2 does)" "STAGE KR1 OK" "$(echo "$out" | tail -n 1)"
 out="$(STUB_ID=9999 kr co3 kr2-fetch)"; t "kr2 stops when the fresh id does not read as the fresh name" 1 "$(echo "$out" | tail -n 1 | grep -c '^STOP  repository 7777 reads as')"
 out="$(FRESH_ID=562658298 STUB_ID=562658298 kr co3 kr2-fetch)"; t "kr2 stops when the id is the pre-rewrite repository's" 1 "$(echo "$out" | grep -c "^STOP  the fresh id is not the pre-rewrite repository's")"
-mkco co4; kr co4 kr1-preflight > /dev/null; git -C "$SB/fixture" -c user.name=A -c user.email=a@x commit -q --allow-empty -m "landed"; git -C "$SB/fixture" push -q -f "$SB/fresh.git" main:refs/heads/main 2>/dev/null
+mkco co4; kr co4 kr1-preflight > /dev/null; RT4="$(git -C "$SB/co4" for-each-ref --format='%(objectname) %(refname)' refs/remotes/origin | sort)"; git -C "$SB/fixture" -c user.name=A -c user.email=a@x commit -q --allow-empty -m "landed"; git -C "$SB/fixture" push -q -f "$SB/fresh.git" main:refs/heads/main 2>/dev/null
 out="$(kr co4 kr2-fetch)"; t "kr2 stops when the server's heads are not the rewritten ones, before any fetch" 1 "$(echo "$out" | grep -c "^STOP  server heads == ref-map's new column")"
-t "and fetched nothing" 0 "$(git -C "$SB/co4" for-each-ref refs/remotes/origin | wc -l | tr -d ' ' | sed 's/^[1-9].*/0/;s/^0$/0/')"
+t "and fetched nothing: the remote-tracking refs are exactly as they were" "$RT4" "$(git -C "$SB/co4" for-each-ref --format='%(objectname) %(refname)' refs/remotes/origin | sort)"
 git --git-dir "$SB/fresh.git" update-ref -d refs/heads/main 2>/dev/null; git -C "$MIRROR" push -q --mirror "$SB/fresh.git" 2>/dev/null
 mkco co5; kr co5 kr1-preflight > /dev/null; kr co5 kr2-fetch > /dev/null; krmove co5 > /dev/null; kr co5 kr3b-verify > /dev/null
 mkco co6; kr co6 kr1-preflight > /dev/null; kr co6 kr2-fetch > /dev/null; krmove co6 > /dev/null
@@ -4927,8 +5038,24 @@ out="$(kr co6 kr3b-verify)"; t "kr3b stops on a removed file left on disk after 
 mkco co8; kr co8 kr1-preflight > /dev/null; kr co8 kr2-fetch > /dev/null; krmove co8 > /dev/null
 TRK="$(git -C "$SB/co8" ls-files | grep -v '^docs/' | grep -v -E '\.(png|dat|jar)$' | head -n 1)"; echo "dirty" >> "$SB/co8/$TRK"
 out="$(kr co8 kr3b-verify)"; t "kr3b stops on a tracked file whose content does not match HEAD" "STOP  tracked files match HEAD: expected '0', got '1'" "$(echo "$out" | tail -n 1)"
+mkco co9; kr co9 kr1-preflight > /dev/null; kr co9 kr2-fetch > /dev/null; kr co9 kr3-premove > /dev/null      # and no reset line
+out="$(kr co9 kr3-postmove)"; t "kr3-postmove stops when HEAD did not reach its target, printing no commit id" "1 0" "$(echo "$out" | tail -n 1 | grep -c '^STOP  HEAD is at the target') $(echo "$out" | grep -c -E '[0-9a-f]{40}')"
+mkco co10; kr co10 kr1-preflight > /dev/null; kr co10 kr2-fetch > /dev/null; krmove co10 > /dev/null
+git -C "$SB/co10" update-ref refs/heads/main "$(awk '$1=="refs/heads/main"{print $2}' "$WS/tmp/realign-co10/plan2.txt")"
+out="$(kr co10 kr3b-verify)"; t "kr3b stops when a branch is not at its target, printing no commit id" "1 0" "$(echo "$out" | tail -n 1 | grep -c '^STOP  main at its target') $(echo "$out" | grep -c -E '[0-9a-f]{40}')"
+mkco co11; kr co11 kr1-preflight > /dev/null; kr co11 kr2-fetch > /dev/null; krmove co11 > /dev/null
+echo n > "$SB/co11/build/written-meanwhile.txt"; echo n > "$SB/co11/.idea/temp file.xml"; rm -f "$SB/co11/.idea/w.xml"
+out="$(kr co11 kr3b-verify)"; t "kr3b passes when an open IDE or a build adds and removes files in its own folders during the move" "STAGE KR3B OK" "$(echo "$out" | tail -n 1)"
+t "kr3b counts the files in those folders: two added and one removed, one more after than before" 1 "$(echo "$out" | sed -n 's/^RECORD files in the IDE and build folders: \([0-9]*\) before the move, \([0-9]*\) after$/\1 \2/p' | awk '{print ($2 == $1 + 1) ? 1 : 0}')"
+rm -f "$SB/co11/untracked.txt"
+out="$(kr co11 kr3b-verify)"; t "kr3b still stops when an untracked file outside those folders is gone" "STOP  untracked and ignored files outside the IDE and build folders unchanged: expected '0', got '1'" "$(echo "$out" | grep '^STOP' | head -n 1)"
 mkco co7; kr co7 kr1-preflight > /dev/null; kr co7 kr2-fetch > /dev/null; git -C "$SB/co7" checkout -q main
 out="$(kr co7 kr3-premove)"; t "kr3-premove stops when the checked-out branch is not the topic branch the reset line names" 1 "$(echo "$out" | grep -c "^STOP  the checked-out branch is the topic branch the reset line names")"
+mkco co12; kr co12 kr1-preflight > /dev/null; kr co12 kr2-fetch > /dev/null; kr co12 kr3-premove > /dev/null      # the before-sets written, and no reset
+echo n > "$SB/co12/written-between.txt"                                                                          # an untracked file those before-sets do not hold
+out="$(kr co12 kr1-preflight | tail -n 1) $(krmove co12 > /dev/null; kr co12 kr3b-verify | tail -n 1)"
+t "kr1 run again clears the before-sets a premove without a reset left, so the move takes them fresh: kr3b passes and they hold the file written in between" "STAGE KR1 OK STAGE KR3B OK 1" \
+  "$out $(tr '\0' '\n' < "$WS/tmp/realign-co12/others-before.z" | grep -c -x 'written-between.txt')"
 P5="$(ls "$SB/co5/.git/objects/pack" | grep -m1 '\.pack$')"; touch "$SB/co5/.git/objects/pack/${P5%.pack}.keep"     # a kept pack is one a gc must leave behind: a stand-in for a pack another program holds
 out="$(kr co5 kr4-purge)"; t "kr4 records a blocked deletion as deferred and does not stop" "STAGE KR4 RECORDED deferred=" "$(echo "$out" | tail -n 1 | sed 's/deferred=[0-9]*/deferred=/')"
 out="$(kr co5 kr5-proof)"; t "and the push-safety proof still holds" "STAGE KR5 OK" "$(echo "$out" | tail -n 1)"
@@ -4941,6 +5068,12 @@ out="$(bash "$TOOLS/k6-fresh.sh" prep 2>&1 | tr -d '\r')"; t "k6 prep ends STAGE
 t "k6 prep deleted the local pull-request ref" 0 "$(git --git-dir "$MIRROR" for-each-ref refs/pull/ | wc -l | tr -d ' ')"
 t "k6 prep added the fresh remote and left origin" "fresh origin" "$(git --git-dir "$MIRROR" remote | sort | tr '\n' ' ' | sed 's/ $//')"
 out="$(bash "$TOOLS/k6-fresh.sh" prep 2>&1 | tr -d '\r')"; t "a second prep is idempotent" "STAGE S6-prep OK" "$(echo "$out" | tail -n 1)"
+t "k6 prep compared the server's pull-request refs with the clone's listing: the two heads on each side, the merge ref left out" "2 2" "$(wc -l < "$RM/server-pull-refs.txt" | tr -d ' ') $(wc -l < "$WS/tmp/k6/clone-pull-refs.txt" | tr -d ' ')"
+OG update-ref refs/pull/2/head "$(OG rev-parse chore/issue-23-history-rewrite)"
+out="$(bash "$TOOLS/k6-fresh.sh" prep 2>&1 | tr -d '\r')"; t "k6 prep stops when a pull-request head moved on the pre-rewrite repository after the clone" 1 "$(echo "$out" | tail -n 1 | grep -c "^STOP  the server's pull-request refs are the ones the clone listed")"
+OG update-ref refs/pull/2/head "$(OG rev-parse main)"; OG update-ref refs/pull/3/merge "$(OG rev-parse chore/issue-23-history-rewrite)"
+out="$(bash "$TOOLS/k6-fresh.sh" prep 2>&1 | tr -d '\r')"; t "k6 prep passes when only a merge ref changed (the server recomputes those)" "STAGE S6-prep OK" "$(echo "$out" | tail -n 1)"
+OG update-ref refs/pull/3/merge "$(OG rev-parse main)"
 git --git-dir "$SB/old.git" update-ref refs/heads/landed-later "$(git --git-dir "$SB/old.git" rev-parse main)"
 out="$(bash "$TOOLS/k6-fresh.sh" prep 2>&1 | tr -d '\r')"; t "k6 prep stops when something landed on the pre-rewrite repository after the clone" 1 "$(echo "$out" | tail -n 1 | grep -c "^STOP  the pre-rewrite repository's heads equal ref-map's old column")"
 git --git-dir "$SB/old.git" update-ref -d refs/heads/landed-later
@@ -4955,6 +5088,10 @@ t "k7 probed no served old id" "served=0" "$(sed -n 's/.* \(served=[0-9]*\)$/\1/
 t "k7 ran the positive control" 1 "$(echo "$out" | grep -c 'probe control-positive: every id is served')"
 awk 'NR>1 && $3 ~ /^refs\/heads\// {print $1}' "$RM/ref-map" | head -n 1 >> "$SB/served.txt"
 out="$(bash "$TOOLS/k7-exit.sh" 2>&1 | tr -d '\r')"; t "k7 stops when an old tip is served by the fresh repository" "STOP  probe old-tips: no id is served: expected '0', got '1'" "$(echo "$out" | tail -n 1)"
+git --git-dir "$MIRROR" for-each-ref --format='%(objectname)' > "$SB/served.txt"; cp -f "$MANIFEST" "$SB/manifest.keep"
+{ cat "$SB/manifest.keep"; git --git-dir "$MIRROR" ls-tree main | awk '$2=="blob"{print $3; exit}'; } | sed 's/$/\r/' > "$MANIFEST"
+out="$(bash "$TOOLS/k7-exit.sh" 2>&1 | tr -d '\r')"; cp -f "$SB/manifest.keep" "$MANIFEST"
+t "k7 stops on a reachable manifest blob also when the manifest has CRLF line ends" "STOP  manifest blobs reachable from branches and tags: expected '0', got '1'" "$(echo "$out" | grep '^STOP' | head -n 1)"
 # S14 (residual probes) and S16 (close-out) with the same stand-ins
 export STUB_NAME=KotlinBottools STUB_SERVED_LEGACY="$SB/served-legacy.txt" STUB_ACTIVITY="$SB/activity.txt"; : > "$SB/served.txt"; echo "ffffffffffffffffffffffffffffffffffffff01" > "$SB/activity.txt"
 { awk 'NR>1 && $3 ~ /^refs\/heads\// {print $1}' "$RM/ref-map"; awk '{print $1}' "$RM/first-changed-commits"; cat "$MANIFEST"; } > "$SB/served-legacy.txt"
@@ -4966,6 +5103,11 @@ t "k14 printed no id" 0 "$(echo "$out" | grep -c -E '[0-9a-f]{40}')"
 out="$(FRESH_ID=7777 bash "$TOOLS/k14-residual.sh" 2>&1 | tr -d '\r')"; t "k14 records, and does not stop on, a fresh repository that serves an old tip, a legacy repository that serves none, and an old id in the activity feed" "STAGE S14 OK" "$(echo "$out" | tail -n 1)"
 t "k14: each unexpected answer is a RECORD line" 1 "$([ "$(echo "$out" | grep -c '^RECORD ')" -ge 4 ] && echo 1 || echo 0)"
 t "k14: the activity feed's old id is counted" 1 "$(echo "$out" | grep -c 'before_in_old=1$')"
+out="$(STUB_WANT_BROKEN=1 FRESH_ID=7777 bash "$TOOLS/k14-residual.sh" 2>&1 | tr -d '\r')"
+t "k14 records a protocol-v2 channel that answers nothing readable, for the fresh repository too" 1 "$(echo "$out" | grep -c "^RECORD fresh, authenticated: protocol-v2 want of an old tip served: expected '0', got 'unreadable'")"
+mkdir -p "$DATA/run/swap"; printf '{"ts": "2026-11-09T10:00:00Z", "what": "ids", "label": "after-private-old", "ok": true}\r\n' > "$DATA/run/swap/steps.jsonl"; printf '2026-11-09T10:00:05Z\n' > "$DATA/run/swap/legacy-private-at"
+out="$(FRESH_ID=7777 bash "$TOOLS/k14-residual.sh" 2>&1 | tr -d '\r')"; rm -f "$DATA/run/swap/steps.jsonl" "$DATA/run/swap/legacy-private-at"
+t "k14 ends the public window at the time S13 wrote to legacy-private-at" 1 "$(echo "$out" | grep -c '^public window: .* to 2026-11-09T10:00:05Z ')"
 export LEGACY_URL="$SB/old.git"
 out="$(FRESH_ID=7777 bash "$TOOLS/k16-close.sh" 2>&1 | tr -d '\r')"; t "k16 ends STAGE S16-local OK" "STAGE S16-local OK" "$(echo "$out" | tail -n 1)"
 t "k16 wrote both checksum lists" 2 "$(ls "$RM/SHA256SUMS-final" "$DATA/run/swap-SHA256SUMS" | wc -l | tr -d ' ')"
@@ -4973,7 +5115,11 @@ out="$(STUB_LEGACY_ARCHIVED=false FRESH_ID=7777 bash "$TOOLS/k16-close.sh" 2>&1 
 out="$(STUB_LEGACY_ISSUES=2 FRESH_ID=7777 bash "$TOOLS/k16-close.sh" 2>&1 | tr -d '\r')"; t "k16 stops on a legacy repository that still holds an issue" "STOP  no issue is left in the legacy repository: expected '0', got '2'" "$(echo "$out" | tail -n 1)"
 git --git-dir "$SB/old.git" update-ref refs/heads/moved "$(git --git-dir "$SB/old.git" rev-parse main)"
 out="$(FRESH_ID=7777 bash "$TOOLS/k16-close.sh" 2>&1 | tr -d '\r')"; t "k16 stops on a legacy repository whose refs are not the listing taken at the mirror clone" "STOP  the legacy repository's refs are the listing taken at the mirror clone: expected '0', got '1'" "$(echo "$out" | tail -n 1)"
-git --git-dir "$SB/old.git" update-ref -d refs/heads/moved; unset LEGACY_URL STUB_NAME STUB_SERVED_LEGACY STUB_ACTIVITY
+git --git-dir "$SB/old.git" update-ref -d refs/heads/moved
+out="$(STUB_LEGACY_ISSUES_FAIL=1 FRESH_ID=7777 bash "$TOOLS/k16-close.sh" 2>&1 | tr -d '\r')"; t "k16 stops when the legacy issue listing cannot be read (a failed read is not zero issues)" "STOP  the legacy repository's issue listing status: expected '0', got '1'" "$(echo "$out" | grep '^STOP' | head -n 1)"
+OG update-ref refs/pull/3/merge "$(OG rev-parse chore/issue-23-history-rewrite)"; out="$(FRESH_ID=7777 bash "$TOOLS/k16-close.sh" 2>&1 | tr -d '\r')"; OG update-ref refs/pull/3/merge "$(OG rev-parse main)"
+t "k16 passes when only a pull-request merge ref changed (the server recomputes those)" "STAGE S16-local OK" "$(echo "$out" | tail -n 1)"
+unset LEGACY_URL STUB_NAME STUB_SERVED_LEGACY STUB_ACTIVITY
 bash "$TOOLS/k8-scratch.sh" dry > "$SB/k8.out" 2>&1; t "k8 makes the scratch clone" "STAGE S8-scratch-dry OK" "$(tail -n 1 "$SB/k8.out" | tr -d '\r')"
 FRESH_URL="$SB/fresh.git" REALIGN_EXPECT_URL="$SB/fresh.git" bash "$TOOLS/k8-scratch.sh" scratch > "$SB/k8b.out" 2>&1; t "k8 makes the second scratch clone" "STAGE S8-scratch-scratch OK" "$(tail -n 1 "$SB/k8b.out" | tr -d '\r')"
 for s in kr1-preflight kr2-fetch kr3-premove RESET kr3-postmove kr3b-verify kr4-purge kr5-proof; do
@@ -5223,7 +5369,8 @@ echo "STAGE S5 OK"
 . "$(cygpath -m "$USERPROFILE")/BotWS/tools/env.sh"
 # k6-fresh.sh -- S6 around the mirror push. `prep`: the push preparation of the pipeline (local pull-request refs deleted, the expected tally, the
 # pre-rewrite repository's heads equal ref-map's old column, its pull-request refs recorded, the `fresh` remote). `verify`: the per-ref verification on
-# two channels after the push. The push itself is a request. Prints counts and fixed markers only.
+# two channels after the push. The push itself is a request. Prints counts and fixed markers only. Every list of pull-request refs (the server's now, the
+# listing taken at the mirror clone, the server's after the push) is read by `pull_list`, whatever separates its columns, and leaves the merge refs out.
 # usage: bash "$TOOLS/run-stage.sh" k6-fresh prep|verify      env: FRESH_ID (required), FRESH_NAME (default KotlinBottools-next), FRESH_URL;
 #   OLD_URL (verify only: where the pre-rewrite repository is now; default the mirror's origin, the legacy repository's URL after the renames); ORIGIN_URL (tests only)
 . "$TOOLS/lib.sh"; . "$TOOLS/plib.sh"; . "$TOOLS/klib.sh"
@@ -5238,6 +5385,9 @@ expect "ref-map holds no tag row"             0 "$(awk 'NR>1 && $3 ~ /^refs\/tag
 expect "no head is pruned away"               "$(wc -l < "$RT/old-heads.txt" | tr -d ' ')" "$HEADS"
 kfresh_identity "$FRESH_ID" "$FRESH_NAME"
 heads_of() { gitnet --git-dir "$M" ls-remote --heads "$1" </dev/null | tr -d '\r' | tr '\t' ' ' | sort; }
+# pull_list: a ref listing on stdin (git writes `<id><TAB><ref>`) -> its pull-request refs as `<id> <ref>`, sorted. The tab is turned into a space before any
+# field is read. Merge refs (refs/pull/N/merge) are left out on every side: the server recomputes them, and the clone's listing and the server's are compared alike.
+pull_list() { tr -d '\r' | tr '\t' ' ' | awk '$2 ~ /^refs\/pull\// && $2 !~ /\/merge$/' | sort; }
 case "$MODE" in
 prep)
   expect "the mirror's origin is the pre-rewrite repository" "$OURL" "$(git --git-dir "$M" remote get-url origin | tr -d '\r')"
@@ -5250,8 +5400,8 @@ prep)
   echo "ok    expected tally of the push: new=$HEADS forced=0 deleted=0 rejected=0 (every ref is new in the empty repository)"
   heads_of origin > "$RT/server-heads.txt"; expect "ls-remote of the pre-rewrite repository status" 0 "${PIPESTATUS[0]}"
   expect "the pre-rewrite repository's heads equal ref-map's old column (nothing landed since the clone)" 0 "$(cmp -s "$RT/server-heads.txt" "$RT/old-heads.txt"; echo $?)"
-  gitnet --git-dir "$M" ls-remote origin 'refs/pull/*' </dev/null | tr -d '\r' | tr '\t' ' ' | sort > "$RM/server-pull-refs.txt"; expect "ls-remote of the pull-request refs status" 0 "${PIPESTATUS[0]}"
-  grep ' refs/pull/' "$RM/ls-remote-at-clone.txt" | tr -d '\r' | tr '\t' ' ' | grep -v '/merge$' | sort > "$RT/clone-pull-refs.txt"
+  gitnet --git-dir "$M" ls-remote origin 'refs/pull/*' </dev/null | pull_list > "$RM/server-pull-refs.txt"; expect "ls-remote of the pull-request refs status" 0 "${PIPESTATUS[0]}"
+  pull_list < "$RM/ls-remote-at-clone.txt" > "$RT/clone-pull-refs.txt"
   expect "the server's pull-request refs are the ones the clone listed" 0 "$(cmp -s "$RM/server-pull-refs.txt" "$RT/clone-pull-refs.txt"; echo $?)"
   echo "ok    pull-request refs on the pre-rewrite server: $(wc -l < "$RM/server-pull-refs.txt" | tr -d ' ') (recorded)"
   if git --git-dir "$M" remote | grep -q '^fresh$'; then expect "the fresh remote is the temporary repository" "$FRESH_URL" "$(git --git-dir "$M" remote get-url fresh | tr -d '\r')"
@@ -5271,7 +5421,7 @@ verify)
   expect "no pull-request ref in the fresh repository" 0 "$(gitnet --git-dir "$M" ls-remote "$FRESH_URL" 'refs/pull/*' </dev/null | wc -l | tr -d ' ')"
   heads_of "$OLD" > "$RT/server-heads-after.txt"
   expect "the pre-rewrite repository's heads are still ref-map's old column" 0 "$(cmp -s "$RT/server-heads-after.txt" "$RT/old-heads.txt"; echo $?)"
-  gitnet --git-dir "$M" ls-remote "$OLD" 'refs/pull/*' </dev/null | tr -d '\r' | tr '\t' ' ' | sort > "$RT/server-pull-after.txt"
+  gitnet --git-dir "$M" ls-remote "$OLD" 'refs/pull/*' </dev/null | pull_list > "$RT/server-pull-after.txt"; expect "ls-remote of the pull-request refs after the push status" 0 "${PIPESTATUS[0]}"
   expect "its pull-request refs are as recorded before the push" 0 "$(cmp -s "$RT/server-pull-after.txt" "$RM/server-pull-refs.txt"; echo $?)"
   cp -f "$RT/fresh-refs.txt" "$RM/fresh-heads-after-push.txt"
   echo "ok    the fresh repository holds $(wc -l < "$RT/fresh-refs.txt" | tr -d ' ') heads, all rewritten; nothing else"; echo "STAGE S6-verify OK" ;;
@@ -5305,7 +5455,7 @@ cat "$RM/expect-check-fresh.txt"; expect "expect_check on the fresh mirror (scru
 # --- the manifest: no purged blob is reachable
 git --git-dir "$FM" rev-list --objects --branches --tags | cut -d' ' -f1 | LC_ALL=C sort -u > "$RT/reach-branches.txt"
 git --git-dir "$FM" rev-list --objects --all             | cut -d' ' -f1 | LC_ALL=C sort -u > "$RT/reach-all.txt"
-LC_ALL=C sort -u "$MANIFEST" > "$RT/manifest.sorted"
+tr -d '\r' < "$MANIFEST" | LC_ALL=C sort -u > "$RT/manifest.sorted"
 expect "manifest blobs reachable from branches and tags" 0 "$(LC_ALL=C comm -12 "$RT/manifest.sorted" "$RT/reach-branches.txt" | wc -l | tr -d ' ')"
 expect "manifest blobs reachable from every ref"         0 "$(LC_ALL=C comm -12 "$RT/manifest.sorted" "$RT/reach-all.txt" | wc -l | tr -d ' ')"
 # --- the scrub's zero count again, over every ref of the fresh mirror
@@ -5404,7 +5554,7 @@ if [ "$(grep '^GATE:' "$G/gate2.txt" | tr -d '\r')" != "GATE: 0 blocking hit(s)"
 fi
 expect "the gate's verdict line" "GATE: 0 blocking hit(s)" "$(grep '^GATE:' "$G/gate2.txt" | tr -d '\r')"
 expect "the gate's exit status" 0 "$RC"
-python -I - "$TOOLS/scrub_check.py" "$SCRUB" "$G"/fresh-issues.json "$G"/fresh-comments.json "$G"/fresh-pulls.json "$G"/fresh-pull-comments.json <<'PY'
+python -I - "$TOOLS/scrub_check.py" "$SCRUB" "$G"/fresh-issues.json "$G"/fresh-comments.json "$G"/fresh-pulls.json "$G"/fresh-pull-comments.json <<'PY' || { echo "STOP  the count of the scrub's expressions over the fresh texts failed"; exit 1; }
 import importlib.util, json, sys
 spec = importlib.util.spec_from_file_location("scrub_check", sys.argv[1]); m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 exprs = m.load_exprs(sys.argv[2]); texts = hits = 0
@@ -5443,7 +5593,7 @@ STEP=$(( ($(wc -l < "$MANIFEST") + 59) / 60 )); [ "$STEP" -ge 1 ] || STEP=1
 awk -v s="$STEP" 'NR % s == 1 || s == 1' "$MANIFEST" | head -n 60 > "$RT/blobs.txt"
 served() { grep -c '^200$' "$OUT/$1/probe-$2.codes"; }
 codes()  { sort "$OUT/$1/probe-$2.codes" | uniq -c | awk '{printf "%s x%s ", $2, $1}'; }
-want_count() { local n=0 id; while read -r id; do [ "$(want_probe "$id" auth)" = SERVED ] && n=$((n+1)); done < "$1"; echo "$n"; }
+want_count() { local n=0 id r; while read -r id; do r="$(want_probe "$id" auth)"; case "$r" in SERVED) n=$((n+1)) ;; NOT-SERVED) ;; *) echo unreadable; return 0 ;; esac; done < "$1"; echo "$n"; }      # an answer that is neither is not "not served"
 probe() {   # FILE api|web TEMPLATE LABEL: the repository is $REPO
   probe_ids "$1" "$2" "$3" "$4" || { echo "STOP  the probe set $4 stopped on a status other than 200, 404 and 422"; exit 1; }
 }
@@ -5474,7 +5624,8 @@ probe() {   # FILE api|web TEMPLATE LABEL: the repository is $REPO
   note "legacy, anonymous: old tips served"                0 "$(served KotlinBottools-legacy legacy-anon-tips)"
   note "legacy, anonymous: first-changed commits served"   0 "$(served KotlinBottools-legacy legacy-anon-first)"
   echo "tallies: fresh tips [$(codes KotlinBottools fresh-tips)] first [$(codes KotlinBottools fresh-first)] blobs [$(codes KotlinBottools fresh-blobs)]; legacy tips [$(codes KotlinBottools-legacy legacy-tips)] anonymous tips [$(codes KotlinBottools-legacy legacy-anon-tips)]"
-  PRIV="$(grep '"after-private-old"' "$DATA/run/swap/steps.jsonl" 2>/dev/null | tail -n 1 | sed -n 's/.*"ts": "\([0-9T:Z-]*\)".*/\1/p')"
+  PRIV="$(tr -d '\r' < "$DATA/run/swap/legacy-private-at" 2>/dev/null)"      # the time S13 wrote when the legacy repository was made private; else the read after it
+  [ -n "$PRIV" ] || PRIV="$(grep '"after-private-old"' "$DATA/run/swap/steps.jsonl" 2>/dev/null | tail -n 1 | sed -n 's/.*"ts": "\([0-9T:Z-]*\)".*/\1/p')"
   echo "public window: from 2026-11-08 (the repository became public) to ${PRIV:-unknown} (the legacy repository was made private); no measurement can exclude a copy taken in it"
   echo "answers other than the expected ones: $NOTES"
 } | tee "$RM/report-row.txt"
@@ -5496,10 +5647,11 @@ repo_env KotlinBottools
 [ -n "$FRESH_ID" ] || { echo "STOP  FRESH_ID is not set"; exit 1; }
 kfresh_identity "$FRESH_ID" KotlinBottools
 LG="${LEGACY_URL:-https://github.com/$OWNER/KotlinBottools-legacy.git}"      # LEGACY_URL: the self-test only
-gitnet ls-remote "$LG" </dev/null | tr -d '\r' | LC_ALL=C sort > "$WS/tmp/legacy-now.txt"; expect "ls-remote of the legacy repository status" 0 "${PIPESTATUS[0]}"
-tr -d '\r' < "$RM/ls-remote-at-clone.txt" | LC_ALL=C sort > "$WS/tmp/legacy-clone.txt"
+gitnet ls-remote "$LG" </dev/null | klisting > "$WS/tmp/legacy-now.txt"; expect "ls-remote of the legacy repository status" 0 "${PIPESTATUS[0]}"
+klisting < "$RM/ls-remote-at-clone.txt" > "$WS/tmp/legacy-clone.txt"
 expect "the legacy repository's refs are the listing taken at the mirror clone" 0 "$(cmp -s "$WS/tmp/legacy-now.txt" "$WS/tmp/legacy-clone.txt"; echo $?)"
-expect "no issue is left in the legacy repository" 0 "$(gh api "repositories/$SRC_ID/issues?state=all&per_page=100" --paginate --jq '[.[] | select(has("pull_request") | not)] | length' | tr -d '\r' | awk '{s+=$1} END{print s+0}')"
+gh api "repositories/$SRC_ID/issues?state=all&per_page=100" --paginate --jq '[.[] | select(has("pull_request") | not)] | length' | tr -d '\r' > "$WS/tmp/legacy-issue-pages.txt"; expect "the legacy repository's issue listing status" 0 "${PIPESTATUS[0]}"
+expect "no issue is left in the legacy repository" 0 "$(awk '{s+=$1; n++} END{print (n ? s : "no page read")}' "$WS/tmp/legacy-issue-pages.txt")"      # a failed read is not zero issues
 expect "the legacy repository is private and archived" "true true" "$(gh api "repositories/$SRC_ID" --jq '[.private,.archived]|@tsv' | tr -d '\r' | tr '\t' ' ')"
 expect "KotlinBottools resolves to the fresh id, which is not the legacy id" "$FRESH_ID" "$(gh api "repos/$OWNER/KotlinBottools" --jq .id | tr -d '\r')"
 ( cd "$RM" && for f in *; do [ -f "$f" ] && [ "${f#SHA256SUMS}" = "$f" ] && sha256sum "$f"; done > SHA256SUMS-final ); echo "ok    $(wc -l < "$RM/SHA256SUMS-final" | tr -d ' ') record files checksummed under the rewrite folder"
@@ -5552,7 +5704,7 @@ PRED_REMOVED=$(sed -n 's/.*removed=\([0-9]*\).*/\1/p' "$RT/effects.txt"); PRED_C
 expect "removed files: the two predictions agree" "$(python -I "$TOOLS/predict_removed.py" "$LIST")" "$PRED_REMOVED"
 echo "$PRED_REMOVED" > "$RT/predicted-removed.txt"; echo "$PRED_CHANGED" > "$RT/predicted-changed-count.txt"
 echo "files the rewrite will remove from the working tree: $PRED_REMOVED; files whose content the scrub changes: $PRED_CHANGED"
-rm -f "$RT/others-before.z" "$RT/index-before.z" "$RT/stage-before.z"      # the move takes its "before" sets fresh, once
+rm -f "$RT/others-before.z" "$RT/volatile-before.txt" "$RT/index-before.z" "$RT/stage-before.z"      # the move takes its "before" sets fresh, once
 echo "STAGE KR1 OK"
 ```
 
@@ -5612,7 +5764,8 @@ expect "its target is its same-name remote-tracking branch, the ref the reset li
 COL=$(python -I "$TOOLS/untracked_collisions.py" "$CURT"); echo "$COL"
 expect "no untracked file in the way" 0 "${COL##*collisions=}"
 # the "before" sets are written once, so that a re-run still compares against the original state
-[ -e "$RT/others-before.z" ] || git ls-files -o -z | LC_ALL=C sort -z > "$RT/others-before.z"
+[ -e "$RT/others-before.z" ] || git ls-files -o -z | grep -z -v -E "$KVOLATILE" | LC_ALL=C sort -z > "$RT/others-before.z"     # outside the IDE and build folders: by name
+[ -e "$RT/volatile-before.txt" ] || git ls-files -o -z | grep -z -c -E "$KVOLATILE" > "$RT/volatile-before.txt"           # inside them: counted
 [ -e "$RT/index-before.z"  ] || git ls-files -z    | LC_ALL=C sort -z > "$RT/index-before.z"
 [ -e "$RT/stage-before.z"  ] || git ls-files -s -z | LC_ALL=C sort -z > "$RT/stage-before.z"
 echo "STAGE KR3PRE OK"
@@ -5631,7 +5784,7 @@ krinit
 cd "$CLONE" || { echo "STOP  the checkout is not there"; exit 1; }
 expect "kr3-premove ran for this checkout" 1 "$(yn "$RT/index-before.z")"
 CUR=$(git symbolic-ref --short HEAD); CURT=$(awk -v r="refs/heads/$CUR" '$1==r{print $3}' "$RT/plan2.txt")
-expect "HEAD is at the target of the checked-out branch" "$CURT" "$(git rev-parse HEAD)"
+expect "HEAD is at the target of the checked-out branch" 1 "$([ "$(git rev-parse HEAD)" = "$CURT" ] && echo 1 || echo 0)"      # a yes or no: HEAD may still be a pre-rewrite commit
 while read -r ref tip target; do
   b=${ref#refs/heads/}
   [ "$b" = "$CUR" ] && continue
@@ -5651,7 +5804,7 @@ echo "STAGE KR3POST OK"
 . "$TOOLS/lib.sh"; . "$TOOLS/plib.sh"; . "$TOOLS/klib.sh"
 krinit
 cd "$CLONE" || { echo "STOP  the checkout is not there"; exit 1; }
-git ls-files -o -z | LC_ALL=C sort -z > "$RT/others-after.z"; git ls-files -z | LC_ALL=C sort -z > "$RT/index-after.z"; git ls-files -s -z | LC_ALL=C sort -z > "$RT/stage-after.z"
+git ls-files -o -z | grep -z -v -E "$KVOLATILE" | LC_ALL=C sort -z > "$RT/others-after.z"; git ls-files -z | LC_ALL=C sort -z > "$RT/index-after.z"; git ls-files -s -z | LC_ALL=C sort -z > "$RT/stage-after.z"
 LC_ALL=C comm -z -23 "$RT/index-before.z" "$RT/index-after.z" > "$RT/removed.z"
 REMOVED=$(tr -cd '\0' < "$RT/removed.z" | wc -c | tr -d ' '); echo "tracked files removed from the working tree: $REMOVED"
 expect "removed == predicted"        "$(cat "$RT/predicted-removed.txt")" "$REMOVED"
@@ -5672,9 +5825,10 @@ PY
 CHANGED=$(tr -cd '\0' < "$RT/changed.z" | wc -c | tr -d ' '); echo "tracked files whose content changed: $CHANGED"
 expect "changed == predicted (count)" "$(cat "$RT/predicted-changed-count.txt")" "$CHANGED"
 expect "changed == predicted (the same paths)" 0 "$(LC_ALL=C sort -z "$RT/predicted-changed.z" | cmp -s - "$RT/changed.z"; echo $?)"
-expect "untracked and ignored files unchanged" 0 "$(cmp -s "$RT/others-before.z" "$RT/others-after.z"; echo $?)"
+expect "untracked and ignored files outside the IDE and build folders unchanged" 0 "$(cmp -s "$RT/others-before.z" "$RT/others-after.z"; echo $?)"
+echo "RECORD files in the IDE and build folders: $(cat "$RT/volatile-before.txt" 2>/dev/null || echo unknown) before the move, $(git ls-files -o -z | grep -z -c -E "$KVOLATILE") after"
 expect "tracked files match HEAD"    0 "$(git status --porcelain --untracked-files=no | wc -l | tr -d ' ')"
-while read -r ref tip target; do expect "${ref#refs/heads/} at its target" "$target" "$(git rev-parse "$ref")"; done < "$RT/plan2.txt"
+while read -r ref tip target; do expect "${ref#refs/heads/} at its target" 1 "$([ "$(git rev-parse "$ref")" = "$target" ] && echo 1 || echo 0)"; done < "$RT/plan2.txt"      # a yes or no: never a commit id
 echo "STAGE KR3B OK"
 ```
 
@@ -5724,8 +5878,11 @@ chk() { if [ "$2" = "$3" ]; then [ -n "$Q" ] || echo "ok    $1"; else FAILS=$((F
 krinit
 cd "$CLONE" 2>/dev/null || { [ -n "$Q" ] || echo "STOP  the checkout is not there"; exit 1; }
 kold_ids
-chk "no changed or pruned pre-rewrite commit is reachable from any ref or HEAD" 0 "$(git rev-list --all HEAD 2>/dev/null | sort -u | comm -12 - "$RT/old-changed.txt" | wc -l | tr -d ' ')"
-chk "no first-changed commit is reachable" 0 "$(git rev-list --all HEAD 2>/dev/null | sort -u | comm -12 - "$RT/old-first.txt" | wc -l | tr -d ' ')"
+git rev-list --all HEAD 2>/dev/null > "$RT/reach.txt"; chk "the walk of every ref and HEAD (rev-list --all HEAD) completed" 0 "$?"      # a walk git could not finish proves nothing
+sort -u "$RT/reach.txt" > "$RT/reach.sorted"
+chk "the id files of the changed and the first-changed commits are not empty" 1 "$([ -s "$RT/old-changed.txt" ] && [ -s "$RT/old-first.txt" ] && echo 1 || echo 0)"
+chk "no changed or pruned pre-rewrite commit is reachable from any ref or HEAD" 0 "$(comm -12 "$RT/reach.sorted" "$RT/old-changed.txt" | wc -l | tr -d ' ')"
+chk "no first-changed commit is reachable" 0 "$(comm -12 "$RT/reach.sorted" "$RT/old-first.txt" | wc -l | tr -d ' ')"
 chk "no reflog entry names one" 0 "$( [ -d .git/logs ] && grep -r -l -F -f "$RT/old-changed.txt" .git/logs | wc -l | tr -d ' ' || echo 0)"
 chk "no stash" 0 "$(git stash list | wc -l | tr -d ' ')"
 chk "no ORIG_HEAD, FETCH_HEAD or other text in .git outside objects/ names one" 0 "$(grep -r -l -F -f "$RT/old-changed.txt" .git --exclude-dir=objects | wc -l | tr -d ' ')"

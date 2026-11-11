@@ -510,7 +510,7 @@ Sources are re-openable; "observed" claims name the read and the date and quote 
     'main'"; "// only configure allow forking if repository is not public";
     [`resource_github_repository.go`](https://github.com/integrations/terraform-provider-github/blob/v6.13.0/github/resource_github_repository.go),
     tag `v6.13.0` (2026-07-08). And "This resource is incompatible with the `default_branch` option of the
-    [`github_repository`](repository) resource." [`docs/resources/branch_default.md`](https://github.com/integrations/terraform-provider-github/blob/v6.13.0/docs/resources/branch_default.md), same tag.
+    [`github_repository`](https://github.com/integrations/terraform-provider-github/blob/v6.13.0/docs/resources/repository.md) resource." [`docs/resources/branch_default.md`](https://github.com/integrations/terraform-provider-github/blob/v6.13.0/docs/resources/branch_default.md), same tag.
 15. **Settings applications send one `PATCH`; `name` renames.** "# The name of the repository. Changing this will rename the
     repository" [`docs/plugins/repository.md`](https://github.com/repository-settings/app/blob/v5.0.16/docs/plugins/repository.md),
     tag `v5.0.16` (2026-11-03); the code is `github.request('PATCH /repos/{owner}/{repo}', this.settings)` in

@@ -52,6 +52,8 @@
 
   > **Dated note, 2026-11-08.** The commit ids in the generated boards' generated fields (the note at §1.1 item 9 lists them) are outside this statement. The fields are generated and no unit's procedure writes them, and under the swap (§7) the pre-rewrite objects live only in the private legacy repository, so the ids resolve to nothing in the public repository, as with the older documents' ids (§4). The id-reference check of `kotlinbottools-publish` (§6.5) must account for every such field; its count cannot reach 0 otherwise.
 
+  > **Dated note, 2026-11-11.** Measured at unit 3's run: the committed boards of this folder hold 30 occurrences of 3 distinct pre-rewrite commit ids in those generated fields, across 15 files. They are the 3 merge commits whose 26 occurrences sit in the moved resolution comments of #2, #21 and #22 (§1.1, item 9), and the exception above covers them.
+
 ---
 
 ## 1. Requirements
@@ -117,6 +119,8 @@
    id, or a purged blob id.
 
    > **Dated note, 2026-11-08.** The commit ids in the generated boards' generated fields (the `baseline.sha` and `wip.landing.merge` (with the merge id also in a generated timeline label) of an issue or tracking board's `plan.json`, `plan.js` and `dashboard.html`, and the `asIs`, `lastAmended`, `written` and `tree` shas of the state boards and the repository work board) are outside this requirement. The fields are generated and no unit's procedure writes them, and under the swap (§7) the pre-rewrite objects live only in the private legacy repository, so the ids resolve to nothing in the public repository, as with the older documents' ids (§4). The id-reference check of `kotlinbottools-publish` (§6.5) must account for every such field; its count cannot reach 0 otherwise.
+
+   > **Dated note, 2026-11-11.** The resolution comments on #2, #21 and #22 hold 26 occurrences of 3 distinct pre-rewrite merge-commit ids, inside permalinks. They moved with the issues to the fresh repository and stay, accepted as the boards' ids are; they are the same 3 commits the boards' generated fields name, and the publication unit's id-reference check accounts for exactly them ([unit 3's as-built record, §3.5](23-kotlinbottools-rewrite-and-swap/final-implementation.md#35-census-and-baseline)).
 
 10. **Every unit runs from this machine and asks no one for approval** before a push, a force-push
     or the visibility change. A failing verification stops the unit before anything
@@ -621,6 +625,10 @@ stops the repository before its push and discards its mirror; the backup stays.
    - It is a dry run, then the push, both `--porcelain --force --mirror` and both tallied.
    - The push's flags must equal the dry run's, with exit status 0, zero rejected lines and
      `Done` present.
+
+   > **Dated note, 2026-11-11.** KotlinBottools' push went to an empty fresh repository, where every ref is new, so its dry run
+   > and push were `--porcelain --mirror` without `--force`, with the expected tally `new=2` and nothing forced, deleted or
+   > rejected ([unit 3's as-built record, §3.2](23-kotlinbottools-rewrite-and-swap/final-implementation.md#32-the-fresh-repository-and-the-push)).
 7. **Per-ref verification** on two channels, read by the unit (findings 3 §6.2 P5):
    - `git ls-remote --refs` and the REST `branches` listing both equal the local refs;
    - no remote ref points at an old tip;
@@ -864,6 +872,11 @@ Every mutation is checked before it is made, so a re-run after an interruption i
 >
 > The checks must account for this. The body hash of each issue is taken before the first transfer, as the link table above already does, and the moved issue's body is compared with it after mapping every reference that names the source or the target repository, in any form, back to bare `#N` (a comment's text, where compared, the same way); the source's current text is never the reference, since earlier transfers change it. Any other difference in the text stays a difference. The gates' name and path scans read these texts, and the rewritten references add only repository names. Whether text in another repository that cites a moved issue is rewritten is not measured (the rehearsal has only its two repositories); such a citation resolves by name and number either way (§12.2).
 
+> **Dated note, 2026-11-11.** The real walk moved 28 issues and created the placeholders at 20, 30 and 31; every link was
+> kept by the transfers and none was written again. The moved texts keep the references the transfers wrote, naming
+> `KotlinBottools-next`, which stays reserved. The transfers also rewrote the references in MagicBot's and WebTools' issue
+> texts to that name, so the reserved name carries those as well ([unit 3's as-built record, §3.6 and §3.8](23-kotlinbottools-rewrite-and-swap/final-implementation.md#36-the-walk-and-the-links)).
+
 ### 7.5 Renames, archive, visibility, scanning
 
 **The renames:**
@@ -1035,6 +1048,12 @@ A push sends only objects reachable from the refs it updates, and every commit t
 has a rewritten tree. So no push can carry old history, whether or not the old objects have yet
 been deleted (research README §3.5).
 
+> **Dated note, 2026-11-11.** Unit 3 ran this procedure on this checkout. The topic branch carried the unit's commits made
+> before the mirror clone through the rewrite; the move was split around the reset line, run in the request service's own
+> form; the untracked and ignored files were compared by name outside the folders an open IDE, the Kotlin daemon and Gradle
+> write to, and counted inside them; the object deletion was proven, so there is no deferred step; and the push-safety proof
+> passed ([unit 3's as-built record, §3.4](23-kotlinbottools-rewrite-and-swap/final-implementation.md#34-the-realignment)).
+
 ### 9.3 IntelliJ IDEA while the project stays open
 
 The IDE's git integration runs short git commands in the background (status and index refresh,
@@ -1191,6 +1210,10 @@ carried onto the rewritten history by the realignment (§9.2).
 - A unit's landing closes that unit's sub-issue only. No pull request uses a closing keyword for
   #2 or #1.
 - #2 is closed when unit 8 lands, with the residual report posted on it.
+
+> **Dated note, 2026-11-11.** For unit 3 the topic branch carried the commits made before the mirror clone (its research and
+> plan) through the rewrite, and its later commits are made on the realigned topic branch, which tracks the fresh repository
+> ([unit 3's as-built record, §1](23-kotlinbottools-rewrite-and-swap/final-implementation.md#1-what-was-built)).
 
 ---
 

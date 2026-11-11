@@ -18,9 +18,9 @@ these findings is current and is cited instead of researched again:
 | The gitleaks scans of the backup and of the fresh mirror, through the wrapper | [`../../research/gitleaks-local-and-ci.md`](../../research/gitleaks-local-and-ci.md) §3.2–§3.5, §6.4, §6.7, §6.8 |
 | The realignment of this checkout in place under an open IDE, its push-safety proof and its deferred step | [`../../research/clone-realignment-and-data-extraction.md`](../../research/clone-realignment-and-data-extraction.md) §3.1–§3.6, §3.10, §6.3, §6.8 |
 | The privacy gate and the id-reference check | [`../../research/purge-blast-radius.md`](../../research/purge-blast-radius.md) §3.B, §6.3, §6.4 |
-| What a transfer does to numbers, closed issues, links and the references in the moved text, and the content-creation limits | [`../22-transfer-rehearsal/research/issue-transfer-behaviour.md`](../22-transfer-rehearsal/research/issue-transfer-behaviour.md) §3, §6, as corrected by [`../22-transfer-rehearsal/research/README.md`](../22-transfer-rehearsal/research/README.md#did-not-hold-in-the-build) and measured in [the rehearsal's as-built record, §3](../22-transfer-rehearsal/final-implementation.md#3-measurements) |
-| The rename, privacy and archive order, and identity read by repository id | [`../22-transfer-rehearsal/research/rename-visibility-archive-sequence.md`](../22-transfer-rehearsal/research/rename-visibility-archive-sequence.md) §3, §6 |
-| The REST and GraphQL forms for issues, comments, placeholders, transfers, links, the census and the flat read | [`../22-transfer-rehearsal/research/fixture-and-read-api-forms.md`](../22-transfer-rehearsal/research/fixture-and-read-api-forms.md) §3, §6 |
+| What a transfer does to numbers, closed issues, links and the references in the moved text, and the content-creation limits | [`../../22-transfer-rehearsal/research/issue-transfer-behaviour.md`](../../22-transfer-rehearsal/research/issue-transfer-behaviour.md) §3, §6, as corrected by [`../../22-transfer-rehearsal/research/README.md`](../../22-transfer-rehearsal/research/README.md#did-not-hold-in-the-build) and measured in [the rehearsal's as-built record, §3](../../22-transfer-rehearsal/final-implementation.md#3-measurements) |
+| The rename, privacy and archive order, and identity read by repository id | [`../../22-transfer-rehearsal/research/rename-visibility-archive-sequence.md`](../../22-transfer-rehearsal/research/rename-visibility-archive-sequence.md) §3, §6 |
+| The REST and GraphQL forms for issues, comments, placeholders, transfers, links, the census and the flat read | [`../../22-transfer-rehearsal/research/fixture-and-read-api-forms.md`](../../22-transfer-rehearsal/research/fixture-and-read-api-forms.md) §3, §6 |
 
 **The unit's blast radius needs no research.** It is surveyed directly in the plan: the tracked
 files the rewrite removes from this checkout or changes, the issues, links and texts the walk moves,
@@ -92,6 +92,15 @@ claims by repeating the read (GET requests and GraphQL queries only). 23 hold, o
 | 1–11, 14–25 | Hold. The quotes are verbatim at their sources: the REST description at the cited commit (still the latest on its `main`), GitHub's documentation pages, the 2023-02-02 changelog entry, the Terraform provider at `v6.13.0`, the settings application at `v5.0.16`, `gh api --help` of gh 2.100.0, and the live GraphQL schema. The absences claims 2 and 17 assert hold as well: `POST orgs/{org}/repos` has no `default_branch`, `allow_update_branch`, `web_commit_signoff_required`, `allow_forking` or discussions field, and the GraphQL repository inputs have no merge settings, default branch or Actions fields. The observed values read the same again: the new private repository's settings, the masked wiki on three private repositories, the organisation's plan and forking policy with its 403 on the organisation's Actions settings, the collaborator listings, and the free name. |
 | 12 | **Fails.** The quoted error text is on the cited page, but the thread is not about a branch that does not exist: the branch existed, and the accepted answer traces the error to a field missing from the request. The claim is not evidence of what GitHub answers when `default_branch` names a branch that does not exist, and nothing in the design rests on it (summary, below). |
 | 13 | **Unclear.** The quote is verbatim, but it is one project's untested statement that the first branch pushed to an empty repository becomes its default. It stays recorded as an opinion; the design does not depend on it. |
+
+**In the build** ([as-built record](../final-implementation.md)):
+
+- The differences expected between the read-backs before and after the push ([Request B2](fresh-repository-settings.md#request-b2-after-the-push-set-the-default-branch-and-read-back))
+  did not hold alone: GitHub's repository representation also carries a clone token that changes on every read and the
+  language it detects in the pushed content, which moved from none to `Kotlin`. Neither is a setting; the comparison now
+  leaves them out, and the deviation this caused is in the as-built record's §4.
+- One mirror push created both branches, and GitHub made `main` the default. That neither confirms nor refutes claim 13,
+  since both branches arrived in the same push.
 
 ---
 

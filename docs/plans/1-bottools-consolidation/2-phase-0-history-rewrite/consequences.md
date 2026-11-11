@@ -210,6 +210,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 
 `transfer-rehearsal` has run; what it leaves for the units after it is in [its consequences, §4](22-transfer-rehearsal/consequences.md#4-sibling-units-and-neighbouring-issues), and the known gaps of its tool, which `kotlinbottools-rewrite-and-swap` closes before reusing it, are in [§5](22-transfer-rehearsal/consequences.md#5-known-gaps).
 
+`kotlinbottools-rewrite-and-swap` has run; what it leaves for the units after it is in [its consequences, §4](23-kotlinbottools-rewrite-and-swap/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
+
 **Neighbouring issues:**
 
 - **#1,** the tracking issue. Its planning documents land with #2's own landing.
@@ -233,6 +235,12 @@ The rewrite itself changes two source files on `main` through the path scrub
   - the realignment of a checkout, and its replacement by a fresh clone.
 
   Until they exist, unit 2 and every later unit wait. Unit 1 needs none of them.
+
+  > **Dated note, 2026-11-11.** The requests exist, and units 2 and 3 have used them. Unit 3 used `push-mirror`,
+  > `repo-settings` and `realign-checkout`, none of which had been used before it, with `create-repo`, `create-label`,
+  > `create-milestone`, `transfer-issue`, `placeholder-issue`, `rename-repo`, `repo-visibility` and `archive-repo`. No unit has
+  > used `relationships` yet (no transfer has dropped a link), nor `edit-issue-body`, `repo-security` or `replace-clone`
+  > ([unit 3's as-built record](23-kotlinbottools-rewrite-and-swap/final-implementation.md)).
 - **The path scrub has been proved only on a fixture,** until unit 3 runs it on the real history.
   Its fidelity check and its zero-match count stop the unit before the push if it misbehaves.
 - **The real histories have not yet been rewritten or scanned.** The derived counts, filter-repo's

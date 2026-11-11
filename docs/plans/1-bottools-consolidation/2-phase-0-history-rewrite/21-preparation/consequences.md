@@ -83,6 +83,14 @@ the expression file are consumed by the phase's later units (§4).
   `kotlinbottools-publish`, `gkb2-gkb-rewrite`, `bottools-trumpbot-support-rewrite`,
   `residual-report-and-cleanup`) consumes the installed filter-repo and gitleaks, the saved tools,
   the `env.sh` contract, the six lists, `COPY-VERIFIED`, and the runner and as-run log.
+
+  > **Dated note, 2026-11-11.** The privacy gate this unit saved, `privacy_gate.py`, is no longer the copy in the workspace:
+  > the [rewrite and swap unit](../23-kotlinbottools-rewrite-and-swap/plan.md) (#23) saved its own copy over it, with the order
+  > of names that differ only in case made total. In this unit's copy the order inside such a group followed the process's
+  > hash seed, so a hash over the sorted lists did not repeat from one run to the next; the gate's labels and output were the
+  > same in every run. This unit's recorded size and sha256 of the gate (10,850 bytes, `8cf81c9f…`) are no longer current: the
+  > copy in use is 11,615 bytes, sha256 `0caea1411a4f3db7a32a0ac54e41d65b6df427545df16c7233d539a860747760`, recorded in
+  > [that unit's plan, Appendix A](../23-kotlinbottools-rewrite-and-swap/plan.md#appendix-a--the-tools-and-their-runner).
 - **`transfer-rehearsal`** (#22, blocked by this unit), **`repository-hygiene`**,
   **`kotlinbottools-publish`** and **`residual-report-and-cleanup`** also consume the proven
   non-interactive authentication, and `secret_scan.py` and `gitleaks.toml` at their fixed names;
