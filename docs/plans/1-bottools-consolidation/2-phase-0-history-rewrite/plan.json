@@ -796,8 +796,8 @@
         "live": {
           "step": "document",
           "since": "2026-11-11T14:25:49Z",
-          "updated": "2026-11-11T14:25:49Z",
-          "detail": "Document: 0 of 6 tasks done.",
+          "updated": "2026-11-11T15:06:00Z",
+          "detail": "Document: 6 of 6 tasks done; every task done.",
           "steps": [
             "sizing",
             "interview",
@@ -820,7 +820,10 @@
               "verdict": "changes-requested",
               "date": "2026-11-11",
               "at": "2026-11-11T14:08:08Z",
-              "findings": {},
+              "findings": {
+                "test": 2,
+                "code": 3
+              },
               "severity": {
                 "minor": 5,
                 "other": 0
@@ -835,8 +838,8 @@
           "branch": "chore/issue-23-history-rewrite",
           "event": {
             "name": "document",
-            "at": "2026-11-11T14:25:49Z",
-            "note": "0 of 6 tasks done"
+            "at": "2026-11-11T15:06:00Z",
+            "note": "6 of 6 tasks done"
           },
           "asked": [
             {
@@ -1471,32 +1474,47 @@
               {
                 "id": "documentation-review",
                 "name": "Documentation review",
-                "state": "todo"
+                "state": "done",
+                "started": "2026-11-11T14:27:54Z",
+                "finished": "2026-11-11T14:31:17Z",
+                "report": "The documentation check found thirteen points, all in this unit’s documents: a usage text and an output-rule statement for the walk tool, internal contradictions, a missing table row, broken relative links in the research folder, and follow-ups listed in the plan but not in the consequences. They are applied together with the reconcile of the plan, the consequences and the as-built record, in one pass over the unit’s folder."
               },
               {
                 "id": "reconcile-documentation",
                 "name": "Reconcile documentation",
-                "state": "todo"
+                "state": "done",
+                "started": "2026-11-11T14:31:17Z",
+                "finished": "2026-11-11T14:56:12Z",
+                "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
               },
               {
                 "id": "reconcile-plan",
                 "name": "Reconcile plan",
-                "state": "todo"
+                "state": "done",
+                "started": "2026-11-11T14:31:17Z",
+                "finished": "2026-11-11T14:56:12Z",
+                "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
               },
               {
                 "id": "readme-changelog",
                 "name": "README and CHANGELOG",
-                "state": "todo"
+                "state": "done",
+                "finished": "2026-11-11T14:56:12Z",
+                "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
               },
               {
                 "id": "state-boards",
                 "name": "State boards",
-                "state": "todo"
+                "state": "done",
+                "started": "2026-11-11T14:56:12Z",
+                "finished": "2026-11-11T15:05:06Z"
               },
               {
                 "id": "document-landing",
                 "name": "Document commit",
-                "state": "todo"
+                "state": "done",
+                "started": "2026-11-11T15:05:06Z",
+                "finished": "2026-11-11T15:06:00Z"
               }
             ]
           },
@@ -2333,7 +2351,39 @@
             ],
             "qa": [
               {
-                "since": "2026-11-11T14:08:08Z",
+                "since": "2026-11-11T06:48:43Z",
+                "ended": "2026-11-11T06:59:11Z",
+                "endedBy": "run-restarted",
+                "to": "qa",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-11T06:48:43Z",
+                  "note": "Quality Review 1: running"
+                },
+                "detail": "Quality Review 1 running.",
+                "open": [
+                  {
+                    "text": "A default secret-scanning rule matches twice in one kept file; it is recorded at the exit tests and holds back the later change to public.",
+                    "raised": "implementation-stage s5"
+                  },
+                  {
+                    "text": "The accepted old commit ids in the moved comments measure 26 occurrences of 3 distinct ids, where the plan says 26 ids.",
+                    "raised": "implementation-stage s6"
+                  }
+                ],
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "running",
+                    "date": "2026-11-11",
+                    "at": "2026-11-11T06:48:43Z",
+                    "findings": {}
+                  }
+                ],
+                "outage": "the session ended and a new session took the run up"
+              },
+              {
+                "since": "2026-11-11T13:54:02Z",
                 "ended": "2026-11-11T14:08:08Z",
                 "endedBy": "qa-pass",
                 "to": "remediation",
@@ -2359,7 +2409,10 @@
                     "verdict": "changes-requested",
                     "date": "2026-11-11",
                     "at": "2026-11-11T14:08:08Z",
-                    "findings": {},
+                    "findings": {
+                      "test": 2,
+                      "code": 3
+                    },
                     "severity": {
                       "minor": 5,
                       "other": 0
@@ -2429,7 +2482,10 @@
                     "verdict": "changes-requested",
                     "date": "2026-11-11",
                     "at": "2026-11-11T14:08:08Z",
-                    "findings": {},
+                    "findings": {
+                      "test": 2,
+                      "code": 3
+                    },
                     "severity": {
                       "minor": 5,
                       "other": 0
@@ -2471,7 +2527,7 @@
         },
         "tests": {
           "base": "main",
-          "updated": "2026-11-11T14:25:49Z",
+          "updated": "2026-11-11T14:31:17Z",
           "added": [],
           "amended": [
             {
@@ -2480,11 +2536,10 @@
               "tests": 131,
               "result": {
                 "state": "passed",
-                "passed": 129,
+                "passed": 131,
                 "failed": 0,
                 "skipped": 0,
-                "pass": 1,
-                "at": "2026-11-11T14:08:08Z"
+                "at": "2026-11-11T14:31:17Z"
               },
               "stage": "s16"
             },
@@ -2494,11 +2549,10 @@
               "tests": 564,
               "result": {
                 "state": "passed",
-                "passed": 562,
+                "passed": 564,
                 "failed": 0,
                 "skipped": 0,
-                "pass": 1,
-                "at": "2026-11-11T14:08:08Z"
+                "at": "2026-11-11T14:31:17Z"
               },
               "stage": "s16"
             }
@@ -2647,7 +2701,7 @@
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "091653069aad"
+              "hash": "f579c5d6d5f8"
             }
           },
           {
@@ -2657,7 +2711,7 @@
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "091653069aad"
+              "hash": "f579c5d6d5f8"
             }
           },
           {
@@ -2677,7 +2731,7 @@
               "ref": "architecture.md#74-the-number-walk-and-the-links",
               "heading": "7.4 The number walk and the links",
               "paragraph": "Before the walk:",
-              "hash": "a385ef439a51"
+              "hash": "f5cdb73198b5"
             }
           },
           {
@@ -2697,7 +2751,7 @@
               "ref": "architecture.md#92-procedure-and-the-push-safety-proof",
               "heading": "9.2 Procedure and the push-safety proof",
               "paragraph": "The realignment is the last step of unit 3 before its own landing. It is carried out on request (§11), with the procedure below from the unit's plan, and the unit verifies its outcome.",
-              "hash": "c81e6cc4c20f"
+              "hash": "cd6e823e1fa1"
             }
           },
           {
@@ -3015,7 +3069,7 @@
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "091653069aad"
+              "hash": "f579c5d6d5f8"
             }
           },
           {
@@ -3109,7 +3163,7 @@
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "091653069aad"
+              "hash": "f579c5d6d5f8"
             }
           },
           {

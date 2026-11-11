@@ -91,8 +91,8 @@ window.dashboardLive&&window.dashboardLive("plan",
   "wip": {
     "step": "document",
     "since": "2026-11-11T14:25:49Z",
-    "updated": "2026-11-11T14:25:49Z",
-    "detail": "Document: 0 of 6 tasks done.",
+    "updated": "2026-11-11T15:06:00Z",
+    "detail": "Document: 6 of 6 tasks done; every task done.",
     "steps": [
       "sizing",
       "interview",
@@ -700,8 +700,8 @@ window.dashboardLive&&window.dashboardLive("plan",
     ],
     "event": {
       "name": "document",
-      "at": "2026-11-11T14:25:49Z",
-      "note": "0 of 6 tasks done"
+      "at": "2026-11-11T15:06:00Z",
+      "note": "6 of 6 tasks done"
     },
     "history": {
       "sizing": [
@@ -1486,7 +1486,39 @@ window.dashboardLive&&window.dashboardLive("plan",
       ],
       "qa": [
         {
-          "since": "2026-11-11T14:08:08Z",
+          "since": "2026-11-11T06:48:43Z",
+          "ended": "2026-11-11T06:59:11Z",
+          "endedBy": "run-restarted",
+          "to": "qa",
+          "event": {
+            "name": "qa-pass",
+            "at": "2026-11-11T06:48:43Z",
+            "note": "Quality Review 1: running"
+          },
+          "detail": "Quality Review 1 running.",
+          "open": [
+            {
+              "text": "A default secret-scanning rule matches twice in one kept file; it is recorded at the exit tests and holds back the later change to public.",
+              "raised": "implementation-stage s5"
+            },
+            {
+              "text": "The accepted old commit ids in the moved comments measure 26 occurrences of 3 distinct ids, where the plan says 26 ids.",
+              "raised": "implementation-stage s6"
+            }
+          ],
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "running",
+              "date": "2026-11-11",
+              "at": "2026-11-11T06:48:43Z",
+              "findings": {}
+            }
+          ],
+          "outage": "the session ended and a new session took the run up"
+        },
+        {
+          "since": "2026-11-11T13:54:02Z",
           "ended": "2026-11-11T14:08:08Z",
           "endedBy": "qa-pass",
           "to": "remediation",
@@ -1512,7 +1544,10 @@ window.dashboardLive&&window.dashboardLive("plan",
               "verdict": "changes-requested",
               "date": "2026-11-11",
               "at": "2026-11-11T14:08:08Z",
-              "findings": {},
+              "findings": {
+                "test": 2,
+                "code": 3
+              },
               "severity": {
                 "minor": 5,
                 "other": 0
@@ -1582,7 +1617,10 @@ window.dashboardLive&&window.dashboardLive("plan",
               "verdict": "changes-requested",
               "date": "2026-11-11",
               "at": "2026-11-11T14:08:08Z",
-              "findings": {},
+              "findings": {
+                "test": 2,
+                "code": 3
+              },
               "severity": {
                 "minor": 5,
                 "other": 0
@@ -1602,7 +1640,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "verdict": "changes-requested",
         "date": "2026-11-11",
         "at": "2026-11-11T14:08:08Z",
-        "findings": {},
+        "findings": {
+          "test": 2,
+          "code": 3
+        },
         "severity": {
           "minor": 5,
           "other": 0
@@ -1737,8 +1778,8 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       {
         "step": "qa",
-        "since": "2026-11-11T06:48:43Z",
-        "ended": "2026-11-11T14:08:08Z",
+        "since": "2026-11-11T06:59:11Z",
+        "ended": "2026-11-11T13:54:02Z",
         "reason": "the session ended and a new session took the run up"
       }
     ],
@@ -1747,32 +1788,47 @@ window.dashboardLive&&window.dashboardLive("plan",
         {
           "id": "documentation-review",
           "name": "Documentation review",
-          "state": "todo"
+          "state": "done",
+          "started": "2026-11-11T14:27:54Z",
+          "finished": "2026-11-11T14:31:17Z",
+          "report": "The documentation check found thirteen points, all in this unit’s documents: a usage text and an output-rule statement for the walk tool, internal contradictions, a missing table row, broken relative links in the research folder, and follow-ups listed in the plan but not in the consequences. They are applied together with the reconcile of the plan, the consequences and the as-built record, in one pass over the unit’s folder."
         },
         {
           "id": "reconcile-documentation",
           "name": "Reconcile documentation",
-          "state": "todo"
+          "state": "done",
+          "started": "2026-11-11T14:31:17Z",
+          "finished": "2026-11-11T14:56:12Z",
+          "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
         },
         {
           "id": "reconcile-plan",
           "name": "Reconcile plan",
-          "state": "todo"
+          "state": "done",
+          "started": "2026-11-11T14:31:17Z",
+          "finished": "2026-11-11T14:56:12Z",
+          "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
         },
         {
           "id": "readme-changelog",
           "name": "README and CHANGELOG",
-          "state": "todo"
+          "state": "done",
+          "finished": "2026-11-11T14:56:12Z",
+          "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
         },
         {
           "id": "state-boards",
           "name": "State boards",
-          "state": "todo"
+          "state": "done",
+          "started": "2026-11-11T14:56:12Z",
+          "finished": "2026-11-11T15:05:06Z"
         },
         {
           "id": "document-landing",
           "name": "Document commit",
-          "state": "todo"
+          "state": "done",
+          "started": "2026-11-11T15:05:06Z",
+          "finished": "2026-11-11T15:06:00Z"
         }
       ]
     }
@@ -1959,7 +2015,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     {
       "date": "2026-11-11",
       "column": "built",
-      "label": "Quality Review 1: changes requested, 5 findings (5 minor)"
+      "label": "Quality Review 1: changes requested, 5 findings (5 minor; 2 test, 3 code)"
     },
     {
       "date": "2026-11-11",
@@ -1970,6 +2026,31 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-11",
       "column": "built",
       "label": "Document: 0 of 6 tasks done"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Document: Documentation review current"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Document: Reconcile documentation, Reconcile plan in parallel"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Document: State boards current"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Document: Document commit current"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Document: every task done"
     }
   ],
   "rows": [
@@ -2046,7 +2127,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#current-state",
               "heading": "Current state",
               "paragraph": "GitHub, as read on 2026-11-09 and 2026-11-10 (counts only; the run reads every one of them again at its stage):",
-              "hash": "1e8b9167bd44"
+              "hash": "312dce24fc23"
             }
           },
           {
@@ -2155,7 +2236,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#the-frozen-window",
               "heading": "The frozen window",
               "paragraph": "The window opens when `precommit` is `done` (S1) and closes when S15's push-safety proof has passed. Inside it:",
-              "hash": "0b33982b04f5"
+              "hash": "5619c13a448b"
             }
           },
           {
@@ -2165,7 +2246,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#the-frozen-window",
               "heading": "The frozen window",
               "paragraph": "The window opens when `precommit` is `done` (S1) and closes when S15's push-safety proof has passed. Inside it:",
-              "hash": "0b33982b04f5"
+              "hash": "5619c13a448b"
             }
           },
           {
@@ -2175,7 +2256,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#risks-and-edge-cases",
               "heading": "Risks and edge cases",
               "paragraph": "A number lands elsewhere or an item loses something (the central risk). The walk checks every number before the next; a difference stops it, and the stop table gives the state; the rehearsal measured the transfer's behaviour on the same shapes, and this walk adds what the rehearsal's fixture did not cover: a target that already holds a pushed history, placeholders next to each other (#30 and #31) and at the top number, 31 numbers instead of ten, links with issues in a third repository, and references written as URLs in the moved texts. Each is checked on its number, not assumed. · A landing …",
-              "hash": "2fb0223f1233"
+              "hash": "0fcb03cc0c82"
             }
           },
           {
@@ -2185,7 +2266,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#version-control",
               "heading": "Version control",
               "paragraph": "Branch: `chore/issue-23-history-rewrite` (it exists, with the research commits). · Commit sequence: · Before the mirror clone (S1): one commit on the topic branch through the `commit` request, with the exact paths the script derives: this plan, this unit's `consequences.md`, its issue board files, and the board files already modified in this checkout (generated boards, all of them pending and not part of any other change). It is pushed to the pre-rewrite repository, and the mirror push carries it through the rewrite to the fresh repository. The plan is committed in this same commit, so `git …",
-              "hash": "764c1d724631"
+              "hash": "04a318f89dc3"
             }
           }
         ],
@@ -2308,7 +2389,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#the-tools",
               "heading": "The tools",
               "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
-              "hash": "320bd2952529"
+              "hash": "4c717266dc91"
             }
           },
           {
@@ -2328,7 +2409,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s7--fresh-mirror-and-exit-tests",
               "heading": "S7 — Fresh mirror and exit tests",
               "paragraph": "Run it in the background. It takes a fresh mirror of the fresh repository (`WS/fresh/KotlinBottools.git`), expects its refs to be `ref-map`'s new column, heads only, and its commit count to be T − P; runs `fsck`; `expect_check.py` with the scrub-adjusted counts; the manifest compared with the objects reachable from branches and tags (0) and from every ref (0); the scrub's zero count again over every ref of the fresh mirror; the gitleaks scans of branches and tags and of every ref, which must be `RESULT: CLEAN` and equal (no pull-request ref exists); a default-rule finding in a kept file is …",
-              "hash": "48c0f3b95ce0"
+              "hash": "0869ed6217f4"
             }
           },
           {
@@ -2476,7 +2557,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#the-tools",
               "heading": "The tools",
               "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
-              "hash": "320bd2952529"
+              "hash": "4c717266dc91"
             }
           },
           {
@@ -2625,8 +2706,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#the-allow-list",
               "heading": "The allow-list",
-              "paragraph": "The privacy gate (`privacy_gate.py`, the preparation unit's tool at its recorded hash, unchanged) fails on any member name, guild folder or standalone id of the legacy data it meets. Its only suppression is an allow-list of words the reviewer has judged not to be personal data (ordinary words, a repository name, the template guild folder, public constants such as the Steam64 base). The gate never prints a name, and an entry that is a real name hides a leak, so the list is built by proposal and confirmation, never by the run's own judgement, and no word is printed or written anywhere but the …",
-              "hash": "772b467cd5b1"
+              "paragraph": "The privacy gate (`privacy_gate.py`, the preparation unit's tool with the order of equal names made total, saved by this unit's bootstrap) fails on any member name, guild folder or standalone id of the legacy data it meets. Its only suppression is an allow-list of words the reviewer has judged not to be personal data (ordinary words, a repository name, the template guild folder, public constants such as the Steam64 base). The gate never prints a name, and an entry that is a real name hides a leak, so the list is built by proposal and confirmation, never by the run's own judgement, and no word …",
+              "hash": "3fca1bf77161"
             }
           },
           {
@@ -2635,8 +2716,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#the-allow-list",
               "heading": "The allow-list",
-              "paragraph": "The privacy gate (`privacy_gate.py`, the preparation unit's tool at its recorded hash, unchanged) fails on any member name, guild folder or standalone id of the legacy data it meets. Its only suppression is an allow-list of words the reviewer has judged not to be personal data (ordinary words, a repository name, the template guild folder, public constants such as the Steam64 base). The gate never prints a name, and an entry that is a real name hides a leak, so the list is built by proposal and confirmation, never by the run's own judgement, and no word is printed or written anywhere but the …",
-              "hash": "772b467cd5b1"
+              "paragraph": "The privacy gate (`privacy_gate.py`, the preparation unit's tool with the order of equal names made total, saved by this unit's bootstrap) fails on any member name, guild folder or standalone id of the legacy data it meets. Its only suppression is an allow-list of words the reviewer has judged not to be personal data (ordinary words, a repository name, the template guild folder, public constants such as the Steam64 base). The gate never prints a name, and an entry that is a real name hides a leak, so the list is built by proposal and confirmation, never by the run's own judgement, and no word …",
+              "hash": "3fca1bf77161"
             }
           },
           {
@@ -2646,7 +2727,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s5--gate-1",
               "heading": "S5 — Gate 1",
               "paragraph": "Precondition: the allow-list confirmed at S0. The script's first command is `allow-step check` (it stops unless `allow.txt` is the recorded one, every key of the latest proposal has a decision and the record holds exactly the confirmed keys). Then:",
-              "hash": "6cc0b7c2f7c8"
+              "hash": "227c20a45dd5"
             }
           },
           {
@@ -2656,7 +2737,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s5--gate-1",
               "heading": "S5 — Gate 1",
               "paragraph": "Precondition: the allow-list confirmed at S0. The script's first command is `allow-step check` (it stops unless `allow.txt` is the recorded one, every key of the latest proposal has a decision and the record holds exactly the confirmed keys). Then:",
-              "hash": "6cc0b7c2f7c8"
+              "hash": "227c20a45dd5"
             }
           },
           {
@@ -2760,7 +2841,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "state": "as-planned"
           },
           {
-            "text": "Its settings were applied and read back when it was created, and read back as designed again after the push. The check that follows the default-branch write had also compared two fields that are not settings and change on their own, the detected language and a per-read token, and stopped on them; the walk tool was corrected inside the window to compare the settings without them, and the check passed at 03:57:44Z.",
+            "text": "Its settings were applied and read back when it was created, and read back as designed again after the push. The check that follows the default-branch write had also compared two fields that are not settings and change on their own, the detected language and a per-read token, and stopped on them; the walk tool was corrected inside the window to compare the settings without them, and the check passed at 03:57:44Z. The two settings records written before that correction no longer keep the per-read token, and they still compare as before.",
             "state": "amended"
           },
           {
@@ -2801,7 +2882,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s6--the-fresh-repository",
               "heading": "S6 — The fresh repository",
               "paragraph": "STEPs, in this order, with their commands between them:",
-              "hash": "9382b5db812d"
+              "hash": "a5e906751d1d"
             }
           },
           {
@@ -2811,7 +2892,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "f7f1b9e84865"
+              "hash": "8d2cec866fe4"
             }
           },
           {
@@ -2821,7 +2902,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s6--the-fresh-repository",
               "heading": "S6 — The fresh repository",
               "paragraph": "STEPs, in this order, with their commands between them:",
-              "hash": "9382b5db812d"
+              "hash": "a5e906751d1d"
             }
           },
           {
@@ -2831,7 +2912,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s6--the-fresh-repository",
               "heading": "S6 — The fresh repository",
               "paragraph": "STEPs, in this order, with their commands between them:",
-              "hash": "9382b5db812d"
+              "hash": "a5e906751d1d"
             }
           },
           {
@@ -2841,7 +2922,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s7--fresh-mirror-and-exit-tests",
               "heading": "S7 — Fresh mirror and exit tests",
               "paragraph": "Run it in the background. It takes a fresh mirror of the fresh repository (`WS/fresh/KotlinBottools.git`), expects its refs to be `ref-map`'s new column, heads only, and its commit count to be T − P; runs `fsck`; `expect_check.py` with the scrub-adjusted counts; the manifest compared with the objects reachable from branches and tags (0) and from every ref (0); the scrub's zero count again over every ref of the fresh mirror; the gitleaks scans of branches and tags and of every ref, which must be `RESULT: CLEAN` and equal (no pull-request ref exists); a default-rule finding in a kept file is …",
-              "hash": "48c0f3b95ce0"
+              "hash": "0869ed6217f4"
             }
           }
         ],
@@ -2933,7 +3014,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s14--residual-measurements",
               "heading": "S14 — Residual measurements",
               "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against `KotlinBottools-legacy`, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is …",
-              "hash": "7ad5ae798b13"
+              "hash": "8e8b63a54f45"
             }
           },
           {
@@ -2943,7 +3024,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s14--residual-measurements",
               "heading": "S14 — Residual measurements",
               "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against `KotlinBottools-legacy`, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is …",
-              "hash": "7ad5ae798b13"
+              "hash": "8e8b63a54f45"
             }
           },
           {
@@ -2953,7 +3034,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s14--residual-measurements",
               "heading": "S14 — Residual measurements",
               "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against `KotlinBottools-legacy`, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is …",
-              "hash": "7ad5ae798b13"
+              "hash": "8e8b63a54f45"
             }
           }
         ],
@@ -3057,8 +3138,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#s9--before-the-walk",
               "heading": "S9 — Before the walk",
-              "paragraph": "STEPs: `labels-fresh`, `ms-fresh`; each `request`, send, `reply`, `check post`. Then:",
-              "hash": "22457e7a3dc2"
+              "paragraph": "STEP `labels-fresh`: `request`, send, `reply`, `check post`. Then:",
+              "hash": "4848f987891f"
             }
           },
           {
@@ -3068,7 +3149,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s10--the-walk",
               "heading": "S10 — The walk",
               "paragraph": "Numbers 1 … N in order, one STEP each. The key of each number is `transfer-<n>` for an issue and `placeholder-<n>` for a pull request; print the list from the census:",
-              "hash": "adecb742eb11"
+              "hash": "ce7bb6ad8b73"
             }
           },
           {
@@ -3078,7 +3159,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s10--the-walk",
               "heading": "S10 — The walk",
               "paragraph": "Numbers 1 … N in order, one STEP each. The key of each number is `transfer-<n>` for an issue and `placeholder-<n>` for a pull request; print the list from the census:",
-              "hash": "adecb742eb11"
+              "hash": "ce7bb6ad8b73"
             }
           },
           {
@@ -3088,7 +3169,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s16--close-out",
               "heading": "S16 — Close-out",
               "paragraph": "`result`: recomputes, from final reads taken now, every shape: the numbers (the fresh repository holds 1 … N and the source's pull requests only), the placeholders (each: number, title, body, closed, `not_planned`, not a pull request), the issues (each equals its text before the walk with references mapped back), the closed issues (state and reason), the labels and milestone, the links (91 edges, settled, consistent), the cross-repository links, the identity (the fresh id at `KotlinBottools`, not 562658298; the legacy repository private and archived) and the old URLs; prints `ok <shape>` for …",
-              "hash": "26934ae49c7f"
+              "hash": "a23400831a87"
             }
           }
         ],
@@ -3180,8 +3261,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#s9--before-the-walk",
               "heading": "S9 — Before the walk",
-              "paragraph": "STEPs: `labels-fresh`, `ms-fresh`; each `request`, send, `reply`, `check post`. Then:",
-              "hash": "22457e7a3dc2"
+              "paragraph": "STEP `labels-fresh`: `request`, send, `reply`, `check post`. Then:",
+              "hash": "4848f987891f"
             }
           },
           {
@@ -3327,7 +3408,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "f7f1b9e84865"
+              "hash": "8d2cec866fe4"
             }
           },
           {
@@ -3337,7 +3418,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "f7f1b9e84865"
+              "hash": "8d2cec866fe4"
             }
           },
           {
@@ -3347,7 +3428,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "f7f1b9e84865"
+              "hash": "8d2cec866fe4"
             }
           },
           {
@@ -3469,7 +3550,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s13--the-renames-and-the-archive",
               "heading": "S13 — The renames and the archive",
               "paragraph": "STEPs in this order, each followed by the identity read named after it (a rename and a visibility change take a moment to read back; the read polls):",
-              "hash": "fbfee8d46e1b"
+              "hash": "e021a6400c34"
             }
           },
           {
@@ -3479,7 +3560,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s13--the-renames-and-the-archive",
               "heading": "S13 — The renames and the archive",
               "paragraph": "STEPs in this order, each followed by the identity read named after it (a rename and a visibility change take a moment to read back; the read polls):",
-              "hash": "fbfee8d46e1b"
+              "hash": "e021a6400c34"
             }
           },
           {
@@ -3489,7 +3570,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s13--the-renames-and-the-archive",
               "heading": "S13 — The renames and the archive",
               "paragraph": "STEPs in this order, each followed by the identity read named after it (a rename and a visibility change take a moment to read back; the read polls):",
-              "hash": "fbfee8d46e1b"
+              "hash": "e021a6400c34"
             }
           },
           {
@@ -3499,7 +3580,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s16--close-out",
               "heading": "S16 — Close-out",
               "paragraph": "`result`: recomputes, from final reads taken now, every shape: the numbers (the fresh repository holds 1 … N and the source's pull requests only), the placeholders (each: number, title, body, closed, `not_planned`, not a pull request), the issues (each equals its text before the walk with references mapped back), the closed issues (state and reason), the labels and milestone, the links (91 edges, settled, consistent), the cross-repository links, the identity (the fresh id at `KotlinBottools`, not 562658298; the legacy repository private and archived) and the old URLs; prints `ok <shape>` for …",
-              "hash": "26934ae49c7f"
+              "hash": "a23400831a87"
             }
           }
         ],
@@ -3604,7 +3685,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "state": "amended"
           },
           {
-            "text": "The preflight and the fetch passed in that request; the preflight, both parts of the move and its verification are among the twelve tools corrected inside the window.",
+            "text": "The preflight and the fetch passed in that request; the preflight, both parts of the move and its verification are among the twelve tools corrected inside the window. The stage-script self-test has a check of its own for the refresh before the move, shown to fail without its guard.",
             "state": "amended"
           },
           {
@@ -3623,7 +3704,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s8--the-realignment-proven-on-two-scratch-clones",
               "heading": "S8 — The realignment proven on two scratch clones",
               "paragraph": "The scratch clones are clones of the untouched backup, set up like this checkout (`main` and the topic branch, the topic branch checked out, `origin` at the fresh repository, untracked and ignored files present).",
-              "hash": "16bd83bbf3a3"
+              "hash": "13bf22000b41"
             }
           },
           {
@@ -3633,7 +3714,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s15--this-checkouts-realignment",
               "heading": "S15 — This checkout's realignment",
               "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
-              "hash": "34dd308f6e75"
+              "hash": "23c4bd228c6a"
             }
           },
           {
@@ -3643,7 +3724,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#current-state",
               "heading": "Current state",
               "paragraph": "GitHub, as read on 2026-11-09 and 2026-11-10 (counts only; the run reads every one of them again at its stage):",
-              "hash": "1e8b9167bd44"
+              "hash": "312dce24fc23"
             }
           },
           {
@@ -3653,7 +3734,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s15--this-checkouts-realignment",
               "heading": "S15 — This checkout's realignment",
               "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
-              "hash": "34dd308f6e75"
+              "hash": "23c4bd228c6a"
             }
           }
         ],
@@ -3723,7 +3804,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         ],
         "statements": [
           {
-            "text": "The proof passed on this checkout at 06:45:47Z (S15), which closed the window: no old commit is reachable from it, and `origin` is the fresh repository by id. The proof is one of the twelve tools corrected inside the window, to fail closed.",
+            "text": "The proof passed on this checkout at 06:45:47Z (S15), which closed the window: no old commit is reachable from it, and `origin` is the fresh repository by id. The proof is one of the twelve tools corrected inside the window, to fail closed. The stage-script self-test has a check of its own for the guard against empty id lists, shown to fail without it.",
             "state": "amended"
           },
           {
@@ -3742,7 +3823,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s15--this-checkouts-realignment",
               "heading": "S15 — This checkout's realignment",
               "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
-              "hash": "34dd308f6e75"
+              "hash": "23c4bd228c6a"
             }
           },
           {
@@ -3752,7 +3833,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s15--this-checkouts-realignment",
               "heading": "S15 — This checkout's realignment",
               "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
-              "hash": "34dd308f6e75"
+              "hash": "23c4bd228c6a"
             }
           }
         ],
@@ -3832,7 +3913,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s15--this-checkouts-realignment",
               "heading": "S15 — This checkout's realignment",
               "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
-              "hash": "34dd308f6e75"
+              "hash": "23c4bd228c6a"
             }
           },
           {
@@ -3842,7 +3923,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s15--this-checkouts-realignment",
               "heading": "S15 — This checkout's realignment",
               "paragraph": "Preconditions (architecture §9.2): `COPY-VERIFIED` exists; the swap is complete and `origin` resolves to the fresh repository by id; `DATA/rewrite/KotlinBottools/` is present; the tracked files are unchanged; this checkout is the clone's only worktree and its local branches are `main` and the topic branch, which has no commit after the mirror clone. The IDE may be open or closed; the preflight records which.",
-              "hash": "34dd308f6e75"
+              "hash": "23c4bd228c6a"
             }
           }
         ],
@@ -3896,7 +3977,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "state": "amended",
         "statements": [
           {
-            "text": "`swap.py` was saved from the plan at its recorded size and sha256, so it carried every closed gap as the plan specifies: settle reports unsettled at its bound, the result gate recomputes every shape from reads taken at its run, and a resumed placeholder is skipped. Inside the window it was corrected: settings comparison without non-setting fields, placeholder guard on the highest number, milestone after the baseline, line-ending and letter-case safe texts, closed-state reason only when closed, no text in stops.",
+            "text": "`swap.py` was saved from the plan at its recorded size and sha256, so it carried every closed gap as the plan specifies: settle reports unsettled at its bound, the result gate recomputes every shape from reads taken at its run, and a resumed placeholder is skipped. Inside the window it was corrected: settings comparison without non-setting fields, placeholder guard on the highest number, milestone after the baseline, line-ending and letter-case safe texts, closed-state reason only when closed, no text in stops. Its realignment checks print the clone's tag instead of its path.",
             "state": "amended"
           },
           {
@@ -3904,11 +3985,11 @@ window.dashboardLive&&window.dashboardLive("plan",
             "state": "as-planned"
           },
           {
-            "text": "Its self-test, covering the failure paths, the link rounds and the result gate, passed at local readiness, before any write; the corrected tool's self-test passes with 562 checks.",
+            "text": "Its self-test, covering the failure paths, the link rounds and the result gate, passed at local readiness, before any write; the corrected tool's self-test passes with 564 checks, last run at 14:20:51Z.",
             "state": "amended"
           },
           {
-            "text": "Every tool of the plan's appendix was saved and matched its recorded size and sha256 before anything ran. Inside the window the push preparation and the shell scripts' self-test were corrected, then twelve tools, the walk tool and that self-test among them; each of the twelve corrections is recorded with its size and hash under the run's data, and the shell scripts' self-test passes with 129 checks.",
+            "text": "Every tool of the plan's appendix was saved and matched its recorded size and sha256 before anything ran. Inside the window the push preparation and the shell scripts' self-test were corrected, then twelve tools, the walk tool and that self-test among them; each of the twelve corrections is recorded with its size and hash under the run's data, and the shell scripts' self-test passes with 131 checks, last run at 14:24:39Z, two of them for guards that had no check of their own, each shown to fail without its guard. The tool left over from the replaced plan is removed from the workspace.",
             "state": "amended"
           }
         ],
@@ -3938,7 +4019,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#the-tools",
               "heading": "The tools",
               "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
-              "hash": "320bd2952529"
+              "hash": "4c717266dc91"
             }
           },
           {
@@ -3948,7 +4029,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#the-tools",
               "heading": "The tools",
               "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
-              "hash": "320bd2952529"
+              "hash": "4c717266dc91"
             }
           },
           {
@@ -3958,7 +4039,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#the-tools",
               "heading": "The tools",
               "paragraph": "All tools are saved from Appendix A by the S0 bootstrap, each checked by size and sha256, and run through `run-stage.sh`, which appends their output to `DATA/run/as-run.log`.",
-              "hash": "320bd2952529"
+              "hash": "4c717266dc91"
             }
           },
           {
@@ -4062,7 +4143,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "f7f1b9e84865"
+              "hash": "8d2cec866fe4"
             }
           },
           {
@@ -4082,7 +4163,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "f7f1b9e84865"
+              "hash": "8d2cec866fe4"
             }
           }
         ],
@@ -4156,7 +4237,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#interfaces-with-sibling-units",
               "heading": "Interfaces with sibling units",
               "paragraph": "Expects from `preparation` (#21, as built):",
-              "hash": "651e61019392"
+              "hash": "96758d9f3ca2"
             }
           },
           {
@@ -4165,8 +4246,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#sequencing-and-follow-ups",
               "heading": "Sequencing and follow-ups",
-              "paragraph": "Order. S0 to S16 as the table; nothing is written to GitHub before S6; the window is S1 to the end of S15; the Document step and the landing follow S16.",
-              "hash": "d0fba22c0dc1"
+              "paragraph": "Order. S0 to S16 as the table; nothing is written to GitHub before S6; the window is S1 to the end of S15; the documents and the landing follow S16.",
+              "hash": "f82005629077"
             }
           }
         ],
@@ -4221,7 +4302,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "f7f1b9e84865"
+              "hash": "8d2cec866fe4"
             }
           },
           {
@@ -4231,7 +4312,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#interfaces-with-sibling-units",
               "heading": "Interfaces with sibling units",
               "paragraph": "Expects from `preparation` (#21, as built):",
-              "hash": "651e61019392"
+              "hash": "96758d9f3ca2"
             }
           }
         ],
@@ -4415,7 +4496,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   },
   "tests": {
     "base": "main",
-    "updated": "2026-11-11T14:25:49Z",
+    "updated": "2026-11-11T14:31:17Z",
     "added": [],
     "amended": [
       {
@@ -4424,11 +4505,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "tests": 131,
         "result": {
           "state": "passed",
-          "passed": 129,
+          "passed": 131,
           "failed": 0,
           "skipped": 0,
-          "pass": 1,
-          "at": "2026-11-11T14:08:08Z"
+          "at": "2026-11-11T14:31:17Z"
         },
         "stage": "s16"
       },
@@ -4438,11 +4518,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "tests": 564,
         "result": {
           "state": "passed",
-          "passed": 562,
+          "passed": 564,
           "failed": 0,
           "skipped": 0,
-          "pass": 1,
-          "at": "2026-11-11T14:08:08Z"
+          "at": "2026-11-11T14:31:17Z"
         },
         "stage": "s16"
       }
@@ -4551,6 +4630,14 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       {
         "what": "The walk tool Row's Verdict named its self-test at 537 checks, the figure of the plan before its amendment; the plan as committed names 539, the count the self-test passed with at local readiness. It reads 539 now. The tool corrected inside the window passes with 562, as its As built Cell records.",
+        "when": "2026-11-11"
+      },
+      {
+        "what": "The stretch when the run was not running, during Quality Review 1, was recorded as 2026-11-11T06:48:43Z to 14:08:08Z, the review's start and its verdict, so the review read as having no length. The run's own records show the review active until 06:59:11Z, its last progress note, and resumed at 13:54:02Z, a clock reading. The stretch is recorded as 06:59:11Z to 13:54:02Z: the review's first part runs from 06:48:43Z to 06:59:11Z and its second from 13:54:02Z to its verdict at 14:08:08Z; no event's time moves with it.",
+        "when": "2026-11-11"
+      },
+      {
+        "what": "Quality Review 1 was recorded with no kinds for its findings, its line reading \"5 findings (5 minor)\", though the review counted 2 test and 3 code findings. They are recorded as 2 test and 3 code, the line reading \"5 findings (5 minor; 2 test, 3 code)\".",
         "when": "2026-11-11"
       }
     ]

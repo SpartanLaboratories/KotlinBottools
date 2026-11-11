@@ -3,11 +3,11 @@ window.dashboardLive&&window.dashboardLive("board",
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-10T01:13:45Z",
-  "asOf": "2026-11-10",
+  "generated": "2026-11-11T15:03:59Z",
+  "asOf": "2026-11-11",
   "tree": {
     "ref": "chore/issue-23-history-rewrite",
-    "sha": "9af27b2"
+    "sha": "5c1bfd3"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -102,7 +102,7 @@ window.dashboardLive&&window.dashboardLive("board",
           {
             "issue": 23,
             "slug": "kotlinbottools-rewrite-and-swap",
-            "step": "plan"
+            "step": "document"
           }
         ],
         "next": {
@@ -361,18 +361,41 @@ window.dashboardLive&&window.dashboardLive("board",
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/",
-      "branch": null,
+      "branch": "chore/issue-23-history-rewrite",
       "system": "kotlinbottools",
-      "step": "plan",
-      "detail": "Sized; the plan starts.",
-      "since": "2026-11-10T01:12:41Z",
-      "updated": "2026-11-10T01:12:41Z",
-      "qa": [],
+      "step": "document",
+      "detail": "Document: 4 of 6 tasks done; State boards current.",
+      "since": "2026-11-11T14:25:49Z",
+      "updated": "2026-11-11T14:56:52Z",
+      "qa": [
+        {
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-11",
+          "at": "2026-11-11T14:08:08Z",
+          "findings": {
+            "test": 2,
+            "code": 3
+          },
+          "severity": {
+            "minor": 5,
+            "other": 0
+          },
+          "route": "on-the-spot",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/ca070e8d/tests/index.html",
+          "inPlace": "fixed"
+        }
+      ],
       "qaMax": 3,
-      "status": "planning",
+      "status": "building",
       "fixOf": null,
       "landed": null,
-      "reconciliation": null,
+      "reconciliation": {
+        "state": "partial",
+        "landed": null,
+        "total": null
+      },
       "active": true,
       "systemName": "KotlinBottools",
       "group": "2",
