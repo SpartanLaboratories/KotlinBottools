@@ -1,7 +1,7 @@
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "chore/issue-22-transfer-rehearsal", "sha": "e6ef04a", "date": "2026-11-09T07:50:05Z"},
-  "lastAmended": {"issue": 22, "title": "Phase 0 · 2 — Transfer rehearsal on two throwaway repositories", "sha": "e6ef04a"},
-  "written": {"sha": "e6ef04a"}
+  "asIs": {"ref": "chore/issue-23-history-rewrite", "sha": "5c1bfd3", "date": "2026-11-11T14:27:27Z"},
+  "lastAmended": {"issue": 23, "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment", "sha": "5c1bfd3"},
+  "written": {"sha": "5c1bfd3"}
 }
