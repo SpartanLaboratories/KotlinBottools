@@ -794,10 +794,10 @@
         "board": "23-kotlinbottools-rewrite-and-swap/dashboard.html",
         "folder": "23-kotlinbottools-rewrite-and-swap/",
         "live": {
-          "step": "implementation",
-          "since": "2026-11-10T20:02:19Z",
-          "updated": "2026-11-10T22:32:23Z",
-          "detail": "Both tools now order equal names totally; the corrected privacy gate gives the same labels and byte-identical output as before, and its list order and the allow-list's hash of the legacy lists no longer change between runs. Local readiness is being re-run from the start of its tool checks.",
+          "step": "document",
+          "since": "2026-11-11T14:25:49Z",
+          "updated": "2026-11-11T14:25:49Z",
+          "detail": "Document: 0 of 6 tasks done.",
           "steps": [
             "sizing",
             "interview",
@@ -814,14 +814,29 @@
           ],
           "waitingOn": null,
           "resume": null,
-          "qa": [],
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-11",
+              "at": "2026-11-11T14:08:08Z",
+              "findings": {},
+              "severity": {
+                "minor": 5,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/ca070e8d/tests/index.html"
+            }
+          ],
           "qaMax": 3,
           "status": "building",
           "branch": "chore/issue-23-history-rewrite",
           "event": {
-            "name": "implementation-stage",
-            "at": "2026-11-10T22:32:23Z",
-            "note": "s0 current"
+            "name": "document",
+            "at": "2026-11-11T14:25:49Z",
+            "note": "0 of 6 tasks done"
           },
           "asked": [
             {
@@ -921,7 +936,7 @@
             {
               "id": "s0",
               "name": "Local readiness",
-              "state": "current",
+              "state": "done",
               "rows": [
                 "path-scrub",
                 "privacy-gates",
@@ -977,12 +992,15 @@
                 }
               ],
               "ref": "plan.md#s0--local-readiness",
-              "started": "2026-11-10T20:02:19Z"
+              "started": "2026-11-10T20:02:19Z",
+              "finished": "2026-11-10T22:57:20Z",
+              "report": "Local readiness passed: every tool at its recorded hash, all self-tests passing, the allow-list confirmed with no blocking hit. The plan, consequences and boards are committed and pushed at a03a1ce; from that push this checkout takes no change until its realignment. Mirror and backup next.",
+              "result": "passed"
             },
             {
               "id": "s1",
               "name": "The pre-clone commit",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "nothing-lands",
                 "path-scrub"
@@ -995,12 +1013,14 @@
                   "name": "Commit and push the pending documents and boards"
                 }
               ],
-              "ref": "plan.md#s1--the-pre-clone-commit"
+              "ref": "plan.md#s1--the-pre-clone-commit",
+              "finished": "2026-11-10T22:57:20Z",
+              "report": "Local readiness passed: every tool at its recorded hash, all self-tests passing, the allow-list confirmed with no blocking hit. The plan, consequences and boards are committed and pushed at a03a1ce; from that push this checkout takes no change until its realignment. Mirror and backup next."
             },
             {
               "id": "s2",
               "name": "Mirror, backup, manifest, expectation and control",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "fresh-mirror-and-backup"
               ],
@@ -1020,12 +1040,15 @@
                   "name": "Positive control and kept findings"
                 }
               ],
-              "ref": "plan.md#s2--mirror-backup-manifest-expectation-and-control"
+              "ref": "plan.md#s2--mirror-backup-manifest-expectation-and-control",
+              "started": "2026-11-10T22:57:20Z",
+              "finished": "2026-11-10T23:15:07Z",
+              "report": "Local readiness passed: every tool at its recorded hash, every self-test passing, the allow-list check with no blocking hit. The mirror was taken at 22:58:58Z; nothing lands on KotlinBottools until the walk ends. The rewrite took 87 commits to 85: every purged file is gone, the path scrub counts zero over every commit, and the result matches its prediction tree for tree. One kept file carries two matches of a default secret-scanning rule; it is recorded at the exit tests and holds back only the later change to public."
             },
             {
               "id": "s3",
               "name": "The scrub's before-counts",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "purge-rewrite",
                 "path-scrub"
@@ -1038,12 +1061,15 @@
                   "name": "Before-counts"
                 }
               ],
-              "ref": "plan.md#s3--the-scrubs-before-counts"
+              "ref": "plan.md#s3--the-scrubs-before-counts",
+              "finished": "2026-11-10T23:15:07Z",
+              "report": "Local readiness passed: every tool at its recorded hash, every self-test passing, the allow-list check with no blocking hit. The mirror was taken at 22:58:58Z; nothing lands on KotlinBottools until the walk ends. The rewrite took 87 commits to 85: every purged file is gone, the path scrub counts zero over every commit, and the result matches its prediction tree for tree. One kept file carries two matches of a default secret-scanning rule; it is recorded at the exit tests and holds back only the later change to public.",
+              "result": "passed"
             },
             {
               "id": "s4",
               "name": "The rewrite",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "purge-rewrite",
                 "path-scrub"
@@ -1056,12 +1082,14 @@
                   "name": "The invocation and the post-run checks"
                 }
               ],
-              "ref": "plan.md#s4--the-rewrite"
+              "ref": "plan.md#s4--the-rewrite",
+              "finished": "2026-11-10T23:15:07Z",
+              "report": "Local readiness passed: every tool at its recorded hash, every self-test passing, the allow-list check with no blocking hit. The mirror was taken at 22:58:58Z; nothing lands on KotlinBottools until the walk ends. The rewrite took 87 commits to 85: every purged file is gone, the path scrub counts zero over every commit, and the result matches its prediction tree for tree. One kept file carries two matches of a default secret-scanning rule; it is recorded at the exit tests and holds back only the later change to public."
             },
             {
               "id": "s5",
               "name": "Gate 1",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "privacy-gates"
               ],
@@ -1077,12 +1105,16 @@
                   "name": "Gate 1 and the accepted ids"
                 }
               ],
-              "ref": "plan.md#s5--gate-1"
+              "ref": "plan.md#s5--gate-1",
+              "started": "2026-11-10T23:15:07Z",
+              "finished": "2026-11-11T00:47:47Z",
+              "report": "The secret scan of the backup found every kind it is meant to find, so its positive control passed; findings by rule: bare-token-file 1, curl-auth-user 2, discord-bot-token 1, legacy-bot-data-file 5619, legacy-state-directory 9, of which curl-auth-user (2 matches in 1 file) is kept. Before-counts of the path scrub: 1101, 50 and 368 matches for its three expressions, none in commit messages. Gate 1 found no blocking hit. The fresh repository exists, private and empty, with its settings applied and read back. The step before the mirror push stopped on a defect in its own check: it reads the clone's pull-request list in a form that never matches, so the list came out empty; the server's pull-request heads are in fact those of the clone. A corrected tool is being prepared; nothing has been pushed.",
+              "result": "passed"
             },
             {
               "id": "s6",
               "name": "The fresh repository",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "fresh-repository",
                 "nothing-lands"
@@ -1115,12 +1147,15 @@
                   "name": "Default branch and its read-back"
                 }
               ],
-              "ref": "plan.md#s6--the-fresh-repository"
+              "ref": "plan.md#s6--the-fresh-repository",
+              "started": "2026-11-11T00:47:47Z",
+              "finished": "2026-11-11T04:06:21Z",
+              "report": "Twelve tools were corrected for the settings comparison and for faults of the same kinds found in the later stages' tools: the placeholder guard now reads the highest number, written and compared texts are line-ending and letter-case safe, the move's comparison counts the IDE and build folders instead of naming them, and the push-safety proof and three other reads fail closed. Self-tests pass (562 and 129). The fresh repository stage passed at 03:58:06Z. The exit tests passed at 04:02:12Z: the fresh mirror holds 85 rewritten commits, no purged file is reachable, the path scrub counts zero, and no old commit or file id resolves in the fresh repository. The secret scan of the fresh mirror finds only the kept default-rule finding (2 in 1 file), recorded for the later change to public. The realignment scripts ran cleanly end to end on the first scratch clone; the second is ready for the realignment request."
             },
             {
               "id": "s7",
               "name": "Fresh mirror and exit tests",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "purge-rewrite",
                 "path-scrub",
@@ -1138,12 +1173,15 @@
                   "name": "manifest"
                 }
               ],
-              "ref": "plan.md#s7--fresh-mirror-and-exit-tests"
+              "ref": "plan.md#s7--fresh-mirror-and-exit-tests",
+              "finished": "2026-11-11T04:06:21Z",
+              "report": "Twelve tools were corrected for the settings comparison and for faults of the same kinds found in the later stages' tools: the placeholder guard now reads the highest number, written and compared texts are line-ending and letter-case safe, the move's comparison counts the IDE and build folders instead of naming them, and the push-safety proof and three other reads fail closed. Self-tests pass (562 and 129). The fresh repository stage passed at 03:58:06Z. The exit tests passed at 04:02:12Z: the fresh mirror holds 85 rewritten commits, no purged file is reachable, the path scrub counts zero, and no old commit or file id resolves in the fresh repository. The secret scan of the fresh mirror finds only the kept default-rule finding (2 in 1 file), recorded for the later change to public. The realignment scripts ran cleanly end to end on the first scratch clone; the second is ready for the realignment request.",
+              "result": "passed"
             },
             {
               "id": "s8",
               "name": "The realignment proven on two scratch clones",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "realignment",
                 "push-safety"
@@ -1164,12 +1202,16 @@
                   "name": "The realignment request on it"
                 }
               ],
-              "ref": "plan.md#s8--the-realignment-proven-on-two-scratch-clones"
+              "ref": "plan.md#s8--the-realignment-proven-on-two-scratch-clones",
+              "started": "2026-11-11T04:06:21Z",
+              "finished": "2026-11-11T04:23:24Z",
+              "report": "The mirror push went in once with no force: the dry run's tally (2 new, none forced, deleted or rejected, Done present) matched the expected one and the push matched the dry run. The realignment request ran cleanly on the second scratch clone: the tracked files were unchanged before the reset, 41 files removed and 2 changed as predicted, every old file id gone, no old commit reachable, origin the fresh repository by id; its check passed at 04:15:51Z. Before the walk: the three labels and the milestone are created in the fresh repository; the census reads 31 numbers (28 issues, 26 open, and 3 pull requests), 8 comments and 91 links (21 with MagicBot and WebTools); the three accepted old commit ids equal Gate 1's; citations of this repository's issues read 50 in MagicBot, 6 in WebTools and 0 in the organization profile repository. The stage passed at 04:23:24Z. The walk reproduces numbers 1 to 31 in order, beginning with the transfer of #1.",
+              "result": "passed"
             },
             {
               "id": "s9",
               "name": "Before the walk",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "number-walk",
                 "links",
@@ -1203,12 +1245,14 @@
                   "name": "Cross-repository references"
                 }
               ],
-              "ref": "plan.md#s9--before-the-walk"
+              "ref": "plan.md#s9--before-the-walk",
+              "finished": "2026-11-11T04:23:24Z",
+              "report": "The mirror push went in once with no force: the dry run's tally (2 new, none forced, deleted or rejected, Done present) matched the expected one and the push matched the dry run. The realignment request ran cleanly on the second scratch clone: the tracked files were unchanged before the reset, 41 files removed and 2 changed as predicted, every old file id gone, no old commit reachable, origin the fresh repository by id; its check passed at 04:15:51Z. Before the walk: the three labels and the milestone are created in the fresh repository; the census reads 31 numbers (28 issues, 26 open, and 3 pull requests), 8 comments and 91 links (21 with MagicBot and WebTools); the three accepted old commit ids equal Gate 1's; citations of this repository's issues read 50 in MagicBot, 6 in WebTools and 0 in the organization profile repository. The stage passed at 04:23:24Z. The walk reproduces numbers 1 to 31 in order, beginning with the transfer of #1."
             },
             {
               "id": "s10",
               "name": "The walk",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "number-walk",
                 "moved-text-references"
@@ -1221,12 +1265,15 @@
                   "name": "transfer-N or placeholder-N for each number in order"
                 }
               ],
-              "ref": "plan.md#s10--the-walk"
+              "ref": "plan.md#s10--the-walk",
+              "started": "2026-11-11T04:23:24Z",
+              "finished": "2026-11-11T06:04:19Z",
+              "report": "The walk passed at 06:01:03Z: 28 issues transferred one by one, each equal to its text before the walk, the two closed ones arriving closed as completed, and closed placeholders on 20, 30 and 31 carrying each pull request's title and merge date; every transfer kept all 91 links. Link reconciliation needed no write: the settled edge set equals the expected one (passed 06:03:05Z). Gate 2 found no blocking hit, and the path scrub's expressions match nothing in the fresh repository's 70 texts; the closing reads passed at 06:04:19Z: numbers 1 to 31 in the fresh repository, only the three pull requests left in the source. The transfers rewrote references in other repositories' texts to the temporary name: MagicBot now holds 76 such references (74 by the temporary name), WebTools 6; the organization profile repository none. The old repository is now renamed, made private and archived, then the fresh one takes the name."
             },
             {
               "id": "s11",
               "name": "Link reconciliation",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "links"
               ],
@@ -1246,12 +1293,14 @@
                   "name": "Round three"
                 }
               ],
-              "ref": "plan.md#s11--link-reconciliation"
+              "ref": "plan.md#s11--link-reconciliation",
+              "finished": "2026-11-11T06:04:19Z",
+              "report": "The walk passed at 06:01:03Z: 28 issues transferred one by one, each equal to its text before the walk, the two closed ones arriving closed as completed, and closed placeholders on 20, 30 and 31 carrying each pull request's title and merge date; every transfer kept all 91 links. Link reconciliation needed no write: the settled edge set equals the expected one (passed 06:03:05Z). Gate 2 found no blocking hit, and the path scrub's expressions match nothing in the fresh repository's 70 texts; the closing reads passed at 06:04:19Z: numbers 1 to 31 in the fresh repository, only the three pull requests left in the source. The transfers rewrote references in other repositories' texts to the temporary name: MagicBot now holds 76 such references (74 by the temporary name), WebTools 6; the organization profile repository none. The old repository is now renamed, made private and archived, then the fresh one takes the name."
             },
             {
               "id": "s12",
               "name": "Gate 2 and the closing reads",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "privacy-gates",
                 "moved-text-references",
@@ -1269,12 +1318,15 @@
                   "name": "Numbers, items and references"
                 }
               ],
-              "ref": "plan.md#s12--gate-2-and-the-closing-reads"
+              "ref": "plan.md#s12--gate-2-and-the-closing-reads",
+              "finished": "2026-11-11T06:04:19Z",
+              "report": "The walk passed at 06:01:03Z: 28 issues transferred one by one, each equal to its text before the walk, the two closed ones arriving closed as completed, and closed placeholders on 20, 30 and 31 carrying each pull request's title and merge date; every transfer kept all 91 links. Link reconciliation needed no write: the settled edge set equals the expected one (passed 06:03:05Z). Gate 2 found no blocking hit, and the path scrub's expressions match nothing in the fresh repository's 70 texts; the closing reads passed at 06:04:19Z: numbers 1 to 31 in the fresh repository, only the three pull requests left in the source. The transfers rewrote references in other repositories' texts to the temporary name: MagicBot now holds 76 such references (74 by the temporary name), WebTools 6; the organization profile repository none. The old repository is now renamed, made private and archived, then the fresh one takes the name.",
+              "result": "passed"
             },
             {
               "id": "s13",
               "name": "The renames and the archive",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "renames"
               ],
@@ -1302,12 +1354,15 @@
                   "name": "Identity, URLs, heads and settings snapshot"
                 }
               ],
-              "ref": "plan.md#s13--the-renames-and-the-archive"
+              "ref": "plan.md#s13--the-renames-and-the-archive",
+              "started": "2026-11-11T06:04:19Z",
+              "finished": "2026-11-11T06:24:54Z",
+              "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed KotlinBottools-legacy, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files."
             },
             {
               "id": "s14",
               "name": "Residual measurements",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "residual-measurement"
               ],
@@ -1319,12 +1374,15 @@
                   "name": "The probes and the report row"
                 }
               ],
-              "ref": "plan.md#s14--residual-measurements"
+              "ref": "plan.md#s14--residual-measurements",
+              "finished": "2026-11-11T06:24:54Z",
+              "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed KotlinBottools-legacy, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files.",
+              "result": "passed"
             },
             {
               "id": "s15",
               "name": "This checkout's realignment",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "realignment",
                 "push-safety",
@@ -1346,12 +1404,15 @@
                   "name": "Push-safety and object-deletion proofs"
                 }
               ],
-              "ref": "plan.md#s15--this-checkouts-realignment"
+              "ref": "plan.md#s15--this-checkouts-realignment",
+              "started": "2026-11-11T06:24:54Z",
+              "finished": "2026-11-11T06:48:43Z",
+              "report": "This checkout is realigned onto the rewritten history: the tracked files were unchanged before the move, 41 files removed and 2 changed as predicted, the untracked and ignored files kept, every old object deleted (no deletion deferred), and the push-safety proof passed at 06:45:47Z, which closes the window. The close-out recomputed the result from final reads and passed at 06:47:21Z: numbers 1 to 31, placeholders, issues, closed issues, labels and milestone, links, cross-repository links, identity and old addresses all as designed, no refusal; its local close passed at 06:47:56Z: the legacy repository's refs equal those at the mirror clone, it holds no issue, it is private and archived, and KotlinBottools resolves to the fresh repository."
             },
             {
               "id": "s16",
               "name": "Close-out",
-              "state": "todo",
+              "state": "done",
               "rows": [
                 "number-walk",
                 "links",
@@ -1369,9 +1430,76 @@
                   "name": "Legacy refs, checksums"
                 }
               ],
-              "ref": "plan.md#s16--close-out"
+              "ref": "plan.md#s16--close-out",
+              "finished": "2026-11-11T06:48:43Z",
+              "report": "This checkout is realigned onto the rewritten history: the tracked files were unchanged before the move, 41 files removed and 2 changed as predicted, the untracked and ignored files kept, every old object deleted (no deletion deferred), and the push-safety proof passed at 06:45:47Z, which closes the window. The close-out recomputed the result from final reads and passed at 06:47:21Z: numbers 1 to 31, placeholders, issues, closed issues, labels and milestone, links, cross-repository links, identity and old addresses all as designed, no refusal; its local close passed at 06:47:56Z: the legacy repository's refs equal those at the mirror clone, it holds no issue, it is private and archived, and KotlinBottools resolves to the fresh repository.",
+              "result": "passed"
             }
           ],
+          "remediation": {
+            "pass": 1,
+            "route": "on-the-spot",
+            "steps": [
+              {
+                "name": "Checks for two stage-script guards",
+                "state": "done",
+                "finished": "2026-11-11T14:25:49Z",
+                "report": "The stage-script self-test gains checks for the before-move refresh and the empty-id guard, each shown to fail without its guard (131 checks, passed 14:24:39Z); the walk tool’s realignment checks print the clone’s tag instead of its path (564 checks, passed 14:20:51Z); the two early settings records no longer keep the per-read token and still compare as before; the tool left over from the replaced plan is removed. The run’s checksum list is brought up to date for the changed records."
+              },
+              {
+                "name": "Walk tool prints no local path",
+                "state": "done",
+                "finished": "2026-11-11T14:25:49Z",
+                "report": "The stage-script self-test gains checks for the before-move refresh and the empty-id guard, each shown to fail without its guard (131 checks, passed 14:24:39Z); the walk tool’s realignment checks print the clone’s tag instead of its path (564 checks, passed 14:20:51Z); the two early settings records no longer keep the per-read token and still compare as before; the tool left over from the replaced plan is removed. The run’s checksum list is brought up to date for the changed records."
+              },
+              {
+                "name": "Per-read token removed from two settings records",
+                "state": "done",
+                "finished": "2026-11-11T14:25:49Z",
+                "report": "The stage-script self-test gains checks for the before-move refresh and the empty-id guard, each shown to fail without its guard (131 checks, passed 14:24:39Z); the walk tool’s realignment checks print the clone’s tag instead of its path (564 checks, passed 14:20:51Z); the two early settings records no longer keep the per-read token and still compare as before; the tool left over from the replaced plan is removed. The run’s checksum list is brought up to date for the changed records."
+              },
+              {
+                "name": "Left-over tool removed",
+                "state": "done",
+                "finished": "2026-11-11T14:25:49Z",
+                "report": "The stage-script self-test gains checks for the before-move refresh and the empty-id guard, each shown to fail without its guard (131 checks, passed 14:24:39Z); the walk tool’s realignment checks print the clone’s tag instead of its path (564 checks, passed 14:20:51Z); the two early settings records no longer keep the per-read token and still compare as before; the tool left over from the replaced plan is removed. The run’s checksum list is brought up to date for the changed records."
+              }
+            ]
+          },
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "todo"
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "todo"
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "todo"
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "todo"
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "todo"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "todo"
+              }
+            ]
+          },
           "open": [
             {
               "text": "Moved issue text will name the temporary repository name KotlinBottools-next: rename before the walk, rewrite after, or accept the redirect (architecture §7.4); the plan decides.",
@@ -1402,6 +1530,24 @@
               "text": "The allow-list record's hash and the privacy gate's name indexes depend on a sort that ties on names differing only in case; both tools get a total order.",
               "raised": "implementation-stage s0",
               "resolved": "2026-11-10T22:32:23Z"
+            },
+            {
+              "text": "A default secret-scanning rule matches twice in one kept file; it is recorded at the exit tests and holds back the later change to public.",
+              "raised": "implementation-stage s5"
+            },
+            {
+              "text": "The check before the mirror push reads the clone's pull-request list in a form that never matches; the tool is being corrected before the push.",
+              "raised": "implementation-stage s6",
+              "resolved": "2026-11-11T01:43:09Z"
+            },
+            {
+              "text": "The accepted old commit ids in the moved comments measure 26 occurrences of 3 distinct ids, where the plan says 26 ids.",
+              "raised": "implementation-stage s6"
+            },
+            {
+              "text": "The settings check after the default-branch write compares two fields that are not settings and change on their own; the tool is being corrected.",
+              "raised": "implementation-stage s6",
+              "resolved": "2026-11-11T03:57:44Z"
             }
           ],
           "history": {
@@ -1656,9 +1802,646 @@
                 ],
                 "branch": "chore/issue-23-history-rewrite"
               }
+            ],
+            "implementation": [
+              {
+                "since": "2026-11-10T20:02:19Z",
+                "ended": "2026-11-11T06:48:43Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-11T06:48:43Z",
+                  "note": "s16 reported done; Quality Review next"
+                },
+                "detail": "This checkout is realigned onto the rewritten history: the tracked files were unchanged before the move, 41 files removed and 2 changed as predicted, the untracked and ignored files kept, every old object deleted (no deletion deferred), and the push-safety proof passed at 06:45:47Z, which closes the window. The close-out recomputed the result from final reads and passed at 06:47:21Z: numbers 1 to 31, placeholders, issues, closed issues, labels and milestone, links, cross-repository links, identity and old addresses all as designed, no refusal; its local close passed at 06:47:56Z: the legacy repository's refs equal those at the mirror clone, it holds no issue, it is private and archived, and KotlinBottools resolves to the fresh repository.",
+                "open": [
+                  {
+                    "text": "A default secret-scanning rule matches twice in one kept file; it is recorded at the exit tests and holds back the later change to public.",
+                    "raised": "implementation-stage s5"
+                  },
+                  {
+                    "text": "The accepted old commit ids in the moved comments measure 26 occurrences of 3 distinct ids, where the plan says 26 ids.",
+                    "raised": "implementation-stage s6"
+                  }
+                ],
+                "stages": [
+                  {
+                    "id": "s0",
+                    "name": "Local readiness",
+                    "state": "done",
+                    "rows": [
+                      "path-scrub",
+                      "privacy-gates",
+                      "rehearsal-tool",
+                      "requested-writes"
+                    ],
+                    "brief": "The tools are saved and verified, the pins, data copy and backups are as recorded, every self-test passes, the names are free, the job is open and the privacy gate's allow-list is confirmed",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "bootstrap",
+                        "name": "Save and hash the tools"
+                      },
+                      {
+                        "id": "local-ready",
+                        "name": "Pins, data copy, expression file, backups"
+                      },
+                      {
+                        "id": "selftests",
+                        "name": "Walk tool, scrub tools, allow-list tool, shell scripts"
+                      },
+                      {
+                        "id": "source",
+                        "name": "The source's identity"
+                      },
+                      {
+                        "id": "names",
+                        "name": "The two names are unused"
+                      },
+                      {
+                        "id": "rate",
+                        "name": "Rate-limit headroom"
+                      },
+                      {
+                        "id": "job",
+                        "name": "The job is open with its actions defined"
+                      },
+                      {
+                        "id": "allow-proposal",
+                        "name": "Propose the allow-list entries from the gate's masked output"
+                      },
+                      {
+                        "id": "allow-confirm",
+                        "name": "The owner confirms or rejects each key"
+                      },
+                      {
+                        "id": "allow-write",
+                        "name": "Write the list and its record"
+                      },
+                      {
+                        "id": "allow-verify",
+                        "name": "Verify it against the corpus"
+                      }
+                    ],
+                    "ref": "plan.md#s0--local-readiness",
+                    "started": "2026-11-10T20:02:19Z",
+                    "finished": "2026-11-10T22:57:20Z",
+                    "report": "Local readiness passed: every tool at its recorded hash, all self-tests passing, the allow-list confirmed with no blocking hit. The plan, consequences and boards are committed and pushed at a03a1ce; from that push this checkout takes no change until its realignment. Mirror and backup next.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "s1",
+                    "name": "The pre-clone commit",
+                    "state": "done",
+                    "rows": [
+                      "nothing-lands",
+                      "path-scrub"
+                    ],
+                    "brief": "Everything pending is committed on the topic branch and pushed, and the window opens",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "precommit",
+                        "name": "Commit and push the pending documents and boards"
+                      }
+                    ],
+                    "ref": "plan.md#s1--the-pre-clone-commit",
+                    "finished": "2026-11-10T22:57:20Z",
+                    "report": "Local readiness passed: every tool at its recorded hash, all self-tests passing, the allow-list confirmed with no blocking hit. The plan, consequences and boards are committed and pushed at a03a1ce; from that push this checkout takes no change until its realignment. Mirror and backup next."
+                  },
+                  {
+                    "id": "s2",
+                    "name": "Mirror, backup, manifest, expectation and control",
+                    "state": "done",
+                    "rows": [
+                      "fresh-mirror-and-backup"
+                    ],
+                    "brief": "KotlinBottools' own mirror and untouched backup, its manifest, its expectation row by rule, and its positive control",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "mirror",
+                        "name": "Move unit 1's copies aside and take the mirror and backup"
+                      },
+                      {
+                        "id": "manifest",
+                        "name": "Manifest and expectation row"
+                      },
+                      {
+                        "id": "control",
+                        "name": "Positive control and kept findings"
+                      }
+                    ],
+                    "ref": "plan.md#s2--mirror-backup-manifest-expectation-and-control",
+                    "started": "2026-11-10T22:57:20Z",
+                    "finished": "2026-11-10T23:15:07Z",
+                    "report": "Local readiness passed: every tool at its recorded hash, every self-test passing, the allow-list check with no blocking hit. The mirror was taken at 22:58:58Z; nothing lands on KotlinBottools until the walk ends. The rewrite took 87 commits to 85: every purged file is gone, the path scrub counts zero over every commit, and the result matches its prediction tree for tree. One kept file carries two matches of a default secret-scanning rule; it is recorded at the exit tests and holds back only the later change to public."
+                  },
+                  {
+                    "id": "s3",
+                    "name": "The scrub's before-counts",
+                    "state": "done",
+                    "rows": [
+                      "purge-rewrite",
+                      "path-scrub"
+                    ],
+                    "brief": "The scrub matches in both path kinds, the commits it would empty are counted, and the post-run blob set is predicted",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "scrub-before",
+                        "name": "Before-counts"
+                      }
+                    ],
+                    "ref": "plan.md#s3--the-scrubs-before-counts",
+                    "finished": "2026-11-10T23:15:07Z",
+                    "report": "Local readiness passed: every tool at its recorded hash, every self-test passing, the allow-list check with no blocking hit. The mirror was taken at 22:58:58Z; nothing lands on KotlinBottools until the walk ends. The rewrite took 87 commits to 85: every purged file is gone, the path scrub counts zero over every commit, and the result matches its prediction tree for tree. One kept file carries two matches of a default secret-scanning rule; it is recorded at the exit tests and holds back only the later change to public.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "s4",
+                    "name": "The rewrite",
+                    "state": "done",
+                    "rows": [
+                      "purge-rewrite",
+                      "path-scrub"
+                    ],
+                    "brief": "One filter-repo run purges and scrubs, and every post-run check, including the fidelity check, passes",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "rewrite",
+                        "name": "The invocation and the post-run checks"
+                      }
+                    ],
+                    "ref": "plan.md#s4--the-rewrite",
+                    "finished": "2026-11-10T23:15:07Z",
+                    "report": "Local readiness passed: every tool at its recorded hash, every self-test passing, the allow-list check with no blocking hit. The mirror was taken at 22:58:58Z; nothing lands on KotlinBottools until the walk ends. The rewrite took 87 commits to 85: every purged file is gone, the path scrub counts zero over every commit, and the result matches its prediction tree for tree. One kept file carries two matches of a default secret-scanning rule; it is recorded at the exit tests and holds back only the later change to public."
+                  },
+                  {
+                    "id": "s5",
+                    "name": "Gate 1",
+                    "state": "done",
+                    "rows": [
+                      "privacy-gates"
+                    ],
+                    "brief": "The confirmed allow-list is checked, and the rewritten mirror, the five static backups' messages and identities and the old repository's texts hold no name, guild or id, and the accepted ids are listed",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "dump-old",
+                        "name": "Dump the old repository's texts"
+                      },
+                      {
+                        "id": "gate-1",
+                        "name": "Gate 1 and the accepted ids"
+                      }
+                    ],
+                    "ref": "plan.md#s5--gate-1",
+                    "started": "2026-11-10T23:15:07Z",
+                    "finished": "2026-11-11T00:47:47Z",
+                    "report": "The secret scan of the backup found every kind it is meant to find, so its positive control passed; findings by rule: bare-token-file 1, curl-auth-user 2, discord-bot-token 1, legacy-bot-data-file 5619, legacy-state-directory 9, of which curl-auth-user (2 matches in 1 file) is kept. Before-counts of the path scrub: 1101, 50 and 368 matches for its three expressions, none in commit messages. Gate 1 found no blocking hit. The fresh repository exists, private and empty, with its settings applied and read back. The step before the mirror push stopped on a defect in its own check: it reads the clone's pull-request list in a form that never matches, so the list came out empty; the server's pull-request heads are in fact those of the clone. A corrected tool is being prepared; nothing has been pushed.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "s6",
+                    "name": "The fresh repository",
+                    "state": "done",
+                    "rows": [
+                      "fresh-repository",
+                      "nothing-lands"
+                    ],
+                    "brief": "A private empty repository is created and set, the mirror is pushed without force and verified on two channels, and the default branch is set",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "fresh-create",
+                        "name": "Create it"
+                      },
+                      {
+                        "id": "fresh-settings",
+                        "name": "Apply and read back the settings"
+                      },
+                      {
+                        "id": "push-prep",
+                        "name": "Push preparation"
+                      },
+                      {
+                        "id": "fresh-push",
+                        "name": "The mirror push"
+                      },
+                      {
+                        "id": "push-verify",
+                        "name": "Per-ref verification"
+                      },
+                      {
+                        "id": "fresh-default",
+                        "name": "Default branch and its read-back"
+                      }
+                    ],
+                    "ref": "plan.md#s6--the-fresh-repository",
+                    "started": "2026-11-11T00:47:47Z",
+                    "finished": "2026-11-11T04:06:21Z",
+                    "report": "Twelve tools were corrected for the settings comparison and for faults of the same kinds found in the later stages' tools: the placeholder guard now reads the highest number, written and compared texts are line-ending and letter-case safe, the move's comparison counts the IDE and build folders instead of naming them, and the push-safety proof and three other reads fail closed. Self-tests pass (562 and 129). The fresh repository stage passed at 03:58:06Z. The exit tests passed at 04:02:12Z: the fresh mirror holds 85 rewritten commits, no purged file is reachable, the path scrub counts zero, and no old commit or file id resolves in the fresh repository. The secret scan of the fresh mirror finds only the kept default-rule finding (2 in 1 file), recorded for the later change to public. The realignment scripts ran cleanly end to end on the first scratch clone; the second is ready for the realignment request."
+                  },
+                  {
+                    "id": "s7",
+                    "name": "Fresh mirror and exit tests",
+                    "state": "done",
+                    "rows": [
+                      "purge-rewrite",
+                      "path-scrub",
+                      "fresh-repository"
+                    ],
+                    "brief": "A fresh mirror passes the exit tests, and no pre-rewrite id resolves in the fresh repository",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "exit-tests",
+                        "name": "Fresh mirror"
+                      },
+                      {
+                        "id": "manifest",
+                        "name": "manifest"
+                      }
+                    ],
+                    "ref": "plan.md#s7--fresh-mirror-and-exit-tests",
+                    "finished": "2026-11-11T04:06:21Z",
+                    "report": "Twelve tools were corrected for the settings comparison and for faults of the same kinds found in the later stages' tools: the placeholder guard now reads the highest number, written and compared texts are line-ending and letter-case safe, the move's comparison counts the IDE and build folders instead of naming them, and the push-safety proof and three other reads fail closed. Self-tests pass (562 and 129). The fresh repository stage passed at 03:58:06Z. The exit tests passed at 04:02:12Z: the fresh mirror holds 85 rewritten commits, no purged file is reachable, the path scrub counts zero, and no old commit or file id resolves in the fresh repository. The secret scan of the fresh mirror finds only the kept default-rule finding (2 in 1 file), recorded for the later change to public. The realignment scripts ran cleanly end to end on the first scratch clone; the second is ready for the realignment request.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "s8",
+                    "name": "The realignment proven on two scratch clones",
+                    "state": "done",
+                    "rows": [
+                      "realignment",
+                      "push-safety"
+                    ],
+                    "brief": "The realignment scripts and the realignment request are proven on two scratch clones before they touch this checkout",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "dry-run",
+                        "name": "Scripts on the first scratch clone"
+                      },
+                      {
+                        "id": "scratch-clone",
+                        "name": "Second scratch clone"
+                      },
+                      {
+                        "id": "realign-scratch",
+                        "name": "The realignment request on it"
+                      }
+                    ],
+                    "ref": "plan.md#s8--the-realignment-proven-on-two-scratch-clones",
+                    "started": "2026-11-11T04:06:21Z",
+                    "finished": "2026-11-11T04:23:24Z",
+                    "report": "The mirror push went in once with no force: the dry run's tally (2 new, none forced, deleted or rejected, Done present) matched the expected one and the push matched the dry run. The realignment request ran cleanly on the second scratch clone: the tracked files were unchanged before the reset, 41 files removed and 2 changed as predicted, every old file id gone, no old commit reachable, origin the fresh repository by id; its check passed at 04:15:51Z. Before the walk: the three labels and the milestone are created in the fresh repository; the census reads 31 numbers (28 issues, 26 open, and 3 pull requests), 8 comments and 91 links (21 with MagicBot and WebTools); the three accepted old commit ids equal Gate 1's; citations of this repository's issues read 50 in MagicBot, 6 in WebTools and 0 in the organization profile repository. The stage passed at 04:23:24Z. The walk reproduces numbers 1 to 31 in order, beginning with the transfer of #1.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "s9",
+                    "name": "Before the walk",
+                    "state": "done",
+                    "rows": [
+                      "number-walk",
+                      "links",
+                      "moved-text-references"
+                    ],
+                    "brief": "The milestone and labels exist, and the census, link table, baseline, accepted ids and cross-repository references are recorded",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "labels-fresh",
+                        "name": "The three labels"
+                      },
+                      {
+                        "id": "ms-fresh",
+                        "name": "The milestone"
+                      },
+                      {
+                        "id": "census",
+                        "name": "Numbers 1 to N"
+                      },
+                      {
+                        "id": "baseline",
+                        "name": "Texts, links and states before the first transfer"
+                      },
+                      {
+                        "id": "accepted",
+                        "name": "The accepted ids"
+                      },
+                      {
+                        "id": "xrefs-before",
+                        "name": "Cross-repository references"
+                      }
+                    ],
+                    "ref": "plan.md#s9--before-the-walk",
+                    "finished": "2026-11-11T04:23:24Z",
+                    "report": "The mirror push went in once with no force: the dry run's tally (2 new, none forced, deleted or rejected, Done present) matched the expected one and the push matched the dry run. The realignment request ran cleanly on the second scratch clone: the tracked files were unchanged before the reset, 41 files removed and 2 changed as predicted, every old file id gone, no old commit reachable, origin the fresh repository by id; its check passed at 04:15:51Z. Before the walk: the three labels and the milestone are created in the fresh repository; the census reads 31 numbers (28 issues, 26 open, and 3 pull requests), 8 comments and 91 links (21 with MagicBot and WebTools); the three accepted old commit ids equal Gate 1's; citations of this repository's issues read 50 in MagicBot, 6 in WebTools and 0 in the organization profile repository. The stage passed at 04:23:24Z. The walk reproduces numbers 1 to 31 in order, beginning with the transfer of #1."
+                  },
+                  {
+                    "id": "s10",
+                    "name": "The walk",
+                    "state": "done",
+                    "rows": [
+                      "number-walk",
+                      "moved-text-references"
+                    ],
+                    "brief": "Every number 1 to N is on its number in the fresh repository, issues transferred and pull requests reproduced by closed placeholders",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "walk",
+                        "name": "transfer-N or placeholder-N for each number in order"
+                      }
+                    ],
+                    "ref": "plan.md#s10--the-walk",
+                    "started": "2026-11-11T04:23:24Z",
+                    "finished": "2026-11-11T06:04:19Z",
+                    "report": "The walk passed at 06:01:03Z: 28 issues transferred one by one, each equal to its text before the walk, the two closed ones arriving closed as completed, and closed placeholders on 20, 30 and 31 carrying each pull request's title and merge date; every transfer kept all 91 links. Link reconciliation needed no write: the settled edge set equals the expected one (passed 06:03:05Z). Gate 2 found no blocking hit, and the path scrub's expressions match nothing in the fresh repository's 70 texts; the closing reads passed at 06:04:19Z: numbers 1 to 31 in the fresh repository, only the three pull requests left in the source. The transfers rewrote references in other repositories' texts to the temporary name: MagicBot now holds 76 such references (74 by the temporary name), WebTools 6; the organization profile repository none. The old repository is now renamed, made private and archived, then the fresh one takes the name."
+                  },
+                  {
+                    "id": "s11",
+                    "name": "Link reconciliation",
+                    "state": "done",
+                    "rows": [
+                      "links"
+                    ],
+                    "brief": "Every recorded relationship is present on both sides, kept or re-created",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "links-r1",
+                        "name": "Round one"
+                      },
+                      {
+                        "id": "links-r2",
+                        "name": "Round two"
+                      },
+                      {
+                        "id": "links-r3",
+                        "name": "Round three"
+                      }
+                    ],
+                    "ref": "plan.md#s11--link-reconciliation",
+                    "finished": "2026-11-11T06:04:19Z",
+                    "report": "The walk passed at 06:01:03Z: 28 issues transferred one by one, each equal to its text before the walk, the two closed ones arriving closed as completed, and closed placeholders on 20, 30 and 31 carrying each pull request's title and merge date; every transfer kept all 91 links. Link reconciliation needed no write: the settled edge set equals the expected one (passed 06:03:05Z). Gate 2 found no blocking hit, and the path scrub's expressions match nothing in the fresh repository's 70 texts; the closing reads passed at 06:04:19Z: numbers 1 to 31 in the fresh repository, only the three pull requests left in the source. The transfers rewrote references in other repositories' texts to the temporary name: MagicBot now holds 76 such references (74 by the temporary name), WebTools 6; the organization profile repository none. The old repository is now renamed, made private and archived, then the fresh one takes the name."
+                  },
+                  {
+                    "id": "s12",
+                    "name": "Gate 2 and the closing reads",
+                    "state": "done",
+                    "rows": [
+                      "privacy-gates",
+                      "moved-text-references",
+                      "nothing-lands"
+                    ],
+                    "brief": "The moved texts pass the gate, the numbers and texts are re-read, and the cross-repository references are counted again",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "gate-2",
+                        "name": "Dump and gate the fresh repository's texts"
+                      },
+                      {
+                        "id": "reads",
+                        "name": "Numbers, items and references"
+                      }
+                    ],
+                    "ref": "plan.md#s12--gate-2-and-the-closing-reads",
+                    "finished": "2026-11-11T06:04:19Z",
+                    "report": "The walk passed at 06:01:03Z: 28 issues transferred one by one, each equal to its text before the walk, the two closed ones arriving closed as completed, and closed placeholders on 20, 30 and 31 carrying each pull request's title and merge date; every transfer kept all 91 links. Link reconciliation needed no write: the settled edge set equals the expected one (passed 06:03:05Z). Gate 2 found no blocking hit, and the path scrub's expressions match nothing in the fresh repository's 70 texts; the closing reads passed at 06:04:19Z: numbers 1 to 31 in the fresh repository, only the three pull requests left in the source. The transfers rewrote references in other repositories' texts to the temporary name: MagicBot now holds 76 such references (74 by the temporary name), WebTools 6; the organization profile repository none. The old repository is now renamed, made private and archived, then the fresh one takes the name.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "s13",
+                    "name": "The renames and the archive",
+                    "state": "done",
+                    "rows": [
+                      "renames"
+                    ],
+                    "brief": "The old repository is renamed, private and archived; the fresh one is named KotlinBottools with its recorded id and heads",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "rename-old",
+                        "name": "Rename the old repository"
+                      },
+                      {
+                        "id": "private-old",
+                        "name": "Make it private"
+                      },
+                      {
+                        "id": "archive-old",
+                        "name": "Archive it"
+                      },
+                      {
+                        "id": "rename-fresh",
+                        "name": "Rename the fresh repository"
+                      },
+                      {
+                        "id": "swap-reads",
+                        "name": "Identity, URLs, heads and settings snapshot"
+                      }
+                    ],
+                    "ref": "plan.md#s13--the-renames-and-the-archive",
+                    "started": "2026-11-11T06:04:19Z",
+                    "finished": "2026-11-11T06:24:54Z",
+                    "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed KotlinBottools-legacy, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files."
+                  },
+                  {
+                    "id": "s14",
+                    "name": "Residual measurements",
+                    "state": "done",
+                    "rows": [
+                      "residual-measurement"
+                    ],
+                    "brief": "The old ids' answers in the fresh and legacy repositories, the activity feed and the public window are recorded",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "residuals",
+                        "name": "The probes and the report row"
+                      }
+                    ],
+                    "ref": "plan.md#s14--residual-measurements",
+                    "finished": "2026-11-11T06:24:54Z",
+                    "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed KotlinBottools-legacy, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "s15",
+                    "name": "This checkout's realignment",
+                    "state": "done",
+                    "rows": [
+                      "realignment",
+                      "push-safety",
+                      "object-deletion"
+                    ],
+                    "brief": "This checkout is on the rewritten history and passes the push-safety proof, its object deletion proven or deferred",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "copy-local",
+                        "name": "Copy the untracked and ignored files"
+                      },
+                      {
+                        "id": "realign-main",
+                        "name": "The realignment request"
+                      },
+                      {
+                        "id": "proofs",
+                        "name": "Push-safety and object-deletion proofs"
+                      }
+                    ],
+                    "ref": "plan.md#s15--this-checkouts-realignment",
+                    "started": "2026-11-11T06:24:54Z",
+                    "finished": "2026-11-11T06:48:43Z",
+                    "report": "This checkout is realigned onto the rewritten history: the tracked files were unchanged before the move, 41 files removed and 2 changed as predicted, the untracked and ignored files kept, every old object deleted (no deletion deferred), and the push-safety proof passed at 06:45:47Z, which closes the window. The close-out recomputed the result from final reads and passed at 06:47:21Z: numbers 1 to 31, placeholders, issues, closed issues, labels and milestone, links, cross-repository links, identity and old addresses all as designed, no refusal; its local close passed at 06:47:56Z: the legacy repository's refs equal those at the mirror clone, it holds no issue, it is private and archived, and KotlinBottools resolves to the fresh repository."
+                  },
+                  {
+                    "id": "s16",
+                    "name": "Close-out",
+                    "state": "done",
+                    "rows": [
+                      "number-walk",
+                      "links",
+                      "renames"
+                    ],
+                    "brief": "Every number, placeholder, link, rename and proof is recomputed from final reads, and the window ends",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "result",
+                        "name": "The final gate"
+                      },
+                      {
+                        "id": "close-local",
+                        "name": "Legacy refs, checksums"
+                      }
+                    ],
+                    "ref": "plan.md#s16--close-out",
+                    "finished": "2026-11-11T06:48:43Z",
+                    "report": "This checkout is realigned onto the rewritten history: the tracked files were unchanged before the move, 41 files removed and 2 changed as predicted, the untracked and ignored files kept, every old object deleted (no deletion deferred), and the push-safety proof passed at 06:45:47Z, which closes the window. The close-out recomputed the result from final reads and passed at 06:47:21Z: numbers 1 to 31, placeholders, issues, closed issues, labels and milestone, links, cross-repository links, identity and old addresses all as designed, no refusal; its local close passed at 06:47:56Z: the legacy repository's refs equal those at the mirror clone, it holds no issue, it is private and archived, and KotlinBottools resolves to the fresh repository.",
+                    "result": "passed"
+                  }
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "since": "2026-11-11T14:08:08Z",
+                "ended": "2026-11-11T14:08:08Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-11T06:48:43Z",
+                  "note": "Quality Review 1: running"
+                },
+                "detail": "Quality Review 1 running.",
+                "open": [
+                  {
+                    "text": "A default secret-scanning rule matches twice in one kept file; it is recorded at the exit tests and holds back the later change to public.",
+                    "raised": "implementation-stage s5"
+                  },
+                  {
+                    "text": "The accepted old commit ids in the moved comments measure 26 occurrences of 3 distinct ids, where the plan says 26 ids.",
+                    "raised": "implementation-stage s6"
+                  }
+                ],
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-11",
+                    "at": "2026-11-11T14:08:08Z",
+                    "findings": {},
+                    "severity": {
+                      "minor": 5,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/ca070e8d/tests/index.html"
+                  }
+                ]
+              }
+            ],
+            "remediation": [
+              {
+                "since": "2026-11-11T14:08:08Z",
+                "ended": "2026-11-11T14:25:49Z",
+                "endedBy": "document",
+                "to": "document",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-11T14:25:49Z",
+                  "note": "s16"
+                },
+                "detail": "The stage-script self-test gains checks for the before-move refresh and the empty-id guard, each shown to fail without its guard (131 checks, passed 14:24:39Z); the walk tool’s realignment checks print the clone’s tag instead of its path (564 checks, passed 14:20:51Z); the two early settings records no longer keep the per-read token and still compare as before; the tool left over from the replaced plan is removed. The run’s checksum list is brought up to date for the changed records.",
+                "open": [
+                  {
+                    "text": "A default secret-scanning rule matches twice in one kept file; it is recorded at the exit tests and holds back the later change to public.",
+                    "raised": "implementation-stage s5"
+                  },
+                  {
+                    "text": "The accepted old commit ids in the moved comments measure 26 occurrences of 3 distinct ids, where the plan says 26 ids.",
+                    "raised": "implementation-stage s6"
+                  }
+                ],
+                "remediation": {
+                  "pass": 1,
+                  "route": "on-the-spot",
+                  "steps": [
+                    {
+                      "name": "Checks for two stage-script guards",
+                      "state": "done",
+                      "finished": "2026-11-11T14:25:49Z",
+                      "report": "The stage-script self-test gains checks for the before-move refresh and the empty-id guard, each shown to fail without its guard (131 checks, passed 14:24:39Z); the walk tool’s realignment checks print the clone’s tag instead of its path (564 checks, passed 14:20:51Z); the two early settings records no longer keep the per-read token and still compare as before; the tool left over from the replaced plan is removed. The run’s checksum list is brought up to date for the changed records."
+                    },
+                    {
+                      "name": "Walk tool prints no local path",
+                      "state": "done",
+                      "finished": "2026-11-11T14:25:49Z",
+                      "report": "The stage-script self-test gains checks for the before-move refresh and the empty-id guard, each shown to fail without its guard (131 checks, passed 14:24:39Z); the walk tool’s realignment checks print the clone’s tag instead of its path (564 checks, passed 14:20:51Z); the two early settings records no longer keep the per-read token and still compare as before; the tool left over from the replaced plan is removed. The run’s checksum list is brought up to date for the changed records."
+                    },
+                    {
+                      "name": "Per-read token removed from two settings records",
+                      "state": "done",
+                      "finished": "2026-11-11T14:25:49Z",
+                      "report": "The stage-script self-test gains checks for the before-move refresh and the empty-id guard, each shown to fail without its guard (131 checks, passed 14:24:39Z); the walk tool’s realignment checks print the clone’s tag instead of its path (564 checks, passed 14:20:51Z); the two early settings records no longer keep the per-read token and still compare as before; the tool left over from the replaced plan is removed. The run’s checksum list is brought up to date for the changed records."
+                    },
+                    {
+                      "name": "Left-over tool removed",
+                      "state": "done",
+                      "finished": "2026-11-11T14:25:49Z",
+                      "report": "The stage-script self-test gains checks for the before-move refresh and the empty-id guard, each shown to fail without its guard (131 checks, passed 14:24:39Z); the walk tool’s realignment checks print the clone’s tag instead of its path (564 checks, passed 14:20:51Z); the two early settings records no longer keep the per-read token and still compare as before; the tool left over from the replaced plan is removed. The run’s checksum list is brought up to date for the changed records."
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-11",
+                    "at": "2026-11-11T14:08:08Z",
+                    "findings": {},
+                    "severity": {
+                      "minor": 5,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/ca070e8d/tests/index.html"
+                  }
+                ]
+              }
             ]
           },
-          "deviations": 0,
           "rowNames": {
             "fresh-mirror-and-backup": "KotlinBottools' own mirror, backup, manifest, expectation and positive control",
             "nothing-lands": "Nothing lands on KotlinBottools while the unit runs",
@@ -1685,6 +2468,69 @@
               "milestones": []
             }
           }
+        },
+        "tests": {
+          "base": "main",
+          "updated": "2026-11-11T14:25:49Z",
+          "added": [],
+          "amended": [
+            {
+              "class": "kselftest.sh",
+              "module": "tools",
+              "tests": 131,
+              "result": {
+                "state": "passed",
+                "passed": 129,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 1,
+                "at": "2026-11-11T14:08:08Z"
+              },
+              "stage": "s16"
+            },
+            {
+              "class": "swap.py selftest",
+              "module": "tools",
+              "tests": 564,
+              "result": {
+                "state": "passed",
+                "passed": 562,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 1,
+                "at": "2026-11-11T14:08:08Z"
+              },
+              "stage": "s16"
+            }
+          ],
+          "relevant": [
+            {
+              "class": "scrub_check.py selftest",
+              "module": "tools",
+              "tests": 17,
+              "result": {
+                "state": "passed",
+                "passed": 17,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 1,
+                "at": "2026-11-11T14:08:08Z"
+              }
+            },
+            {
+              "class": "allow_tool.py selftest",
+              "module": "tools",
+              "tests": 50,
+              "result": {
+                "state": "passed",
+                "passed": 50,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 1,
+                "at": "2026-11-11T14:08:08Z"
+              }
+            }
+          ]
         }
       },
       "gap": {
