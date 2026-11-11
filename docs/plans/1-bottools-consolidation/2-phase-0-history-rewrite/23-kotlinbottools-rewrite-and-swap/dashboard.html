@@ -1123,9 +1123,9 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   ],
   "wip": {
     "step": "document",
-    "since": "2026-11-11T14:25:49Z",
-    "updated": "2026-11-11T15:06:00Z",
-    "detail": "Document: 6 of 6 tasks done; every task done.",
+    "since": "2026-11-11T16:03:43Z",
+    "updated": "2026-11-11T16:03:43Z",
+    "detail": "Resumed at the Document step.",
     "steps": [
       "sizing",
       "interview",
@@ -1714,7 +1714,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       },
       {
         "text": "A default secret-scanning rule matches twice in one kept file; it is recorded at the exit tests and holds back the later change to public.",
-        "raised": "implementation-stage s5"
+        "raised": "implementation-stage s5",
+        "resolved": "2026-11-11T16:03:43Z"
       },
       {
         "text": "The check before the mirror push reads the clone's pull-request list in a form that never matches; the tool is being corrected before the push.",
@@ -1723,18 +1724,23 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       },
       {
         "text": "The accepted old commit ids in the moved comments measure 26 occurrences of 3 distinct ids, where the plan says 26 ids.",
-        "raised": "implementation-stage s6"
+        "raised": "implementation-stage s6",
+        "resolved": "2026-11-11T16:03:43Z"
       },
       {
         "text": "The settings check after the default-branch write compares two fields that are not settings and change on their own; the tool is being corrected.",
         "raised": "implementation-stage s6",
         "resolved": "2026-11-11T03:57:44Z"
+      },
+      {
+        "text": "The landing waits on the owner’s decision on whether a review with only minor, already-fixed findings is enough to land.",
+        "raised": "halted",
+        "resolved": "2026-11-11T16:03:43Z"
       }
     ],
     "event": {
-      "name": "document",
-      "at": "2026-11-11T15:06:00Z",
-      "note": "6 of 6 tasks done"
+      "name": "resumed",
+      "at": "2026-11-11T16:03:43Z"
     },
     "history": {
       "sizing": [
@@ -2664,6 +2670,92 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             }
           ]
         }
+      ],
+      "document": [
+        {
+          "since": "2026-11-11T14:25:49Z",
+          "ended": "2026-11-11T15:07:48Z",
+          "endedBy": "halted",
+          "to": "document",
+          "event": {
+            "name": "document",
+            "at": "2026-11-11T15:06:00Z",
+            "note": "6 of 6 tasks done"
+          },
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "open": [
+            {
+              "text": "A default secret-scanning rule matches twice in one kept file; it is recorded at the exit tests and holds back the later change to public.",
+              "raised": "implementation-stage s5"
+            },
+            {
+              "text": "The accepted old commit ids in the moved comments measure 26 occurrences of 3 distinct ids, where the plan says 26 ids.",
+              "raised": "implementation-stage s6"
+            }
+          ],
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done",
+                "started": "2026-11-11T14:27:54Z",
+                "finished": "2026-11-11T14:31:17Z",
+                "report": "The documentation check found thirteen points, all in this unit’s documents: a usage text and an output-rule statement for the walk tool, internal contradictions, a missing table row, broken relative links in the research folder, and follow-ups listed in the plan but not in the consequences. They are applied together with the reconcile of the plan, the consequences and the as-built record, in one pass over the unit’s folder."
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-11T14:31:17Z",
+                "finished": "2026-11-11T14:56:12Z",
+                "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-11T14:31:17Z",
+                "finished": "2026-11-11T14:56:12Z",
+                "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-11T14:56:12Z",
+                "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-11T14:56:12Z",
+                "finished": "2026-11-11T15:05:06Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-11T15:05:06Z",
+                "finished": "2026-11-11T15:06:00Z"
+              }
+            ]
+          },
+          "held": true,
+          "asked": [
+            {
+              "text": "May the change land on a review verdict of changes requested whose every finding was minor and fixed at once, or does it need a passing verdict?",
+              "options": [
+                "land as sent",
+                "run another review pass first"
+              ],
+              "answer": null,
+              "asked": "2026-11-11T15:07:48Z",
+              "answered": "2026-11-11T16:03:43Z"
+            }
+          ]
+        }
       ]
     },
     "next": null,
@@ -2786,6 +2878,17 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "answer": "The run proposes the entries from the gate's masked first-run output, and the owner confirms each before Gate 1.",
         "asked": "2026-11-10T19:27:15Z",
         "answered": "2026-11-10T19:46:35Z"
+      },
+      {
+        "step": "document",
+        "text": "May the change land on a review verdict of changes requested whose every finding was minor and fixed at once, or does it need a passing verdict?",
+        "options": [
+          "land as sent",
+          "run another review pass first"
+        ],
+        "answer": null,
+        "asked": "2026-11-11T15:07:48Z",
+        "answered": "2026-11-11T16:03:43Z"
       }
     ],
     "waits": [
@@ -2799,6 +2902,12 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "step": "plan",
         "since": "2026-11-10T19:27:15Z",
         "ended": "2026-11-10T19:46:35Z",
+        "by": "halted"
+      },
+      {
+        "step": "document",
+        "since": "2026-11-11T15:07:48Z",
+        "ended": "2026-11-11T16:03:43Z",
         "by": "halted"
       }
     ],
@@ -3084,6 +3193,31 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "date": "2026-11-11",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Halted at the Document step: waiting on you (the owner’s decision on landing after a review whose findings were all minor and fixed at once)"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Resumed at the Document step"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Open point resolved: A default secret-scanning rule matches twice in one kept file; it is recorded at the exit tests and holds back the later change to public."
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Open point resolved: The accepted old commit ids in the moved comments measure 26 occurrences of 3 distinct ids, where the plan says 26 ids."
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Open point resolved: The landing waits on the owner’s decision on whether a review with only minor, already-fixed findings is enough to land."
     }
   ],
   "rows": [
