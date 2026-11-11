@@ -1,12 +1,12 @@
 {
   "repo": "SpartanLaboratories/KotlinBottools",
-  "updated": "2026-11-09",
+  "updated": "2026-11-11",
   "systems": [
     {"slug": "kotlinbottools", "name": "KotlinBottools", "kind": "repo", "parent": null, "status": "built",
      "function": "A Kotlin Discord bot framework on JDA: hierarchical text and slash commands, XML-backed guild and member data, event responders and polling services, built by one Gradle build at 7.5-SNAPSHOT.",
      "paths": ["."], "version": null,
-     "asIs": {"ref": "chore/issue-22-transfer-rehearsal", "sha": "e6ef04a", "date": "2026-11-09T07:50:05Z"},
-     "lastAmended": {"issue": 22, "sha": "e6ef04a"},
+     "asIs": {"ref": "chore/issue-23-history-rewrite", "sha": "5c1bfd3", "date": "2026-11-11T14:27:27Z"},
+     "lastAmended": {"issue": 23, "sha": "5c1bfd3"},
      "board": "index.html", "dsl": "workspace.dsl"},
 
     {"slug": "toolchain", "name": "Toolchain", "kind": "system", "parent": "workspace-lifecycle", "status": "planned", "visibility": "internal-repo",

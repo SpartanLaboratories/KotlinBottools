@@ -1,12 +1,12 @@
 // KotlinBottools — C4 model as code (Structurizr DSL): the repository's systems and how they interact. Source of truth for docs/dashboards/index.html.
-// As-is at KotlinBottools chore/issue-22-transfer-rehearsal e6ef04a (2026-11-09): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture, every one planned and drawn dashed. Code is authoritative on any conflict.
+// As-is at KotlinBottools chore/issue-23-history-rewrite 5c1bfd3 (2026-11-11): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture, every one planned and drawn dashed. Code is authoritative on any conflict.
 workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the planned systems that purge the bot repositories' histories before KotlinBottools is made public." {
 
     !identifiers hierarchical
 
     model {
         admin  = person "Organisation administrator" "Runs the phase's units from this machine; every write to GitHub or to a checkout is carried out on request and verified before the next step."
-        github = softwareSystem "GitHub" "Hosts KotlinBottools and the five other bot repositories: GKB2, GKB and BotTools public, TrumpBot and Support private. Serves an unreferenced object by id." "External"
+        github = softwareSystem "GitHub" "Hosts KotlinBottools, a fresh private repository holding the rewritten history, its private, archived predecessor KotlinBottools-legacy, and the five other bot repositories: GKB2, GKB and BotTools public, TrumpBot and Support private. Serves an unreferenced object by id." "External"
 
         kbt = softwareSystem "KotlinBottools" "A Kotlin Discord bot framework on JDA, built by one Gradle build; the phase's systems live outside the repository but for the hygiene files." {
             // ---- planned: the Phase 0 history-rewrite systems (architecture section 6, 7, 9, 10), nothing built ----
@@ -30,7 +30,7 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
         kbt.pipeline -> kbt.backups "Is judged against the manifests and expectation rows"
         kbt.pipeline -> kbt.toolchain "Runs filter-repo and the scan wrapper"
         kbt.pipeline -> kbt.gate "Passes Gate 1 before KotlinBottools is pushed"
-        kbt.pipeline -> github "Force-pushes each rewritten mirror, on request"
+        kbt.pipeline -> github "Pushes each rewritten mirror on request: forced in place, unforced to the fresh repository"
         kbt.residual -> github "Probes the old ids, status only"
         kbt.swap -> github "Creates, walks, renames, archives and flips visibility, on request"
         kbt.swap -> kbt.gate "Passes Gate 2 before the renames, Gate 3 before the visibility change"
