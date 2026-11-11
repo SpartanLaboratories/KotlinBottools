@@ -116,3 +116,119 @@ the file's header comment describes the one table.
   `curl-auth-user` rule and its own allowlist), its README's configuration section, and runs of the 8.30.1 binary on
   scratch copies of this repository and on throwaway fixtures.
 - **Findings file:** [`scoped-allowlist-semantics.md`](scoped-allowlist-semantics.md).
+
+---
+
+## Verification results
+
+Every load-bearing claim of both findings files was re-opened at its source on 2026-11-11. That covers 19 claims of
+[`workflow-on-the-hosted-runner.md`](workflow-on-the-hosted-runner.md#7-load-bearing-claims) and 23 of
+[`scoped-allowlist-semantics.md`](scoped-allowlist-semantics.md#7-load-bearing-claims). Sources quoted at a tag were read
+at that tag, and pages first read through a summary were read again as raw text. All 42 hold; none fails and none is
+unclear.
+
+| Claims | Result |
+|---|---|
+| Workflow, 1–19 | Hold. Each quote is verbatim at its source: the runner-image announcement and the two image manifests (Ubuntu 24.04 image 20261101.360.1, Ubuntu 26.04 image 20261101.186.1), Canonical's post on Rust coreutils (raw text), the uutils 0.8.0 source, `actions/checkout` at the pinned commit, GitHub's changelog of 2026-09-23, GitHub's documentation sources for the events, Actions billing and workflow lockfiles, the gitleaks release, checksums file, issues and source at `v8.30.1`, the `pull_request_target` announcement, the hardening guidance, and Scorecard's checks. |
+| Allowlist, 1–23 | Hold. Each source quote is verbatim at `v8.30.1` (`config/`, `detect/`, `sources/`, `cmd/`, `regexp/`, `.goreleaser.yml`, the default configuration, the README), at viper `v1.19.0`, in TOML 1.0.0 and in Go 1.25.0's `path/filepath`. Claim 6's regular expression is a verbatim part of the rule's expression, and the rule has no `secretGroup`. |
+
+These observations were repeated, with the 8.30.1 Windows binary and the scan wrapper, on scratch copies only:
+- **The proposed configuration** ([§6.1 of the allowlist findings](scoped-allowlist-semantics.md#61-the-complete-file)) is
+  3360 bytes, sha256 `9d0149e389991db6e893b4d198fe71bab6206b8e295517bca454877063a6f0b7`, and `tomllib` parses it.
+- **With it**, a mirror of this repository scanned with `--refs all` and with `--refs branches`, and a `dir .` scan of a clean
+  clone of `main`, print `RESULT: CLEAN`.
+- **The canary** prints `CANARY OK` for both ref sets.
+- **Two fixtures are still reported:** a literal credential generated at run time, at the document's path, and the document
+  copied to another path.
+- **With the earlier configuration**, the same three scans print `RESULT: FINDINGS`, with only `curl-auth-user`: 2 findings in
+  history and 1 in the tree.
+
+---
+
+## Summary
+
+### 1. The workflow on the hosted runner
+
+- **What was found.** No platform change forces an edit to the workflow
+  ([findings §2](workflow-on-the-hosted-runner.md#2-bottom-line)).
+  - **The checkout pin:** tag v7.0.1 of `actions/checkout` still points at the pinned commit, and it is still the newest
+    release. Its `node24` runtime is the runners' default since Node 20 was removed on 2026-09-23 (§3.3).
+  - **The gitleaks pin:** the 8.30.1 Linux archive is still at its URL. Its sha256 equals the pin on three channels: the
+    checksums file, the release's asset digest and a download. 8.30.1 is still the newest release, and the upstream
+    issues behind the silent pass the wrapper guards against are still open (§3.5).
+  - **Changes since 2026-10-20:** nothing GitHub changed bears on the workflow's events, permissions or concurrency (§3.6).
+- **`ubuntu-latest` is moving from Ubuntu 24.04 to Ubuntu 26.04** between 2026-10-19 and 2026-11-19, so the first run can
+  land on either image (§3.1).
+  - Both images carry what the steps call: `python3` 3.12.3 or 3.14.4, which both meet the wrapper's 3.11 floor; git
+    2.56.0; `curl`; and `tar` (§3.2).
+  - The gitleaks binary is statically linked.
+  - The one difference is `sha256sum`: Ubuntu 26.04 ships Rust coreutils (uutils 0.8.0) by default. The uutils source
+    supports the step's `--check --strict -` with a two-space line. A failure there is loud: the step runs under
+    `set -euo pipefail`, so the run goes red and cannot pass falsely.
+- **What a run's checkout holds** (§3.4).
+  - A `fetch-depth: 0` checkout holds every branch as `refs/remotes/origin/*` and every tag. On a pull request it also holds
+    the merge commit, checked out detached; on a push to `main` it holds a local `main`. The wrapper's `--all` covers them all.
+  - A pull request with a merge conflict starts no `pull_request` run at all, so a missing run is not a pass.
+  - The "Run workflow" button exists only once the file is on the default branch, so the first run is the pull request's.
+- **Minutes.** A private repository of an organisation on GitHub Free draws on $12 of included compute a month, about
+  2,000 standard Linux minutes. The job's 15-minute timeout bounds one run (§3.6).
+- **Recommended approach.** Commit the workflow byte for byte as the earlier findings give it, and keep `ubuntu-latest`
+  and both pins (§6). A version change would also move the verified baseline of the canary and the scans. A fixed image
+  label would be a change to the design, and the one point a run has not settled fails closed.
+- **What only the first run shows.**
+  - Which image the run gets.
+  - That the steps behave on the hosted runner as they did on this machine.
+  - Whether a red run at the install step on Ubuntu 26.04 names the checksum tool. That case is the one point that would
+    call for a change: either the label `ubuntu-24.04`, or a check written without `--strict -`.
+
+### 2. The scoped allowlist table
+
+- **What was found** at gitleaks `v8.30.1` ([findings §3](scoped-allowlist-semantics.md#3-findings)):
+  - **Attachment.** A `[[allowlists]]` table with `targetRules` attaches to the named rule after `[extend]` has merged the
+    default rules. It is not a global allowlist. An id that names no rule is a load error, which the wrapper reports as
+    `GATE FAILED` (§3.1, §3.7).
+  - **Condition.** `condition = "AND"` requires every criterion the table defines to hold for the same finding (§3.2).
+  - **Paths.** A `paths` entry is an unanchored search on the slash-separated path. That path comes from git's diff in a
+    history scan, and from the normalised walk path in a `dir .` scan. So the entry is written anchored, in slash form
+    (§3.3).
+  - **Regexes.** A `regexes` entry is tested against the finding's secret by default. For this rule the secret is the whole
+    quoted credential, quotes included: a 33-character text, not the 461-character match around it (§3.4).
+  - **Keys.** `description` is a recognised key, and unknown keys are ignored (§3.5).
+  - **Mixing table forms.** The check that forbids `[allowlist]` beside `[[allowlists]]` applies within one file, not
+    across the default configuration that `[extend]` merges (§3.6).
+- **Recommended approach:** the configuration of
+  [§6.1 of the findings](scoped-allowlist-semantics.md#61-the-complete-file), 3360 bytes, sha256
+  `9d0149e389991db6e893b4d198fe71bab6206b8e295517bca454877063a6f0b7`. It is the earlier configuration with:
+  - the header's paragraph on allowlists rewritten;
+  - one table appended: `targetRules = ["curl-auth-user"]`, `condition = "AND"`, one anchored path for the one research
+    document, one anchored regex pinned to the quoted credential, and a `description`.
+
+  Proven on this machine:
+  - **Suppression:** the history scans with `--refs all` and `--refs branches` and the tree scan all print `RESULT: CLEAN`.
+  - **The canary** keeps its expected counts and prints `CANARY OK`.
+  - **The wrapper's `control` output** is unchanged.
+  - **Negative controls, all still reported:** a literal credential at the same path; the same text at another path; the
+    same text with one character changed; a path one character longer; and a path with a leading directory (§6.2).
+  - **Elsewhere:** the table is inert wherever its path or its text is absent, which includes the five legacy repositories,
+    whose history holds no such path.
+- **Where the evidence calls for care.** A misspelled key widens the table silently, and so does a missing `condition`:
+  - a misspelled `targetRules` makes the table global, and then a `dir` scan skips the whole document for every rule;
+  - a misspelled `paths` lets the text through anywhere;
+  - a misspelled `regexes` hides the whole document from the rule.
+
+  Only the negative controls show these cases, so they are run whenever the table, the rule set or the gitleaks pin
+  changes (§3.5, §3.9). A table whose rule later stops matching stays as dead text, and nothing reports it (§5, item 9).
+- **Options that do not fit:**
+  - A `.gitleaksignore` fingerprint: it is bound to a line and to each commit, carries no reason, and is looked up by
+    directory, so a bare-mirror scan from the workspace would not see it. The workflow also refuses a `.gitleaksignore`.
+  - An inline `gitleaks:allow` marker: it edits the kept document and does not reach the history.
+  - A global path allowlist: it disables every rule for the document.
+  - `condition = "OR"`: it hides the whole document for the rule, and the text everywhere.
+  - `regexTarget = "match"` or `"line"`: the anchored pin then never matches, and an unanchored one ties the table to the
+    prose around the example (§6).
+- **Where the sources disagreed.** Nowhere. The earlier configuration's statement that there is no allowlist was true
+  while this repository's own history held no false positive. The rewritten header now states the one scoped table, and
+  the earlier findings' rule for any later suppression stands: one rule, one path, a stated reason (§6.4).
+- **What only the first run shows.** The 8.30.1 Linux binary was not run. It is built from the same configuration with the
+  same regular-expression engine, history paths come from git in slash form on every platform, and the Linux walk path is
+  already in slash form (§6.3). The first run of the workflow is the proof.
