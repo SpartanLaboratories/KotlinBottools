@@ -184,6 +184,11 @@ The rewrite itself changes two source files on `main` through the path scrub
 - **The secret-scan set-up.** KotlinBottools' `.gitleaks.toml` keeps MagicBot's three rules
   unchanged and adds `legacy-key-file` and `legacy-state-directory`, with no allowlist. MagicBot's
   configuration should come into line: drop its global allowlist and add the two rules (§6).
+
+  > **Dated note, 2026-11-12.** The committed `.gitleaks.toml` also holds one allowlist table, scoped to one default
+  > rule, one research document of KotlinBottools and one exact text, with the allowlist controls that test it
+  > ([unit 4's plan, The scoped allowlist table](24-repository-hygiene/plan.md#the-scoped-allowlist-table)). There is
+  > still no global allowlist, and the table is not part of MagicBot's alignment.
 - **MagicBot's own CI is Phase 13's.** The workflow pattern of architecture §10 is the one it can
   adopt: a pinned and checksum-verified binary, a wrapper that proves the scan ran, and counts-only
   logs.
@@ -211,6 +216,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 `transfer-rehearsal` has run; what it leaves for the units after it is in [its consequences, §4](22-transfer-rehearsal/consequences.md#4-sibling-units-and-neighbouring-issues), and the known gaps of its tool, which `kotlinbottools-rewrite-and-swap` closes before reusing it, are in [§5](22-transfer-rehearsal/consequences.md#5-known-gaps).
 
 `kotlinbottools-rewrite-and-swap` has run; what it leaves for the units after it is in [its consequences, §4](23-kotlinbottools-rewrite-and-swap/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
+
+`repository-hygiene` has landed; what it leaves for the units after it is in [its consequences, §4](24-repository-hygiene/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
 
 **Neighbouring issues:**
 
