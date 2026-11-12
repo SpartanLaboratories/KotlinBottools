@@ -150,6 +150,10 @@ commits for every quotation used, so no source moved between the research and th
   anonymous `git/trees` request for a blob id answering 422, a protocol-v2 `want` answering `packfile` for a current tree
   and `not our ref` for a made-up id (both HTTP 200), an anonymous request for a run's logs answering 403, and the fork
   pull-request approval policy reading `first_time_contributors`.
+- **Two details of the anonymous-reads findings are narrower in use** (observed while the plan was written, 2026-11-12):
+  the `info/refs?service=git-upload-pack` statuses the findings give are those of a GET, because a HEAD there answers 405
+  on a public repository; and `collaborators?affiliation=direct` answers an empty list for the organisation's owner, so
+  it does not read "the same" as the plain list, which is the read that shows the one collaborator.
 - **Claims about this repository** were checked against its own records: the transfer rehearsal's record holds the
   four 504 answers of a public repository's web page while its REST answered 200
   ([its as-built record](../../22-transfer-rehearsal/final-implementation.md)), and the current state above was read
