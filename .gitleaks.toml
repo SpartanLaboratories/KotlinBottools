@@ -14,9 +14,14 @@
 # literal credential in the same document, or the same text in another file, is still reported. Any further
 # suppression is scoped the same way, to one rule and one path with `targetRules`, in its own
 # [[allowlists]] table, and says why in `description`.
+# The allowlist controls in .github/scripts/allowlist_controls.py name the same path and text and show
+# that the table exempts its one match and nothing else: the table and the controls change together, and a
+# further table gets its own fixtures there.
 #
 # Run it as: gitleaks git --config .gitleaks.toml ...   (always pass --config; without it gitleaks looks
 # for .gitleaks.toml in the scanned path, which a bare mirror does not have).
+# A dir scan applies the table only when run from the repository root as `gitleaks dir .`; a scan of an
+# absolute path reports absolute paths, which the anchored path does not match, and the finding returns.
 
 title = "KotlinBottools"
 
