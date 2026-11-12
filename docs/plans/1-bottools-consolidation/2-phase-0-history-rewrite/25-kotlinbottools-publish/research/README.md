@@ -127,6 +127,7 @@ commits for every quotation used, so no source moved between the research and th
 |---|---|---|---|---|
 | [`publication-and-scanning-api.md`](publication-and-scanning-api.md) §7 | 21, and the working instance observed again | 21 | 1 (claim 18) | 0 |
 | [`anonymous-reads-after-publication.md`](anonymous-reads-after-publication.md) §7 | 14, and four observations made again | 18 | 0 | 0 |
+| **Total** | 40 checks: 35 claims and 5 observations | 39 | 1 | 0 |
 
 - **Unclear, and nothing rests on it.** The 422 messages that `advanced_security` causes (publication claim 18) come from
   one issue of the Terraform provider, opened on 2022-12-09 rather than in 2023, and were not observed again. The design
