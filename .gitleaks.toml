@@ -1,0 +1,64 @@
+# gitleaks configuration for KotlinBottools (gitleaks 8.30.1).
+#
+# Extends the default rule set with the rules MagicBot already uses for Discord bot tokens and for the
+# bare token and data files the predecessor bots kept in their repositories, plus two path rules for
+# file names and directories only the older repositories held (keys.txt, key.pem, logs/, services/,
+# log.txt). Path-only rules match the file's path, never its content; they fire once per
+# changed hunk of a file in `gitleaks git` and once per 100 kB chunk of a file in `gitleaks dir`.
+#
+# There is no global allowlist: a path allowlist would switch off every rule, the token and private-key
+# rules included, for the paths it names. The one [[allowlists]] table at the end suppresses a single
+# known false positive, the default rule curl-auth-user on one research document, where a command example
+# reads the GitHub CLI's token at run time through a shell command substitution and so holds no
+# credential. It names that rule, that path and the exact text the rule captures (condition = "AND"), so a
+# literal credential in the same document, or the same text in another file, is still reported. Any further
+# suppression is scoped the same way, to one rule and one path with `targetRules`, in its own
+# [[allowlists]] table, and says why in `description`.
+#
+# Run it as: gitleaks git --config .gitleaks.toml ...   (always pass --config; without it gitleaks looks
+# for .gitleaks.toml in the scanned path, which a bare mirror does not have).
+
+title = "KotlinBottools"
+
+[extend]
+useDefault = true
+
+# --- Rules shared with MagicBot, byte for byte -------------------------------------------------
+
+[[rules]]
+id = "discord-bot-token"
+description = "Discord bot token"
+regex = '''(?i)(?:[MN][A-Za-z\d_-]{23,25}\.[A-Za-z\d_-]{6}\.[A-Za-z\d_-]{27,38}|mfa\.[A-Za-z\d_-]{84})'''
+keywords = ["mfa.", "."]
+entropy = 3.5
+
+[[rules]]
+id = "bare-token-file"
+description = "A bare token file from the predecessor bots (key.txt and relatives); never committed"
+path = '''(?i)(^|/)(key|token|bot[-_]?token|discord[-_]?token)\.txt$'''
+
+[[rules]]
+id = "legacy-bot-data-file"
+description = "A predecessor bot's data file (BotData.xml, guildData/*.xml); legacy data never enters this repository"
+path = '''(?i)(^|/)(BotData\.xml|guildData/.*\.xml|WebParseKeys\.xml)$'''
+
+# --- Rules only KotlinBottools adds -----------------------------------------------------------
+
+[[rules]]
+id = "legacy-key-file"
+description = "A credential file name only the older bots used (keys.txt, key.pem)"
+path = '''(?i)(^|/)(keys\.txt|key\.pem)$'''
+
+[[rules]]
+id = "legacy-state-directory"
+description = "A predecessor bot's runtime-state directory (logs/ or services/ at the repository root) or its root log file"
+path = '''(?i)(^(logs|services)/|^log\.txt$)'''
+
+# --- The one scoped allowlist ------------------------------------------------------------------
+
+[[allowlists]]
+description = "One command example in a research document reads the GitHub CLI's token at run time through a shell command substitution, so it holds no credential; the rule's own match on it is not a secret"
+targetRules = ["curl-auth-user"]
+condition = "AND"
+paths = ['''^docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/research/github-residual-exposure-and-visibility\.md$''']
+regexes = ['''^"x-access-token:\$\(gh auth token\)"$''']
