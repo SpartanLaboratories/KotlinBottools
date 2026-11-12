@@ -3,11 +3,11 @@ window.dashboardLive&&window.dashboardLive("board",
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-11T15:03:59Z",
-  "asOf": "2026-11-11",
+  "generated": "2026-11-12T03:32:52Z",
+  "asOf": "2026-11-12",
   "tree": {
-    "ref": "chore/issue-23-history-rewrite",
-    "sha": "5c1bfd3"
+    "ref": "chore/issue-24-repository-hygiene",
+    "sha": "0b64c47"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -27,6 +27,15 @@ window.dashboardLive&&window.dashboardLive("board",
       "slot": 0,
       "top": "Internal Tooling",
       "status": "planned",
+      "board": null,
+      "plain": true
+    },
+    {
+      "slug": "repository-hygiene",
+      "name": "Repository hygiene",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "built",
       "board": null,
       "plain": true
     }
@@ -76,9 +85,9 @@ window.dashboardLive&&window.dashboardLive("board",
       "branch": null,
       "system": null,
       "step": "implementation",
-      "detail": "2 of 8 units landed; #23 in progress; #24 up next.",
+      "detail": "3 of 8 units landed; #24 in progress; #25 up next.",
       "since": "2026-11-08T21:15:43Z",
-      "updated": "2026-11-10T01:12:41Z",
+      "updated": "2026-11-11T18:54:18Z",
       "qa": [],
       "qaMax": 3,
       "status": "building",
@@ -86,13 +95,13 @@ window.dashboardLive&&window.dashboardLive("board",
       "landed": null,
       "reconciliation": {
         "state": "partial",
-        "landed": 2,
+        "landed": 3,
         "total": 8
       },
       "active": false,
       "chain": {
         "total": 8,
-        "landed": 2,
+        "landed": 3,
         "dropped": 0,
         "deferred": 0,
         "left": 0,
@@ -100,17 +109,17 @@ window.dashboardLive&&window.dashboardLive("board",
         "done": false,
         "current": [
           {
-            "issue": 23,
-            "slug": "kotlinbottools-rewrite-and-swap",
+            "issue": 24,
+            "slug": "repository-hygiene",
             "step": "document"
           }
         ],
         "next": {
-          "issue": 24,
-          "slug": "repository-hygiene",
+          "issue": 25,
+          "slug": "kotlinbottools-publish",
           "blockedBy": [
             {
-              "issue": 23
+              "issue": 24
             }
           ]
         },
@@ -131,13 +140,13 @@ window.dashboardLive&&window.dashboardLive("board",
             "n": 3,
             "issue": 23,
             "name": "KotlinBottools rewrite and swap",
-            "state": "current"
+            "state": "done"
           },
           {
             "n": 4,
             "issue": 24,
             "name": "Repository hygiene",
-            "state": "todo"
+            "state": "current"
           },
           {
             "n": 5,
@@ -272,7 +281,9 @@ window.dashboardLive&&window.dashboardLive("board",
       "blocks": [
         {
           "issue": 23,
-          "state": "OPEN",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-11T16:05:45Z",
           "hold": "enables"
         }
       ],
@@ -334,7 +345,8 @@ window.dashboardLive&&window.dashboardLive("board",
     {
       "issue": 23,
       "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
-      "state": "OPEN",
+      "state": "CLOSED",
+      "stateReason": "COMPLETED",
       "created": "2026-11-08",
       "parent": 2,
       "waitsOn": [
@@ -351,22 +363,22 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 26,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         },
         {
           "issue": 24,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         }
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/",
-      "branch": "chore/issue-23-history-rewrite",
+      "branch": null,
       "system": "kotlinbottools",
-      "step": "document",
-      "detail": "Document: 4 of 6 tasks done; State boards current.",
-      "since": "2026-11-11T14:25:49Z",
-      "updated": "2026-11-11T14:56:52Z",
+      "step": "landed",
+      "detail": "Landed in PR #32.",
+      "since": "2026-11-11T16:05:44Z",
+      "updated": "2026-11-11T16:05:44Z",
       "qa": [
         {
           "pass": 1,
@@ -388,15 +400,20 @@ window.dashboardLive&&window.dashboardLive("board",
         }
       ],
       "qaMax": 3,
-      "status": "building",
+      "status": "landed",
       "fixOf": null,
-      "landed": null,
+      "landed": {
+        "pr": 32,
+        "merge": "9e61aa5",
+        "version": null,
+        "date": "2026-11-11"
+      },
       "reconciliation": {
-        "state": "partial",
+        "state": "as-built",
         "landed": null,
         "total": null
       },
-      "active": true,
+      "active": false,
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 3
@@ -410,8 +427,10 @@ window.dashboardLive&&window.dashboardLive("board",
       "waitsOn": [
         {
           "issue": 23,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-11T16:05:45Z",
+          "build": "clear",
           "locality": "local-repository"
         }
       ],
@@ -422,25 +441,82 @@ window.dashboardLive&&window.dashboardLive("board",
           "hold": "blocks"
         }
       ],
-      "board": null,
-      "folder": null,
-      "branch": null,
-      "system": "kotlinbottools",
-      "step": null,
-      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 3.",
-      "qa": [],
-      "qaMax": null,
-      "status": "next",
-      "landed": null,
-      "reconciliation": null,
-      "active": false,
-      "next": true,
-      "blockedBy": [
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/",
+      "branch": "chore/issue-24-repository-hygiene",
+      "system": "repository-hygiene",
+      "step": "document",
+      "detail": "The second documentation check found all 13 earlier points answered or recorded as follow-ups, the two new header sentences of .gitleaks.toml accurate, every recorded value correct, and all 233 relative links and anchors resolving across the 13 files checked, the three superseded copies among them. Three points remained, all in the plan documents and none in the seven files, and are corrected: consequences.md no longer restates what the as-built record says about the seven files and links to it instead; the follow-up on comments now says it also covers the options' help text and the workflow's two error annotations, with the annotations listed under the workflow; and one sentence of the dated note on architecture section 10 is reworded. The plan's list of later changes uses the same wording.",
+      "since": "2026-11-12T02:10:54Z",
+      "updated": "2026-11-12T03:23:04Z",
+      "qa": [
         {
-          "issue": 23
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-11",
+          "at": "2026-11-11T20:46:16Z",
+          "findings": {
+            "test": 11,
+            "code": 0
+          },
+          "severity": {
+            "minor": 8,
+            "other": 3
+          },
+          "route": "re-plan-then-remediation",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/ca070e8d/tests/index.html",
+          "note": "The code check found nothing: the six files hold their recorded bytes and nothing else changed. The 74 checks of the local checks, the scans and the privacy gate passed. The test check found 11 gaps in coverage, 3 not minor: no check reaches the scan wrapper's fail-closed branches (status 2); the allowlist table's negative controls exist only in the plan and scratch fixtures, with no committed repeatable check; and the two controls that must still be reported are never observed on the hosted Linux runner. The 8 minor ones: more ignore-list membership tests with an isolated user-level ignore file, an assertion that the clone holds no ignore file for findings, anchor fixtures for the table, a counts-only assertion over the scan output, assertions around the two reads of the hosted runs, optional shell-syntax checks of the workflow's run blocks, and one row of the test plan re-attributed. Every fix is in the plan's own procedure, so the plan is revised first and the revised checks then run."
+        },
+        {
+          "pass": 2,
+          "verdict": "changes-requested",
+          "date": "2026-11-11",
+          "at": "2026-11-11T22:22:42Z",
+          "findings": {
+            "test": 14,
+            "code": 1
+          },
+          "severity": {
+            "minor": 13,
+            "other": 2
+          },
+          "route": "re-plan-then-remediation",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/949b5d33/tests/index.html",
+          "note": "All 202 checks passed, as in the build's own run, and the seven files hold the revised plan's recorded bytes; every finding of Quality Review 1 is answered. 15 findings (14 test, 1 code), 2 not minor. First, the code finding, in the controls script `.github/scripts/allowlist_controls.py`: its two fixtures meant to test the anchors of the table's pinned text put the extra character inside the quotes, which the pinned pattern includes, so both stay reported even if an anchor is dropped: a later edit removing an anchor would leave the controls green (found by evaluating the patterns, not by a run with the binary). Second, on the hosted runs the log's counts-only property is read through four marker counts only, so a line of another shape in a scan step would go unnoticed in a log that becomes public with the repository. The 13 minor ones: the controls script's own failure paths and three more table mutations as repeatable steps; three sub-cases of the scan wrapper; assertions on the workflow's timeout, names and concurrency group; a parse check of the two scripts; standard error asserted empty; the workflow's failing shell branches run locally; more not-ignored paths for five root-anchored patterns; a direct check of the pure functions; and wording in the plan (a count of 95 commits that should read 94, seven lines that should read six, two rows of the test plan table, some check labels). The plan is revised first, then the revised checks run."
+        },
+        {
+          "pass": 3,
+          "verdict": "changes-requested",
+          "date": "2026-11-12",
+          "at": "2026-11-12T00:38:33Z",
+          "findings": {
+            "test": 7,
+            "code": 0
+          },
+          "severity": {
+            "minor": 7,
+            "other": 0
+          },
+          "route": "on-the-spot",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/dda89436/tests/index.html",
+          "note": "The code check found nothing: the seven files hold the plan's recorded bytes, and the code finding of Quality Review 2 is answered: evaluated against the rule and the table themselves, the committed table fails none of the controls' eleven expectations, and each of the four de-anchorings of the pinned text fails exactly its own fixture in both modes. All 334 checks passed (local checks 130, scans 199, privacy gate 5), and 13 of Quality Review 2's 15 findings are answered in full. 7 findings remain, all minor test findings, each an edit to the plan's procedure or its wording and none to the seven files: one call at the end of the canary step leaves its standard error unasserted; in two places the verdict is asserted before the shape check; one case is filed under the component row of the test levels though it runs git; three failing-side cases lack a shape and standard-error value; the 22 control lines and the controls each mutation turns are asserted as counts only, and reading the document from the last commit has no case; three more uncaught exits of the scan wrapper have no case; and the generated word's form and two helpers have no check of their own. They touch the checks before the landing, the allowlist controls, and the scan wrapper with its workflow. They are fixed on the spot and the steps they touch run again; no further review follows.",
+          "inPlace": "fixed"
         }
       ],
-      "systemName": "KotlinBottools",
+      "qaMax": 3,
+      "status": "building",
+      "fixOf": null,
+      "landed": null,
+      "reconciliation": {
+        "state": "planned",
+        "landed": null,
+        "total": null
+      },
+      "active": true,
+      "systemName": "Repository hygiene",
       "group": "2",
       "order": 4
     },
@@ -473,10 +549,16 @@ window.dashboardLive&&window.dashboardLive("board",
       "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 4, and MagicBot's Phase 13 may start once it has landed.",
       "qa": [],
       "qaMax": null,
-      "status": "not-started",
+      "status": "next",
       "landed": null,
       "reconciliation": null,
       "active": false,
+      "next": true,
+      "blockedBy": [
+        {
+          "issue": 24
+        }
+      ],
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 5
@@ -490,8 +572,10 @@ window.dashboardLive&&window.dashboardLive("board",
       "waitsOn": [
         {
           "issue": 23,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-11T16:05:45Z",
+          "build": "clear",
           "locality": "local-repository"
         }
       ],
@@ -713,7 +797,8 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 23,
           "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
-          "state": "OPEN"
+          "state": "CLOSED",
+          "stateReason": "COMPLETED"
         },
         {
           "issue": 24,
@@ -744,6 +829,13 @@ window.dashboardLive&&window.dashboardLive("board",
     }
   ],
   "unscheduled": [
+    {
+      "issue": 33,
+      "title": "Library ships a logging backend: logback-classic is an implementation dependency",
+      "labels": [],
+      "created": "2026-11-11",
+      "system": "kotlinbottools"
+    },
     {
       "issue": 29,
       "title": "Adopt the organization's Dokka and project site standard",
