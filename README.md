@@ -74,6 +74,16 @@ YOUR_BOT_TOKEN_HERE
 
 ⚠️ **Never commit `key.txt`!**
 
+A clone holds none of the bot's local files: they are untracked and ignored. Supply these before the first run:
+
+- `key.txt`: the bot token;
+- `BotData.xml`: the bot's global data;
+- `WebParseKeys.xml`: the scraping markers the online commands read;
+- a `services/` directory: the polling state of the background services, one XML file per service;
+- a `res/` directory: where images are saved before they are sent.
+
+`guildData/` and `logs/` are created at run time.
+
 3. **Build & Run**
 ```bash
 ./gradlew build
@@ -230,9 +240,9 @@ responder newGuildMemberJoinAction { event ->
 KotlinBotTools/
 ├── README.md
 ├── build.gradle.kts
-├── key.txt                    ← Bot token (KEEP SECRET)
-├── BotData.xml
-├── WebParseKeys.xml
+├── key.txt                    ← Bot token (local, untracked; KEEP SECRET)
+├── BotData.xml                ← local, untracked
+├── WebParseKeys.xml           ← local, untracked
 │
 ├── src/main/kotlin/bottools/
 │   ├── main/
@@ -258,7 +268,7 @@ KotlinBotTools/
 │       ├── ServiceCommand.kt
 │       └── UserGameService.kt
 │
-├── guildData/
+├── guildData/                 ← created at run time, untracked
 │   └── [GuildName]/
 │       ├── GuildData.xml
 │       ├── MemberData.xml
@@ -321,6 +331,8 @@ val elements = doc.select("div.class")
 # Debug - Enable in logback.xml
 <logger name="bottools" level="DEBUG"/>
 ```
+
+Every push and pull request to `main` runs the `Secret scan` workflow (`.github/workflows/secret-scan.yml`), which scans the full history and the working tree with gitleaks and the rules in `.gitleaks.toml`.
 
 ---
 
