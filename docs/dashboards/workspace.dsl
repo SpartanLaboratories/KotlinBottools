@@ -1,5 +1,5 @@
 // KotlinBottools — C4 model as code (Structurizr DSL): the repository's systems and how they interact. Source of truth for docs/dashboards/index.html.
-// As-is at KotlinBottools chore/issue-23-history-rewrite 5c1bfd3 (2026-11-11): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture, every one planned and drawn dashed. Code is authoritative on any conflict.
+// As-is at KotlinBottools chore/issue-24-repository-hygiene 0b64c47 (2026-11-12): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture: Repository hygiene built, the other nine planned and drawn dashed. Code is authoritative on any conflict.
 workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the planned systems that purge the bot repositories' histories before KotlinBottools is made public." {
 
     !identifiers hierarchical
@@ -9,7 +9,7 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
         github = softwareSystem "GitHub" "Hosts KotlinBottools, a fresh private repository holding the rewritten history, its private, archived predecessor KotlinBottools-legacy, and the five other bot repositories: GKB2, GKB and BotTools public, TrumpBot and Support private. Serves an unreferenced object by id." "External"
 
         kbt = softwareSystem "KotlinBottools" "A Kotlin Discord bot framework on JDA, built by one Gradle build; the phase's systems live outside the repository but for the hygiene files." {
-            // ---- planned: the Phase 0 history-rewrite systems (architecture section 6, 7, 9, 10), nothing built ----
+            // ---- the Phase 0 history-rewrite systems (architecture section 6, 7, 9, 10): Repository hygiene built in the repository, the other nine planned ----
             toolchain = container "Toolchain" "Installs, verifies and pins git-filter-repo, gitleaks and the scripts; the canary and the fixture rehearsal prove each check is not blind." "planned · WS/tools" "Internal,Planned"
             backups   = container "Backups and manifests" "One untouched mirror per repository; the manifests of purged blob ids, the expectation rows and the positive-control scans." "planned · WS/backup, DATA/manifests" "Internal,Planned"
             dataCopy  = container "Legacy data copy" "BotData.xml and guildData/ copied byte-exactly from three revisions, verified, then marked COPY-VERIFIED." "planned · DATA" "Internal,Planned"
@@ -19,10 +19,10 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
             cleanup   = container "Cleanup" "Re-verifies the data folder, copies the tools into it, deletes the workspace and confirms the deletion." "planned · WS, DATA" "Internal,Planned"
             swap      = container "Repository swap" "The rehearsal, the fresh repository, the number walk, link reconciliation, the renames and archive, the visibility and scanning settings." "planned · GitHub, DATA/run/swap" "Internal,Planned"
             realign   = container "Clone realignment" "This working directory moved onto the rewritten history in place with its push-safety proof; the TrumpBot clone replaced at the same path." "planned · this working directory, DATA/run/realign" "Internal,Planned"
-            hygiene   = container "Repository hygiene" "The root-anchored .gitignore, .gitleaks.toml, the scan wrapper and the Secret scan workflow, the README edit and a new CHANGELOG.md." "planned · in the repository" "Internal,Planned"
+            hygiene   = container "Repository hygiene" "The root-anchored .gitignore, .gitleaks.toml with one scoped allowlist table, the scan wrapper, the allowlist controls and the Secret scan workflow." ".gitleaks.toml, .github/ · in the repository" "Internal"
         }
 
-        // ---- planned: every relationship below has a planned end ----
+        // ---- every relationship below has a planned end, but for the Secret scan workflow's on GitHub ----
         admin -> kbt.toolchain "Runs the units from this machine"
         kbt.backups -> github "Mirror-clones each repository and records its refs"
         kbt.backups -> kbt.toolchain "Scans the untouched backup with the pinned gitleaks"
@@ -36,7 +36,7 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
         kbt.swap -> kbt.gate "Passes Gate 2 before the renames, Gate 3 before the visibility change"
         kbt.realign -> kbt.pipeline "Reads commit-map and ref-map"
         kbt.realign -> github "Fetches the fresh repository, checked by id"
-        kbt.hygiene -> github "Lands its pull request once the Secret scan check passes"
+        kbt.hygiene -> github "Runs the Secret scan workflow on pushes and pull requests to main"
         kbt.cleanup -> kbt.dataCopy "Re-verifies the data folder before deleting the workspace"
     }
 
@@ -45,7 +45,7 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
             include *
             autoLayout lr
         }
-        container kbt "Containers" "The planned history-rewrite systems (dashed) and how they depend on each other." {
+        container kbt "Containers" "The history-rewrite systems, the planned ones dashed, and how they depend on each other." {
             include *
             autoLayout lr
         }

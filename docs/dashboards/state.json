@@ -1,7 +1,7 @@
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "chore/issue-23-history-rewrite", "sha": "5c1bfd3", "date": "2026-11-11T14:27:27Z"},
-  "lastAmended": {"issue": 23, "title": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment", "sha": "5c1bfd3"},
-  "written": {"sha": "5c1bfd3"}
+  "asIs": {"ref": "chore/issue-24-repository-hygiene", "sha": "0b64c47", "date": "2026-11-12T03:16:12Z"},
+  "lastAmended": {"issue": 24, "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG", "sha": "0b64c47"},
+  "written": {"sha": "0b64c47"}
 }

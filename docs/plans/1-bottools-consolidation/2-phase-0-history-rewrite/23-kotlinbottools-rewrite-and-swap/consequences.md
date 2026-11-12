@@ -160,6 +160,11 @@ scripts and the push-safety proof are the reference for any later realignment of
   `curl-auth-user`, in 1 kept file, on branches and on every ref alike; no custom rule found anything, so no purged kind of
   file survived, and none is a `private-key` finding, which would have stopped S7. The finding is recorded by rule id and count, and holds the publication unit's change to public until it
   is judged. This is the outcome of the plan's [assumption A13](plan.md#assumptions), which expected none.
+
+  > **Dated note, 2026-11-12.** Closed by the [repository hygiene unit](../24-repository-hygiene/plan.md) (#24). The
+  > committed `.gitleaks.toml` exempts this one match with one table scoped to `curl-auth-user`, the document's path and
+  > the exact text, and the allowlist controls show on every run of the secret-scan workflow that the table exempts
+  > nothing else ([that unit's plan, The scoped allowlist table](../24-repository-hygiene/plan.md#the-scoped-allowlist-table)).
 - **`run-stage.sh` writes a run's arguments into the run log,** and a manual run's argument can be a machine path, which
   then sits in `DATA/run/as-run.log`. The runner is the preparation unit's tool, reused at its recorded hash, so it was
   left unchanged; it is fixed before GKB2 and GKB and BotTools, TrumpBot and Support are rewritten (#26, #27).
@@ -202,6 +207,9 @@ link. A7 is answered in §2.1.
 
   It needs `edit-issue-body` (and a comment edit where a comment holds such a link), which this unit did not send.
 - **The default-rule finding** of §5, judged before the visibility changes.
+
+  > **Dated note, 2026-11-12.** Closed by the [repository hygiene unit](../24-repository-hygiene/plan.md) (#24), as the
+  > note in §5 says.
 
 **For the tools, before the later rewrite units:**
 

@@ -91,6 +91,14 @@ the expression file are consumed by the phase's later units (§4).
   > same in every run. This unit's recorded size and sha256 of the gate (10,850 bytes, `8cf81c9f…`) are no longer current: the
   > copy in use is 11,615 bytes, sha256 `0caea1411a4f3db7a32a0ac54e41d65b6df427545df16c7233d539a860747760`, recorded in
   > [that unit's plan, Appendix A](../23-kotlinbottools-rewrite-and-swap/plan.md#appendix-a--the-tools-and-their-runner).
+
+  > **Dated note, 2026-11-12.** The saved configuration's recorded value, `gitleaks.toml` at 2,373 bytes with sha256
+  > `4e68f75c…`, is no longer current once the [repository hygiene unit](../24-repository-hygiene/plan.md) (#24) has
+  > merged: the workspace copy then holds the committed `.gitleaks.toml`, 3,824 bytes, sha256
+  > `c046de1754bd4bb3d92a62cd1651f3ea8bb2383ace96472595ee3ea49887568f`
+  > ([that unit's consequences, §2.3](../24-repository-hygiene/consequences.md#23-this-machine)). A re-run of this
+  > unit's `save-tools.sh` would write the old bytes back, because it re-saves the configuration from the earlier
+  > findings' text.
 - **`transfer-rehearsal`** (#22, blocked by this unit), **`repository-hygiene`**,
   **`kotlinbottools-publish`** and **`residual-report-and-cleanup`** also consume the proven
   non-interactive authentication, and `secret_scan.py` and `gitleaks.toml` at their fixed names;

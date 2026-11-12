@@ -8,7 +8,7 @@
   "title": "KotlinBottools rewrite and swap",
   "issueTitle": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
   "function": "KotlinBottools' history holds the data the phase purges, and the repository has been public since 2026-11-08, so its purge-listed files and old objects are readable by anyone until they leave it; a force-push would not take them out of reach, since GitHub keeps serving old objects by id. This run rewrites KotlinBottools in a fresh mirror, purging the listed paths and replacing machine-local paths in every file and commit message, and pushes the result to a fresh private repository. It reproduces every issue and pull-request number there with its links, renames the old repository to `KotlinBottools-legacy`, private and archived, gives the fresh one the name, and realigns this working directory onto the rewritten history before its own landing, the first on the fresh repository. Unit 3 of #2, with no version moved; nothing becomes public through it, and Phase 1 may start once it has landed.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-10T01:12:41Z",
   "parent": {
     "issue": 2,
@@ -21,7 +21,30 @@
     "sha": "9af27b286ede1c153ff4e0d6f034fbc872996c15",
     "date": "2026-11-09"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "9e61aa5",
+    "merge": "9e61aa5",
+    "pr": 32,
+    "date": "2026-11-11",
+    "at": "2026-11-11T16:05:44Z",
+    "commits": [
+      {
+        "sha": "46c6332",
+        "at": "2026-11-10T02:06:23Z",
+        "step": "research"
+      },
+      {
+        "sha": "f781449",
+        "at": "2026-11-10T02:23:04Z",
+        "step": "research"
+      },
+      {
+        "sha": "ae46a48",
+        "at": "2026-11-10T02:27:30Z",
+        "step": "research"
+      }
+    ]
+  },
   "systems": [
     {
       "slug": "kotlinbottools",
@@ -87,10 +110,10 @@
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-11T16:03:43Z",
-    "updated": "2026-11-11T16:03:43Z",
-    "detail": "Resumed at the Document step.",
+    "step": "landed",
+    "since": "2026-11-11T16:05:44Z",
+    "updated": "2026-11-11T16:05:44Z",
+    "detail": "Landed in PR #32.",
     "steps": [
       "sizing",
       "interview",
@@ -105,9 +128,7 @@
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -704,8 +725,8 @@
       }
     ],
     "event": {
-      "name": "resumed",
-      "at": "2026-11-11T16:03:43Z"
+      "name": "landed",
+      "at": "2026-11-11T16:05:44Z"
     },
     "history": {
       "sizing": [
@@ -1720,6 +1741,93 @@
               "answered": "2026-11-11T16:03:43Z"
             }
           ]
+        },
+        {
+          "since": "2026-11-11T16:03:43Z",
+          "ended": "2026-11-11T16:04:54Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "resumed",
+            "at": "2026-11-11T16:03:43Z"
+          },
+          "detail": "Resumed at the Document step.",
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done",
+                "started": "2026-11-11T14:27:54Z",
+                "finished": "2026-11-11T14:31:17Z",
+                "report": "The documentation check found thirteen points, all in this unit’s documents: a usage text and an output-rule statement for the walk tool, internal contradictions, a missing table row, broken relative links in the research folder, and follow-ups listed in the plan but not in the consequences. They are applied together with the reconcile of the plan, the consequences and the as-built record, in one pass over the unit’s folder."
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-11T14:31:17Z",
+                "finished": "2026-11-11T14:56:12Z",
+                "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-11T14:31:17Z",
+                "finished": "2026-11-11T14:56:12Z",
+                "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-11T14:56:12Z",
+                "report": "The as-built record is written with nine deviations; the consequences, the plan, the research notes, the preparation unit’s consequences, the phase consequences and the phase design are brought in line with the build. The repository’s README and CHANGELOG need no change: what lands in the repository is documentation only, the README’s clone address still resolves to this repository, and the repository’s CHANGELOG is created by the hygiene unit."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-11T14:56:12Z",
+                "finished": "2026-11-11T15:05:06Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-11T15:05:06Z",
+                "finished": "2026-11-11T15:06:00Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-11T16:04:54Z",
+          "ended": "2026-11-11T16:05:38Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-11T16:04:54Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-11T16:05:38Z",
+          "ended": "2026-11-11T16:05:44Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "landed",
+            "at": "2026-11-11T16:05:44Z"
+          },
+          "detail": "Landed in PR #32."
         }
       ]
     },
@@ -1968,6 +2076,13 @@
       "date": "2026-11-10",
       "ref": "plan.md",
       "note": "seventeen stages, S0 to S16, every write to GitHub or this checkout a request read back by id, the tools saved from the plan and checked before anything runs, and the allow-list proposed by the run and confirmed key by key"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-11",
+      "ref": "PR #32",
+      "note": "merged as 9e61aa5"
     }
   ],
   "trail": [
@@ -2183,6 +2298,23 @@
       "date": "2026-11-11",
       "column": "built",
       "label": "Open point resolved: The landing waits on the owner’s decision on whether a review with only minor, already-fixed findings is enough to land."
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Merge: merging it in PR #32",
+      "ref": "PR #32"
+    },
+    {
+      "date": "2026-11-11",
+      "column": "built",
+      "label": "Landed in PR #32, merge 9e61aa5",
+      "ref": "PR #32"
     }
   ],
   "rows": [
@@ -4347,7 +4479,29 @@
         }
       ],
       "asBuilt": {
-        "state": "pending"
+        "state": "amended",
+        "statements": [
+          {
+            "state": "amended",
+            "text": "The fresh repository was private when this unit ended, and making it public, with secret scanning and push protection, is left to #25, after #24 has landed. The change to public is held as well until the default-rule finding the exit tests recorded in one kept file is judged (S7)."
+          },
+          {
+            "state": "as-planned",
+            "text": "Its forking and wiki settings are handed on to #25, to be read again after the change to public: the wiki is off, and forking stays off while the repository is private, as the organisation’s policy requires."
+          },
+          {
+            "state": "as-planned",
+            "text": "The open issue-text edits are left for one pass before the repository becomes public: the 56 links that name the deleted planning branch, #1’s body and #2’s plan-folder line. This unit sent no issue-body or comment edit."
+          }
+        ],
+        "changes": [
+          {
+            "what": "The change to public also waits until the default-rule finding of gitleaks in one kept file is judged.",
+            "why": "The exit tests found 2 findings of one default rule, `curl-auth-user`, in 1 kept file, where assumption A13 expected none. The plan’s rule for that case held: the finding is recorded by rule id and count and holds the publication unit’s visibility change, not this unit.",
+            "when": "Implementation, stage S7",
+            "ref": "plan.md#assumptions (Assumptions, A13)"
+          }
+        ]
       },
       "verdict": {
         "kind": "leave",
@@ -4422,7 +4576,25 @@
         }
       ],
       "asBuilt": {
-        "state": "pending"
+        "state": "amended",
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "The pre-rewrite ids stay as dated citations, resolving only in the private legacy repository. The landing replaced none in the older documents, to which it added only dated notes and one link line, and the moved resolution comments on #2, #21 and #22 keep theirs inside their permalinks. The committed boards hold 30 occurrences of 3 distinct pre-rewrite ids in their recorded commit fields, across 15 files, which the boards’ exception covers."
+          },
+          {
+            "state": "amended",
+            "text": "The list of the accepted ids stays in the data folder and goes to #25, whose id-reference check accounts for exactly these: 3 distinct ids with their 26 occurrences, where the plan says 26 ids."
+          }
+        ],
+        "changes": [
+          {
+            "what": "The accepted list holds 3 distinct pre-rewrite ids with 26 occurrences, where the plan says 26 ids.",
+            "why": "The plan’s figure of 26 was the count of occurrences. Gate 1 and the read before the walk found the same 26 occurrences of 3 ids in the same 3 comments, and their acceptance is unchanged.",
+            "when": "Implementation, stage S5; read again at S9",
+            "ref": "plan.md#current-state (Current state, “The 26 accepted ids”)"
+          }
+        ]
       },
       "verdict": {
         "kind": "leave",
@@ -4455,13 +4627,14 @@
     }
   ],
   "impact": {
-    "basis": "plan",
-    "summary": "No module is published and no version moves; the landing changes documents and generated boards only. On GitHub, KotlinBottools becomes a fresh private repository holding the rewritten history and every number, and the pre-rewrite repository becomes `KotlinBottools-legacy`, private and archived, which ends its public window. This checkout is realigned onto the rewritten history, and the later units take the fresh repository, the allow-list and the pipeline as it ran (`consequences.md` §2 to §4).",
+    "basis": "as-built",
+    "summary": "No module is published and no version moves; the landing changes documents and generated boards only. On GitHub, KotlinBottools is a fresh private repository holding the rewritten history and every number, and the pre-rewrite repository is `KotlinBottools-legacy`, private and archived, which ended its public window. The moved issue texts, and MagicBot’s and WebTools’ issue texts the transfers rewrote, rely on the temporary name, which stays reserved. This checkout is realigned onto the rewritten history with its old objects deleted, and the later units take the fresh repository, the allow-list, the pipeline as it ran and the default-rule finding that holds the change to public (`consequences.md` §2 to §6).",
     "none": null,
     "release": {
       "bump": "none",
       "version": null,
-      "note": "no module is published and no version moves"
+      "note": "no module is published and no version moves",
+      "nothingPublished": true
     },
     "downstream": [
       {
@@ -4493,7 +4666,7 @@
         "kind": "consumer",
         "system": "repository-swap",
         "effect": "behaviour",
-        "summary": "From the swap until the publication unit, every public link to a KotlinBottools issue answers \"not found\" to anyone without access, as the fresh repository is private. Counted before the walk, the citations are 50 in MagicBot, 6 in WebTools and none in the organisation's `.github` repository.",
+        "summary": "From the swap until the publication unit, every public link to a KotlinBottools issue answers \"not found\" to anyone without access, as the fresh repository is private: 76 references in MagicBot’s issue texts and 6 in WebTools’ after the walk, none in the organisation’s `.github` repository.",
         "link": "consequences.md#21-github"
       },
       {
@@ -4505,11 +4678,11 @@
         "link": "consequences.md#21-github"
       },
       {
-        "who": "The 26 pre-rewrite ids in three resolution comments",
+        "who": "The pre-rewrite ids in three resolution comments",
         "kind": "repository",
         "system": "privacy-gate",
         "effect": "behaviour",
-        "summary": "The merge-commit ids inside permalinks in the resolution comments of #2, #21 and #22 move with the issues and stay; in the fresh repository they resolve to nothing, so those permalinks open only for someone with access to the legacy repository.",
+        "summary": "26 occurrences of 3 distinct pre-rewrite merge-commit ids, inside permalinks in the resolution comments of #2, #21 and #22, moved with the issues and stay; in the fresh repository they resolve to nothing, so those permalinks open only for someone with access to the legacy repository. The publication unit’s id-reference check accounts for exactly these.",
         "link": "consequences.md#21-github"
       },
       {
@@ -4517,7 +4690,7 @@
         "kind": "repository",
         "system": null,
         "effect": "behaviour",
-        "summary": "Every sub-issue and \"blocked by\" link is present at the end, kept or re-created; where a transfer drops a link with one of their issues, that relationship is written again. No code or document of theirs changes. Their issue texts do: the transfers rewrote the references to this repository's issues in them to the temporary name (MagicBot holds 76 such references, 74 by the temporary name; WebTools 6), and these texts rely on the redirect the temporary name leaves.",
+        "summary": "Every sub-issue and \"blocked by\" link with their issues was kept by the transfers, and no relationship was written again. No code or document of theirs changes. Their issue texts do: the transfers rewrote the references to this repository’s issues in them to the temporary name, all 76 in MagicBot’s and 4 of the 6 in WebTools’, and these texts rely on the redirect the temporary name leaves.",
         "link": "consequences.md#21-github"
       },
       {
@@ -4549,7 +4722,7 @@
         "kind": "consumer",
         "system": null,
         "effect": "additive",
-        "summary": "Takes the fresh repository's id and settings snapshot, the count and location of the 26 accepted ids, the allow-list with the record of each decision, the second gate's result and the scrub's zero counts, any default-rule finding in a kept file, and the open issue-text edits to make before its visibility change.",
+        "summary": "Takes the fresh repository’s id and settings snapshots, the list of the 3 distinct accepted ids with their 26 occurrences, this unit’s copy of the privacy gate and the allow-list with the record of each decision, the second gate’s result and the scrub’s zero counts, the default-rule finding in a kept file, which holds its visibility change, the moved texts naming the temporary name, the forking and wiki settings to read again after the change to public, and the open issue-text edits to make before it.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       },
       {
@@ -4557,7 +4730,7 @@
         "kind": "consumer",
         "system": null,
         "effect": "additive",
-        "summary": "The rewrite units take the pipeline as this unit ran it, the mirror push proven and the five static backups untouched; the last unit takes KotlinBottools' report row with its public window, any deferred step and the reserved name.",
+        "summary": "The rewrite units take the pipeline as this unit ran it, with the tools as corrected during the run, the mirror push proven and the five static backups untouched, and the runner’s logging of a run’s arguments to fix before them; the last unit takes KotlinBottools’ report row with its public window and the reserved name. There is no deferred step.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       }
     ],
@@ -4566,15 +4739,15 @@
         "who": "The organisation's repository names",
         "system": "repository-swap",
         "need": "required",
-        "summary": "No repository may ever be created under `KotlinBottools-next` or renamed onto it: every reference the walk leaves in the moved texts reaches its issue through the redirect on that name.",
+        "summary": "No repository may ever be created under `KotlinBottools-next` or renamed onto it: every reference the walk left in the moved texts, and every one the transfers rewrote in MagicBot’s and WebTools’ issue texts, reaches its issue through the redirect on that name.",
         "link": "consequences.md#6-follow-ups"
       },
       {
         "who": "A local build that relied on the scrubbed Maven repository line",
         "system": "rewrite-pipeline",
         "need": "required",
-        "summary": "`build.gradle.kts` names a placeholder where it named this machine's folder, so such a build needs a local override, a follow-up for the hygiene unit and Phase 1.",
-        "link": "plan.md#risks-and-edge-cases"
+        "summary": "`build.gradle.kts` names a placeholder where it named this machine’s folder, so such a build needs a local override, a possible follow-up that is not planned.",
+        "link": "consequences.md#6-follow-ups"
       },
       {
         "who": "This checkout, if the object deletion is deferred",
@@ -4593,7 +4766,7 @@
     ],
     "api": [],
     "conversion": [],
-    "source": "consequences.md §1 to §6; plan.md Requirements, Risks and edge cases",
+    "source": "consequences.md §1 to §6; final-implementation.md §3, §4",
     "link": "consequences.md#2-blast-radius",
     "changes": [
       {
@@ -4602,13 +4775,6 @@
         "when": "Implementation, stage S9",
         "ref": "plan.md#risks-and-edge-cases (Risks and edge cases)",
         "entry": "downstream.3"
-      },
-      {
-        "what": "The transfers rewrote references to this repository's issues in other repositories' issue texts to the temporary name: MagicBot now holds 76 such references, 74 by the temporary name; WebTools holds 6. Assumption A7 is answered: a transfer rewrites citations in other repositories too. These texts rely on the redirect the temporary name leaves.",
-        "why": "The consequences name relationships as the only thing this unit writes to MagicBot and WebTools, with no code or document of theirs changing, and left open whether a transfer rewrites their texts that cite a KotlinBottools issue; A7 assumed either answer. The count after the walk shows that it does, so those issue texts changed and, like the moved texts, reach their issues through the redirect the temporary name leaves.",
-        "when": "Implementation, stage S12",
-        "ref": "plan.md#assumptions (Assumptions, A7; consequences §4)",
-        "entry": "downstream.6"
       },
       {
         "what": "The old objects in this checkout were deleted, proven at the realignment; no deletion was deferred.",
@@ -4623,6 +4789,55 @@
         "when": "Implementation, stage S15",
         "ref": "plan.md#s15--this-checkouts-realignment (S15)",
         "entry": "adaptation.2"
+      },
+      {
+        "what": "The transfers rewrote references to this repository’s issues in other repositories’ issue texts to the temporary name: all 76 in MagicBot’s, 74 by name and 2 by URL, and 4 of the 6 in WebTools’. Assumption A7 is answered: a transfer rewrites citations in other repositories too. These texts rely on the redirect the temporary name leaves.",
+        "why": "The consequences name relationships as the only thing this unit writes to MagicBot and WebTools, with no code or document of theirs changing, and left open whether a transfer rewrites their texts that cite a KotlinBottools issue; A7 assumed either answer. The count after the walk shows that it does, so those issue texts changed and, like the moved texts, reach their issues through the redirect the temporary name leaves.",
+        "when": "Implementation, stage S12",
+        "ref": "plan.md#assumptions (Assumptions, A7; consequences §4)",
+        "entry": "downstream.6"
+      },
+      {
+        "entry": "downstream.5",
+        "what": "The accepted pre-rewrite ids in the moved resolution comments are 26 occurrences of 3 distinct ids, where the plan counts 26 ids.",
+        "why": "The plan’s figure was the count of occurrences; Gate 1 and the read before the walk found the same 3 ids in the same 3 comments.",
+        "when": "Implementation, stage S5; read again at S9",
+        "ref": "plan.md#current-state (Current state, “The 26 accepted ids”)"
+      },
+      {
+        "entry": "downstream.6",
+        "what": "No relationship was written again: the transfers kept every link with MagicBot and WebTools issues.",
+        "why": "The plan provides for either outcome: a link a transfer drops is written again from the blocked side. No transfer dropped one, so link reconciliation found the settled edges equal to the table and wrote no request.",
+        "when": "Implementation, stage S11",
+        "ref": "plan.md#s11--link-reconciliation (S11)"
+      },
+      {
+        "entry": "downstream.10",
+        "what": "The publication unit takes the default-rule finding in one kept file, which holds its change to public until it is judged.",
+        "why": "The exit tests found 2 findings of one default rule in 1 kept file, where assumption A13 expected none; the plan’s rule records it by rule id and count and holds the publication unit’s visibility change.",
+        "when": "Implementation, stage S7",
+        "ref": "plan.md#assumptions (Assumptions, A13)"
+      },
+      {
+        "entry": "downstream.11",
+        "what": "The later rewrite units take the tools as corrected during the run, and the runner’s gap: `run-stage.sh` writes a run’s arguments into its log, to be fixed before #26 and #27.",
+        "why": "Thirteen tools were corrected during the run, and the corrected versions are the plan’s Appendix A. The runner is the preparation unit’s tool, reused at its recorded hash, so it was left unchanged.",
+        "when": "Implementation, stage S6",
+        "ref": "plan.md#appendix-a--the-tools-and-their-runner (Appendix A)"
+      },
+      {
+        "entry": "adaptation.0",
+        "what": "The reserved name carries MagicBot’s and WebTools’ rewritten issue texts as well as the moved texts.",
+        "why": "The transfers rewrote those texts’ references to the temporary name (assumption A7), so they reach their issues through the same redirect.",
+        "when": "Implementation, stage S12",
+        "ref": "plan.md#assumptions (Assumptions, A7)"
+      },
+      {
+        "entry": "adaptation.1",
+        "what": "The local override for a build that relied on the scrubbed Maven repository line is a possible follow-up, not a planned one for the hygiene unit and Phase 1.",
+        "why": "The reconciled consequences list it as possible, not planned: it is needed only if a local build depended on that line.",
+        "when": "Document",
+        "ref": "plan.md#risks-and-edge-cases (Risks and edge cases)"
       }
     ]
   },
@@ -4771,12 +4986,17 @@
       {
         "what": "Quality Review 1 was recorded with no kinds for its findings, its line reading \"5 findings (5 minor)\", though the review counted 2 test and 3 code findings. They are recorded as 2 test and 3 code, the line reading \"5 findings (5 minor; 2 test, 3 code)\".",
         "when": "2026-11-11"
+      },
+      {
+        "what": "The change recording that the transfers rewrote other repositories’ issue texts read that MagicBot holds 76 such references, 74 by the temporary name, and WebTools 6. All 76 in MagicBot’s name it, 74 by name and 2 by URL, and 4 of the 6 in WebTools’ do, as the as-built record measures; the change reads so.",
+        "when": "2026-11-11"
       }
     ]
   },
   "issueBoards": {
     "21": "../21-preparation/dashboard.html",
-    "22": "../22-transfer-rehearsal/dashboard.html"
+    "22": "../22-transfer-rehearsal/dashboard.html",
+    "24": "../24-repository-hygiene/dashboard.html"
   },
   "links": {
     "workBoard": "../../../index.html",

@@ -421,6 +421,8 @@ sha256 values (findings 2 §6.1, findings 4 §6.8, findings 5 §6.1, §6.3, §6.
 files that CI needs are also committed (§10). Deleting `WS` at the end removes every copy of the
 old objects, every scan report and every fixture.
 
+> **Dated note, 2026-11-12.** Once the repository-hygiene unit's change has merged, `WS/tools/gitleaks.toml` holds the bytes of the committed `.gitleaks.toml`. That file is the research configuration plus one scoped allowlist table (§10), with two sentences in its header comment: 3824 bytes, sha256 `c046de1754bd4bb3d92a62cd1651f3ea8bb2383ace96472595ee3ea49887568f`. `secret_scan.py` stays byte-identical to the research text ([the unit's plan](24-repository-hygiene/plan.md)).
+
 ---
 
 ## 6. System inventory
@@ -1136,6 +1138,18 @@ The change merges only once the secret-scan workflow has passed on its pull requ
 the workflow's first on GitHub. The planning branch has already landed (§11), so no other branch
 holds a different `.gitignore`.
 
+> **Dated note, 2026-11-12.** The research configuration reports one default rule, `curl-auth-user`, on this repository's own history and tree. It finds 2 findings in the history of `main` (the commit that added the document and the merge that carried it) and 1 in the tree. All three are in one kept research document, where a command example passes the GitHub CLI's token through a shell command substitution, not a literal credential ([unit 3's as-built record, §3.3](23-kotlinbottools-rewrite-and-swap/final-implementation.md#33-the-exit-tests); [the unit's research](24-repository-hygiene/research/README.md#2-the-scoped-allowlist-table)).
+>
+> The committed `.gitleaks.toml` is therefore the research configuration plus one `[[allowlists]]` table. The table names that rule, that document's path and that exact text, and all three must match (`condition = "AND"`); its reason is in `description`. There is still no global allowlist. The file's header comment describes the one table, names the allowlist controls that test it (described below), and says that a `dir` scan applies the table only when run from the repository root.
+>
+> A fifth file joins the four of the table: `.github/scripts/allowlist_controls.py`, the table's own test. Gitleaks ignores a misspelled key without an error, so only a scan of fixtures shows that the table exempts its one match and nothing else. The controls build throwaway repositories at run time and scan each one through the wrapper with the configuration, in git and in dir mode:
+> - the document unchanged at its path is clean;
+> - each of these is reported: a literal credential beside the document, the document at another path, the exempted text with one more character inside its quotes or with a colon and a word joined outside them, and another rule's finding at the path.
+>
+> The workflow gains one step after the canary that runs the controls on every push and pull request, so it no longer equals the research text. The change set is therefore seven files: these five, the README with its correction, and the new changelog.
+>
+> Before the landing, `secret_scan.py` equals the research text byte for byte, and `.gitleaks.toml`, `secret-scan.yml` and `allowlist_controls.py` equal the bytes the unit's plan records. The workspace copy of the configuration takes its bytes once the change has merged (§5.2) ([the unit's plan](24-repository-hygiene/plan.md)).
+
 ---
 
 ## 11. Version control
@@ -1369,6 +1383,8 @@ Units 6 and 7 each instantiate the pipeline per repository from a parameter tabl
 list, the expectation row, the control probes and the pull-request refs. They run repository by
 repository, with a hand-back state for each.
 
+> **Dated note, 2026-11-11.** Unit 4 settles, with the scoped table of §10, the default-rule finding that unit 3 recorded in a kept file of KotlinBottools ([unit 3's consequences, §5](23-kotlinbottools-rewrite-and-swap/consequences.md#5-known-gaps)). Unit 5's visibility change no longer waits on that finding. Its other gates are unchanged. Unit 4's scope gains the allowlist controls of §10 and the workflow's step that runs them, so its landing carries seven files.
+
 ---
 
 ## 16. Risks at the systems level
@@ -1393,6 +1409,8 @@ repository, with a hand-back state for each.
 | The three public repositories' old history was public before, and stays reachable through ids and (GKB2, BotTools) pull-request refs | not new exposure | measured and reported, never claimed removed |
 | Cross-repository impact | MagicBot's and WebTools' issue relationships to KotlinBottools issues are written where the walk drops them; 16 of their issue links are repointed at `main`; MagicBot#2 gets a comment | §12.2 |
 | Migration | none for consumers | Phase 1 starts from rewritten `main` on the fresh repository (§12.3) |
+
+> **Dated note, 2026-11-11.** One suppression exists, the table of §10. It is scoped to one default rule, one KotlinBottools document and one exact text. It is inert in the five legacy repositories, which hold no such path, so their exit tests are unchanged. Any other default-rule finding is still recorded and handled as the row on default-rule findings above states.
 
 ---
 
