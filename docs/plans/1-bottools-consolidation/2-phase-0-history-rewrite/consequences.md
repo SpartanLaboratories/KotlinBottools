@@ -165,6 +165,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 - **The TrumpBot clone** is replaced by a fresh clone at the same path, with its four untracked
   `.idea/` files restored.
 
+  > **Dated note, 2026-11-13.** The TrumpBot clone keeps its four `.idea/` files and nothing else that git does not track. Its code knowledge graph, built from the pre-rewrite tree, is not carried and is rebuilt from the rewritten tree. Until the clone replacement deletes it, the old clone lies aside on its own volume, outside the workspace ([unit 7's consequences, §2.2](27-bottools-trumpbot-support-rewrite/consequences.md#22-this-machine)).
+
 ### 2.6 Documents
 
 - **The parent documents** carry dated callouts recording this phase's conditions (architecture
@@ -225,6 +227,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 
 `gkb2-gkb-rewrite` has landed; what it leaves for the units after it is in [its consequences, §4](26-gkb2-gkb-rewrite/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
 
+> **Dated note, 2026-11-13.** `bottools-trumpbot-support-rewrite` is carried out as four units, sub-issues of #27, in the order of [its design, §16](27-bottools-trumpbot-support-rewrite/architecture.md#16-decomposition); what the work leaves behind is in [its consequences](27-bottools-trumpbot-support-rewrite/consequences.md).
+
 **Neighbouring issues:**
 
 - **#1,** the tracking issue. Its planning documents land with #2's own landing.
@@ -270,6 +274,8 @@ The rewrite itself changes two source files on `main` through the path scrub
   > rewritten mirror and on the fresh mirror; filter-repo rewrote every commit of each; and the positive control on each
   > untouched backup equals the preparation unit's record line for line ([unit 6's as-built record, §3](26-gkb2-gkb-rewrite/final-implementation.md#3-measurements)).
   > BotTools, TrumpBot and Support are unit 7's (#27).
+
+  > **Dated note, 2026-11-13.** For BotTools, TrumpBot and Support that is the rewrites unit of #27 ([its design, §8](27-bottools-trumpbot-support-rewrite/architecture.md#8-the-rewrites)).
 - **The secret-scan workflow and the Linux gitleaks binary have not run on GitHub.** The
   repository-hygiene pull request is their first run.
 - **Issue transfers.** How a transfer treats numbers, closed issues, and sub-issue and "blocked by"
@@ -280,6 +286,8 @@ The rewrite itself changes two source files on `main` through the path scrub
   > **Dated note, 2026-11-13.** Run for GKB2 and GKB, before each push and on each fresh mirror: neither has a default-rule
   > finding in a kept file ([unit 6's as-built record, §3.4](26-gkb2-gkb-rewrite/final-implementation.md#34-the-exit-tests)).
   > BotTools, TrumpBot and Support remain.
+
+  > **Dated note, 2026-11-13.** For BotTools, TrumpBot and Support the scans run in the rewrites unit of #27, before each push and on each fresh mirror ([its design, §8](27-bottools-trumpbot-support-rewrite/architecture.md#8-the-rewrites)).
 - **The privacy gate's name lists** come from the member files' name elements and the folder
   names. A display name stored in another form can be missed, and names shorter than five
   characters are counted, not reviewed.
@@ -327,6 +335,8 @@ The rewrite itself changes two source files on `main` through the path scrub
   `discord-bot-token` regex in both KotlinBottools' and MagicBot's configurations.
 - **Default-rule findings.** Any finding recorded in a kept file of a legacy repository needs a
   decision: a `targetRules` allowlist for that one rule and path, or acceptance as recorded.
+
+  > **Dated note, 2026-11-13.** This holds for a finding in a kept file of TrumpBot or Support, whose kept files stay private, as for one in a public repository ([unit 7's design, §8.4](27-bottools-trumpbot-support-rewrite/architecture.md#84-records)).
 - **Machine-local paths in issue texts.** If unit 5's gate counts any in the public repository's
   issues, pull-request texts or comments, edit those texts. The scrub covers files and commits
   only.

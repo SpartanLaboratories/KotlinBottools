@@ -28,8 +28,8 @@ window.dashboardLive&&window.dashboardLive("plan",
   "wip": {
     "step": "implementation",
     "since": "2026-11-08T21:15:43Z",
-    "updated": "2026-11-13T02:57:18Z",
-    "detail": "5 of 8 units landed; #26 in progress; #27 up next.",
+    "updated": "2026-11-13T18:00:43Z",
+    "detail": "6 of 8 units landed; #27 in progress; #28 up next.",
     "steps": [
       "sizing",
       "interview",
@@ -43,7 +43,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "landed"
     ],
     "current": [
-      "gkb2-gkb-rewrite.built"
+      "bottools-trumpbot-support-rewrite.built"
     ],
     "questions": [],
     "research": null,
@@ -239,7 +239,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         }
       ]
     },
-    "next": "bottools-trumpbot-support-rewrite",
+    "next": "residual-report-and-cleanup",
     "qa": [],
     "qaMax": 3,
     "waitingOn": null,
@@ -515,6 +515,16 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-13",
       "column": "built",
       "label": "#26 started"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "#26 landed"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "#27 started"
     }
   ],
   "rows": [
@@ -610,7 +620,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#61-toolchain",
               "heading": "6.1 Toolchain",
               "paragraph": "git stays at 2.55.0.windows.5. The toolchain unit records `git --version` and stops if it differs: git 2.56 exists, and the procedures were verified against 2.55. Python 3.14.7, pip 26.2.1 and gh 2.100.0 are recorded too; a different Python minor or gh major stops. · git-filter-repo 2.47.0 comes from PyPI into the user scheme, hash-pinned (`--require-hashes --only-binary=:all: --no-deps`) (findings 1 §6.1, §6.2). · It is verified by two independent values, the `--version` blob-id prefix and the module's sha256, both equal to the upstream tag's script. · A throwaway fixture run confirms, on …",
-              "hash": "cd517bc81caf"
+              "hash": "0c5d1fe0e890"
             }
           },
           {
@@ -620,7 +630,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#61-toolchain",
               "heading": "6.1 Toolchain",
               "paragraph": "git stays at 2.55.0.windows.5. The toolchain unit records `git --version` and stops if it differs: git 2.56 exists, and the procedures were verified against 2.55. Python 3.14.7, pip 26.2.1 and gh 2.100.0 are recorded too; a different Python minor or gh major stops. · git-filter-repo 2.47.0 comes from PyPI into the user scheme, hash-pinned (`--require-hashes --only-binary=:all: --no-deps`) (findings 1 §6.1, §6.2). · It is verified by two independent values, the `--version` blob-id prefix and the module's sha256, both equal to the upstream tag's script. · A throwaway fixture run confirms, on …",
-              "hash": "cd517bc81caf"
+              "hash": "0c5d1fe0e890"
             }
           },
           {
@@ -630,7 +640,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#61-toolchain",
               "heading": "6.1 Toolchain",
               "paragraph": "git stays at 2.55.0.windows.5. The toolchain unit records `git --version` and stops if it differs: git 2.56 exists, and the procedures were verified against 2.55. Python 3.14.7, pip 26.2.1 and gh 2.100.0 are recorded too; a different Python minor or gh major stops. · git-filter-repo 2.47.0 comes from PyPI into the user scheme, hash-pinned (`--require-hashes --only-binary=:all: --no-deps`) (findings 1 §6.1, §6.2). · It is verified by two independent values, the `--version` blob-id prefix and the module's sha256, both equal to the upstream tag's script. · A throwaway fixture run confirms, on …",
-              "hash": "cd517bc81caf"
+              "hash": "0c5d1fe0e890"
             }
           },
           {
@@ -670,7 +680,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5d4b31d65eb6"
+              "hash": "5bc4c2ece6b9"
             }
           }
         ],
@@ -791,7 +801,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5d4b31d65eb6"
+              "hash": "5bc4c2ece6b9"
             }
           }
         ],
@@ -1005,7 +1015,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "bff49c000f41"
+              "hash": "b10c8f3607f1"
             }
           },
           {
@@ -1015,7 +1025,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "bff49c000f41"
+              "hash": "b10c8f3607f1"
             }
           },
           {
@@ -1065,7 +1075,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5d4b31d65eb6"
+              "hash": "5bc4c2ece6b9"
             }
           }
         ],
@@ -1514,7 +1524,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5d4b31d65eb6"
+              "hash": "5bc4c2ece6b9"
             }
           }
         ],
@@ -1719,7 +1729,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "92da9a9547a1"
+              "hash": "3471daa7bfa2"
             }
           },
           {
@@ -1729,7 +1739,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5d4b31d65eb6"
+              "hash": "5bc4c2ece6b9"
             }
           }
         ],
@@ -1779,1648 +1789,6 @@ window.dashboardLive&&window.dashboardLive("plan",
         "issue": 26,
         "board": "26-gkb2-gkb-rewrite/dashboard.html",
         "folder": "26-gkb2-gkb-rewrite/",
-        "live": {
-          "step": "document",
-          "since": "2026-11-13T08:15:08Z",
-          "updated": "2026-11-13T09:34:35Z",
-          "detail": "Document: 6 of 6 tasks done; every task done.",
-          "steps": [
-            "sizing",
-            "interview",
-            "research",
-            "plan",
-            "branch",
-            "implementation",
-            "qa",
-            "remediation",
-            "document",
-            "landing",
-            "merge",
-            "landed"
-          ],
-          "waitingOn": null,
-          "resume": null,
-          "qa": [
-            {
-              "pass": 1,
-              "verdict": "changes-requested",
-              "date": "2026-11-13",
-              "at": "2026-11-13T07:10:24Z",
-              "findings": {
-                "test": 19,
-                "code": 4
-              },
-              "severity": {
-                "minor": 17,
-                "other": 6
-              },
-              "report": "build/reports/tests/index.html",
-              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/ca070e8d/tests/index.html",
-              "note": "Both rewrites are confirmed by an independent recount: every expected value holds on both fresh mirrors, both remotes show only the one branch moved, and each acceptance criterion is met by evidence read from the log, the records and the remotes. The tools' two self-tests passed again in isolation (191 checks: 59 and 132). 23 findings (17 minor, 6 other; 19 test, 4 code). For the as-built record: one departure from the output rule not yet listed (a passing self-test prints a traceback with a sandbox path) and three small differences between the plan's wording and the tools. Follow-ups for the next rewrite unit: the classifier's reading of a reply's form, a close-out step that is not safe to run twice, and an anonymous budget reading that is not explained. Test gaps in the tools, the main ones: no case with a reply in its real shape, none for the stop that keeps a push from being sent twice, none for the closing controls of a probe set, the output rule asserted for one step only, and one self-test script that cannot be run by test level. They touch the push, the residual probes, the tools handed on and the check of the inputs. The landing's four document checks are still to run. How the findings on the tools are handled is not settled yet.",
-              "route": "remediation"
-            },
-            {
-              "pass": 2,
-              "verdict": "changes-requested",
-              "date": "2026-11-13",
-              "at": "2026-11-13T08:10:40Z",
-              "findings": {
-                "test": 8,
-                "code": 4
-              },
-              "severity": {
-                "minor": 12,
-                "other": 0
-              },
-              "route": "on-the-spot",
-              "report": "build/reports/tests/index.html",
-              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/949b5d33/tests/index.html",
-              "note": "The rewrite, both pushes and every acceptance criterion stand, all nine recorded departures hold, and nothing outside the stated writes changed; `gdocs.sh` ran again with 22 passed. 12 findings (12 minor; 8 test, 4 code), every one small and on the records: three statements in the consequences that do not hold against the tools (when the classifier's gap lets a request be sent again, which probe stop a self-test case reaches, and the budget thresholds), a list of untested paths that is not complete, one departure not yet listed in the as-built record (each push request sent as a reference to its file with a checksum, asking for the one-shell run), and the document checks, which ran before the boards were last regenerated and run again before the documents are committed. They touch the push, the residual probes and the tools handed on. This review counts 20 test findings in Quality Review 1, where that pass's record holds 19."
-            }
-          ],
-          "qaMax": 3,
-          "status": "building",
-          "branch": "chore/issue-26-rewrite-gkb2-and-gkb",
-          "event": {
-            "name": "document",
-            "at": "2026-11-13T09:34:35Z",
-            "note": "6 of 6 tasks done"
-          },
-          "asked": [
-            {
-              "step": "implementation",
-              "text": "GKB2's push succeeded, but its reply arrived as one document holding the printed lines as list entries, and the plan's classifier reads status lines only at the start of a line. In which form is the reply stored, for GKB2 and for GKB?",
-              "options": [
-                "Store the printed lines alone, one per line, in order (tried on a scratch copy: classified as pushed)",
-                "Store the reply as it came, followed by the printed lines one per line (tried on a scratch copy first)",
-                "Settle the form in the plan first, then store",
-                "Stop the unit here as it stands"
-              ],
-              "answer": null,
-              "asked": "2026-11-13T06:16:20Z",
-              "answered": "2026-11-13T06:16:48Z"
-            },
-            {
-              "step": "remediation",
-              "text": "The check of the tests and the change confirmed both rewrites and asks for changes: missing entries in the as-built record, and gaps and defects in the tools (a reply's form misread by the classifier, untested stops, one self-test script that cannot be run by test level). The tools' bytes are recorded by the plan and their one run is made. How are the findings on the tools handled?",
-              "options": [
-                "Record them: the missing entries go into the as-built record, the tool findings become follow-ups and known gaps for the next rewrite unit, and the landing's document checks are run",
-                "Fix the tools now: the plan is revised, the tools changed, recorded anew and self-tested again, with the run already made standing against the earlier bytes",
-                "Fix now only the defect that misreads a reply's form and its missing test case, and record the rest"
-              ],
-              "answer": null,
-              "asked": "2026-11-13T07:10:24Z",
-              "answered": "2026-11-13T07:26:38Z"
-            }
-          ],
-          "stages": [
-            {
-              "id": "S0",
-              "name": "Readiness",
-              "state": "done",
-              "rows": [
-                "inputs-unchanged",
-                "tools-handed-on"
-              ],
-              "brief": "The tools, pins, inputs, grant and both repositories are as recorded, the self-tests pass, and nothing is written yet.",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "S0.save",
-                  "name": "Save the tools",
-                  "state": "done",
-                  "finished": "2026-11-13T05:44:07Z"
-                },
-                {
-                  "id": "S0.runner",
-                  "name": "The corrected runner",
-                  "state": "done",
-                  "finished": "2026-11-13T05:44:39Z"
-                },
-                {
-                  "id": "S0.tools",
-                  "name": "The tools and the configuration at their recorded bytes",
-                  "state": "done",
-                  "finished": "2026-11-13T05:44:56Z"
-                },
-                {
-                  "id": "S0.pins",
-                  "name": "The version pins",
-                  "state": "done",
-                  "finished": "2026-11-13T05:45:10Z"
-                },
-                {
-                  "id": "S0.inputs",
-                  "name": "Lists, data copy, mirrors, backups and records",
-                  "state": "done",
-                  "finished": "2026-11-13T05:45:23Z"
-                },
-                {
-                  "id": "S0.repos",
-                  "name": "Both repositories read",
-                  "state": "done",
-                  "finished": "2026-11-13T05:45:47Z"
-                },
-                {
-                  "id": "S0.grant",
-                  "name": "The grant read",
-                  "state": "done",
-                  "finished": "2026-11-13T05:45:58Z"
-                },
-                {
-                  "id": "S0.selftest",
-                  "name": "The self-tests",
-                  "state": "done",
-                  "finished": "2026-11-13T05:53:03Z"
-                }
-              ],
-              "ref": "plan.md#s0--readiness",
-              "started": "2026-11-13T05:21:49Z",
-              "finished": "2026-11-13T05:53:30Z",
-              "report": "Readiness passed; nothing was written to GitHub. The 22 tool files were saved from the plan and, with the 21 reused tools, hold their recorded sizes and checksums (46 checks). The corrected runner replaced the first one and holds its new pin. The version pins match (7 checks). The purge lists, mirrors, backups, manifests and the six earlier records of GKB2 and GKB are as recorded (40 checks). Both repositories read from GitHub as recorded (22 checks; activity entries 19 and 9, no events). The grant is in place: eight checks passed, and its wording differs from the plan's text by one further line, which is recorded. The self-test passed 132 checks, its request tool's own 59 among them. One deviation is logged: the grant step prints eight ok lines and one RECORD line where the plan expects seven and one.",
-              "result": "passed"
-            },
-            {
-              "id": "S1",
-              "name": "GKB2",
-              "state": "done",
-              "rows": [
-                "inputs-unchanged",
-                "gkb2-purge",
-                "force-push",
-                "exit-tests",
-                "default-rule-findings",
-                "residual-probes"
-              ],
-              "brief": "GKB2's history is rewritten, force-pushed on request, verified ref by ref and proven clean on a fresh mirror, and what GitHub still serves is measured.",
-              "kind": "work",
-              "steps": [
-                {
-                  "id": "S1.1",
-                  "name": "List proof and pre-run checks",
-                  "state": "done",
-                  "finished": "2026-11-13T05:54:01Z"
-                },
-                {
-                  "id": "S1.2",
-                  "name": "Positive control on the untouched backup",
-                  "state": "done",
-                  "finished": "2026-11-13T05:54:18Z"
-                },
-                {
-                  "id": "S1.3",
-                  "name": "The rewrite",
-                  "state": "done",
-                  "finished": "2026-11-13T05:54:30Z"
-                },
-                {
-                  "id": "S1.4",
-                  "name": "Post-run checks and the scan before the push",
-                  "state": "done",
-                  "finished": "2026-11-13T05:54:49Z"
-                },
-                {
-                  "id": "S1.5",
-                  "name": "Push preparation",
-                  "state": "done",
-                  "finished": "2026-11-13T05:55:02Z"
-                },
-                {
-                  "id": "S1.6",
-                  "name": "The force-push, on request",
-                  "steps": [
-                    {
-                      "id": "S1.6.request",
-                      "name": "The request read, rebuilt and checked",
-                      "state": "done",
-                      "finished": "2026-11-13T05:55:15Z"
-                    },
-                    {
-                      "id": "S1.6.send",
-                      "name": "The request sent",
-                      "state": "done",
-                      "finished": "2026-11-13T05:56:50Z"
-                    },
-                    {
-                      "id": "S1.6.reply",
-                      "name": "The reply stored",
-                      "state": "done",
-                      "finished": "2026-11-13T06:17:13Z"
-                    },
-                    {
-                      "id": "S1.6.check",
-                      "name": "The outcome classified and read back",
-                      "state": "done",
-                      "finished": "2026-11-13T06:17:35Z"
-                    }
-                  ],
-                  "state": "done",
-                  "finished": "2026-11-13T06:17:35Z"
-                },
-                {
-                  "id": "S1.7",
-                  "name": "Per-ref verification",
-                  "state": "done",
-                  "finished": "2026-11-13T06:18:04Z"
-                },
-                {
-                  "id": "S1.8",
-                  "name": "Fresh mirror and exit tests",
-                  "state": "done",
-                  "finished": "2026-11-13T06:18:21Z"
-                },
-                {
-                  "id": "S1.9",
-                  "name": "Residual probes",
-                  "state": "done",
-                  "finished": "2026-11-13T06:20:43Z"
-                }
-              ],
-              "started": "2026-11-13T05:53:30Z",
-              "finished": "2026-11-13T06:21:02Z",
-              "report": "GKB2 passed all nine steps. The rewrite turned 32 commits into 30 (2 pruned); the rewritten mirror keeps 82 paths and 211 blobs, the largest 60,756 bytes, and none of the 81 manifest blobs. The control on the untouched backup equalled its record line for line (31 commits scanned, 79 findings), and the scan before the push was clean. The push was one forced update of master under the lease: class pushed, the expected tally in the dry run and in the push, the same ref and flag, and no refusal marker. The request ran under one id as two attempts, the first of which was not carried out and changed nothing. On two channels the server holds 1 rewritten head, no tag and 1 pull-request ref, as recorded. A fresh mirror holds 45 commits on every ref and is clean on branches and tags, with every count equal to its expectation. Through the pull-request ref 70 of the 81 manifest blobs stay reachable (11 missing, 281 distinct blobs on every ref), as predicted, and the scan of every ref reads 66 findings of the five custom rules in that old history. GitHub still serves every old id probed, authenticated and anonymous: 2 commits, 2 trees and 41 of 41 sampled manifest blobs; no answer differed from the expectation. The activity feed lists 18 old ids; 2 of 3 anonymous feed reads were valid, the events listing nothing yet. No default-rule finding. The steps ran as the integration checks against the real repository: 135 checks passed, none failed. Five deviations are logged in the as-built record: the grant step's line count, the wording of the request-written line, two shell error lines at the first request step, the request's two attempts under one id, and the stored form of the reply (its printed lines, one per line)."
-            },
-            {
-              "id": "S2",
-              "name": "GKB",
-              "state": "done",
-              "rows": [
-                "inputs-unchanged",
-                "gkb-purge",
-                "force-push",
-                "exit-tests",
-                "default-rule-findings",
-                "residual-probes"
-              ],
-              "brief": "The same for GKB, once GKB2 has passed every step.",
-              "kind": "work",
-              "steps": [
-                {
-                  "id": "S2.1",
-                  "name": "List proof and pre-run checks",
-                  "state": "done",
-                  "finished": "2026-11-13T06:21:29Z"
-                },
-                {
-                  "id": "S2.2",
-                  "name": "Positive control on the untouched backup",
-                  "state": "done",
-                  "finished": "2026-11-13T06:21:47Z"
-                },
-                {
-                  "id": "S2.3",
-                  "name": "The rewrite",
-                  "state": "done",
-                  "finished": "2026-11-13T06:22:01Z"
-                },
-                {
-                  "id": "S2.4",
-                  "name": "Post-run checks and the scan before the push",
-                  "state": "done",
-                  "finished": "2026-11-13T06:22:17Z"
-                },
-                {
-                  "id": "S2.5",
-                  "name": "Push preparation",
-                  "state": "done",
-                  "finished": "2026-11-13T06:22:30Z"
-                },
-                {
-                  "id": "S2.6",
-                  "name": "The force-push, on request",
-                  "steps": [
-                    {
-                      "id": "S2.6.request",
-                      "name": "The request read, rebuilt and checked",
-                      "state": "done",
-                      "finished": "2026-11-13T06:22:44Z"
-                    },
-                    {
-                      "id": "S2.6.send",
-                      "name": "The request sent",
-                      "state": "done",
-                      "finished": "2026-11-13T06:23:53Z"
-                    },
-                    {
-                      "id": "S2.6.reply",
-                      "name": "The reply stored",
-                      "state": "done",
-                      "finished": "2026-11-13T06:25:32Z"
-                    },
-                    {
-                      "id": "S2.6.check",
-                      "name": "The outcome classified and read back",
-                      "state": "done",
-                      "finished": "2026-11-13T06:25:44Z"
-                    }
-                  ],
-                  "state": "done",
-                  "finished": "2026-11-13T06:25:44Z"
-                },
-                {
-                  "id": "S2.7",
-                  "name": "Per-ref verification",
-                  "state": "done",
-                  "finished": "2026-11-13T06:26:05Z"
-                },
-                {
-                  "id": "S2.8",
-                  "name": "Fresh mirror and exit tests",
-                  "state": "done",
-                  "finished": "2026-11-13T06:26:21Z"
-                },
-                {
-                  "id": "S2.9",
-                  "name": "Residual probes",
-                  "state": "done",
-                  "finished": "2026-11-13T06:29:03Z"
-                }
-              ],
-              "started": "2026-11-13T06:21:02Z",
-              "finished": "2026-11-13T06:29:37Z",
-              "report": "GKB passed all nine steps, started once GKB2 had passed its ninth. The rewrite turned 11 commits into 9 (2 pruned); the rewritten mirror keeps 60 paths and 113 blobs, the largest 60,756 bytes, and none of the 58 manifest blobs. The control on the untouched backup equalled its record line for line (10 commits scanned, 59 findings), and the scan before the push was clean. The push was one forced update of master under the lease, carried out on its first attempt: class pushed, the expected tally in the dry run and in the push, the same ref and flag, and no refusal marker. On two channels the server holds 1 rewritten head, no tag and no pull-request ref, as recorded. A fresh mirror holds 9 commits on every ref and 113 distinct blobs, reaches no manifest blob from any ref, and is clean on branches and tags and on every ref, with every count equal to its expectation. GitHub still serves every old id probed, authenticated and anonymous: 2 commits, 2 trees and 58 of 58 manifest blobs; no answer differed from the expectation. The activity feed lists 9 old ids; 2 of 3 anonymous feed reads were valid, the events listing nothing yet. No default-rule finding. The steps ran as the integration checks against the real repository: 135 checks passed, none failed. No new deviation beyond those already logged: the two shell error lines at the first request step were seen again, and the stored reply is its printed lines, one per line."
-            },
-            {
-              "id": "S3",
-              "name": "Close-out",
-              "state": "done",
-              "rows": [
-                "inputs-unchanged",
-                "residual-probes"
-              ],
-              "brief": "Both repositories are read again, and the report rows and records are written with their checksums.",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "S3.feeds",
-                  "name": "The second feed reads",
-                  "state": "done",
-                  "finished": "2026-11-13T06:35:11Z"
-                },
-                {
-                  "id": "S3.reads",
-                  "name": "Final reads of both repositories",
-                  "state": "done",
-                  "finished": "2026-11-13T06:35:27Z"
-                },
-                {
-                  "id": "S3.record",
-                  "name": "Report rows and checksums",
-                  "state": "done",
-                  "finished": "2026-11-13T06:35:39Z"
-                }
-              ],
-              "ref": "plan.md#s3--close-out",
-              "started": "2026-11-13T06:29:37Z",
-              "finished": "2026-11-13T06:35:55Z",
-              "report": "The close-out passed its three steps. The second feed reads, each more than 6 minutes after the first, repeat the first: the activity feed lists 18 old ids for GKB2 and 9 for GKB with 1 current id each, on the authenticated read, the web page and the anonymous read; the events list nothing yet, so 2 of 3 anonymous reads are valid for each repository; the anonymous budget covered both reads without a wait. The final reads show each repository's one branch at its rewritten tip, no tag, the pull-request refs as recorded (1 for GKB2, none for GKB), public, not archived, default branch master, and the six earlier records of each repository unchanged since the readiness stage. Both report rows are completed with the second feed reads, and the checksum lists are written: 40 record files for each repository and 33 run records, each list verifying against its files. Across the unit every count equals its expectation, GKB2's pull-request residual is 70 of 81 manifest blobs as predicted, and no default-rule finding exists in either repository. The close-out's 19 checks passed, none failed. No new deviation.",
-              "result": "passed"
-            }
-          ],
-          "remediation": {
-            "pass": 2,
-            "route": "on-the-spot",
-            "steps": [
-              {
-                "name": "Consequences: three statements corrected, the list of untested paths completed",
-                "state": "done",
-                "started": "2026-11-13T08:10:40Z",
-                "finished": "2026-11-13T08:15:08Z",
-                "report": "The consequences now state the classifier's gap as the tool text gives it (a reply with neither status line is read as a refusal by the service under a refused header and as a guard's stop otherwise; after a push that landed the check stops, and after a push that ran and was refused the request could be sent again, with the guards and the lease keeping the remote safe), say that no self-test case reaches the probes' stop on a status outside a route's answers, and give the anonymous budget's real thresholds (28 to 35 completes, 26 or 27 cuts a feed read, 25 or less stops a set). The list of untested paths is completed and says it is not exhaustive, with the rule the next rewrite unit applies. The as-built record lists a tenth departure: each push request was sent as a reference to its file with the file's checksum, and asked for the one-shell run. No tool, mirror or remote changed."
-              },
-              {
-                "name": "The as-built record: the request sent by reference to its file",
-                "state": "done",
-                "started": "2026-11-13T08:10:40Z",
-                "finished": "2026-11-13T08:15:08Z",
-                "report": "The consequences now state the classifier's gap as the tool text gives it (a reply with neither status line is read as a refusal by the service under a refused header and as a guard's stop otherwise; after a push that landed the check stops, and after a push that ran and was refused the request could be sent again, with the guards and the lease keeping the remote safe), say that no self-test case reaches the probes' stop on a status outside a route's answers, and give the anonymous budget's real thresholds (28 to 35 completes, 26 or 27 cuts a feed read, 25 or less stops a set). The list of untested paths is completed and says it is not exhaustive, with the rule the next rewrite unit applies. The as-built record lists a tenth departure: each push request was sent as a reference to its file with the file's checksum, and asked for the one-shell run. No tool, mirror or remote changed."
-              }
-            ]
-          },
-          "document": {
-            "tasks": [
-              {
-                "id": "documentation-review",
-                "name": "Documentation review",
-                "state": "done",
-                "started": "2026-11-13T08:22:24Z",
-                "finished": "2026-11-13T08:32:16Z",
-                "report": "The documentation check found 19 points. Thirteen are in the tools' own comments, headers and usage lines (contracts that lag the code, embedded shell and wire-format fragments with no line comment, no folding regions): the tools' bytes are recorded and their run is made, so these become documentation follow-ups for the next rewrite unit. Six are in the plan's prose (a request field missing from its table, the output rule's sentence on paths in a request, which status one class reads, the ring map, a missing diagram of the request flow as built, two edges of the flowchart): they are recorded in the as-built record and the consequences, and the plan's text stays as the tools were saved from it."
-              },
-              {
-                "id": "reconcile-documentation",
-                "name": "Reconcile documentation",
-                "state": "done",
-                "started": "2026-11-13T08:32:16Z",
-                "finished": "2026-11-13T09:19:14Z",
-                "report": "The as-built record is complete: what was built, the acceptance against the plan's criteria, the measurements and sixteen departures from the plan, each with the plan section it departs from, and a sequence diagram of the request flow as it ran. The consequences carry every assumption's outcome, the known gaps and the follow-ups for the next rewrite unit, the documentation follow-ups on the tools included. Dated notes of 2026-11-13 are in the design (the push form, the scan before the push, the per-ref verification, the request sent by reference, the corrected runner in this unit's scope), in the phase's consequences and in the consequences of the preparation, rewrite-and-swap, hygiene and publication units. A second documentation check found every earlier point recorded and thirteen points in the new text, all corrected. The README needs no change and the CHANGELOG no entry: the landing carries documents and boards only, and no version moves. The heading of the record's departures section changed, so links to it are to be regenerated."
-              },
-              {
-                "id": "reconcile-plan",
-                "name": "Reconcile plan",
-                "state": "done",
-                "started": "2026-11-13T08:35:01Z",
-                "finished": "2026-11-13T09:19:14Z",
-                "report": "The as-built record is complete: what was built, the acceptance against the plan's criteria, the measurements and sixteen departures from the plan, each with the plan section it departs from, and a sequence diagram of the request flow as it ran. The consequences carry every assumption's outcome, the known gaps and the follow-ups for the next rewrite unit, the documentation follow-ups on the tools included. Dated notes of 2026-11-13 are in the design (the push form, the scan before the push, the per-ref verification, the request sent by reference, the corrected runner in this unit's scope), in the phase's consequences and in the consequences of the preparation, rewrite-and-swap, hygiene and publication units. A second documentation check found every earlier point recorded and thirteen points in the new text, all corrected. The README needs no change and the CHANGELOG no entry: the landing carries documents and boards only, and no version moves. The heading of the record's departures section changed, so links to it are to be regenerated."
-              },
-              {
-                "id": "readme-changelog",
-                "name": "README and CHANGELOG",
-                "state": "done",
-                "finished": "2026-11-13T09:19:14Z",
-                "report": "The as-built record is complete: what was built, the acceptance against the plan's criteria, the measurements and sixteen departures from the plan, each with the plan section it departs from, and a sequence diagram of the request flow as it ran. The consequences carry every assumption's outcome, the known gaps and the follow-ups for the next rewrite unit, the documentation follow-ups on the tools included. Dated notes of 2026-11-13 are in the design (the push form, the scan before the push, the per-ref verification, the request sent by reference, the corrected runner in this unit's scope), in the phase's consequences and in the consequences of the preparation, rewrite-and-swap, hygiene and publication units. A second documentation check found every earlier point recorded and thirteen points in the new text, all corrected. The README needs no change and the CHANGELOG no entry: the landing carries documents and boards only, and no version moves. The heading of the record's departures section changed, so links to it are to be regenerated."
-              },
-              {
-                "id": "state-boards",
-                "name": "State boards",
-                "state": "done",
-                "started": "2026-11-13T09:20:33Z",
-                "finished": "2026-11-13T09:31:39Z"
-              },
-              {
-                "id": "document-landing",
-                "name": "Document commit",
-                "state": "done",
-                "started": "2026-11-13T09:31:39Z",
-                "finished": "2026-11-13T09:34:35Z"
-              }
-            ]
-          },
-          "open": [
-            {
-              "text": "The permission for the two force-pushes is not in place; the readiness stage cannot start without it.",
-              "raised": "halted",
-              "ref": "plan.md, Design, The grant",
-              "shownOpen": "2026-11-13T05:21:49Z",
-              "resolved": "2026-11-13T05:42:28Z"
-            },
-            {
-              "text": "The GKB2 push request was not carried out; the branch is unchanged at its old tip, and the request waits to be run again.",
-              "raised": "halted",
-              "ref": "plan.md, Design, The push",
-              "shownOpen": "2026-11-13T06:01:41Z",
-              "resolved": "2026-11-13T06:13:26Z"
-            },
-            {
-              "text": "The plan does not say what is stored when a push's reply arrives as one document with its printed lines as list entries; stored as it came, the classifier would misread a successful push as a guard's stop.",
-              "raised": "halted",
-              "ref": "plan.md, Procedure, Conventions, A request STEP",
-              "shownOpen": "2026-11-13T06:16:20Z",
-              "resolved": "2026-11-13T06:16:48Z"
-            },
-            {
-              "text": "The first check of the tests and the change asks for changes: entries missing from the as-built record, and gaps and defects in the tools; whether the tool findings are recorded for the next rewrite unit or fixed now is undecided.",
-              "raised": "halted",
-              "ref": "plan.md, Test plan",
-              "shownOpen": "2026-11-13T07:10:24Z",
-              "resolved": "2026-11-13T07:26:38Z"
-            }
-          ],
-          "history": {
-            "sizing": [
-              {
-                "since": null,
-                "ended": "2026-11-13T02:57:18Z",
-                "endedBy": "sized",
-                "to": "plan"
-              }
-            ],
-            "plan": [
-              {
-                "since": "2026-11-13T02:57:18Z",
-                "ended": "2026-11-13T03:14:37Z",
-                "endedBy": "research-planning",
-                "to": "research",
-                "event": {
-                  "name": "sized",
-                  "at": "2026-11-13T02:57:18Z"
-                },
-                "detail": "Unit 6 of the history rewrite: the full pipeline (design §6.4, stages 1 to 9) for GKB2, then GKB, each from its workspace mirror checked unchanged, and the residual-exposure measurement (§6.6), GKB2's pull-request residual included. Baseline: main at 96eba22. The unit lands documents only in this repository and moves no version. Next: the unit's detailed plan, re-validated against the design and the units already landed.",
-                "plan": {
-                  "state": "re-pass",
-                  "from": "parent",
-                  "since": "2026-11-13T02:57:18Z"
-                }
-              },
-              {
-                "since": "2026-11-13T03:39:56Z",
-                "ended": "2026-11-13T05:18:52Z",
-                "endedBy": "plan-accepted",
-                "to": "branch",
-                "event": {
-                  "name": "researched",
-                  "at": "2026-11-13T03:39:56Z"
-                },
-                "detail": "All 27 load-bearing claims hold at source. Each repository's master is pushed by a refspec push with an explicit lease on its old tip, after the guard and a dry run, because git ignores a lease under a mirror push; GitHub's push protection for users can refuse a secret it recognises, and every refusal leaves the remote unchanged and stops the unit.",
-                "plan": {
-                  "state": "writing",
-                  "since": "2026-11-13T03:39:56Z"
-                }
-              }
-            ],
-            "research": [
-              {
-                "since": "2026-11-13T03:14:37Z",
-                "ended": "2026-11-13T03:39:56Z",
-                "endedBy": "researched",
-                "to": "plan",
-                "event": {
-                  "name": "verification-started",
-                  "at": "2026-11-13T03:34:43Z"
-                },
-                "detail": "The 27 load-bearing claims of the force-push findings are being re-opened at their sources.",
-                "research": {
-                  "phase": "complete",
-                  "drafted": 0,
-                  "since": {
-                    "planning": "2026-11-13T03:14:37Z",
-                    "research": "2026-11-13T03:16:06Z",
-                    "verification": "2026-11-13T03:34:43Z",
-                    "complete": "2026-11-13T03:39:56Z"
-                  }
-                },
-                "questions": [
-                  {
-                    "question": "force-push-and-push-protection",
-                    "rows": [
-                      "force-push"
-                    ],
-                    "findings": "research/force-push-and-push-protection.md",
-                    "state": "complete",
-                    "started": "2026-11-13T03:16:06Z",
-                    "returned": "2026-11-13T03:33:43Z"
-                  }
-                ]
-              }
-            ],
-            "branch": [
-              {
-                "since": "2026-11-13T05:18:52Z",
-                "ended": "2026-11-13T05:21:49Z",
-                "endedBy": "branch-cut",
-                "to": "implementation",
-                "event": {
-                  "name": "plan-accepted",
-                  "at": "2026-11-13T05:18:52Z"
-                },
-                "detail": "The plan runs the design's nine pipeline stages per repository, GKB2 first and GKB only once GKB2 has passed every step, between a readiness stage that writes nothing and a close-out that reads both repositories again. The push updates the one branch each repository has, bound to its recorded old tip, after a guard and a dry run; a refusal leaves the remote unchanged and stops the unit, and a push is never repeated without a read-back. The stage runner's argument logging is corrected first, and the readiness check takes the current scanner configuration. The parent design still fits; dated notes on its push form are listed for the landing.",
-                "branch": "chore/issue-26-rewrite-gkb2-and-gkb"
-              }
-            ],
-            "implementation": [
-              {
-                "since": "2026-11-13T05:42:28Z",
-                "ended": "2026-11-13T06:01:41Z",
-                "endedBy": "halted",
-                "to": "implementation",
-                "event": {
-                  "name": "step-complete",
-                  "at": "2026-11-13T05:56:50Z"
-                },
-                "detail": "Readiness passed; nothing was written to GitHub. The 22 tool files were saved from the plan and, with the 21 reused tools, hold their recorded sizes and checksums (46 checks). The corrected runner replaced the first one and holds its new pin. The version pins match (7 checks). The purge lists, mirrors, backups, manifests and the six earlier records of GKB2 and GKB are as recorded (40 checks). Both repositories read from GitHub as recorded (22 checks; activity entries 19 and 9, no events). The grant is in place: eight checks passed, and its wording differs from the plan's text by one further line, which is recorded. The self-test passed 132 checks, its request tool's own 59 among them. One deviation is logged: the grant step prints eight ok lines and one RECORD line where the plan expects seven and one.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Readiness",
-                    "state": "done",
-                    "rows": [
-                      "inputs-unchanged",
-                      "tools-handed-on"
-                    ],
-                    "brief": "The tools, pins, inputs, grant and both repositories are as recorded, the self-tests pass, and nothing is written yet.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S0.save",
-                        "name": "Save the tools",
-                        "state": "done",
-                        "finished": "2026-11-13T05:44:07Z"
-                      },
-                      {
-                        "id": "S0.runner",
-                        "name": "The corrected runner",
-                        "state": "done",
-                        "finished": "2026-11-13T05:44:39Z"
-                      },
-                      {
-                        "id": "S0.tools",
-                        "name": "The tools and the configuration at their recorded bytes",
-                        "state": "done",
-                        "finished": "2026-11-13T05:44:56Z"
-                      },
-                      {
-                        "id": "S0.pins",
-                        "name": "The version pins",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:10Z"
-                      },
-                      {
-                        "id": "S0.inputs",
-                        "name": "Lists, data copy, mirrors, backups and records",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:23Z"
-                      },
-                      {
-                        "id": "S0.repos",
-                        "name": "Both repositories read",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:47Z"
-                      },
-                      {
-                        "id": "S0.grant",
-                        "name": "The grant read",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:58Z"
-                      },
-                      {
-                        "id": "S0.selftest",
-                        "name": "The self-tests",
-                        "state": "done",
-                        "finished": "2026-11-13T05:53:03Z"
-                      }
-                    ],
-                    "ref": "plan.md#s0--readiness",
-                    "started": "2026-11-13T05:21:49Z",
-                    "finished": "2026-11-13T05:53:30Z",
-                    "report": "Readiness passed; nothing was written to GitHub. The 22 tool files were saved from the plan and, with the 21 reused tools, hold their recorded sizes and checksums (46 checks). The corrected runner replaced the first one and holds its new pin. The version pins match (7 checks). The purge lists, mirrors, backups, manifests and the six earlier records of GKB2 and GKB are as recorded (40 checks). Both repositories read from GitHub as recorded (22 checks; activity entries 19 and 9, no events). The grant is in place: eight checks passed, and its wording differs from the plan's text by one further line, which is recorded. The self-test passed 132 checks, its request tool's own 59 among them. One deviation is logged: the grant step prints eight ok lines and one RECORD line where the plan expects seven and one.",
-                    "result": "passed"
-                  },
-                  {
-                    "id": "S1",
-                    "name": "GKB2",
-                    "state": "current",
-                    "rows": [
-                      "inputs-unchanged",
-                      "gkb2-purge",
-                      "force-push",
-                      "exit-tests",
-                      "default-rule-findings",
-                      "residual-probes"
-                    ],
-                    "brief": "GKB2's history is rewritten, force-pushed on request, verified ref by ref and proven clean on a fresh mirror, and what GitHub still serves is measured.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S1.1",
-                        "name": "List proof and pre-run checks",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:01Z"
-                      },
-                      {
-                        "id": "S1.2",
-                        "name": "Positive control on the untouched backup",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:18Z"
-                      },
-                      {
-                        "id": "S1.3",
-                        "name": "The rewrite",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:30Z"
-                      },
-                      {
-                        "id": "S1.4",
-                        "name": "Post-run checks and the scan before the push",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:49Z"
-                      },
-                      {
-                        "id": "S1.5",
-                        "name": "Push preparation",
-                        "state": "done",
-                        "finished": "2026-11-13T05:55:02Z"
-                      },
-                      {
-                        "id": "S1.6",
-                        "name": "The force-push, on request",
-                        "steps": [
-                          {
-                            "id": "S1.6.request",
-                            "name": "The request read, rebuilt and checked",
-                            "state": "done",
-                            "finished": "2026-11-13T05:55:15Z"
-                          },
-                          {
-                            "id": "S1.6.send",
-                            "name": "The request sent",
-                            "state": "done",
-                            "finished": "2026-11-13T05:56:50Z"
-                          },
-                          {
-                            "id": "S1.6.reply",
-                            "name": "The reply stored"
-                          },
-                          {
-                            "id": "S1.6.check",
-                            "name": "The outcome classified and read back"
-                          }
-                        ]
-                      },
-                      {
-                        "id": "S1.7",
-                        "name": "Per-ref verification"
-                      },
-                      {
-                        "id": "S1.8",
-                        "name": "Fresh mirror and exit tests"
-                      },
-                      {
-                        "id": "S1.9",
-                        "name": "Residual probes"
-                      }
-                    ],
-                    "started": "2026-11-13T05:53:30Z"
-                  },
-                  {
-                    "id": "S2",
-                    "name": "GKB",
-                    "state": "todo",
-                    "rows": [
-                      "inputs-unchanged",
-                      "gkb-purge",
-                      "force-push",
-                      "exit-tests",
-                      "default-rule-findings",
-                      "residual-probes"
-                    ],
-                    "brief": "The same for GKB, once GKB2 has passed every step.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S2.1",
-                        "name": "List proof and pre-run checks"
-                      },
-                      {
-                        "id": "S2.2",
-                        "name": "Positive control on the untouched backup"
-                      },
-                      {
-                        "id": "S2.3",
-                        "name": "The rewrite"
-                      },
-                      {
-                        "id": "S2.4",
-                        "name": "Post-run checks and the scan before the push"
-                      },
-                      {
-                        "id": "S2.5",
-                        "name": "Push preparation"
-                      },
-                      {
-                        "id": "S2.6",
-                        "name": "The force-push, on request",
-                        "steps": [
-                          {
-                            "id": "S2.6.request",
-                            "name": "The request read, rebuilt and checked"
-                          },
-                          {
-                            "id": "S2.6.send",
-                            "name": "The request sent"
-                          },
-                          {
-                            "id": "S2.6.reply",
-                            "name": "The reply stored"
-                          },
-                          {
-                            "id": "S2.6.check",
-                            "name": "The outcome classified and read back"
-                          }
-                        ]
-                      },
-                      {
-                        "id": "S2.7",
-                        "name": "Per-ref verification"
-                      },
-                      {
-                        "id": "S2.8",
-                        "name": "Fresh mirror and exit tests"
-                      },
-                      {
-                        "id": "S2.9",
-                        "name": "Residual probes"
-                      }
-                    ]
-                  },
-                  {
-                    "id": "S3",
-                    "name": "Close-out",
-                    "state": "todo",
-                    "rows": [
-                      "inputs-unchanged",
-                      "residual-probes"
-                    ],
-                    "brief": "Both repositories are read again, and the report rows and records are written with their checksums.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S3.feeds",
-                        "name": "The second feed reads"
-                      },
-                      {
-                        "id": "S3.reads",
-                        "name": "Final reads of both repositories"
-                      },
-                      {
-                        "id": "S3.record",
-                        "name": "Report rows and checksums"
-                      }
-                    ],
-                    "ref": "plan.md#s3--close-out"
-                  }
-                ],
-                "held": true
-              },
-              {
-                "since": "2026-11-13T06:13:26Z",
-                "ended": "2026-11-13T06:16:20Z",
-                "endedBy": "halted",
-                "to": "implementation",
-                "event": {
-                  "name": "resumed",
-                  "at": "2026-11-13T06:13:26Z"
-                },
-                "detail": "The owner acted, and the same request for GKB2's push is being carried out again; its guards read the server first.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Readiness",
-                    "state": "done",
-                    "rows": [
-                      "inputs-unchanged",
-                      "tools-handed-on"
-                    ],
-                    "brief": "The tools, pins, inputs, grant and both repositories are as recorded, the self-tests pass, and nothing is written yet.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S0.save",
-                        "name": "Save the tools",
-                        "state": "done",
-                        "finished": "2026-11-13T05:44:07Z"
-                      },
-                      {
-                        "id": "S0.runner",
-                        "name": "The corrected runner",
-                        "state": "done",
-                        "finished": "2026-11-13T05:44:39Z"
-                      },
-                      {
-                        "id": "S0.tools",
-                        "name": "The tools and the configuration at their recorded bytes",
-                        "state": "done",
-                        "finished": "2026-11-13T05:44:56Z"
-                      },
-                      {
-                        "id": "S0.pins",
-                        "name": "The version pins",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:10Z"
-                      },
-                      {
-                        "id": "S0.inputs",
-                        "name": "Lists, data copy, mirrors, backups and records",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:23Z"
-                      },
-                      {
-                        "id": "S0.repos",
-                        "name": "Both repositories read",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:47Z"
-                      },
-                      {
-                        "id": "S0.grant",
-                        "name": "The grant read",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:58Z"
-                      },
-                      {
-                        "id": "S0.selftest",
-                        "name": "The self-tests",
-                        "state": "done",
-                        "finished": "2026-11-13T05:53:03Z"
-                      }
-                    ],
-                    "ref": "plan.md#s0--readiness",
-                    "started": "2026-11-13T05:21:49Z",
-                    "finished": "2026-11-13T05:53:30Z",
-                    "report": "Readiness passed; nothing was written to GitHub. The 22 tool files were saved from the plan and, with the 21 reused tools, hold their recorded sizes and checksums (46 checks). The corrected runner replaced the first one and holds its new pin. The version pins match (7 checks). The purge lists, mirrors, backups, manifests and the six earlier records of GKB2 and GKB are as recorded (40 checks). Both repositories read from GitHub as recorded (22 checks; activity entries 19 and 9, no events). The grant is in place: eight checks passed, and its wording differs from the plan's text by one further line, which is recorded. The self-test passed 132 checks, its request tool's own 59 among them. One deviation is logged: the grant step prints eight ok lines and one RECORD line where the plan expects seven and one.",
-                    "result": "passed"
-                  },
-                  {
-                    "id": "S1",
-                    "name": "GKB2",
-                    "state": "current",
-                    "rows": [
-                      "inputs-unchanged",
-                      "gkb2-purge",
-                      "force-push",
-                      "exit-tests",
-                      "default-rule-findings",
-                      "residual-probes"
-                    ],
-                    "brief": "GKB2's history is rewritten, force-pushed on request, verified ref by ref and proven clean on a fresh mirror, and what GitHub still serves is measured.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S1.1",
-                        "name": "List proof and pre-run checks",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:01Z"
-                      },
-                      {
-                        "id": "S1.2",
-                        "name": "Positive control on the untouched backup",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:18Z"
-                      },
-                      {
-                        "id": "S1.3",
-                        "name": "The rewrite",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:30Z"
-                      },
-                      {
-                        "id": "S1.4",
-                        "name": "Post-run checks and the scan before the push",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:49Z"
-                      },
-                      {
-                        "id": "S1.5",
-                        "name": "Push preparation",
-                        "state": "done",
-                        "finished": "2026-11-13T05:55:02Z"
-                      },
-                      {
-                        "id": "S1.6",
-                        "name": "The force-push, on request",
-                        "steps": [
-                          {
-                            "id": "S1.6.request",
-                            "name": "The request read, rebuilt and checked",
-                            "state": "done",
-                            "finished": "2026-11-13T05:55:15Z"
-                          },
-                          {
-                            "id": "S1.6.send",
-                            "name": "The request sent",
-                            "state": "done",
-                            "finished": "2026-11-13T05:56:50Z"
-                          },
-                          {
-                            "id": "S1.6.reply",
-                            "name": "The reply stored"
-                          },
-                          {
-                            "id": "S1.6.check",
-                            "name": "The outcome classified and read back"
-                          }
-                        ]
-                      },
-                      {
-                        "id": "S1.7",
-                        "name": "Per-ref verification"
-                      },
-                      {
-                        "id": "S1.8",
-                        "name": "Fresh mirror and exit tests"
-                      },
-                      {
-                        "id": "S1.9",
-                        "name": "Residual probes"
-                      }
-                    ],
-                    "started": "2026-11-13T05:53:30Z"
-                  },
-                  {
-                    "id": "S2",
-                    "name": "GKB",
-                    "state": "todo",
-                    "rows": [
-                      "inputs-unchanged",
-                      "gkb-purge",
-                      "force-push",
-                      "exit-tests",
-                      "default-rule-findings",
-                      "residual-probes"
-                    ],
-                    "brief": "The same for GKB, once GKB2 has passed every step.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S2.1",
-                        "name": "List proof and pre-run checks"
-                      },
-                      {
-                        "id": "S2.2",
-                        "name": "Positive control on the untouched backup"
-                      },
-                      {
-                        "id": "S2.3",
-                        "name": "The rewrite"
-                      },
-                      {
-                        "id": "S2.4",
-                        "name": "Post-run checks and the scan before the push"
-                      },
-                      {
-                        "id": "S2.5",
-                        "name": "Push preparation"
-                      },
-                      {
-                        "id": "S2.6",
-                        "name": "The force-push, on request",
-                        "steps": [
-                          {
-                            "id": "S2.6.request",
-                            "name": "The request read, rebuilt and checked"
-                          },
-                          {
-                            "id": "S2.6.send",
-                            "name": "The request sent"
-                          },
-                          {
-                            "id": "S2.6.reply",
-                            "name": "The reply stored"
-                          },
-                          {
-                            "id": "S2.6.check",
-                            "name": "The outcome classified and read back"
-                          }
-                        ]
-                      },
-                      {
-                        "id": "S2.7",
-                        "name": "Per-ref verification"
-                      },
-                      {
-                        "id": "S2.8",
-                        "name": "Fresh mirror and exit tests"
-                      },
-                      {
-                        "id": "S2.9",
-                        "name": "Residual probes"
-                      }
-                    ]
-                  },
-                  {
-                    "id": "S3",
-                    "name": "Close-out",
-                    "state": "todo",
-                    "rows": [
-                      "inputs-unchanged",
-                      "residual-probes"
-                    ],
-                    "brief": "Both repositories are read again, and the report rows and records are written with their checksums.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S3.feeds",
-                        "name": "The second feed reads"
-                      },
-                      {
-                        "id": "S3.reads",
-                        "name": "Final reads of both repositories"
-                      },
-                      {
-                        "id": "S3.record",
-                        "name": "Report rows and checksums"
-                      }
-                    ],
-                    "ref": "plan.md#s3--close-out"
-                  }
-                ],
-                "held": true,
-                "asked": [
-                  {
-                    "text": "GKB2's push succeeded, but its reply arrived as one document holding the printed lines as list entries, and the plan's classifier reads status lines only at the start of a line. In which form is the reply stored, for GKB2 and for GKB?",
-                    "options": [
-                      "Store the printed lines alone, one per line, in order (tried on a scratch copy: classified as pushed)",
-                      "Store the reply as it came, followed by the printed lines one per line (tried on a scratch copy first)",
-                      "Settle the form in the plan first, then store",
-                      "Stop the unit here as it stands"
-                    ],
-                    "answer": null,
-                    "asked": "2026-11-13T06:16:20Z",
-                    "answered": "2026-11-13T06:16:48Z"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-13T06:16:48Z",
-                "ended": "2026-11-13T06:37:05Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-13T06:35:55Z",
-                  "note": "S3 reported done; Quality Review next"
-                },
-                "detail": "The close-out passed its three steps. The second feed reads, each more than 6 minutes after the first, repeat the first: the activity feed lists 18 old ids for GKB2 and 9 for GKB with 1 current id each, on the authenticated read, the web page and the anonymous read; the events list nothing yet, so 2 of 3 anonymous reads are valid for each repository; the anonymous budget covered both reads without a wait. The final reads show each repository's one branch at its rewritten tip, no tag, the pull-request refs as recorded (1 for GKB2, none for GKB), public, not archived, default branch master, and the six earlier records of each repository unchanged since the readiness stage. Both report rows are completed with the second feed reads, and the checksum lists are written: 40 record files for each repository and 33 run records, each list verifying against its files. Across the unit every count equals its expectation, GKB2's pull-request residual is 70 of 81 manifest blobs as predicted, and no default-rule finding exists in either repository. The close-out's 19 checks passed, none failed. No new deviation.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Readiness",
-                    "state": "done",
-                    "rows": [
-                      "inputs-unchanged",
-                      "tools-handed-on"
-                    ],
-                    "brief": "The tools, pins, inputs, grant and both repositories are as recorded, the self-tests pass, and nothing is written yet.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S0.save",
-                        "name": "Save the tools",
-                        "state": "done",
-                        "finished": "2026-11-13T05:44:07Z"
-                      },
-                      {
-                        "id": "S0.runner",
-                        "name": "The corrected runner",
-                        "state": "done",
-                        "finished": "2026-11-13T05:44:39Z"
-                      },
-                      {
-                        "id": "S0.tools",
-                        "name": "The tools and the configuration at their recorded bytes",
-                        "state": "done",
-                        "finished": "2026-11-13T05:44:56Z"
-                      },
-                      {
-                        "id": "S0.pins",
-                        "name": "The version pins",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:10Z"
-                      },
-                      {
-                        "id": "S0.inputs",
-                        "name": "Lists, data copy, mirrors, backups and records",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:23Z"
-                      },
-                      {
-                        "id": "S0.repos",
-                        "name": "Both repositories read",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:47Z"
-                      },
-                      {
-                        "id": "S0.grant",
-                        "name": "The grant read",
-                        "state": "done",
-                        "finished": "2026-11-13T05:45:58Z"
-                      },
-                      {
-                        "id": "S0.selftest",
-                        "name": "The self-tests",
-                        "state": "done",
-                        "finished": "2026-11-13T05:53:03Z"
-                      }
-                    ],
-                    "ref": "plan.md#s0--readiness",
-                    "started": "2026-11-13T05:21:49Z",
-                    "finished": "2026-11-13T05:53:30Z",
-                    "report": "Readiness passed; nothing was written to GitHub. The 22 tool files were saved from the plan and, with the 21 reused tools, hold their recorded sizes and checksums (46 checks). The corrected runner replaced the first one and holds its new pin. The version pins match (7 checks). The purge lists, mirrors, backups, manifests and the six earlier records of GKB2 and GKB are as recorded (40 checks). Both repositories read from GitHub as recorded (22 checks; activity entries 19 and 9, no events). The grant is in place: eight checks passed, and its wording differs from the plan's text by one further line, which is recorded. The self-test passed 132 checks, its request tool's own 59 among them. One deviation is logged: the grant step prints eight ok lines and one RECORD line where the plan expects seven and one.",
-                    "result": "passed"
-                  },
-                  {
-                    "id": "S1",
-                    "name": "GKB2",
-                    "state": "done",
-                    "rows": [
-                      "inputs-unchanged",
-                      "gkb2-purge",
-                      "force-push",
-                      "exit-tests",
-                      "default-rule-findings",
-                      "residual-probes"
-                    ],
-                    "brief": "GKB2's history is rewritten, force-pushed on request, verified ref by ref and proven clean on a fresh mirror, and what GitHub still serves is measured.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S1.1",
-                        "name": "List proof and pre-run checks",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:01Z"
-                      },
-                      {
-                        "id": "S1.2",
-                        "name": "Positive control on the untouched backup",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:18Z"
-                      },
-                      {
-                        "id": "S1.3",
-                        "name": "The rewrite",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:30Z"
-                      },
-                      {
-                        "id": "S1.4",
-                        "name": "Post-run checks and the scan before the push",
-                        "state": "done",
-                        "finished": "2026-11-13T05:54:49Z"
-                      },
-                      {
-                        "id": "S1.5",
-                        "name": "Push preparation",
-                        "state": "done",
-                        "finished": "2026-11-13T05:55:02Z"
-                      },
-                      {
-                        "id": "S1.6",
-                        "name": "The force-push, on request",
-                        "steps": [
-                          {
-                            "id": "S1.6.request",
-                            "name": "The request read, rebuilt and checked",
-                            "state": "done",
-                            "finished": "2026-11-13T05:55:15Z"
-                          },
-                          {
-                            "id": "S1.6.send",
-                            "name": "The request sent",
-                            "state": "done",
-                            "finished": "2026-11-13T05:56:50Z"
-                          },
-                          {
-                            "id": "S1.6.reply",
-                            "name": "The reply stored",
-                            "state": "done",
-                            "finished": "2026-11-13T06:17:13Z"
-                          },
-                          {
-                            "id": "S1.6.check",
-                            "name": "The outcome classified and read back",
-                            "state": "done",
-                            "finished": "2026-11-13T06:17:35Z"
-                          }
-                        ],
-                        "state": "done",
-                        "finished": "2026-11-13T06:17:35Z"
-                      },
-                      {
-                        "id": "S1.7",
-                        "name": "Per-ref verification",
-                        "state": "done",
-                        "finished": "2026-11-13T06:18:04Z"
-                      },
-                      {
-                        "id": "S1.8",
-                        "name": "Fresh mirror and exit tests",
-                        "state": "done",
-                        "finished": "2026-11-13T06:18:21Z"
-                      },
-                      {
-                        "id": "S1.9",
-                        "name": "Residual probes",
-                        "state": "done",
-                        "finished": "2026-11-13T06:20:43Z"
-                      }
-                    ],
-                    "started": "2026-11-13T05:53:30Z",
-                    "finished": "2026-11-13T06:21:02Z",
-                    "report": "GKB2 passed all nine steps. The rewrite turned 32 commits into 30 (2 pruned); the rewritten mirror keeps 82 paths and 211 blobs, the largest 60,756 bytes, and none of the 81 manifest blobs. The control on the untouched backup equalled its record line for line (31 commits scanned, 79 findings), and the scan before the push was clean. The push was one forced update of master under the lease: class pushed, the expected tally in the dry run and in the push, the same ref and flag, and no refusal marker. The request ran under one id as two attempts, the first of which was not carried out and changed nothing. On two channels the server holds 1 rewritten head, no tag and 1 pull-request ref, as recorded. A fresh mirror holds 45 commits on every ref and is clean on branches and tags, with every count equal to its expectation. Through the pull-request ref 70 of the 81 manifest blobs stay reachable (11 missing, 281 distinct blobs on every ref), as predicted, and the scan of every ref reads 66 findings of the five custom rules in that old history. GitHub still serves every old id probed, authenticated and anonymous: 2 commits, 2 trees and 41 of 41 sampled manifest blobs; no answer differed from the expectation. The activity feed lists 18 old ids; 2 of 3 anonymous feed reads were valid, the events listing nothing yet. No default-rule finding. The steps ran as the integration checks against the real repository: 135 checks passed, none failed. Five deviations are logged in the as-built record: the grant step's line count, the wording of the request-written line, two shell error lines at the first request step, the request's two attempts under one id, and the stored form of the reply (its printed lines, one per line)."
-                  },
-                  {
-                    "id": "S2",
-                    "name": "GKB",
-                    "state": "done",
-                    "rows": [
-                      "inputs-unchanged",
-                      "gkb-purge",
-                      "force-push",
-                      "exit-tests",
-                      "default-rule-findings",
-                      "residual-probes"
-                    ],
-                    "brief": "The same for GKB, once GKB2 has passed every step.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S2.1",
-                        "name": "List proof and pre-run checks",
-                        "state": "done",
-                        "finished": "2026-11-13T06:21:29Z"
-                      },
-                      {
-                        "id": "S2.2",
-                        "name": "Positive control on the untouched backup",
-                        "state": "done",
-                        "finished": "2026-11-13T06:21:47Z"
-                      },
-                      {
-                        "id": "S2.3",
-                        "name": "The rewrite",
-                        "state": "done",
-                        "finished": "2026-11-13T06:22:01Z"
-                      },
-                      {
-                        "id": "S2.4",
-                        "name": "Post-run checks and the scan before the push",
-                        "state": "done",
-                        "finished": "2026-11-13T06:22:17Z"
-                      },
-                      {
-                        "id": "S2.5",
-                        "name": "Push preparation",
-                        "state": "done",
-                        "finished": "2026-11-13T06:22:30Z"
-                      },
-                      {
-                        "id": "S2.6",
-                        "name": "The force-push, on request",
-                        "steps": [
-                          {
-                            "id": "S2.6.request",
-                            "name": "The request read, rebuilt and checked",
-                            "state": "done",
-                            "finished": "2026-11-13T06:22:44Z"
-                          },
-                          {
-                            "id": "S2.6.send",
-                            "name": "The request sent",
-                            "state": "done",
-                            "finished": "2026-11-13T06:23:53Z"
-                          },
-                          {
-                            "id": "S2.6.reply",
-                            "name": "The reply stored",
-                            "state": "done",
-                            "finished": "2026-11-13T06:25:32Z"
-                          },
-                          {
-                            "id": "S2.6.check",
-                            "name": "The outcome classified and read back",
-                            "state": "done",
-                            "finished": "2026-11-13T06:25:44Z"
-                          }
-                        ],
-                        "state": "done",
-                        "finished": "2026-11-13T06:25:44Z"
-                      },
-                      {
-                        "id": "S2.7",
-                        "name": "Per-ref verification",
-                        "state": "done",
-                        "finished": "2026-11-13T06:26:05Z"
-                      },
-                      {
-                        "id": "S2.8",
-                        "name": "Fresh mirror and exit tests",
-                        "state": "done",
-                        "finished": "2026-11-13T06:26:21Z"
-                      },
-                      {
-                        "id": "S2.9",
-                        "name": "Residual probes",
-                        "state": "done",
-                        "finished": "2026-11-13T06:29:03Z"
-                      }
-                    ],
-                    "started": "2026-11-13T06:21:02Z",
-                    "finished": "2026-11-13T06:29:37Z",
-                    "report": "GKB passed all nine steps, started once GKB2 had passed its ninth. The rewrite turned 11 commits into 9 (2 pruned); the rewritten mirror keeps 60 paths and 113 blobs, the largest 60,756 bytes, and none of the 58 manifest blobs. The control on the untouched backup equalled its record line for line (10 commits scanned, 59 findings), and the scan before the push was clean. The push was one forced update of master under the lease, carried out on its first attempt: class pushed, the expected tally in the dry run and in the push, the same ref and flag, and no refusal marker. On two channels the server holds 1 rewritten head, no tag and no pull-request ref, as recorded. A fresh mirror holds 9 commits on every ref and 113 distinct blobs, reaches no manifest blob from any ref, and is clean on branches and tags and on every ref, with every count equal to its expectation. GitHub still serves every old id probed, authenticated and anonymous: 2 commits, 2 trees and 58 of 58 manifest blobs; no answer differed from the expectation. The activity feed lists 9 old ids; 2 of 3 anonymous feed reads were valid, the events listing nothing yet. No default-rule finding. The steps ran as the integration checks against the real repository: 135 checks passed, none failed. No new deviation beyond those already logged: the two shell error lines at the first request step were seen again, and the stored reply is its printed lines, one per line."
-                  },
-                  {
-                    "id": "S3",
-                    "name": "Close-out",
-                    "state": "done",
-                    "rows": [
-                      "inputs-unchanged",
-                      "residual-probes"
-                    ],
-                    "brief": "Both repositories are read again, and the report rows and records are written with their checksums.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S3.feeds",
-                        "name": "The second feed reads",
-                        "state": "done",
-                        "finished": "2026-11-13T06:35:11Z"
-                      },
-                      {
-                        "id": "S3.reads",
-                        "name": "Final reads of both repositories",
-                        "state": "done",
-                        "finished": "2026-11-13T06:35:27Z"
-                      },
-                      {
-                        "id": "S3.record",
-                        "name": "Report rows and checksums",
-                        "state": "done",
-                        "finished": "2026-11-13T06:35:39Z"
-                      }
-                    ],
-                    "ref": "plan.md#s3--close-out",
-                    "started": "2026-11-13T06:29:37Z",
-                    "finished": "2026-11-13T06:35:55Z",
-                    "report": "The close-out passed its three steps. The second feed reads, each more than 6 minutes after the first, repeat the first: the activity feed lists 18 old ids for GKB2 and 9 for GKB with 1 current id each, on the authenticated read, the web page and the anonymous read; the events list nothing yet, so 2 of 3 anonymous reads are valid for each repository; the anonymous budget covered both reads without a wait. The final reads show each repository's one branch at its rewritten tip, no tag, the pull-request refs as recorded (1 for GKB2, none for GKB), public, not archived, default branch master, and the six earlier records of each repository unchanged since the readiness stage. Both report rows are completed with the second feed reads, and the checksum lists are written: 40 record files for each repository and 33 run records, each list verifying against its files. Across the unit every count equals its expectation, GKB2's pull-request residual is 70 of 81 manifest blobs as predicted, and no default-rule finding exists in either repository. The close-out's 19 checks passed, none failed. No new deviation.",
-                    "result": "passed"
-                  }
-                ]
-              }
-            ],
-            "qa": [
-              {
-                "since": "2026-11-13T06:37:05Z",
-                "ended": "2026-11-13T07:10:24Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-13T06:37:05Z",
-                  "note": "Quality Review 1: running"
-                },
-                "detail": "Both repositories are rewritten, pushed and verified, and every measured value equals its expectation. The checkout's change set is documents only. The tests and the change are checked against the plan next.",
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-13",
-                    "at": "2026-11-13T07:10:24Z",
-                    "findings": {
-                      "test": 19,
-                      "code": 4
-                    },
-                    "severity": {
-                      "minor": 17,
-                      "other": 6
-                    },
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/ca070e8d/tests/index.html"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-13T07:37:48Z",
-                "ended": "2026-11-13T08:10:40Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-13T07:37:48Z",
-                  "note": "Quality Review 2: running"
-                },
-                "detail": "The records asked for are written and the document checks passed; the tests and the change are checked again.",
-                "qa": [
-                  {
-                    "pass": 2,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-13",
-                    "at": "2026-11-13T08:10:40Z",
-                    "findings": {
-                      "test": 8,
-                      "code": 4
-                    },
-                    "severity": {
-                      "minor": 12,
-                      "other": 0
-                    },
-                    "route": "on-the-spot",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/949b5d33/tests/index.html"
-                  }
-                ]
-              }
-            ],
-            "remediation": [
-              {
-                "since": "2026-11-13T07:26:38Z",
-                "ended": "2026-11-13T07:37:48Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-13T07:37:48Z",
-                  "note": "3 of 3 sub-steps done"
-                },
-                "detail": "The landing's four document checks passed over the 15 pending files: no token in a document resolves to a commit from before the rewrite or names a purged blob; the three path expressions match nothing; the privacy gate reports 0 blocking hits; the secret scan of the documents is clean.",
-                "remediation": {
-                  "pass": 1,
-                  "route": "remediation",
-                  "steps": [
-                    {
-                      "name": "The as-built record: the missing entries",
-                      "state": "done",
-                      "started": "2026-11-13T07:27:17Z",
-                      "finished": "2026-11-13T07:37:03Z",
-                      "report": "The as-built record now lists nine departures from the plan: three have their evidence added (the request-written line seen at both repositories, where the evidence of the first push request's two attempts lies, and the stored form of a reply), and four are new (a passing self-test prints traceback lines that carry a sandbox path; two scripts besides the parameter table name the repositories; the run records hold each request's key file; each request's procedure ran as one shell). The consequences now carry the tools' gaps as they ran and the follow-ups for the next rewrite unit: the classifier's dependence on a reply's stored form, the stops no self-test case reaches (first the stop that keeps a push from being sent twice and the closing controls of a probe set), a self-test that cannot be run by test level, the output rule asserted for one step only, an anonymous budget reading that is not explained, and a close-out that is not safe to run twice. No tool, mirror or remote changed."
-                    },
-                    {
-                      "name": "Consequences: follow-ups and known gaps for the next rewrite unit",
-                      "state": "done",
-                      "started": "2026-11-13T07:27:17Z",
-                      "finished": "2026-11-13T07:37:03Z",
-                      "report": "The as-built record now lists nine departures from the plan: three have their evidence added (the request-written line seen at both repositories, where the evidence of the first push request's two attempts lies, and the stored form of a reply), and four are new (a passing self-test prints traceback lines that carry a sandbox path; two scripts besides the parameter table name the repositories; the run records hold each request's key file; each request's procedure ran as one shell). The consequences now carry the tools' gaps as they ran and the follow-ups for the next rewrite unit: the classifier's dependence on a reply's stored form, the stops no self-test case reaches (first the stop that keeps a push from being sent twice and the closing controls of a probe set), a self-test that cannot be run by test level, the output rule asserted for one step only, an anonymous budget reading that is not explained, and a close-out that is not safe to run twice. No tool, mirror or remote changed."
-                    },
-                    {
-                      "name": "The landing's document checks",
-                      "state": "done",
-                      "started": "2026-11-13T07:37:03Z",
-                      "finished": "2026-11-13T07:37:48Z",
-                      "report": "The landing's four document checks passed over the 15 pending files: no token in a document resolves to a commit from before the rewrite or names a purged blob; the three path expressions match nothing; the privacy gate reports 0 blocking hits; the secret scan of the documents is clean."
-                    }
-                  ]
-                },
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-13",
-                    "at": "2026-11-13T07:10:24Z",
-                    "findings": {
-                      "test": 19,
-                      "code": 4
-                    },
-                    "severity": {
-                      "minor": 17,
-                      "other": 6
-                    },
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/ca070e8d/tests/index.html",
-                    "note": "Both rewrites are confirmed by an independent recount: every expected value holds on both fresh mirrors, both remotes show only the one branch moved, and each acceptance criterion is met by evidence read from the log, the records and the remotes. The tools' two self-tests passed again in isolation (191 checks: 59 and 132). 23 findings (17 minor, 6 other; 19 test, 4 code). For the as-built record: one departure from the output rule not yet listed (a passing self-test prints a traceback with a sandbox path) and three small differences between the plan's wording and the tools. Follow-ups for the next rewrite unit: the classifier's reading of a reply's form, a close-out step that is not safe to run twice, and an anonymous budget reading that is not explained. Test gaps in the tools, the main ones: no case with a reply in its real shape, none for the stop that keeps a push from being sent twice, none for the closing controls of a probe set, the output rule asserted for one step only, and one self-test script that cannot be run by test level. They touch the push, the residual probes, the tools handed on and the check of the inputs. The landing's four document checks are still to run. How the findings on the tools are handled is not settled yet.",
-                    "route": "remediation"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-13T08:10:40Z",
-                "ended": "2026-11-13T08:15:08Z",
-                "endedBy": "document",
-                "to": "document",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-13T08:15:08Z",
-                  "note": "2 of 2 sub-steps done"
-                },
-                "detail": "The consequences now state the classifier's gap as the tool text gives it (a reply with neither status line is read as a refusal by the service under a refused header and as a guard's stop otherwise; after a push that landed the check stops, and after a push that ran and was refused the request could be sent again, with the guards and the lease keeping the remote safe), say that no self-test case reaches the probes' stop on a status outside a route's answers, and give the anonymous budget's real thresholds (28 to 35 completes, 26 or 27 cuts a feed read, 25 or less stops a set). The list of untested paths is completed and says it is not exhaustive, with the rule the next rewrite unit applies. The as-built record lists a tenth departure: each push request was sent as a reference to its file with the file's checksum, and asked for the one-shell run. No tool, mirror or remote changed.",
-                "remediation": {
-                  "pass": 2,
-                  "route": "on-the-spot",
-                  "steps": [
-                    {
-                      "name": "Consequences: three statements corrected, the list of untested paths completed",
-                      "state": "done",
-                      "started": "2026-11-13T08:10:40Z",
-                      "finished": "2026-11-13T08:15:08Z",
-                      "report": "The consequences now state the classifier's gap as the tool text gives it (a reply with neither status line is read as a refusal by the service under a refused header and as a guard's stop otherwise; after a push that landed the check stops, and after a push that ran and was refused the request could be sent again, with the guards and the lease keeping the remote safe), say that no self-test case reaches the probes' stop on a status outside a route's answers, and give the anonymous budget's real thresholds (28 to 35 completes, 26 or 27 cuts a feed read, 25 or less stops a set). The list of untested paths is completed and says it is not exhaustive, with the rule the next rewrite unit applies. The as-built record lists a tenth departure: each push request was sent as a reference to its file with the file's checksum, and asked for the one-shell run. No tool, mirror or remote changed."
-                    },
-                    {
-                      "name": "The as-built record: the request sent by reference to its file",
-                      "state": "done",
-                      "started": "2026-11-13T08:10:40Z",
-                      "finished": "2026-11-13T08:15:08Z",
-                      "report": "The consequences now state the classifier's gap as the tool text gives it (a reply with neither status line is read as a refusal by the service under a refused header and as a guard's stop otherwise; after a push that landed the check stops, and after a push that ran and was refused the request could be sent again, with the guards and the lease keeping the remote safe), say that no self-test case reaches the probes' stop on a status outside a route's answers, and give the anonymous budget's real thresholds (28 to 35 completes, 26 or 27 cuts a feed read, 25 or less stops a set). The list of untested paths is completed and says it is not exhaustive, with the rule the next rewrite unit applies. The as-built record lists a tenth departure: each push request was sent as a reference to its file with the file's checksum, and asked for the one-shell run. No tool, mirror or remote changed."
-                    }
-                  ]
-                },
-                "qa": [
-                  {
-                    "pass": 2,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-13",
-                    "at": "2026-11-13T08:10:40Z",
-                    "findings": {
-                      "test": 8,
-                      "code": 4
-                    },
-                    "severity": {
-                      "minor": 12,
-                      "other": 0
-                    },
-                    "route": "on-the-spot",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/949b5d33/tests/index.html",
-                    "note": "The rewrite, both pushes and every acceptance criterion stand, all nine recorded departures hold, and nothing outside the stated writes changed; `gdocs.sh` ran again with 22 passed. 12 findings (12 minor; 8 test, 4 code), every one small and on the records: three statements in the consequences that do not hold against the tools (when the classifier's gap lets a request be sent again, which probe stop a self-test case reaches, and the budget thresholds), a list of untested paths that is not complete, one departure not yet listed in the as-built record (each push request sent as a reference to its file with a checksum, asking for the one-shell run), and the document checks, which ran before the boards were last regenerated and run again before the documents are committed. They touch the push, the residual probes and the tools handed on. This review counts 20 test findings in Quality Review 1, where that pass's record holds 19."
-                  }
-                ]
-              }
-            ]
-          },
-          "rowNames": {
-            "inputs-unchanged": "The preparation unit's mirrors, backups and expectation rows, checked unchanged",
-            "gkb2-purge": "GKB2: the purge, with the pipeline's checks before and after",
-            "gkb-purge": "GKB: the purge, with the pipeline's checks before and after",
-            "force-push": "Each rewritten mirror force-pushed, then verified ref by ref",
-            "exit-tests": "A fresh mirror of each repository and its exit tests",
-            "default-rule-findings": "A gitleaks default-rule finding in a kept file",
-            "residual-probes": "What GitHub still serves of the old histories, GKB2's pull-request residual included",
-            "tools-handed-on": "The workspace tools as the earlier units left them"
-          },
-          "recon": {
-            "interview": {
-              "reconstructed": true,
-              "ended": null,
-              "trail": [],
-              "milestones": []
-            }
-          }
-        },
         "tests": {
           "updated": "2026-11-13T08:22:24Z",
           "added": [
@@ -3523,6 +1891,10 @@ window.dashboardLive&&window.dashboardLive("plan",
               }
             }
           ]
+        },
+        "landing": {
+          "pr": 37,
+          "merge": "416f36bda66c2050e320504d999a46e71ea18557"
         }
       },
       "gap": {
@@ -3564,7 +1936,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "bff49c000f41"
+              "hash": "b10c8f3607f1"
             }
           },
           {
@@ -3574,7 +1946,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "92da9a9547a1"
+              "hash": "3471daa7bfa2"
             }
           },
           {
@@ -3584,7 +1956,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5d4b31d65eb6"
+              "hash": "5bc4c2ece6b9"
             }
           }
         ],
@@ -3598,8 +1970,8 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "architecture.md#15-decomposition"
       },
       "asBuilt": {
-        "state": "pending",
-        "summary": "Filed as #26; its run started on 2026-11-13 from `main` at 96eba22 and carried the unit out: GKB2, then GKB, rewritten, each `master` force-pushed once under a lease on its recorded tip and verified ref by ref, and both fresh mirrors clean on their branches and tags. GitHub still serves every old id the unit probed, and GKB2's pull-request ref keeps 70 of its 81 purged blobs reachable, as predicted. It has not landed yet; unit 7 starts after it.",
+        "state": "landed",
+        "summary": "Built and landed through PR #37 as `416f36b`: GKB2, then GKB, rewritten, each `master` force-pushed once under a lease on its recorded tip, neither push refused, and verified ref by ref; both fresh mirrors are clean on their branches and tags, with no default-rule finding in a kept file, and the `Secret scan` push run on `main` at the merge completed with success. GitHub still serves every old id the unit probed, and GKB2's pull-request ref keeps 15 old commits and 70 of its 81 purged blobs fetchable, as predicted. #27 takes the tools as they ran, with their known gaps and the follow-ups to close before its run, and may start now that the unit has landed.",
         "changes": [
           {
             "what": "GKB2 and GKB were pushed by a refspec push of their one branch, `master`, with an explicit lease on the tip the clone recorded and a dry run first, not by `--force --mirror`: the expected tally `forced=1` and `done=1`, every other count 0, and each push classed `pushed`, every refusal marker at 0, and read back at its new tip.",
@@ -3647,7 +2019,224 @@ window.dashboardLive&&window.dashboardLive("plan",
         "blockedBy": [
           26
         ],
-        "issue": 27
+        "issue": 27,
+        "board": "27-bottools-trumpbot-support-rewrite/dashboard.html",
+        "folder": "27-bottools-trumpbot-support-rewrite/",
+        "live": {
+          "step": "document",
+          "since": "2026-11-13T19:43:46Z",
+          "updated": "2026-11-13T20:26:39Z",
+          "detail": "Document: 3 of 3 tasks done; every task done.",
+          "steps": [
+            "sizing",
+            "interview",
+            "research",
+            "architecture",
+            "document",
+            "landing",
+            "merge",
+            "sub-issues",
+            "implementation",
+            "landed"
+          ],
+          "waitingOn": null,
+          "resume": null,
+          "qa": [],
+          "qaMax": 3,
+          "status": "planned",
+          "branch": "chore/issue-27-rewrite-bottools-and-private-repos",
+          "event": {
+            "name": "document",
+            "at": "2026-11-13T20:26:39Z",
+            "note": "3 of 3 tasks done"
+          },
+          "interview": [
+            {
+              "text": "Should each part of the unit stay inside one of the registry's systems, or may a rewrite part also extend the tools it runs and measure its own repository's residual, as the GKB2 and GKB unit did?",
+              "options": [
+                "Size them as the GKB2 and GKB unit was sized: each rewrite runs stages 1 to 9 for its repository and extends the tools it needs; only the clone replacement stands apart",
+                "One registry system each: the tool work is its own part with no GitHub write, the rewrites stop at stage 8, one residual part probes all three repositories after the last push, and the clone replacement is its own part"
+              ],
+              "answer": "Each part stays inside one system: the tools part extends the workspace tools before any push, with no write to GitHub; the rewrites run stages 1 to 8 for each repository, with BotTools' pull-request residual counted on its fresh mirror; one residual measurement runs stage 9 over all three repositories once the last push is verified; and the clone replacement is its own part, once TrumpBot's push is proven.",
+              "asked": "2026-11-13T18:24:56Z",
+              "answered": "2026-11-13T18:25:46Z"
+            },
+            {
+              "text": "What of the old TrumpBot clone's local state should the fresh clone keep? Besides the four files under .idea/ the clone now holds a knowledge graph built from the pre-rewrite tree, its exclude entry, two graph hooks and two local config keys.",
+              "options": [
+                "Keep everything: archive and restore the graph files, the exclude entry, the hooks and the two config keys",
+                "Keep the four .idea/ files only; the clone ends with no graph and no graph hooks",
+                "Keep the four .idea/ files only, and rebuild the graph from the rewritten tree once the fresh clone is proven"
+              ],
+              "answer": "The fresh clone keeps the four `.idea/` files only; once it is proven, the graph is rebuilt from the rewritten tree by a code-only build, which installs the two hooks again.",
+              "asked": "2026-11-13T18:24:56Z",
+              "answered": "2026-11-13T18:25:46Z"
+            },
+            {
+              "text": "Should BotTools' dormant CircleCI webhook stay as it is while its two branches are force-pushed?",
+              "options": [
+                "Leave it; the deliveries are recorded by count with the push",
+                "Deactivate it before the push and reactivate it after",
+                "Delete it"
+              ],
+              "answer": "The webhook stays as it is, and the deliveries the push makes are recorded by count.",
+              "asked": "2026-11-13T18:24:56Z",
+              "answered": "2026-11-13T18:25:46Z"
+            }
+          ],
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Design and consequences confirmed final",
+                "state": "done",
+                "started": "2026-11-13T19:54:43Z",
+                "finished": "2026-11-13T19:58:42Z",
+                "report": "The four planning documents are committed at d5192fc; main had not moved, so there was nothing to merge, and no version moved. The design and its consequences are final: the design leaves no consideration open, and what the units leave behind is recorded as known gaps and follow-ups in the consequences. Next: the state boards, with the four planned units drawn dashed."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-13T19:58:42Z",
+                "finished": "2026-11-13T20:23:36Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-13T20:23:36Z",
+                "finished": "2026-11-13T20:26:39Z"
+              }
+            ]
+          },
+          "history": {
+            "sizing": [
+              {
+                "since": null,
+                "ended": "2026-11-13T18:00:43Z",
+                "endedBy": "sized",
+                "to": "architecture"
+              }
+            ],
+            "architecture": [
+              {
+                "since": "2026-11-13T18:00:43Z",
+                "ended": "2026-11-13T18:24:56Z",
+                "endedBy": "halted",
+                "to": "architecture",
+                "event": {
+                  "name": "sized",
+                  "at": "2026-11-13T18:00:43Z"
+                },
+                "detail": "Unit 7 of the history rewrite: BotTools, TrumpBot and Support are rewritten and force-pushed as GKB2 and GKB were, BotTools' pull-request residual is measured, and the local TrumpBot clone is replaced. The unit touches three systems, so this run designs it and splits it into units; nothing is built or pushed in this run. Next: the design, starting with the questions on intent.",
+                "held": true
+              },
+              {
+                "since": "2026-11-13T19:20:34Z",
+                "ended": "2026-11-13T19:43:46Z",
+                "endedBy": "architecture-signed-off",
+                "to": "document",
+                "event": {
+                  "name": "researched",
+                  "at": "2026-11-13T19:20:34Z"
+                },
+                "detail": "Research complete: 31 of the 32 claims hold at source and the one that fails was a wrong file citation for behaviour that holds. Each repository is pushed in one request as one atomic push with an explicit lease on every branch, after a dry run. The old TrumpBot clone is moved aside by a rename on its own volume and deleted last. The tools are rebuilt in a new folder, and the earlier folder stays as it ran. Next: the grand design and its units."
+              }
+            ],
+            "research": [
+              {
+                "since": "2026-11-13T18:25:46Z",
+                "ended": "2026-11-13T19:20:34Z",
+                "endedBy": "researched",
+                "to": "architecture",
+                "event": {
+                  "name": "verification-started",
+                  "at": "2026-11-13T19:08:33Z"
+                },
+                "detail": "The 32 outside-world claims the three findings rest on are being checked at their sources.",
+                "research": {
+                  "phase": "complete",
+                  "drafted": 0,
+                  "since": {
+                    "planning": "2026-11-13T18:28:47Z",
+                    "research": "2026-11-13T18:31:11Z",
+                    "verification": "2026-11-13T19:08:33Z",
+                    "complete": "2026-11-13T19:20:34Z"
+                  }
+                },
+                "questions": [
+                  {
+                    "question": "two-branch-lease-push",
+                    "rows": [],
+                    "findings": "research/two-branch-lease-push.md",
+                    "state": "complete",
+                    "started": "2026-11-13T18:31:11Z",
+                    "returned": "2026-11-13T19:07:20Z"
+                  },
+                  {
+                    "question": "clone-move-aside-on-windows",
+                    "rows": [],
+                    "findings": "research/clone-move-aside-on-windows.md",
+                    "state": "complete",
+                    "started": "2026-11-13T18:31:11Z",
+                    "returned": "2026-11-13T19:06:23Z"
+                  },
+                  {
+                    "question": "tool-changes-for-three-repositories",
+                    "rows": [],
+                    "findings": "research/tool-changes-for-three-repositories.md",
+                    "state": "complete",
+                    "started": "2026-11-13T18:31:11Z",
+                    "returned": "2026-11-13T18:56:23Z"
+                  }
+                ]
+              }
+            ]
+          },
+          "recon": {
+            "interview": {
+              "reconstructed": true,
+              "ended": null,
+              "trail": [],
+              "milestones": [],
+              "interview": [
+                {
+                  "text": "Should each part of the unit stay inside one of the registry's systems, or may a rewrite part also extend the tools it runs and measure its own repository's residual, as the GKB2 and GKB unit did?",
+                  "options": [
+                    "Size them as the GKB2 and GKB unit was sized: each rewrite runs stages 1 to 9 for its repository and extends the tools it needs; only the clone replacement stands apart",
+                    "One registry system each: the tool work is its own part with no GitHub write, the rewrites stop at stage 8, one residual part probes all three repositories after the last push, and the clone replacement is its own part"
+                  ],
+                  "answer": "Each part stays inside one system: the tools part extends the workspace tools before any push, with no write to GitHub; the rewrites run stages 1 to 8 for each repository, with BotTools' pull-request residual counted on its fresh mirror; one residual measurement runs stage 9 over all three repositories once the last push is verified; and the clone replacement is its own part, once TrumpBot's push is proven.",
+                  "asked": "2026-11-13T18:24:56Z",
+                  "answered": "2026-11-13T18:25:46Z"
+                },
+                {
+                  "text": "What of the old TrumpBot clone's local state should the fresh clone keep? Besides the four files under .idea/ the clone now holds a knowledge graph built from the pre-rewrite tree, its exclude entry, two graph hooks and two local config keys.",
+                  "options": [
+                    "Keep everything: archive and restore the graph files, the exclude entry, the hooks and the two config keys",
+                    "Keep the four .idea/ files only; the clone ends with no graph and no graph hooks",
+                    "Keep the four .idea/ files only, and rebuild the graph from the rewritten tree once the fresh clone is proven"
+                  ],
+                  "answer": "The fresh clone keeps the four `.idea/` files only; once it is proven, the graph is rebuilt from the rewritten tree by a code-only build, which installs the two hooks again.",
+                  "asked": "2026-11-13T18:24:56Z",
+                  "answered": "2026-11-13T18:25:46Z"
+                },
+                {
+                  "text": "Should BotTools' dormant CircleCI webhook stay as it is while its two branches are force-pushed?",
+                  "options": [
+                    "Leave it; the deliveries are recorded by count with the push",
+                    "Deactivate it before the push and reactivate it after",
+                    "Delete it"
+                  ],
+                  "answer": "The webhook stays as it is, and the deliveries the push makes are recorded by count.",
+                  "asked": "2026-11-13T18:24:56Z",
+                  "answered": "2026-11-13T18:25:46Z"
+                }
+              ]
+            }
+          }
+        }
       },
       "gap": {
         "kind": "risk",
@@ -3690,7 +2279,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "bff49c000f41"
+              "hash": "b10c8f3607f1"
             }
           },
           {
@@ -3700,7 +2289,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "92da9a9547a1"
+              "hash": "3471daa7bfa2"
             }
           },
           {
@@ -3710,7 +2299,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#95-the-trumpbot-clone",
               "heading": "9.5 The TrumpBot clone",
               "paragraph": "The TrumpBot clone is replaced once TrumpBot's push is proven, as the last step of unit 7. It is carried out on request (§11), with the procedure from the unit's plan (findings 4 §6.5):",
-              "hash": "ed09c31d423b"
+              "hash": "d7e1113822a3"
             }
           },
           {
@@ -3720,7 +2309,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5d4b31d65eb6"
+              "hash": "5bc4c2ece6b9"
             }
           }
         ],
@@ -3735,7 +2324,16 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "asBuilt": {
         "state": "pending",
-        "summary": "Filed as #27; its run has not started. It starts after unit 6."
+        "summary": "Filed as #27; its run has not started. It starts after unit 6.",
+        "changes": [
+          {
+            "what": "The TrumpBot clone is replaced by a unit of its own, the clone replacement, after the rewrites: of the 59 files git does not track in it, only the four under `.idea/` are carried and restored; the graph's 55 files, its exclude entry, its two hooks and the two extra configuration keys are not. The old clone is renamed aside on its own volume and deleted once the fresh clone has been read back, and a code-only graph build from the rewritten tree follows the deletion.",
+            "why": "The graph was built from the pre-rewrite tree and names files the rewrite removes, so the fresh clone gets a graph built from the rewritten tree instead; and the workspace sits on another volume than the clone, so a move into it would be a copy followed by a deletion, with no lock probe and the irreversible step first.",
+            "when": "#27's design, its clone replacement",
+            "ref": "27-bottools-trumpbot-support-rewrite/architecture.md#103-what-is-carried-and-what-is-not",
+            "link": "architecture.md#95-the-trumpbot-clone"
+          }
+        ]
       }
     },
     {
@@ -3794,7 +2392,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#124-the-report",
               "heading": "12.4 The report",
               "paragraph": "Each rewrite unit's as-built record carries its repositories' rows. Unit 8 compiles them into one table and posts it on #2.",
-              "hash": "c364e8c63ba3"
+              "hash": "193d17fea485"
             }
           },
           {
@@ -3804,7 +2402,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5d4b31d65eb6"
+              "hash": "5bc4c2ece6b9"
             }
           },
           {
@@ -3814,7 +2412,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#67-cleanup",
               "heading": "6.7 Cleanup",
               "paragraph": "Cleanup runs in this order:",
-              "hash": "40782d337e89"
+              "hash": "b1a132a093e5"
             }
           },
           {
@@ -3824,7 +2422,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5d4b31d65eb6"
+              "hash": "5bc4c2ece6b9"
             }
           }
         ],
@@ -4100,16 +2698,49 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       {
         "unit": "gkb2-gkb-rewrite",
-        "basis": "plan",
-        "summary": "No module is published and no version moves; the landing carries documents and generated boards only. `master` of GKB2 and of GKB is replaced by its rewritten history through one push of that ref, made only while the branch is at its recorded tip; both stay public, GitHub keeps serving the old objects, and GKB2's pull-request ref keeps its old history fetchable. #27 takes the corrected runner, the tools with their parameter table and the lease push, and #28 the two report rows with GKB2's residual.",
+        "basis": "as-built",
+        "summary": "No module was published and no version moved; the landing carried documents and generated boards only. `master` of GKB2 and of GKB was replaced by its rewritten history through one push of that ref under a lease on its recorded tip, and neither push was refused; both stay public and unarchived, GitHub keeps serving every old object the unit probed, and GKB2's pull-request ref keeps 15 old commits and 70 of its 81 purged blobs fetchable. #27 takes the corrected runner, the tools with their parameter table, their known gaps and the follow-ups to close before its run, and the lease push; #28 the two report rows with GKB2's residual, with no default-rule finding to confirm.",
         "release": {
           "bump": "none",
           "version": null,
           "note": "no module is published and no version moves",
           "nothingPublished": true
         },
-        "source": "26-gkb2-gkb-rewrite/consequences.md §1 to §6; 26-gkb2-gkb-rewrite/plan.md",
-        "link": "26-gkb2-gkb-rewrite/consequences.md#2-blast-radius"
+        "source": "26-gkb2-gkb-rewrite/consequences.md §1 to §6; 26-gkb2-gkb-rewrite/final-implementation.md §3, §4",
+        "link": "26-gkb2-gkb-rewrite/consequences.md#2-blast-radius",
+        "changes": [
+          {
+            "what": "#27 also takes the tools' known gaps and the follow-ups to close before its run, edits to the two tools that name GKB2 and GKB outside the parameter table, and the one-shell form of a push request's procedure as the request's to ask for.",
+            "why": "Two tools name the repositories outside the table, the tools as they ran keep gaps in their stored-reply reading, untested stops, output rule and close-out, and each push request ran as one shell because it asked for it (the as-built record, deviations 7, 9 and 10).",
+            "when": "#26's as-built record and consequences",
+            "ref": "26-gkb2-gkb-rewrite/consequences.md#4-sibling-units-and-neighbouring-issues"
+          },
+          {
+            "what": "#28 has no default-rule finding to confirm for GKB2 or GKB.",
+            "why": "The scan before each push and both fresh mirrors' scans of branches and tags read clean, with no default-rule finding in a kept file.",
+            "when": "#26's stages S1 and S2, the exit tests",
+            "ref": "26-gkb2-gkb-rewrite/final-implementation.md#34-the-exit-tests"
+          },
+          {
+            "what": "On this machine the run log in the data folder holds 7 lines that name a file of the data folder or of the self-test's sandbox, and the landing's document checks and the preparation unit's removal proof leave files in the earlier units' gate folder and the workspace's `tmp/` folder.",
+            "why": "Two reads in the push step redirect from files that do not exist before its first run, and the self-test calls a tool before its output folder exists (the as-built record, deviations 3 and 6); the gate and the removal proof write where they always do. None of it is committed.",
+            "when": "#26's stages S0 to S2 and the landing's document checks",
+            "ref": "26-gkb2-gkb-rewrite/consequences.md#22-this-machine"
+          }
+        ]
+      },
+      {
+        "unit": "bottools-trumpbot-support-rewrite",
+        "basis": "plan",
+        "summary": "No module is published and no version moves; every landing carries documents and generated boards only. BotTools, TrumpBot and Support are force-pushed in place, one atomic push each with an explicit lease on every branch: every commit id changes and each keeps its visibility, and BotTools' pull-request refs keep its 39 purged blobs fetchable. The TrumpBot clone is replaced by a fresh one that keeps its four `.idea/` files, its graph rebuilt from the rewritten tree. The work is carried out as four units, sub-issues of #27; #28 takes their report rows and records.",
+        "release": {
+          "bump": "none",
+          "version": null,
+          "note": "no module is published and no version moves",
+          "nothingPublished": true
+        },
+        "source": "27-bottools-trumpbot-support-rewrite/consequences.md §1 to §6",
+        "link": "27-bottools-trumpbot-support-rewrite/consequences.md#2-blast-radius"
       }
     ],
     "changes": [
@@ -4191,6 +2822,13 @@ window.dashboardLive&&window.dashboardLive("plan",
         "what": "Their planning-branch links, 16 in MagicBot #1 to #8 and 1 in WebTools #55, are not repointed yet: they remain a follow-up.",
         "why": "They were outside the publication unit's writes, which reached KotlinBottools' issue bodies only.",
         "ref": "25-kotlinbottools-publish/consequences.md#6-follow-ups"
+      },
+      {
+        "unit": "gkb2-gkb-rewrite",
+        "when": "#26 landing",
+        "none": true,
+        "why": "GKB2 and GKB were force-pushed in place, public and unarchived with every setting as it was, as the initiative's impact states; GitHub serves their old objects, and GKB2's pull-request ref keeps 70 of its 81 purged blobs fetchable, the research baseline's figure. Neither has a default-rule finding in a kept file, and what the run left on this machine stays in the data folder and the workspace.",
+        "ref": "26-gkb2-gkb-rewrite/final-implementation.md#3-measurements"
       }
     ]
   },

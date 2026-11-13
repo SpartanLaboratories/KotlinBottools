@@ -1060,7 +1060,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   "title": "Rewrite GKB2 and GKB",
   "issueTitle": "Phase 0 · 6 — Rewrite GKB2 and GKB",
   "function": "GKB2 and GKB, two public repositories, still hold in their histories the files the phase purges: 81 purged blobs in GKB2, 70 of them also reachable through its pull-request ref, and 58 in GKB. This run takes each through the rewrite pipeline, GKB2 first, from the mirror the preparation unit took, checked unchanged: the purge with its checks before and after, the force-push with its dry run and per-ref verification, the exit tests on a fresh mirror, and the residual probes, with GKB2's pull-request residual counted. Unit 6 of #2, with no version moved; both repositories stay public, and GitHub keeps serving their old objects by id.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-13T02:57:18Z",
   "parent": {
     "issue": 2,
@@ -1073,7 +1073,30 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     "sha": "96eba228ddd753f3b176f965c4ffa332f2187369",
     "date": "2026-11-12"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "416f36bda66c2050e320504d999a46e71ea18557",
+    "merge": "416f36bda66c2050e320504d999a46e71ea18557",
+    "pr": 37,
+    "date": "2026-11-13",
+    "at": "2026-11-13T09:38:29Z",
+    "commits": [
+      {
+        "sha": "ca84089",
+        "at": "2026-11-13T03:17:07Z",
+        "step": "research"
+      },
+      {
+        "sha": "0564ae9",
+        "at": "2026-11-13T03:35:11Z",
+        "step": "research"
+      },
+      {
+        "sha": "811e47f",
+        "at": "2026-11-13T03:40:27Z",
+        "step": "research"
+      }
+    ]
+  },
   "systems": [
     {
       "slug": "rewrite-pipeline",
@@ -1095,10 +1118,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-13T08:15:08Z",
-    "updated": "2026-11-13T09:34:35Z",
-    "detail": "Document: 6 of 6 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-13T09:38:29Z",
+    "updated": "2026-11-13T09:38:29Z",
+    "detail": "Landed in PR #37.",
     "steps": [
       "sizing",
       "interview",
@@ -1113,9 +1136,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -1475,9 +1496,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       }
     ],
     "event": {
-      "name": "document",
-      "at": "2026-11-13T09:34:35Z",
-      "note": "6 of 6 tasks done"
+      "name": "landed",
+      "at": "2026-11-13T09:38:29Z"
     },
     "history": {
       "sizing": [
@@ -2603,6 +2623,97 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             }
           ]
         }
+      ],
+      "document": [
+        {
+          "since": "2026-11-13T08:15:08Z",
+          "ended": "2026-11-13T09:37:00Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-13T09:34:35Z",
+            "note": "6 of 6 tasks done"
+          },
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done",
+                "started": "2026-11-13T08:22:24Z",
+                "finished": "2026-11-13T08:32:16Z",
+                "report": "The documentation check found 19 points. Thirteen are in the tools' own comments, headers and usage lines (contracts that lag the code, embedded shell and wire-format fragments with no line comment, no folding regions): the tools' bytes are recorded and their run is made, so these become documentation follow-ups for the next rewrite unit. Six are in the plan's prose (a request field missing from its table, the output rule's sentence on paths in a request, which status one class reads, the ring map, a missing diagram of the request flow as built, two edges of the flowchart): they are recorded in the as-built record and the consequences, and the plan's text stays as the tools were saved from it."
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-13T08:32:16Z",
+                "finished": "2026-11-13T09:19:14Z",
+                "report": "The as-built record is complete: what was built, the acceptance against the plan's criteria, the measurements and sixteen departures from the plan, each with the plan section it departs from, and a sequence diagram of the request flow as it ran. The consequences carry every assumption's outcome, the known gaps and the follow-ups for the next rewrite unit, the documentation follow-ups on the tools included. Dated notes of 2026-11-13 are in the design (the push form, the scan before the push, the per-ref verification, the request sent by reference, the corrected runner in this unit's scope), in the phase's consequences and in the consequences of the preparation, rewrite-and-swap, hygiene and publication units. A second documentation check found every earlier point recorded and thirteen points in the new text, all corrected. The README needs no change and the CHANGELOG no entry: the landing carries documents and boards only, and no version moves. The heading of the record's departures section changed, so links to it are to be regenerated."
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-13T08:35:01Z",
+                "finished": "2026-11-13T09:19:14Z",
+                "report": "The as-built record is complete: what was built, the acceptance against the plan's criteria, the measurements and sixteen departures from the plan, each with the plan section it departs from, and a sequence diagram of the request flow as it ran. The consequences carry every assumption's outcome, the known gaps and the follow-ups for the next rewrite unit, the documentation follow-ups on the tools included. Dated notes of 2026-11-13 are in the design (the push form, the scan before the push, the per-ref verification, the request sent by reference, the corrected runner in this unit's scope), in the phase's consequences and in the consequences of the preparation, rewrite-and-swap, hygiene and publication units. A second documentation check found every earlier point recorded and thirteen points in the new text, all corrected. The README needs no change and the CHANGELOG no entry: the landing carries documents and boards only, and no version moves. The heading of the record's departures section changed, so links to it are to be regenerated."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-13T09:19:14Z",
+                "report": "The as-built record is complete: what was built, the acceptance against the plan's criteria, the measurements and sixteen departures from the plan, each with the plan section it departs from, and a sequence diagram of the request flow as it ran. The consequences carry every assumption's outcome, the known gaps and the follow-ups for the next rewrite unit, the documentation follow-ups on the tools included. Dated notes of 2026-11-13 are in the design (the push form, the scan before the push, the per-ref verification, the request sent by reference, the corrected runner in this unit's scope), in the phase's consequences and in the consequences of the preparation, rewrite-and-swap, hygiene and publication units. A second documentation check found every earlier point recorded and thirteen points in the new text, all corrected. The README needs no change and the CHANGELOG no entry: the landing carries documents and boards only, and no version moves. The heading of the record's departures section changed, so links to it are to be regenerated."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-13T09:20:33Z",
+                "finished": "2026-11-13T09:31:39Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-13T09:31:39Z",
+                "finished": "2026-11-13T09:34:35Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-13T09:37:00Z",
+          "ended": "2026-11-13T09:37:54Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-13T09:37:00Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-13T09:37:54Z",
+          "ended": "2026-11-13T09:38:29Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "merge",
+            "at": "2026-11-13T09:37:54Z",
+            "note": "merging PR #37"
+          },
+          "detail": "Merge: merging it in PR #37."
+        }
       ]
     },
     "next": null,
@@ -2783,6 +2894,13 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "date": "2026-11-13",
       "ref": "plan.md",
       "note": "four stages: a readiness stage that writes nothing, GKB2's nine pipeline steps, then GKB's once GKB2 has passed every step, and a close-out that reads both repositories again; two force-pushes, each of the one branch with a lease on its old tip, read back on two channels; nothing else written to GitHub"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-13",
+      "ref": "PR #37",
+      "note": "merged as 416f36b"
     }
   ],
   "trail": [
@@ -2982,6 +3100,23 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "date": "2026-11-13",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "Merge: merging it in PR #37",
+      "ref": "PR #37"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "Landed in PR #37, merge 416f36b",
+      "ref": "PR #37"
     }
   ],
   "rows": [
@@ -4449,8 +4584,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     }
   ],
   "impact": {
-    "basis": "plan",
-    "summary": "No module is published and no version moves: the landing carries documents and generated boards only. What changes in public is the history of two repositories: `master` of GKB2 and of GKB is replaced by its rewritten history through one push of that ref, made only while the branch is at its recorded tip. GitHub keeps serving the old objects, and GKB2's pull-request ref keeps its old history fetchable (`consequences.md` §1 to §4; the known gaps, the tools' gaps as they ran among them, in §5; the follow-ups in §6).",
+    "basis": "as-built",
+    "summary": "No module was published and no version moved: the landing carried documents and generated boards only. What changed in public is the history of two repositories: `master` of GKB2 and of GKB was replaced by its rewritten history through one push of that ref, made only while the branch was at its recorded tip, and neither push was refused. GitHub keeps serving the old objects, and GKB2's pull-request ref keeps its old history fetchable (`consequences.md` §1 to §4; the known gaps, the tools' gaps as they ran among them, in §5; the follow-ups in §6).",
     "none": null,
     "release": {
       "bump": "none",
@@ -4464,7 +4599,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "kind": "repository",
         "system": null,
         "effect": "behaviour",
-        "summary": "`master` holds the rewritten history: every commit id changes, 32 commits become 30, and 14 of the tip's 86 files leave. It stays public and unarchived with every setting as it was; `refs/pull/6/head` keeps 15 old commits and, by the prediction, 70 of the 81 purged blobs fetchable, and pull request #6 keeps showing its old commits.",
+        "summary": "`master` holds the rewritten history: every commit id changed, 32 commits became 30, and 14 of the tip's 86 files left. It stays public and unarchived with every setting as it was; `refs/pull/6/head` keeps 15 old commits and 70 of the 81 purged blobs fetchable, as measured on a fresh mirror after the push, and pull request #6 keeps showing its old commits.",
         "link": "consequences.md#21-github"
       },
       {
@@ -4472,7 +4607,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "kind": "repository",
         "system": null,
         "effect": "behaviour",
-        "summary": "`master` holds the rewritten history: every commit id changes, 11 commits become 9, and 54 of the tip's 114 files leave. It stays public and unarchived with every setting as it was, and has no pull-request ref.",
+        "summary": "`master` holds the rewritten history: every commit id changed, 11 commits became 9, and 54 of the tip's 114 files left. It stays public and unarchived with every setting as it was, and has no pull-request ref.",
         "link": "consequences.md#21-github"
       },
       {
@@ -4504,7 +4639,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "kind": "operator",
         "system": "rewrite-pipeline",
         "effect": "additive",
-        "summary": "The two mirrors are rewritten beside their untouched backups, a fresh mirror of each is taken, the unit's tools are saved and the stage runner replaced by its corrected version; the records go to the data folder, never committed, printed or quoted. The run log there gains this unit's lines, 7 of which name a file of the data folder or of the self-test's sandbox, and none a 40-digit id.",
+        "summary": "The two mirrors are rewritten beside their untouched backups, a fresh mirror of each is taken, the unit's tools are saved and the stage runner replaced by its corrected version; the records go to the data folder, never committed, printed or quoted. The run log there gains this unit's lines, 7 of which name a file of the data folder or of the self-test's sandbox, and none a 40-digit id. The landing's document checks write three files in the earlier units' gate folder, and two scratch files of the preparation unit's removal proof sit in the workspace's `tmp/` folder until the workspace is deleted.",
         "link": "consequences.md#22-this-machine"
       },
       {
@@ -4528,20 +4663,20 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "who": "The next rewrite unit, #27",
         "system": null,
         "need": "required",
-        "summary": "It takes the corrected runner, the tools with the parameter table, to which it adds its rows, the lease push with its guards, tally and classes, the readiness pattern and `ganon.sh`. Two tools name GKB2 and GKB outside the table, so a new repository needs edits there too, and before its run it closes the tools' gaps the follow-ups name. BotTools has two branches and two pull-request refs, so its push needs one request per branch or `--atomic`; TrumpBot and Support are private, so they have no anonymous probes.",
+        "summary": "It takes the corrected runner, the tools with the parameter table, to which it adds its rows, the lease push with its guards, tally and classes, the readiness pattern and `ganon.sh`. Two tools name GKB2 and GKB outside the table, so a new repository needs edits there too, and before its run it closes the tools' gaps the follow-ups name. Each push request ran its procedure as one shell because the request asked for it, so that form is the request's to ask for. BotTools has two branches and two pull-request refs, so its push needs one request per branch or `--atomic`; TrumpBot and Support are private, so they have no anonymous probes.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       },
       {
         "who": "The residual report and cleanup, #28",
         "system": null,
         "need": "required",
-        "summary": "It takes GKB2's and GKB's report rows with GKB2's pull-request residual, any default-rule finding by rule id and count, the tools to copy at cleanup and the records with their checksum lists.",
+        "summary": "It takes GKB2's and GKB's report rows with GKB2's pull-request residual, the tools to copy at cleanup and the records with their checksum lists. No default-rule finding was recorded in either repository, so there is none to confirm.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       }
     ],
     "api": [],
     "conversion": [],
-    "source": "consequences.md §1 to §6; plan.md Interfaces with sibling units",
+    "source": "consequences.md §1 to §6; final-implementation.md §3, §4",
     "link": "consequences.md#2-blast-radius",
     "changes": [
       {
@@ -4556,6 +4691,28 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "what": "The next rewrite unit's adoption grows: two tools besides the parameter table name the repositories, so a new repository needs edits there as well as rows, and the tools carry gaps it closes before its run (the stored reply's form, the untested stops, the self-test by test level, the output rule everywhere, the budget's reading, the close-out run twice).",
         "why": "The as-built record's deviation 7 and the tools' gaps as they ran (`consequences.md` §5, §6).",
         "when": "Correction · the as-built record and the consequences"
+      },
+      {
+        "entry": "downstream.5",
+        "system": "rewrite-pipeline",
+        "what": "The machine's account grows by two sets of files: the landing's document checks write their argument file and the gate's last error and status files in the earlier units' gate folder, and two scratch files of the preparation unit's removal proof sit directly in the workspace's `tmp/` folder rather than in this unit's scratch folder.",
+        "why": "The gate folder is where the earlier units' document gate runs, and every use of the preparation unit's removal proof writes its two scratch files there, over the previous use's; the workspace's deletion removes them.",
+        "when": "Stages S1 and S2, and the landing's document checks",
+        "ref": "consequences.md#22-this-machine"
+      },
+      {
+        "entry": "adaptation.1",
+        "what": "For the next rewrite unit, running a push request's procedure as one shell is the request's to ask for: each of this unit's two requests asked for it and ran so, while the self-test's stand-in runs each entry in a shell of its own.",
+        "why": "The two forms agree only for a procedure whose every entry sets the values it uses and whose every guard ends the shell (the as-built record, deviations 9 and 10).",
+        "when": "Stages S1 and S2 · the push requests",
+        "ref": "final-implementation.md#4-deviations-from-the-plan"
+      },
+      {
+        "entry": "adaptation.2",
+        "what": "The residual report has no default-rule finding to confirm for GKB2 or GKB.",
+        "why": "The scan before each push and both fresh mirrors' scans of branches and tags read clean, with no default-rule finding in a kept file (the as-built record, §3.4).",
+        "when": "Stages S1 and S2 · the scans and the exit tests",
+        "ref": "final-implementation.md#34-the-exit-tests"
       }
     ]
   },
