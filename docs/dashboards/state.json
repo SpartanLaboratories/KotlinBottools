@@ -1,7 +1,7 @@
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "chore/issue-25-make-repository-public", "sha": "2ad91c2", "date": "2026-11-13T00:49:57Z"},
-  "lastAmended": {"issue": 25, "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection", "sha": "2ad91c2"},
-  "written": {"sha": "2ad91c2"}
+  "asIs": {"ref": "chore/issue-26-rewrite-gkb2-and-gkb", "sha": "2bbd7ec", "date": "2026-11-13T08:21:52Z"},
+  "lastAmended": {"issue": 26, "title": "Phase 0 · 6 — Rewrite GKB2 and GKB", "sha": "2bbd7ec"},
+  "written": {"sha": "2bbd7ec"}
 }

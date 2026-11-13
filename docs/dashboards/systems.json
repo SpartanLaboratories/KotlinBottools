@@ -5,8 +5,8 @@
     {"slug": "kotlinbottools", "name": "KotlinBottools", "kind": "repo", "parent": null, "status": "built",
      "function": "A Kotlin Discord bot framework on JDA: hierarchical text and slash commands, XML-backed guild and member data, event responders and polling services, built by one Gradle build at 7.5-SNAPSHOT.",
      "paths": ["."], "version": null,
-     "asIs": {"ref": "chore/issue-25-make-repository-public", "sha": "2ad91c2", "date": "2026-11-13T00:49:57Z"},
-     "lastAmended": {"issue": 25, "sha": "2ad91c2"},
+     "asIs": {"ref": "chore/issue-26-rewrite-gkb2-and-gkb", "sha": "2bbd7ec", "date": "2026-11-13T08:21:52Z"},
+     "lastAmended": {"issue": 26, "sha": "2bbd7ec"},
      "board": "index.html", "dsl": "workspace.dsl"},
 
     {"slug": "toolchain", "name": "Toolchain", "kind": "system", "parent": "workspace-lifecycle", "status": "planned", "visibility": "internal-repo",
