@@ -33,21 +33,23 @@ histories (§2.1).
 
 ### 2.1 GitHub
 
-- **GKB2 and GKB are force-pushed in place.** Each repository's one branch, `master`, is replaced by its rewritten history through
-  one push of that ref, made only while the branch is still at the tip the clone recorded
-  ([plan, The push](plan.md#the-push)):
-  - every commit id changes, because each root commit held a purged path; GKB2's 32 commits become 30, and GKB's 11 become 9;
-  - the files under the purged paths leave every commit, the tip's tree included: 14 of the 86 files at GKB2's tip, and 54 of the
+- **GKB2 and GKB are force-pushed in place.** Each repository's one branch, `master`, was replaced by its rewritten history through
+  one push of that ref, made only while the branch was still at the tip the clone recorded
+  ([plan, The push](plan.md#the-push); [as built, §3.3](final-implementation.md#33-the-pushes)):
+  - every commit id changed, because each root commit held a purged path; GKB2's 32 commits became 30, and GKB's 11 became 9;
+  - the files under the purged paths left every commit, the tip's tree included: 14 of the 86 files at GKB2's tip, and 54 of the
     114 at GKB's;
-  - both repositories stay public and unarchived, with every setting as it was. Nothing else is written: no other ref, no issue,
-    comment, label or setting, and nothing is deleted.
+  - both repositories stay public and unarchived, with every setting as it was. Nothing else was written: no other ref, no issue,
+    comment, label or setting, and nothing was deleted.
 - **What stays reachable** ([the parent consequences, §2.1](../consequences.md#21-the-six-repositories); architecture §6.6). GitHub
-  keeps serving every pre-rewrite object by id, on every route, with no documented expiry. GKB2's `refs/pull/6/head`, which GitHub
-  hides from a push, keeps its pre-rewrite history fetchable: 15 old commits and, by the prediction, 70 of the 81 purged blobs, all of
-  which a fresh clone of GKB2 downloads. Both repositories were public before, so this exposure is not new; the unit measures it and
-  claims no removal.
-- **The activity feed and the events** each record the push, with the old tip as its `before`: one more published pre-rewrite id, as
-  every earlier entry of the feed already holds.
+  keeps serving every pre-rewrite object by id, on every route, with no documented expiry: every old id the unit probed is still
+  served, authenticated and anonymously ([as built, §3.5](final-implementation.md#35-what-github-still-serves)). GKB2's
+  `refs/pull/6/head`, which GitHub hides from a push, keeps part of the pre-rewrite history fetchable, most of the purged blobs among
+  it, and a mirror clone of GKB2 downloads all of that ([as built, §3.4](final-implementation.md#34-the-exit-tests)). Both
+  repositories were public before, so this exposure is not new; the unit measured it and claims no removal.
+- **The activity feed** of each repository records the push as one forced update, with the old tip as its `before`: one more
+  published pre-rewrite id, beside those its earlier entries already held
+  ([as built, §3.5](final-implementation.md#35-what-github-still-serves)).
 - **GKB2's pull request #6** keeps showing its pre-rewrite commits, served through its ref, and its merge commit is no longer on
   `master`.
 - **References into the two histories.** A link to a pre-rewrite commit keeps resolving, since GitHub keeps serving the old objects;
@@ -55,15 +57,16 @@ histories (§2.1).
   not touch.
 - **Clones taken before the push** keep the old history, and their `master` shares no commit with the server's afterwards. Neither
   repository has a fork.
-- **A refusal leaves both repositories as they are.** If GitHub's push protection for users finds a supported secret in a rewritten
-  history, or any other refusal occurs, that push changes nothing on the server (§5, §6).
+- **Neither push was refused.** No check on the server, push protection for users among them, refused either push: each was classed
+  `pushed`, with every refusal marker counted at 0 ([as built, §3.3](final-implementation.md#33-the-pushes)).
 
 ### 2.2 This machine
 
 - **`%USERPROFILE%\BotWS`:**
   - GKB2's and GKB's mirrors are rewritten; their pre-rewrite state stays in the untouched backups beside them;
   - a fresh mirror of each repository is taken in `fresh/`;
-  - this unit's tools are saved in `tools/g26/`, and the phase's stage runner is replaced by its corrected version (§3);
+  - this unit's tool files are saved in `tools/g26/` ([as built, §1](final-implementation.md#1-what-was-built)), and the phase's
+    stage runner is replaced by its corrected version (§3);
   - the scan reports and the scratch files are kept there.
 
   The last unit of the phase deletes the workspace.
@@ -72,7 +75,9 @@ histories (§2.1).
   probe tallies, the feeds' counts and the report rows, each folder with its checksum list; the requests and replies in `run/g26/`.
   They hold pre-rewrite ids and paths, and are never committed, printed or quoted. The run log, `run/as-run.log`, gains this unit's
   lines: their start lines show plain-word arguments only, and the lines that name a file of the data folder or of the self-test's
-  sandbox, printed by the push step and by the self-test, reach it as well (§5).
+  sandbox, printed by the push step and by the self-test, reach it as well (§5). The landing's document checks write three files in the
+  earlier units' gate folder, `run/gate/`: the argument file of the documents' gate run, `corpus-g26docs.args`, and the gate's last
+  error and status files, `gate-last.err` and `gate-last.status`, which every gate run there overwrites.
 - **Two scratch files of the preparation unit's `prove_removed`** sit directly in the workspace's `tmp/` folder rather than in this
   unit's scratch folder: every use of that function writes them there, over the previous use's, and the workspace's deletion removes
   them.
@@ -102,7 +107,8 @@ No README change and no CHANGELOG entry: the landing carries documents only. The
 - **The corrected stage runner** shows a run's arguments in the run log only when they are plain words. Every later stage run of the
   phase uses it.
 - **The per-repository tools** take a repository's name and read its policy from a parameter table and from the preparation unit's
-  expectation rows, so a later unit adds rows, and edits the two tools §4 names, rather than copying scripts.
+  expectation rows, so a later unit adds rows, and edits the two tools that also name the repositories (deviation 7 of
+  [the as-built record](final-implementation.md#4-deviations-from-the-plan)), rather than copying scripts.
 - **The readiness check pins the current scan configuration,** `main`'s `.gitleaks.toml`, where `k0-ready.sh` pins the earlier one.
   `save-tools.sh`, which would write the earlier configuration back, is not run again.
 - **The anonymous probe helper,** `ganon.sh`, takes the publication unit's corrected route rules with "served" as the expected
@@ -124,19 +130,27 @@ No README change and no CHANGELOG entry: the landing carries documents only. The
     request service's deny rule;
   - the readiness pattern and `ganon.sh`;
   - the tools as they ran, with the gaps of §5 and the follow-ups of §6 that name it. Two of the tools name the repositories outside
-    the parameter table (deviation 7 of [the as-built record](final-implementation.md#deviations)), so a new repository needs edits
+    the parameter table (deviation 7 of [the as-built record](final-implementation.md#4-deviations-from-the-plan)), so a new repository needs edits
     there as well as rows. Each push request ran its procedure as one shell because the request asked for it (deviations 9 and 10
     there), so for #27 that form is the request's to ask for, while the self-test's stand-in models the other form, one entry to a
     shell. The two agree only for a procedure whose every entry sets the values it uses and whose every guard ends the shell.
 - **`residual-report-and-cleanup` (#28)** takes:
-  - GKB2's and GKB's report rows (`DATA/rewrite/<repo>/report-row.txt`), with GKB2's pull-request residual;
-  - any default-rule finding, by rule id and count;
+  - GKB2's and GKB's report rows (`DATA/rewrite/<repo>/report-row.txt`), with GKB2's pull-request residual
+    ([as built, §3.4](final-implementation.md#34-the-exit-tests));
+  - that no default-rule finding was recorded in either repository, so there is none to confirm;
   - the tools to copy at cleanup, and the records with their checksum lists.
 
-**What this unit takes:** from the preparation unit (#21), the mirrors, backups, manifests, expectation rows, positive-control
-records, lists and tools; from the rewrite and swap unit (#23), the pipeline as it ran, and its recorded gap on the runner, which
-this unit closes; from the repository hygiene unit (#24), the workspace configuration equal to `main`'s and the follow-up on the two
-stale pins, which this unit's readiness check settles; from the publication unit (#25), the corrected anonymous route rules.
+**What this unit took:**
+
+- from [the preparation unit](../21-preparation/consequences.md) (#21), the mirrors, backups, manifests, expectation rows,
+  positive-control records, lists and tools; its record of the stage runner's pin is no longer current, and a dated note there says
+  so;
+- from [the rewrite and swap unit](../23-kotlinbottools-rewrite-and-swap/consequences.md) (#23), the pipeline as it ran, and its
+  recorded gap on the runner, which this unit closed; a dated note there says so;
+- from [the repository hygiene unit](../24-repository-hygiene/consequences.md) (#24), the workspace configuration equal to `main`'s and
+  the follow-up on the two stale pins, which this unit's readiness check settled; a dated note there says so;
+- from [the publication unit](../25-kotlinbottools-publish/consequences.md) (#25), the corrected anonymous route rules; its follow-ups
+  on `anon.sh`'s stand-in cases and on its tools' comments were not triggered, as dated notes there say.
 
 **Neighbouring issues:**
 
@@ -154,14 +168,14 @@ stale pins, which this unit's readiness check settles; from the publication unit
   removal would end it.
 - **GitHub's push protection for users can be neither read nor tried beforehand.** The account's setting has no read, a dry run never
   shows a block, what a push scan examines is undocumented, and a scan that times out lets the push through and scans afterwards, so a
-  clean push does not prove that nothing matched. The markers that attribute a refusal rest on published logs; the first real refusal,
-  if one comes, is their check.
-- **Whether GitHub's receive path checks the update's old value** is not observable. The guard before the push and the reads after it
-  stand either way.
+  clean push does not prove that nothing matched. The markers that attribute a refusal rest on published logs; neither push met a
+  refusal, so their live wording is still unchecked, and the first real refusal, if one comes, is their check.
+- **Whether GitHub's receive path checks the update's old value** is not observable, and no branch moved during the run to try the
+  lease against it. The guard before the push and the reads after it stand either way.
 - **The feeds lag.** The events can lag by up to 6 hours and the activity feed's answers are cached for minutes, so a later read may
-  list an event the run's reads did not.
+  list an event the run's reads did not ([what the run's reads listed, as built §3.5](final-implementation.md#35-what-github-still-serves)).
 - **The run log** keeps the arguments the earlier units' runs wrote and, from this unit's run, the lines that name a file of the data
-  folder or of the self-test's sandbox ([the as-built record, Deviations](final-implementation.md#deviations)). It stays in the data
+  folder or of the self-test's sandbox ([the as-built record, Deviations](final-implementation.md#4-deviations-from-the-plan)). It stays in the data
   folder; this unit's lines in it hold no 40-digit id.
 
 **The tools, as they ran.** The tools in `$WS/tools/g26/`, which the next rewrite unit (#27) reuses, keep these gaps; §6 says what #27
@@ -178,8 +192,12 @@ does about each before its run.
 
   It never yields a false `pushed`, and the remote stays safe either way: a resend runs the procedure's guards again and pushes only
   under the lease on the recorded old tip, so it can repeat a refusal but cannot overwrite a branch that moved. The form the run stored
-  is deviation 5 of [the as-built record](final-implementation.md#deviations). No self-test case feeds a reply in the delivered form: the
+  is deviation 5 of [the as-built record](final-implementation.md#4-deviations-from-the-plan). No self-test case feeds a reply in the delivered form: the
   stand-in stores the printed lines themselves.
+- **The table of classes and the classifier differ for a reply with a dry-run status and no push status** (deviation 13 of
+  [the as-built record](final-implementation.md#4-deviations-from-the-plan)).
+- **The tools' comments, headers and usage lines state less than the tools do**: contracts, files written, environment overrides,
+  exit statuses and the reasons for non-obvious code, in the 13 points §6 lists for #27.
 - **Stops and branches that no test case reaches.** The real run proved the passing behaviour; these paths were exercised by no case.
   Two of them guard the one irreversible write or carry a correction made for the phase:
   - **`p6-push.sh request`'s stop for a branch still at its old tip whose last attempt's class allows no resend** ("a push is never
@@ -239,36 +257,54 @@ does about each before its run.
 - **The output rule is asserted for step 9's output and the runner's start line only.** The self-test asserts that step 9's whole
   output holds no 40-digit id and no path, and that the runner's start line shows no path and no id; no case asserts it for the other
   steps' output or for the self-test's own output. The run broke the rule twice, in the push step's first
-  `request` and in the self-test's own run ([the as-built record, Deviations](final-implementation.md#deviations)); the self-test's case
+  `request` and in the self-test's own run ([the as-built record, Deviations](final-implementation.md#4-deviations-from-the-plan)); the self-test's case
   for `request` looks for its `PROCEED` line only, so it passed with the same two lines in its output.
 - **The anonymous budget read before a step 9 disagreed with the calls it counts** ([plan, Assumptions, A8](plan.md#assumptions)).
-  The readings were 60 before GKB2's step 9, 60 again before GKB's eight minutes later, then 18 and 16 before the two second feed
-  reads. Each step 9 made 21 anonymous REST calls and each second feed read 2, and the last call left 14: 60 − 21 − 21 − 2 − 2 = 14, so
-  39 remained before GKB's step 9, not the 60 read. Why the reading was high is not established: a reading of `/rate_limit` that lags,
-  or a window that does not run an hour from the first call. Every gate held on the true values as well (60 and 39 against the 36 a step
-  9 needs, 18 and 16 against the 14 a second feed read needs), and no set met a budget stop. A step 9 makes 19 anonymous REST probe
-  calls and then 2 feed calls, and each call after the first goes ahead only when the one before it left at least 8. Under a reading
-  that passes the gate, a true value of 28 to 35 completes the step with no stop; 26 or 27 completes the probes and the budget cuts one
-  or both anonymous REST feed reads, which count as not valid rather than as a stop; 25 or less stops a set. No stand-in case has a
-  reading that lags: the stand-in answers `/rate_limit` from the same counter that the calls spend.
+  The readings, the calls made and the last call's remainder are measured in
+  [the as-built record, §3.5](final-implementation.md#35-what-github-still-serves). Counted back from that remainder through the
+  calls, 39 calls remained before GKB's step 9, where the reading said 60; every other reading agrees with the calls. Why that reading
+  was high is not established: a reading of `/rate_limit` that lags, or a window that does not run an hour from the first call. Every
+  gate held on the true values as well, GKB's step 9 on 39 against the 36 it needs, and no set met a budget stop. A step 9 makes 19
+  anonymous REST probe calls and then 2 feed calls, and each call after the first goes ahead only when the one before it left at
+  least 8. Under a reading that passes the gate, a true value of 28 to 35 completes the step with no stop; 26 or 27 completes the probes
+  and the budget cuts one or both anonymous REST feed reads, which count as not valid rather than as a stop; 25 or less stops a set. No
+  stand-in case has a reading that lags: the stand-in answers `/rate_limit` from the same counter that the calls spend.
 - **The close-out's steps are not safe to run twice.** `s3-close.sh feeds` reads each named repository again in turn: run again after a
   `WAIT` at the second repository, it appends the first repository's second read a second time (10 lines where 5 belong).
   `s3-close.sh record`, run twice, appends its block of second feed reads to `report-row.txt` twice, and `g26.SHA256SUMS` then pins the
   doubled row. The stop table's answer for `S3` is to run the step again. The run met neither case: each step ran once, appending 5
   lines for each repository, with no `WAIT`.
 
+**Outcome of the plan's assumptions** ([plan, Assumptions](plan.md#assumptions); the counts are in
+[the as-built record, §3](final-implementation.md#3-measurements)):
+
+- **A1 held.** Nothing was pushed to either repository but this unit's two pushes: the server's heads and tags equalled the old column
+  at the push preparation and again in each request's guards, and each repository's activity feed holds one forced update
+  ([as built, §3.3](final-implementation.md#33-the-pushes)).
+- **A2 held.** Every count of the rewrite equals its expectation row, on the rewritten mirror and on the fresh mirror.
+- **A3 was not refuted.** Neither push was refused ([as built, §3.3](final-implementation.md#33-the-pushes)), which does not prove
+  that nothing in the kept history matched (the known gap on push protection above).
+- **A4 held.** Neither push was refused.
+- **A5 was not exercised.** No branch moved, so the lease was never tried against GitHub's receive path (§5).
+- **A6 held.** The positive control on each untouched backup equals the preparation unit's record line for line under the current
+  configuration.
+- **A7 held.** The scan before each push and both fresh mirrors' scans of branches and tags read `RESULT: CLEAN`; there is no
+  default-rule finding.
+- **A8 held,** with the known gap on the budget's reading above: no throttle, no budget stop, no `WAIT`.
+- **A9 held** ([as built, §3.4](final-implementation.md#34-the-exit-tests)).
+- **A10 held** (deviations 1 and 4 of [the as-built record](final-implementation.md#4-deviations-from-the-plan)).
+- **A11 held** ([as built, §3.5](final-implementation.md#35-what-github-still-serves)).
+- **A12 held.** Both pushes authenticated through `gh auth git-credential` to the repository's URL and landed.
+
 ---
 
 ## 6. Follow-ups
 
-**Left by this unit, if the run meets them:**
+**Closed, as the run met neither:**
 
-- **A default-rule finding in a kept file:** the owner's decision, a `targetRules` allowlist for that one rule and path or acceptance as
-  recorded, with the credential rotated if it could still be live
-  ([the parent consequences, §6](../consequences.md#6-follow-ups)).
-- **A refusal by push protection:** the owner's decision, made from the kept error file, to extend the purge list and redo the rewrite
-  from the backup, or to allow the secret through the block's URL as the pushing account and have the push requested again within
-  three hours.
+- **A default-rule finding in a kept file,** which would have needed the owner's decision on a `targetRules` allowlist for that one rule
+  and path, or acceptance as recorded ([the parent consequences, §6](../consequences.md#6-follow-ups)): neither repository has one.
+- **A refusal by push protection,** which would have needed the owner's decision from the kept error file: neither push was refused.
 
 **For the next rewrite unit (#27), which reuses the tools, before its run** (the gaps are in §5, "The tools, as they ran"):
 
@@ -293,6 +329,59 @@ does about each before its run.
   runs; the component row says every step of `S0` runs on fixtures with its stops, which `S0.tools` and `S0.pins` do not; and some
   case labels name a function or a step rather than a behaviour (`count_markers`, `fields`, `parse_rc: dry`, `B: step 7`, `S3.reads`,
   `S3.record`, `request E`).
+- **The plan's flowchart and ring map.** #27's plan draws the edges of its flowchart from the table of classes and the tools' own
+  resends and hand-backs, and its map of the documentation rings from where the tools put each rule and what they comment
+  (deviations 14 and 15 of [the as-built record](final-implementation.md#4-deviations-from-the-plan)).
+
+**The tools' own documentation, for #27 when it saves them again** (the known gap is in §5; the files are in
+[the as-built record, §1](final-implementation.md#1-what-was-built)).
+
+- **Component contracts: headers, usage lines and docstrings.**
+  - `g26_req.py`: `classify`'s docstring leaves out its `stage` parameter (a dry-run stage never yields `pushed`), and no docstring
+    names the two classes `cmd_classify` gives itself, `refused-by-service` and `stopped-by-guard`, so no one contract lists the nine
+    classes `p6-push.sh check` switches on.
+  - `g26_req.py`'s docstrings: the module's environment line lists `WS` and `DATA`, which the tool never reads, and credits every
+    variable to `row`; `cmd_build`'s leaves out its stop on a forbidden argument; `porcelain_tally`'s calls its result the expected
+    tally, where it returns the stream's own tally, and leaves out its stop when `awk` fails.
+  - `g26lib.sh`: no contract comment on `refs_listing`, `server_heads_tags`, `server_pulls` and `run_batch`, which other tools call. The
+    two `server_` functions are credentialed network reads that print a normalised listing and return git's status; `run_batch` ends
+    the calling script on a batch that does not pass.
+  - The environment overrides `G26_SCRATCH`, `G26_PARAMS`, `G26_ROWS`, `G26_PACE` and `G26_FEED_GAP`, which change a tool's folders,
+    tables, pace and wait, are in no header.
+  - Usage and exit statuses: `s3-close.sh`'s fallback usage leaves out the required repositories, and `gdocs.sh`'s leaves them out for
+    `ids`; `p6-push.sh`'s header does not say that a `NEXT` also ends with status 1, nor that `SKIP` ends with 0 and no stage line;
+    `run-stage.sh`'s header does not say that a stage name with other characters is shown as `<name>`.
+- **Boundary.**
+  - `ganon.sh`'s `feed_read`: its comment says that a budget stop or a status other than 200 makes that read not valid, and that it
+    appends three lines; in the code a stop on a second or third page leaves the read valid when an earlier page listed a current id,
+    and each stop adds a line beyond the three.
+  - The files a step writes: `p1-prerun.sh`'s header names one of its two records, `p6-push.sh`'s leaves out the key file,
+    `p7-verify.sh`'s leaves out its one record, and `p8-exit.sh`'s names none of its records, nor the fresh mirror and the scan
+    reports under the workspace; `s0-ready.sh runner` appends its own line to the run log, `gdocs.sh gate` writes its argument file into
+    the earlier units' gate folder, and `s3-close.sh record` appends to the report row on every run. Each header gains a "Writes:"
+    clause, as `p9-residual.sh`'s has.
+- **Line comments on non-obvious code.**
+  - `g26lib.sh`'s `want_probe`: the framing of the protocol-v2 fetch request (each packet's length in four hexadecimal digits that
+    count themselves, `0001` the delimiter, `0000` the flush) and the reading of the answer by two substrings have no comment.
+  - `g26_req.py`'s procedure fragments `PREP`, `MARKS` and `READBACK` have no comment each. Unexplained: the forty-digit shape test on
+    the old tip; `|| true` after `grep -c`; the `--` before the `- commit:` marker; the `@S@` placeholder, replaced outside
+    `build_procedure`; the leading empty `credential.helper=`, which clears the inherited helpers; and the one-line parse of a stored
+    reply's status header.
+  - `p9-residual.sh`: no comment on the ceiling division that sets the sample's step or on its selection, on the bounds of the REST
+    sample, or on the all-`f` negative control; and its comment gives 22 and 6 as the step's anonymous calls, which are maxima (the run
+    made 19 and 2).
+  - Smaller items: `s0-ready.sh`'s `awk` extraction of the grant's section, the expression that keeps one target's name from matching
+    inside the other's, and `sum()` over paginated lengths; the list that purges nothing, handed to `kept_findings.py`; the
+    `:(top,literal)` pathspec with `--full-history`; the numbers with no comment (the anonymous margin, the pace and the user agent; the
+    20- and 30-second timeouts of `curl`; `timeout 1800`; the 360-second gap and its 10-second poll); `run-stage.sh`'s
+    `local LC_ALL=C` for its character ranges; `p2-control.sh`'s probes variable, left unquoted on purpose; `gdocs.sh`'s
+    three-character strip of a porcelain status line; line breaks inside quoted arguments, with no note on whether they are meant; and
+    `gselftest.sh`'s literals split into fragments so that the document checks pass, whose reason is in the plan and not in the tool.
+- **In-editor hints.**
+  - Regions: `g26_req.py`, 347 lines, has one, its self-test; `g26lib.sh`, 154 lines, has two `# ---` section comments, which do not
+    fold, and none for its constants, helpers, `row`, markers or listings; `s0-ready.sh`'s six `case` arms have none.
+  - Language-injection hints: none on any embedded string of the tool files, such as `g26_req.py`'s shell fragments and regular
+    expressions, the `awk` programs and the `jq` filters.
 
 **Standing:**
 
@@ -306,6 +395,6 @@ does about each before its run.
 - the repository hygiene unit's follow-up on the workspace pins, for this unit
   ([its consequences, §6](../24-repository-hygiene/consequences.md#6-follow-ups)).
 
-**Not triggered:** the publication unit's follow-ups on `anon.sh`'s stand-in cases and comments
-([its consequences, §6](../25-kotlinbottools-publish/consequences.md#6-follow-ups)). This unit derives its own helper and does not
-save `anon.sh` again.
+**Not triggered:** the publication unit's follow-ups on `anon.sh`'s stand-in cases and on its tools' comments
+([its consequences, §6](../25-kotlinbottools-publish/consequences.md#6-follow-ups)), each marked by a dated note at the landing.
+This unit derives its own helper and saves none of that unit's tools again.
