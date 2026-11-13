@@ -85,3 +85,99 @@ old tip.
   documented limits of what a push scan examines, and what a blocked push prints; GitHub's changelog entries that made push
   protection for users the default; and GitHub's documentation of removing sensitive data, for the force-push it recommends.
 - **Findings file:** [`force-push-and-push-protection.md`](force-push-and-push-protection.md).
+
+---
+
+## Verification results
+
+Every load-bearing claim of the findings file was re-opened at its source on 2026-11-12: git's documentation and source at
+`v2.55.0`, git-filter-repo's manual at `v2.47.0`, GitHub's documentation source on `main` and its live pages, GitHub's blog
+and changelog, and two community discussions. The two experiment rows the design rests on were observed again with git
+2.55.0.windows.5 on throwaway bare repositories.
+
+| Findings | Claims | Holds | Unclear | Fails |
+|---|---|---|---|---|
+| [`force-push-and-push-protection.md`](force-push-and-push-protection.md) §7 | 27, and two experiment rows observed again | 29 | 0 | 0 |
+
+- **Cited where they are, nothing resting on the difference.** The sentence that a push scan which times out is completed after
+  the push (claim 18) is in the note on pushes of several branches on GitHub's concepts page about push protection from the
+  command line, not on the how-to page first cited. The line `remote: error: GH013: …` (claim 23) is in the opening post of
+  the discussion, of 2024-09-28, while the lines about a repository without secret scanning are in its comment of 2026-03-15.
+  The findings file cites each where it is.
+- **Single reports.** Claims 23 and 24 rest on one published log each. The design takes from them only the wording of the
+  markers that attribute a refusal to push protection; every refusal takes the same stop whatever those markers count.
+- **Observed again, as stated.** A mirror push with a lease naming a wrong expected value overwrote the branch and exited 0:
+  the lease is inert under `--mirror`. A refspec push with an explicit lease, against a branch that had moved after the clone,
+  printed one `!` line with `[rejected]` and `(stale info)`, exited 1 and left the branch unchanged.
+- **Current versions.** git 2.56.1 exists. Its `git push` documentation is byte-identical to 2.55.0's, and the quoted lines
+  of `builtin/push.c` and `remote.c` are still present. The machine stays at the phase's pin, 2.55.0.windows.5.
+- **Not a claim, and true.** The note that push protection may not apply to legacy tokens is in GitHub's documentation source,
+  in a reusable fragment of the push-protection pages.
+- **Claims about this repository and this machine** were checked against the workspace and its records, read on 2026-11-13:
+  each mirror is bare with `origin` the repository's URL and `remote.origin.mirror=true`, holds one branch, `master`, and GKB2's
+  mirror also its pull-request ref; the author of each tip is also an author of KotlinBottools commits that the same account
+  has already pushed.
+
+---
+
+## Summary
+
+### 1. The force-push
+
+- **The form.** Per repository, from its bare workspace mirror, after the rewrite's checks and the push preparation:
+  `git push --porcelain --force-with-lease=refs/heads/master:<old tip> <url> refs/heads/master:refs/heads/master`, preceded by
+  the same line with `--dry-run`, with `gh auth git-credential` as the only credential helper. The destination is the
+  repository's URL, read from the mirror's `origin`, because a mirror-configured `origin` refuses a refspec (exit status 128,
+  nothing sent). One ref is updated, as a forced update; nothing is deleted or created, and `refs/pull/*` is never named
+  ([findings §2, §6](force-push-and-push-protection.md#6-recommendation-for-this-repository)).
+- **Why not `--mirror`.** Under `--mirror`, as under `--force` or a refspec with a leading `+`, git ignores the lease: the
+  documentation says so, the source makes force win over the stale check, and the experiment overwrote a branch that had moved
+  and a branch given a wrong expected value, each with exit status 0. `--mirror` also deletes a server branch created after the
+  clone and sends a local `refs/pull/*` as a new ref, which GitHub rejects. Dropping `--force` from the `--mirror` form changes
+  nothing ([§3.1, §5](force-push-and-push-protection.md#31-what---mirror---force-and-a-lease-each-do-in-git-255-documented-source-observed)).
+- **The guard stays beside the lease.** The comparison of the server's heads and tags with the rewrite's old column, made in
+  the same shell just before the dry run, catches any ref created, moved or deleted since the clone. The lease binds `master` to
+  its recorded tip at the push's own ref advertisement, and the push protocol carries that old value with the update, which
+  git's receive side checks. The procedure also checks that its own argument list holds no `--force`, `-f`, `--mirror`,
+  `+` refspec or deletion.
+- **The expected outcome.** The dry run and the push each tally `forced=1 fastforward=0 new=0 deleted=0 uptodate=0 rejected=0
+  done=1 pull_lines=0 other_refs=0 bad=0`, each exits 0, and both name the same ref with the same flag. `Done` is printed after a
+  `!` line as well, so it proves nothing alone.
+- **What GitHub can refuse.** Push protection for users is on by default for every account. It stops a push that carries a
+  supported provider secret to a public repository whatever the repository's own setting, and the Discord bot token is one of
+  those secrets. Branch protection, rulesets, the private-email block, the size limit and authentication are the other
+  refusals; none is expected here, with no protection and no ruleset on either repository and a push that sends commits and trees
+  only. A dry run never shows a refusal made on the server
+  ([§3.2, §3.3](force-push-and-push-protection.md#33-push-protection-for-users-on-a-repository-whose-own-setting-is-disabled-documented-observed-in-published-logs)).
+- **How a refusal reads, and the stop it takes.** Standard output carries one `!` line, with `[remote rejected]` for a refusal
+  by the server, or `[rejected]` and `(stale info)` for a branch that moved, and the push exits 1. For push protection, the
+  error stream carries `GH013` and a `GITHUB PUSH PROTECTION` block that names commit ids and paths. Both streams are kept in
+  files under the data folder, and fixed markers are counted in them without printing them: `[remote rejected]`, `[rejected]`,
+  `(stale info)`, `GH013`, `PUSH PROTECTION`, `- commit:` and `Scan incomplete`. After a non-zero exit status, one read of
+  `master` and of the pull-request refs says what the remote holds. Every refusal leaves the remote unchanged and takes the
+  same stop: the procedure never repeats the push, the repository hands back with the class and the counts, and the other
+  repository waits.
+- **After a refusal by push protection, the owner decides** from the kept error file: extend the purge list and redo the
+  rewrite from the backup, or allow the secret through the block's URL as the pushing account and have the push requested
+  again within three hours. The procedure itself makes no bypass.
+- **The grant names the push in the form used.** The request service's settings deny `git push --force`, `git push -f` and
+  `git push --force-with-lease` as text patterns, and a command with options before `push` matches none of them while still
+  forcing the update.
+
+### Where the sources disagreed
+
+- **GitHub's removal guide and git-filter-repo's manual** give `git push --force --mirror origin`, and git's own documentation
+  and source show that this form cannot carry a lease. The guides address a repository whose server state is taken to equal
+  the clone. The push here keeps the guard of the earlier procedure and adds the lease, which costs nothing for a repository
+  with one branch.
+- **The documentation of push protection for users** does not name organisation-owned repositories or token types. The
+  published logs and a staff statement show it applying across GitHub, and nothing exempts this push, so it is taken as
+  applying.
+
+### Options that do not fit
+
+- **`--mirror` with a lease:** the lease is inert. **`--mirror` without `--force`:** the same push as with it.
+- **`--atomic`:** one ref makes it redundant.
+- **A test push to see whether push protection blocks:** a write to a public repository.
+- **Turning off the pushing account's push protection beforehand:** it weakens the account's own guard on a forecast the
+  evidence does not support, and an account setting is not the procedure's to change.

@@ -368,8 +368,9 @@ also catches tags and any other ref.
     particular secret has already been detected in the repository and an alert already exists, GitHub will not block that
     secret." — [Push protection from the command line](https://docs.github.com/en/code-security/concepts/secret-security/command-line-push-protection).
 18. The scan can time out. "If secret scanning upon a push times out, GitHub will still scan your commits for secrets after the
-    push." — [Working with push protection from the command line](https://docs.github.com/en/code-security/how-tos/secure-your-secrets/work-with-leak-prevention/push-protection-on-the-command-line)
-    (note under the bypass section), read 2026-11-12.
+    push." — [Push protection from the command line](https://docs.github.com/en/code-security/concepts/secret-security/command-line-push-protection)
+    (the note on pushes of several branches, which also says a push "may be blocked due to additional and unintended refs being
+    pushed"), read 2026-11-12.
 19. Bypass of a command-line block. "Visit the URL returned by GitHub when your push was blocked, **as the same user that
     performed the push**. If a different user attempts to visit this URL, they will receive a `404` error."; "Click **Allow me
     to push this secret**."; "Reattempt the push on the command line within three hours." — same page.
@@ -385,10 +386,11 @@ also catches tags and any other ref.
     GitHub" — [changelog 2023-08-09](https://github.blog/changelog/2023-08-09-users-can-enable-push-protection-for-themselves/).
     Repository defaults are separate: "Existing public repositories are not affected, nor are new public repositories that
     belong to an organization." — [changelog 2024-03-11](https://github.blog/changelog/2024-03-11-secret-scanning-and-push-protection-are-enabled-by-default-on-new-public-repositories/).
-23. A block where the repository has scanning off. "remote: error: GH013: Repository rule violations found for refs/heads/main.",
-    "remote: - GITHUB PUSH PROTECTION", "(?) This repository does not have Secret Scanning enabled, but is eligible.", "(?) To
-    push, remove secret from commit(s) or follow this URL to allow the secret." —
-    [community discussion 140034](https://github.com/orgs/community/discussions/140034), comment of 2026-03-15; one report.
+23. A block where the repository has scanning off. "remote: - GITHUB PUSH PROTECTION", "(?) This repository does not have Secret
+    Scanning enabled, but is eligible.", "(?) To push, remove secret from commit(s) or follow this URL to allow the secret." —
+    [community discussion 140034](https://github.com/orgs/community/discussions/140034), comment of 2026-03-15; one report. The
+    line "remote: error: GH013: Repository rule violations found for refs/heads/main." is in the same discussion's opening post,
+    of 2024-09-28, by another user.
 24. Scan budget and the client line. "Scan incomplete: This push was large and we didn't finish on time." and "! [remote rejected]
     gh-pages -> gh-pages (push declined due to repository rule violations)"; staff reply: "we recently enabled push protection for
     users across GitHub, and that included apps and bots like GitHub Actions." —
