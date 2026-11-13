@@ -28,8 +28,8 @@ window.dashboardLive&&window.dashboardLive("plan",
   "wip": {
     "step": "implementation",
     "since": "2026-11-08T21:15:43Z",
-    "updated": "2026-11-11T18:54:18Z",
-    "detail": "3 of 8 units landed; #24 in progress; #25 up next.",
+    "updated": "2026-11-12T04:44:41Z",
+    "detail": "4 of 8 units landed; #25 in progress; #26 up next.",
     "steps": [
       "sizing",
       "interview",
@@ -43,7 +43,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "landed"
     ],
     "current": [
-      "repository-hygiene.built"
+      "kotlinbottools-publish.built"
     ],
     "questions": [],
     "research": null,
@@ -239,7 +239,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         }
       ]
     },
-    "next": "kotlinbottools-publish",
+    "next": "gkb2-gkb-rewrite",
     "qa": [],
     "qaMax": 3,
     "waitingOn": null,
@@ -495,6 +495,16 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-11",
       "column": "built",
       "label": "#24 started"
+    },
+    {
+      "date": "2026-11-12",
+      "column": "built",
+      "label": "#24 landed"
+    },
+    {
+      "date": "2026-11-12",
+      "column": "built",
+      "label": "#25 started"
     }
   ],
   "rows": [
@@ -650,7 +660,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "9bb2a18d3c1b"
+              "hash": "fa8d17ef1794"
             }
           }
         ],
@@ -771,7 +781,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "9bb2a18d3c1b"
+              "hash": "fa8d17ef1794"
             }
           }
         ],
@@ -1025,7 +1035,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#75-renames-archive-visibility-scanning",
               "heading": "7.5 Renames, archive, visibility, scanning",
               "paragraph": "The renames:",
-              "hash": "54b888b5aa08"
+              "hash": "765b48b8c136"
             }
           },
           {
@@ -1045,7 +1055,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "9bb2a18d3c1b"
+              "hash": "fa8d17ef1794"
             }
           }
         ],
@@ -1084,1275 +1094,6 @@ window.dashboardLive&&window.dashboardLive("plan",
         "issue": 24,
         "board": "24-repository-hygiene/dashboard.html",
         "folder": "24-repository-hygiene/",
-        "live": {
-          "step": "document",
-          "since": "2026-11-12T02:10:54Z",
-          "updated": "2026-11-12T03:59:05Z",
-          "detail": "Document: 6 of 6 tasks done; every task done.",
-          "steps": [
-            "sizing",
-            "interview",
-            "research",
-            "plan",
-            "branch",
-            "implementation",
-            "qa",
-            "remediation",
-            "document",
-            "landing",
-            "merge",
-            "landed"
-          ],
-          "waitingOn": null,
-          "resume": null,
-          "qa": [
-            {
-              "pass": 1,
-              "verdict": "changes-requested",
-              "date": "2026-11-11",
-              "at": "2026-11-11T20:46:16Z",
-              "findings": {
-                "test": 11,
-                "code": 0
-              },
-              "severity": {
-                "minor": 8,
-                "other": 3
-              },
-              "route": "re-plan-then-remediation",
-              "report": "build/reports/tests/index.html",
-              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/ca070e8d/tests/index.html",
-              "note": "The code check found nothing: the six files hold their recorded bytes and nothing else changed. The 74 checks of the local checks, the scans and the privacy gate passed. The test check found 11 gaps in coverage, 3 not minor: no check reaches the scan wrapper's fail-closed branches (status 2); the allowlist table's negative controls exist only in the plan and scratch fixtures, with no committed repeatable check; and the two controls that must still be reported are never observed on the hosted Linux runner. The 8 minor ones: more ignore-list membership tests with an isolated user-level ignore file, an assertion that the clone holds no ignore file for findings, anchor fixtures for the table, a counts-only assertion over the scan output, assertions around the two reads of the hosted runs, optional shell-syntax checks of the workflow's run blocks, and one row of the test plan re-attributed. Every fix is in the plan's own procedure, so the plan is revised first and the revised checks then run."
-            },
-            {
-              "pass": 2,
-              "verdict": "changes-requested",
-              "date": "2026-11-11",
-              "at": "2026-11-11T22:22:42Z",
-              "findings": {
-                "test": 14,
-                "code": 1
-              },
-              "severity": {
-                "minor": 13,
-                "other": 2
-              },
-              "route": "re-plan-then-remediation",
-              "report": "build/reports/tests/index.html",
-              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/949b5d33/tests/index.html",
-              "note": "All 202 checks passed, as in the build's own run, and the seven files hold the revised plan's recorded bytes; every finding of Quality Review 1 is answered. 15 findings (14 test, 1 code), 2 not minor. First, the code finding, in the controls script `.github/scripts/allowlist_controls.py`: its two fixtures meant to test the anchors of the table's pinned text put the extra character inside the quotes, which the pinned pattern includes, so both stay reported even if an anchor is dropped: a later edit removing an anchor would leave the controls green (found by evaluating the patterns, not by a run with the binary). Second, on the hosted runs the log's counts-only property is read through four marker counts only, so a line of another shape in a scan step would go unnoticed in a log that becomes public with the repository. The 13 minor ones: the controls script's own failure paths and three more table mutations as repeatable steps; three sub-cases of the scan wrapper; assertions on the workflow's timeout, names and concurrency group; a parse check of the two scripts; standard error asserted empty; the workflow's failing shell branches run locally; more not-ignored paths for five root-anchored patterns; a direct check of the pure functions; and wording in the plan (a count of 95 commits that should read 94, seven lines that should read six, two rows of the test plan table, some check labels). The plan is revised first, then the revised checks run."
-            },
-            {
-              "pass": 3,
-              "verdict": "changes-requested",
-              "date": "2026-11-12",
-              "at": "2026-11-12T00:38:33Z",
-              "findings": {
-                "test": 7,
-                "code": 0
-              },
-              "severity": {
-                "minor": 7,
-                "other": 0
-              },
-              "route": "on-the-spot",
-              "report": "build/reports/tests/index.html",
-              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/dda89436/tests/index.html",
-              "note": "The code check found nothing: the seven files hold the plan's recorded bytes, and the code finding of Quality Review 2 is answered: evaluated against the rule and the table themselves, the committed table fails none of the controls' eleven expectations, and each of the four de-anchorings of the pinned text fails exactly its own fixture in both modes. All 334 checks passed (local checks 130, scans 199, privacy gate 5), and 13 of Quality Review 2's 15 findings are answered in full. 7 findings remain, all minor test findings, each an edit to the plan's procedure or its wording and none to the seven files: one call at the end of the canary step leaves its standard error unasserted; in two places the verdict is asserted before the shape check; one case is filed under the component row of the test levels though it runs git; three failing-side cases lack a shape and standard-error value; the 22 control lines and the controls each mutation turns are asserted as counts only, and reading the document from the last commit has no case; three more uncaught exits of the scan wrapper have no case; and the generated word's form and two helpers have no check of their own. They touch the checks before the landing, the allowlist controls, and the scan wrapper with its workflow. They are fixed on the spot and the steps they touch run again; no further review follows."
-            }
-          ],
-          "qaMax": 3,
-          "status": "building",
-          "branch": "chore/issue-24-repository-hygiene",
-          "event": {
-            "name": "document",
-            "at": "2026-11-12T03:59:05Z",
-            "note": "6 of 6 tasks done"
-          },
-          "asked": [
-            {
-              "step": "plan",
-              "text": "How is the curl-auth-user finding handled so the secret-scan workflow can pass?",
-              "options": [
-                "A (recommended): one scoped allowlist table in .gitleaks.toml, limited to the rule, the one research document and the exact command-substitution text",
-                "A': the same, scoped to the rule and the one file only, with no exact text pinned",
-                "B: the wrapper and the workflow tolerate default-rule findings and fail only on the custom rules and private-key",
-                "C: keep the configuration as designed and merge with the run red; the finding is judged later, before the visibility change",
-                "D: a commit-scoped entry for the two commits that carry the line, plus rewording the line on main"
-              ],
-              "answer": null,
-              "asked": "2026-11-11T19:12:25Z",
-              "answered": "2026-11-11T19:20:17Z"
-            },
-            {
-              "step": "plan",
-              "text": "If the configuration changes: does the workspace copy of gitleaks.toml follow the committed file?",
-              "options": [
-                "a (recommended): it follows; the workspace copy is replaced by the committed bytes at this unit's landing, with the new size and sha256 recorded",
-                "b: it stays at the research bytes; the committed file then differs by exactly one table"
-              ],
-              "answer": null,
-              "asked": "2026-11-11T19:12:25Z",
-              "answered": "2026-11-11T19:20:17Z"
-            },
-            {
-              "step": "remediation",
-              "text": "Where do the scoped allowlist table's negative controls live?",
-              "options": [
-                "1: record both findings as known gaps in consequences.md; no new file and no change to the six files; the controls stay in the plan's procedure and are repeated by hand whenever the table, the rule set or the gitleaks pin changes",
-                "2: a committed controls script (.github/scripts/allowlist_controls.py), run locally only; a seventh file, the workflow unchanged, CHANGELOG.md gains a line; the Linux observation stays a recorded gap",
-                "3 (recommended): the same script, also run by the workflow after the canary on every push and pull request; the workflow no longer equals the research text and takes new recorded bytes and an extended dated note on architecture section 10; the first hosted run proves the controls on Linux"
-              ],
-              "answer": null,
-              "asked": "2026-11-11T20:52:29Z",
-              "answered": "2026-11-11T21:21:39Z"
-            },
-            {
-              "step": "document",
-              "text": "The header of .gitleaks.toml does not say that the allowlist table and the controls script change together. Is that fixed in this change?",
-              "options": [
-                "Fix it now, with a note that a directory scan must run from the repository root: .gitleaks.toml takes new recorded bytes, the plan's records and the workspace copy's expected values change, and the checks run again",
-                "Record it as a follow-up in consequences.md; the rule stays documented in the plan documents only"
-              ],
-              "answer": null,
-              "asked": "2026-11-12T01:59:34Z",
-              "answered": "2026-11-12T02:10:54Z"
-            },
-            {
-              "step": "document",
-              "text": "Eight further improvements are comments or wording in the other byte-pinned files (the scan wrapper, the controls script, the workflow, .gitignore, CHANGELOG.md). Are they made in this change?",
-              "options": [
-                "Record them as follow-ups in consequences.md, for a later comment-only change",
-                "Make them all now: five files take new bytes, the scan wrapper stops matching the workspace copy and the research text (a change to the phase design), the plan is revised again and every stage is run again",
-                "Make them now in every file except the scan wrapper, which stays byte-identical; its comments are recorded as a follow-up"
-              ],
-              "answer": null,
-              "asked": "2026-11-12T01:59:34Z",
-              "answered": "2026-11-12T02:10:54Z"
-            }
-          ],
-          "plan": {
-            "state": "re-pass",
-            "from": "qa",
-            "pass": 2,
-            "since": "2026-11-11T22:22:42Z"
-          },
-          "stages": [
-            {
-              "id": "S1",
-              "name": "Baseline",
-              "state": "done",
-              "rows": [
-                "landing-checks"
-              ],
-              "brief": "The branch, the paths of the change set on `main`, the workspace tools and the repository's settings are as recorded, and the scans of the branch with the workspace configuration report only the one known finding",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "branch",
-                  "name": "The branch and the paths of the change set"
-                },
-                {
-                  "id": "helpers",
-                  "name": "The scratch helpers"
-                },
-                {
-                  "id": "tools",
-                  "name": "The workspace tools"
-                },
-                {
-                  "id": "github",
-                  "name": "The repository's settings and branches"
-                },
-                {
-                  "id": "before",
-                  "name": "The scans before the change"
-                }
-              ],
-              "ref": "plan.md#s1--baseline",
-              "started": "2026-11-11T20:20:36Z",
-              "finished": "2026-11-12T01:44:46Z",
-              "report": "The steps the fixes touch ran with no stop; nothing is committed and the seven files are unchanged at their recorded bytes, so the stage that writes them was not run again. S1 Baseline: helpers 8 of 8 and the before-scans 13 of 13, ended 01:23:35Z. S3 Local checks: 130 of 130, ended 01:26:15Z. S4 Scans: 222 of 222, ended 01:41:26Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice, its last call's output in fixed shapes; CONTROLS OK three times, the run from a bare clone among them, with the 22 control lines as expected in order; the nine failure paths of the controls each end in CONTROLS FAILED; all ten mutated tables fail the controls at their counts and turn exactly the controls the plan names; thirteen GATE FAILED conditions and seven uncaught exits of the scan wrapper answer as designed; every shell block of the workflow passes and stops as designed; the log filter reads its four samples as recorded. S5 Privacy gate: selftest 50 checks, 0 blocking hits, ended 01:42:58Z. No deviation. No bytecode file under .github/.",
-              "result": "passed"
-            },
-            {
-              "id": "S2",
-              "name": "The seven files",
-              "state": "done",
-              "rows": [
-                "gitignore",
-                "gitleaks-config",
-                "secret-scan-workflow",
-                "allowlist-controls",
-                "readme-correction",
-                "changelog"
-              ],
-              "brief": "The seven files are written from their sources, each with its recorded size, sha256 and blob id",
-              "kind": "work",
-              "steps": [
-                {
-                  "id": "ignore",
-                  "name": "The .gitignore"
-                },
-                {
-                  "id": "config",
-                  "name": "The .gitleaks.toml"
-                },
-                {
-                  "id": "wrapper",
-                  "name": "The scan wrapper"
-                },
-                {
-                  "id": "controls",
-                  "name": "The allowlist controls"
-                },
-                {
-                  "id": "workflow",
-                  "name": "The workflow with its controls step"
-                },
-                {
-                  "id": "readme",
-                  "name": "The README correction"
-                },
-                {
-                  "id": "changelog",
-                  "name": "The CHANGELOG"
-                }
-              ],
-              "ref": "plan.md#s2--the-seven-files",
-              "finished": "2026-11-11T23:59:45Z",
-              "report": "All five stages of the plan's second revision ran in full with no stop; nothing is committed. S1 Baseline: 36 of 36 checks, ended 23:38:38Z. S2 The seven files: 11 of 11, ended 23:39:39Z; the controls script is now 8482 bytes at its recorded sha256 and blob id, and the other six files were rewritten to the same bytes. S3 Local checks: 130 of 130, ended 23:41:52Z; 48 paths ignored and 32 not ignored; no bytecode file appeared under .github/. S4 Scans: 199 of 199, ended 23:56:31Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice; CONTROLS OK twice with 22 controls each; nine failure paths of the controls script each end in CONTROLS FAILED with status 2; ten mutated tables each fail the controls with the recorded count (18, 7, 22, 8, 10, 2, 2, 2, 2, 6), both de-anchorings of the pinned text among them; thirteen GATE FAILED conditions of the scan wrapper each with status 2; every shell block of the workflow passes and stops as designed; the filter for the hosted logs reads its samples as 6 62 0, 6 63 1, 5 39 0 and 6 62 0. S5 Privacy gate: its selftest passes 50 checks and the gate reports 0 blocking hits, ended 23:58:02Z. No deviation from the revised plan."
-            },
-            {
-              "id": "S3",
-              "name": "Local checks",
-              "state": "done",
-              "rows": [
-                "landing-checks",
-                "allowlist-controls",
-                "secret-scan-workflow"
-              ],
-              "brief": "The seven files match their recorded bytes and sources, the configuration and both Python files parse, the pure parts give their recorded results, the workflow's shell blocks parse and its settings and pins hold, the ignore list behaves as designed and no file holds both PEM markers",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "bytes",
-                  "name": "Sizes, hashes and blob ids"
-                },
-                {
-                  "id": "sources",
-                  "name": "The sources, the workspace wrapper and the README's list"
-                },
-                {
-                  "id": "toml",
-                  "name": "The configuration parses"
-                },
-                {
-                  "id": "python",
-                  "name": "The Python files and their pure parts"
-                },
-                {
-                  "id": "workflow",
-                  "name": "The workflow's shell, settings and pins"
-                },
-                {
-                  "id": "ignore-list",
-                  "name": "The ignore-list tests"
-                },
-                {
-                  "id": "pem",
-                  "name": "No file holds both PEM markers"
-                }
-              ],
-              "ref": "plan.md#s3--local-checks",
-              "finished": "2026-11-12T01:44:46Z",
-              "report": "The steps the fixes touch ran with no stop; nothing is committed and the seven files are unchanged at their recorded bytes, so the stage that writes them was not run again. S1 Baseline: helpers 8 of 8 and the before-scans 13 of 13, ended 01:23:35Z. S3 Local checks: 130 of 130, ended 01:26:15Z. S4 Scans: 222 of 222, ended 01:41:26Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice, its last call's output in fixed shapes; CONTROLS OK three times, the run from a bare clone among them, with the 22 control lines as expected in order; the nine failure paths of the controls each end in CONTROLS FAILED; all ten mutated tables fail the controls at their counts and turn exactly the controls the plan names; thirteen GATE FAILED conditions and seven uncaught exits of the scan wrapper answer as designed; every shell block of the workflow passes and stops as designed; the log filter reads its four samples as recorded. S5 Privacy gate: selftest 50 checks, 0 blocking hits, ended 01:42:58Z. No deviation. No bytecode file under .github/.",
-              "result": "passed"
-            },
-            {
-              "id": "S4",
-              "name": "Scans",
-              "state": "done",
-              "rows": [
-                "landing-checks",
-                "allowlist-controls",
-                "secret-scan-workflow"
-              ],
-              "brief": "The history and the tree of the change set scan clean with the committed configuration, the canary shows the rules fire, the allowlist controls pass and fail on each mutation of the table, the controls' and the scan wrapper's failure paths answer as designed, the workflow's shell blocks pass and stop as designed, and the filter for the hosted logs reads their form",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "clone",
-                  "name": "The scratch clone of the change set"
-                },
-                {
-                  "id": "scans",
-                  "name": "History and tree"
-                },
-                {
-                  "id": "canary",
-                  "name": "The canary"
-                },
-                {
-                  "id": "controls",
-                  "name": "The allowlist controls and their failure paths"
-                },
-                {
-                  "id": "mutations",
-                  "name": "The table's mutations"
-                },
-                {
-                  "id": "negatives",
-                  "name": "The wrapper's failure paths"
-                },
-                {
-                  "id": "workflow-run",
-                  "name": "The workflow's shell blocks, run on both sides"
-                },
-                {
-                  "id": "log-filter",
-                  "name": "The filter for the hosted logs"
-                }
-              ],
-              "ref": "plan.md#s4--scans",
-              "finished": "2026-11-12T01:44:46Z",
-              "report": "The steps the fixes touch ran with no stop; nothing is committed and the seven files are unchanged at their recorded bytes, so the stage that writes them was not run again. S1 Baseline: helpers 8 of 8 and the before-scans 13 of 13, ended 01:23:35Z. S3 Local checks: 130 of 130, ended 01:26:15Z. S4 Scans: 222 of 222, ended 01:41:26Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice, its last call's output in fixed shapes; CONTROLS OK three times, the run from a bare clone among them, with the 22 control lines as expected in order; the nine failure paths of the controls each end in CONTROLS FAILED; all ten mutated tables fail the controls at their counts and turn exactly the controls the plan names; thirteen GATE FAILED conditions and seven uncaught exits of the scan wrapper answer as designed; every shell block of the workflow passes and stops as designed; the log filter reads its four samples as recorded. S5 Privacy gate: selftest 50 checks, 0 blocking hits, ended 01:42:58Z. No deviation. No bytecode file under .github/.",
-              "result": "passed"
-            },
-            {
-              "id": "S5",
-              "name": "Privacy gate",
-              "state": "done",
-              "rows": [
-                "landing-checks"
-              ],
-              "brief": "The privacy gate over the change set reports no blocking hit",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "gate",
-                  "name": "The gate over the scratch clone"
-                }
-              ],
-              "ref": "plan.md#s5--privacy-gate",
-              "finished": "2026-11-12T01:44:46Z",
-              "report": "The steps the fixes touch ran with no stop; nothing is committed and the seven files are unchanged at their recorded bytes, so the stage that writes them was not run again. S1 Baseline: helpers 8 of 8 and the before-scans 13 of 13, ended 01:23:35Z. S3 Local checks: 130 of 130, ended 01:26:15Z. S4 Scans: 222 of 222, ended 01:41:26Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice, its last call's output in fixed shapes; CONTROLS OK three times, the run from a bare clone among them, with the 22 control lines as expected in order; the nine failure paths of the controls each end in CONTROLS FAILED; all ten mutated tables fail the controls at their counts and turn exactly the controls the plan names; thirteen GATE FAILED conditions and seven uncaught exits of the scan wrapper answer as designed; every shell block of the workflow passes and stops as designed; the log filter reads its four samples as recorded. S5 Privacy gate: selftest 50 checks, 0 blocking hits, ended 01:42:58Z. No deviation. No bytecode file under .github/.",
-              "result": "passed"
-            }
-          ],
-          "remediation": {
-            "pass": 3,
-            "route": "on-the-spot",
-            "steps": [
-              {
-                "name": "Apply the seven minor fixes to the plan's checks",
-                "state": "done",
-                "started": "2026-11-12T00:38:33Z",
-                "finished": "2026-11-12T01:20:33Z",
-                "report": "The seven minor fixes are applied to the plan's checks in place; the design and the seven files' recorded bytes are unchanged, so the stage that writes the files is not run again. The canary's last call has its output and standard error asserted; the shape check runs before every verdict; the commit-count case is filed under the integration row; the failing-side cases assert shape and standard error; the 22 control lines are asserted in order, each mutation asserts which controls it turns, and a run from a bare clone shows the document is read from the last commit; four more uncaught exits of the scan wrapper have a case; the generated word is asserted as 12 hexadecimal characters over 200 draws, and two more helpers have a check of their own. A convention is added: each block is saved to a file and run from it, because the longest blocks are cut when handed to the shell as one command. Expected checks now: 38 in S1 (helpers 8), 130 in S3, 222 in S4 (canary 21, controls 42, mutations 42, negatives 64). Two possible later changes are recorded in consequences.md, neither planned: the escape of one dot in the table's path pattern, and an ignore pattern for Python bytecode. The baseline's helpers and before-scans, the local checks, the scans and the privacy gate are run again."
-              },
-              {
-                "name": "Run the steps the fixes touch",
-                "state": "done",
-                "started": "2026-11-12T01:20:33Z",
-                "finished": "2026-11-12T01:44:46Z",
-                "report": "The steps the fixes touch ran with no stop; nothing is committed and the seven files are unchanged at their recorded bytes, so the stage that writes them was not run again. S1 Baseline: helpers 8 of 8 and the before-scans 13 of 13, ended 01:23:35Z. S3 Local checks: 130 of 130, ended 01:26:15Z. S4 Scans: 222 of 222, ended 01:41:26Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice, its last call's output in fixed shapes; CONTROLS OK three times, the run from a bare clone among them, with the 22 control lines as expected in order; the nine failure paths of the controls each end in CONTROLS FAILED; all ten mutated tables fail the controls at their counts and turn exactly the controls the plan names; thirteen GATE FAILED conditions and seven uncaught exits of the scan wrapper answer as designed; every shell block of the workflow passes and stops as designed; the log filter reads its four samples as recorded. S5 Privacy gate: selftest 50 checks, 0 blocking hits, ended 01:42:58Z. No deviation. No bytecode file under .github/."
-              }
-            ]
-          },
-          "document": {
-            "tasks": [
-              {
-                "id": "documentation-review",
-                "name": "Documentation review",
-                "state": "done",
-                "started": "2026-11-12T01:49:28Z",
-                "finished": "2026-11-12T01:59:34Z",
-                "report": "The documentation check ended at 01:59:34Z with 13 points: four gaps and nine improvements. Being done now, in one pass over the documents: the header of .gitleaks.toml is specified with its new recorded bytes; the three gaps in the plan documents are corrected; the eight improvements in the other pinned files are recorded as follow-ups; and the plan is reconciled with the build, with the as-built record, the consequences and the dated notes in the earlier units' documents. The corrected configuration is then written and the checks run again, and the documentation is checked a second time."
-              },
-              {
-                "id": "reconcile-documentation",
-                "name": "Reconcile documentation",
-                "state": "done",
-                "started": "2026-11-12T01:59:34Z",
-                "finished": "2026-11-12T03:23:04Z",
-                "report": "The second documentation check found all 13 earlier points answered or recorded as follow-ups, the two new header sentences of .gitleaks.toml accurate, every recorded value correct, and all 233 relative links and anchors resolving across the 13 files checked, the three superseded copies among them. Three points remained, all in the plan documents and none in the seven files, and are corrected: consequences.md no longer restates what the as-built record says about the seven files and links to it instead; the follow-up on comments now says it also covers the options' help text and the workflow's two error annotations, with the annotations listed under the workflow; and one sentence of the dated note on architecture section 10 is reworded. The plan's list of later changes uses the same wording."
-              },
-              {
-                "id": "reconcile-plan",
-                "name": "Reconcile plan",
-                "state": "done",
-                "started": "2026-11-12T02:10:54Z",
-                "finished": "2026-11-12T03:17:00Z",
-                "report": "The corrected .gitleaks.toml is committed and pushed; the branch head, 0b64c47, is the commit the code lands at. The file is 3824 bytes at its recorded blob id; the change is five comment lines and nothing else, and the parsed configuration is unchanged: five rules, one table, no global allowlist. Before the commit the checks were run again over the final documents with no stop: the configuration step 3 of 3 (ended 02:51:22Z); local checks 133 of 133 (ended 02:53:57Z); scans 222 of 222 (ended 03:11:13Z), with the history (97 commits, both ref sets) and the tree clean, CANARY OK twice, CONTROLS OK three times, all ten mutated tables failing the controls at their recorded counts, thirteen GATE FAILED conditions and seven uncaught exits of the scan wrapper answering as designed, every shell block of the workflow passing and stopping as designed, and the log filter reading its samples as recorded; privacy gate 0 blocking hits after its 50-check selftest (ended 03:12:56Z). The other six files are unchanged. The as-built record's counts are confirmed by this run, so the plan is reconciled. One sentence of the plan's expected text no longer names a commit count, which grows with the branch. The documentation is being checked a second time; the README and CHANGELOG are being confirmed against the as-built record."
-              },
-              {
-                "id": "readme-changelog",
-                "name": "README and CHANGELOG",
-                "state": "done",
-                "started": "2026-11-12T03:17:00Z",
-                "finished": "2026-11-12T03:18:57Z",
-                "report": "The README and the CHANGELOG, as committed, hold what the change calls for and take no addition: the README marks the bot's local files and guildData/, lists the files a clone must supply and names the Secret scan workflow and .gitleaks.toml; the CHANGELOG has its entry under Unreleased for the workflow with the scan wrapper, the configuration with its one allowlist entry, the allowlist controls and the root-anchored .gitignore. Both files are at their recorded bytes. The second documentation check is still running, and the state boards are being built."
-              },
-              {
-                "id": "state-boards",
-                "name": "State boards",
-                "state": "done",
-                "started": "2026-11-12T03:19:27Z",
-                "finished": "2026-11-12T03:34:49Z"
-              },
-              {
-                "id": "document-landing",
-                "name": "Document commit",
-                "state": "done",
-                "started": "2026-11-12T03:34:49Z",
-                "finished": "2026-11-12T03:59:05Z"
-              }
-            ]
-          },
-          "open": [
-            {
-              "text": "The secret scan with the designed configuration reports a default-rule finding (curl-auth-user) in one kept research document, so the workflow cannot pass as designed; the handling needs the maintainer's decision and amends architecture sections 10, 15 and 16.",
-              "raised": "halted",
-              "ref": "../23-kotlinbottools-rewrite-and-swap/consequences.md",
-              "shownOpen": "2026-11-11T19:12:25Z",
-              "resolved": "2026-11-11T19:20:17Z"
-            },
-            {
-              "text": "Three places where the plan's prose and its code blocks disagree, none of which changed the result: the README script is described as ASCII but holds seven non-ASCII lines; the canary step's expected text names commit-count lines its commands do not print; the privacy gate's expected text says confirmation lines where the tool prints one. The code blocks were run as written. To be settled when the plan is reconciled with the build.",
-              "raised": "implementation-stage S5",
-              "ref": "plan.md",
-              "shownOpen": "2026-11-11T20:26:39Z",
-              "resolved": "2026-11-11T21:46:17Z"
-            },
-            {
-              "text": "A fourth place where the plan's prose and its text disagree: the assumption on the ignore list says the new file drops only four IDE lines and the section comments, while the specified text also narrows three patterns to directory-only form. No practical effect; the file matches the plan's exact text. To be settled when the plan is revised.",
-              "raised": "Quality Review 1",
-              "ref": "plan.md",
-              "shownOpen": "2026-11-11T20:46:16Z",
-              "resolved": "2026-11-11T21:46:17Z"
-            },
-            {
-              "text": "The revised plan's expected text for the history scans gives 95 commits as the count when the plan was written; the scans counted 94, the branch's 93 commits plus the one scratch commit. The step asserts only that the two counts are equal and above zero, and it passed. To be corrected when the plan is reconciled with the build.",
-              "raised": "implementation-stage S5",
-              "ref": "plan.md",
-              "shownOpen": "2026-11-11T21:54:56Z",
-              "resolved": "2026-11-11T23:34:04Z"
-            },
-            {
-              "text": "The plan's table of stops names only the README script's count as a stop of the stage that writes the seven files; the workflow step of that stage has a script stop of its own, which the error-handling table does list. Wording only; to be corrected when the plan is reconciled with the build.",
-              "raised": "implementation-stage S5",
-              "ref": "plan.md",
-              "shownOpen": "2026-11-11T23:59:45Z",
-              "resolved": "2026-11-12T00:51:37Z"
-            },
-            {
-              "text": "The plan's convention on running a block names three blocks as longer than the size at which a command is cut; measured with their prelude, only one of them is (the negatives block). The rule itself, every block run from a saved file, was applied to every block. Wording only; to be corrected when the plan is reconciled with the build.",
-              "raised": "implementation-stage S5",
-              "ref": "plan.md",
-              "shownOpen": "2026-11-12T01:44:46Z",
-              "resolved": "2026-11-12T02:30:19Z"
-            }
-          ],
-          "history": {
-            "sizing": [
-              {
-                "since": null,
-                "ended": "2026-11-11T18:54:18Z",
-                "endedBy": "sized",
-                "to": "plan"
-              }
-            ],
-            "plan": [
-              {
-                "since": "2026-11-11T18:54:18Z",
-                "ended": "2026-11-11T19:12:25Z",
-                "endedBy": "halted",
-                "to": "plan",
-                "event": {
-                  "name": "sized",
-                  "at": "2026-11-11T18:54:18Z"
-                },
-                "detail": "Unit 4 of the history-rewrite phase: the root-anchored .gitignore, .gitleaks.toml, the secret-scan wrapper and workflow, the README correction and the first CHANGELOG.md, on a branch cut from the rewritten main. No version change. The unit uses the privacy gate as a pre-landing check and does not change it.",
-                "plan": {
-                  "state": "re-pass",
-                  "from": "parent",
-                  "since": "2026-11-11T18:54:18Z"
-                },
-                "held": true,
-                "asked": [
-                  {
-                    "text": "How is the curl-auth-user finding handled so the secret-scan workflow can pass?",
-                    "options": [
-                      "A (recommended): one scoped allowlist table in .gitleaks.toml, limited to the rule, the one research document and the exact command-substitution text",
-                      "A': the same, scoped to the rule and the one file only, with no exact text pinned",
-                      "B: the wrapper and the workflow tolerate default-rule findings and fail only on the custom rules and private-key",
-                      "C: keep the configuration as designed and merge with the run red; the finding is judged later, before the visibility change",
-                      "D: a commit-scoped entry for the two commits that carry the line, plus rewording the line on main"
-                    ],
-                    "answer": null,
-                    "asked": "2026-11-11T19:12:25Z",
-                    "answered": "2026-11-11T19:20:17Z"
-                  },
-                  {
-                    "text": "If the configuration changes: does the workspace copy of gitleaks.toml follow the committed file?",
-                    "options": [
-                      "a (recommended): it follows; the workspace copy is replaced by the committed bytes at this unit's landing, with the new size and sha256 recorded",
-                      "b: it stays at the research bytes; the committed file then differs by exactly one table"
-                    ],
-                    "answer": null,
-                    "asked": "2026-11-11T19:12:25Z",
-                    "answered": "2026-11-11T19:20:17Z"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-11T19:20:17Z",
-                "ended": "2026-11-11T19:21:34Z",
-                "endedBy": "research-planning",
-                "to": "research",
-                "event": {
-                  "name": "resumed",
-                  "at": "2026-11-11T19:20:17Z"
-                },
-                "detail": "Answers: the finding is handled by one scoped allowlist table in .gitleaks.toml, limited to the curl-auth-user rule, the one research document and the exact command-substitution text, with no global allowlist (option A); and the workspace copy of gitleaks.toml follows the committed file at this unit's landing, with the new size and sha256 recorded (option a). The Phase 0 architecture takes dated callouts on sections 5.2, 10, 15 and 16. Research and the plan continue.",
-                "plan": {
-                  "state": "re-pass",
-                  "from": "parent",
-                  "since": "2026-11-11T18:54:18Z"
-                }
-              },
-              {
-                "since": "2026-11-11T19:42:46Z",
-                "ended": "2026-11-11T20:17:03Z",
-                "endedBy": "plan-accepted",
-                "to": "branch",
-                "event": {
-                  "name": "researched",
-                  "at": "2026-11-11T19:42:46Z"
-                },
-                "detail": "Two questions were researched: the workflow on the hosted runner, and the scoped allowlist's semantics at gitleaks 8.30.1. All 42 claims the design rests on hold. With the new configuration the history and the tree scan clean, the canary still fires and the negative controls are still reported. Two points are proved only by the first hosted run: the runner image is moving from Ubuntu 24.04 to 26.04 until 2026-11-19, and the Linux gitleaks binary was not run locally.",
-                "plan": {
-                  "state": "writing",
-                  "since": "2026-11-11T19:42:46Z"
-                }
-              }
-            ],
-            "research": [
-              {
-                "since": "2026-11-11T19:21:34Z",
-                "ended": "2026-11-11T19:42:46Z",
-                "endedBy": "researched",
-                "to": "plan",
-                "event": {
-                  "name": "verification-started",
-                  "at": "2026-11-11T19:39:02Z"
-                },
-                "detail": "Research: verifying 2 findings.",
-                "research": {
-                  "phase": "complete",
-                  "drafted": 0,
-                  "since": {
-                    "planning": "2026-11-11T19:21:34Z",
-                    "research": "2026-11-11T19:24:02Z",
-                    "verification": "2026-11-11T19:39:02Z",
-                    "complete": "2026-11-11T19:42:46Z"
-                  }
-                },
-                "questions": [
-                  {
-                    "question": "workflow-on-the-hosted-runner",
-                    "rows": [
-                      "secret-scan-workflow",
-                      "landing-checks"
-                    ],
-                    "findings": "research/workflow-on-the-hosted-runner.md",
-                    "state": "complete",
-                    "started": "2026-11-11T19:24:02Z",
-                    "returned": "2026-11-11T19:33:33Z"
-                  },
-                  {
-                    "question": "scoped-allowlist-semantics",
-                    "rows": [
-                      "gitleaks-config",
-                      "landing-checks"
-                    ],
-                    "findings": "research/scoped-allowlist-semantics.md",
-                    "state": "complete",
-                    "started": "2026-11-11T19:24:02Z",
-                    "returned": "2026-11-11T19:38:27Z"
-                  }
-                ]
-              }
-            ],
-            "branch": [
-              {
-                "since": "2026-11-11T20:17:03Z",
-                "ended": "2026-11-11T20:20:36Z",
-                "endedBy": "branch-cut",
-                "to": "implementation",
-                "event": {
-                  "name": "plan-accepted",
-                  "at": "2026-11-11T20:17:03Z"
-                },
-                "detail": "Six files on this branch: the root-anchored .gitignore; .gitleaks.toml with one allowlist table scoped to the curl-auth-user rule, the one research document and the exact text; the scan wrapper and the workflow, byte-identical to the earlier findings; the README correction; the new CHANGELOG.md. Each file has a recorded size, sha256 and blob id. Five stages: baseline, the six files, local checks, scans, the privacy gate. The change merges only after the workflow's first run on the pull request succeeds; after the merge the workspace copy of the configuration takes main's bytes. The phase architecture carries four dated notes, on sections 5.2, 10, 15 and 16.",
-                "branch": "chore/issue-24-repository-hygiene"
-              }
-            ],
-            "implementation": [
-              {
-                "since": "2026-11-11T20:20:36Z",
-                "ended": "2026-11-11T20:27:00Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-11T20:26:39Z",
-                  "note": "S5 reported done; Quality Review next"
-                },
-                "detail": "All five stages ran to their last ok line with no stop; nothing is committed. S1 Baseline: 25 of 25 checks, ended 20:21:58Z; the before-scans with the workspace configuration report only the one known finding (history 2, tree 1, rule curl-auth-user, 93 commits). S2 The six files: 8 of 8, ended 20:23:09Z; each file is at its recorded size, sha256 and blob id. S3 Local checks: 38 of 38, ended 20:23:55Z. S4 Scans: 33 of 33, ended 20:25:02Z; with the committed configuration the history (94 commits, both ref sets) and the tree print RESULT: CLEAN, the canary prints CANARY OK twice, and the negative controls A and B are still reported while D is clean. S5 Privacy gate: 3 of 3, ended 20:25:39Z; GATE: 0 blocking hit(s), the allow-list is the recorded one with 4 confirmed keys. No deviation from the plan, so no as-built record of deviations was started.",
-                "open": [
-                  {
-                    "text": "Three places where the plan's prose and its code blocks disagree, none of which changed the result: the README script is described as ASCII but holds seven non-ASCII lines; the canary step's expected text names commit-count lines its commands do not print; the privacy gate's expected text says confirmation lines where the tool prints one. The code blocks were run as written. To be settled when the plan is reconciled with the build.",
-                    "raised": "implementation-stage S5",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-11T20:26:39Z"
-                  }
-                ],
-                "stages": [
-                  {
-                    "id": "S1",
-                    "name": "Baseline",
-                    "state": "done",
-                    "rows": [
-                      "landing-checks"
-                    ],
-                    "brief": "The branch, the six paths, the workspace tools and the repository's settings are as recorded, and the scans of the branch with the workspace configuration report only the one known finding",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "branch",
-                        "name": "The branch and the six paths"
-                      },
-                      {
-                        "id": "helpers",
-                        "name": "The scratch helpers"
-                      },
-                      {
-                        "id": "tools",
-                        "name": "The workspace tools"
-                      },
-                      {
-                        "id": "github",
-                        "name": "The repository's settings"
-                      },
-                      {
-                        "id": "before",
-                        "name": "The scans before the change"
-                      }
-                    ],
-                    "ref": "plan.md#s1--baseline",
-                    "started": "2026-11-11T20:20:36Z",
-                    "finished": "2026-11-11T20:26:39Z",
-                    "report": "All five stages ran to their last ok line with no stop; nothing is committed. S1 Baseline: 25 of 25 checks, ended 20:21:58Z; the before-scans with the workspace configuration report only the one known finding (history 2, tree 1, rule curl-auth-user, 93 commits). S2 The six files: 8 of 8, ended 20:23:09Z; each file is at its recorded size, sha256 and blob id. S3 Local checks: 38 of 38, ended 20:23:55Z. S4 Scans: 33 of 33, ended 20:25:02Z; with the committed configuration the history (94 commits, both ref sets) and the tree print RESULT: CLEAN, the canary prints CANARY OK twice, and the negative controls A and B are still reported while D is clean. S5 Privacy gate: 3 of 3, ended 20:25:39Z; GATE: 0 blocking hit(s), the allow-list is the recorded one with 4 confirmed keys. No deviation from the plan, so no as-built record of deviations was started."
-                  },
-                  {
-                    "id": "S2",
-                    "name": "The six files",
-                    "state": "done",
-                    "rows": [
-                      "gitignore",
-                      "gitleaks-config",
-                      "secret-scan-workflow",
-                      "readme-correction",
-                      "changelog"
-                    ],
-                    "brief": "The six files are written from their sources, each with its recorded size, sha256 and blob id",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "ignore",
-                        "name": "The .gitignore"
-                      },
-                      {
-                        "id": "config",
-                        "name": "The .gitleaks.toml"
-                      },
-                      {
-                        "id": "wrapper",
-                        "name": "The scan wrapper"
-                      },
-                      {
-                        "id": "workflow",
-                        "name": "The workflow"
-                      },
-                      {
-                        "id": "readme",
-                        "name": "The README correction"
-                      },
-                      {
-                        "id": "changelog",
-                        "name": "The CHANGELOG"
-                      }
-                    ],
-                    "ref": "plan.md#s2--the-six-files",
-                    "finished": "2026-11-11T20:26:39Z",
-                    "report": "All five stages ran to their last ok line with no stop; nothing is committed. S1 Baseline: 25 of 25 checks, ended 20:21:58Z; the before-scans with the workspace configuration report only the one known finding (history 2, tree 1, rule curl-auth-user, 93 commits). S2 The six files: 8 of 8, ended 20:23:09Z; each file is at its recorded size, sha256 and blob id. S3 Local checks: 38 of 38, ended 20:23:55Z. S4 Scans: 33 of 33, ended 20:25:02Z; with the committed configuration the history (94 commits, both ref sets) and the tree print RESULT: CLEAN, the canary prints CANARY OK twice, and the negative controls A and B are still reported while D is clean. S5 Privacy gate: 3 of 3, ended 20:25:39Z; GATE: 0 blocking hit(s), the allow-list is the recorded one with 4 confirmed keys. No deviation from the plan, so no as-built record of deviations was started."
-                  },
-                  {
-                    "id": "S3",
-                    "name": "Local checks",
-                    "state": "done",
-                    "rows": [
-                      "landing-checks"
-                    ],
-                    "brief": "The six files match their recorded bytes and sources, the configuration parses, the ignore list behaves as designed and no file holds both PEM markers",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "bytes",
-                        "name": "Sizes, hashes and blob ids"
-                      },
-                      {
-                        "id": "sources",
-                        "name": "The sources and the workspace wrapper"
-                      },
-                      {
-                        "id": "toml",
-                        "name": "The configuration parses"
-                      },
-                      {
-                        "id": "ignore-list",
-                        "name": "The ignore-list tests"
-                      },
-                      {
-                        "id": "pem",
-                        "name": "No file holds both PEM markers"
-                      }
-                    ],
-                    "ref": "plan.md#s3--local-checks",
-                    "finished": "2026-11-11T20:26:39Z",
-                    "report": "All five stages ran to their last ok line with no stop; nothing is committed. S1 Baseline: 25 of 25 checks, ended 20:21:58Z; the before-scans with the workspace configuration report only the one known finding (history 2, tree 1, rule curl-auth-user, 93 commits). S2 The six files: 8 of 8, ended 20:23:09Z; each file is at its recorded size, sha256 and blob id. S3 Local checks: 38 of 38, ended 20:23:55Z. S4 Scans: 33 of 33, ended 20:25:02Z; with the committed configuration the history (94 commits, both ref sets) and the tree print RESULT: CLEAN, the canary prints CANARY OK twice, and the negative controls A and B are still reported while D is clean. S5 Privacy gate: 3 of 3, ended 20:25:39Z; GATE: 0 blocking hit(s), the allow-list is the recorded one with 4 confirmed keys. No deviation from the plan, so no as-built record of deviations was started."
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Scans",
-                    "state": "done",
-                    "rows": [
-                      "landing-checks"
-                    ],
-                    "brief": "The history and the tree of the change set scan clean with the committed configuration, the canary shows the rules fire, and the negative controls are still reported",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "clone",
-                        "name": "The scratch clone of the change set"
-                      },
-                      {
-                        "id": "scans",
-                        "name": "History and tree"
-                      },
-                      {
-                        "id": "canary",
-                        "name": "The canary"
-                      },
-                      {
-                        "id": "controls",
-                        "name": "The negative controls"
-                      }
-                    ],
-                    "ref": "plan.md#s4--scans",
-                    "finished": "2026-11-11T20:26:39Z",
-                    "report": "All five stages ran to their last ok line with no stop; nothing is committed. S1 Baseline: 25 of 25 checks, ended 20:21:58Z; the before-scans with the workspace configuration report only the one known finding (history 2, tree 1, rule curl-auth-user, 93 commits). S2 The six files: 8 of 8, ended 20:23:09Z; each file is at its recorded size, sha256 and blob id. S3 Local checks: 38 of 38, ended 20:23:55Z. S4 Scans: 33 of 33, ended 20:25:02Z; with the committed configuration the history (94 commits, both ref sets) and the tree print RESULT: CLEAN, the canary prints CANARY OK twice, and the negative controls A and B are still reported while D is clean. S5 Privacy gate: 3 of 3, ended 20:25:39Z; GATE: 0 blocking hit(s), the allow-list is the recorded one with 4 confirmed keys. No deviation from the plan, so no as-built record of deviations was started."
-                  },
-                  {
-                    "id": "S5",
-                    "name": "Privacy gate",
-                    "state": "done",
-                    "rows": [
-                      "landing-checks"
-                    ],
-                    "brief": "The privacy gate over the change set reports no blocking hit",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "gate",
-                        "name": "The gate over the scratch clone"
-                      }
-                    ],
-                    "ref": "plan.md#s5--privacy-gate",
-                    "finished": "2026-11-11T20:26:39Z",
-                    "report": "All five stages ran to their last ok line with no stop; nothing is committed. S1 Baseline: 25 of 25 checks, ended 20:21:58Z; the before-scans with the workspace configuration report only the one known finding (history 2, tree 1, rule curl-auth-user, 93 commits). S2 The six files: 8 of 8, ended 20:23:09Z; each file is at its recorded size, sha256 and blob id. S3 Local checks: 38 of 38, ended 20:23:55Z. S4 Scans: 33 of 33, ended 20:25:02Z; with the committed configuration the history (94 commits, both ref sets) and the tree print RESULT: CLEAN, the canary prints CANARY OK twice, and the negative controls A and B are still reported while D is clean. S5 Privacy gate: 3 of 3, ended 20:25:39Z; GATE: 0 blocking hit(s), the allow-list is the recorded one with 4 confirmed keys. No deviation from the plan, so no as-built record of deviations was started.",
-                    "result": "passed"
-                  }
-                ]
-              }
-            ],
-            "qa": [
-              {
-                "since": "2026-11-11T20:27:00Z",
-                "ended": "2026-11-11T20:46:16Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-11T20:27:00Z",
-                  "note": "Quality Review 1: running"
-                },
-                "detail": "Quality Review 1 running.",
-                "open": [
-                  {
-                    "text": "Three places where the plan's prose and its code blocks disagree, none of which changed the result: the README script is described as ASCII but holds seven non-ASCII lines; the canary step's expected text names commit-count lines its commands do not print; the privacy gate's expected text says confirmation lines where the tool prints one. The code blocks were run as written. To be settled when the plan is reconciled with the build.",
-                    "raised": "implementation-stage S5",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-11T20:26:39Z"
-                  }
-                ],
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-11",
-                    "at": "2026-11-11T20:46:16Z",
-                    "findings": {
-                      "test": 11,
-                      "code": 0
-                    },
-                    "severity": {
-                      "minor": 8,
-                      "other": 3
-                    },
-                    "route": "re-plan-then-remediation",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/ca070e8d/tests/index.html"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-11T21:55:23Z",
-                "ended": "2026-11-11T22:22:42Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-11T21:57:10Z",
-                  "note": "S5 reported done"
-                },
-                "detail": "The check stages each passed in the revised run: S1 Baseline 28 of 28, S3 Local checks 108 of 108, S4 Scans 90 of 90, S5 Privacy gate with 0 blocking hits.",
-                "open": [
-                  {
-                    "text": "The revised plan's expected text for the history scans gives 95 commits as the count when the plan was written; the scans counted 94, the branch's 93 commits plus the one scratch commit. The step asserts only that the two counts are equal and above zero, and it passed. To be corrected when the plan is reconciled with the build.",
-                    "raised": "implementation-stage S5",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-11T21:54:56Z"
-                  }
-                ],
-                "qa": [
-                  {
-                    "pass": 2,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-11",
-                    "at": "2026-11-11T22:22:42Z",
-                    "findings": {
-                      "test": 14,
-                      "code": 1
-                    },
-                    "severity": {
-                      "minor": 13,
-                      "other": 2
-                    },
-                    "route": "re-plan-then-remediation",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/949b5d33/tests/index.html"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-12T00:00:17Z",
-                "ended": "2026-11-12T00:38:33Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-12T00:00:17Z",
-                  "note": "Quality Review 3: running"
-                },
-                "detail": "Quality Review 3 running.",
-                "open": [
-                  {
-                    "text": "The plan's table of stops names only the README script's count as a stop of the stage that writes the seven files; the workflow step of that stage has a script stop of its own, which the error-handling table does list. Wording only; to be corrected when the plan is reconciled with the build.",
-                    "raised": "implementation-stage S5",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-11T23:59:45Z"
-                  }
-                ],
-                "qa": [
-                  {
-                    "pass": 3,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-12",
-                    "at": "2026-11-12T00:38:33Z",
-                    "findings": {
-                      "test": 7,
-                      "code": 0
-                    },
-                    "severity": {
-                      "minor": 7,
-                      "other": 0
-                    },
-                    "route": "on-the-spot",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/dda89436/tests/index.html"
-                  }
-                ]
-              }
-            ],
-            "remediation": [
-              {
-                "since": "2026-11-11T20:46:16Z",
-                "ended": "2026-11-11T20:52:29Z",
-                "endedBy": "halted",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-11T20:46:16Z",
-                  "note": "Quality Review 1: changes-requested"
-                },
-                "detail": "The code review passes with no finding: the six files hold the plan's recorded bytes, nothing else changed, and the workflow, the wrapper, the allowlist table and the ignore list are correct as written. The checks that exercise the change ran green: 74 passed, 0 failed, 0 skipped (local checks 38, scans 33, privacy gate 3). Eleven findings on test coverage, three of them not minor: no check reaches the scan wrapper's fail-closed branches (status 2); the negative controls of the allowlist table exist only as a plan code block and scratch fixtures, with no committed repeatable check; and the two controls that must still be reported are never observed on the hosted Linux platform. Eight minor ones: more ignore-list membership tests and an isolated user-level ignore file, an assertion that no ignore file for findings is present in the clone, anchor fixtures for the table, a counts-only assertion over the scan output, assertions around the two hosted-run reads, optional shell-syntax checks of the workflow's run blocks, and one row of the test plan table re-attributed. Every fix is in the plan's own procedure, so the plan is revised first and the revised checks are then run.",
-                "open": [
-                  {
-                    "text": "Three places where the plan's prose and its code blocks disagree, none of which changed the result: the README script is described as ASCII but holds seven non-ASCII lines; the canary step's expected text names commit-count lines its commands do not print; the privacy gate's expected text says confirmation lines where the tool prints one. The code blocks were run as written. To be settled when the plan is reconciled with the build.",
-                    "raised": "implementation-stage S5",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-11T20:26:39Z"
-                  },
-                  {
-                    "text": "A fourth place where the plan's prose and its text disagree: the assumption on the ignore list says the new file drops only four IDE lines and the section comments, while the specified text also narrows three patterns to directory-only form. No practical effect; the file matches the plan's exact text. To be settled when the plan is revised.",
-                    "raised": "Quality Review 1",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-11T20:46:16Z"
-                  }
-                ],
-                "remediation": {
-                  "pass": 1,
-                  "route": "re-plan-then-remediation"
-                },
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-11",
-                    "at": "2026-11-11T20:46:16Z",
-                    "findings": {
-                      "test": 11,
-                      "code": 0
-                    },
-                    "severity": {
-                      "minor": 8,
-                      "other": 3
-                    },
-                    "route": "re-plan-then-remediation",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/ca070e8d/tests/index.html",
-                    "note": "The code check found nothing: the six files hold their recorded bytes and nothing else changed. The 74 checks of the local checks, the scans and the privacy gate passed. The test check found 11 gaps in coverage, 3 not minor: no check reaches the scan wrapper's fail-closed branches (status 2); the allowlist table's negative controls exist only in the plan and scratch fixtures, with no committed repeatable check; and the two controls that must still be reported are never observed on the hosted Linux runner. The 8 minor ones: more ignore-list membership tests with an isolated user-level ignore file, an assertion that the clone holds no ignore file for findings, anchor fixtures for the table, a counts-only assertion over the scan output, assertions around the two reads of the hosted runs, optional shell-syntax checks of the workflow's run blocks, and one row of the test plan re-attributed. Every fix is in the plan's own procedure, so the plan is revised first and the revised checks then run."
-                  }
-                ],
-                "held": true,
-                "asked": [
-                  {
-                    "text": "Where do the scoped allowlist table's negative controls live?",
-                    "options": [
-                      "1: record both findings as known gaps in consequences.md; no new file and no change to the six files; the controls stay in the plan's procedure and are repeated by hand whenever the table, the rule set or the gitleaks pin changes",
-                      "2: a committed controls script (.github/scripts/allowlist_controls.py), run locally only; a seventh file, the workflow unchanged, CHANGELOG.md gains a line; the Linux observation stays a recorded gap",
-                      "3 (recommended): the same script, also run by the workflow after the canary on every push and pull request; the workflow no longer equals the research text and takes new recorded bytes and an extended dated note on architecture section 10; the first hosted run proves the controls on Linux"
-                    ],
-                    "answer": null,
-                    "asked": "2026-11-11T20:52:29Z",
-                    "answered": "2026-11-11T21:21:39Z"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-11T21:21:39Z",
-                "ended": "2026-11-11T21:55:23Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-11T21:54:56Z",
-                  "note": "S5"
-                },
-                "detail": "All five stages of the revised plan ran in full with no stop; nothing is committed. S1 Baseline: 28 of 28 checks, ended 21:49:10Z. S2 The seven files: 11 of 11, ended 21:50:11Z; the seven files are at their recorded size, sha256 and blob id (the controls script 7472 bytes, the workflow 4820, CHANGELOG.md 1465; the other four unchanged). S3 Local checks: 108 of 108, ended 21:51:27Z. S4 Scans: 90 of 90, ended 21:53:15Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; the canary prints CANARY OK twice with 6 and 5 commits; the controls print CONTROLS OK with the committed configuration and CONTROLS FAILED: 14 unexpected on a widened table; the negatives reach ten GATE FAILED conditions, each with status 2, plus CANARY FAILED, IMPOSSIBLE, an argument error and a missing binary. S5 Privacy gate: GATE: 0 blocking hit(s), ended 21:53:59Z. No deviation from the revised plan.",
-                "open": [
-                  {
-                    "text": "The revised plan's expected text for the history scans gives 95 commits as the count when the plan was written; the scans counted 94, the branch's 93 commits plus the one scratch commit. The step asserts only that the two counts are equal and above zero, and it passed. To be corrected when the plan is reconciled with the build.",
-                    "raised": "implementation-stage S5",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-11T21:54:56Z"
-                  }
-                ],
-                "remediation": {
-                  "pass": 1,
-                  "route": "re-plan-then-remediation",
-                  "steps": [
-                    {
-                      "name": "Revise the plan",
-                      "state": "done",
-                      "finished": "2026-11-11T21:47:07Z",
-                      "report": "The plan is revised; the replaced version is kept under superseded/. The change set is now seven files: the allowlist table's controls are a committed script, .github/scripts/allowlist_controls.py (nine fixtures, each in git and dir mode), run locally and by the workflow as one step between the canary and the history scan. The workflow and CHANGELOG.md take new recorded bytes; the other four files are unchanged. All eleven findings are answered by checks and none by a recorded gap: the scan wrapper's failure paths are each reached once by a new negatives step; the workflow's run blocks, triggers and pins are checked locally; the ignore-list tests grow to 48 ignored and 27 not-ignored paths and run with an empty user-level ignore file; every scan asserts that its output holds counts and fixed markers only; the two reads of the hosted runs assert the conclusion and the marker counts. The stages keep their ids; S2 is now The seven files. All five stages are run again in full: 28, 11, 108 and 90 checks expected in S1 to S4."
-                    },
-                    {
-                      "name": "Run the revised checks",
-                      "state": "done",
-                      "started": "2026-11-11T21:47:07Z",
-                      "finished": "2026-11-11T21:54:56Z",
-                      "report": "All five stages of the revised plan ran in full with no stop; nothing is committed. S1 Baseline: 28 of 28 checks, ended 21:49:10Z. S2 The seven files: 11 of 11, ended 21:50:11Z; the seven files are at their recorded size, sha256 and blob id (the controls script 7472 bytes, the workflow 4820, CHANGELOG.md 1465; the other four unchanged). S3 Local checks: 108 of 108, ended 21:51:27Z. S4 Scans: 90 of 90, ended 21:53:15Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; the canary prints CANARY OK twice with 6 and 5 commits; the controls print CONTROLS OK with the committed configuration and CONTROLS FAILED: 14 unexpected on a widened table; the negatives reach ten GATE FAILED conditions, each with status 2, plus CANARY FAILED, IMPOSSIBLE, an argument error and a missing binary. S5 Privacy gate: GATE: 0 blocking hit(s), ended 21:53:59Z. No deviation from the revised plan."
-                    }
-                  ]
-                },
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-11",
-                    "at": "2026-11-11T20:46:16Z",
-                    "findings": {
-                      "test": 11,
-                      "code": 0
-                    },
-                    "severity": {
-                      "minor": 8,
-                      "other": 3
-                    },
-                    "route": "re-plan-then-remediation",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/ca070e8d/tests/index.html",
-                    "note": "The code check found nothing: the six files hold their recorded bytes and nothing else changed. The 74 checks of the local checks, the scans and the privacy gate passed. The test check found 11 gaps in coverage, 3 not minor: no check reaches the scan wrapper's fail-closed branches (status 2); the allowlist table's negative controls exist only in the plan and scratch fixtures, with no committed repeatable check; and the two controls that must still be reported are never observed on the hosted Linux runner. The 8 minor ones: more ignore-list membership tests with an isolated user-level ignore file, an assertion that the clone holds no ignore file for findings, anchor fixtures for the table, a counts-only assertion over the scan output, assertions around the two reads of the hosted runs, optional shell-syntax checks of the workflow's run blocks, and one row of the test plan re-attributed. Every fix is in the plan's own procedure, so the plan is revised first and the revised checks then run."
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-11T22:22:42Z",
-                "ended": "2026-11-12T00:00:17Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-11T23:59:45Z",
-                  "note": "S5"
-                },
-                "detail": "All five stages of the plan's second revision ran in full with no stop; nothing is committed. S1 Baseline: 36 of 36 checks, ended 23:38:38Z. S2 The seven files: 11 of 11, ended 23:39:39Z; the controls script is now 8482 bytes at its recorded sha256 and blob id, and the other six files were rewritten to the same bytes. S3 Local checks: 130 of 130, ended 23:41:52Z; 48 paths ignored and 32 not ignored; no bytecode file appeared under .github/. S4 Scans: 199 of 199, ended 23:56:31Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice; CONTROLS OK twice with 22 controls each; nine failure paths of the controls script each end in CONTROLS FAILED with status 2; ten mutated tables each fail the controls with the recorded count (18, 7, 22, 8, 10, 2, 2, 2, 2, 6), both de-anchorings of the pinned text among them; thirteen GATE FAILED conditions of the scan wrapper each with status 2; every shell block of the workflow passes and stops as designed; the filter for the hosted logs reads its samples as 6 62 0, 6 63 1, 5 39 0 and 6 62 0. S5 Privacy gate: its selftest passes 50 checks and the gate reports 0 blocking hits, ended 23:58:02Z. No deviation from the revised plan.",
-                "open": [
-                  {
-                    "text": "The plan's table of stops names only the README script's count as a stop of the stage that writes the seven files; the workflow step of that stage has a script stop of its own, which the error-handling table does list. Wording only; to be corrected when the plan is reconciled with the build.",
-                    "raised": "implementation-stage S5",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-11T23:59:45Z"
-                  }
-                ],
-                "remediation": {
-                  "pass": 2,
-                  "route": "re-plan-then-remediation",
-                  "steps": [
-                    {
-                      "name": "Revise the plan",
-                      "state": "done",
-                      "finished": "2026-11-11T23:35:14Z",
-                      "report": "The plan is revised a second time; the replaced version is kept under superseded/. The second review's one code finding was in the controls script, .github/scripts/allowlist_controls.py: its two fixtures for the pinned text's anchors could not fail when an anchor was dropped. It is fixed by two more fixtures, after-quotes and before-quotes, which put a generated word outside the quotes and inside the captured secret; the script now has eleven fixtures (22 controls) and takes new recorded bytes (8482). The other six files are unchanged. All fourteen test findings are answered by checks held as steps: ten mutated tables each fail the controls with a recorded count, both de-anchorings among them; the controls script's own failure paths, three more cases of the scan wrapper and every shell block of the workflow are run on their failing side; the workflow's names, timeout and concurrency group are asserted; both scripts are parsed and their pure parts checked directly; standard error is asserted empty; and the logs of the two hosted runs are checked line by line for the fixed shapes. Three limits stay accepted, each failing closed: the hosted runner's install step and tools, the form of the real log until the first run, and two triggers no run exercises. All five stages are run again in full: 36, 11, 130 and 199 checks expected in S1 to S4."
-                    },
-                    {
-                      "name": "Run the revised checks",
-                      "state": "done",
-                      "started": "2026-11-11T23:35:14Z",
-                      "finished": "2026-11-11T23:59:45Z",
-                      "report": "All five stages of the plan's second revision ran in full with no stop; nothing is committed. S1 Baseline: 36 of 36 checks, ended 23:38:38Z. S2 The seven files: 11 of 11, ended 23:39:39Z; the controls script is now 8482 bytes at its recorded sha256 and blob id, and the other six files were rewritten to the same bytes. S3 Local checks: 130 of 130, ended 23:41:52Z; 48 paths ignored and 32 not ignored; no bytecode file appeared under .github/. S4 Scans: 199 of 199, ended 23:56:31Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice; CONTROLS OK twice with 22 controls each; nine failure paths of the controls script each end in CONTROLS FAILED with status 2; ten mutated tables each fail the controls with the recorded count (18, 7, 22, 8, 10, 2, 2, 2, 2, 6), both de-anchorings of the pinned text among them; thirteen GATE FAILED conditions of the scan wrapper each with status 2; every shell block of the workflow passes and stops as designed; the filter for the hosted logs reads its samples as 6 62 0, 6 63 1, 5 39 0 and 6 62 0. S5 Privacy gate: its selftest passes 50 checks and the gate reports 0 blocking hits, ended 23:58:02Z. No deviation from the revised plan."
-                    }
-                  ]
-                },
-                "qa": [
-                  {
-                    "pass": 2,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-11",
-                    "at": "2026-11-11T22:22:42Z",
-                    "findings": {
-                      "test": 14,
-                      "code": 1
-                    },
-                    "severity": {
-                      "minor": 13,
-                      "other": 2
-                    },
-                    "route": "re-plan-then-remediation",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/949b5d33/tests/index.html",
-                    "note": "All 202 checks passed, as in the build's own run, and the seven files hold the revised plan's recorded bytes; every finding of Quality Review 1 is answered. 15 findings (14 test, 1 code), 2 not minor. First, the two controls fixtures meant to test the anchors of the table's pinned text put the extra character inside the quotes, which the pinned pattern includes, so both stay reported even if an anchor is dropped: a later edit removing an anchor would leave the controls green (found by evaluating the patterns, not by a run with the binary). Second, on the hosted runs the log's counts-only property is read through four marker counts only, so a line of another shape in a scan step would go unnoticed in a log that becomes public with the repository. The 13 minor ones: the controls script's own failure paths and three more table mutations as repeatable steps; three sub-cases of the scan wrapper; assertions on the workflow's timeout, names and concurrency group; a parse check of the two scripts; standard error asserted empty; the workflow's failing shell branches run locally; more not-ignored paths for five root-anchored patterns; a direct check of the pure functions; and wording in the plan (a count of 95 commits that should read 94, seven lines that should read six, two rows of the test plan table, some check labels). The plan is revised first, then the revised checks run."
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-12T00:38:33Z",
-                "ended": "2026-11-12T01:45:29Z",
-                "endedBy": "document",
-                "to": "document",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-12T01:44:46Z",
-                  "note": "S5"
-                },
-                "detail": "The steps the fixes touch ran with no stop; nothing is committed and the seven files are unchanged at their recorded bytes, so the stage that writes them was not run again. S1 Baseline: helpers 8 of 8 and the before-scans 13 of 13, ended 01:23:35Z. S3 Local checks: 130 of 130, ended 01:26:15Z. S4 Scans: 222 of 222, ended 01:41:26Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice, its last call's output in fixed shapes; CONTROLS OK three times, the run from a bare clone among them, with the 22 control lines as expected in order; the nine failure paths of the controls each end in CONTROLS FAILED; all ten mutated tables fail the controls at their counts and turn exactly the controls the plan names; thirteen GATE FAILED conditions and seven uncaught exits of the scan wrapper answer as designed; every shell block of the workflow passes and stops as designed; the log filter reads its four samples as recorded. S5 Privacy gate: selftest 50 checks, 0 blocking hits, ended 01:42:58Z. No deviation. No bytecode file under .github/.",
-                "open": [
-                  {
-                    "text": "The plan's convention on running a block names three blocks as longer than the size at which a command is cut; measured with their prelude, only one of them is (the negatives block). The rule itself, every block run from a saved file, was applied to every block. Wording only; to be corrected when the plan is reconciled with the build.",
-                    "raised": "implementation-stage S5",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-12T01:44:46Z"
-                  }
-                ],
-                "remediation": {
-                  "pass": 3,
-                  "route": "on-the-spot",
-                  "steps": [
-                    {
-                      "name": "Apply the seven minor fixes to the plan's checks",
-                      "state": "done",
-                      "started": "2026-11-12T00:38:33Z",
-                      "finished": "2026-11-12T01:20:33Z",
-                      "report": "The seven minor fixes are applied to the plan's checks in place; the design and the seven files' recorded bytes are unchanged, so the stage that writes the files is not run again. The canary's last call has its output and standard error asserted; the shape check runs before every verdict; the commit-count case is filed under the integration row; the failing-side cases assert shape and standard error; the 22 control lines are asserted in order, each mutation asserts which controls it turns, and a run from a bare clone shows the document is read from the last commit; four more uncaught exits of the scan wrapper have a case; the generated word is asserted as 12 hexadecimal characters over 200 draws, and two more helpers have a check of their own. A convention is added: each block is saved to a file and run from it, because the longest blocks are cut when handed to the shell as one command. Expected checks now: 38 in S1 (helpers 8), 130 in S3, 222 in S4 (canary 21, controls 42, mutations 42, negatives 64). Two possible later changes are recorded in consequences.md, neither planned: the escape of one dot in the table's path pattern, and an ignore pattern for Python bytecode. The baseline's helpers and before-scans, the local checks, the scans and the privacy gate are run again."
-                    },
-                    {
-                      "name": "Run the steps the fixes touch",
-                      "state": "done",
-                      "started": "2026-11-12T01:20:33Z",
-                      "finished": "2026-11-12T01:44:46Z",
-                      "report": "The steps the fixes touch ran with no stop; nothing is committed and the seven files are unchanged at their recorded bytes, so the stage that writes them was not run again. S1 Baseline: helpers 8 of 8 and the before-scans 13 of 13, ended 01:23:35Z. S3 Local checks: 130 of 130, ended 01:26:15Z. S4 Scans: 222 of 222, ended 01:41:26Z; the history (94 commits, both ref sets) and the tree print RESULT: CLEAN; CANARY OK twice, its last call's output in fixed shapes; CONTROLS OK three times, the run from a bare clone among them, with the 22 control lines as expected in order; the nine failure paths of the controls each end in CONTROLS FAILED; all ten mutated tables fail the controls at their counts and turn exactly the controls the plan names; thirteen GATE FAILED conditions and seven uncaught exits of the scan wrapper answer as designed; every shell block of the workflow passes and stops as designed; the log filter reads its four samples as recorded. S5 Privacy gate: selftest 50 checks, 0 blocking hits, ended 01:42:58Z. No deviation. No bytecode file under .github/."
-                    }
-                  ]
-                },
-                "qa": [
-                  {
-                    "pass": 3,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-12",
-                    "at": "2026-11-12T00:38:33Z",
-                    "findings": {
-                      "test": 7,
-                      "code": 0
-                    },
-                    "severity": {
-                      "minor": 7,
-                      "other": 0
-                    },
-                    "route": "on-the-spot",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/dda89436/tests/index.html",
-                    "note": "The code check found nothing: the seven files hold the plan's recorded bytes, and the code finding of Quality Review 2 is answered: evaluated against the rule and the table themselves, the committed table fails none of the controls' eleven expectations, and each of the four de-anchorings of the pinned text fails exactly its own fixture in both modes. All 334 checks passed (local checks 130, scans 199, privacy gate 5), and 13 of Quality Review 2's 15 findings are answered in full. 7 findings remain, all minor test findings, each an edit to the plan's procedure or its wording and none to the seven files: one call at the end of the canary step leaves its standard error unasserted; in two places the verdict is asserted before the shape check; one case is filed under the component row of the test levels though it runs git; three failing-side cases lack a shape and standard-error value; the 22 control lines and the controls each mutation turns are asserted as counts only, and reading the document from the last commit has no case; three more uncaught exits of the scan wrapper have no case; and the generated word's form and two helpers have no check of their own. They touch the checks before the landing, the allowlist controls, and the scan wrapper with its workflow. They are fixed on the spot and the steps they touch run again; no further review follows."
-                  }
-                ]
-              }
-            ],
-            "document": [
-              {
-                "since": "2026-11-12T01:45:29Z",
-                "ended": "2026-11-12T01:59:34Z",
-                "endedBy": "halted",
-                "to": "document",
-                "event": {
-                  "name": "document",
-                  "at": "2026-11-12T01:49:28Z",
-                  "note": "0 of 6 tasks done"
-                },
-                "detail": "The seven files are committed in three commits and pushed; the branch head is 40357d4. main had not moved, so there is no merge commit, and no version changes. All seven blob ids equal the plan's records. The documentation of the change set is being checked.",
-                "open": [
-                  {
-                    "text": "The plan's convention on running a block names three blocks as longer than the size at which a command is cut; measured with their prelude, only one of them is (the negatives block). The rule itself, every block run from a saved file, was applied to every block. Wording only; to be corrected when the plan is reconciled with the build.",
-                    "raised": "implementation-stage S5",
-                    "ref": "plan.md",
-                    "shownOpen": "2026-11-12T01:44:46Z"
-                  }
-                ],
-                "document": {
-                  "tasks": [
-                    {
-                      "id": "documentation-review",
-                      "name": "Documentation review",
-                      "state": "done",
-                      "started": "2026-11-12T01:49:28Z",
-                      "finished": "2026-11-12T01:59:34Z"
-                    },
-                    {
-                      "id": "reconcile-documentation",
-                      "name": "Reconcile documentation",
-                      "state": "current",
-                      "started": "2026-11-12T01:59:34Z"
-                    },
-                    {
-                      "id": "reconcile-plan",
-                      "name": "Reconcile plan",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "readme-changelog",
-                      "name": "README and CHANGELOG",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "state-boards",
-                      "name": "State boards",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "document-landing",
-                      "name": "Document commit",
-                      "state": "todo"
-                    }
-                  ]
-                },
-                "held": true,
-                "asked": [
-                  {
-                    "text": "The header of .gitleaks.toml does not say that the allowlist table and the controls script change together. Is that fixed in this change?",
-                    "options": [
-                      "Fix it now, with a note that a directory scan must run from the repository root: .gitleaks.toml takes new recorded bytes, the plan's records and the workspace copy's expected values change, and the checks run again",
-                      "Record it as a follow-up in consequences.md; the rule stays documented in the plan documents only"
-                    ],
-                    "answer": null,
-                    "asked": "2026-11-12T01:59:34Z",
-                    "answered": "2026-11-12T02:10:54Z"
-                  },
-                  {
-                    "text": "Eight further improvements are comments or wording in the other byte-pinned files (the scan wrapper, the controls script, the workflow, .gitignore, CHANGELOG.md). Are they made in this change?",
-                    "options": [
-                      "Record them as follow-ups in consequences.md, for a later comment-only change",
-                      "Make them all now: five files take new bytes, the scan wrapper stops matching the workspace copy and the research text (a change to the phase design), the plan is revised again and every stage is run again",
-                      "Make them now in every file except the scan wrapper, which stays byte-identical; its comments are recorded as a follow-up"
-                    ],
-                    "answer": null,
-                    "asked": "2026-11-12T01:59:34Z",
-                    "answered": "2026-11-12T02:10:54Z"
-                  }
-                ]
-              }
-            ]
-          },
-          "rowNames": {
-            "gitignore": "A root-anchored `.gitignore`",
-            "gitleaks-config": "The scan's configuration, `.gitleaks.toml`",
-            "secret-scan-workflow": "The scan wrapper and the `Secret scan` workflow",
-            "readme-correction": "The README's correction",
-            "changelog": "The first `CHANGELOG.md`",
-            "landing-checks": "The checks before the landing, and the merge after the workflow's first run",
-            "allowlist-controls": "The allowlist controls, `allowlist_controls.py`"
-          },
-          "recon": {
-            "interview": {
-              "reconstructed": true,
-              "ended": null,
-              "trail": [],
-              "milestones": []
-            }
-          }
-        },
         "tests": {
           "updated": "2026-11-12T03:54:41Z",
           "added": [
@@ -2661,6 +1402,10 @@ window.dashboardLive&&window.dashboardLive("plan",
             "landing-checks": "The checks before the landing, and the merge after the workflow's first run",
             "allowlist-controls": "The allowlist controls, `allowlist_controls.py`"
           }
+        },
+        "landing": {
+          "pr": 34,
+          "merge": "3d1b89007f253d11bdee08174c1d7f21621cc386"
         }
       },
       "gap": {
@@ -2759,7 +1504,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "9bb2a18d3c1b"
+              "hash": "fa8d17ef1794"
             }
           }
         ],
@@ -2773,8 +1518,8 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "architecture.md#15-decomposition"
       },
       "asBuilt": {
-        "state": "pending",
-        "summary": "#24's run is in its Document step: the seven files are committed on its branch at their recorded bytes, the configuration's two header sentences included, at `0b64c47`, the commit the code lands at, and the checks before the landing ran again over the final documents with no stop; its documents are not committed yet, its workflow has not run on GitHub (the first run is the pull request's), and it is not merged.",
+        "state": "landed",
+        "summary": "Built and landed through PR #34 as `3d1b890`, with no deviation from its plan: the seven files at their recorded bytes, namely the root-anchored `.gitignore`, the configuration with its one scoped allowlist table, the scan wrapper, the allowlist controls, the secret-scan workflow, the README correction and the first `CHANGELOG.md`. The workflow's first run, on the pull request, and the push run on `main` both passed, the allowlist controls included, on the `ubuntu-26.04` image. The default-rule finding unit 3 recorded is settled, so the publication unit's change to public no longer waits on it; the workspace configuration now holds `main`'s bytes, and the two workspace pins that still name the old value are left for #26 and #27.",
         "changes": [
           {
             "what": "`.gitleaks.toml` holds one scoped `[[allowlists]]` table rather than none: the rule `curl-auth-user`, one research document's path and its exact text, all three required, with its reason in `description`; there is still no global allowlist, and the header comment names the allowlist controls and says how a `dir` scan must be run.",
@@ -2806,7 +1551,2435 @@ window.dashboardLive&&window.dashboardLive("plan",
         "blockedBy": [
           24
         ],
-        "issue": 25
+        "issue": 25,
+        "board": "25-kotlinbottools-publish/dashboard.html",
+        "folder": "25-kotlinbottools-publish/",
+        "live": {
+          "step": "document",
+          "since": "2026-11-13T01:05:02Z",
+          "updated": "2026-11-13T02:26:45Z",
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "steps": [
+            "sizing",
+            "interview",
+            "research",
+            "plan",
+            "branch",
+            "implementation",
+            "qa",
+            "remediation",
+            "document",
+            "landing",
+            "merge",
+            "landed"
+          ],
+          "waitingOn": null,
+          "resume": null,
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-12",
+              "at": "2026-11-12T23:59:25Z",
+              "findings": {
+                "test": 12,
+                "code": 5
+              },
+              "severity": {
+                "minor": 15,
+                "other": 2
+              },
+              "route": "re-plan-then-remediation",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/ca070e8d/tests/index.html",
+              "note": "The repository is in the intended state and the issue's three criteria are met: it reads public with secret scanning and push protection enabled, every pre-rewrite id probed answers as absent, the feeds list none, and all nineteen issue bodies equal the intended text. Nothing was run again: the recorded results read 171 passed, 0 failed and 224 without a stored result (155 self-test checks, 50 stage lines printed and not kept, 19 checks of the landing not yet due), as re-running the self-tests would remove the run's working sets. 17 findings (15 minor, 2 other; 12 test, 5 code). The 2 not minor: the totals of the six self-tests were never stored, and the second feed read came about three and a half minutes after the first where at least six were required, which the as-built record does not yet state. The 15 minor ones: the stale entry on the revisions count, a one-second error in the pre-flip gate's time and gap, no stored trace that the tools were checked after they were saved a second time (they equal their pins now), the wording on stage markers, and how the test plan files and records its checks. They touch the anonymous measurements, the third privacy gate and the pre-flip gate. The plan's wording is corrected first, then the as-built record."
+            },
+            {
+              "pass": 2,
+              "verdict": "changes-requested",
+              "date": "2026-11-13",
+              "at": "2026-11-13T00:43:53Z",
+              "findings": {
+                "test": 9,
+                "code": 3
+              },
+              "severity": {
+                "minor": 12,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/949b5d33/tests/index.html",
+              "note": "Fifteen of Quality Review 1's seventeen findings are closed, the two that were not minor among them: the totals of five self-tests are kept (137 checks passed, 0 failed; the 18 stand-in cases of the anonymous helpers were not run again, a known gap), and the spacing of the feed reads is corrected in the plan, stated in the as-built record and answered by the third feed read. The issue's three criteria are met on fresh reads: the repository reads public with secret scanning and push protection enabled, all 87 pre-rewrite commits answer as absent, and nine feed reads list no pre-rewrite id. The closed record is untouched and the saved tools equal their pins. Nothing was run again in this pass: its test results are read from the run's kept results. 12 findings (12 minor; 9 test, 3 code), all wording: the anonymous REST budget still stated as about 45 calls in the consequences, the plan's summaries of the landing's reads naming three of its five steps, one requirement number cited for the revert trigger, test plan rows that claim slightly more than their checks reach, and three statements of the as-built record (the measurements of the issue-text stage, the refusals that left no stored reply, one time stamp that straddles a second). They touch the anonymous measurements and are fixed on the spot, with no further review."
+            }
+          ],
+          "qaMax": 3,
+          "status": "building",
+          "branch": "chore/issue-25-make-repository-public",
+          "event": {
+            "name": "document",
+            "at": "2026-11-13T02:26:45Z",
+            "note": "6 of 6 tasks done"
+          },
+          "asked": [
+            {
+              "step": "plan",
+              "text": "When does the visibility change happen: does the temporary grant of the writes start it, or does the run stop for an explicit go-ahead once every check before the change has passed?",
+              "options": [
+                "The grant starts it: one continuous procedure through the gates, the change, the scanning update and the measurements",
+                "A stop before the change: a counts-only report, then the change only on an explicit go-ahead, with a re-check that nothing drifted",
+                "Either of the two, but only after a named condition (a date, another unit, a licence file on main)"
+              ],
+              "answer": null,
+              "asked": "2026-11-12T05:15:36Z",
+              "answered": "2026-11-12T05:19:24Z"
+            },
+            {
+              "step": "plan",
+              "text": "If a check after the visibility change fails, is the repository made private again?",
+              "options": [
+                "Report only: the repository stays public",
+                "Make it private again on any finding",
+                "Split by kind: private again only when a pre-rewrite id is served or listed anonymously; a secret-scanning alert or another deviation is reported"
+              ],
+              "answer": null,
+              "asked": "2026-11-12T05:15:36Z",
+              "answered": "2026-11-12T05:19:24Z"
+            },
+            {
+              "step": "plan",
+              "text": "Does this unit correct the old issue texts before the visibility change (40 links to the deleted planning branch in the bodies of #1 to #19, #1's body naming that branch, #2's plan-folder line)?",
+              "options": [
+                "KotlinBottools issue bodies only, before Gate 3",
+                "Those, plus the issue bodies in MagicBot and WebTools",
+                "A separate issue does it first and blocks this unit",
+                "None before the change: all stay follow-ups"
+              ],
+              "answer": null,
+              "asked": "2026-11-12T05:15:36Z",
+              "answered": "2026-11-12T05:19:24Z"
+            },
+            {
+              "step": "plan",
+              "text": "Should the secret-scan check become a required status check on main, and which unit sets it?",
+              "options": [
+                "This unit, after the scanning update",
+                "Phase 1, together with its own workflow's check",
+                "No unit: the landing's merge condition stays the only enforcement"
+              ],
+              "answer": null,
+              "asked": "2026-11-12T05:15:36Z",
+              "answered": "2026-11-12T05:19:24Z"
+            },
+            {
+              "step": "plan",
+              "text": "The committed boards hold 10 distinct pre-rewrite commit ids, 2 of them in text fields of the rewrite-and-swap unit's board; none resolves in the repository. Are they accepted?",
+              "options": [
+                "Accept all 10, recorded by count in a dated note, each probed after the change",
+                "Accept the generated fields only; the two text-field ids are removed from the boards' current files first",
+                "Treat them as a failed check: no visibility change"
+              ],
+              "answer": null,
+              "asked": "2026-11-12T05:15:36Z",
+              "answered": "2026-11-12T05:19:24Z"
+            },
+            {
+              "step": "plan",
+              "text": "What does the access check cover, and may it change a setting?",
+              "options": [
+                "Read-only: anonymous reachability and a read-back of who can do what; deviations are reported",
+                "The same, plus one settings write: approval required for workflow runs on pull requests from outside contributors",
+                "The same, plus further settings at publication: description and topics, dependency alerts, private vulnerability reporting"
+              ],
+              "answer": null,
+              "asked": "2026-11-12T05:15:36Z",
+              "answered": "2026-11-12T05:19:24Z"
+            },
+            {
+              "step": "plan",
+              "text": "The phase design puts the scanning settings in the same minute as the visibility change, but each write is its own request and a repository write has taken about 2 to 3 minutes, so the settings would land about 2 to 4 minutes after the change. How is that gap handled?",
+              "options": [
+                "Send the scanning request the moment the visibility read-back holds, record both read-back times and report the gap",
+                "Carry both writes in one request, which needs a combined action added to the request protocol first"
+              ],
+              "answer": null,
+              "asked": "2026-11-12T19:27:03Z",
+              "answered": "2026-11-12T19:47:48Z"
+            },
+            {
+              "step": "plan",
+              "text": "The boards hold 10 distinct pre-rewrite commit ids at the committed tips and 13 over their history; three sit only in earlier versions of the repository work board. Does the acceptance of the 10 extend to all 13?",
+              "options": [
+                "Accept all 13, recorded by count and each probed after the change",
+                "Accept the 10 at the tips only; the three in history are settled before the change"
+              ],
+              "answer": null,
+              "asked": "2026-11-12T19:27:03Z",
+              "answered": "2026-11-12T19:47:48Z"
+            },
+            {
+              "step": "implementation",
+              "text": "The plan's command for comparing the scan configuration with main's fails on this machine's shell. How does the unit go on?",
+              "options": [
+                "The plan's command is corrected in a re-pass of the plan, and the pre-flip gate runs again from its first step",
+                "The unit stops here with the repository private"
+              ],
+              "answer": null,
+              "asked": "2026-11-12T21:50:23Z",
+              "answered": "2026-11-12T22:11:51Z"
+            },
+            {
+              "step": "document",
+              "text": "The plan spells out where the temporary grant is kept and gives its text, and the as-built record describes how the request service handled the request to change the visibility before it ran. How much of this stays in the public documents?",
+              "options": [
+                "Keep it as written",
+                "Generalise the unpinned sentences; the recorded block texts stay and are noted as a follow-up"
+              ],
+              "answer": null,
+              "asked": "2026-11-13T01:00:52Z",
+              "answered": "2026-11-13T01:05:02Z"
+            },
+            {
+              "step": "document",
+              "text": "The README is accurate for a public repository but does not say that secret scanning and push protection are now enabled. Is a sentence added?",
+              "options": [
+                "Add one sentence to the README",
+                "No README change, as the plan states"
+              ],
+              "answer": null,
+              "asked": "2026-11-13T01:00:52Z",
+              "answered": "2026-11-13T01:05:02Z"
+            }
+          ],
+          "plan": {
+            "state": "re-pass",
+            "from": "qa",
+            "pass": 1,
+            "since": "2026-11-12T23:59:25Z"
+          },
+          "stages": [
+            {
+              "id": "S1",
+              "name": "Readiness",
+              "state": "done",
+              "rows": [],
+              "brief": "The tools, the grant, the data records and the repository's state are as recorded, with the repository private and nothing written.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S1.save",
+                  "name": "The tools and blocks saved"
+                },
+                {
+                  "id": "S1.tools",
+                  "name": "The tools at their recorded bytes"
+                },
+                {
+                  "id": "S1.selftests",
+                  "name": "The tools' self-tests"
+                },
+                {
+                  "id": "S1.grant",
+                  "name": "The grant read"
+                },
+                {
+                  "id": "S1.state",
+                  "name": "The repository and the records read"
+                },
+                {
+                  "id": "S1.ids",
+                  "name": "The id sets built"
+                }
+              ],
+              "ref": "plan.md#s1--readiness",
+              "started": "2026-11-12T19:49:25Z",
+              "finished": "2026-11-12T21:11:38Z",
+              "report": "Readiness passed: 84 of 84 checks hold over the saved tools and blocks, the tools' recorded bytes and self-tests, the temporary grant, the repository's state and the id sets, with the repository private and nothing written. The new bodies of issues 1 to 19 are built, audited and gated with 0 blocking hits, and the first of the nineteen edits is prepared. No deviation from the plan.",
+              "result": "passed"
+            },
+            {
+              "id": "S2",
+              "name": "Issue texts",
+              "state": "done",
+              "rows": [
+                "planning-branch-links",
+                "issue-text-paths"
+              ],
+              "brief": "The bodies of issues 1 to 19 name `main` instead of the deleted planning branch, each edit read back.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S2.texts",
+                  "name": "The new bodies built and audited"
+                },
+                {
+                  "id": "S2.gate",
+                  "name": "The new bodies gated"
+                },
+                {
+                  "id": "S2.edits",
+                  "name": "The nineteen edits",
+                  "steps": [
+                    {
+                      "id": "S2.edits.1",
+                      "name": "Issue 1"
+                    },
+                    {
+                      "id": "S2.edits.2",
+                      "name": "Issue 2"
+                    },
+                    {
+                      "id": "S2.edits.3",
+                      "name": "Issue 3"
+                    },
+                    {
+                      "id": "S2.edits.4",
+                      "name": "Issue 4"
+                    },
+                    {
+                      "id": "S2.edits.5",
+                      "name": "Issue 5"
+                    },
+                    {
+                      "id": "S2.edits.6",
+                      "name": "Issue 6"
+                    },
+                    {
+                      "id": "S2.edits.7",
+                      "name": "Issue 7"
+                    },
+                    {
+                      "id": "S2.edits.8",
+                      "name": "Issue 8"
+                    },
+                    {
+                      "id": "S2.edits.9",
+                      "name": "Issue 9"
+                    },
+                    {
+                      "id": "S2.edits.10",
+                      "name": "Issue 10"
+                    },
+                    {
+                      "id": "S2.edits.11",
+                      "name": "Issue 11"
+                    },
+                    {
+                      "id": "S2.edits.12",
+                      "name": "Issue 12"
+                    },
+                    {
+                      "id": "S2.edits.13",
+                      "name": "Issue 13"
+                    },
+                    {
+                      "id": "S2.edits.14",
+                      "name": "Issue 14"
+                    },
+                    {
+                      "id": "S2.edits.15",
+                      "name": "Issue 15"
+                    },
+                    {
+                      "id": "S2.edits.16",
+                      "name": "Issue 16"
+                    },
+                    {
+                      "id": "S2.edits.17",
+                      "name": "Issue 17"
+                    },
+                    {
+                      "id": "S2.edits.18",
+                      "name": "Issue 18"
+                    },
+                    {
+                      "id": "S2.edits.19",
+                      "name": "Issue 19"
+                    }
+                  ]
+                },
+                {
+                  "id": "S2.after",
+                  "name": "The remaining occurrences counted"
+                }
+              ],
+              "ref": "plan.md#s2--the-issue-texts",
+              "started": "2026-11-12T21:11:38Z",
+              "finished": "2026-11-12T21:44:16Z",
+              "report": "The bodies of issues 1 to 19 now name main instead of the deleted planning branch: nineteen edits, each read back with the intended body byte for byte and its sub-issue and blocked-by edges unchanged; 0 occurrences of the branch's name remain in the bodies and 0 edits failed to land. The stage ended at 21:44:16Z. Two deviations are recorded: the procedures of edits 1 to 18 ran in order but not demonstrably as one shell (edit 19 did), and the comments on #1 hold one mention of the branch that is not a blob link, where one remaining link was expected. The repository is private."
+            },
+            {
+              "id": "S3",
+              "name": "Gate 3's corpus",
+              "state": "done",
+              "rows": [
+                "gate-3"
+              ],
+              "brief": "Everything that becomes public is gathered: a fresh mirror, the text dumps, the earlier revisions and the run logs.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S3.mirror",
+                  "name": "A fresh mirror"
+                },
+                {
+                  "id": "S3.dumps",
+                  "name": "The text dumps"
+                },
+                {
+                  "id": "S3.revisions",
+                  "name": "The earlier revisions"
+                },
+                {
+                  "id": "S3.logs",
+                  "name": "The run logs"
+                },
+                {
+                  "id": "S3.corpus",
+                  "name": "The corpus file"
+                }
+              ],
+              "ref": "plan.md#s3--gate-3s-corpus",
+              "started": "2026-11-12T21:44:16Z",
+              "finished": "2026-11-12T21:48:47Z",
+              "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private."
+            },
+            {
+              "id": "S4",
+              "name": "Gate 3",
+              "state": "done",
+              "rows": [
+                "gate-3",
+                "issue-text-paths"
+              ],
+              "brief": "The privacy gate, the path count, the secret scans, the purged-blob manifest and the scrub's count pass over the corpus.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S4.gate",
+                  "name": "The privacy gate"
+                },
+                {
+                  "id": "S4.paths",
+                  "name": "The machine-local path count"
+                },
+                {
+                  "id": "S4.scan",
+                  "name": "The secret scans"
+                },
+                {
+                  "id": "S4.manifest",
+                  "name": "The purged-blob manifest"
+                },
+                {
+                  "id": "S4.scrub",
+                  "name": "The scrub's zero count"
+                }
+              ],
+              "ref": "plan.md#s4--gate-3",
+              "finished": "2026-11-12T21:48:47Z",
+              "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+              "result": "passed"
+            },
+            {
+              "id": "S5",
+              "name": "The id-reference check",
+              "state": "done",
+              "rows": [
+                "id-reference-check"
+              ],
+              "brief": "No token in the public material resolves to a pre-rewrite commit apart from the expected ones.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S5.check",
+                  "name": "The id-reference check"
+                }
+              ],
+              "ref": "plan.md#s5--the-id-reference-check",
+              "finished": "2026-11-12T21:48:47Z",
+              "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+              "result": "passed"
+            },
+            {
+              "id": "S6",
+              "name": "The run on main",
+              "state": "done",
+              "rows": [
+                "secret-scan-on-main"
+              ],
+              "brief": "The latest secret-scan run on `main` passed and every run's log holds only fixed shapes.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S6.runs",
+                  "name": "The runs read"
+                }
+              ],
+              "ref": "plan.md#s6--the-secret-scan-run-on-main",
+              "finished": "2026-11-12T21:48:47Z",
+              "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+              "result": "passed"
+            },
+            {
+              "id": "S7",
+              "name": "The pre-flip gate",
+              "state": "done",
+              "rows": [
+                "pre-flip-gate"
+              ],
+              "brief": "Immediately before the change, every read shows the repository private and unchanged since the corpus was taken.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S7.reads",
+                  "name": "The pre-flip reads"
+                },
+                {
+                  "id": "S7.sets",
+                  "name": "The probe sets and controls"
+                },
+                {
+                  "id": "S7.anon",
+                  "name": "The anonymous snapshot"
+                },
+                {
+                  "id": "S7.drift",
+                  "name": "The drift check and the requests"
+                }
+              ],
+              "ref": "plan.md#s7--the-pre-flip-gate",
+              "started": "2026-11-12T21:48:47Z",
+              "finished": "2026-11-12T22:19:34Z",
+              "report": "The pre-flip gate passed at 22:19:35Z: 29 of 29 checks hold over the pre-flip reads, the probe sets and controls, the anonymous snapshot and the drift check, with no drift since Gate 3's corpus was taken and the repository private. The plan was re-passed for one command of the gate's first step, which now reads main's scan configuration without a ref-and-path argument; the replaced plan is under superseded/. The workspace's scan configuration equals the one committed on main. The visibility request was sent at 22:20:15Z.",
+              "result": "passed"
+            },
+            {
+              "id": "S8",
+              "name": "The change and the scanning settings",
+              "state": "done",
+              "rows": [
+                "visibility-change",
+                "scanning-settings"
+              ],
+              "brief": "The repository is public with secret scanning and push protection on, each read back.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S8.public",
+                  "name": "The change to public",
+                  "state": "done",
+                  "finished": "2026-11-12T23:17:54Z"
+                },
+                {
+                  "id": "S8.security",
+                  "name": "The scanning settings",
+                  "state": "done",
+                  "finished": "2026-11-12T23:19:08Z"
+                },
+                {
+                  "id": "S8.alerts",
+                  "name": "The first alert read",
+                  "state": "done",
+                  "finished": "2026-11-12T23:19:09Z"
+                }
+              ],
+              "ref": "plan.md#s8--the-change-and-the-scanning-settings",
+              "started": "2026-11-12T22:19:34Z",
+              "finished": "2026-11-12T23:19:09Z",
+              "report": "The repository is public with secret scanning and push protection enabled, each read back. The visibility change ran between 23:17:14Z and 23:17:24Z, sending visibility only, and its read-back held at 23:17:54Z (public false). The scanning update ran between 23:18:36Z and 23:18:46Z, and its read-back held at 23:19:08Z: secret scanning and push protection enabled, the two paid settings disabled, the others absent. The gap between the two read-backs is 74 s. The first alert read at 23:19:09Z answered with 0 alerts, which does not show a finished scan. The visibility request was first sent at 22:20:15Z; the request service declined to run it three times before anything reached GitHub, so the change followed the pre-flip gate by 58 minutes."
+            },
+            {
+              "id": "S9",
+              "name": "The anonymous measurements",
+              "state": "done",
+              "rows": [
+                "anonymous-measurements"
+              ],
+              "brief": "No pre-rewrite id is served or listed anonymously; otherwise the repository is made private again.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S9.gate",
+                  "name": "The readiness gate",
+                  "state": "done",
+                  "finished": "2026-11-12T23:29:24Z"
+                },
+                {
+                  "id": "S9.batches",
+                  "name": "The route batches",
+                  "state": "done",
+                  "finished": "2026-11-12T23:29:24Z"
+                },
+                {
+                  "id": "S9.feeds",
+                  "name": "The first feed read",
+                  "state": "done",
+                  "finished": "2026-11-12T23:29:24Z"
+                },
+                {
+                  "id": "S9.second",
+                  "name": "The second pass and feed read",
+                  "state": "done",
+                  "finished": "2026-11-12T23:27:36Z"
+                },
+                {
+                  "id": "S9.revert",
+                  "name": "The revert, only on the trigger"
+                }
+              ],
+              "ref": "plan.md#s9--the-anonymous-measurements",
+              "started": "2026-11-12T23:19:09Z",
+              "finished": "2026-11-12T23:28:20Z",
+              "report": "S9 ended at 23:27:36Z: the readiness gate was open on its first poll, and no pre-rewrite id is served or listed anonymously, with 87 commits absent on the web route and 87 on the protocol route, 3 trees and 58 blobs absent on the protocol route, 3 commits, 3 trees and 6 blobs absent on the REST route, 14 commits absent in the second pass, and 0 old ids in 6 valid feed reads; the repository stays public. S10 ended at 23:28:05Z: the access check, reading only, found 0 deviations in its anonymous half and in its authenticated half, with 0 direct collaborators and forking allowed. S11 ended at 23:28:20Z: the second alert read at 23:28:12Z answered with 0 alerts, and the record holds the unit's counts. The repository reads public with secret scanning and push protection enabled.",
+              "result": "passed"
+            },
+            {
+              "id": "S10",
+              "name": "The access check",
+              "state": "done",
+              "rows": [
+                "access-check"
+              ],
+              "brief": "Reading only, the repository is reachable as a public repository should be and its settings are as recorded.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S10.anon",
+                  "name": "The anonymous half",
+                  "state": "done",
+                  "finished": "2026-11-12T23:27:54Z"
+                },
+                {
+                  "id": "S10.auth",
+                  "name": "The authenticated half",
+                  "state": "done",
+                  "finished": "2026-11-12T23:28:05Z"
+                }
+              ],
+              "ref": "plan.md#s10--the-access-check",
+              "finished": "2026-11-12T23:28:20Z",
+              "report": "S9 ended at 23:27:36Z: the readiness gate was open on its first poll, and no pre-rewrite id is served or listed anonymously, with 87 commits absent on the web route and 87 on the protocol route, 3 trees and 58 blobs absent on the protocol route, 3 commits, 3 trees and 6 blobs absent on the REST route, 14 commits absent in the second pass, and 0 old ids in 6 valid feed reads; the repository stays public. S10 ended at 23:28:05Z: the access check, reading only, found 0 deviations in its anonymous half and in its authenticated half, with 0 direct collaborators and forking allowed. S11 ended at 23:28:20Z: the second alert read at 23:28:12Z answered with 0 alerts, and the record holds the unit's counts. The repository reads public with secret scanning and push protection enabled.",
+              "result": "passed"
+            },
+            {
+              "id": "S11",
+              "name": "The close",
+              "state": "done",
+              "rows": [
+                "scanning-settings"
+              ],
+              "brief": "The second alert read and the record of the unit's counts and its row for the residual report.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S11.alerts",
+                  "name": "The second alert read",
+                  "state": "done",
+                  "finished": "2026-11-12T23:28:12Z"
+                },
+                {
+                  "id": "S11.record",
+                  "name": "The record",
+                  "state": "done",
+                  "finished": "2026-11-12T23:28:20Z"
+                }
+              ],
+              "ref": "plan.md#s11--the-close",
+              "finished": "2026-11-12T23:28:20Z",
+              "report": "S9 ended at 23:27:36Z: the readiness gate was open on its first poll, and no pre-rewrite id is served or listed anonymously, with 87 commits absent on the web route and 87 on the protocol route, 3 trees and 58 blobs absent on the protocol route, 3 commits, 3 trees and 6 blobs absent on the REST route, 14 commits absent in the second pass, and 0 old ids in 6 valid feed reads; the repository stays public. S10 ended at 23:28:05Z: the access check, reading only, found 0 deviations in its anonymous half and in its authenticated half, with 0 direct collaborators and forking allowed. S11 ended at 23:28:20Z: the second alert read at 23:28:12Z answered with 0 alerts, and the record holds the unit's counts. The repository reads public with secret scanning and push protection enabled.",
+              "result": "passed"
+            }
+          ],
+          "remediation": {
+            "pass": 2,
+            "route": "on-the-spot",
+            "steps": [
+              {
+                "name": "The plan's wording corrected",
+                "state": "done",
+                "finished": "2026-11-13T00:47:56Z",
+                "report": "The twelve wording corrections are made in the three documents. The plan cites the requirement that defines the revert trigger, names all five of the landing's reads in its summaries with the revert path from the further feed read, names the three stages that keep a marker, and its test plan rows state which checks read GitHub, which helpers and verifying reads have no case, and what each self-test replaces. The as-built record gains the measurements of the issue-text stage, states that the three refusals left no stored reply, and cites the one stamp that straddles a second by its epoch. The consequences state the anonymous REST budget as 48 calls in the hour and extend the known gap on what the stand-in cases reach. No command block or tool text changed: the 10 tool files and 43 blocks extracted from the plan equal the saved ones."
+              },
+              {
+                "name": "The as-built record's three statements",
+                "state": "done",
+                "finished": "2026-11-13T00:47:56Z",
+                "report": "The twelve wording corrections are made in the three documents. The plan cites the requirement that defines the revert trigger, names all five of the landing's reads in its summaries with the revert path from the further feed read, names the three stages that keep a marker, and its test plan rows state which checks read GitHub, which helpers and verifying reads have no case, and what each self-test replaces. The as-built record gains the measurements of the issue-text stage, states that the three refusals left no stored reply, and cites the one stamp that straddles a second by its epoch. The consequences state the anonymous REST budget as 48 calls in the hour and extend the known gap on what the stand-in cases reach. No command block or tool text changed: the 10 tool files and 43 blocks extracted from the plan equal the saved ones."
+              },
+              {
+                "name": "The consequences' budget figure and known gap",
+                "state": "done",
+                "finished": "2026-11-13T00:47:56Z",
+                "report": "The twelve wording corrections are made in the three documents. The plan cites the requirement that defines the revert trigger, names all five of the landing's reads in its summaries with the revert path from the further feed read, names the three stages that keep a marker, and its test plan rows state which checks read GitHub, which helpers and verifying reads have no case, and what each self-test replaces. The as-built record gains the measurements of the issue-text stage, states that the three refusals left no stored reply, and cites the one stamp that straddles a second by its epoch. The consequences state the anonymous REST budget as 48 calls in the hour and extend the known gap on what the stand-in cases reach. No command block or tool text changed: the 10 tool files and 43 blocks extracted from the plan equal the saved ones."
+              }
+            ]
+          },
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done",
+                "started": "2026-11-13T00:51:21Z",
+                "finished": "2026-11-13T01:00:52Z",
+                "report": "The documentation check found 17 points. Two are gaps in the as-built record: it has no section on what was built, and the deviation on the 58 minutes between the pre-flip gate and the change gives no reasoning and no link to what the requirement rests on. Five are improvements in unpinned text: a missing reasoning line, two passages of the as-built record keyed to the plan's corrections rather than its versions, test plan limits worded as outcomes, and two inaccurate sentences about the shell helpers. Seven are improvements inside the recorded tool and block texts (side effects and return contracts their headers leave out, uncommented idioms), which can only become follow-ups. Every link in the eight documents resolves, both superseded copies carry their note, and no name, path or credential shape was found. The README is accurate for a public repository. Three points are choices about what the public documents say."
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-13T01:00:52Z",
+                "finished": "2026-11-13T01:27:31Z",
+                "report": "The documents are reconciled with the build. The as-built record states what was built, the acceptance against the issue's three criteria, the measurements of every stage and of the landing's reads, and four deviations: the procedures of edits 1 to 18 not demonstrably run as one shell, the comment on #1 holding a mention and no blob link, the change following the pre-flip gate by 58 minutes, and the second feed read inside the events feed's cache. The consequences state the outcome of each assumption, the known gaps and the follow-ups, among them one on what the tools' comments leave out. The research notes say what held in the build, and dated notes are on the phase design and on the consequences of the phase and of the two units before this one. A second documentation check found seven small points, all corrected. The documents' gate passed twice with the same counts at 01:27:02Z: 12 of 12 checks, 22 pending files, 0 blocking hits, 0 resolving tokens in the documents, the scan clean."
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-13T01:06:32Z",
+                "finished": "2026-11-13T01:27:31Z",
+                "report": "The documents are reconciled with the build. The as-built record states what was built, the acceptance against the issue's three criteria, the measurements of every stage and of the landing's reads, and four deviations: the procedures of edits 1 to 18 not demonstrably run as one shell, the comment on #1 holding a mention and no blob link, the change following the pre-flip gate by 58 minutes, and the second feed read inside the events feed's cache. The consequences state the outcome of each assumption, the known gaps and the follow-ups, among them one on what the tools' comments leave out. The research notes say what held in the build, and dated notes are on the phase design and on the consequences of the phase and of the two units before this one. A second documentation check found seven small points, all corrected. The documents' gate passed twice with the same counts at 01:27:02Z: 12 of 12 checks, 22 pending files, 0 blocking hits, 0 resolving tokens in the documents, the scan clean."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-13T01:06:32Z",
+                "report": "The third alert read at 01:05:33Z answered with 0 alerts, and the closed record still verifies. The documentation points and the plan are being reconciled in one pass: the as-built record gains a section on what was built and the reasoning its deviations lacked, the unpinned sentences on where the temporary grant is kept and on the refusals are generalised, the points inside the recorded tool texts become one follow-up, and the consequences, the research notes and the dated notes on the phase design take the outcome of the build. The README and the changelog are not changed: the README is accurate for a public repository and a documentation-only landing adds no entry. A second documentation check follows."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-13T01:27:31Z",
+                "finished": "2026-11-13T01:43:10Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-13T01:43:10Z",
+                "finished": "2026-11-13T02:26:45Z"
+              }
+            ]
+          },
+          "history": {
+            "sizing": [
+              {
+                "since": null,
+                "ended": "2026-11-12T04:44:41Z",
+                "endedBy": "sized",
+                "to": "plan"
+              }
+            ],
+            "plan": [
+              {
+                "since": "2026-11-12T04:44:41Z",
+                "ended": "2026-11-12T05:15:36Z",
+                "endedBy": "halted",
+                "to": "plan",
+                "event": {
+                  "name": "sized",
+                  "at": "2026-11-12T04:44:41Z"
+                },
+                "detail": "Unit 5 of the history rewrite: the privacy gate and id-reference check over everything that becomes public, the gate before the visibility change, the visibility change, secret scanning and push protection enabled and verified, the anonymous measurements and the access check, and the secret-scan run on main confirmed green. Baseline: main at 3d1b890. No repository source changes; the landing carries the plan and the as-built record. Next: the plan is drafted, starting with the questions for the maintainer.",
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-12T04:44:41Z"
+                },
+                "held": true,
+                "asked": [
+                  {
+                    "text": "When does the visibility change happen: does the temporary grant of the writes start it, or does the run stop for an explicit go-ahead once every check before the change has passed?",
+                    "options": [
+                      "The grant starts it: one continuous procedure through the gates, the change, the scanning update and the measurements",
+                      "A stop before the change: a counts-only report, then the change only on an explicit go-ahead, with a re-check that nothing drifted",
+                      "Either of the two, but only after a named condition (a date, another unit, a licence file on main)"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-12T05:15:36Z",
+                    "answered": "2026-11-12T05:19:24Z"
+                  },
+                  {
+                    "text": "If a check after the visibility change fails, is the repository made private again?",
+                    "options": [
+                      "Report only: the repository stays public",
+                      "Make it private again on any finding",
+                      "Split by kind: private again only when a pre-rewrite id is served or listed anonymously; a secret-scanning alert or another deviation is reported"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-12T05:15:36Z",
+                    "answered": "2026-11-12T05:19:24Z"
+                  },
+                  {
+                    "text": "Does this unit correct the old issue texts before the visibility change (40 links to the deleted planning branch in the bodies of #1 to #19, #1's body naming that branch, #2's plan-folder line)?",
+                    "options": [
+                      "KotlinBottools issue bodies only, before Gate 3",
+                      "Those, plus the issue bodies in MagicBot and WebTools",
+                      "A separate issue does it first and blocks this unit",
+                      "None before the change: all stay follow-ups"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-12T05:15:36Z",
+                    "answered": "2026-11-12T05:19:24Z"
+                  },
+                  {
+                    "text": "Should the secret-scan check become a required status check on main, and which unit sets it?",
+                    "options": [
+                      "This unit, after the scanning update",
+                      "Phase 1, together with its own workflow's check",
+                      "No unit: the landing's merge condition stays the only enforcement"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-12T05:15:36Z",
+                    "answered": "2026-11-12T05:19:24Z"
+                  },
+                  {
+                    "text": "The committed boards hold 10 distinct pre-rewrite commit ids, 2 of them in text fields of the rewrite-and-swap unit's board; none resolves in the repository. Are they accepted?",
+                    "options": [
+                      "Accept all 10, recorded by count in a dated note, each probed after the change",
+                      "Accept the generated fields only; the two text-field ids are removed from the boards' current files first",
+                      "Treat them as a failed check: no visibility change"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-12T05:15:36Z",
+                    "answered": "2026-11-12T05:19:24Z"
+                  },
+                  {
+                    "text": "What does the access check cover, and may it change a setting?",
+                    "options": [
+                      "Read-only: anonymous reachability and a read-back of who can do what; deviations are reported",
+                      "The same, plus one settings write: approval required for workflow runs on pull requests from outside contributors",
+                      "The same, plus further settings at publication: description and topics, dependency alerts, private vulnerability reporting"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-12T05:15:36Z",
+                    "answered": "2026-11-12T05:19:24Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-12T05:19:24Z",
+                "ended": "2026-11-12T05:22:33Z",
+                "endedBy": "research-planning",
+                "to": "research",
+                "event": {
+                  "name": "resumed",
+                  "at": "2026-11-12T05:19:24Z"
+                },
+                "detail": "All six questions are answered. The grant of the writes starts one continuous procedure, with no stop before the visibility change. After the change the repository is made private again only when a pre-rewrite id is served or listed anonymously; a secret-scanning alert or another deviation is reported. The unit corrects the KotlinBottools issue bodies of #1 to #19 before Gate 3; the comment on #1 and the texts in MagicBot and WebTools stay follow-ups. The required status check is left to Phase 1 and recorded as a follow-up. All 10 pre-rewrite ids the boards hold are accepted, recorded by count and probed after the change. The access check is read-only. Next: research on the current behaviour of the visibility and scanning writes and of anonymous measurements after a change from private to public, then the plan.",
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-12T04:44:41Z"
+                }
+              },
+              {
+                "since": "2026-11-12T18:13:42Z",
+                "ended": "2026-11-12T19:27:03Z",
+                "endedBy": "halted",
+                "to": "plan",
+                "event": {
+                  "name": "researched",
+                  "at": "2026-11-12T18:13:42Z"
+                },
+                "detail": "35 of 36 checks hold and none fails; one single-source wording stays unclear and nothing rests on it. The publication and scanning calls are unchanged since the phase's earlier findings; the anonymous measurement uses web and git-protocol routes with bracketed controls inside the anonymous REST budget.",
+                "plan": {
+                  "state": "writing",
+                  "since": "2026-11-12T18:13:42Z"
+                },
+                "held": true,
+                "asked": [
+                  {
+                    "text": "The phase design puts the scanning settings in the same minute as the visibility change, but each write is its own request and a repository write has taken about 2 to 3 minutes, so the settings would land about 2 to 4 minutes after the change. How is that gap handled?",
+                    "options": [
+                      "Send the scanning request the moment the visibility read-back holds, record both read-back times and report the gap",
+                      "Carry both writes in one request, which needs a combined action added to the request protocol first"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-12T19:27:03Z",
+                    "answered": "2026-11-12T19:47:48Z"
+                  },
+                  {
+                    "text": "The boards hold 10 distinct pre-rewrite commit ids at the committed tips and 13 over their history; three sit only in earlier versions of the repository work board. Does the acceptance of the 10 extend to all 13?",
+                    "options": [
+                      "Accept all 13, recorded by count and each probed after the change",
+                      "Accept the 10 at the tips only; the three in history are settled before the change"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-12T19:27:03Z",
+                    "answered": "2026-11-12T19:47:48Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-12T19:47:48Z",
+                "ended": "2026-11-12T19:48:01Z",
+                "endedBy": "plan-accepted",
+                "to": "branch",
+                "event": {
+                  "name": "resumed",
+                  "at": "2026-11-12T19:47:48Z"
+                },
+                "detail": "Both questions are answered. The scanning request is sent the moment the visibility read-back holds, both read-back times are recorded and the gap between them is reported; no combined write is added. All 13 pre-rewrite ids the boards hold over their history are accepted, 10 at the committed tips and three only in earlier versions of the repository work board, recorded by count and each probed after the change. The plan needs no change for either answer.",
+                "plan": {
+                  "state": "writing",
+                  "since": "2026-11-12T18:13:42Z"
+                }
+              }
+            ],
+            "research": [
+              {
+                "since": "2026-11-12T05:22:33Z",
+                "ended": "2026-11-12T05:36:00Z",
+                "endedBy": "run-restarted",
+                "to": "research",
+                "event": {
+                  "name": "research-started",
+                  "at": "2026-11-12T05:25:48Z"
+                },
+                "detail": "Two questions: the calls that make the repository public, enable secret scanning and push protection, and make it private again; and the anonymous reads and the access check after the change.",
+                "research": {
+                  "phase": "research",
+                  "drafted": 0,
+                  "since": {
+                    "planning": "2026-11-12T05:22:33Z",
+                    "research": "2026-11-12T05:25:48Z"
+                  }
+                },
+                "questions": [
+                  {
+                    "question": "publication-and-scanning-api",
+                    "rows": [
+                      "visibility-change",
+                      "scanning-settings"
+                    ],
+                    "findings": null,
+                    "state": "researching",
+                    "started": "2026-11-12T05:25:48Z"
+                  },
+                  {
+                    "question": "anonymous-reads-after-publication",
+                    "rows": [
+                      "anonymous-measurements",
+                      "access-check"
+                    ],
+                    "findings": null,
+                    "state": "researching",
+                    "started": "2026-11-12T05:25:48Z"
+                  }
+                ],
+                "outage": "the session ended while the research batch was running; the same conversation was resumed and its planning is continuing"
+              },
+              {
+                "since": "2026-11-12T17:46:25Z",
+                "ended": "2026-11-12T18:13:42Z",
+                "endedBy": "researched",
+                "to": "plan",
+                "event": {
+                  "name": "verification-started",
+                  "at": "2026-11-12T18:07:38Z"
+                },
+                "detail": "35 load-bearing claims of the two findings files, and five observations, re-checked at their sources.",
+                "research": {
+                  "phase": "complete",
+                  "drafted": 0,
+                  "since": {
+                    "planning": "2026-11-12T05:22:33Z",
+                    "research": "2026-11-12T05:25:48Z",
+                    "verification": "2026-11-12T18:07:38Z",
+                    "complete": "2026-11-12T18:13:42Z"
+                  }
+                },
+                "questions": [
+                  {
+                    "question": "publication-and-scanning-api",
+                    "rows": [
+                      "visibility-change",
+                      "scanning-settings"
+                    ],
+                    "findings": "research/publication-and-scanning-api.md",
+                    "state": "complete",
+                    "started": "2026-11-12T05:25:48Z",
+                    "returned": "2026-11-12T17:47:33Z"
+                  },
+                  {
+                    "question": "anonymous-reads-after-publication",
+                    "rows": [
+                      "anonymous-measurements",
+                      "access-check"
+                    ],
+                    "findings": "research/anonymous-reads-after-publication.md",
+                    "state": "complete",
+                    "started": "2026-11-12T05:25:48Z",
+                    "returned": "2026-11-12T18:07:04Z"
+                  }
+                ]
+              }
+            ],
+            "branch": [
+              {
+                "since": "2026-11-12T19:48:01Z",
+                "ended": "2026-11-12T19:49:25Z",
+                "endedBy": "branch-cut",
+                "to": "implementation",
+                "event": {
+                  "name": "plan-accepted",
+                  "at": "2026-11-12T19:48:01Z"
+                },
+                "detail": "Plan accepted; the branch is confirmed next.",
+                "branch": "chore/issue-25-make-repository-public"
+              }
+            ],
+            "implementation": [
+              {
+                "since": "2026-11-12T19:49:25Z",
+                "ended": "2026-11-12T19:49:56Z",
+                "endedBy": "run-restarted",
+                "to": "implementation",
+                "event": {
+                  "name": "branch-cut",
+                  "at": "2026-11-12T19:49:25Z"
+                },
+                "detail": "Branch chore/issue-25-make-repository-public confirmed: base main at 3d1b890, head a7c7764 locally and on origin, five research commits ahead of main and two behind it (main at 3596cbe), checked out in the main checkout.",
+                "stages": [
+                  {
+                    "id": "S1",
+                    "name": "Readiness",
+                    "state": "current",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S1.save",
+                        "name": "The tools and blocks saved"
+                      },
+                      {
+                        "id": "S1.tools",
+                        "name": "The tools at their recorded bytes"
+                      },
+                      {
+                        "id": "S1.selftests",
+                        "name": "The tools' self-tests"
+                      },
+                      {
+                        "id": "S1.grant",
+                        "name": "The grant read"
+                      },
+                      {
+                        "id": "S1.state",
+                        "name": "The repository and the records read"
+                      },
+                      {
+                        "id": "S1.ids",
+                        "name": "The id sets built"
+                      }
+                    ],
+                    "ref": "plan.md#s1--readiness",
+                    "brief": "The tools, the grant, the data records and the repository's state are as recorded, with the repository private and nothing written.",
+                    "started": "2026-11-12T19:49:25Z"
+                  },
+                  {
+                    "id": "S2",
+                    "name": "Issue texts",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S2.texts",
+                        "name": "The new bodies built and audited"
+                      },
+                      {
+                        "id": "S2.gate",
+                        "name": "The new bodies gated"
+                      },
+                      {
+                        "id": "S2.edits",
+                        "name": "The nineteen edits"
+                      },
+                      {
+                        "id": "S2.after",
+                        "name": "The remaining occurrences counted"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-issue-texts",
+                    "brief": "The bodies of issues 1 to 19 name `main` instead of the deleted planning branch, each edit read back."
+                  },
+                  {
+                    "id": "S3",
+                    "name": "Gate 3's corpus",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.mirror",
+                        "name": "A fresh mirror"
+                      },
+                      {
+                        "id": "S3.dumps",
+                        "name": "The text dumps"
+                      },
+                      {
+                        "id": "S3.revisions",
+                        "name": "The earlier revisions"
+                      },
+                      {
+                        "id": "S3.logs",
+                        "name": "The run logs"
+                      },
+                      {
+                        "id": "S3.corpus",
+                        "name": "The corpus file"
+                      }
+                    ],
+                    "ref": "plan.md#s3--gate-3s-corpus",
+                    "brief": "Everything that becomes public is gathered: a fresh mirror, the text dumps, the earlier revisions and the run logs."
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Gate 3",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.gate",
+                        "name": "The privacy gate"
+                      },
+                      {
+                        "id": "S4.paths",
+                        "name": "The machine-local path count"
+                      },
+                      {
+                        "id": "S4.scan",
+                        "name": "The secret scans"
+                      },
+                      {
+                        "id": "S4.manifest",
+                        "name": "The purged-blob manifest"
+                      },
+                      {
+                        "id": "S4.scrub",
+                        "name": "The scrub's zero count"
+                      }
+                    ],
+                    "ref": "plan.md#s4--gate-3",
+                    "brief": "The privacy gate, the path count, the secret scans, the purged-blob manifest and the scrub's count pass over the corpus."
+                  },
+                  {
+                    "id": "S5",
+                    "name": "The id-reference check",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S5.check",
+                        "name": "The id-reference check"
+                      }
+                    ],
+                    "ref": "plan.md#s5--the-id-reference-check",
+                    "brief": "No token in the public material resolves to a pre-rewrite commit apart from the expected ones."
+                  },
+                  {
+                    "id": "S6",
+                    "name": "The run on main",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S6.runs",
+                        "name": "The runs read"
+                      }
+                    ],
+                    "ref": "plan.md#s6--the-secret-scan-run-on-main",
+                    "brief": "The latest secret-scan run on `main` passed and every run's log holds only fixed shapes."
+                  },
+                  {
+                    "id": "S7",
+                    "name": "The pre-flip gate",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S7.reads",
+                        "name": "The pre-flip reads"
+                      },
+                      {
+                        "id": "S7.sets",
+                        "name": "The probe sets and controls"
+                      },
+                      {
+                        "id": "S7.anon",
+                        "name": "The anonymous snapshot"
+                      },
+                      {
+                        "id": "S7.drift",
+                        "name": "The drift check and the requests"
+                      }
+                    ],
+                    "ref": "plan.md#s7--the-pre-flip-gate",
+                    "brief": "Immediately before the change, every read shows the repository private and unchanged since the corpus was taken."
+                  },
+                  {
+                    "id": "S8",
+                    "name": "The change and the scanning settings",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S8.public",
+                        "name": "The change to public"
+                      },
+                      {
+                        "id": "S8.security",
+                        "name": "The scanning settings"
+                      },
+                      {
+                        "id": "S8.alerts",
+                        "name": "The first alert read"
+                      }
+                    ],
+                    "ref": "plan.md#s8--the-change-and-the-scanning-settings",
+                    "brief": "The repository is public with secret scanning and push protection on, each read back."
+                  },
+                  {
+                    "id": "S9",
+                    "name": "The anonymous measurements",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S9.gate",
+                        "name": "The readiness gate"
+                      },
+                      {
+                        "id": "S9.batches",
+                        "name": "The route batches"
+                      },
+                      {
+                        "id": "S9.feeds",
+                        "name": "The first feed read"
+                      },
+                      {
+                        "id": "S9.second",
+                        "name": "The second pass and feed read"
+                      },
+                      {
+                        "id": "S9.revert",
+                        "name": "The revert, only on the trigger"
+                      }
+                    ],
+                    "ref": "plan.md#s9--the-anonymous-measurements",
+                    "brief": "No pre-rewrite id is served or listed anonymously; otherwise the repository is made private again."
+                  },
+                  {
+                    "id": "S10",
+                    "name": "The access check",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S10.anon",
+                        "name": "The anonymous half"
+                      },
+                      {
+                        "id": "S10.auth",
+                        "name": "The authenticated half"
+                      }
+                    ],
+                    "ref": "plan.md#s10--the-access-check",
+                    "brief": "Reading only, the repository is reachable as a public repository should be and its settings are as recorded."
+                  },
+                  {
+                    "id": "S11",
+                    "name": "The close",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S11.alerts",
+                        "name": "The second alert read"
+                      },
+                      {
+                        "id": "S11.record",
+                        "name": "The record"
+                      }
+                    ],
+                    "ref": "plan.md#s11--the-close",
+                    "brief": "The second alert read and the record of the unit's counts and its row for the residual report."
+                  }
+                ],
+                "outage": "the session stopped while the run waited for a permission; the same conversation was resumed"
+              },
+              {
+                "since": "2026-11-12T21:03:35Z",
+                "ended": "2026-11-12T21:50:23Z",
+                "endedBy": "halted",
+                "to": "implementation",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-12T21:48:47Z",
+                  "note": "S6 reported done; S7 current"
+                },
+                "detail": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+                "stages": [
+                  {
+                    "id": "S1",
+                    "name": "Readiness",
+                    "state": "done",
+                    "rows": [],
+                    "brief": "The tools, the grant, the data records and the repository's state are as recorded, with the repository private and nothing written.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S1.save",
+                        "name": "The tools and blocks saved"
+                      },
+                      {
+                        "id": "S1.tools",
+                        "name": "The tools at their recorded bytes"
+                      },
+                      {
+                        "id": "S1.selftests",
+                        "name": "The tools' self-tests"
+                      },
+                      {
+                        "id": "S1.grant",
+                        "name": "The grant read"
+                      },
+                      {
+                        "id": "S1.state",
+                        "name": "The repository and the records read"
+                      },
+                      {
+                        "id": "S1.ids",
+                        "name": "The id sets built"
+                      }
+                    ],
+                    "ref": "plan.md#s1--readiness",
+                    "started": "2026-11-12T19:49:25Z",
+                    "finished": "2026-11-12T21:11:38Z",
+                    "report": "Readiness passed: 84 of 84 checks hold over the saved tools and blocks, the tools' recorded bytes and self-tests, the temporary grant, the repository's state and the id sets, with the repository private and nothing written. The new bodies of issues 1 to 19 are built, audited and gated with 0 blocking hits, and the first of the nineteen edits is prepared. No deviation from the plan.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S2",
+                    "name": "Issue texts",
+                    "state": "done",
+                    "rows": [
+                      "planning-branch-links",
+                      "issue-text-paths"
+                    ],
+                    "brief": "The bodies of issues 1 to 19 name `main` instead of the deleted planning branch, each edit read back.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S2.texts",
+                        "name": "The new bodies built and audited"
+                      },
+                      {
+                        "id": "S2.gate",
+                        "name": "The new bodies gated"
+                      },
+                      {
+                        "id": "S2.edits",
+                        "name": "The nineteen edits"
+                      },
+                      {
+                        "id": "S2.after",
+                        "name": "The remaining occurrences counted"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-issue-texts",
+                    "started": "2026-11-12T21:11:38Z",
+                    "finished": "2026-11-12T21:44:16Z",
+                    "report": "The bodies of issues 1 to 19 now name main instead of the deleted planning branch: nineteen edits, each read back with the intended body byte for byte and its sub-issue and blocked-by edges unchanged; 0 occurrences of the branch's name remain in the bodies and 0 edits failed to land. The stage ended at 21:44:16Z. Two deviations are recorded: the procedures of edits 1 to 18 ran in order but not demonstrably as one shell (edit 19 did), and the comments on #1 hold one mention of the branch that is not a blob link, where one remaining link was expected. The repository is private."
+                  },
+                  {
+                    "id": "S3",
+                    "name": "Gate 3's corpus",
+                    "state": "done",
+                    "rows": [
+                      "gate-3"
+                    ],
+                    "brief": "Everything that becomes public is gathered: a fresh mirror, the text dumps, the earlier revisions and the run logs.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.mirror",
+                        "name": "A fresh mirror"
+                      },
+                      {
+                        "id": "S3.dumps",
+                        "name": "The text dumps"
+                      },
+                      {
+                        "id": "S3.revisions",
+                        "name": "The earlier revisions"
+                      },
+                      {
+                        "id": "S3.logs",
+                        "name": "The run logs"
+                      },
+                      {
+                        "id": "S3.corpus",
+                        "name": "The corpus file"
+                      }
+                    ],
+                    "ref": "plan.md#s3--gate-3s-corpus",
+                    "started": "2026-11-12T21:44:16Z",
+                    "finished": "2026-11-12T21:48:47Z",
+                    "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private."
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Gate 3",
+                    "state": "done",
+                    "rows": [
+                      "gate-3",
+                      "issue-text-paths"
+                    ],
+                    "brief": "The privacy gate, the path count, the secret scans, the purged-blob manifest and the scrub's count pass over the corpus.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.gate",
+                        "name": "The privacy gate"
+                      },
+                      {
+                        "id": "S4.paths",
+                        "name": "The machine-local path count"
+                      },
+                      {
+                        "id": "S4.scan",
+                        "name": "The secret scans"
+                      },
+                      {
+                        "id": "S4.manifest",
+                        "name": "The purged-blob manifest"
+                      },
+                      {
+                        "id": "S4.scrub",
+                        "name": "The scrub's zero count"
+                      }
+                    ],
+                    "ref": "plan.md#s4--gate-3",
+                    "finished": "2026-11-12T21:48:47Z",
+                    "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S5",
+                    "name": "The id-reference check",
+                    "state": "done",
+                    "rows": [
+                      "id-reference-check"
+                    ],
+                    "brief": "No token in the public material resolves to a pre-rewrite commit apart from the expected ones.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S5.check",
+                        "name": "The id-reference check"
+                      }
+                    ],
+                    "ref": "plan.md#s5--the-id-reference-check",
+                    "finished": "2026-11-12T21:48:47Z",
+                    "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S6",
+                    "name": "The run on main",
+                    "state": "done",
+                    "rows": [
+                      "secret-scan-on-main"
+                    ],
+                    "brief": "The latest secret-scan run on `main` passed and every run's log holds only fixed shapes.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S6.runs",
+                        "name": "The runs read"
+                      }
+                    ],
+                    "ref": "plan.md#s6--the-secret-scan-run-on-main",
+                    "finished": "2026-11-12T21:48:47Z",
+                    "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S7",
+                    "name": "The pre-flip gate",
+                    "state": "current",
+                    "rows": [
+                      "pre-flip-gate"
+                    ],
+                    "brief": "Immediately before the change, every read shows the repository private and unchanged since the corpus was taken.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S7.reads",
+                        "name": "The pre-flip reads"
+                      },
+                      {
+                        "id": "S7.sets",
+                        "name": "The probe sets and controls"
+                      },
+                      {
+                        "id": "S7.anon",
+                        "name": "The anonymous snapshot"
+                      },
+                      {
+                        "id": "S7.drift",
+                        "name": "The drift check and the requests"
+                      }
+                    ],
+                    "ref": "plan.md#s7--the-pre-flip-gate",
+                    "started": "2026-11-12T21:48:47Z"
+                  },
+                  {
+                    "id": "S8",
+                    "name": "The change and the scanning settings",
+                    "state": "todo",
+                    "rows": [
+                      "visibility-change",
+                      "scanning-settings"
+                    ],
+                    "brief": "The repository is public with secret scanning and push protection on, each read back.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S8.public",
+                        "name": "The change to public"
+                      },
+                      {
+                        "id": "S8.security",
+                        "name": "The scanning settings"
+                      },
+                      {
+                        "id": "S8.alerts",
+                        "name": "The first alert read"
+                      }
+                    ],
+                    "ref": "plan.md#s8--the-change-and-the-scanning-settings"
+                  },
+                  {
+                    "id": "S9",
+                    "name": "The anonymous measurements",
+                    "state": "todo",
+                    "rows": [
+                      "anonymous-measurements"
+                    ],
+                    "brief": "No pre-rewrite id is served or listed anonymously; otherwise the repository is made private again.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S9.gate",
+                        "name": "The readiness gate"
+                      },
+                      {
+                        "id": "S9.batches",
+                        "name": "The route batches"
+                      },
+                      {
+                        "id": "S9.feeds",
+                        "name": "The first feed read"
+                      },
+                      {
+                        "id": "S9.second",
+                        "name": "The second pass and feed read"
+                      },
+                      {
+                        "id": "S9.revert",
+                        "name": "The revert, only on the trigger"
+                      }
+                    ],
+                    "ref": "plan.md#s9--the-anonymous-measurements"
+                  },
+                  {
+                    "id": "S10",
+                    "name": "The access check",
+                    "state": "todo",
+                    "rows": [
+                      "access-check"
+                    ],
+                    "brief": "Reading only, the repository is reachable as a public repository should be and its settings are as recorded.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S10.anon",
+                        "name": "The anonymous half"
+                      },
+                      {
+                        "id": "S10.auth",
+                        "name": "The authenticated half"
+                      }
+                    ],
+                    "ref": "plan.md#s10--the-access-check"
+                  },
+                  {
+                    "id": "S11",
+                    "name": "The close",
+                    "state": "todo",
+                    "rows": [
+                      "scanning-settings"
+                    ],
+                    "brief": "The second alert read and the record of the unit's counts and its row for the residual report.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S11.alerts",
+                        "name": "The second alert read"
+                      },
+                      {
+                        "id": "S11.record",
+                        "name": "The record"
+                      }
+                    ],
+                    "ref": "plan.md#s11--the-close"
+                  }
+                ],
+                "held": true,
+                "asked": [
+                  {
+                    "text": "The plan's command for comparing the scan configuration with main's fails on this machine's shell. How does the unit go on?",
+                    "options": [
+                      "The plan's command is corrected in a re-pass of the plan, and the pre-flip gate runs again from its first step",
+                      "The unit stops here with the repository private"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-12T21:50:23Z",
+                    "answered": "2026-11-12T22:11:51Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-12T22:11:51Z",
+                "ended": "2026-11-12T23:29:39Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-12T23:28:20Z",
+                  "note": "S11 reported done; Quality Review next"
+                },
+                "detail": "S9 ended at 23:27:36Z: the readiness gate was open on its first poll, and no pre-rewrite id is served or listed anonymously, with 87 commits absent on the web route and 87 on the protocol route, 3 trees and 58 blobs absent on the protocol route, 3 commits, 3 trees and 6 blobs absent on the REST route, 14 commits absent in the second pass, and 0 old ids in 6 valid feed reads; the repository stays public. S10 ended at 23:28:05Z: the access check, reading only, found 0 deviations in its anonymous half and in its authenticated half, with 0 direct collaborators and forking allowed. S11 ended at 23:28:20Z: the second alert read at 23:28:12Z answered with 0 alerts, and the record holds the unit's counts. The repository reads public with secret scanning and push protection enabled.",
+                "stages": [
+                  {
+                    "id": "S1",
+                    "name": "Readiness",
+                    "state": "done",
+                    "rows": [],
+                    "brief": "The tools, the grant, the data records and the repository's state are as recorded, with the repository private and nothing written.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S1.save",
+                        "name": "The tools and blocks saved"
+                      },
+                      {
+                        "id": "S1.tools",
+                        "name": "The tools at their recorded bytes"
+                      },
+                      {
+                        "id": "S1.selftests",
+                        "name": "The tools' self-tests"
+                      },
+                      {
+                        "id": "S1.grant",
+                        "name": "The grant read"
+                      },
+                      {
+                        "id": "S1.state",
+                        "name": "The repository and the records read"
+                      },
+                      {
+                        "id": "S1.ids",
+                        "name": "The id sets built"
+                      }
+                    ],
+                    "ref": "plan.md#s1--readiness",
+                    "started": "2026-11-12T19:49:25Z",
+                    "finished": "2026-11-12T21:11:38Z",
+                    "report": "Readiness passed: 84 of 84 checks hold over the saved tools and blocks, the tools' recorded bytes and self-tests, the temporary grant, the repository's state and the id sets, with the repository private and nothing written. The new bodies of issues 1 to 19 are built, audited and gated with 0 blocking hits, and the first of the nineteen edits is prepared. No deviation from the plan.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S2",
+                    "name": "Issue texts",
+                    "state": "done",
+                    "rows": [
+                      "planning-branch-links",
+                      "issue-text-paths"
+                    ],
+                    "brief": "The bodies of issues 1 to 19 name `main` instead of the deleted planning branch, each edit read back.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S2.texts",
+                        "name": "The new bodies built and audited"
+                      },
+                      {
+                        "id": "S2.gate",
+                        "name": "The new bodies gated"
+                      },
+                      {
+                        "id": "S2.edits",
+                        "name": "The nineteen edits",
+                        "steps": [
+                          {
+                            "id": "S2.edits.1",
+                            "name": "Issue 1"
+                          },
+                          {
+                            "id": "S2.edits.2",
+                            "name": "Issue 2"
+                          },
+                          {
+                            "id": "S2.edits.3",
+                            "name": "Issue 3"
+                          },
+                          {
+                            "id": "S2.edits.4",
+                            "name": "Issue 4"
+                          },
+                          {
+                            "id": "S2.edits.5",
+                            "name": "Issue 5"
+                          },
+                          {
+                            "id": "S2.edits.6",
+                            "name": "Issue 6"
+                          },
+                          {
+                            "id": "S2.edits.7",
+                            "name": "Issue 7"
+                          },
+                          {
+                            "id": "S2.edits.8",
+                            "name": "Issue 8"
+                          },
+                          {
+                            "id": "S2.edits.9",
+                            "name": "Issue 9"
+                          },
+                          {
+                            "id": "S2.edits.10",
+                            "name": "Issue 10"
+                          },
+                          {
+                            "id": "S2.edits.11",
+                            "name": "Issue 11"
+                          },
+                          {
+                            "id": "S2.edits.12",
+                            "name": "Issue 12"
+                          },
+                          {
+                            "id": "S2.edits.13",
+                            "name": "Issue 13"
+                          },
+                          {
+                            "id": "S2.edits.14",
+                            "name": "Issue 14"
+                          },
+                          {
+                            "id": "S2.edits.15",
+                            "name": "Issue 15"
+                          },
+                          {
+                            "id": "S2.edits.16",
+                            "name": "Issue 16"
+                          },
+                          {
+                            "id": "S2.edits.17",
+                            "name": "Issue 17"
+                          },
+                          {
+                            "id": "S2.edits.18",
+                            "name": "Issue 18"
+                          },
+                          {
+                            "id": "S2.edits.19",
+                            "name": "Issue 19"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "S2.after",
+                        "name": "The remaining occurrences counted"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-issue-texts",
+                    "started": "2026-11-12T21:11:38Z",
+                    "finished": "2026-11-12T21:44:16Z",
+                    "report": "The bodies of issues 1 to 19 now name main instead of the deleted planning branch: nineteen edits, each read back with the intended body byte for byte and its sub-issue and blocked-by edges unchanged; 0 occurrences of the branch's name remain in the bodies and 0 edits failed to land. The stage ended at 21:44:16Z. Two deviations are recorded: the procedures of edits 1 to 18 ran in order but not demonstrably as one shell (edit 19 did), and the comments on #1 hold one mention of the branch that is not a blob link, where one remaining link was expected. The repository is private."
+                  },
+                  {
+                    "id": "S3",
+                    "name": "Gate 3's corpus",
+                    "state": "done",
+                    "rows": [
+                      "gate-3"
+                    ],
+                    "brief": "Everything that becomes public is gathered: a fresh mirror, the text dumps, the earlier revisions and the run logs.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.mirror",
+                        "name": "A fresh mirror"
+                      },
+                      {
+                        "id": "S3.dumps",
+                        "name": "The text dumps"
+                      },
+                      {
+                        "id": "S3.revisions",
+                        "name": "The earlier revisions"
+                      },
+                      {
+                        "id": "S3.logs",
+                        "name": "The run logs"
+                      },
+                      {
+                        "id": "S3.corpus",
+                        "name": "The corpus file"
+                      }
+                    ],
+                    "ref": "plan.md#s3--gate-3s-corpus",
+                    "started": "2026-11-12T21:44:16Z",
+                    "finished": "2026-11-12T21:48:47Z",
+                    "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private."
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Gate 3",
+                    "state": "done",
+                    "rows": [
+                      "gate-3",
+                      "issue-text-paths"
+                    ],
+                    "brief": "The privacy gate, the path count, the secret scans, the purged-blob manifest and the scrub's count pass over the corpus.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.gate",
+                        "name": "The privacy gate"
+                      },
+                      {
+                        "id": "S4.paths",
+                        "name": "The machine-local path count"
+                      },
+                      {
+                        "id": "S4.scan",
+                        "name": "The secret scans"
+                      },
+                      {
+                        "id": "S4.manifest",
+                        "name": "The purged-blob manifest"
+                      },
+                      {
+                        "id": "S4.scrub",
+                        "name": "The scrub's zero count"
+                      }
+                    ],
+                    "ref": "plan.md#s4--gate-3",
+                    "finished": "2026-11-12T21:48:47Z",
+                    "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S5",
+                    "name": "The id-reference check",
+                    "state": "done",
+                    "rows": [
+                      "id-reference-check"
+                    ],
+                    "brief": "No token in the public material resolves to a pre-rewrite commit apart from the expected ones.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S5.check",
+                        "name": "The id-reference check"
+                      }
+                    ],
+                    "ref": "plan.md#s5--the-id-reference-check",
+                    "finished": "2026-11-12T21:48:47Z",
+                    "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S6",
+                    "name": "The run on main",
+                    "state": "done",
+                    "rows": [
+                      "secret-scan-on-main"
+                    ],
+                    "brief": "The latest secret-scan run on `main` passed and every run's log holds only fixed shapes.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S6.runs",
+                        "name": "The runs read"
+                      }
+                    ],
+                    "ref": "plan.md#s6--the-secret-scan-run-on-main",
+                    "finished": "2026-11-12T21:48:47Z",
+                    "report": "S3 ended at 21:46:27Z: a fresh mirror, the text dumps (35 numbers, 3 pull requests), 44 earlier revisions, the logs of 4 runs and the corpus file. S4 ended at 21:48:23Z: Gate 3 holds, with 0 blocking hits of the privacy gate, 0 machine-local paths in 3019 texts, 0 findings of both history scans over 107 commits and of the tree scan, the purged-blob manifest and the scrub's zero count. S5 ended at 21:48:37Z: the id-reference check holds, with 10 distinct ids in the boards at the tips and 13 over every version, none outside the expected fields, 35 tokens of the 3 accepted ids in comments, and 0 tokens in the phase documents, the commit messages, the revisions and the run logs. S6 ended at 21:48:47Z: the latest secret-scan run on main passed and all 4 run logs hold only fixed shapes. One deviation: the revisions dump holds 44 earlier revisions where 26 were expected. The repository is private.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S7",
+                    "name": "The pre-flip gate",
+                    "state": "done",
+                    "rows": [
+                      "pre-flip-gate"
+                    ],
+                    "brief": "Immediately before the change, every read shows the repository private and unchanged since the corpus was taken.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S7.reads",
+                        "name": "The pre-flip reads"
+                      },
+                      {
+                        "id": "S7.sets",
+                        "name": "The probe sets and controls"
+                      },
+                      {
+                        "id": "S7.anon",
+                        "name": "The anonymous snapshot"
+                      },
+                      {
+                        "id": "S7.drift",
+                        "name": "The drift check and the requests"
+                      }
+                    ],
+                    "ref": "plan.md#s7--the-pre-flip-gate",
+                    "started": "2026-11-12T21:48:47Z",
+                    "finished": "2026-11-12T22:19:34Z",
+                    "report": "The pre-flip gate passed at 22:19:35Z: 29 of 29 checks hold over the pre-flip reads, the probe sets and controls, the anonymous snapshot and the drift check, with no drift since Gate 3's corpus was taken and the repository private. The plan was re-passed for one command of the gate's first step, which now reads main's scan configuration without a ref-and-path argument; the replaced plan is under superseded/. The workspace's scan configuration equals the one committed on main. The visibility request was sent at 22:20:15Z.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S8",
+                    "name": "The change and the scanning settings",
+                    "state": "done",
+                    "rows": [
+                      "visibility-change",
+                      "scanning-settings"
+                    ],
+                    "brief": "The repository is public with secret scanning and push protection on, each read back.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S8.public",
+                        "name": "The change to public",
+                        "state": "done",
+                        "finished": "2026-11-12T23:17:54Z"
+                      },
+                      {
+                        "id": "S8.security",
+                        "name": "The scanning settings",
+                        "state": "done",
+                        "finished": "2026-11-12T23:19:08Z"
+                      },
+                      {
+                        "id": "S8.alerts",
+                        "name": "The first alert read",
+                        "state": "done",
+                        "finished": "2026-11-12T23:19:09Z"
+                      }
+                    ],
+                    "ref": "plan.md#s8--the-change-and-the-scanning-settings",
+                    "started": "2026-11-12T22:19:34Z",
+                    "finished": "2026-11-12T23:19:09Z",
+                    "report": "The repository is public with secret scanning and push protection enabled, each read back. The visibility change ran between 23:17:14Z and 23:17:24Z, sending visibility only, and its read-back held at 23:17:54Z (public false). The scanning update ran between 23:18:36Z and 23:18:46Z, and its read-back held at 23:19:08Z: secret scanning and push protection enabled, the two paid settings disabled, the others absent. The gap between the two read-backs is 74 s. The first alert read at 23:19:09Z answered with 0 alerts, which does not show a finished scan. The visibility request was first sent at 22:20:15Z; the request service declined to run it three times before anything reached GitHub, so the change followed the pre-flip gate by 58 minutes."
+                  },
+                  {
+                    "id": "S9",
+                    "name": "The anonymous measurements",
+                    "state": "done",
+                    "rows": [
+                      "anonymous-measurements"
+                    ],
+                    "brief": "No pre-rewrite id is served or listed anonymously; otherwise the repository is made private again.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S9.gate",
+                        "name": "The readiness gate",
+                        "state": "done",
+                        "finished": "2026-11-12T23:29:24Z"
+                      },
+                      {
+                        "id": "S9.batches",
+                        "name": "The route batches",
+                        "state": "done",
+                        "finished": "2026-11-12T23:29:24Z"
+                      },
+                      {
+                        "id": "S9.feeds",
+                        "name": "The first feed read",
+                        "state": "done",
+                        "finished": "2026-11-12T23:29:24Z"
+                      },
+                      {
+                        "id": "S9.second",
+                        "name": "The second pass and feed read",
+                        "state": "done",
+                        "finished": "2026-11-12T23:27:36Z"
+                      },
+                      {
+                        "id": "S9.revert",
+                        "name": "The revert, only on the trigger"
+                      }
+                    ],
+                    "ref": "plan.md#s9--the-anonymous-measurements",
+                    "started": "2026-11-12T23:19:09Z",
+                    "finished": "2026-11-12T23:28:20Z",
+                    "report": "S9 ended at 23:27:36Z: the readiness gate was open on its first poll, and no pre-rewrite id is served or listed anonymously, with 87 commits absent on the web route and 87 on the protocol route, 3 trees and 58 blobs absent on the protocol route, 3 commits, 3 trees and 6 blobs absent on the REST route, 14 commits absent in the second pass, and 0 old ids in 6 valid feed reads; the repository stays public. S10 ended at 23:28:05Z: the access check, reading only, found 0 deviations in its anonymous half and in its authenticated half, with 0 direct collaborators and forking allowed. S11 ended at 23:28:20Z: the second alert read at 23:28:12Z answered with 0 alerts, and the record holds the unit's counts. The repository reads public with secret scanning and push protection enabled.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S10",
+                    "name": "The access check",
+                    "state": "done",
+                    "rows": [
+                      "access-check"
+                    ],
+                    "brief": "Reading only, the repository is reachable as a public repository should be and its settings are as recorded.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S10.anon",
+                        "name": "The anonymous half",
+                        "state": "done",
+                        "finished": "2026-11-12T23:27:54Z"
+                      },
+                      {
+                        "id": "S10.auth",
+                        "name": "The authenticated half",
+                        "state": "done",
+                        "finished": "2026-11-12T23:28:05Z"
+                      }
+                    ],
+                    "ref": "plan.md#s10--the-access-check",
+                    "finished": "2026-11-12T23:28:20Z",
+                    "report": "S9 ended at 23:27:36Z: the readiness gate was open on its first poll, and no pre-rewrite id is served or listed anonymously, with 87 commits absent on the web route and 87 on the protocol route, 3 trees and 58 blobs absent on the protocol route, 3 commits, 3 trees and 6 blobs absent on the REST route, 14 commits absent in the second pass, and 0 old ids in 6 valid feed reads; the repository stays public. S10 ended at 23:28:05Z: the access check, reading only, found 0 deviations in its anonymous half and in its authenticated half, with 0 direct collaborators and forking allowed. S11 ended at 23:28:20Z: the second alert read at 23:28:12Z answered with 0 alerts, and the record holds the unit's counts. The repository reads public with secret scanning and push protection enabled.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S11",
+                    "name": "The close",
+                    "state": "done",
+                    "rows": [
+                      "scanning-settings"
+                    ],
+                    "brief": "The second alert read and the record of the unit's counts and its row for the residual report.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S11.alerts",
+                        "name": "The second alert read",
+                        "state": "done",
+                        "finished": "2026-11-12T23:28:12Z"
+                      },
+                      {
+                        "id": "S11.record",
+                        "name": "The record",
+                        "state": "done",
+                        "finished": "2026-11-12T23:28:20Z"
+                      }
+                    ],
+                    "ref": "plan.md#s11--the-close",
+                    "finished": "2026-11-12T23:28:20Z",
+                    "report": "S9 ended at 23:27:36Z: the readiness gate was open on its first poll, and no pre-rewrite id is served or listed anonymously, with 87 commits absent on the web route and 87 on the protocol route, 3 trees and 58 blobs absent on the protocol route, 3 commits, 3 trees and 6 blobs absent on the REST route, 14 commits absent in the second pass, and 0 old ids in 6 valid feed reads; the repository stays public. S10 ended at 23:28:05Z: the access check, reading only, found 0 deviations in its anonymous half and in its authenticated half, with 0 direct collaborators and forking allowed. S11 ended at 23:28:20Z: the second alert read at 23:28:12Z answered with 0 alerts, and the record holds the unit's counts. The repository reads public with secret scanning and push protection enabled.",
+                    "result": "passed"
+                  }
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "since": "2026-11-12T23:29:39Z",
+                "ended": "2026-11-12T23:59:25Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-12T23:29:39Z",
+                  "note": "Quality Review 1: running"
+                },
+                "detail": "Quality Review 1 running.",
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-12",
+                    "at": "2026-11-12T23:59:25Z",
+                    "findings": {
+                      "test": 12,
+                      "code": 5
+                    },
+                    "severity": {
+                      "minor": 15,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/ca070e8d/tests/index.html"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-13T00:12:56Z",
+                "ended": "2026-11-13T00:43:53Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-13T00:12:56Z",
+                  "note": "Quality Review 2: running"
+                },
+                "detail": "Quality Review 2 running.",
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-13",
+                    "at": "2026-11-13T00:43:53Z",
+                    "findings": {
+                      "test": 9,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 12,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/949b5d33/tests/index.html"
+                  }
+                ]
+              }
+            ],
+            "remediation": [
+              {
+                "since": "2026-11-12T23:59:25Z",
+                "ended": "2026-11-13T00:12:56Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-13T00:12:55Z",
+                  "note": "S11"
+                },
+                "detail": "The as-built record now states the measurements of every stage, the acceptance against the issue's three criteria and its deviations as built: the second feed read ended 214 s after the first and fell inside the events feed's cache, the pre-flip gate passed at 22:19:34Z with the request leaving 41 s later, and the entry on the revisions count is a measurement, not a deviation. A third feed read at 00:10:19Z, past the caches, lists 0 old ids on the web page, the activity feed and the events, in three valid reads. Five of the tools' self-tests ran again with their result lines kept: 42, 10, 20, 15 and 50 checks passed. The consequences gain three known gaps and one follow-up on what the checks keep and reach. The saved blocks were refreshed from the corrected plan and equal their pins.",
+                "remediation": {
+                  "pass": 1,
+                  "route": "re-plan-then-remediation",
+                  "steps": [
+                    {
+                      "name": "The plan's text corrected",
+                      "state": "done",
+                      "started": "2026-11-13T00:03:06Z",
+                      "finished": "2026-11-13T00:08:41Z",
+                      "report": "The plan is corrected and the version the unit worked to from the pre-flip gate to the close is kept under superseded/. The second feed read now waits six minutes from the end of the first feed read, and the landing's reads gain a third feed read past the caches and a run of the tools' self-tests whose result lines are kept, both stored apart from the closed record. The wording on stage markers names the three stages that keep one, the anonymous REST budget is stated as 48 calls in the hour, and the test plan's rows say what their checks are and what has no stand-in case. No tool pin changed."
+                    },
+                    {
+                      "name": "The as-built record corrected",
+                      "state": "done",
+                      "started": "2026-11-13T00:08:41Z",
+                      "finished": "2026-11-13T00:12:55Z",
+                      "report": "The as-built record now states the measurements of every stage, the acceptance against the issue's three criteria and its deviations as built: the second feed read ended 214 s after the first and fell inside the events feed's cache, the pre-flip gate passed at 22:19:34Z with the request leaving 41 s later, and the entry on the revisions count is a measurement, not a deviation. A third feed read at 00:10:19Z, past the caches, lists 0 old ids on the web page, the activity feed and the events, in three valid reads. Five of the tools' self-tests ran again with their result lines kept: 42, 10, 20, 15 and 50 checks passed. The consequences gain three known gaps and one follow-up on what the checks keep and reach. The saved blocks were refreshed from the corrected plan and equal their pins."
+                    },
+                    {
+                      "name": "A further spaced feed read",
+                      "state": "done",
+                      "finished": "2026-11-13T00:12:55Z",
+                      "report": "The as-built record now states the measurements of every stage, the acceptance against the issue's three criteria and its deviations as built: the second feed read ended 214 s after the first and fell inside the events feed's cache, the pre-flip gate passed at 22:19:34Z with the request leaving 41 s later, and the entry on the revisions count is a measurement, not a deviation. A third feed read at 00:10:19Z, past the caches, lists 0 old ids on the web page, the activity feed and the events, in three valid reads. Five of the tools' self-tests ran again with their result lines kept: 42, 10, 20, 15 and 50 checks passed. The consequences gain three known gaps and one follow-up on what the checks keep and reach. The saved blocks were refreshed from the corrected plan and equal their pins."
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-12",
+                    "at": "2026-11-12T23:59:25Z",
+                    "findings": {
+                      "test": 12,
+                      "code": 5
+                    },
+                    "severity": {
+                      "minor": 15,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/ca070e8d/tests/index.html",
+                    "note": "The repository is in the intended state and the issue's three criteria are met: it reads public with secret scanning and push protection enabled, every pre-rewrite id probed answers as absent, the feeds list none, and all nineteen issue bodies equal the intended text. Nothing was run again: the recorded results read 171 passed, 0 failed and 224 without a stored result (155 self-test checks, 50 stage lines printed and not kept, 19 checks of the landing not yet due), as re-running the self-tests would remove the run's working sets. 17 findings (15 minor, 2 other; 12 test, 5 code). The 2 not minor: the totals of the six self-tests were never stored, and the second feed read came about three and a half minutes after the first where at least six were required, which the as-built record does not yet state. The 15 minor ones: the stale entry on the revisions count, a one-second error in the pre-flip gate's time and gap, no stored trace that the tools were checked after they were saved a second time (they equal their pins now), the wording on stage markers, and how the test plan files and records its checks. They touch the anonymous measurements, the third privacy gate and the pre-flip gate. The plan's wording is corrected first, then the as-built record."
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-13T00:43:53Z",
+                "ended": "2026-11-13T00:47:57Z",
+                "endedBy": "document",
+                "to": "document",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-13T00:47:56Z",
+                  "note": "S11"
+                },
+                "detail": "The twelve wording corrections are made in the three documents. The plan cites the requirement that defines the revert trigger, names all five of the landing's reads in its summaries with the revert path from the further feed read, names the three stages that keep a marker, and its test plan rows state which checks read GitHub, which helpers and verifying reads have no case, and what each self-test replaces. The as-built record gains the measurements of the issue-text stage, states that the three refusals left no stored reply, and cites the one stamp that straddles a second by its epoch. The consequences state the anonymous REST budget as 48 calls in the hour and extend the known gap on what the stand-in cases reach. No command block or tool text changed: the 10 tool files and 43 blocks extracted from the plan equal the saved ones.",
+                "remediation": {
+                  "pass": 2,
+                  "route": "on-the-spot",
+                  "steps": [
+                    {
+                      "name": "The plan's wording corrected",
+                      "state": "done",
+                      "finished": "2026-11-13T00:47:56Z",
+                      "report": "The twelve wording corrections are made in the three documents. The plan cites the requirement that defines the revert trigger, names all five of the landing's reads in its summaries with the revert path from the further feed read, names the three stages that keep a marker, and its test plan rows state which checks read GitHub, which helpers and verifying reads have no case, and what each self-test replaces. The as-built record gains the measurements of the issue-text stage, states that the three refusals left no stored reply, and cites the one stamp that straddles a second by its epoch. The consequences state the anonymous REST budget as 48 calls in the hour and extend the known gap on what the stand-in cases reach. No command block or tool text changed: the 10 tool files and 43 blocks extracted from the plan equal the saved ones."
+                    },
+                    {
+                      "name": "The as-built record's three statements",
+                      "state": "done",
+                      "finished": "2026-11-13T00:47:56Z",
+                      "report": "The twelve wording corrections are made in the three documents. The plan cites the requirement that defines the revert trigger, names all five of the landing's reads in its summaries with the revert path from the further feed read, names the three stages that keep a marker, and its test plan rows state which checks read GitHub, which helpers and verifying reads have no case, and what each self-test replaces. The as-built record gains the measurements of the issue-text stage, states that the three refusals left no stored reply, and cites the one stamp that straddles a second by its epoch. The consequences state the anonymous REST budget as 48 calls in the hour and extend the known gap on what the stand-in cases reach. No command block or tool text changed: the 10 tool files and 43 blocks extracted from the plan equal the saved ones."
+                    },
+                    {
+                      "name": "The consequences' budget figure and known gap",
+                      "state": "done",
+                      "finished": "2026-11-13T00:47:56Z",
+                      "report": "The twelve wording corrections are made in the three documents. The plan cites the requirement that defines the revert trigger, names all five of the landing's reads in its summaries with the revert path from the further feed read, names the three stages that keep a marker, and its test plan rows state which checks read GitHub, which helpers and verifying reads have no case, and what each self-test replaces. The as-built record gains the measurements of the issue-text stage, states that the three refusals left no stored reply, and cites the one stamp that straddles a second by its epoch. The consequences state the anonymous REST budget as 48 calls in the hour and extend the known gap on what the stand-in cases reach. No command block or tool text changed: the 10 tool files and 43 blocks extracted from the plan equal the saved ones."
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-13",
+                    "at": "2026-11-13T00:43:53Z",
+                    "findings": {
+                      "test": 9,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 12,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/949b5d33/tests/index.html",
+                    "note": "Fifteen of Quality Review 1's seventeen findings are closed, the two that were not minor among them: the totals of five self-tests are kept (137 checks passed, 0 failed; the 18 stand-in cases of the anonymous helpers were not run again, a known gap), and the spacing of the feed reads is corrected in the plan, stated in the as-built record and answered by the third feed read. The issue's three criteria are met on fresh reads: the repository reads public with secret scanning and push protection enabled, all 87 pre-rewrite commits answer as absent, and nine feed reads list no pre-rewrite id. The closed record is untouched and the saved tools equal their pins. Nothing was run again in this pass: its test results are read from the run's kept results. 12 findings (12 minor; 9 test, 3 code), all wording: the anonymous REST budget still stated as about 45 calls in the consequences, the plan's summaries of the landing's reads naming three of its five steps, one requirement number cited for the revert trigger, test plan rows that claim slightly more than their checks reach, and three statements of the as-built record (the measurements of the issue-text stage, the refusals that left no stored reply, one time stamp that straddles a second). They touch the anonymous measurements and are fixed on the spot, with no further review."
+                  }
+                ]
+              }
+            ],
+            "document": [
+              {
+                "since": "2026-11-13T00:47:57Z",
+                "ended": "2026-11-13T01:00:52Z",
+                "endedBy": "halted",
+                "to": "document",
+                "event": {
+                  "name": "document",
+                  "at": "2026-11-13T00:51:21Z",
+                  "note": "0 of 6 tasks done"
+                },
+                "detail": "main is merged into the branch with no conflict and pushed; the branch head is 2ad91c2 and no version changes. The unit's documents are being checked.",
+                "document": {
+                  "tasks": [
+                    {
+                      "id": "documentation-review",
+                      "name": "Documentation review",
+                      "state": "done",
+                      "started": "2026-11-13T00:51:21Z",
+                      "finished": "2026-11-13T01:00:52Z",
+                      "report": "The documentation check found 17 points. Two are gaps in the as-built record: it has no section on what was built, and the deviation on the 58 minutes between the pre-flip gate and the change gives no reasoning and no link to what the requirement rests on. Five are improvements in unpinned text: a missing reasoning line, two passages of the as-built record keyed to the plan's corrections rather than its versions, test plan limits worded as outcomes, and two inaccurate sentences about the shell helpers. Seven are improvements inside the recorded tool and block texts (side effects and return contracts their headers leave out, uncommented idioms), which can only become follow-ups. Every link in the eight documents resolves, both superseded copies carry their note, and no name, path or credential shape was found. The README is accurate for a public repository. Three points are choices about what the public documents say."
+                    },
+                    {
+                      "id": "reconcile-documentation",
+                      "name": "Reconcile documentation",
+                      "state": "current",
+                      "started": "2026-11-13T01:00:52Z"
+                    },
+                    {
+                      "id": "reconcile-plan",
+                      "name": "Reconcile plan",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "readme-changelog",
+                      "name": "README and CHANGELOG",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "state-boards",
+                      "name": "State boards",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "document-landing",
+                      "name": "Document commit",
+                      "state": "todo"
+                    }
+                  ]
+                },
+                "held": true,
+                "asked": [
+                  {
+                    "text": "The plan spells out where the temporary grant is kept and gives its text, and the as-built record describes how the request service handled the request to change the visibility before it ran. How much of this stays in the public documents?",
+                    "options": [
+                      "Keep it as written",
+                      "Generalise the unpinned sentences; the recorded block texts stay and are noted as a follow-up"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-13T01:00:52Z",
+                    "answered": "2026-11-13T01:05:02Z"
+                  },
+                  {
+                    "text": "The README is accurate for a public repository but does not say that secret scanning and push protection are now enabled. Is a sentence added?",
+                    "options": [
+                      "Add one sentence to the README",
+                      "No README change, as the plan states"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-13T01:00:52Z",
+                    "answered": "2026-11-13T01:05:02Z"
+                  }
+                ]
+              }
+            ]
+          },
+          "rowNames": {
+            "gate-3": "The third privacy gate",
+            "id-reference-check": "The id-reference check",
+            "issue-text-paths": "Machine-local paths in issue texts",
+            "planning-branch-links": "The issue texts that still name the planning branch",
+            "pre-flip-gate": "The pre-flip gate",
+            "visibility-change": "The change to public",
+            "scanning-settings": "Secret scanning and push protection",
+            "anonymous-measurements": "The anonymous measurements",
+            "access-check": "The access check and the settings after the change",
+            "secret-scan-on-main": "The secret-scan run on `main`"
+          },
+          "recon": {
+            "interview": {
+              "reconstructed": true,
+              "ended": null,
+              "trail": [],
+              "milestones": []
+            }
+          }
+        },
+        "tests": {
+          "updated": "2026-11-13T00:43:53Z",
+          "added": [],
+          "amended": [],
+          "relevant": [
+            {
+              "class": "p25_writes.py selftest",
+              "module": "tools",
+              "tests": 42,
+              "result": {
+                "state": "passed",
+                "passed": 42,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 2,
+                "at": "2026-11-13T00:43:53Z"
+              },
+              "testLevel": "2"
+            },
+            {
+              "class": "p25_revisions.py selftest",
+              "module": "tools",
+              "tests": 10,
+              "result": {
+                "state": "passed",
+                "passed": 10,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 2,
+                "at": "2026-11-13T00:43:53Z"
+              },
+              "testLevel": "2"
+            },
+            {
+              "class": "p25_idcheck.py selftest",
+              "module": "tools",
+              "tests": 20,
+              "result": {
+                "state": "passed",
+                "passed": 20,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 2,
+                "at": "2026-11-13T00:43:53Z"
+              },
+              "testLevel": "2"
+            },
+            {
+              "class": "p25_reads.py selftest",
+              "module": "tools",
+              "tests": 15,
+              "result": {
+                "state": "passed",
+                "passed": 15,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 2,
+                "at": "2026-11-13T00:43:53Z"
+              },
+              "testLevel": "2"
+            },
+            {
+              "class": "allow_tool.py selftest",
+              "module": "tools",
+              "tests": 50,
+              "result": {
+                "state": "passed",
+                "passed": 50,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 2,
+                "at": "2026-11-13T00:43:53Z"
+              },
+              "testLevel": "2"
+            },
+            {
+              "class": "anon.sh stand-in cases",
+              "module": "tools",
+              "tests": 18,
+              "result": {
+                "state": "skipped",
+                "passed": 0,
+                "failed": 0,
+                "skipped": 18,
+                "pass": 2,
+                "at": "2026-11-13T00:43:53Z"
+              },
+              "testLevel": "2"
+            }
+          ]
+        }
       },
       "gap": {
         "kind": "missing",
@@ -2847,7 +4020,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#65-privacy-gate-and-id-reference-check",
               "heading": "6.5 Privacy gate and id-reference check",
               "paragraph": "The gate works as follows (findings 5 §3.B, §6.3):",
-              "hash": "bf20450c13ea"
+              "hash": "0a8066571d34"
             }
           },
           {
@@ -2857,7 +4030,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#75-renames-archive-visibility-scanning",
               "heading": "7.5 Renames, archive, visibility, scanning",
               "paragraph": "The renames:",
-              "hash": "54b888b5aa08"
+              "hash": "765b48b8c136"
             }
           },
           {
@@ -2877,7 +4050,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "9bb2a18d3c1b"
+              "hash": "fa8d17ef1794"
             }
           }
         ],
@@ -2892,7 +4065,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "asBuilt": {
         "state": "pending",
-        "summary": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 4, and MagicBot's Phase 13 may start once it has landed."
+        "summary": "Filed as #25; KotlinBottools is public with secret scanning and push protection on, and the unit's documents are being finished before its landing. MagicBot's Phase 13 may start once it has landed."
       }
     },
     {
@@ -2969,7 +4142,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "9bb2a18d3c1b"
+              "hash": "fa8d17ef1794"
             }
           }
         ],
@@ -2984,7 +4157,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "asBuilt": {
         "state": "pending",
-        "summary": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 3."
+        "summary": "Filed as #26; its run has not started. It starts after unit 3, which has landed."
       }
     },
     {
@@ -3073,7 +4246,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "9bb2a18d3c1b"
+              "hash": "fa8d17ef1794"
             }
           }
         ],
@@ -3088,7 +4261,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "asBuilt": {
         "state": "pending",
-        "summary": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 6."
+        "summary": "Filed as #27; its run has not started. It starts after unit 6."
       }
     },
     {
@@ -3157,7 +4330,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "9bb2a18d3c1b"
+              "hash": "fa8d17ef1794"
             }
           },
           {
@@ -3177,7 +4350,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "9bb2a18d3c1b"
+              "hash": "fa8d17ef1794"
             }
           }
         ],
@@ -3190,7 +4363,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "asBuilt": {
         "state": "pending",
-        "summary": "To be filed as a sub-issue of #2 once this plan lands; starts after units 5 and 7, and its landing closes #2."
+        "summary": "Filed as #28; its run has not started. It starts after units 5 and 7, and its landing closes #2."
       }
     }
   ],
@@ -3282,7 +4455,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "who": "MagicBot's secret-scan configuration",
         "system": null,
         "need": "optional",
-        "summary": "Should come into line with KotlinBottools': drop its global allowlist and add the two path rules. Its own CI, Phase 13's, can adopt the same workflow pattern.",
+        "summary": "Should come into line with KotlinBottools': drop its global allowlist and add the two path rules. KotlinBottools' one allowlist table, scoped to one default rule, one of its own research documents and one exact text, is not part of that alignment, and there is still no global allowlist. Its own CI, Phase 13's, can adopt the same workflow pattern.",
         "link": "consequences.md#3-adoption"
       },
       {
@@ -3418,16 +4591,30 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       {
         "unit": "repository-hygiene",
-        "basis": "plan",
-        "summary": "No module is published and no version moves. KotlinBottools gets its first workflow, `Secret scan`, with its wrapper, a configuration whose one scoped allowlist table settles the default-rule finding unit 3 recorded, and the allowlist controls that test that table on every run; a root-anchored `.gitignore`, the README correction and its first `CHANGELOG.md`; the workspace configuration takes the committed bytes after the merge.",
+        "basis": "as-built",
+        "summary": "No module was published and no version moved. KotlinBottools has its first workflow, `Secret scan`, with its wrapper, a configuration whose one scoped allowlist table settles the default-rule finding unit 3 recorded, and the allowlist controls that test that table on every run; a root-anchored `.gitignore`, the README correction and its first `CHANGELOG.md`. The workflow's first two runs passed, and the workspace configuration took the committed bytes after the merge; two workspace scripts still pin the old value, for #26 and #27.",
         "release": {
           "bump": "none",
           "version": null,
           "note": "no module is published and no version moves",
           "nothingPublished": true
         },
-        "source": "24-repository-hygiene/consequences.md §1 to §5",
+        "source": "24-repository-hygiene/consequences.md §1 to §6; 24-repository-hygiene/final-implementation.md §1, §4",
         "link": "24-repository-hygiene/consequences.md#2-blast-radius"
+      },
+      {
+        "unit": "kotlinbottools-publish",
+        "basis": "plan",
+        "summary": "No module is published and no version moves; the landing carries documents and generated boards only. KotlinBottools becomes public with secret scanning and push protection on: its rewritten history, its issues and pull requests with the earlier revisions of edited texts, and its Actions runs. The bodies of #1 to #19 point at `main` instead of the deleted planning branch, and MagicBot's and WebTools' references to KotlinBottools issues resolve for everyone. #26 and #27 take the corrected anonymous probe rules, and #28 KotlinBottools' row of the residual report, the alert reads and the follow-ups.",
+        "release": {
+          "bump": "none",
+          "version": null,
+          "note": "no module is published and no version moves",
+          "nothingPublished": true
+        },
+        "compat": "notable",
+        "source": "25-kotlinbottools-publish/consequences.md §1 to §6; 25-kotlinbottools-publish/plan.md Interfaces with sibling units",
+        "link": "25-kotlinbottools-publish/consequences.md#2-blast-radius"
       }
     ],
     "changes": [
@@ -3485,6 +4672,14 @@ window.dashboardLive&&window.dashboardLive("plan",
         "what": "MagicBot's and WebTools' issue texts did change: the transfers rewrote their references to KotlinBottools issues to name `KotlinBottools-next` (all 76 in MagicBot's, 4 of the 6 in WebTools'). Their relationships were all kept, and none was written again. Counted before the walk, the citations were 50 in MagicBot, 6 in WebTools and none in `SpartanLaboratories/.github`, where the plan counted 49, 6 and 5.",
         "why": "Whether text in other repositories citing a moved issue is rewritten was unmeasured until this walk; the reads before and after it show that it is.",
         "ref": "23-kotlinbottools-rewrite-and-swap/final-implementation.md#38-references"
+      },
+      {
+        "unit": "repository-hygiene",
+        "entry": "adaptation.1",
+        "when": "#24 landing",
+        "what": "KotlinBottools' configuration, which MagicBot's comes into line with, holds one allowlist table, scoped to one default rule, one of its own research documents and one exact text, with the allowlist controls that test it; there is still no global allowlist, and the table is not part of MagicBot's alignment.",
+        "why": "The default-rule finding unit 3 recorded in one kept research document is a command example that passes a token through a shell command substitution, not a literal credential; a table scoped to that rule, path and text settles it without hiding anything else, so the publication unit's change to public no longer waits on it.",
+        "ref": "consequences.md#3-adoption"
       }
     ]
   },

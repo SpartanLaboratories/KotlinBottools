@@ -1,7 +1,7 @@
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "chore/issue-24-repository-hygiene", "sha": "0b64c47", "date": "2026-11-12T03:16:12Z"},
-  "lastAmended": {"issue": 24, "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG", "sha": "0b64c47"},
-  "written": {"sha": "0b64c47"}
+  "asIs": {"ref": "chore/issue-25-make-repository-public", "sha": "2ad91c2", "date": "2026-11-13T00:49:57Z"},
+  "lastAmended": {"issue": 25, "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection", "sha": "2ad91c2"},
+  "written": {"sha": "2ad91c2"}
 }

@@ -10,7 +10,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   "title": "Repository hygiene",
   "issueTitle": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
   "function": "KotlinBottools, rewritten onto a fresh repository by unit 3, has no guard against committing its data again: it has no secret scan and no `.github/` directory, its README describes files the rewrite removed from the repository, and it has no changelog. This run adds a root-anchored `.gitignore`, `.gitleaks.toml`, the scan wrapper and a dedicated secret-scan workflow, corrects the README and starts `CHANGELOG.md`, on a branch cut from the rewritten `main`, and merges only once that workflow has passed on its own pull request. Unit 4 of #2, with no version moved.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-11T18:54:18Z",
   "parent": {
     "issue": 2,
@@ -23,7 +23,30 @@ window.dashboardLive&&window.dashboardLive("plan",
     "sha": "9e61aa56fb9e5fdf90b68812ff25442dc60ebd3a",
     "date": "2026-11-11"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "3d1b89007f253d11bdee08174c1d7f21621cc386",
+    "merge": "3d1b89007f253d11bdee08174c1d7f21621cc386",
+    "pr": 34,
+    "date": "2026-11-12",
+    "at": "2026-11-12T04:10:02Z",
+    "commits": [
+      {
+        "sha": "6748ec7",
+        "at": "2026-11-11T19:24:43Z",
+        "step": "research"
+      },
+      {
+        "sha": "68e59e0",
+        "at": "2026-11-11T19:39:37Z",
+        "step": "research"
+      },
+      {
+        "sha": "3bcef06",
+        "at": "2026-11-11T19:44:30Z",
+        "step": "research"
+      }
+    ]
+  },
   "systems": [
     {
       "slug": "repository-hygiene",
@@ -36,10 +59,10 @@ window.dashboardLive&&window.dashboardLive("plan",
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-12T02:10:54Z",
-    "updated": "2026-11-12T03:59:05Z",
-    "detail": "Document: 6 of 6 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-12T04:10:02Z",
+    "updated": "2026-11-12T04:10:02Z",
+    "detail": "Landed in PR #34.",
     "steps": [
       "sizing",
       "interview",
@@ -54,9 +77,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -334,9 +355,8 @@ window.dashboardLive&&window.dashboardLive("plan",
       }
     ],
     "event": {
-      "name": "document",
-      "at": "2026-11-12T03:59:05Z",
-      "note": "6 of 6 tasks done"
+      "name": "landed",
+      "at": "2026-11-12T04:10:02Z"
     },
     "history": {
       "sizing": [
@@ -1116,6 +1136,95 @@ window.dashboardLive&&window.dashboardLive("plan",
               "answered": "2026-11-12T02:10:54Z"
             }
           ]
+        },
+        {
+          "since": "2026-11-12T02:10:54Z",
+          "ended": "2026-11-12T04:03:24Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-12T03:59:05Z",
+            "note": "6 of 6 tasks done"
+          },
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done",
+                "started": "2026-11-12T01:49:28Z",
+                "finished": "2026-11-12T01:59:34Z",
+                "report": "The documentation check ended at 01:59:34Z with 13 points: four gaps and nine improvements. Being done now, in one pass over the documents: the header of .gitleaks.toml is specified with its new recorded bytes; the three gaps in the plan documents are corrected; the eight improvements in the other pinned files are recorded as follow-ups; and the plan is reconciled with the build, with the as-built record, the consequences and the dated notes in the earlier units' documents. The corrected configuration is then written and the checks run again, and the documentation is checked a second time."
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-12T01:59:34Z",
+                "finished": "2026-11-12T03:23:04Z",
+                "report": "The second documentation check found all 13 earlier points answered or recorded as follow-ups, the two new header sentences of .gitleaks.toml accurate, every recorded value correct, and all 233 relative links and anchors resolving across the 13 files checked, the three superseded copies among them. Three points remained, all in the plan documents and none in the seven files, and are corrected: consequences.md no longer restates what the as-built record says about the seven files and links to it instead; the follow-up on comments now says it also covers the options' help text and the workflow's two error annotations, with the annotations listed under the workflow; and one sentence of the dated note on architecture section 10 is reworded. The plan's list of later changes uses the same wording."
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-12T02:10:54Z",
+                "finished": "2026-11-12T03:17:00Z",
+                "report": "The corrected .gitleaks.toml is committed and pushed; the branch head, 0b64c47, is the commit the code lands at. The file is 3824 bytes at its recorded blob id; the change is five comment lines and nothing else, and the parsed configuration is unchanged: five rules, one table, no global allowlist. Before the commit the checks were run again over the final documents with no stop: the configuration step 3 of 3 (ended 02:51:22Z); local checks 133 of 133 (ended 02:53:57Z); scans 222 of 222 (ended 03:11:13Z), with the history (97 commits, both ref sets) and the tree clean, CANARY OK twice, CONTROLS OK three times, all ten mutated tables failing the controls at their recorded counts, thirteen GATE FAILED conditions and seven uncaught exits of the scan wrapper answering as designed, every shell block of the workflow passing and stopping as designed, and the log filter reading its samples as recorded; privacy gate 0 blocking hits after its 50-check selftest (ended 03:12:56Z). The other six files are unchanged. The as-built record's counts are confirmed by this run, so the plan is reconciled. One sentence of the plan's expected text no longer names a commit count, which grows with the branch. The documentation is being checked a second time; the README and CHANGELOG are being confirmed against the as-built record."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "started": "2026-11-12T03:17:00Z",
+                "finished": "2026-11-12T03:18:57Z",
+                "report": "The README and the CHANGELOG, as committed, hold what the change calls for and take no addition: the README marks the bot's local files and guildData/, lists the files a clone must supply and names the Secret scan workflow and .gitleaks.toml; the CHANGELOG has its entry under Unreleased for the workflow with the scan wrapper, the configuration with its one allowlist entry, the allowlist controls and the root-anchored .gitignore. Both files are at their recorded bytes. The second documentation check is still running, and the state boards are being built."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-12T03:19:27Z",
+                "finished": "2026-11-12T03:34:49Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-12T03:34:49Z",
+                "finished": "2026-11-12T03:59:05Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-12T04:03:24Z",
+          "ended": "2026-11-12T04:04:33Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-12T04:03:24Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-12T04:04:33Z",
+          "ended": "2026-11-12T04:10:02Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "landed",
+            "at": "2026-11-12T04:10:02Z"
+          },
+          "detail": "Landed in PR #34."
         }
       ]
     },
@@ -1345,6 +1454,13 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-11",
       "ref": "plan.md",
       "note": "five stages, S1 to S5, then the landing with its merge condition and the workspace copy after the merge; the six files' bytes recorded; one scoped allowlist table settles the default-rule finding"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-12",
+      "ref": "PR #34",
+      "note": "merged as 3d1b890"
     }
   ],
   "trail": [
@@ -1577,6 +1693,23 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-12",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-12",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-12",
+      "column": "built",
+      "label": "Merge: merging it in PR #34",
+      "ref": "PR #34"
+    },
+    {
+      "date": "2026-11-12",
+      "column": "built",
+      "label": "Landed in PR #34, merge 3d1b890",
+      "ref": "PR #34"
     }
   ],
   "rows": [
@@ -2391,8 +2524,62 @@ window.dashboardLive&&window.dashboardLive("plan",
         }
       ],
       "asBuilt": {
-        "state": "partially-built",
-        "summary": "The checks before the landing passed over the final documents with the final configuration, before its commit at `0b64c47`, the commit the code lands at: the configuration's step of S2 3 of 3, S3 133 of 133, S4 222 of 222 (the clone 13, the scans 14, the canary 21, the controls 42, the mutations 42, the wrapper's failure paths 64, the workflow's run blocks 22, the log filter 4), with the history, 97 commits on both ref sets, and the tree clean, and the privacy gate 0 blocking hits after its 50-check selftest; S1's 38 checks passed earlier, the scans before the change among them. Just before the last commit before the landing, S4 and S5 ran once more over the checkout as it stands at `0b64c47`, every pending document and board file carried into the scratch clone: S4 222 of 222, with the history, now 98 commits on both ref sets, and the tree clean, the canary twice, the controls three times and all ten mutated tables failing the controls at their recorded counts, and the privacy gate 0 blocking hits after its selftest. Still to come: the landing's merge condition on the `Secret scan (gitleaks)` check of the pull request, the workflow's first run there, and the reads of the pull request's run and of the push run on `main`."
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "text": "Before the landing, S3 passed 133 of 133: the seven files held their recorded bytes, the configuration and both Python files parsed and their pure parts gave their recorded results, the workflow's shell blocks parsed with its names, runner, timeout, concurrency, triggers, permissions and pins as recorded, the ignore list behaved as designed (48 paths ignored and 32 not) and no file held both PEM markers.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "The criteria marked met hold for the files as committed: after the configuration's header change, S2 `config`, S3, S4 and S5 ran again over the final document set, before that set was committed.",
+              "hash": "ecaf1dd7cc9d"
+            }
+          },
+          {
+            "text": "A scratch clone carrying every pending file passed S4, 222 of 222: the history, on both ref sets, and the tree printed `RESULT: CLEAN`; the canary fired, `CANARY OK` for both; the allowlist controls printed `CONTROLS OK` with all 22 controls as expected and in order, from a bare clone too, and each of the ten mutated tables failed them at its recorded count; the controls' and the wrapper's failure paths, the workflow's six blocks and the log filter answered as designed, every scan printing only fixed shapes with nothing on standard error.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#31-the-procedure",
+            "excerpt": {
+              "ref": "final-implementation.md#31-the-procedure",
+              "heading": "3.1 The procedure",
+              "paragraph": "Every step gave its expected number of `ok` lines, with no stop, in each run that ran it:",
+              "hash": "ca9f93a29319"
+            }
+          },
+          {
+            "text": "The privacy gate reported 0 blocking hits over the same clone, after its selftest passed 50 checks.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "The criteria marked met hold for the files as committed: after the configuration's header change, S2 `config`, S3, S4 and S5 ran again over the final document set, before that set was committed.",
+              "hash": "ecaf1dd7cc9d"
+            }
+          },
+          {
+            "text": "S3, S4 and S5 ran again over the final document set before it was committed, and S4 and S5 once more just before the last commit before the landing, over the checkout at `0b64c47`: S4 222 of 222, with the history, 98 commits on both ref sets, and the tree clean, and the privacy gate 0 blocking hits.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "The criteria marked met hold for the files as committed: after the configuration's header change, S2 `config`, S3, S4 and S5 ran again over the final document set, before that set was committed.",
+              "hash": "ecaf1dd7cc9d"
+            }
+          },
+          {
+            "text": "PR #34 merged at `3d1b890` only after its `Secret scan (gitleaks)` check had completed with success on its head commit, the allowlist-controls step included: the workflow's first run on GitHub.",
+            "state": "as-planned"
+          },
+          {
+            "text": "Both hosted runs were read from GitHub after the merge, the pull request's and the push run on `main` at `3d1b890`: each `completed` with `success`, its markers `CANARY OK` 2, `CONTROLS OK` 1, `RESULT: FINDINGS` 2 and `RESULT: CLEAN` 2, and its scan steps' log 6 step headers and 62 lines, none of another shape. Both used the runner image `ubuntu-26.04`, the six assumptions only the hosted runs could settle held, and the values are reported on the issue.",
+            "state": "as-planned"
+          }
+        ]
       },
       "verdict": {
         "kind": "build",
@@ -2586,7 +2773,17 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "plan.md#the-workspace-copy"
       },
       "asBuilt": {
-        "state": "pending"
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "After the merge, the workspace configuration was replaced by `main`'s `.gitleaks.toml`, read through the contents API without changing the checkout: `main`'s file and the copy each held the recorded 3824 bytes, sha256 `c046de17…` and blob `457a49a7…`, and the copy parses with its five rules.",
+            "state": "as-planned"
+          },
+          {
+            "text": "The old value, 2373 bytes and sha256 `4e68f75c…`, and the new were recorded, and the workspace wrapper is unchanged at its 12073 bytes and recorded sha256.",
+            "state": "as-planned"
+          }
+        ]
       }
     },
     {
@@ -2656,7 +2853,31 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "plan.md#interfaces-with-sibling-units"
       },
       "asBuilt": {
-        "state": "pending"
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "`k0-ready.sh` and `save-tools.sh` were left as they were: their pins, at line 34 and line 29, still name the old value and were not changed.",
+            "state": "as-planned",
+            "ref": "consequences.md#23-this-machine",
+            "excerpt": {
+              "ref": "consequences.md#23-this-machine",
+              "heading": "2.3 This machine",
+              "paragraph": "The workspace copy of the configuration (`%USERPROFILE%\\BotWS\\tools\\gitleaks.toml`) takes the committed bytes once the change has merged (as built, §1). They replace 2373 bytes, sha256 `4e68f75c709bd2937253ee9efee3f8fd28f891aa3eb7b00de7b830a28f5396eb`. · From then on, the configuration text in the earlier findings (§6.3) no longer equals the workspace copy, and neither does the allowlist findings' complete file (§6.1), which the committed file extends by its two header sentences. · The value the preparation unit recorded for its saved copy is no longer current; a dated note in its …",
+              "hash": "74b92900d147"
+            }
+          },
+          {
+            "text": "The two pins are recorded for #26 and #27, which take the new value; nothing re-saved the configuration from the earlier findings' text, and a re-run of `save-tools.sh` would write the earlier bytes back.",
+            "state": "as-planned",
+            "ref": "consequences.md#4-sibling-units-and-neighbouring-issues",
+            "excerpt": {
+              "ref": "consequences.md#4-sibling-units-and-neighbouring-issues",
+              "heading": "4. Sibling units and neighbouring issues",
+              "paragraph": "What the later units take from this unit. The contract is plan, Interfaces with sibling units; this is its summary.",
+              "hash": "42f5fb69c874"
+            }
+          }
+        ]
       }
     },
     {
@@ -2830,8 +3051,8 @@ window.dashboardLive&&window.dashboardLive("plan",
     }
   ],
   "impact": {
-    "basis": "plan",
-    "summary": "No module is published and no version moves. The change lands the repository's first workflow, `Secret scan`, with its wrapper, its configuration and the allowlist controls it runs on every push and pull request, a root-anchored `.gitignore`, the README correction and the first `CHANGELOG.md`. Every later commit is scanned, so a document that trips a rule keeps the check red; the workspace configuration takes the committed bytes after the merge, and the later units take the settled finding and the new value (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
+    "basis": "as-built",
+    "summary": "No module is published and no version moves. The change landed the repository's first workflow, `Secret scan`, with its wrapper, its configuration and the allowlist controls it runs on every push and pull request, a root-anchored `.gitignore`, the README correction and the first `CHANGELOG.md`. Every later commit is scanned, so a document that trips a rule keeps the check red; the workspace configuration took the committed bytes after the merge, and the later units take the settled finding and the new value (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
     "none": null,
     "release": {
       "bump": "none",
@@ -2869,7 +3090,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "operator",
         "system": "repository-hygiene",
         "effect": "behaviour",
-        "summary": "The workspace configuration takes the committed bytes after the merge, 3824 bytes in place of 2373. The earlier findings' configuration text, the allowlist findings' complete file and the preparation unit's recorded value then no longer equal it, and two workspace scripts still pin the old value.",
+        "summary": "The workspace configuration took the committed bytes after the merge, 3824 bytes in place of 2373. The earlier findings' configuration text, the allowlist findings' complete file and the preparation unit's recorded value no longer equal it, and two workspace scripts still pin the old value.",
         "link": "consequences.md#23-this-machine"
       }
     ],
@@ -3218,7 +3439,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   "roadmap": {
     "issue": 2,
     "title": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
-    "asOf": "2026-11-11",
+    "asOf": "2026-11-12",
     "items": [
       {
         "issue": 21,
@@ -3241,7 +3462,8 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "issue": 24,
         "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
-        "state": "OPEN"
+        "state": "CLOSED",
+        "stateReason": "COMPLETED"
       },
       {
         "issue": 25,

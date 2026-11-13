@@ -206,6 +206,11 @@ link. A7 is answered in §2.1.
   - #2's plan-folder line, which still reads `0-<slug>` and must read `2-phase-0-history-rewrite`.
 
   It needs `edit-issue-body` (and a comment edit where a comment holds such a link), which this unit did not send.
+
+  > **Dated note, 2026-11-13.** The publication unit (#25) made the edits in the bodies of #1 to #19: their links point at `main`,
+  > #1's body no longer places the documents on the planning branch, and #2's plan-folder line reads `2-phase-0-history-rewrite`. A
+  > plain mention of the branch's name in a comment on #1, 16 links in MagicBot #1 to #8 and 1 in WebTools #55 remain
+  > ([its consequences, §6](../25-kotlinbottools-publish/consequences.md#6-follow-ups)).
 - **The default-rule finding** of §5, judged before the visibility changes.
 
   > **Dated note, 2026-11-12.** Closed by the [repository hygiene unit](../24-repository-hygiene/plan.md) (#24), as the

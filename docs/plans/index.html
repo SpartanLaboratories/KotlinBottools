@@ -352,11 +352,11 @@ footer code{color:var(--ink-2)}
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-12T03:32:52Z",
-  "asOf": "2026-11-12",
+  "generated": "2026-11-13T01:40:05Z",
+  "asOf": "2026-11-13",
   "tree": {
-    "ref": "chore/issue-24-repository-hygiene",
-    "sha": "0b64c47"
+    "ref": "chore/issue-25-make-repository-public",
+    "sha": "2ad91c2"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -434,9 +434,9 @@ footer code{color:var(--ink-2)}
       "branch": null,
       "system": null,
       "step": "implementation",
-      "detail": "3 of 8 units landed; #24 in progress; #25 up next.",
+      "detail": "4 of 8 units landed; #25 in progress; #26 up next.",
       "since": "2026-11-08T21:15:43Z",
-      "updated": "2026-11-11T18:54:18Z",
+      "updated": "2026-11-12T04:44:41Z",
       "qa": [],
       "qaMax": 3,
       "status": "building",
@@ -444,13 +444,13 @@ footer code{color:var(--ink-2)}
       "landed": null,
       "reconciliation": {
         "state": "partial",
-        "landed": 3,
+        "landed": 4,
         "total": 8
       },
       "active": false,
       "chain": {
         "total": 8,
-        "landed": 3,
+        "landed": 4,
         "dropped": 0,
         "deferred": 0,
         "left": 0,
@@ -458,19 +458,15 @@ footer code{color:var(--ink-2)}
         "done": false,
         "current": [
           {
-            "issue": 24,
-            "slug": "repository-hygiene",
+            "issue": 25,
+            "slug": "kotlinbottools-publish",
             "step": "document"
           }
         ],
         "next": {
-          "issue": 25,
-          "slug": "kotlinbottools-publish",
-          "blockedBy": [
-            {
-              "issue": 24
-            }
-          ]
+          "issue": 26,
+          "slug": "gkb2-gkb-rewrite",
+          "blockedBy": []
         },
         "units": [
           {
@@ -495,13 +491,13 @@ footer code{color:var(--ink-2)}
             "n": 4,
             "issue": 24,
             "name": "Repository hygiene",
-            "state": "current"
+            "state": "done"
           },
           {
             "n": 5,
             "issue": 25,
             "name": "Make KotlinBottools public",
-            "state": "todo"
+            "state": "current"
           },
           {
             "n": 6,
@@ -716,7 +712,9 @@ footer code{color:var(--ink-2)}
         },
         {
           "issue": 24,
-          "state": "OPEN",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-12T04:10:04Z",
           "hold": "enables"
         }
       ],
@@ -770,7 +768,8 @@ footer code{color:var(--ink-2)}
     {
       "issue": 24,
       "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
-      "state": "OPEN",
+      "state": "CLOSED",
+      "stateReason": "COMPLETED",
       "created": "2026-11-08",
       "parent": 2,
       "waitsOn": [
@@ -787,17 +786,17 @@ footer code{color:var(--ink-2)}
         {
           "issue": 25,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         }
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/",
-      "branch": "chore/issue-24-repository-hygiene",
+      "branch": null,
       "system": "repository-hygiene",
-      "step": "document",
-      "detail": "The second documentation check found all 13 earlier points answered or recorded as follow-ups, the two new header sentences of .gitleaks.toml accurate, every recorded value correct, and all 233 relative links and anchors resolving across the 13 files checked, the three superseded copies among them. Three points remained, all in the plan documents and none in the seven files, and are corrected: consequences.md no longer restates what the as-built record says about the seven files and links to it instead; the follow-up on comments now says it also covers the options' help text and the workflow's two error annotations, with the annotations listed under the workflow; and one sentence of the dated note on architecture section 10 is reworded. The plan's list of later changes uses the same wording.",
-      "since": "2026-11-12T02:10:54Z",
-      "updated": "2026-11-12T03:23:04Z",
+      "step": "landed",
+      "detail": "Landed in PR #34.",
+      "since": "2026-11-12T04:10:02Z",
+      "updated": "2026-11-12T04:10:02Z",
       "qa": [
         {
           "pass": 1,
@@ -856,15 +855,20 @@ footer code{color:var(--ink-2)}
         }
       ],
       "qaMax": 3,
-      "status": "building",
+      "status": "landed",
       "fixOf": null,
-      "landed": null,
+      "landed": {
+        "pr": 34,
+        "merge": "3d1b89007f253d11bdee08174c1d7f21621cc386",
+        "version": null,
+        "date": "2026-11-12"
+      },
       "reconciliation": {
-        "state": "planned",
+        "state": "as-built",
         "landed": null,
         "total": null
       },
-      "active": true,
+      "active": false,
       "systemName": "Repository hygiene",
       "group": "2",
       "order": 4
@@ -878,8 +882,10 @@ footer code{color:var(--ink-2)}
       "waitsOn": [
         {
           "issue": 24,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-12T04:10:04Z",
+          "build": "clear",
           "locality": "local-repository"
         }
       ],
@@ -890,24 +896,63 @@ footer code{color:var(--ink-2)}
           "hold": "blocks"
         }
       ],
-      "board": null,
-      "folder": null,
-      "branch": null,
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/",
+      "branch": "chore/issue-25-make-repository-public",
       "system": "kotlinbottools",
-      "step": null,
-      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 4, and MagicBot's Phase 13 may start once it has landed.",
-      "qa": [],
-      "qaMax": null,
-      "status": "next",
-      "landed": null,
-      "reconciliation": null,
-      "active": false,
-      "next": true,
-      "blockedBy": [
+      "step": "document",
+      "detail": "Document: 4 of 6 tasks done; State boards current.",
+      "since": "2026-11-13T01:05:02Z",
+      "updated": "2026-11-13T01:28:51Z",
+      "qa": [
         {
-          "issue": 24
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-12",
+          "at": "2026-11-12T23:59:25Z",
+          "findings": {
+            "test": 12,
+            "code": 5
+          },
+          "severity": {
+            "minor": 15,
+            "other": 2
+          },
+          "route": "re-plan-then-remediation",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/ca070e8d/tests/index.html",
+          "note": "The repository is in the intended state and the issue's three criteria are met: it reads public with secret scanning and push protection enabled, every pre-rewrite id probed answers as absent, the feeds list none, and all nineteen issue bodies equal the intended text. Nothing was run again: the recorded results read 171 passed, 0 failed and 224 without a stored result (155 self-test checks, 50 stage lines printed and not kept, 19 checks of the landing not yet due), as re-running the self-tests would remove the run's working sets. 17 findings (15 minor, 2 other; 12 test, 5 code). The 2 not minor: the totals of the six self-tests were never stored, and the second feed read came about three and a half minutes after the first where at least six were required, which the as-built record does not yet state. The 15 minor ones: the stale entry on the revisions count, a one-second error in the pre-flip gate's time and gap, no stored trace that the tools were checked after they were saved a second time (they equal their pins now), the wording on stage markers, and how the test plan files and records its checks. They touch the anonymous measurements, the third privacy gate and the pre-flip gate. The plan's wording is corrected first, then the as-built record."
+        },
+        {
+          "pass": 2,
+          "verdict": "changes-requested",
+          "date": "2026-11-13",
+          "at": "2026-11-13T00:43:53Z",
+          "findings": {
+            "test": 9,
+            "code": 3
+          },
+          "severity": {
+            "minor": 12,
+            "other": 0
+          },
+          "route": "on-the-spot",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/949b5d33/tests/index.html",
+          "note": "Fifteen of Quality Review 1's seventeen findings are closed, the two that were not minor among them: the totals of five self-tests are kept (137 checks passed, 0 failed; the 18 stand-in cases of the anonymous helpers were not run again, a known gap), and the spacing of the feed reads is corrected in the plan, stated in the as-built record and answered by the third feed read. The issue's three criteria are met on fresh reads: the repository reads public with secret scanning and push protection enabled, all 87 pre-rewrite commits answer as absent, and nine feed reads list no pre-rewrite id. The closed record is untouched and the saved tools equal their pins. Nothing was run again in this pass: its test results are read from the run's kept results. 12 findings (12 minor; 9 test, 3 code), all wording: the anonymous REST budget still stated as about 45 calls in the consequences, the plan's summaries of the landing's reads naming three of its five steps, one requirement number cited for the revert trigger, test plan rows that claim slightly more than their checks reach, and three statements of the as-built record (the measurements of the issue-text stage, the refusals that left no stored reply, one time stamp that straddles a second). They touch the anonymous measurements and are fixed on the spot, with no further review.",
+          "inPlace": "fixed"
         }
       ],
+      "qaMax": 3,
+      "status": "building",
+      "fixOf": null,
+      "landed": null,
+      "reconciliation": {
+        "state": "planned",
+        "landed": null,
+        "total": null
+      },
+      "active": true,
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 5
@@ -940,13 +985,15 @@ footer code{color:var(--ink-2)}
       "branch": null,
       "system": "kotlinbottools",
       "step": null,
-      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 3.",
+      "detail": "Filed as #26; its run has not started. It starts after unit 3, which has landed.",
       "qa": [],
       "qaMax": null,
-      "status": "not-started",
+      "status": "next",
       "landed": null,
       "reconciliation": null,
       "active": false,
+      "next": true,
+      "blockedBy": [],
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 6
@@ -977,7 +1024,7 @@ footer code{color:var(--ink-2)}
       "branch": null,
       "system": "kotlinbottools",
       "step": null,
-      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after unit 6.",
+      "detail": "Filed as #27; its run has not started. It starts after unit 6.",
       "qa": [],
       "qaMax": null,
       "status": "not-started",
@@ -1014,7 +1061,7 @@ footer code{color:var(--ink-2)}
       "branch": null,
       "system": "kotlinbottools",
       "step": null,
-      "detail": "To be filed as a sub-issue of #2 once this plan lands; starts after units 5 and 7, and its landing closes #2.",
+      "detail": "Filed as #28; its run has not started. It starts after units 5 and 7, and its landing closes #2.",
       "qa": [],
       "qaMax": null,
       "status": "not-started",
@@ -1152,7 +1199,8 @@ footer code{color:var(--ink-2)}
         {
           "issue": 24,
           "title": "Phase 0 · 4 — KotlinBottools repository hygiene: .gitignore, gitleaks configuration and CI, README and CHANGELOG",
-          "state": "OPEN"
+          "state": "CLOSED",
+          "stateReason": "COMPLETED"
         },
         {
           "issue": 25,
