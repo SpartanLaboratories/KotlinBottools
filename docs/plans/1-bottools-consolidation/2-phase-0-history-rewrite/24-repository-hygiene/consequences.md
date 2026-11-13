@@ -218,6 +218,11 @@ others are listed above.
   - the wrapper's failure paths, when the wrapper or the pin changes;
   - the workflow's blocks run on both sides, and the log filter, when the workflow changes.
 - **The workspace pins** of `k0-ready.sh` and `save-tools.sh`, for #26 and #27 (§2.3, §4).
+
+  > **Dated note, 2026-11-13.** Settled for the [GKB2 and GKB rewrite unit](../26-gkb2-gkb-rewrite/plan.md) (#26): it ran
+  > neither script, and its own readiness check pins the current configuration, 3,824 bytes, sha256 `c046de17…`, which it
+  > found in place ([that unit's as-built record, §3.1](../26-gkb2-gkb-rewrite/final-implementation.md#31-readiness)). The
+  > two scripts stay in the workspace, unrun ([that unit's consequences, §6](../26-gkb2-gkb-rewrite/consequences.md#6-follow-ups)).
 - **Comments, docstrings and message text of the committed files.** Each change below edits comments, docstrings or message
   text (the options' help text, the workflow's two error annotations) and changes nothing a scan does:
   - `.github/scripts/secret_scan.py`:

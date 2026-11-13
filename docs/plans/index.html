@@ -352,11 +352,11 @@ footer code{color:var(--ink-2)}
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-13T01:40:05Z",
+  "generated": "2026-11-13T09:30:40Z",
   "asOf": "2026-11-13",
   "tree": {
-    "ref": "chore/issue-25-make-repository-public",
-    "sha": "2ad91c2"
+    "ref": "chore/issue-26-rewrite-gkb2-and-gkb",
+    "sha": "2bbd7ec"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -385,6 +385,15 @@ footer code{color:var(--ink-2)}
       "slot": 0,
       "top": "Internal Tooling",
       "status": "built",
+      "board": null,
+      "plain": true
+    },
+    {
+      "slug": "rewrite-pipeline",
+      "name": "Rewrite pipeline",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
       "board": null,
       "plain": true
     }
@@ -434,9 +443,9 @@ footer code{color:var(--ink-2)}
       "branch": null,
       "system": null,
       "step": "implementation",
-      "detail": "4 of 8 units landed; #25 in progress; #26 up next.",
+      "detail": "5 of 8 units landed; #26 in progress; #27 up next.",
       "since": "2026-11-08T21:15:43Z",
-      "updated": "2026-11-12T04:44:41Z",
+      "updated": "2026-11-13T02:57:18Z",
       "qa": [],
       "qaMax": 3,
       "status": "building",
@@ -444,13 +453,13 @@ footer code{color:var(--ink-2)}
       "landed": null,
       "reconciliation": {
         "state": "partial",
-        "landed": 4,
+        "landed": 5,
         "total": 8
       },
       "active": false,
       "chain": {
         "total": 8,
-        "landed": 4,
+        "landed": 5,
         "dropped": 0,
         "deferred": 0,
         "left": 0,
@@ -458,15 +467,19 @@ footer code{color:var(--ink-2)}
         "done": false,
         "current": [
           {
-            "issue": 25,
-            "slug": "kotlinbottools-publish",
+            "issue": 26,
+            "slug": "gkb2-gkb-rewrite",
             "step": "document"
           }
         ],
         "next": {
-          "issue": 26,
-          "slug": "gkb2-gkb-rewrite",
-          "blockedBy": []
+          "issue": 27,
+          "slug": "bottools-trumpbot-support-rewrite",
+          "blockedBy": [
+            {
+              "issue": 26
+            }
+          ]
         },
         "units": [
           {
@@ -497,13 +510,13 @@ footer code{color:var(--ink-2)}
             "n": 5,
             "issue": 25,
             "name": "Make KotlinBottools public",
-            "state": "current"
+            "state": "done"
           },
           {
             "n": 6,
             "issue": 26,
             "name": "Rewrite GKB2 and GKB",
-            "state": "todo"
+            "state": "current"
           },
           {
             "n": 7,
@@ -785,7 +798,9 @@ footer code{color:var(--ink-2)}
       "blocks": [
         {
           "issue": 25,
-          "state": "OPEN",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-13T02:36:15Z",
           "hold": "enables"
         }
       ],
@@ -876,7 +891,8 @@ footer code{color:var(--ink-2)}
     {
       "issue": 25,
       "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection",
-      "state": "OPEN",
+      "state": "CLOSED",
+      "stateReason": "COMPLETED",
       "created": "2026-11-08",
       "parent": 2,
       "waitsOn": [
@@ -893,17 +909,17 @@ footer code{color:var(--ink-2)}
         {
           "issue": 28,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         }
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/",
-      "branch": "chore/issue-25-make-repository-public",
+      "branch": null,
       "system": "kotlinbottools",
-      "step": "document",
-      "detail": "Document: 4 of 6 tasks done; State boards current.",
-      "since": "2026-11-13T01:05:02Z",
-      "updated": "2026-11-13T01:28:51Z",
+      "step": "landed",
+      "detail": "Landed in PR #36.",
+      "since": "2026-11-13T02:36:14Z",
+      "updated": "2026-11-13T02:36:14Z",
       "qa": [
         {
           "pass": 1,
@@ -944,15 +960,20 @@ footer code{color:var(--ink-2)}
         }
       ],
       "qaMax": 3,
-      "status": "building",
+      "status": "landed",
       "fixOf": null,
-      "landed": null,
+      "landed": {
+        "pr": 36,
+        "merge": "96eba228ddd753f3b176f965c4ffa332f2187369",
+        "version": null,
+        "date": "2026-11-13"
+      },
       "reconciliation": {
-        "state": "planned",
+        "state": "as-built",
         "landed": null,
         "total": null
       },
-      "active": true,
+      "active": false,
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 5
@@ -980,21 +1001,64 @@ footer code{color:var(--ink-2)}
           "hold": "blocks"
         }
       ],
-      "board": null,
-      "folder": null,
-      "branch": null,
-      "system": "kotlinbottools",
-      "step": null,
-      "detail": "Filed as #26; its run has not started. It starts after unit 3, which has landed.",
-      "qa": [],
-      "qaMax": null,
-      "status": "next",
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/",
+      "branch": "chore/issue-26-rewrite-gkb2-and-gkb",
+      "system": "rewrite-pipeline",
+      "step": "document",
+      "detail": "Document: 4 of 6 tasks done; State boards current.",
+      "since": "2026-11-13T08:15:08Z",
+      "updated": "2026-11-13T09:20:33Z",
+      "qa": [
+        {
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-13",
+          "at": "2026-11-13T07:10:24Z",
+          "findings": {
+            "test": 19,
+            "code": 4
+          },
+          "severity": {
+            "minor": 17,
+            "other": 6
+          },
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/ca070e8d/tests/index.html",
+          "note": "Both rewrites are confirmed by an independent recount: every expected value holds on both fresh mirrors, both remotes show only the one branch moved, and each acceptance criterion is met by evidence read from the log, the records and the remotes. The tools' two self-tests passed again in isolation (191 checks: 59 and 132). 23 findings (17 minor, 6 other; 19 test, 4 code). For the as-built record: one departure from the output rule not yet listed (a passing self-test prints a traceback with a sandbox path) and three small differences between the plan's wording and the tools. Follow-ups for the next rewrite unit: the classifier's reading of a reply's form, a close-out step that is not safe to run twice, and an anonymous budget reading that is not explained. Test gaps in the tools, the main ones: no case with a reply in its real shape, none for the stop that keeps a push from being sent twice, none for the closing controls of a probe set, the output rule asserted for one step only, and one self-test script that cannot be run by test level. They touch the push, the residual probes, the tools handed on and the check of the inputs. The landing's four document checks are still to run. How the findings on the tools are handled is not settled yet.",
+          "route": "remediation"
+        },
+        {
+          "pass": 2,
+          "verdict": "changes-requested",
+          "date": "2026-11-13",
+          "at": "2026-11-13T08:10:40Z",
+          "findings": {
+            "test": 8,
+            "code": 4
+          },
+          "severity": {
+            "minor": 12,
+            "other": 0
+          },
+          "route": "on-the-spot",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/949b5d33/tests/index.html",
+          "note": "The rewrite, both pushes and every acceptance criterion stand, all nine recorded departures hold, and nothing outside the stated writes changed; `gdocs.sh` ran again with 22 passed. 12 findings (12 minor; 8 test, 4 code), every one small and on the records: three statements in the consequences that do not hold against the tools (when the classifier's gap lets a request be sent again, which probe stop a self-test case reaches, and the budget thresholds), a list of untested paths that is not complete, one departure not yet listed in the as-built record (each push request sent as a reference to its file with a checksum, asking for the one-shell run), and the document checks, which ran before the boards were last regenerated and run again before the documents are committed. They touch the push, the residual probes and the tools handed on. This review counts 20 test findings in Quality Review 1, where that pass's record holds 19.",
+          "inPlace": "fixed"
+        }
+      ],
+      "qaMax": 3,
+      "status": "building",
+      "fixOf": null,
       "landed": null,
-      "reconciliation": null,
-      "active": false,
-      "next": true,
-      "blockedBy": [],
-      "systemName": "KotlinBottools",
+      "reconciliation": {
+        "state": "partial",
+        "landed": null,
+        "total": null
+      },
+      "active": true,
+      "systemName": "Rewrite pipeline",
       "group": "2",
       "order": 6
     },
@@ -1027,10 +1091,16 @@ footer code{color:var(--ink-2)}
       "detail": "Filed as #27; its run has not started. It starts after unit 6.",
       "qa": [],
       "qaMax": null,
-      "status": "not-started",
+      "status": "next",
       "landed": null,
       "reconciliation": null,
       "active": false,
+      "next": true,
+      "blockedBy": [
+        {
+          "issue": 26
+        }
+      ],
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 7
@@ -1050,8 +1120,10 @@ footer code{color:var(--ink-2)}
         },
         {
           "issue": 25,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-13T02:36:15Z",
+          "build": "clear",
           "locality": "local-repository"
         }
       ],
@@ -1205,7 +1277,8 @@ footer code{color:var(--ink-2)}
         {
           "issue": 25,
           "title": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection",
-          "state": "OPEN"
+          "state": "CLOSED",
+          "stateReason": "COMPLETED"
         },
         {
           "issue": 26,

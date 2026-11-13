@@ -223,6 +223,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 
 `kotlinbottools-publish` has landed; what it leaves for the units after it is in [its consequences, §4](25-kotlinbottools-publish/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
 
+`gkb2-gkb-rewrite` has landed; what it leaves for the units after it is in [its consequences, §4](26-gkb2-gkb-rewrite/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
+
 **Neighbouring issues:**
 
 - **#1,** the tracking issue. Its planning documents land with #2's own landing.
@@ -252,17 +254,32 @@ The rewrite itself changes two source files on `main` through the path scrub
   > `create-milestone`, `transfer-issue`, `placeholder-issue`, `rename-repo`, `repo-visibility` and `archive-repo`. No unit has
   > used `relationships` yet (no transfer has dropped a link), nor `edit-issue-body`, `repo-security` or `replace-clone`
   > ([unit 3's as-built record](23-kotlinbottools-rewrite-and-swap/final-implementation.md)).
+
+  > **Dated note, 2026-11-13.** Unit 6 (#26) used `push-mirror` for the first time as a forced update of one ref, `master` of
+  > GKB2 and of GKB, under a grant for its job that names the push in the form used. Each request named its request file, with
+  > the file's sha256, in place of the procedure's text. GKB2's was carried out at its second attempt under the same id, the
+  > first having been refused before anything ran by one of the request service's own checks
+  > ([unit 6's as-built record, deviations 4 and 10](26-gkb2-gkb-rewrite/final-implementation.md#4-deviations-from-the-plan)).
 - **The path scrub has been proved only on a fixture,** until unit 3 runs it on the real history.
   Its fidelity check and its zero-match count stop the unit before the push if it misbehaves.
 - **The real histories have not yet been rewritten or scanned.** The derived counts, filter-repo's
   log lines, the scan times on TrumpBot and Support, and whether each real token file matches the
   token rule are confirmed by the units' first runs, each behind its own stop.
+
+  > **Dated note, 2026-11-13.** GKB2 and GKB are rewritten, pushed and scanned. Every count equals its expectation row, on the
+  > rewritten mirror and on the fresh mirror; filter-repo rewrote every commit of each; and the positive control on each
+  > untouched backup equals the preparation unit's record line for line ([unit 6's as-built record, §3](26-gkb2-gkb-rewrite/final-implementation.md#3-measurements)).
+  > BotTools, TrumpBot and Support are unit 7's (#27).
 - **The secret-scan workflow and the Linux gitleaks binary have not run on GitHub.** The
   repository-hygiene pull request is their first run.
 - **Issue transfers.** How a transfer treats numbers, closed issues, and sub-issue and "blocked by"
   links is undocumented. The rehearsal settles it before KotlinBottools is touched.
 - **gitleaks' default rules have not been run on the legacy repositories' kept sources.** Any
   finding is recorded by rule id and count, and becomes a follow-up.
+
+  > **Dated note, 2026-11-13.** Run for GKB2 and GKB, before each push and on each fresh mirror: neither has a default-rule
+  > finding in a kept file ([unit 6's as-built record, §3.4](26-gkb2-gkb-rewrite/final-implementation.md#34-the-exit-tests)).
+  > BotTools, TrumpBot and Support remain.
 - **The privacy gate's name lists** come from the member files' name elements and the folder
   names. A display name stored in another form can be missed, and names shorter than five
   characters are counted, not reviewed.

@@ -1060,7 +1060,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   "title": "Make KotlinBottools public",
   "issueTitle": "Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection",
   "function": "KotlinBottools, the fresh repository the rewrite and swap made, is private, so every public link to one of its issues answers \"not found\", and it is unscanned: GitHub enables no scanning setting on its own for an organisation-owned repository, and the setting exists only once the repository is public. This run passes the third privacy gate and the id-reference check over everything that becomes public, then the pre-flip gate, makes the repository public and enables secret scanning and push protection in a separate update, then measures anonymously that no pre-rewrite id resolves, checks the access and confirms the secret scan green on `main`. Every write to GitHub is verified by reading it back. Unit 5 of #2, with no source change and no version moved.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-12T04:44:41Z",
   "parent": {
     "issue": 2,
@@ -1073,7 +1073,40 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     "sha": "3d1b890",
     "date": "2026-11-11"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "96eba228ddd753f3b176f965c4ffa332f2187369",
+    "merge": "96eba228ddd753f3b176f965c4ffa332f2187369",
+    "pr": 36,
+    "date": "2026-11-13",
+    "at": "2026-11-13T02:36:14Z",
+    "commits": [
+      {
+        "sha": "236ff7b",
+        "at": "2026-11-12T05:25:18Z",
+        "step": "research"
+      },
+      {
+        "sha": "e9c847f",
+        "at": "2026-11-12T18:08:05Z",
+        "step": "research"
+      },
+      {
+        "sha": "1444883",
+        "at": "2026-11-12T18:15:13Z",
+        "step": "research"
+      },
+      {
+        "sha": "46ad45e",
+        "at": "2026-11-12T18:19:44Z",
+        "step": "research"
+      },
+      {
+        "sha": "a7c7764",
+        "at": "2026-11-12T19:24:17Z",
+        "step": "research"
+      }
+    ]
+  },
   "systems": [
     {
       "slug": "kotlinbottools",
@@ -1085,10 +1118,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-13T01:05:02Z",
-    "updated": "2026-11-13T02:26:45Z",
-    "detail": "Document: 6 of 6 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-13T02:36:14Z",
+    "updated": "2026-11-13T02:36:14Z",
+    "detail": "Landed in PR #36.",
     "steps": [
       "sizing",
       "interview",
@@ -1103,9 +1136,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -1575,9 +1606,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     },
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-13T02:26:45Z",
-      "note": "6 of 6 tasks done"
+      "name": "landed",
+      "at": "2026-11-13T02:36:14Z"
     },
     "history": {
       "sizing": [
@@ -3180,6 +3210,94 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
               "answered": "2026-11-13T01:05:02Z"
             }
           ]
+        },
+        {
+          "since": "2026-11-13T01:05:02Z",
+          "ended": "2026-11-13T02:32:22Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-13T02:26:45Z",
+            "note": "6 of 6 tasks done"
+          },
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Documentation review",
+                "state": "done",
+                "started": "2026-11-13T00:51:21Z",
+                "finished": "2026-11-13T01:00:52Z",
+                "report": "The documentation check found 17 points. Two are gaps in the as-built record: it has no section on what was built, and the deviation on the 58 minutes between the pre-flip gate and the change gives no reasoning and no link to what the requirement rests on. Five are improvements in unpinned text: a missing reasoning line, two passages of the as-built record keyed to the plan's corrections rather than its versions, test plan limits worded as outcomes, and two inaccurate sentences about the shell helpers. Seven are improvements inside the recorded tool and block texts (side effects and return contracts their headers leave out, uncommented idioms), which can only become follow-ups. Every link in the eight documents resolves, both superseded copies carry their note, and no name, path or credential shape was found. The README is accurate for a public repository. Three points are choices about what the public documents say."
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-13T01:00:52Z",
+                "finished": "2026-11-13T01:27:31Z",
+                "report": "The documents are reconciled with the build. The as-built record states what was built, the acceptance against the issue's three criteria, the measurements of every stage and of the landing's reads, and four deviations: the procedures of edits 1 to 18 not demonstrably run as one shell, the comment on #1 holding a mention and no blob link, the change following the pre-flip gate by 58 minutes, and the second feed read inside the events feed's cache. The consequences state the outcome of each assumption, the known gaps and the follow-ups, among them one on what the tools' comments leave out. The research notes say what held in the build, and dated notes are on the phase design and on the consequences of the phase and of the two units before this one. A second documentation check found seven small points, all corrected. The documents' gate passed twice with the same counts at 01:27:02Z: 12 of 12 checks, 22 pending files, 0 blocking hits, 0 resolving tokens in the documents, the scan clean."
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-13T01:06:32Z",
+                "finished": "2026-11-13T01:27:31Z",
+                "report": "The documents are reconciled with the build. The as-built record states what was built, the acceptance against the issue's three criteria, the measurements of every stage and of the landing's reads, and four deviations: the procedures of edits 1 to 18 not demonstrably run as one shell, the comment on #1 holding a mention and no blob link, the change following the pre-flip gate by 58 minutes, and the second feed read inside the events feed's cache. The consequences state the outcome of each assumption, the known gaps and the follow-ups, among them one on what the tools' comments leave out. The research notes say what held in the build, and dated notes are on the phase design and on the consequences of the phase and of the two units before this one. A second documentation check found seven small points, all corrected. The documents' gate passed twice with the same counts at 01:27:02Z: 12 of 12 checks, 22 pending files, 0 blocking hits, 0 resolving tokens in the documents, the scan clean."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-13T01:06:32Z",
+                "report": "The third alert read at 01:05:33Z answered with 0 alerts, and the closed record still verifies. The documentation points and the plan are being reconciled in one pass: the as-built record gains a section on what was built and the reasoning its deviations lacked, the unpinned sentences on where the temporary grant is kept and on the refusals are generalised, the points inside the recorded tool texts become one follow-up, and the consequences, the research notes and the dated notes on the phase design take the outcome of the build. The README and the changelog are not changed: the README is accurate for a public repository and a documentation-only landing adds no entry. A second documentation check follows."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-13T01:27:31Z",
+                "finished": "2026-11-13T01:43:10Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-13T01:43:10Z",
+                "finished": "2026-11-13T02:26:45Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-13T02:32:22Z",
+          "ended": "2026-11-13T02:32:58Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-13T02:32:22Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-13T02:32:58Z",
+          "ended": "2026-11-13T02:36:14Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "landed",
+            "at": "2026-11-13T02:36:14Z"
+          },
+          "detail": "Landed in PR #36."
         }
       ]
     },
@@ -3478,6 +3596,13 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "date": "2026-11-12",
       "ref": "plan.md",
       "note": "eleven stages, S1 to S11, in one continuous run after the owner's grant, then the landing's reads; the nineteen issue-body edits, the change to public and the scanning update are the only writes, each a request read back; the way back to private only on its trigger"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-13",
+      "ref": "PR #36",
+      "note": "merged as 96eba22"
     }
   ],
   "trail": [
@@ -3659,6 +3784,23 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "date": "2026-11-13",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "Merge: merging it in PR #36",
+      "ref": "PR #36"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "Landed in PR #36, merge 96eba22",
+      "ref": "PR #36"
     }
   ],
   "rows": [
@@ -5014,8 +5156,26 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         }
       ],
       "asBuilt": {
-        "state": "partially-built",
-        "summary": "Built: the latest `Secret scan` push run on `main` is at the head Gate 3 read and completed with success, and the logs of all 4 Actions runs hold only the fixed shapes, each `6 62 0`, so nothing handed back. Left: the push run on `main` at the merge commit, read after the landing's merge and reported with the issue's resolution."
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "text": "The latest `Secret scan` push run on `main`, at the head Gate 3 read, completed with success before the change to public.",
+            "state": "as-planned"
+          },
+          {
+            "text": "The logs of all 4 Actions runs were read and shape-checked, 13 of 13 checks: each reads the markers `2 1 2 2` and the shapes `6 62 0`.",
+            "state": "as-planned"
+          },
+          {
+            "text": "No run was other than green and no log line had another shape, so nothing handed back before the change.",
+            "state": "as-planned"
+          },
+          {
+            "text": "After the merge, the `Secret scan` push run on `main` at the merge commit `96eba22` completed with success, as the pull request's `Secret scan (gitleaks)` check had before the merge.",
+            "state": "as-planned"
+          }
+        ]
       },
       "verdict": {
         "kind": "build",
@@ -5084,7 +5244,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     }
   ],
   "impact": {
-    "basis": "plan",
+    "basis": "as-built",
     "summary": "No module is published and no version moves: the landing carries documents and generated boards only. What becomes public is the repository itself, its rewritten history on every ref, its issues and pull requests with their earlier revisions, and its Actions runs, with secret scanning and push protection on. References to KotlinBottools issues resolve for everyone, and the later units take the corrected anonymous probe rules (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
     "none": null,
     "release": {
@@ -5177,7 +5337,16 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     "api": [],
     "conversion": [],
     "source": "consequences.md §1 to §6; plan.md Interfaces with sibling units",
-    "link": "consequences.md#2-blast-radius"
+    "link": "consequences.md#2-blast-radius",
+    "changes": [
+      {
+        "entry": "downstream.6",
+        "what": "The activity feeds were read a third time, at the landing, for at most 6 more anonymous REST calls beyond the measurements' 48 in the hour: that read, 0 old ids in each of the three feeds, is the one past the feeds' caches.",
+        "why": "The second feed read ended 214 s after the first and fell inside the events feed's 300 s cache, so it was not an independent read; the third came 2777 s after the first.",
+        "when": "Implementation, S9; the landing's reads",
+        "ref": "final-implementation.md#44-the-second-feed-read-fell-inside-the-events-feeds-cache"
+      }
+    ]
   },
   "tests": {
     "updated": "2026-11-13T00:43:53Z",
