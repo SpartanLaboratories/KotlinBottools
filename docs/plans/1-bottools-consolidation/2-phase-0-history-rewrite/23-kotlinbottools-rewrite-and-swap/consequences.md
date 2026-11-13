@@ -168,6 +168,11 @@ scripts and the push-safety proof are the reference for any later realignment of
 - **`run-stage.sh` writes a run's arguments into the run log,** and a manual run's argument can be a machine path, which
   then sits in `DATA/run/as-run.log`. The runner is the preparation unit's tool, reused at its recorded hash, so it was
   left unchanged; it is fixed before GKB2 and GKB and BotTools, TrumpBot and Support are rewritten (#26, #27).
+
+  > **Dated note, 2026-11-13.** Closed by the [GKB2 and GKB rewrite unit](../26-gkb2-gkb-rewrite/plan.md) (#26), which replaced
+  > the runner with a corrected one before its rewrites: its start line in the run log shows a run's arguments only when they
+  > are plain words ([that unit's plan, The corrected runner](../26-gkb2-gkb-rewrite/plan.md#the-corrected-runner)). What the
+  > run log already holds stays there, in `DATA` ([that unit's consequences, §5](../26-gkb2-gkb-rewrite/consequences.md#5-known-gaps)).
 - **The local run records keep the clones' paths:** `DATA/run/as-run.log` and `DATA/run/swap/steps.jsonl`. They stay in
   `DATA`, which is never committed, printed or quoted, and the last unit of the phase deletes the workspace.
 - **Pre-rewrite commit ids in the work boards.** The committed boards hold 30 occurrences of 3 distinct pre-rewrite
@@ -219,6 +224,9 @@ link. A7 is answered in §2.1.
 **For the tools, before the later rewrite units:**
 
 - **`run-stage.sh`'s logging of a run's arguments** (§5), before #26 and #27.
+
+  > **Dated note, 2026-11-13.** Closed by the [GKB2 and GKB rewrite unit](../26-gkb2-gkb-rewrite/plan.md) (#26), as the note in
+  > §5 says.
 - **The `unlink-N` route** of the walk tool targets the source repository for every relationship, also for one held on
   a MagicBot or WebTools issue. It is the refusal route, which no run has needed (the rehearsal and this unit measured
   that transfers keep their links); a later walk that reuses the tool corrects it first.

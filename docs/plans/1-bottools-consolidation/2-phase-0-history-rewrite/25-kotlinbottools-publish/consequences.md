@@ -178,6 +178,10 @@ repository hygiene unit (#24), the workflow on `main` with its controls step, it
 - **The stand-in cases of the anonymous helpers** (`S1.selftests`) write and delete `old-ids.txt`, `current-ids.txt` and `.lim` in
   the live scratch folder, so they cannot run again once the probe sets exist. A unit that reuses `anon.sh` (#26, #27) runs those
   cases in a scratch folder of their own.
+
+  > **Dated note, 2026-11-13.** Not triggered by the [GKB2 and GKB rewrite unit](../26-gkb2-gkb-rewrite/plan.md) (#26): it does
+  > not reuse `anon.sh` but derives its own helper, `ganon.sh`, whose stand-in cases run in its self-test's sandbox, which stands
+  > in for the user profile. The follow-up stays open for a unit that reuses `anon.sh`.
 - **The comments and docstrings of the unit's tools** state less than the tools do. They change when a later unit (#26, #27) saves
   a tool it reuses again and records its new pins; this unit's pins stay as recorded:
   - `p25_writes.py`: the docstring of `edges(n)` names two kinds of edge, and the function returns four (parent, sub-issue,
@@ -195,6 +199,11 @@ repository hygiene unit (#24), the workflow on `main` with its controls step, it
   - no language-injection hint; region markers only in `p25_writes.py`; two accessors lack the note that the token is never read
     there;
   - the `S1.grant` block spells out where the temporary-permissions file is kept, which the plan's own prose states in general terms.
+
+  > **Dated note, 2026-11-13.** Not triggered by the [GKB2 and GKB rewrite unit](../26-gkb2-gkb-rewrite/plan.md) (#26), which
+  > saves none of this unit's tools again: this unit's pins stay as recorded, and the follow-up stays open for a unit that does.
+  > The documentation follow-ups of that unit's own helper, `ganon.sh`, are in
+  > [its consequences, §6](../26-gkb2-gkb-rewrite/consequences.md#6-follow-ups).
 - **Machine-local paths in issue texts:** none to edit
   ([as built §3.3](final-implementation.md#33-the-corpus-gate-3-the-id-check-and-the-runs)).
 

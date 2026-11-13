@@ -67,6 +67,9 @@
    1. KotlinBottools;
    2. GKB2 and GKB;
    3. BotTools, TrumpBot and Support.
+
+   > **Dated note, 2026-11-13.** GKB2 and GKB were not pushed with `--mirror`: the one branch of each, `master`, went by a refspec push with an explicit lease on the tip the clone recorded, run first as a dry run ([unit 6's plan, The push](26-gkb2-gkb-rewrite/plan.md#the-push); §6.4, stage 6, and the note there).
+
 2. **KotlinBottools made public through a fresh repository.** No GitHub Support ticket is filed,
    and GitHub keeps serving every pre-rewrite object of a repository by id (findings 3 §3.1,
    §3.3). The rewritten history therefore reaches the public through a new repository whose
@@ -617,6 +620,8 @@ stops the repository before its push and discards its mirror; the backup stays.
        predicted.
 
    The outputs are copied to `DATA/rewrite/<repo>/` with a `SHA256SUMS` (findings 1 §6.7).
+
+   > **Dated note, 2026-11-13.** For GKB2 and GKB the post-run checks end with a gitleaks scan of the rewritten mirror's branches and tags, before the push: a custom-rule finding stops the repository there, and a default-rule finding in a kept file is recorded as stage 8 records one. Both scans read `RESULT: CLEAN` ([unit 6's as-built record, §3.2](26-gkb2-gkb-rewrite/final-implementation.md#32-the-rewrites)).
 5. **Push preparation** (findings 3 §6.2 P0–P2):
    - the local `refs/pull/*` are deleted. GitHub never advertises them to a push, so every
      remaining `!` is a real failure;
@@ -633,6 +638,8 @@ stops the repository before its push and discards its mirror; the backup stays.
    > **Dated note, 2026-11-11.** KotlinBottools' push went to an empty fresh repository, where every ref is new, so its dry run
    > and push were `--porcelain --mirror` without `--force`, with the expected tally `new=2` and nothing forced, deleted or
    > rejected ([unit 3's as-built record, §3.2](23-kotlinbottools-rewrite-and-swap/final-implementation.md#32-the-fresh-repository-and-the-push)).
+
+   > **Dated note, 2026-11-13.** GKB2's and GKB's dry run and push were `git push --porcelain --force-with-lease=refs/heads/master:<old tip> <url> refs/heads/master:refs/heads/master`: the one branch, with an explicit lease on the tip the clone recorded, not `--force --mirror`. Under `--mirror`, `--force` or a refspec with a leading `+`, git ignores a lease, and `--mirror` would delete a server branch created after the clone ([unit 6's research summary, §1](26-gkb2-gkb-rewrite/research/README.md#1-the-force-push)). The expected tally was `forced=1` and `done=1`, with every other count 0, and each push was classed `pushed`, with every refusal marker counted at 0, and read back at its new tip ([unit 6's as-built record, §3.3](26-gkb2-gkb-rewrite/final-implementation.md#33-the-pushes)).
 7. **Per-ref verification** on two channels, read by the unit (findings 3 §6.2 P5):
    - `git ls-remote --refs` and the REST `branches` listing both equal the local refs;
    - no remote ref points at an old tip;
@@ -640,6 +647,8 @@ stops the repository before its push and discards its mirror; the backup stays.
 
    A failure here means the remote may be partly updated. The unit stops and reports the tally;
    it never repeats the push blindly.
+
+   > **Dated note, 2026-11-13.** For GKB2 and GKB the equality is over heads and tags: `git ls-remote --refs` over `refs/heads/*` and `refs/tags/*`, and the REST `branches` listing, which carries heads only, each equal the rewritten heads, with no tag; no head points at a pre-rewrite commit; and the pull-request refs equal their record from stage 5, since a push cannot change them and GKB2's `refs/pull/6/head` keeps its pre-rewrite commit. Both repositories passed ([unit 6's as-built record, §3.3](26-gkb2-gkb-rewrite/final-implementation.md#33-the-pushes)).
 8. **Fresh mirror and exit tests** on `WS/fresh/<repo>.git` (findings 2 §6.8, findings 3 §6.3,
    findings 5 §6.1):
    - `expect_check.py` with `--scope heads`, plus `--all-commits` where pull-request refs exist;
@@ -1184,6 +1193,8 @@ GitHub or the checkout before it takes its next step. These writes are:
   worktree of either;
 - each unit's landing: its commits, its branch, its pull request and the merge.
 
+> **Dated note, 2026-11-13.** Unit 6's two force-push requests carried the procedure, its inputs and its checks by reference: each named its request file in `DATA`, with the file's sha256 and a note asking that the procedure's entries be run as one shell and every printed line be given in the reply. The request service compared the hash with the file and ran the file's procedure ([unit 6's as-built record, deviations 9 and 10](26-gkb2-gkb-rewrite/final-implementation.md#4-deviations-from-the-plan)).
+
 **The planning documents land first.** #2's own landing is a pull request from the planning
 branch into `main` of the pre-rewrite repository.
 
@@ -1394,6 +1405,8 @@ repository, with a hand-back state for each.
 > **Dated note, 2026-11-11.** Unit 4 settles, with the scoped table of §10, the default-rule finding that unit 3 recorded in a kept file of KotlinBottools ([unit 3's consequences, §5](23-kotlinbottools-rewrite-and-swap/consequences.md#5-known-gaps)). Unit 5's visibility change no longer waits on that finding. Its other gates are unchanged. Unit 4's scope gains the allowlist controls of §10 and the workflow's step that runs them, so its landing carries seven files.
 
 > **Dated note, 2026-11-13.** Unit 5's scope included the edits of the bodies of #1 to #19 that point their links at `main` and correct #1's clause on the planning branch and #2's plan-folder line. The required status check on `main` is Phase 1's (#3) ([the unit's consequences, §6](25-kotlinbottools-publish/consequences.md#6-follow-ups)).
+
+> **Dated note, 2026-11-13.** Unit 6's scope included the corrected stage runner, which replaced the preparation unit's before its rewrites, so that a run's start line in the run log shows its arguments only when they are plain words ([unit 6's consequences, §3](26-gkb2-gkb-rewrite/consequences.md#3-adoption)).
 
 ---
 

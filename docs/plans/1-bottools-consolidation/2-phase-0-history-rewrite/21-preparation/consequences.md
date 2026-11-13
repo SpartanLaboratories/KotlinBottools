@@ -99,6 +99,13 @@ the expression file are consumed by the phase's later units (§4).
   > ([that unit's consequences, §2.3](../24-repository-hygiene/consequences.md#23-this-machine)). A re-run of this
   > unit's `save-tools.sh` would write the old bytes back, because it re-saves the configuration from the earlier
   > findings' text.
+
+  > **Dated note, 2026-11-13.** The stage runner this unit saved, `run-stage.sh`, is no longer the copy in the workspace: the
+  > [GKB2 and GKB rewrite unit](../26-gkb2-gkb-rewrite/plan.md) (#26) replaced it with a corrected runner, whose start line in
+  > the run log shows a run's arguments only when they are plain words. This unit's recorded size and sha256 of the runner
+  > (470 bytes, `be30b346…`) are no longer current: the runner in use is 1,428 bytes, sha256
+  > `9cdb381040caf266bb61576536a9cc45436f031fa797fd9358a041249909c428`, recorded in
+  > [that unit's plan, Appendix B](../26-gkb2-gkb-rewrite/plan.md#appendix-b--the-pins).
 - **`transfer-rehearsal`** (#22, blocked by this unit), **`repository-hygiene`**,
   **`kotlinbottools-publish`** and **`residual-report-and-cleanup`** also consume the proven
   non-interactive authentication, and `secret_scan.py` and `gitleaks.toml` at their fixed names;
