@@ -3,11 +3,11 @@ window.dashboardLive&&window.dashboardLive("board",
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-13T09:30:40Z",
+  "generated": "2026-11-13T20:21:07Z",
   "asOf": "2026-11-13",
   "tree": {
-    "ref": "chore/issue-26-rewrite-gkb2-and-gkb",
-    "sha": "2bbd7ec"
+    "ref": "main",
+    "sha": "d5192fc"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -94,9 +94,9 @@ window.dashboardLive&&window.dashboardLive("board",
       "branch": null,
       "system": null,
       "step": "implementation",
-      "detail": "5 of 8 units landed; #26 in progress; #27 up next.",
+      "detail": "6 of 8 units landed; #27 in progress; #28 up next.",
       "since": "2026-11-08T21:15:43Z",
-      "updated": "2026-11-13T02:57:18Z",
+      "updated": "2026-11-13T18:00:43Z",
       "qa": [],
       "qaMax": 3,
       "status": "building",
@@ -104,13 +104,13 @@ window.dashboardLive&&window.dashboardLive("board",
       "landed": null,
       "reconciliation": {
         "state": "partial",
-        "landed": 5,
+        "landed": 6,
         "total": 8
       },
       "active": false,
       "chain": {
         "total": 8,
-        "landed": 5,
+        "landed": 6,
         "dropped": 0,
         "deferred": 0,
         "left": 0,
@@ -118,17 +118,17 @@ window.dashboardLive&&window.dashboardLive("board",
         "done": false,
         "current": [
           {
-            "issue": 26,
-            "slug": "gkb2-gkb-rewrite",
+            "issue": 27,
+            "slug": "bottools-trumpbot-support-rewrite",
             "step": "document"
           }
         ],
         "next": {
-          "issue": 27,
-          "slug": "bottools-trumpbot-support-rewrite",
+          "issue": 28,
+          "slug": "residual-report-and-cleanup",
           "blockedBy": [
             {
-              "issue": 26
+              "issue": 27
             }
           ]
         },
@@ -167,13 +167,13 @@ window.dashboardLive&&window.dashboardLive("board",
             "n": 6,
             "issue": 26,
             "name": "Rewrite GKB2 and GKB",
-            "state": "current"
+            "state": "done"
           },
           {
             "n": 7,
             "issue": 27,
             "name": "Rewrite BotTools, TrumpBot and Support",
-            "state": "todo"
+            "state": "current"
           },
           {
             "n": 8,
@@ -371,7 +371,9 @@ window.dashboardLive&&window.dashboardLive("board",
       "blocks": [
         {
           "issue": 26,
-          "state": "OPEN",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-13T09:38:30Z",
           "hold": "enables"
         },
         {
@@ -632,7 +634,8 @@ window.dashboardLive&&window.dashboardLive("board",
     {
       "issue": 26,
       "title": "Phase 0 · 6 — Rewrite GKB2 and GKB",
-      "state": "OPEN",
+      "state": "CLOSED",
+      "stateReason": "COMPLETED",
       "created": "2026-11-08",
       "parent": 2,
       "waitsOn": [
@@ -649,17 +652,17 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 27,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         }
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/",
-      "branch": "chore/issue-26-rewrite-gkb2-and-gkb",
+      "branch": null,
       "system": "rewrite-pipeline",
-      "step": "document",
-      "detail": "Document: 4 of 6 tasks done; State boards current.",
-      "since": "2026-11-13T08:15:08Z",
-      "updated": "2026-11-13T09:20:33Z",
+      "step": "landed",
+      "detail": "Landed in PR #37.",
+      "since": "2026-11-13T09:38:29Z",
+      "updated": "2026-11-13T09:38:29Z",
       "qa": [
         {
           "pass": 1,
@@ -700,15 +703,20 @@ window.dashboardLive&&window.dashboardLive("board",
         }
       ],
       "qaMax": 3,
-      "status": "building",
+      "status": "landed",
       "fixOf": null,
-      "landed": null,
+      "landed": {
+        "pr": 37,
+        "merge": "416f36bda66c2050e320504d999a46e71ea18557",
+        "version": null,
+        "date": "2026-11-13"
+      },
       "reconciliation": {
-        "state": "partial",
+        "state": "as-built",
         "landed": null,
         "total": null
       },
-      "active": true,
+      "active": false,
       "systemName": "Rewrite pipeline",
       "group": "2",
       "order": 6
@@ -722,8 +730,10 @@ window.dashboardLive&&window.dashboardLive("board",
       "waitsOn": [
         {
           "issue": 26,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-13T09:38:30Z",
+          "build": "pre-built",
           "locality": "local-repository"
         }
       ],
@@ -734,25 +744,67 @@ window.dashboardLive&&window.dashboardLive("board",
           "hold": "blocks"
         }
       ],
-      "board": null,
-      "folder": null,
-      "branch": null,
-      "system": "kotlinbottools",
-      "step": null,
-      "detail": "Filed as #27; its run has not started. It starts after unit 6.",
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/",
+      "branch": "chore/issue-27-rewrite-bottools-and-private-repos",
+      "system": null,
+      "step": "document",
+      "detail": "Document: 1 of 3 tasks done; State boards current.",
+      "since": "2026-11-13T19:43:46Z",
+      "updated": "2026-11-13T20:00:32Z",
       "qa": [],
-      "qaMax": null,
-      "status": "next",
+      "qaMax": 3,
+      "status": "planning",
+      "fixOf": null,
       "landed": null,
-      "reconciliation": null,
+      "reconciliation": {
+        "state": "planned",
+        "landed": 0,
+        "total": 4
+      },
       "active": false,
-      "next": true,
-      "blockedBy": [
-        {
-          "issue": 26
-        }
-      ],
-      "systemName": "KotlinBottools",
+      "chain": {
+        "total": 4,
+        "landed": 0,
+        "dropped": 0,
+        "deferred": 0,
+        "left": 0,
+        "planned": true,
+        "done": false,
+        "current": [],
+        "next": {
+          "issue": null,
+          "slug": "workspace-tools",
+          "blockedBy": []
+        },
+        "units": [
+          {
+            "n": 1,
+            "issue": null,
+            "name": "Extend the workspace tools",
+            "state": "todo"
+          },
+          {
+            "n": 2,
+            "issue": null,
+            "name": "Rewrite BotTools, TrumpBot and Support",
+            "state": "todo"
+          },
+          {
+            "n": 3,
+            "issue": null,
+            "name": "Measure what GitHub still serves",
+            "state": "todo"
+          },
+          {
+            "n": 4,
+            "issue": null,
+            "name": "Replace the TrumpBot clone",
+            "state": "todo"
+          }
+        ]
+      },
+      "systemName": "Internal Tooling",
       "group": "2",
       "order": 7
     },
@@ -787,10 +839,16 @@ window.dashboardLive&&window.dashboardLive("board",
       "detail": "Filed as #28; its run has not started. It starts after units 5 and 7, and its landing closes #2.",
       "qa": [],
       "qaMax": null,
-      "status": "not-started",
+      "status": "next",
       "landed": null,
       "reconciliation": null,
       "active": false,
+      "next": true,
+      "blockedBy": [
+        {
+          "issue": 27
+        }
+      ],
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 8
@@ -934,7 +992,8 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 26,
           "title": "Phase 0 · 6 — Rewrite GKB2 and GKB",
-          "state": "OPEN"
+          "state": "CLOSED",
+          "stateReason": "COMPLETED"
         },
         {
           "issue": 27,
@@ -947,6 +1006,13 @@ window.dashboardLive&&window.dashboardLive("board",
           "state": "OPEN"
         }
       ]
+    },
+    {
+      "issue": 27,
+      "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
+      "state": "OPEN",
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/dashboard.html",
+      "items": []
     }
   ],
   "unscheduled": [
