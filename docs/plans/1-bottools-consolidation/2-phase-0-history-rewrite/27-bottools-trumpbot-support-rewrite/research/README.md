@@ -174,3 +174,176 @@ replacement, which reuses the preparation unit's clone scripts. The tools part c
   plan and as-built record; the request service's protocol for the shape of a `done` reply; the parameter table and the
   expectation rows.
 - **Findings file:** [`tool-changes-for-three-repositories.md`](tool-changes-for-three-repositories.md).
+
+---
+
+## Verification results
+
+The 32 outside-world claims the three findings files end with were checked at their sources on 2026-11-13: 31 hold and
+1 fails as cited. The behaviour behind the failed citation holds, so no recommendation changes.
+
+| Findings file | Claims | Result |
+|---|---|---|
+| [`two-branch-lease-push.md`](two-branch-lease-push.md) §10 | 20 | 19 hold; claim 8 fails as cited |
+| [`clone-move-aside-on-windows.md`](clone-move-aside-on-windows.md) §9 | 9 | 9 hold, claim 6 with a caveat |
+| [`tool-changes-for-three-repositories.md`](tool-changes-for-three-repositories.md), Load-bearing claims | 3 | 3 hold |
+
+- **`two-branch-lease-push.md`, claim 8, fails as cited.** The function that marks the other refs of an atomic push as
+  failed, `reject_atomic_push`, and its comment "Mark other refs as failed" are in
+  [`transport-helper.c`](https://github.com/git/git/blob/v2.55.0/transport-helper.c) at `v2.55.0`, with the status
+  `REF_STATUS_ATOMIC_PUSH_FAILED` declared in `remote.h`; they are not in `remote.c`. `transport.c` prints the status as
+  `atomic push failed`, as the claim says. What the design uses, the sibling label on the other refs of a refused atomic
+  push, holds at the corrected source.
+- **`two-branch-lease-push.md`, claim 18.** The sentence on three days of deliveries describes the web page's list of
+  recent deliveries; the documentation's retention value for GitHub's cloud plans is the same three days, which is what
+  the design relies on.
+- **`clone-move-aside-on-windows.md`, claim 6, holds with a caveat.** Both quoted passages are in the MSYS2 runtime's
+  `syscalls.cc` at the cited commit, but the passage on `STATUS_NOT_SAME_DEVICE` concerns a volume mount point. An
+  ordinary rename across volumes gets `EXDEV` from the runtime's own check before any call into Windows (the same file,
+  "Check cross-device before touching anything"). Either way GNU `mv` then copies and removes, which is what the finding
+  uses; the retry inside the runtime covers only the open of the source, as claimed.
+- **`clone-move-aside-on-windows.md`, claim 7.** git's documentation says what `--recurse-submodules` sets; it does not say
+  that nothing else sets `submodule.active`. That a plain clone does not set it is the local experiment's observation.
+- **Currency.** git `v2.56.1` is the newest release; every quoted git passage is unchanged there. The phase stays at
+  2.55.0.windows.5.
+- **Claims about this machine and this repository** are not re-sourced; they were read again against the workspace, the
+  backups and the clone, as counts: the positive control's probe arguments in the preparation unit's `s8-row.sh` (nine
+  for TrumpBot, none for BotTools and Support), the order gate on the other repository's stage 9 in the earlier library,
+  the earlier save step's removal of its own folder before saving, the purge lists' sizes (9, 23 and 6 lines), the 13 old
+  commits behind BotTools' pull-request refs, none of them reachable only from those refs before the rewrite, the clone's
+  inherited access entries, and the system configuration's credential helper, which is not `gh`.
+
+---
+
+## Summary
+
+### 1. The push of a repository's branches
+
+**Found.** In one push with an explicit lease per branch, git checks each lease against the server's advertised value on
+the client, before anything is sent. With `--atomic`, a stale lease on either ref sends nothing and labels the other ref
+`[rejected] (atomic push failed)`; without it the other ref goes, and one ref is updated
+([findings §4.1 and §4.2](two-branch-lease-push.md#41-what-git-does-with-several-leases-and-with---atomic-documented-source-observed)).
+On the server, git applies an atomic push as one transaction: an `update` hook refusing one ref, or a ref that moves
+after the push's own advertisement, leaves neither ref updated, with the other ref labelled `(atomic push failure)` or
+`(atomic transaction failed)`; without `--atomic` each of these leaves one ref updated. A `pre-receive` refusal refuses
+every ref in either form. A clean push of N forced refs tallies `forced=N fastforward=0 new=0 deleted=0 uptodate=0
+rejected=0 done=1 pull_lines=0 other_refs=0 bad=0` with exit status 0, in either form, and its dry run reads the same. The
+dry run catches a stale lease and nothing the server decides. A lost connection prints a lone `Done`, no `To` line, exit
+status 1 and `fatal:` lines on the error stream, and leaves neither ref or both, in either form, so only a read-back of
+every branch names the state. GitHub advertises `atomic`; that its receive path applies an atomic push all or nothing is
+not documented, and one public log of a refused branch whose sibling was refused as `(atomic transaction failed)` is
+consistent with it ([§4.3](two-branch-lease-push.md#43-does-github-apply-an-atomic-push-all-or-nothing-documented-capability-one-public-log-not-established)).
+
+**Recommended.** One request per repository, carrying one `git push --porcelain --atomic` with an explicit lease on every
+branch, each old tip read from `ref-map` when the procedure runs, the repository's URL as the destination, and the same
+line run first as a dry run. N, the number of leases and refspecs, is taken from `ref-map`'s changed heads: 2 for BotTools
+and TrumpBot, 1 for Support, which takes the same path. The argument check requires exactly one `--atomic` and one lease
+per refspec, and still forbids `--force`, `-f`, `--mirror`, `--all`, `--delete`, `--prune` and a leading `+`. The classes
+add the atomic sibling wording to the counted markers, and a transport class read from a missing `To` line with `fatal:`
+markers rather than from exit status 128. After every non-zero status, and before any further step, a read-back of every
+branch names the server's state: **neither** branch updated, **both**, or **partial**. Partial is not expected under
+`--atomic`; it stays a class because GitHub's side is not documented, and it hands back with each branch's reading, with no
+push following without a person's decision
+([§7](two-branch-lease-push.md#7-recommendation-for-this-repository)).
+
+**What a push publishes.** Per rewritten branch, one push event, one `force_push` entry in the activity feed and, for
+BotTools, one push delivery to its webhook: 2 of each for BotTools, inferred from the per-ref fields of the event's schema.
+Each is counted by a filter that prints a number only; the list of a webhook's deliveries carries no payload. GitHub lists
+deliveries for 3 days, so BotTools' are counted right after its push. The events cover 30 days and can lag by up to 6 hours
+([§4.5](two-branch-lease-push.md#45-what-a-force-push-of-two-branches-publishes-and-how-to-count-it-documented-observed-idiom)).
+
+**Options that do not fit.** One push of both refs without `--atomic`: every failure that concerns one ref leaves a
+half-rewritten repository, whose only repair is a second force-push, which the phase never makes blindly. One push per
+branch: it makes the half-rewritten repository an ordinary state between the two pushes, doubles the requests, and keeps
+the same race window in each push.
+
+### 2. Moving the old clone aside, and the fresh clone
+
+**Found.** On Windows a directory rename refuses with no effect while anything inside is open, and cannot cross volumes
+(Microsoft's file-system specification). Observed: the rename refused, with the tree whole and nothing at the target, for
+nine kinds of holder, a directory handle and a working directory inside the tree among them. Across volumes, GNU `mv`
+copies and then removes: with one file held open it left a full copy at the target and 130 of the source's 135 entries
+deleted. A renamed tree keeps its own access entries, and a restricted parent folder narrows nothing, because every account
+may traverse folders it cannot list. `lockprobe.py` counts open files only, so a working directory or a directory handle
+inside the clone scores 0 on it
+([findings §1 and §3](clone-move-aside-on-windows.md#1-bottom-line)).
+
+**Recommended** ([§6](clone-move-aside-on-windows.md#6-recommendation-for-this-repository)).
+
+- **Where the old clone goes:** beside the clone, on its own volume, by one rename: `%PROJECTS%\TrumpBot` becomes
+  `%PROJECTS%\TrumpBot-old`. Guards before it: the target absent; the clone and the target's parent on the same volume
+  (`stat -c %d`), so that `mv` can never copy; `lockprobe.py` at 0 as a pre-check; no git process; the procedure's shell
+  outside the clone; the old clone's census recorded.
+- **The move, read from state:** a bounded retry of the rename, the outcome read from whether each of the two paths
+  exists, never from `mv`'s status. A loop that ends refused is a stop that changed nothing. After a stop that follows the
+  rename, the partial fresh clone is removed and the same rename runs back.
+- **The old clone is deleted last,** on its own volume. The workspace's deletion does not reach it, so the replacement's
+  own acceptance includes "no old-clone path remains".
+- **What the fresh clone holds, on this machine:** exactly the ten local configuration keys a plain clone writes, no hook
+  beyond the samples, an exclude file of comment lines only, one pack and no `FETCH_HEAD`. `submodule.active` comes only from
+  a recursive clone and `lfs.repositoryformatversion` only from a later Git LFS command, so neither is carried or expected.
+- **What is carried:** the `.idea/` records of the old clone's untracked-and-ignored listing, behind a closed-set guard: 59
+  files, 4 under `.idea/`, 55 under `graphify-out/`, 0 elsewhere, a file outside the two folders being a stop. The
+  restored set equals the four-file list. Once the code-only graph build has run, the clone holds the two hooks and the one
+  exclude entry again.
+
+**Options that do not fit.** A move into the workspace on the system volume: a copy followed by a deletion, which is no
+lock probe and puts the irreversible deletion first. A restricted folder on the clone's volume: one more folder, and
+nothing narrowed.
+
+### 3. The tools
+
+**Found.** Nearly every one of the GKB2 and GKB unit's tools changes for these three repositories: the parameter row is
+read by position, the push holds one branch in a dozen places, the repositories differ in visibility, hooks and probes,
+and the recorded documentation points touch almost every file. The earlier save step removes its folder before saving,
+and the earlier unit's records pin the earlier files
+([findings §1](tool-changes-for-three-repositories.md#1-bottom-line)).
+
+**Recommended** ([§11](tool-changes-for-three-repositories.md#11-recommendation-for-this-repo)).
+
+- **A new, self-contained tool folder** derived from the earlier one, saved from its own plan and pinned; the earlier
+  folder stays as it ran.
+- **Four tool sets in it:** the rewrite set (readiness, stages 1 to 8, the reset after a stop); the residual set (a
+  readiness check that all three repositories have passed stage 8, stage 9, and the close-out's feed reads and records);
+  the clone set (the replacement as a request procedure, with a builder); and the self-test, run by test kind, each kind
+  with its own total.
+- **The order gate between repositories** moves from the other repository's stage 9 to its stage 8, so that each push
+  waits only for the previous repository's verification.
+- **The parameter table carries the policy:** the branches, the visibility, the default branch, the hook count, the probe
+  arguments and the gate. The rows are given in [§6](tool-changes-for-three-repositories.md#6-the-parameter-rows):
+  - BotTools: a 9-line list, 2 heads, 2 pull-request refs, 28 commits on every ref of a fresh mirror (the 15 rewritten and
+    the 13 old ones its pull-request refs keep), a residual of 39 and no probe arguments;
+  - TrumpBot: a 23-line list, 2 heads, 9 commits and nine probe arguments;
+  - Support: a 6-line list, 1 head, 1 commit and no probe arguments.
+
+  The repository ids, read on 2026-11-13, are 540122713 (BotTools), 540208924 (TrumpBot) and 540146440 (Support). The two
+  private repositories report no security settings; BotTools reports secret scanning and push protection disabled; none
+  has a fork or a Pages site.
+- **Four things beyond the recorded gaps would stop a run:**
+  - BotTools' and Support's positive control has no probe arguments and no control record (it is "the six owned rule ids
+    absent", with five earlier records each, not six);
+  - the readiness, verification and close-out steps expect a public repository with no webhook;
+  - stage 9 runs anonymous probes whatever the repository's visibility;
+  - the preparation unit's clone scripts reach a private repository through the system credential helper rather than
+    `gh`, stop on the clone's hooks and exclude entry, and archive all 59 files.
+- **Every recorded gap and follow-up is mapped to its files** ([§7](tool-changes-for-three-repositories.md#7-gaps-and-follow-ups-mapped-to-files-and-parts)).
+  The ones that guard a write come first: the reply classifier and the form of a stored reply, the class table, the
+  untested stops of the push preparation, the push step and the reset, the grant check read from data, and the self-test's
+  stand-in, which must run a procedure as one shell.
+- **The delivered reply.** The GKB2 and GKB run met a push reply as one document holding the procedure's printed lines as
+  list entries on one line, inside its result ([that unit's as-built record, deviation 5](../../26-gkb2-gkb-rewrite/final-implementation.md#4-deviations-from-the-plan));
+  the protocol names no field for them. The classifier takes the printed lines from the result's string entries and stops
+  plainly on a reply it cannot read.
+
+### Where the sources disagreed
+
+- **When BotTools' webhook deliveries are counted.** The tools findings read them right after the push and again at the
+  residual measurement's readiness check. The push findings establish that GitHub lists deliveries for three days only, and
+  the residual measurement runs after all three pushes, possibly later than that. The deliveries are therefore counted once,
+  right after BotTools' push, in its per-ref verification, and not again.
+- **When the residual measurement runs.** The events cover 30 days: a read made later lists no event of the push and counts
+  as not valid, never as absent. The residual measurement therefore follows the last push promptly, and a read that falls
+  outside the window is recorded as not valid.
+- **The move of the old clone.** The earlier procedure calls its move into the workspace a same-volume rename. On this
+  machine the clone and the workspace are on different volumes, so the clone findings hold, and the parent design's
+  §5.2, §6.7 and §9.5 take a dated note.
