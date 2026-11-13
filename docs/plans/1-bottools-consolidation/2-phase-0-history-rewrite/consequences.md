@@ -119,6 +119,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 
   They are pointed at `main` (§6).
 
+  > **Dated note, 2026-11-13.** Of the 56, 39 were in the bodies of #1 to #19, 16 are in MagicBot #1 to #8 and 1 is in WebTools #55. The comment on #1 holds a plain mention of the branch's name, not a link ([the publication unit's as-built record, §4.2](25-kotlinbottools-publish/final-implementation.md#42-the-comments-on-1-hold-no-blob-link-to-the-planning-branch)).
+
 ### 2.4 Other repositories in the organisation
 
 - **MagicBot.**
@@ -219,6 +221,8 @@ The rewrite itself changes two source files on `main` through the path scrub
 
 `repository-hygiene` has landed; what it leaves for the units after it is in [its consequences, §4](24-repository-hygiene/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
 
+`kotlinbottools-publish` has landed; what it leaves for the units after it is in [its consequences, §4](25-kotlinbottools-publish/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
+
 **Neighbouring issues:**
 
 - **#1,** the tracking issue. Its planning documents land with #2's own landing.
@@ -283,7 +287,11 @@ The rewrite itself changes two source files on `main` through the path scrub
   drop the global allowlist, or scope an `[[allowlists]]` entry to one rule with `targetRules`, and
   to add the two path rules that KotlinBottools' configuration carries.
 - **Point the 56 planning-branch links at `main`** (§2.3).
+
+  > **Dated note, 2026-11-13.** The publication unit (#25) pointed the links in the bodies of #1 to #19 at `main`. A plain mention of the branch's name in a comment on #1, 16 links in MagicBot #1 to #8 and 1 in WebTools #55 remain ([its consequences, §6](25-kotlinbottools-publish/consequences.md#6-follow-ups)).
 - **Make the issue edits of §2.6.**
+
+  > **Dated note, 2026-11-13.** #2's plan-folder line reads `2-phase-0-history-rewrite`, and #1's clause that placed the documents on the planning branch now places them on `main`, both edited by the publication unit (#25).
 
 **When the units have landed:**
 
@@ -305,5 +313,7 @@ The rewrite itself changes two source files on `main` through the path scrub
 - **Machine-local paths in issue texts.** If unit 5's gate counts any in the public repository's
   issues, pull-request texts or comments, edit those texts. The scrub covers files and commits
   only.
+
+  > **Dated note, 2026-11-13.** Gate 3 counted 0 matches over the 3019 issue, pull-request, comment and revision texts and run logs of the public repository ([the publication unit's as-built record, §3.3](25-kotlinbottools-publish/final-implementation.md#33-the-corpus-gate-3-the-id-check-and-the-runs)); there is nothing to edit.
 - **`KotlinBottools-legacy`** stays private and archived. Deleting it later would also remove the
   only private copy of the old objects and the resolver of the dated citations.

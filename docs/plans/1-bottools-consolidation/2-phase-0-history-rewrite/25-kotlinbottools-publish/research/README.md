@@ -159,6 +159,26 @@ commits for every quotation used, so no source moved between the research and th
   ([its as-built record](../../22-transfer-rehearsal/final-implementation.md)), and the current state above was read
   from GitHub and this checkout.
 
+### In the build
+
+What the build found against the findings, on 2026-11-12 and 2026-11-13
+([the as-built record](../final-implementation.md#3-measurements)):
+
+- **Did not hold in the build: the turnaround of a repository write.** The summary below takes from the earlier units that a
+  request took about 2 to 3 minutes from request to reply. The scanning request took 72 s from its sending to its read-back. The
+  visibility request ran 57 minutes after it was sent, which is the departure the as-built record gives in
+  [§4.3](../final-implementation.md#43-the-change-to-public-followed-the-pre-flip-gate-by-58-minutes).
+- **Established where the findings left a gap:**
+  - the one request carrying both scanning settings was accepted on the newly public repository, and the alerts list answered 200
+    at its first read;
+  - the readiness gate was open on its first poll, 127 s after the visibility read-back: one reading, not a bound;
+  - after the change, `allow_forking` reads true, as on the organisation's other public repositories, and the fork pull-request
+    approval policy reads `first_time_contributors`, the documented default;
+  - no anonymous probe set met a throttle, at a pace of 0.4 s.
+- **Held as found:** every route, control and status rule of the anonymous reads; the feeds' caches, which the as-built record's
+  [§4.4](../final-implementation.md#44-the-second-feed-read-fell-inside-the-events-feeds-cache) applies; and the reads that verify
+  the settings. **Not exercised:** the way back to private, as no pre-rewrite id was served or listed.
+
 ---
 
 ## Summary

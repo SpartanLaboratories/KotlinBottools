@@ -256,6 +256,9 @@ others are listed above.
 
 - **A required check.** Once the repository is public, `Secret scan (gitleaks)` can become a required status check on
   `main`. That is not possible while it is private on GitHub Free.
+
+  > **Dated note, 2026-11-13.** The repository has been public since the publication unit (#25). Phase 1 (#3) sets the required
+  > check, together with its own workflow's checks ([that unit's consequences, §6](../25-kotlinbottools-publish/consequences.md#6-follow-ups)).
 - **The runner image.** A first run that fails at the install step on an Ubuntu 26.04 image, naming the checksum tool, calls
   for one of two changes: the label `ubuntu-24.04`, or a check written without `--strict -`. No evidence today says it
   will happen ([research summary §1](research/README.md#1-the-workflow-on-the-hosted-runner)).

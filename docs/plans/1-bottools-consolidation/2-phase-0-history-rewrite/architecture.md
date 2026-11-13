@@ -122,6 +122,8 @@
 
    > **Dated note, 2026-11-11.** The resolution comments on #2, #21 and #22 hold 26 occurrences of 3 distinct pre-rewrite merge-commit ids, inside permalinks. They moved with the issues to the fresh repository and stay, accepted as the boards' ids are; they are the same 3 commits the boards' generated fields name, and the publication unit's id-reference check accounts for exactly them ([unit 3's as-built record, §3.5](23-kotlinbottools-rewrite-and-swap/final-implementation.md#35-census-and-baseline)).
 
+   > **Dated note, 2026-11-13.** The publication unit's id-reference check accounts for 13 distinct pre-rewrite ids in the boards over their history, 10 of them in the current files, in their generated fields and in two texts of the rewrite and swap unit's board (a stage report and an as-built statement), and for the 3 accepted ids of the resolution comments, which its prefix rule counts as 35 tokens. All are accepted with the exceptions above: none resolves in the public repository ([the unit's as-built record, §3.3](25-kotlinbottools-publish/final-implementation.md#33-the-corpus-gate-3-the-id-check-and-the-runs)).
+
 10. **Every unit runs from this machine and asks no one for approval** before a push, a force-push
     or the visibility change. A failing verification stops the unit before anything
     irreversible.
@@ -685,6 +687,8 @@ Gate 3 also counts the scrub's expressions over the public repository's issue te
 bodies, pull-request texts and comments. These are not files or commits, so a hit is not a stop:
 it is recorded by count and becomes a follow-up, an issue edit made on request.
 
+> **Dated note, 2026-11-13.** Gate 3's corpus also held the earlier revisions of the edited issue texts, the earlier titles and the logs of every Actions run, and the id-reference check read every version, in the history, of this folder's files and of the repository work board ([the publication unit's plan, R4 and R5](25-kotlinbottools-publish/plan.md#requirements)). Gate 3 counted 0 matches of the scrub's expressions.
+
 ### 6.6 Residual-exposure measurement
 
 Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the
@@ -909,6 +913,8 @@ which the name resolves to the legacy repository.
    paid plan.
 4. The anonymous measurements (§6.6) and the access check.
 
+> **Dated note, 2026-11-13.** Step 3 ran as the next request after the visibility read-back, not in the same minute: the two read-backs are 74 s apart. The change followed the pre-flip gate of step 1 by 58 minutes, and the gate was not run again: the visibility request waited with the service that carries out the writes, and its own guards, the repository's id at its name and its private state, ran immediately before it. The access check of step 4 is read only: what an anonymous reader reaches, and a read-back of who can do what ([the unit's as-built record, §3.4 and §4.3](25-kotlinbottools-publish/final-implementation.md#34-the-change-and-the-scanning-settings); [its plan, R11](25-kotlinbottools-publish/plan.md#requirements)).
+
 ### 7.6 Stop-and-hand-back points of the swap
 
 | Where | State left | What the hand-back carries |
@@ -921,6 +927,8 @@ which the name resolves to the legacy repository.
 | A rename fails | the walk complete; names unchanged or half-swapped (one rename done); nothing public | the id-by-name readings; a re-run continues from the first rename that did not take |
 | The visibility change fails | everything else complete; the repository private | the HTTP status; a 403 or 422 is an organisation restriction, not retried another way |
 | The scanning `PATCH` fails after the flip | public and unscanned | reported at once; the `PATCH` is re-run first |
+
+> **Dated note, 2026-11-13.** After the change to public, a pre-rewrite id served or listed anonymously makes the repository private again at once, with its forks recorded first; a secret-scanning alert is reported by type and count and changes nothing. Neither happened ([the publication unit's plan, the stops](25-kotlinbottools-publish/plan.md#stops-and-the-state-each-leaves)).
 
 ---
 
@@ -1384,6 +1392,8 @@ list, the expectation row, the control probes and the pull-request refs. They ru
 repository, with a hand-back state for each.
 
 > **Dated note, 2026-11-11.** Unit 4 settles, with the scoped table of §10, the default-rule finding that unit 3 recorded in a kept file of KotlinBottools ([unit 3's consequences, §5](23-kotlinbottools-rewrite-and-swap/consequences.md#5-known-gaps)). Unit 5's visibility change no longer waits on that finding. Its other gates are unchanged. Unit 4's scope gains the allowlist controls of §10 and the workflow's step that runs them, so its landing carries seven files.
+
+> **Dated note, 2026-11-13.** Unit 5's scope included the edits of the bodies of #1 to #19 that point their links at `main` and correct #1's clause on the planning branch and #2's plan-folder line. The required status check on `main` is Phase 1's (#3) ([the unit's consequences, §6](25-kotlinbottools-publish/consequences.md#6-follow-ups)).
 
 ---
 
