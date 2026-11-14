@@ -698,8 +698,8 @@ footer code{color:var(--ink-2)}
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>No consumer seam: a further suppression is one more <code>[[allowlists]]</code> table scoped to one rule and one path, with its reason in <code>description</code> and its own fixtures in the allowlist controls.</td></tr>
       </tbody></table></div>
-    <div class="guarantee-card"><h3>Test levels <small>none yet</small></h3>
-      <div class="scroll"><table class="gtbl"><thead><tr><th>System</th><th class="n">L1 gating</th><th class="n">L2 component</th><th class="n">L3 integration</th><th class="n">L4a deterministic</th><th class="n">L4b e2e</th><th class="n">L4c non-functional</th><th class="n">L5 UAT</th></tr></thead><tbody>
+    <div class="guarantee-card"><h3>Test sets <small>none yet</small></h3>
+      <div class="scroll"><table class="gtbl"><thead><tr><th>System</th><th class="n">gating</th><th class="n">component</th><th class="n">integration</th><th class="n">deterministic</th><th class="n">e2e</th><th class="n">nonfunctional</th><th class="n">uat</th></tr></thead><tbody>
         <tr data-part="sys:internal-tooling"><th><span class="sw" data-sys="internal-tooling"></span>internal-tooling</th><td colspan="7">planned — no tests yet</td></tr>
         <tr data-part="sys:workspace-lifecycle"><th><span class="sw" data-sys="workspace-lifecycle"></span>workspace-lifecycle</th><td colspan="7">planned — no tests yet</td></tr>
         <tr data-part="sys:toolchain"><th><span class="sw" data-sys="toolchain"></span>toolchain</th><td colspan="7">planned — no tests yet</td></tr>
@@ -1101,8 +1101,8 @@ const ilink=n=>{ const b=boardOf(n); return b?`<a href="${esc(b)}" title="#${esc
 const pair=(n,title)=>{ const b=boardOf(n); return `<a href="${ghIssue(n)}" target="_blank" rel="noopener">#${esc(n)}</a> ${b?`<a href="${esc(b)}" title="#${esc(n)}: its issue board">${esc(title)}</a>`:esc(title)}`; };
 function linkIssues(root){ const r=root||document;
   /* a title written <a data-board="N"> is the issue's own, quoted verbatim, and keeps its mark, data-issue-title, once resolved (a link to
-     its board, or plain text while it has none): a work level in it is a defect in the issue, flagged by check-board.js (ISSUE TITLE NAMES
-     A WORK LEVEL: #n), never shown as the board's (GUIDANCE.md §5; dashboards-skill/28) */
+     its board, or plain text while it has none): a sizing named in it is a defect in the issue, flagged by check-board.js,
+     never shown as the board's (GUIDANCE.md §5; dashboards-skill/28) */
   r.querySelectorAll("a[data-board]").forEach(a=>{ const n=a.dataset.board, b=boardOf(n); if(b){ a.href=b; a.title=`#${n}: its issue board`; a.dataset.issueTitle=n; } else { const t=document.createElement("span"); t.dataset.issueTitle=n; t.append(...a.childNodes); a.replaceWith(t); } });
   r.querySelectorAll("a[data-issue]").forEach(a=>{ const n=a.dataset.issue, b=boardOf(n); a.href=b||ghIssue(n); if(b) a.title=`#${n}: its issue board`; else { a.target="_blank"; a.rel="noopener"; } }); }
 window.addEventListener("DOMContentLoaded",()=>linkIssues());
@@ -1738,7 +1738,7 @@ renderState();
 
 /* ---------- The Guarantees' and the Context's legends (GUIDANCE.md §2) ----------
    Generated from what each section draws, so a hand-written guarantee card or card needs no legend of its own: the system swatches present, a
-   planned (dashed, faded) row, a gap, the one neutral series of the test-level bars, the badges and their meaning, a tracking issue's
+   planned (dashed, faded) row, a gap, the one neutral series of the test-set bars, the badges and their meaning, a tracking issue's
    chain's StepBar. A section that draws no encoding shows no legend. */
 /* A tracking issue's chain on the roadmap (dashboards-skill/54; nomenclature/ui.md, StepBar), written <span class="chainprog"
    data-landed="n" data-total="m"> holding one <span data-unit="done|current|todo">its name</span> per unit in landing order: drawn
@@ -1762,7 +1762,7 @@ function sectionKeys(){
   const G=document.querySelector("section.guarantees"), C=document.querySelector("section.context"), has=(s,q)=>!!(s&&s.querySelector(q));
   const swatches=(s,cls)=>typeof sysKey==="function"&&s?sysKey([...new Set([...s.querySelectorAll("[data-sys]")].map(e=>e.dataset.sys))],cls):"";
   put(G,"guarantees-key",[swatches(G,"swk"),
-    has(G,".bars")?`<span><i class="barsk"></i>test classes per level: one series, one neutral fill</span>`:"",
+    has(G,".bars")?`<span><i class="barsk"></i>test classes per set: one series, one neutral fill</span>`:"",
     has(G,".planned")?`<span><i class="pln"></i>dashed, faded: about a planned part, nothing built yet</span>`:"",
     has(G,".archived")?`<span><span class="archtag">⊟ archived</span> solid, faded: an archived system, no longer developed</span>`:"",
     has(G,".gap")?`<span><i class="gapk">gap</i>italic, muted: not established, said as a gap</span>`:"",

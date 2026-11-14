@@ -3,11 +3,11 @@ window.dashboardLive&&window.dashboardLive("board",
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-13T20:21:07Z",
-  "asOf": "2026-11-13",
+  "generated": "2026-11-14T03:03:32Z",
+  "asOf": "2026-11-14",
   "tree": {
     "ref": "main",
-    "sha": "d5192fc"
+    "sha": "9f22646"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -749,9 +749,9 @@ window.dashboardLive&&window.dashboardLive("board",
       "branch": "chore/issue-27-rewrite-bottools-and-private-repos",
       "system": null,
       "step": "document",
-      "detail": "Document: 1 of 3 tasks done; State boards current.",
+      "detail": "Document: 3 of 3 tasks done; every task done.",
       "since": "2026-11-13T19:43:46Z",
-      "updated": "2026-11-13T20:00:32Z",
+      "updated": "2026-11-13T20:26:39Z",
       "qa": [],
       "qaMax": 3,
       "status": "planning",
@@ -818,7 +818,7 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 27,
           "state": "OPEN",
-          "build": "blocking",
+          "build": "clear",
           "locality": "local-repository"
         },
         {
@@ -1012,7 +1012,28 @@ window.dashboardLive&&window.dashboardLive("board",
       "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
       "state": "OPEN",
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/dashboard.html",
-      "items": []
+      "items": [
+        {
+          "issue": 39,
+          "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
+          "state": "OPEN"
+        },
+        {
+          "issue": 40,
+          "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+          "state": "OPEN"
+        },
+        {
+          "issue": 41,
+          "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+          "state": "OPEN"
+        },
+        {
+          "issue": 42,
+          "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+          "state": "OPEN"
+        }
+      ]
     }
   ],
   "unscheduled": [
