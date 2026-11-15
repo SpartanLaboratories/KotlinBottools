@@ -352,11 +352,11 @@ footer code{color:var(--ink-2)}
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-14T03:03:32Z",
-  "asOf": "2026-11-14",
+  "generated": "2026-11-15T11:54:50Z",
+  "asOf": "2026-11-15",
   "tree": {
-    "ref": "main",
-    "sha": "9f22646"
+    "ref": "docs/issue-39-extend-workspace-tools",
+    "sha": "8b06da7"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -396,6 +396,33 @@ footer code{color:var(--ink-2)}
       "status": "planned",
       "board": null,
       "plain": true
+    },
+    {
+      "slug": "toolchain",
+      "name": "Toolchain",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    },
+    {
+      "slug": "residual-exposure",
+      "name": "Residual-exposure measurement",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    },
+    {
+      "slug": "clone-realignment",
+      "name": "Clone realignment",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
     }
   ],
   "groups": [
@@ -410,6 +437,12 @@ footer code{color:var(--ink-2)}
       "issue": 2,
       "title": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html"
+    },
+    {
+      "key": "27",
+      "issue": 27,
+      "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/dashboard.html"
     }
   ],
   "rows": [
@@ -469,7 +502,7 @@ footer code{color:var(--ink-2)}
           {
             "issue": 27,
             "slug": "bottools-trumpbot-support-rewrite",
-            "step": "document"
+            "step": "implementation"
           }
         ],
         "next": {
@@ -1095,15 +1128,15 @@ footer code{color:var(--ink-2)}
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/",
-      "branch": "chore/issue-27-rewrite-bottools-and-private-repos",
+      "branch": null,
       "system": null,
-      "step": "document",
-      "detail": "Document: 3 of 3 tasks done; every task done.",
-      "since": "2026-11-13T19:43:46Z",
-      "updated": "2026-11-13T20:26:39Z",
+      "step": "implementation",
+      "detail": "0 of 4 units landed; #39 in progress; #40 up next.",
+      "since": "2026-11-13T21:05:13Z",
+      "updated": "2026-11-13T21:05:13Z",
       "qa": [],
       "qaMax": 3,
-      "status": "planning",
+      "status": "building",
       "fixOf": null,
       "landed": null,
       "reconciliation": {
@@ -1118,36 +1151,46 @@ footer code{color:var(--ink-2)}
         "dropped": 0,
         "deferred": 0,
         "left": 0,
-        "planned": true,
+        "planned": false,
         "done": false,
-        "current": [],
+        "current": [
+          {
+            "issue": 39,
+            "slug": "workspace-tools",
+            "step": "document"
+          }
+        ],
         "next": {
-          "issue": null,
-          "slug": "workspace-tools",
-          "blockedBy": []
+          "issue": 40,
+          "slug": "rewrites",
+          "blockedBy": [
+            {
+              "issue": 39
+            }
+          ]
         },
         "units": [
           {
             "n": 1,
-            "issue": null,
+            "issue": 39,
             "name": "Extend the workspace tools",
-            "state": "todo"
+            "state": "current"
           },
           {
             "n": 2,
-            "issue": null,
+            "issue": 40,
             "name": "Rewrite BotTools, TrumpBot and Support",
             "state": "todo"
           },
           {
             "n": 3,
-            "issue": null,
+            "issue": 41,
             "name": "Measure what GitHub still serves",
             "state": "todo"
           },
           {
             "n": 4,
-            "issue": null,
+            "issue": 42,
             "name": "Replace the TrumpBot clone",
             "state": "todo"
           }
@@ -1201,6 +1244,227 @@ footer code{color:var(--ink-2)}
       "systemName": "KotlinBottools",
       "group": "2",
       "order": 8
+    },
+    {
+      "issue": 39,
+      "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
+      "state": "OPEN",
+      "created": "2026-11-13",
+      "parent": 27,
+      "waitsOn": [],
+      "blocks": [
+        {
+          "issue": 40,
+          "state": "OPEN",
+          "hold": "blocks"
+        }
+      ],
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/",
+      "branch": "docs/issue-39-extend-workspace-tools",
+      "system": "toolchain",
+      "step": "document",
+      "detail": "Document: 4 of 6 tasks done; State boards current.",
+      "since": "2026-11-15T10:12:32Z",
+      "updated": "2026-11-15T11:45:28Z",
+      "qa": [
+        {
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-14",
+          "at": "2026-11-14T08:21:15Z",
+          "findings": {
+            "test": 22,
+            "code": 10
+          },
+          "severity": {
+            "minor": 18,
+            "other": 14
+          },
+          "route": "re-plan-then-remediation",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/ca070e8d/tests/index.html",
+          "note": "The run was green: all 637 checks passed (gating 49, deterministic 63, component 80, integration 420, nonfunctional 23, and 2 of the coverage check), with the tool folder proved equal to its pins first; a green run does not clear what the review found. 32 findings (18 minor, 14 other; 22 test, 10 code). Tests: four cases of the clone set run uncounted in a subshell (424 case lines against a total of 420); six stops of the push procedure, the private-repository probe selection and two arms of the push check have no case; the output-rule cases and the coverage figure prove less than the test plan says (278 distinct texts for 308 sites; 8 stop sites of the Python tools outside it). Tools: a failed read of the webhook count and a failed read of the pull-request refs pass as zero or empty; the rename retry can move the old clone inside the target; a failed web fetch prints a local path; the resend decision reads a stale class; a missing record compares equal; the carried folder’s name is matched as a pattern. Plan text: the class table against the flowchart, and a stop the documents tool does not hold. They touch the self-test, the clone set, the rewrite set, the residual set, the parameter table, the tool folder, the recorded gaps and the readiness reads. The fixes change the tools’ source held in the plan, so the plan is revised first, then the folder is saved again and the steps run again."
+        },
+        {
+          "pass": 2,
+          "verdict": "changes-requested",
+          "date": "2026-11-14",
+          "at": "2026-11-14T13:18:48Z",
+          "findings": {
+            "test": 15,
+            "code": 3
+          },
+          "severity": {
+            "minor": 16,
+            "other": 2
+          },
+          "route": "re-plan-then-remediation",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/949b5d33/tests/index.html",
+          "note": "The run was green: all 744 checks passed (gating 68, deterministic 63, component 80, integration 504, nonfunctional 22, and 7 of the coverage check), every total as the plan records and no console line that is not a case, note or runner line; a green run does not clear what the review found. 18 findings (16 minor, 2 other; 15 test, 3 code). Of Quality Review 1's 32 findings, 28 are closed in the tools with their cases, and the landing's documents are left to the landing; three test findings stay open in one part each, all minor now. What stands: one site where the coverage check proves less than it says (a stop text shared by a helper and one arm of the clone tool is reached by one line); a wait line that prints the year 1970 as the reset time when the server sends no reset header; the Python tools' own tests writing to the system's temporary folder; two fault fixtures whose address the stand-in does not redirect; the console case missing output at its start and end; result lines and plain exits with no asserting case; labels that name a step and not a behaviour; and statements of the plan not carried through the moves of cases between test sets. They touch the self-test, the clone set, the rewrite set, the residual set, the tool folder and the recorded gaps. The tools change again, so the plan is revised first, then the folder is saved and every step run once more."
+        },
+        {
+          "pass": 3,
+          "verdict": "changes-requested",
+          "date": "2026-11-14",
+          "at": "2026-11-14T21:18:51Z",
+          "findings": {
+            "test": 14,
+            "code": 8
+          },
+          "severity": {
+            "minor": 20,
+            "other": 2
+          },
+          "route": "re-plan-then-remediation",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/dda89436/tests/index.html",
+          "note": "The run was green: all 833 checks passed (gating 79, deterministic 63, component 91, integration 565, nonfunctional 28, and 7 of the coverage check), every total as the plan records, no stray console line and no label printed twice; a green run does not clear what the review found. 22 findings (20 minor, 2 other; 14 test, 8 code). Of Quality Review 2's 18 findings, 16 are closed. One defect of substance stands, found twice, in the self-test: the stamp a test set writes reads the run's id in a way that prints the shell's own missing-file line, with a local path, when the gating checks never ran in that scratch folder, and the set still ends with status 0; the later units run their quick check that way. The rest are small: in the self-test, a region comment that files two groups of cases under the wrong set, four lines and stops with no asserting case and five labels that name a step or state the opposite of their rule; in the tool folder, a file a staged rename moves into the documents folder not counted as outside it; in the rewrite set, the per-ref verification's baseline check run after the deliveries are written, and two error streams still open; in the clone set, one error stream and two statements of the plan; in the residual set, a convention that waits for a time a wait line may not print; in the readiness reads, three changed reads and one checksum write with no case. They touch the self-test, the tool folder, the rewrite set, the residual set, the clone set and the readiness reads. Next: every finding fixed, the folder saved and every step run again, then one more review limited to what changed."
+        },
+        {
+          "pass": 4,
+          "verdict": "changes-requested",
+          "date": "2026-11-15",
+          "at": "2026-11-15T06:52:02Z",
+          "findings": {
+            "test": 3,
+            "code": 1
+          },
+          "severity": {
+            "minor": 4,
+            "other": 0
+          },
+          "route": "on-the-spot",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/f2745465/tests/index.html",
+          "note": "This review was limited to the 15 tool files changed since Quality Review 3, and the five kinds were not run again: their totals (853 checks, none failed: gating 84, deterministic 63, component 92, integration 579, nonfunctional 28, and 7 of the coverage check), every last line as recorded, no stray console line and no label printed twice, were verified from the records the last run left, and only the coverage check was run, once (7 checks, 393 of 393 sites reached). 4 findings (4 minor; 3 test, 1 code). Every finding of Quality Review 3 is closed, the quick-check defect included: a kind run where no run was started now prints case lines only, and a case asserts it. The four left are all in the plan's wording, none in a tool: in the rewrite set, a sentence said the post-run step discards a message it does not, and now says the step checks its two records first; in the self-test, two limits were not stated (no case provokes the messages the post-run step discards behind checks that stop first; no fixture path holds a pattern character, so no case tells the residual close-out's literal strip from a pattern match), and two rounded run times were behind the recorded ones. They touch the self-test, the rewrite set and the residual set. All four were reworded in the plan, fixed in place with no additional review: no pin moved and nothing was run again.",
+          "inPlace": "fixed"
+        }
+      ],
+      "qaMax": 3,
+      "status": "building",
+      "fixOf": null,
+      "landed": null,
+      "reconciliation": {
+        "state": "planned",
+        "landed": null,
+        "total": null
+      },
+      "active": true,
+      "systemName": "Toolchain",
+      "group": "27",
+      "order": 1
+    },
+    {
+      "issue": 40,
+      "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+      "state": "OPEN",
+      "created": "2026-11-13",
+      "parent": 27,
+      "waitsOn": [
+        {
+          "issue": 39,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [
+        {
+          "issue": 42,
+          "state": "OPEN",
+          "hold": "blocks"
+        },
+        {
+          "issue": 41,
+          "state": "OPEN",
+          "hold": "blocks"
+        }
+      ],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "rewrite-pipeline",
+      "step": null,
+      "detail": "Filed as #40; its run has not started. It starts once #39, the workspace tools, has landed.",
+      "qa": [],
+      "qaMax": null,
+      "status": "next",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "next": true,
+      "blockedBy": [
+        {
+          "issue": 39
+        }
+      ],
+      "systemName": "Rewrite pipeline",
+      "group": "27",
+      "order": 2
+    },
+    {
+      "issue": 41,
+      "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+      "state": "OPEN",
+      "created": "2026-11-13",
+      "parent": 27,
+      "waitsOn": [
+        {
+          "issue": 40,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "residual-exposure",
+      "step": null,
+      "detail": "Filed as #41; its run has not started. It starts once #40, the rewrites, has landed.",
+      "qa": [],
+      "qaMax": null,
+      "status": "not-started",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "systemName": "Residual-exposure measurement",
+      "group": "27",
+      "order": 3
+    },
+    {
+      "issue": 42,
+      "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+      "state": "OPEN",
+      "created": "2026-11-13",
+      "parent": 27,
+      "waitsOn": [
+        {
+          "issue": 40,
+          "state": "OPEN",
+          "build": "blocking",
+          "locality": "local-repository"
+        }
+      ],
+      "blocks": [],
+      "board": null,
+      "folder": null,
+      "branch": null,
+      "system": "clone-realignment",
+      "step": null,
+      "detail": "Filed as #42; its run has not started. It starts once #40, the rewrites, has landed.",
+      "qa": [],
+      "qaMax": null,
+      "status": "not-started",
+      "landed": null,
+      "reconciliation": null,
+      "active": false,
+      "systemName": "Clone realignment",
+      "group": "27",
+      "order": 4
     }
   ],
   "roadmap": [

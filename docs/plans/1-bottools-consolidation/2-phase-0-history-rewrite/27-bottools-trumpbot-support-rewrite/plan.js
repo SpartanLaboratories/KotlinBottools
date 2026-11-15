@@ -10,7 +10,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   "title": "Rewrite BotTools, TrumpBot and Support",
   "issueTitle": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
   "function": "BotTools, which is public, and TrumpBot and Support, which are private, still hold in their histories the files the phase purges: 39 purged blobs in BotTools, all of them also reachable through its pull-request refs, 199 in TrumpBot and 7,259 in Support. The local TrumpBot clone still holds TrumpBot's old history. The unit takes each repository through the rewrite pipeline as GKB2 and GKB were taken, BotTools first, then TrumpBot, then Support: the purge with its checks before and after, the force-push with its per-ref verification, the exit tests on a fresh mirror and the residual probes, with BotTools' pull-request residual counted. Once TrumpBot's push is proven, the clone is replaced by a fresh one at the same path, its four untracked files kept. The unit spans four systems, the toolchain, the rewrite pipeline, the residual-exposure measurement and the clone realignment, so this run designs it and splits it into units; nothing is rewritten, pushed or replaced in this run. Unit 7 of #2, with no version moved; the three repositories keep their visibility.",
-  "status": "planned",
+  "status": "building",
   "sized": "2026-11-13T18:00:43Z",
   "parent": {
     "issue": 2,
@@ -63,10 +63,10 @@ window.dashboardLive&&window.dashboardLive("plan",
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-13T19:43:46Z",
-    "updated": "2026-11-13T20:26:39Z",
-    "detail": "Document: 3 of 3 tasks done; every task done.",
+    "step": "implementation",
+    "since": "2026-11-13T21:05:13Z",
+    "updated": "2026-11-13T21:05:13Z",
+    "detail": "0 of 4 units landed; #39 in progress; #40 up next.",
     "steps": [
       "sizing",
       "interview",
@@ -80,7 +80,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "landed"
     ],
     "current": [
-      "built"
+      "workspace-tools.built"
     ],
     "questions": [],
     "research": null,
@@ -123,9 +123,9 @@ window.dashboardLive&&window.dashboardLive("plan",
     "remediation": null,
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-13T20:26:39Z",
-      "note": "3 of 3 tasks done"
+      "name": "sub-issues-filed",
+      "at": "2026-11-13T20:42:32Z",
+      "note": "final: filing done"
     },
     "history": {
       "sizing": [
@@ -209,9 +209,94 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           ]
         }
+      ],
+      "document": [
+        {
+          "since": "2026-11-13T19:43:46Z",
+          "ended": "2026-11-13T20:31:31Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-13T20:26:39Z",
+            "note": "3 of 3 tasks done"
+          },
+          "detail": "Document: 3 of 3 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Design and consequences confirmed final",
+                "state": "done",
+                "started": "2026-11-13T19:54:43Z",
+                "finished": "2026-11-13T19:58:42Z",
+                "report": "The four planning documents are committed at d5192fc; main had not moved, so there was nothing to merge, and no version moved. The design and its consequences are final: the design leaves no consideration open, and what the units leave behind is recorded as known gaps and follow-ups in the consequences. Next: the state boards, with the four planned units drawn dashed."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-13T19:58:42Z",
+                "finished": "2026-11-13T20:23:36Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-13T20:23:36Z",
+                "finished": "2026-11-13T20:26:39Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-13T20:31:31Z",
+          "ended": "2026-11-13T20:32:37Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-13T20:31:31Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-13T20:32:37Z",
+          "ended": "2026-11-13T20:40:13Z",
+          "endedBy": "sub-issues-filed",
+          "to": "sub-issues",
+          "event": {
+            "name": "landed",
+            "at": "2026-11-13T20:33:14Z"
+          },
+          "detail": "The plan landed in PR #38; its units are filed next."
+        }
+      ],
+      "sub-issues": [
+        {
+          "since": "2026-11-13T20:40:13Z",
+          "ended": "2026-11-13T21:05:13Z",
+          "endedBy": "sized",
+          "to": "implementation",
+          "event": {
+            "name": "sub-issues-filed",
+            "at": "2026-11-13T20:42:32Z",
+            "note": "final: filing done"
+          },
+          "detail": "4 of 4 units filed as sub-issues; each unit's board appears when its run starts.",
+          "units": {
+            "done": 4,
+            "total": 4
+          }
+        }
       ]
     },
-    "next": "workspace-tools",
+    "next": "rewrites",
     "qa": [],
     "qaMax": 3,
     "waitingOn": null,
@@ -220,7 +305,10 @@ window.dashboardLive&&window.dashboardLive("plan",
       "waitsOn": [],
       "blocks": []
     },
-    "landing": null,
+    "landing": {
+      "pr": 38,
+      "merge": "9f226462bbed2750d8cba4b4545d675135a54491"
+    },
     "waits": [
       {
         "step": "architecture",
@@ -370,6 +458,53 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-13",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "Merge: merging it in PR #38",
+      "ref": "PR #38"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "The plan landed in PR #38, merge 9f22646",
+      "ref": "PR #38"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "considered",
+      "label": "1 of 4 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "considered",
+      "label": "2 of 4 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "considered",
+      "label": "3 of 4 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "considered",
+      "label": "4 of 4 units filed as sub-issues"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "considered",
+      "label": "4 of 4 units filed as sub-issues; filing done"
+    },
+    {
+      "date": "2026-11-13",
+      "column": "built",
+      "label": "#39 started"
     }
   ],
   "rows": [
@@ -383,7 +518,1288 @@ window.dashboardLive&&window.dashboardLive("plan",
         "n": 1,
         "slug": "workspace-tools",
         "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
-        "blockedBy": []
+        "blockedBy": [],
+        "issue": 39,
+        "board": "39-workspace-tools/dashboard.html",
+        "folder": "39-workspace-tools/",
+        "live": {
+          "step": "document",
+          "since": "2026-11-15T10:12:32Z",
+          "updated": "2026-11-15T12:00:11Z",
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "steps": [
+            "sizing",
+            "interview",
+            "research",
+            "plan",
+            "branch",
+            "implementation",
+            "qa",
+            "remediation",
+            "document",
+            "landing",
+            "merge",
+            "landed"
+          ],
+          "waitingOn": null,
+          "resume": null,
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-14",
+              "at": "2026-11-14T08:21:15Z",
+              "findings": {
+                "test": 22,
+                "code": 10
+              },
+              "severity": {
+                "minor": 18,
+                "other": 14
+              },
+              "route": "re-plan-then-remediation",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/ca070e8d/tests/index.html",
+              "note": "The run was green: all 637 checks passed (gating 49, deterministic 63, component 80, integration 420, nonfunctional 23, and 2 of the coverage check), with the tool folder proved equal to its pins first; a green run does not clear what the review found. 32 findings (18 minor, 14 other; 22 test, 10 code). Tests: four cases of the clone set run uncounted in a subshell (424 case lines against a total of 420); six stops of the push procedure, the private-repository probe selection and two arms of the push check have no case; the output-rule cases and the coverage figure prove less than the test plan says (278 distinct texts for 308 sites; 8 stop sites of the Python tools outside it). Tools: a failed read of the webhook count and a failed read of the pull-request refs pass as zero or empty; the rename retry can move the old clone inside the target; a failed web fetch prints a local path; the resend decision reads a stale class; a missing record compares equal; the carried folder’s name is matched as a pattern. Plan text: the class table against the flowchart, and a stop the documents tool does not hold. They touch the self-test, the clone set, the rewrite set, the residual set, the parameter table, the tool folder, the recorded gaps and the readiness reads. The fixes change the tools’ source held in the plan, so the plan is revised first, then the folder is saved again and the steps run again."
+            },
+            {
+              "pass": 2,
+              "verdict": "changes-requested",
+              "date": "2026-11-14",
+              "at": "2026-11-14T13:18:48Z",
+              "findings": {
+                "test": 15,
+                "code": 3
+              },
+              "severity": {
+                "minor": 16,
+                "other": 2
+              },
+              "route": "re-plan-then-remediation",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/949b5d33/tests/index.html",
+              "note": "The run was green: all 744 checks passed (gating 68, deterministic 63, component 80, integration 504, nonfunctional 22, and 7 of the coverage check), every total as the plan records and no console line that is not a case, note or runner line; a green run does not clear what the review found. 18 findings (16 minor, 2 other; 15 test, 3 code). Of Quality Review 1's 32 findings, 28 are closed in the tools with their cases, and the landing's documents are left to the landing; three test findings stay open in one part each, all minor now. What stands: one site where the coverage check proves less than it says (a stop text shared by a helper and one arm of the clone tool is reached by one line); a wait line that prints the year 1970 as the reset time when the server sends no reset header; the Python tools' own tests writing to the system's temporary folder; two fault fixtures whose address the stand-in does not redirect; the console case missing output at its start and end; result lines and plain exits with no asserting case; labels that name a step and not a behaviour; and statements of the plan not carried through the moves of cases between test sets. They touch the self-test, the clone set, the rewrite set, the residual set, the tool folder and the recorded gaps. The tools change again, so the plan is revised first, then the folder is saved and every step run once more."
+            },
+            {
+              "pass": 3,
+              "verdict": "changes-requested",
+              "date": "2026-11-14",
+              "at": "2026-11-14T21:18:51Z",
+              "findings": {
+                "test": 14,
+                "code": 8
+              },
+              "severity": {
+                "minor": 20,
+                "other": 2
+              },
+              "route": "re-plan-then-remediation",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/dda89436/tests/index.html",
+              "note": "The run was green: all 833 checks passed (gating 79, deterministic 63, component 91, integration 565, nonfunctional 28, and 7 of the coverage check), every total as the plan records, no stray console line and no label printed twice; a green run does not clear what the review found. 22 findings (20 minor, 2 other; 14 test, 8 code). Of Quality Review 2's 18 findings, 16 are closed. One defect of substance stands, found twice, in the self-test: the stamp a test set writes reads the run's id in a way that prints the shell's own missing-file line, with a local path, when the gating checks never ran in that scratch folder, and the set still ends with status 0; the later units run their quick check that way. The rest are small: in the self-test, a region comment that files two groups of cases under the wrong set, four lines and stops with no asserting case and five labels that name a step or state the opposite of their rule; in the tool folder, a file a staged rename moves into the documents folder not counted as outside it; in the rewrite set, the per-ref verification's baseline check run after the deliveries are written, and two error streams still open; in the clone set, one error stream and two statements of the plan; in the residual set, a convention that waits for a time a wait line may not print; in the readiness reads, three changed reads and one checksum write with no case. They touch the self-test, the tool folder, the rewrite set, the residual set, the clone set and the readiness reads. Next: every finding fixed, the folder saved and every step run again, then one more review limited to what changed."
+            },
+            {
+              "pass": 4,
+              "verdict": "changes-requested",
+              "date": "2026-11-15",
+              "at": "2026-11-15T06:52:02Z",
+              "findings": {
+                "test": 3,
+                "code": 1
+              },
+              "severity": {
+                "minor": 4,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/f2745465/tests/index.html",
+              "note": "This review was limited to the 15 tool files changed since Quality Review 3, and the five kinds were not run again: their totals (853 checks, none failed: gating 84, deterministic 63, component 92, integration 579, nonfunctional 28, and 7 of the coverage check), every last line as recorded, no stray console line and no label printed twice, were verified from the records the last run left, and only the coverage check was run, once (7 checks, 393 of 393 sites reached). 4 findings (4 minor; 3 test, 1 code). Every finding of Quality Review 3 is closed, the quick-check defect included: a kind run where no run was started now prints case lines only, and a case asserts it. The four left are all in the plan's wording, none in a tool: in the rewrite set, a sentence said the post-run step discards a message it does not, and now says the step checks its two records first; in the self-test, two limits were not stated (no case provokes the messages the post-run step discards behind checks that stop first; no fixture path holds a pattern character, so no case tells the residual close-out's literal strip from a pattern match), and two rounded run times were behind the recorded ones. They touch the self-test, the rewrite set and the residual set. All four were reworded in the plan, fixed in place with no additional review: no pin moved and nothing was run again."
+            }
+          ],
+          "qaMax": 3,
+          "status": "building",
+          "branch": "docs/issue-39-extend-workspace-tools",
+          "event": {
+            "name": "document",
+            "at": "2026-11-15T12:00:11Z",
+            "note": "6 of 6 tasks done"
+          },
+          "asked": [
+            {
+              "step": "remediation",
+              "text": "The third review came back with changes requested: the test run was green (833 checks), with one real defect and about twenty small points. How should the work go on?",
+              "options": [
+                "Fix all, then one more review limited to what changed",
+                "Fix all, with no further review",
+                "Wording fixes only, and record the rest as follow-ups",
+                "Stop here"
+              ],
+              "answer": null,
+              "asked": "2026-11-14T21:19:36Z",
+              "answered": "2026-11-14T21:23:04Z"
+            }
+          ],
+          "plan": {
+            "state": "re-pass",
+            "from": "qa",
+            "pass": 3,
+            "since": "2026-11-14T21:18:51Z"
+          },
+          "stages": [
+            {
+              "id": "S0",
+              "name": "Readiness",
+              "state": "done",
+              "rows": [
+                "tool-folder",
+                "parameter-table"
+              ],
+              "brief": "The earlier tool folder and the reused tools are at their recorded pins and the unit's data file is written.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S0.g26",
+                  "name": "The earlier folder and the reused tools at their pins",
+                  "state": "done",
+                  "finished": "2026-11-14T07:12:32Z"
+                },
+                {
+                  "id": "S0.unit",
+                  "name": "The unit's data file",
+                  "state": "done",
+                  "finished": "2026-11-14T07:12:51Z"
+                }
+              ],
+              "ref": "plan.md#s0--readiness",
+              "started": "2026-11-14T07:10:33Z",
+              "finished": "2026-11-14T07:13:03Z",
+              "report": "Readiness passed. The earlier tool folder holds 22 files and 21 of its 21 pinned files equal their pins; the 21 reused tools and the stage runner equal the earlier pin list; the runner is 1428 bytes at its recorded sha256. The unit's data file is written (10 lines). Nothing else was written. No deviation from the plan.",
+              "result": "passed"
+            },
+            {
+              "id": "S1",
+              "name": "The folder saved",
+              "state": "done",
+              "rows": [
+                "tool-folder",
+                "parameter-table",
+                "rewrite-set",
+                "residual-set",
+                "clone-set",
+                "self-test",
+                "recorded-gaps",
+                "documentation-points"
+              ],
+              "brief": "The new tool folder is saved from this plan, every file equals its pin and every script parses.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S1.save",
+                  "name": "Save the folder from this plan",
+                  "state": "done",
+                  "finished": "2026-11-14T07:13:15Z"
+                },
+                {
+                  "id": "S1.tools",
+                  "name": "Every file at its pin and the parse checks",
+                  "state": "done",
+                  "finished": "2026-11-14T07:13:35Z"
+                },
+                {
+                  "id": "S1.pins",
+                  "name": "The tool versions",
+                  "state": "done",
+                  "finished": "2026-11-14T07:13:52Z"
+                }
+              ],
+              "ref": "plan.md#s1--the-folder-saved",
+              "started": "2026-11-14T07:13:03Z",
+              "finished": "2026-11-14T07:14:00Z",
+              "report": "The new tool folder is saved from the plan: 25 files, and the pin list holds its recorded sha256. Every reused tool and every saved file holds its recorded size and sha256, the folder holds exactly the files its pin list names, every shell script parses and every Python tool compiles (96 checks passed, 0 failed; the output equals the plan's expected output line for line). The tool versions equal the recorded ones (7 checks passed, 0 failed). No deviation from the plan."
+            },
+            {
+              "id": "S2",
+              "name": "The self-test",
+              "state": "done",
+              "rows": [
+                "rewrite-set",
+                "residual-set",
+                "clone-set",
+                "self-test",
+                "recorded-gaps",
+                "documentation-points"
+              ],
+              "brief": "The tools pass their self-test by test kind, each kind with its total, and every expectation and stop of every step script was reached.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S2.gating",
+                  "name": "The gating checks",
+                  "state": "done",
+                  "finished": "2026-11-14T07:15:13Z"
+                },
+                {
+                  "id": "S2.deterministic",
+                  "name": "The deterministic cases",
+                  "state": "done",
+                  "finished": "2026-11-14T07:15:32Z"
+                },
+                {
+                  "id": "S2.component",
+                  "name": "The component tests",
+                  "state": "done",
+                  "finished": "2026-11-14T07:16:12Z"
+                },
+                {
+                  "id": "S2.integration",
+                  "name": "The integration tests",
+                  "state": "done",
+                  "finished": "2026-11-14T07:30:13Z"
+                },
+                {
+                  "id": "S2.nonfunctional",
+                  "name": "The non-functional cases",
+                  "state": "done",
+                  "finished": "2026-11-14T07:33:09Z"
+                },
+                {
+                  "id": "S2.coverage",
+                  "name": "The coverage check",
+                  "state": "done",
+                  "finished": "2026-11-14T07:33:28Z"
+                }
+              ],
+              "ref": "plan.md#s2--the-self-test",
+              "started": "2026-11-14T07:14:00Z",
+              "finished": "2026-11-14T07:33:37Z",
+              "report": "The self-test passed by test set, each with the total the plan records and no stop: the gating tests 49 checks passed, the deterministic tests 63, the component tests 80, the integration tests 420, the nonfunctional tests 23; 0 failed in each. The coverage check passed (2 checks): 308 expectations and stops, each reached as a stop by at least one case (312 distinct stop lines). Each test set ran once. No deviation from the plan.",
+              "result": "passed"
+            },
+            {
+              "id": "S3",
+              "name": "The three repositories read",
+              "state": "done",
+              "rows": [
+                "parameter-table",
+                "readiness-reads"
+              ],
+              "brief": "The three repositories are read once and each parameter row equals the data.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S3.inputs",
+                  "name": "The rows against the data",
+                  "state": "done",
+                  "finished": "2026-11-14T07:34:04Z"
+                },
+                {
+                  "id": "S3.repos",
+                  "name": "The repositories read",
+                  "state": "done",
+                  "finished": "2026-11-14T07:34:39Z"
+                }
+              ],
+              "ref": "plan.md#s3--the-three-repositories-read",
+              "started": "2026-11-14T07:33:37Z",
+              "finished": "2026-11-14T07:34:50Z",
+              "report": "The three repositories were read once and each parameter row equals the data; both steps' output equals the plan's expected output line for line (the rate-limit reading aside, which is never compared). The rows against the data: 62 checks passed, 0 failed (BotTools 11 row checks, TrumpBot 10, Support 10, each after its list's proofs); the checksums of the earlier records were recorded at this first run (5, 6 and 5 records). The repositories read from GitHub: 39 checks passed, 0 failed (BotTools 14, TrumpBot 13, Support 12) and 5 recorded readings: activity feed entries 0, 0 and 0 and events 0, 3 and 0 in the order BotTools, TrumpBot, Support, and for each of the two private repositories the rulesets read refused with HTTP 403, recorded as a repository no ruleset can apply to. Nothing was written to GitHub. No deviation from the plan.",
+              "result": "passed"
+            },
+            {
+              "id": "S4",
+              "name": "Close-out",
+              "state": "done",
+              "rows": [
+                "tool-folder",
+                "readiness-reads"
+              ],
+              "brief": "The earlier folder and the new one equal their pins, the preparation unit's records and the three repositories' refs are as before.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S4.g26",
+                  "name": "The earlier folder at its pins",
+                  "state": "done",
+                  "finished": "2026-11-14T07:35:11Z"
+                },
+                {
+                  "id": "S4.tools",
+                  "name": "The new folder at its pins",
+                  "state": "done",
+                  "finished": "2026-11-14T07:35:28Z"
+                },
+                {
+                  "id": "S4.records",
+                  "name": "The earlier records and the refs unchanged",
+                  "state": "done",
+                  "finished": "2026-11-14T07:36:12Z"
+                }
+              ],
+              "ref": "plan.md#s4--close-out",
+              "started": "2026-11-14T07:34:50Z",
+              "finished": "2026-11-14T07:36:33Z",
+              "report": "The close-out passed. The earlier tool folder still holds 22 files, 21 of 21 pinned files equal their pins, and the 21 reused tools and the stage runner equal the earlier pin list. The new folder holds 25 files and equals its pins (96 checks passed, 0 failed). The earlier records equal those recorded at the first run for each of the three repositories (62 checks passed, 0 failed), and the three repositories read from GitHub as before (39 checks passed, 0 failed, 5 recorded readings: activity feed entries 0, 0 and 0, events 0, 3 and 0, and the rulesets read of each private repository refused with HTTP 403). Every step's output equals the plan's expected output; no stop in any stage. The unit's records are 3 files, one per repository. Nothing was written to GitHub and no repository changed. No deviation from the plan.",
+              "result": "passed"
+            }
+          ],
+          "remediation": {
+            "pass": 4,
+            "route": "on-the-spot",
+            "steps": [
+              {
+                "name": "Reword four statements of the plan",
+                "state": "done",
+                "finished": "2026-11-15T06:52:02Z"
+              }
+            ]
+          },
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Review the tools' inline documentation",
+                "state": "done",
+                "started": "2026-11-15T06:54:35Z",
+                "finished": "2026-11-15T10:17:44Z",
+                "report": "A fresh documentation check ran over all 25 Appendix A tool files. Two findings, both already known from an earlier review pass: a stale header-comment claim in one script about check ordering, and a stale parenthetical in another script's function comment about a copy's source file. No other findings. Whether to fix these on the spot (which moves a pin and needs a rebuild and re-run) or record them as known gaps is being put to the user before the reconcile-documentation task closes."
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-15T10:17:44Z",
+                "finished": "2026-11-15T11:37:22Z",
+                "report": "The tools folder is saved again from the plan at pin list 60f5760b…31bf and every step run again on the real workspace, with no stop and nothing differing from the plan's expected lines. All 24 pinned files are at their pins. The gating tests 84, the deterministic tests 63, the component tests 92, the integration tests 579, the nonfunctional tests 28 and the coverage check 7 (393 expectations and stops reached), no failure, between 11:09Z and 11:35Z. The earlier tools folder is at its pins before and after, and the three earlier record files are unchanged. The as-built record's statements that waited on this run are being filled in."
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-15T10:44:59Z",
+                "finished": "2026-11-15T11:44:39Z",
+                "report": "The as-built record describes the build on the final pins (pin list 60f5760b…31bf) with two deviations: the five reworded header comments with the folder saved and run again, and the gating tests run in the background. The consequences are reconciled: the outcome of each assumption, the known gaps (three printed labels' wording, the two self-test limits), and the earlier unit's consequences carry 31 dated notes, the tracking unit's its link line. The plan's text now names the runner's end line after a step's STAGE line and the empty self-test folder a run leaves. The README does not change and the CHANGELOG takes no entry: the landing carries documents and boards only and no version moves."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-15T11:44:39Z",
+                "report": "The as-built record describes the build on the final pins (pin list 60f5760b…31bf) with two deviations: the five reworded header comments with the folder saved and run again, and the gating tests run in the background. The consequences are reconciled: the outcome of each assumption, the known gaps (three printed labels' wording, the two self-test limits), and the earlier unit's consequences carry 31 dated notes, the tracking unit's its link line. The plan's text now names the runner's end line after a step's STAGE line and the empty self-test folder a run leaves. The README does not change and the CHANGELOG takes no entry: the landing carries documents and boards only and no version moves."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-15T11:44:39Z",
+                "finished": "2026-11-15T11:55:55Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-15T11:55:55Z",
+                "finished": "2026-11-15T12:00:11Z"
+              }
+            ]
+          },
+          "history": {
+            "sizing": [
+              {
+                "since": null,
+                "ended": "2026-11-13T21:05:13Z",
+                "endedBy": "sized",
+                "to": "plan"
+              }
+            ],
+            "plan": [
+              {
+                "since": "2026-11-13T21:05:13Z",
+                "ended": "2026-11-14T05:20:13Z",
+                "endedBy": "run-restarted",
+                "to": "plan",
+                "event": {
+                  "name": "researched",
+                  "at": "2026-11-13T21:29:09Z"
+                },
+                "detail": "No question needs new evidence: the outside-world claims the tools rest on were verified for the parent design, and the earlier tool folder, the three repositories and the data were read again today and match it.",
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-13T21:05:13Z"
+                },
+                "outage": "the process ended and the run was taken up again; it had ended three times earlier in the planning, at 01:19 to 01:45, 01:47 to 02:03 and about 04:10 to 04:12 (UTC)"
+              },
+              {
+                "since": "2026-11-14T05:28:10Z",
+                "ended": "2026-11-14T07:07:04Z",
+                "endedBy": "plan-accepted",
+                "to": "branch",
+                "event": {
+                  "name": "researched",
+                  "at": "2026-11-13T21:29:09Z"
+                },
+                "detail": "No question needs new evidence: the outside-world claims the tools rest on were verified for the parent design, and the earlier tool folder, the three repositories and the data were read again today and match it.",
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-13T21:05:13Z"
+                }
+              }
+            ],
+            "branch": [
+              {
+                "since": "2026-11-14T07:07:04Z",
+                "ended": "2026-11-14T07:10:33Z",
+                "endedBy": "branch-cut",
+                "to": "implementation",
+                "event": {
+                  "name": "plan-accepted",
+                  "at": "2026-11-14T07:07:04Z"
+                },
+                "detail": "The plan carries the source and pin of every file of the new tool folder (25 files), with a five-stage table: readiness, the folder saved, the self-test, the three repositories read, close-out. No research was needed and no question is open.",
+                "branch": "docs/issue-39-extend-workspace-tools"
+              }
+            ],
+            "implementation": [
+              {
+                "since": "2026-11-14T07:10:33Z",
+                "ended": "2026-11-14T07:37:23Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-14T07:36:33Z",
+                  "note": "S4 reported done; Quality Review next"
+                },
+                "detail": "The close-out passed. The earlier tool folder still holds 22 files, 21 of 21 pinned files equal their pins, and the 21 reused tools and the stage runner equal the earlier pin list. The new folder holds 25 files and equals its pins (96 checks passed, 0 failed). The earlier records equal those recorded at the first run for each of the three repositories (62 checks passed, 0 failed), and the three repositories read from GitHub as before (39 checks passed, 0 failed, 5 recorded readings: activity feed entries 0, 0 and 0, events 0, 3 and 0, and the rulesets read of each private repository refused with HTTP 403). Every step's output equals the plan's expected output; no stop in any stage. The unit's records are 3 files, one per repository. Nothing was written to GitHub and no repository changed. No deviation from the plan.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Readiness",
+                    "state": "done",
+                    "rows": [
+                      "tool-folder",
+                      "parameter-table"
+                    ],
+                    "brief": "The earlier tool folder and the reused tools are at their recorded pins and the unit's data file is written.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S0.g26",
+                        "name": "The earlier folder and the reused tools at their pins",
+                        "state": "done",
+                        "finished": "2026-11-14T07:12:32Z"
+                      },
+                      {
+                        "id": "S0.unit",
+                        "name": "The unit's data file",
+                        "state": "done",
+                        "finished": "2026-11-14T07:12:51Z"
+                      }
+                    ],
+                    "ref": "plan.md#s0--readiness",
+                    "started": "2026-11-14T07:10:33Z",
+                    "finished": "2026-11-14T07:13:03Z",
+                    "report": "Readiness passed. The earlier tool folder holds 22 files and 21 of its 21 pinned files equal their pins; the 21 reused tools and the stage runner equal the earlier pin list; the runner is 1428 bytes at its recorded sha256. The unit's data file is written (10 lines). Nothing else was written. No deviation from the plan.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S1",
+                    "name": "The folder saved",
+                    "state": "done",
+                    "rows": [
+                      "tool-folder",
+                      "parameter-table",
+                      "rewrite-set",
+                      "residual-set",
+                      "clone-set",
+                      "self-test",
+                      "recorded-gaps",
+                      "documentation-points"
+                    ],
+                    "brief": "The new tool folder is saved from this plan, every file equals its pin and every script parses.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S1.save",
+                        "name": "Save the folder from this plan",
+                        "state": "done",
+                        "finished": "2026-11-14T07:13:15Z"
+                      },
+                      {
+                        "id": "S1.tools",
+                        "name": "Every file at its pin and the parse checks",
+                        "state": "done",
+                        "finished": "2026-11-14T07:13:35Z"
+                      },
+                      {
+                        "id": "S1.pins",
+                        "name": "The tool versions",
+                        "state": "done",
+                        "finished": "2026-11-14T07:13:52Z"
+                      }
+                    ],
+                    "ref": "plan.md#s1--the-folder-saved",
+                    "started": "2026-11-14T07:13:03Z",
+                    "finished": "2026-11-14T07:14:00Z",
+                    "report": "The new tool folder is saved from the plan: 25 files, and the pin list holds its recorded sha256. Every reused tool and every saved file holds its recorded size and sha256, the folder holds exactly the files its pin list names, every shell script parses and every Python tool compiles (96 checks passed, 0 failed; the output equals the plan's expected output line for line). The tool versions equal the recorded ones (7 checks passed, 0 failed). No deviation from the plan."
+                  },
+                  {
+                    "id": "S2",
+                    "name": "The self-test",
+                    "state": "done",
+                    "rows": [
+                      "rewrite-set",
+                      "residual-set",
+                      "clone-set",
+                      "self-test",
+                      "recorded-gaps",
+                      "documentation-points"
+                    ],
+                    "brief": "The tools pass their self-test by test kind, each kind with its total, and every expectation and stop of every step script was reached.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S2.gating",
+                        "name": "The gating checks",
+                        "state": "done",
+                        "finished": "2026-11-14T07:15:13Z"
+                      },
+                      {
+                        "id": "S2.deterministic",
+                        "name": "The deterministic cases",
+                        "state": "done",
+                        "finished": "2026-11-14T07:15:32Z"
+                      },
+                      {
+                        "id": "S2.component",
+                        "name": "The component tests",
+                        "state": "done",
+                        "finished": "2026-11-14T07:16:12Z"
+                      },
+                      {
+                        "id": "S2.integration",
+                        "name": "The integration tests",
+                        "state": "done",
+                        "finished": "2026-11-14T07:30:13Z"
+                      },
+                      {
+                        "id": "S2.nonfunctional",
+                        "name": "The non-functional cases",
+                        "state": "done",
+                        "finished": "2026-11-14T07:33:09Z"
+                      },
+                      {
+                        "id": "S2.coverage",
+                        "name": "The coverage check",
+                        "state": "done",
+                        "finished": "2026-11-14T07:33:28Z"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-self-test",
+                    "started": "2026-11-14T07:14:00Z",
+                    "finished": "2026-11-14T07:33:37Z",
+                    "report": "The self-test passed by test set, each with the total the plan records and no stop: the gating tests 49 checks passed, the deterministic tests 63, the component tests 80, the integration tests 420, the nonfunctional tests 23; 0 failed in each. The coverage check passed (2 checks): 308 expectations and stops, each reached as a stop by at least one case (312 distinct stop lines). Each test set ran once. No deviation from the plan.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S3",
+                    "name": "The three repositories read",
+                    "state": "done",
+                    "rows": [
+                      "parameter-table",
+                      "readiness-reads"
+                    ],
+                    "brief": "The three repositories are read once and each parameter row equals the data.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S3.inputs",
+                        "name": "The rows against the data",
+                        "state": "done",
+                        "finished": "2026-11-14T07:34:04Z"
+                      },
+                      {
+                        "id": "S3.repos",
+                        "name": "The repositories read",
+                        "state": "done",
+                        "finished": "2026-11-14T07:34:39Z"
+                      }
+                    ],
+                    "ref": "plan.md#s3--the-three-repositories-read",
+                    "started": "2026-11-14T07:33:37Z",
+                    "finished": "2026-11-14T07:34:50Z",
+                    "report": "The three repositories were read once and each parameter row equals the data; both steps' output equals the plan's expected output line for line (the rate-limit reading aside, which is never compared). The rows against the data: 62 checks passed, 0 failed (BotTools 11 row checks, TrumpBot 10, Support 10, each after its list's proofs); the checksums of the earlier records were recorded at this first run (5, 6 and 5 records). The repositories read from GitHub: 39 checks passed, 0 failed (BotTools 14, TrumpBot 13, Support 12) and 5 recorded readings: activity feed entries 0, 0 and 0 and events 0, 3 and 0 in the order BotTools, TrumpBot, Support, and for each of the two private repositories the rulesets read refused with HTTP 403, recorded as a repository no ruleset can apply to. Nothing was written to GitHub. No deviation from the plan.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Close-out",
+                    "state": "done",
+                    "rows": [
+                      "tool-folder",
+                      "readiness-reads"
+                    ],
+                    "brief": "The earlier folder and the new one equal their pins, the preparation unit's records and the three repositories' refs are as before.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.g26",
+                        "name": "The earlier folder at its pins",
+                        "state": "done",
+                        "finished": "2026-11-14T07:35:11Z"
+                      },
+                      {
+                        "id": "S4.tools",
+                        "name": "The new folder at its pins",
+                        "state": "done",
+                        "finished": "2026-11-14T07:35:28Z"
+                      },
+                      {
+                        "id": "S4.records",
+                        "name": "The earlier records and the refs unchanged",
+                        "state": "done",
+                        "finished": "2026-11-14T07:36:12Z"
+                      }
+                    ],
+                    "ref": "plan.md#s4--close-out",
+                    "started": "2026-11-14T07:34:50Z",
+                    "finished": "2026-11-14T07:36:33Z",
+                    "report": "The close-out passed. The earlier tool folder still holds 22 files, 21 of 21 pinned files equal their pins, and the 21 reused tools and the stage runner equal the earlier pin list. The new folder holds 25 files and equals its pins (96 checks passed, 0 failed). The earlier records equal those recorded at the first run for each of the three repositories (62 checks passed, 0 failed), and the three repositories read from GitHub as before (39 checks passed, 0 failed, 5 recorded readings: activity feed entries 0, 0 and 0, events 0, 3 and 0, and the rulesets read of each private repository refused with HTTP 403). Every step's output equals the plan's expected output; no stop in any stage. The unit's records are 3 files, one per repository. Nothing was written to GitHub and no repository changed. No deviation from the plan.",
+                    "result": "passed"
+                  }
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "since": "2026-11-14T07:37:23Z",
+                "ended": "2026-11-14T08:21:15Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-14T07:37:23Z",
+                  "note": "Quality Review 1: running"
+                },
+                "detail": "Quality Review 1 running.",
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-14",
+                    "at": "2026-11-14T08:21:15Z",
+                    "findings": {
+                      "test": 22,
+                      "code": 10
+                    },
+                    "severity": {
+                      "minor": 18,
+                      "other": 14
+                    },
+                    "route": "re-plan-then-remediation",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/ca070e8d/tests/index.html"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-14T12:22:58Z",
+                "ended": "2026-11-14T13:18:48Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-14T12:22:58Z",
+                  "note": "Quality Review 2: running"
+                },
+                "detail": "Quality Review 2 running.",
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-14",
+                    "at": "2026-11-14T13:18:48Z",
+                    "findings": {
+                      "test": 15,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 16,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/949b5d33/tests/index.html"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-14T20:00:30Z",
+                "ended": "2026-11-14T21:18:51Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-14T20:00:30Z",
+                  "note": "Quality Review 3: running"
+                },
+                "detail": "Quality Review 3 running.",
+                "qa": [
+                  {
+                    "pass": 3,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-14",
+                    "at": "2026-11-14T21:18:51Z",
+                    "findings": {
+                      "test": 14,
+                      "code": 8
+                    },
+                    "severity": {
+                      "minor": 20,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/dda89436/tests/index.html"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-15T05:43:30Z",
+                "ended": "2026-11-15T06:52:02Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-15T05:43:30Z",
+                  "note": "Quality Review 4: running"
+                },
+                "detail": "Quality Review 4 running.",
+                "qa": [
+                  {
+                    "pass": 4,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-15",
+                    "at": "2026-11-15T06:52:02Z",
+                    "findings": {
+                      "test": 3,
+                      "code": 1
+                    },
+                    "severity": {
+                      "minor": 4,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/f2745465/tests/index.html"
+                  }
+                ]
+              }
+            ],
+            "remediation": [
+              {
+                "since": "2026-11-14T08:21:15Z",
+                "ended": "2026-11-14T12:22:58Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-14T12:22:11Z",
+                  "note": "4 of 4 sub-steps done"
+                },
+                "detail": "The folder was saved from the plan as it now stands and every stage ran again on the workspace with no stop and no departure from the plan: 25 files at their pins; the gating checks 68, the deterministic cases 63, the component tests 80, the integration tests 504, the non-functional cases 22, the coverage check 7 (323 of 323 expectations and stops, each reached by a case of its own script and arm), no failure. No kind printed a console line that is not a case, note or runner line, and the earlier tools' three collection files are gone from the unit's scratch folder. The earlier folder equals its pins before and after; the three repositories were read and each row equals the data; the earlier records equal their first recording. The rulesets read of the two private repositories is refused by the server and recorded, as the plan expects.",
+                "remediation": {
+                  "pass": 1,
+                  "route": "re-plan-then-remediation",
+                  "steps": [
+                    {
+                      "name": "Revise the plan's tools and tests",
+                      "state": "done",
+                      "started": "2026-11-14T08:21:15Z",
+                      "finished": "2026-11-14T10:38:02Z",
+                      "report": "The plan is revised and the replaced version kept beside it. Every finding of the review is fixed in the tools with a case of its own, three partly or wholly in the plan's wording. A failed read of the webhook count or of the pull-request refs is now a stop; only a clean refusal of the rename is retried; a failed web fetch prints no path; the resend decision stops on a reply not yet classed; a missing record never compares equal; folder names are matched literally. The four clone-set cases are counted, the push procedure's stops and the private-repository probe selection have cases, and the coverage check matches each stop per script and arm (323 of 323). On the stand-ins: the gating checks 66, the deterministic cases 62, the component tests 79, the integration tests 503, the non-functional cases 21, the coverage check 6, no failure. The folder is saved again from the revised plan and every stage is run again on the workspace next."
+                    },
+                    {
+                      "name": "Save the folder again and run the steps",
+                      "state": "done",
+                      "started": "2026-11-14T10:38:02Z",
+                      "finished": "2026-11-14T11:10:52Z",
+                      "report": "The folder was saved again from the revised plan and every stage ran again on the workspace with no stop: 25 files at their pins; the gating checks 66, the deterministic cases 62, the component tests 79, the integration tests 503, the non-functional cases 21, the coverage check 6 (323 of 323 expectations and stops reached), no failure; the earlier folder at its pins before and after; the three repositories read, each row equal to the data and the earlier records equal to their first recording. One line of the gating checks' console output is not a status line: a line-ending note from git about a made-up fixture file, which the plan's output rule says the fixtures discard. It goes back to the plan before the next review, with two wording points."
+                    },
+                    {
+                      "name": "Settle the one console line the gating checks printed",
+                      "state": "done",
+                      "started": "2026-11-14T11:10:52Z",
+                      "finished": "2026-11-14T11:49:18Z",
+                      "report": "The console line is settled in the self-test, and the tools the later units run are unchanged. Its cause was git's default line-ending conversion on the machine: one fixture checkout committed a file without turning it off. Every working-copy fixture now turns it off, and each kind keeps its whole console and asserts that no line is anything but a case, note or stop line. The two wording points: two assumption rows named steps by the readiness tool's own stage names where this unit's step ids were meant, now corrected; and the earlier tools' collection files left in the unit's scratch folder, which one kind read by a wildcard, are now removed by the self-test and each kind's file is read by name. On the stand-ins: the gating checks 68, the deterministic cases 63, the component tests 80, the integration tests 504, the non-functional cases 22, the coverage check 7 (323 of 323), no failure. The last save and run covers every step again: the earlier folder at its pins, the unit's data file, the folder saved with its pins and versions, all six steps of the self-test, the three repositories read, and the close-out."
+                    },
+                    {
+                      "name": "Save the folder and run the affected steps once more",
+                      "state": "done",
+                      "started": "2026-11-14T11:49:18Z",
+                      "finished": "2026-11-14T12:22:11Z",
+                      "report": "The folder was saved from the plan as it now stands and every stage ran again on the workspace with no stop and no departure from the plan: 25 files at their pins; the gating checks 68, the deterministic cases 63, the component tests 80, the integration tests 504, the non-functional cases 22, the coverage check 7 (323 of 323 expectations and stops, each reached by a case of its own script and arm), no failure. No kind printed a console line that is not a case, note or runner line, and the earlier tools' three collection files are gone from the unit's scratch folder. The earlier folder equals its pins before and after; the three repositories were read and each row equals the data; the earlier records equal their first recording. The rulesets read of the two private repositories is refused by the server and recorded, as the plan expects."
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-14",
+                    "at": "2026-11-14T08:21:15Z",
+                    "findings": {
+                      "test": 22,
+                      "code": 10
+                    },
+                    "severity": {
+                      "minor": 18,
+                      "other": 14
+                    },
+                    "route": "re-plan-then-remediation",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/ca070e8d/tests/index.html",
+                    "note": "The run was green: all 637 checks passed (gating 49, deterministic 63, component 80, integration 420, nonfunctional 23, and 2 of the coverage check), with the tool folder proved equal to its pins first; a green run does not clear what the review found. 32 findings (18 minor, 14 other; 22 test, 10 code). Tests: four cases of the clone set run uncounted in a subshell (424 case lines against a total of 420); six stops of the push procedure, the private-repository probe selection and two arms of the push check have no case; the output-rule cases and the coverage figure prove less than the test plan says (278 distinct texts for 308 sites; 8 stop sites of the Python tools outside it). Tools: a failed read of the webhook count and a failed read of the pull-request refs pass as zero or empty; the rename retry can move the old clone inside the target; a failed web fetch prints a local path; the resend decision reads a stale class; a missing record compares equal; the carried folder’s name is matched as a pattern. Plan text: the class table against the flowchart, and a stop the documents tool does not hold. They touch the self-test, the clone set, the rewrite set, the residual set, the parameter table, the tool folder, the recorded gaps and the readiness reads. The fixes change the tools’ source held in the plan, so the plan is revised first, then the folder is saved again and the steps run again."
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-14T13:18:48Z",
+                "ended": "2026-11-14T20:00:30Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-14T20:00:15Z",
+                  "note": "2 of 2 sub-steps done"
+                },
+                "detail": "The folder was saved from the plan as it now stands and every stage ran again on the workspace with no stop and no departure from the plan. The tool folder: 25 files at their pins, checked after the save and again at the close-out (96 checks each time). The self-test: the gating checks 79, the deterministic cases 63, the component tests 91, the integration tests 565, the non-functional cases 28, the coverage check 7, no failure; 390 of 390 expectations and stops reached, each by a case of its own script and arm; no console line that is not a case, note or runner line, and no label printed twice. The rewrite, residual and clone sets: their cases are among those totals and all passed. The earlier folder equals its pins before and after. The three repositories were read at the readiness reads and again at the close-out: 62 input checks and 39 repository checks each time, each row equal to the data, the earlier records equal to their first recording, and five recorded readings, among them the rulesets read of the two private repositories refused by the server.",
+                "remediation": {
+                  "pass": 2,
+                  "route": "re-plan-then-remediation",
+                  "steps": [
+                    {
+                      "name": "Revise the plan's tools, tests and statements",
+                      "state": "done",
+                      "started": "2026-11-14T13:18:48Z",
+                      "finished": "2026-11-14T19:05:06Z",
+                      "report": "The plan is revised a third time and the replaced version kept beside it. By row. The self-test: the coverage check now reports a stop text shared by a helper and an arm, and refuses a collection not stamped with this run and these tools; the Python tools' own tests write under the unit's scratch folder; the console is captured from the first command and judged after the sandbox is removed; every result line and note has an asserting case; every label states a behaviour and none is printed twice; the two fault fixtures of the push procedure (the rewrite set's cases) use an address that cannot resolve. The clone set: the shared stop text is made distinct, the archive step stops when there is no census, and the graph note matches its entry literally. The rewrite set: the heads read-back says unreadable on a failed read, and the checksum lists of the post-run, exit and close-out steps check each listed file and the write's status. The residual set: a missing rate-limit header gives a wait line that names what could not be read and no date; its close-out checks its lists the same way. The tool folder: every load of the environment and of a library in each step script ends in a stop line, and the documents tool reads pending paths exactly. The recorded gaps: the closure table's rows name the right kind for each case. On the stand-ins: the gating checks 79, the deterministic cases 63, the component tests 91, the integration tests 565, the non-functional cases 28, the coverage check 7 (390 of 390 sites), no failure."
+                    },
+                    {
+                      "name": "Save the folder again and run every step",
+                      "state": "done",
+                      "started": "2026-11-14T19:05:06Z",
+                      "finished": "2026-11-14T20:00:15Z",
+                      "report": "The folder was saved from the plan as it now stands and every stage ran again on the workspace with no stop and no departure from the plan. The tool folder: 25 files at their pins, checked after the save and again at the close-out (96 checks each time). The self-test: the gating checks 79, the deterministic cases 63, the component tests 91, the integration tests 565, the non-functional cases 28, the coverage check 7, no failure; 390 of 390 expectations and stops reached, each by a case of its own script and arm; no console line that is not a case, note or runner line, and no label printed twice. The rewrite, residual and clone sets: their cases are among those totals and all passed. The earlier folder equals its pins before and after. The three repositories were read at the readiness reads and again at the close-out: 62 input checks and 39 repository checks each time, each row equal to the data, the earlier records equal to their first recording, and five recorded readings, among them the rulesets read of the two private repositories refused by the server."
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-14",
+                    "at": "2026-11-14T13:18:48Z",
+                    "findings": {
+                      "test": 15,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 16,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/949b5d33/tests/index.html",
+                    "note": "The run was green: all 744 checks passed (gating 68, deterministic 63, component 80, integration 504, nonfunctional 22, and 7 of the coverage check), every total as the plan records and no console line that is not a case, note or runner line; a green run does not clear what the review found. 18 findings (16 minor, 2 other; 15 test, 3 code). Of Quality Review 1's 32 findings, 28 are closed in the tools with their cases, and the landing's documents are left to the landing; three test findings stay open in one part each, all minor now. What stands: one site where the coverage check proves less than it says (a stop text shared by a helper and one arm of the clone tool is reached by one line); a wait line that prints the year 1970 as the reset time when the server sends no reset header; the Python tools' own tests writing to the system's temporary folder; two fault fixtures whose address the stand-in does not redirect; the console case missing output at its start and end; result lines and plain exits with no asserting case; labels that name a step and not a behaviour; and statements of the plan not carried through the moves of cases between test sets. They touch the self-test, the clone set, the rewrite set, the residual set, the tool folder and the recorded gaps. The tools change again, so the plan is revised first, then the folder is saved and every step run once more."
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-14T21:18:51Z",
+                "ended": "2026-11-14T21:19:36Z",
+                "endedBy": "halted",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-14T21:18:51Z",
+                  "note": "Quality Review 3: changes-requested"
+                },
+                "detail": "The run was green (833 checks, no failure, every total as recorded, no stray console line, no label printed twice). Of the second review's 18 findings, 16 are closed. One defect of substance stands, found twice (the self-test): the stamp a kind writes reads the run's id in a way that prints the shell's own missing-file line, with a local path, when the gating checks never ran in that scratch folder, and the kind still ends with status 0; the later units run their quick check that way. The rest are small. The self-test: a region comment still files two groups of cases under the wrong kind; the run-id write, the error half of the checksum helpers' stop, one recorded line of the feeds step and a new stop of the Python tools have no asserting case; five labels name a step or state the opposite of their rule. The tool folder: the documents tool does not count a file a staged rename moves into the documents folder as outside it. The rewrite set: the per-ref verification runs its baseline check after the deliveries are written, so a second run passes without it; two error streams are still open. The clone set: one error stream still open, and two statements of the plan about its checksum list and a stop text. The residual set: the conventions still say to wait for a printed time that a wait line may now not print. The readiness reads: three changed reads and one checksum write have no case. Every finding is fixed next, the folder saved and run again, and one more review limited to what changed follows.",
+                "remediation": {
+                  "pass": 3,
+                  "route": "re-plan-then-remediation",
+                  "steps": [
+                    {
+                      "name": "Revise the plan's tools, tests and statements",
+                      "state": "current",
+                      "started": "2026-11-14T21:18:51Z"
+                    },
+                    {
+                      "name": "Save the folder again and run every step",
+                      "state": "todo"
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 3,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-14",
+                    "at": "2026-11-14T21:18:51Z",
+                    "findings": {
+                      "test": 14,
+                      "code": 8
+                    },
+                    "severity": {
+                      "minor": 20,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/dda89436/tests/index.html"
+                  }
+                ],
+                "held": true,
+                "asked": [
+                  {
+                    "text": "The third review came back with changes requested: the test run was green (833 checks), with one real defect and about twenty small points. How should the work go on?",
+                    "options": [
+                      "Fix all, then one more review limited to what changed",
+                      "Fix all, with no further review",
+                      "Wording fixes only, and record the rest as follow-ups",
+                      "Stop here"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-14T21:19:36Z",
+                    "answered": "2026-11-14T21:23:04Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-14T21:23:04Z",
+                "ended": "2026-11-15T05:43:30Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-15T05:43:12Z",
+                  "note": "2 of 2 sub-steps done"
+                },
+                "detail": "The folder was saved from the plan as it now stands and every stage ran again on the workspace with no stop and no departure from the plan. The tool folder: 25 files at their pins, checked after the save and again at the close-out (96 checks each time). The self-test: the gating checks 84, the deterministic cases 63, the component tests 92, the integration tests 579, the non-functional cases 28, the coverage check 7, no failure; 393 of 393 expectations and stops reached, each by a case of its own script and arm; no console line that is not a case, note or runner line, and no label printed twice. The rewrite, residual and clone sets: their cases are among those totals and all passed. The readiness reads: the three repositories were read at the readiness reads and again at the close-out, 62 input checks and 39 repository checks each time, each row equal to the data and the earlier records equal to their first recording; the earlier folder equals its pins before and after. The machine was busy during the run, so the kinds took several times their recorded times (the integration tests close to four hours against about forty minutes); the cases that measure time passed all the same.",
+                "remediation": {
+                  "pass": 3,
+                  "route": "re-plan-then-remediation",
+                  "steps": [
+                    {
+                      "name": "Revise the plan's tools, tests and statements",
+                      "state": "done",
+                      "started": "2026-11-14T21:18:51Z",
+                      "finished": "2026-11-15T00:52:05Z",
+                      "report": "The plan is revised a fourth time and the replaced version kept beside it. By row. The self-test: the stamp reads the run's id safely, and a kind run where no run was started prints case and note lines only, ends with status 0 and stamps an empty run, which the coverage check refuses; the run-id write, the emptying of a kind's files, the error half of the checksum helpers' stop, the feeds step's recorded line and the Python tools' new stop each have an asserting case; the labels state behaviours; the region comment files its cases under the right kind. The tool folder: the documents tool reads a rename's source, so a file moved into the documents folder from outside it is a stop. The rewrite set: the per-ref verification checks its deliveries baseline before it writes the count; the post-run step checks its log and purge list first; the open error streams are closed. The residual set: the conventions and the flowchart say what a wait line that prints no time means; the record step strips a folder prefix literally. The clone set: the carried-file checksum loop prints no path, and the plan's two statements about its list and its stop texts are corrected. The readiness reads: the inputs step's changed reads and its checksum write each have a case, and the repositories step checks the clone listing first. On the stand-ins: the gating checks 84, the deterministic cases 63, the component tests 92, the integration tests 579, the non-functional cases 28, the coverage check 7 (393 of 393 sites), no failure."
+                    },
+                    {
+                      "name": "Save the folder again and run every step",
+                      "state": "done",
+                      "started": "2026-11-15T00:52:05Z",
+                      "finished": "2026-11-15T05:43:12Z",
+                      "report": "The folder was saved from the plan as it now stands and every stage ran again on the workspace with no stop and no departure from the plan. The tool folder: 25 files at their pins, checked after the save and again at the close-out (96 checks each time). The self-test: the gating checks 84, the deterministic cases 63, the component tests 92, the integration tests 579, the non-functional cases 28, the coverage check 7, no failure; 393 of 393 expectations and stops reached, each by a case of its own script and arm; no console line that is not a case, note or runner line, and no label printed twice. The rewrite, residual and clone sets: their cases are among those totals and all passed. The readiness reads: the three repositories were read at the readiness reads and again at the close-out, 62 input checks and 39 repository checks each time, each row equal to the data and the earlier records equal to their first recording; the earlier folder equals its pins before and after. The machine was busy during the run, so the kinds took several times their recorded times (the integration tests close to four hours against about forty minutes); the cases that measure time passed all the same."
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 3,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-14",
+                    "at": "2026-11-14T21:18:51Z",
+                    "findings": {
+                      "test": 14,
+                      "code": 8
+                    },
+                    "severity": {
+                      "minor": 20,
+                      "other": 2
+                    },
+                    "route": "re-plan-then-remediation",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/dda89436/tests/index.html",
+                    "note": "The run was green: all 833 checks passed (gating 79, deterministic 63, component 91, integration 565, nonfunctional 28, and 7 of the coverage check), every total as the plan records, no stray console line and no label printed twice; a green run does not clear what the review found. 22 findings (20 minor, 2 other; 14 test, 8 code). Of Quality Review 2's 18 findings, 16 are closed. One defect of substance stands, found twice, in the self-test: the stamp a test set writes reads the run's id in a way that prints the shell's own missing-file line, with a local path, when the gating checks never ran in that scratch folder, and the set still ends with status 0; the later units run their quick check that way. The rest are small: in the self-test, a region comment that files two groups of cases under the wrong set, four lines and stops with no asserting case and five labels that name a step or state the opposite of their rule; in the tool folder, a file a staged rename moves into the documents folder not counted as outside it; in the rewrite set, the per-ref verification's baseline check run after the deliveries are written, and two error streams still open; in the clone set, one error stream and two statements of the plan; in the residual set, a convention that waits for a time a wait line may not print; in the readiness reads, three changed reads and one checksum write with no case. They touch the self-test, the tool folder, the rewrite set, the residual set, the clone set and the readiness reads. Next: every finding fixed, the folder saved and every step run again, then one more review limited to what changed."
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-15T06:52:02Z",
+                "ended": "2026-11-15T06:54:35Z",
+                "endedBy": "document",
+                "to": "document",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-15T06:52:02Z",
+                  "note": "Quality Review 4: changes-requested"
+                },
+                "detail": "This review was limited to the 15 tool files changed since the third one and did not run the five kinds again: their totals (853 checks, no failure, every last line as recorded, no stray console line, no label printed twice) were verified from the records the last run left, and only the coverage check was run, once (7 checks, 393 of 393 sites reached). Every finding of the third review is closed, the quick-check defect included: a kind run where no run was started now prints case lines only, and a case asserts it. Four small points were left, all in the plan's wording, none in a tool, so no pin moved and nothing was run again. The rewrite set: one sentence said the post-run step discards a message it does not; it now says the step checks its two records first. The self-test: two limits were not stated (no case provokes the messages the post-run step discards behind checks that stop first; no fixture path holds a pattern character, so no case tells the residual close-out's literal strip from a pattern match), and two rounded run times were behind the recorded ones. All four are reworded in the plan.",
+                "remediation": {
+                  "pass": 4,
+                  "route": "on-the-spot",
+                  "steps": [
+                    {
+                      "name": "Reword four statements of the plan",
+                      "state": "done",
+                      "finished": "2026-11-15T06:52:02Z"
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 4,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-15",
+                    "at": "2026-11-15T06:52:02Z",
+                    "findings": {
+                      "test": 3,
+                      "code": 1
+                    },
+                    "severity": {
+                      "minor": 4,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/f2745465/tests/index.html"
+                  }
+                ]
+              }
+            ],
+            "document": [
+              {
+                "since": "2026-11-15T06:54:35Z",
+                "ended": "2026-11-15T07:00:28Z",
+                "endedBy": "run-restarted",
+                "to": "document",
+                "event": {
+                  "name": "document",
+                  "at": "2026-11-15T06:54:35Z",
+                  "note": "0 of 6 tasks done"
+                },
+                "detail": "The 25 tool files are read against the documentation standard: each tool's header, the contract comments on the library's functions, the Python docstrings and the line comments. No build file applies Dokka, so there is no generated reference to check.",
+                "document": {
+                  "tasks": [
+                    {
+                      "id": "documentation-review",
+                      "name": "Review the tools' inline documentation",
+                      "state": "current",
+                      "started": "2026-11-15T06:54:35Z"
+                    },
+                    {
+                      "id": "reconcile-documentation",
+                      "name": "Apply the review's findings",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "reconcile-plan",
+                      "name": "Reconcile the plan with the build: the as-built record, the consequences and the dated notes",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "readme-changelog",
+                      "name": "README and CHANGELOG",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "state-boards",
+                      "name": "State boards",
+                      "state": "todo"
+                    },
+                    {
+                      "id": "document-landing",
+                      "name": "Document commit",
+                      "state": "todo"
+                    }
+                  ]
+                },
+                "outage": "the session ended and a new session took the run up"
+              }
+            ]
+          },
+          "rowNames": {
+            "tool-folder": "A new, self-contained tool folder, saved from the plan and pinned",
+            "parameter-table": "A repository's policy in data: the parameter rows and the grant's data",
+            "rewrite-set": "The rewrite set: readiness, stages 1 to 8, the reset, and the push with its reply and classes",
+            "residual-set": "The residual set: stage 9 and the feed reads after the last push",
+            "clone-set": "The clone set: the clone checks, the request builder and the fresh clone's proofs",
+            "self-test": "The self-test, run by test kind",
+            "recorded-gaps": "The gaps and follow-ups the GKB2 and GKB unit recorded for this work",
+            "documentation-points": "The thirteen documentation points",
+            "readiness-reads": "The three repositories read once, the parameter rows proven against the data"
+          },
+          "recon": {
+            "interview": {
+              "reconstructed": true,
+              "ended": null,
+              "trail": [],
+              "milestones": []
+            },
+            "research": {
+              "reconstructed": true,
+              "ended": "2026-11-13",
+              "trail": [
+                {
+                  "date": "2026-11-13",
+                  "label": "Nothing to research; the plan next"
+                }
+              ],
+              "milestones": [
+                {
+                  "date": "2026-11-13",
+                  "label": "Research verified, in #27's run",
+                  "ref": "../research/README.md",
+                  "note": "written on this board when the run started, from #27's research question on the tools and its findings, and its architecture's current state of the workspace tools and records (§2.3), with this unit's design in §7 and its row in §16"
+                }
+              ]
+            }
+          }
+        },
+        "tests": {
+          "base": "main",
+          "updated": "2026-11-15T11:37:22Z",
+          "added": [],
+          "amended": [],
+          "relevant": [
+            {
+              "class": "gselftest.sh gating",
+              "module": "tools/g27",
+              "testSet": "gating",
+              "tests": 84,
+              "result": {
+                "state": "passed",
+                "passed": 84,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-15T11:37:22Z"
+              },
+              "stage": "S2",
+              "rows": [
+                "tool-folder",
+                "parameter-table",
+                "self-test",
+                "recorded-gaps",
+                "documentation-points"
+              ]
+            },
+            {
+              "class": "gselftest.sh deterministic",
+              "module": "tools/g27",
+              "testSet": "deterministic",
+              "tests": 63,
+              "result": {
+                "state": "passed",
+                "passed": 63,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-15T11:37:22Z"
+              },
+              "stage": "S2",
+              "rows": [
+                "parameter-table",
+                "rewrite-set",
+                "clone-set",
+                "self-test",
+                "recorded-gaps"
+              ]
+            },
+            {
+              "class": "gselftest.sh component",
+              "module": "tools/g27",
+              "testSet": "component",
+              "tests": 92,
+              "result": {
+                "state": "passed",
+                "passed": 92,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-15T11:37:22Z"
+              },
+              "stage": "S2",
+              "rows": [
+                "parameter-table",
+                "rewrite-set",
+                "residual-set",
+                "clone-set",
+                "self-test",
+                "recorded-gaps",
+                "documentation-points"
+              ]
+            },
+            {
+              "class": "gselftest.sh integration",
+              "module": "tools/g27",
+              "testSet": "integration",
+              "tests": 579,
+              "result": {
+                "state": "passed",
+                "passed": 579,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-15T11:37:22Z"
+              },
+              "stage": "S2",
+              "rows": [
+                "rewrite-set",
+                "residual-set",
+                "clone-set",
+                "self-test",
+                "recorded-gaps",
+                "readiness-reads"
+              ]
+            },
+            {
+              "class": "gselftest.sh nonfunctional",
+              "module": "tools/g27",
+              "testSet": "nonfunctional",
+              "tests": 28,
+              "result": {
+                "state": "passed",
+                "passed": 28,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-15T11:37:22Z"
+              },
+              "stage": "S2",
+              "rows": [
+                "residual-set",
+                "self-test",
+                "recorded-gaps"
+              ]
+            },
+            {
+              "class": "gselftest.sh coverage",
+              "module": "tools/g27",
+              "tests": 7,
+              "result": {
+                "state": "passed",
+                "passed": 7,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 4,
+                "at": "2026-11-15T06:52:02Z"
+              }
+            }
+          ],
+          "rowNames": {
+            "tool-folder": "A new, self-contained tool folder, saved from the plan and pinned",
+            "parameter-table": "A repository's policy in data: the parameter rows and the grant's data",
+            "rewrite-set": "The rewrite set: readiness, stages 1 to 8, the reset, and the push with its reply and classes",
+            "residual-set": "The residual set: stage 9 and the feed reads after the last push",
+            "clone-set": "The clone set: the clone checks, the request builder and the fresh clone's proofs",
+            "self-test": "The self-test, run by test kind",
+            "recorded-gaps": "The gaps and follow-ups the GKB2 and GKB unit recorded for this work",
+            "documentation-points": "The thirteen documentation points",
+            "readiness-reads": "The three repositories read once, the parameter rows proven against the data"
+          }
+        }
       },
       "gap": {
         "kind": "missing",
@@ -423,7 +1839,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       ],
       "asBuilt": {
         "state": "pending",
-        "summary": "Not filed yet: it is filed as a sub-issue once this design lands, and it starts first."
+        "summary": "Filed as #39; its run has not started. It starts first."
       },
       "verdict": {
         "kind": "build",
@@ -512,10 +1928,9 @@ window.dashboardLive&&window.dashboardLive("plan",
         "slug": "rewrites",
         "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
         "blockedBy": [
-          {
-            "unit": 1
-          }
-        ]
+          39
+        ],
+        "issue": 40
       },
       "gap": {
         "kind": "risk",
@@ -581,7 +1996,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       ],
       "asBuilt": {
         "state": "pending",
-        "summary": "Not filed yet; it starts once the workspace tools have landed."
+        "summary": "Filed as #40; its run has not started. It starts once #39, the workspace tools, has landed."
       },
       "verdict": {
         "kind": "build",
@@ -675,10 +2090,9 @@ window.dashboardLive&&window.dashboardLive("plan",
         "slug": "residual-measurement",
         "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
         "blockedBy": [
-          {
-            "unit": 2
-          }
-        ]
+          40
+        ],
+        "issue": 41
       },
       "gap": {
         "kind": "missing",
@@ -719,7 +2133,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       ],
       "asBuilt": {
         "state": "pending",
-        "summary": "Not filed yet; it starts once the rewrites have landed."
+        "summary": "Filed as #41; its run has not started. It starts once #40, the rewrites, has landed."
       },
       "verdict": {
         "kind": "build",
@@ -800,10 +2214,9 @@ window.dashboardLive&&window.dashboardLive("plan",
         "slug": "clone-replacement",
         "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
         "blockedBy": [
-          {
-            "unit": 2
-          }
-        ]
+          40
+        ],
+        "issue": 42
       },
       "gap": {
         "kind": "risk",
@@ -884,7 +2297,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       ],
       "asBuilt": {
         "state": "pending",
-        "summary": "Not filed yet; it starts once the rewrites have landed."
+        "summary": "Filed as #42; its run has not started. It starts once #40, the rewrites, has landed."
       },
       "verdict": {
         "kind": "build",
@@ -1075,7 +2488,22 @@ window.dashboardLive&&window.dashboardLive("plan",
     "api": [],
     "conversion": [],
     "source": "consequences.md",
-    "link": "consequences.md#2-blast-radius"
+    "link": "consequences.md#2-blast-radius",
+    "units": [
+      {
+        "unit": "workspace-tools",
+        "basis": "plan",
+        "summary": "No module is published and no version moves; the landing carries documents and generated boards only. Nothing is written to GitHub and no repository or checkout changes: the unit saves a second tool folder, `tools/g27/`, beside the GKB2 and GKB unit's, which stays at its pins, proves it by its self-test and one read of the three repositories, and closes every gap and follow-up that unit recorded for this work. #40, #41 and #42 run its rewrite, residual and clone sets; #28 copies both folders and the stage runner at cleanup.",
+        "release": {
+          "bump": "none",
+          "version": null,
+          "note": "no module is published and no version moves",
+          "nothingPublished": true
+        },
+        "source": "39-workspace-tools/consequences.md §1 to §6",
+        "link": "39-workspace-tools/consequences.md#3-adoption"
+      }
+    ]
   },
   "tests": null,
   "roadmap": {
