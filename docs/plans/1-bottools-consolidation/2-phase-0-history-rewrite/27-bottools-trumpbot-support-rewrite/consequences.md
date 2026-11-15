@@ -157,6 +157,8 @@ replaced (§2.2).
 Each unit's own consequences hold what it leaves behind. This section gains one line per unit, linking to them, as
 the unit lands. #27 is closed when its last unit has landed.
 
+`workspace-tools` (#39) has landed; what it leaves for the units after it is in [its consequences, §4](39-workspace-tools/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
+
 **What the units take from the earlier units of the phase:**
 
 - from [the preparation unit](../21-preparation/consequences.md) (#21): the mirrors, the untouched backups, the

@@ -1133,7 +1133,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "skipped": 0,
                 "at": "2026-11-12T03:17:00Z"
               },
-              "testLevel": "1"
+              "testSet": "gating"
             },
             {
               "class": "S4 negatives",
@@ -1152,7 +1152,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "skipped": 0,
                 "at": "2026-11-12T03:54:41Z"
               },
-              "testLevel": "2"
+              "testSet": "component"
             },
             {
               "class": "S3 python",
@@ -1164,7 +1164,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "secret-scan-workflow"
               ],
               "stage": "S3",
-              "testLevel": "1",
+              "testSet": "gating",
               "result": {
                 "state": "passed",
                 "passed": 4,
@@ -1183,7 +1183,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "gitleaks-config"
               ],
               "stage": "S4",
-              "testLevel": "3",
+              "testSet": "integration",
               "result": {
                 "state": "passed",
                 "passed": 42,
@@ -1201,7 +1201,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "secret-scan-workflow"
               ],
               "stage": "S4",
-              "testLevel": "3",
+              "testSet": "integration",
               "result": {
                 "state": "passed",
                 "passed": 22,
@@ -1219,7 +1219,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "landing-checks"
               ],
               "stage": "S4",
-              "testLevel": "4a",
+              "testSet": "deterministic",
               "result": {
                 "state": "passed",
                 "passed": 4,
@@ -1246,7 +1246,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "skipped": 0,
                 "at": "2026-11-12T03:17:00Z"
               },
-              "testLevel": "1"
+              "testSet": "gating"
             },
             {
               "class": "S4 clone",
@@ -1264,7 +1264,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "skipped": 0,
                 "at": "2026-11-12T03:54:41Z"
               },
-              "testLevel": "3"
+              "testSet": "integration"
             },
             {
               "class": "S4 scans",
@@ -1282,7 +1282,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "skipped": 0,
                 "at": "2026-11-12T03:54:41Z"
               },
-              "testLevel": "3"
+              "testSet": "integration"
             },
             {
               "class": "S4 canary",
@@ -1300,7 +1300,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "skipped": 0,
                 "at": "2026-11-12T03:54:41Z"
               },
-              "testLevel": "3"
+              "testSet": "integration"
             },
             {
               "class": "S4 controls",
@@ -1318,7 +1318,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "skipped": 0,
                 "at": "2026-11-12T03:54:41Z"
               },
-              "testLevel": "3"
+              "testSet": "integration"
             },
             {
               "class": "S3 sources",
@@ -1337,7 +1337,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "gitleaks-config"
               ],
               "stage": "S3",
-              "testLevel": "1"
+              "testSet": "gating"
             },
             {
               "class": "S5 gate",
@@ -1355,7 +1355,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "landing-checks"
               ],
               "stage": "S5",
-              "testLevel": "4c"
+              "testSet": "nonfunctional"
             }
           ],
           "relevant": [
@@ -1378,7 +1378,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "readme-correction",
                 "changelog"
               ],
-              "testLevel": "1"
+              "testSet": "gating"
             },
             {
               "class": "S3 toml",
@@ -1394,7 +1394,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "rows": [
                 "gitleaks-config"
               ],
-              "testLevel": "1"
+              "testSet": "gating"
             },
             {
               "class": "S3 pem",
@@ -1410,7 +1410,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "rows": [
                 "landing-checks"
               ],
-              "testLevel": "1"
+              "testSet": "gating"
             }
           ],
           "rowNames": {
@@ -1591,7 +1591,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "pass": 2,
                 "at": "2026-11-13T00:43:53Z"
               },
-              "testLevel": "2"
+              "testSet": "component"
             },
             {
               "class": "p25_revisions.py selftest",
@@ -1605,7 +1605,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "pass": 2,
                 "at": "2026-11-13T00:43:53Z"
               },
-              "testLevel": "2"
+              "testSet": "component"
             },
             {
               "class": "p25_idcheck.py selftest",
@@ -1619,7 +1619,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "pass": 2,
                 "at": "2026-11-13T00:43:53Z"
               },
-              "testLevel": "2"
+              "testSet": "component"
             },
             {
               "class": "p25_reads.py selftest",
@@ -1633,7 +1633,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "pass": 2,
                 "at": "2026-11-13T00:43:53Z"
               },
-              "testLevel": "2"
+              "testSet": "component"
             },
             {
               "class": "allow_tool.py selftest",
@@ -1647,7 +1647,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "pass": 2,
                 "at": "2026-11-13T00:43:53Z"
               },
-              "testLevel": "2"
+              "testSet": "component"
             },
             {
               "class": "anon.sh stand-in cases",
@@ -1661,7 +1661,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "pass": 2,
                 "at": "2026-11-13T00:43:53Z"
               },
-              "testLevel": "2"
+              "testSet": "component"
             }
           ]
         },
@@ -1795,7 +1795,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             {
               "class": "s0-ready.sh",
               "module": "tools/g26",
-              "testLevel": "1",
+              "testSet": "gating",
               "path": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/plan.md",
               "tests": 128,
               "stage": "S0",
@@ -1810,7 +1810,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             {
               "class": "gselftest.sh",
               "module": "tools/g26",
-              "testLevel": "2",
+              "testSet": "component",
               "path": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/plan.md",
               "tests": 132,
               "stage": "S0",
@@ -1826,7 +1826,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             {
               "class": "g26_req.py selftest",
               "module": "tools/g26",
-              "testLevel": "2",
+              "testSet": "component",
               "path": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/plan.md",
               "tests": 59,
               "stage": "S0",
@@ -2023,10 +2023,10 @@ window.dashboardLive&&window.dashboardLive("plan",
         "board": "27-bottools-trumpbot-support-rewrite/dashboard.html",
         "folder": "27-bottools-trumpbot-support-rewrite/",
         "live": {
-          "step": "document",
-          "since": "2026-11-13T19:43:46Z",
-          "updated": "2026-11-13T20:26:39Z",
-          "detail": "Document: 3 of 3 tasks done; every task done.",
+          "step": "implementation",
+          "since": "2026-11-13T21:05:13Z",
+          "updated": "2026-11-13T21:05:13Z",
+          "detail": "0 of 4 units landed; #39 in progress; #40 up next.",
           "steps": [
             "sizing",
             "interview",
@@ -2043,12 +2043,12 @@ window.dashboardLive&&window.dashboardLive("plan",
           "resume": null,
           "qa": [],
           "qaMax": 3,
-          "status": "planned",
+          "status": "building",
           "branch": "chore/issue-27-rewrite-bottools-and-private-repos",
           "event": {
-            "name": "document",
-            "at": "2026-11-13T20:26:39Z",
-            "note": "3 of 3 tasks done"
+            "name": "sub-issues-filed",
+            "at": "2026-11-13T20:42:32Z",
+            "note": "final: filing done"
           },
           "interview": [
             {
@@ -2192,8 +2192,94 @@ window.dashboardLive&&window.dashboardLive("plan",
                   }
                 ]
               }
+            ],
+            "document": [
+              {
+                "since": "2026-11-13T19:43:46Z",
+                "ended": "2026-11-13T20:31:31Z",
+                "endedBy": "landing",
+                "to": "landing",
+                "event": {
+                  "name": "document",
+                  "at": "2026-11-13T20:26:39Z",
+                  "note": "3 of 3 tasks done"
+                },
+                "detail": "Document: 3 of 3 tasks done; every task done.",
+                "document": {
+                  "tasks": [
+                    {
+                      "id": "reconcile-plan",
+                      "name": "Design and consequences confirmed final",
+                      "state": "done",
+                      "started": "2026-11-13T19:54:43Z",
+                      "finished": "2026-11-13T19:58:42Z",
+                      "report": "The four planning documents are committed at d5192fc; main had not moved, so there was nothing to merge, and no version moved. The design and its consequences are final: the design leaves no consideration open, and what the units leave behind is recorded as known gaps and follow-ups in the consequences. Next: the state boards, with the four planned units drawn dashed."
+                    },
+                    {
+                      "id": "state-boards",
+                      "name": "State boards",
+                      "state": "done",
+                      "started": "2026-11-13T19:58:42Z",
+                      "finished": "2026-11-13T20:23:36Z"
+                    },
+                    {
+                      "id": "document-landing",
+                      "name": "Document commit",
+                      "state": "done",
+                      "started": "2026-11-13T20:23:36Z",
+                      "finished": "2026-11-13T20:26:39Z"
+                    }
+                  ]
+                }
+              }
+            ],
+            "landing": [
+              {
+                "since": "2026-11-13T20:31:31Z",
+                "ended": "2026-11-13T20:32:37Z",
+                "endedBy": "merge",
+                "to": "merge",
+                "event": {
+                  "name": "landing",
+                  "at": "2026-11-13T20:31:31Z",
+                  "note": "land accepted"
+                },
+                "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+              }
+            ],
+            "merge": [
+              {
+                "since": "2026-11-13T20:32:37Z",
+                "ended": "2026-11-13T20:40:13Z",
+                "endedBy": "sub-issues-filed",
+                "to": "sub-issues",
+                "event": {
+                  "name": "landed",
+                  "at": "2026-11-13T20:33:14Z"
+                },
+                "detail": "The plan landed in PR #38; its units are filed next."
+              }
+            ],
+            "sub-issues": [
+              {
+                "since": "2026-11-13T20:40:13Z",
+                "ended": "2026-11-13T21:05:13Z",
+                "endedBy": "sized",
+                "to": "implementation",
+                "event": {
+                  "name": "sub-issues-filed",
+                  "at": "2026-11-13T20:42:32Z",
+                  "note": "final: filing done"
+                },
+                "detail": "4 of 4 units filed as sub-issues; each unit's board appears when its run starts.",
+                "units": {
+                  "done": 4,
+                  "total": 4
+                }
+              }
             ]
           },
+          "deviations": 0,
           "recon": {
             "interview": {
               "reconstructed": true,
@@ -2324,7 +2410,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "asBuilt": {
         "state": "pending",
-        "summary": "Filed as #27; its run has not started. It starts after unit 6.",
+        "summary": "Filed as #27; its plan landed through PR #38 as `9f22646`, and #27 stays open while its four units are built. They are filed as #39 to #42 and none has started; #39 starts first.",
         "changes": [
           {
             "what": "The TrumpBot clone is replaced by a unit of its own, the clone replacement, after the rewrites: of the 59 files git does not track in it, only the four under `.idea/` are carried and restored; the graph's 55 files, its exclude entry, its two hooks and the two extra configuration keys are not. The old clone is renamed aside on its own volume and deleted once the fresh clone has been read back, and a code-only graph build from the rewritten tree follows the deletion.",
@@ -3031,6 +3117,9 @@ window.dashboardLive&&window.dashboardLive("plan",
   "links": {
     "workBoard": "../../index.html",
     "repoBoard": "../../../dashboards/index.html"
+  },
+  "issueBoards": {
+    "39": "27-bottools-trumpbot-support-rewrite/39-workspace-tools/dashboard.html"
   }
 }
 );

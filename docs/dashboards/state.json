@@ -1,7 +1,7 @@
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "chore/issue-27-rewrite-bottools-and-private-repos", "sha": "d5192fc", "date": "2026-11-13T19:57:28Z"},
-  "lastAmended": {"issue": 27, "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone", "sha": "d5192fc"},
-  "written": {"sha": "d5192fc"}
+  "asIs": {"ref": "docs/issue-39-extend-workspace-tools", "sha": "8b06da7", "date": "2026-11-14T03:11:13Z"},
+  "lastAmended": {"issue": 39, "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support", "sha": "8b06da7"},
+  "written": {"sha": "8b06da7"}
 }
