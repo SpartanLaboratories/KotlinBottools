@@ -2025,8 +2025,8 @@ window.dashboardLive&&window.dashboardLive("plan",
         "live": {
           "step": "implementation",
           "since": "2026-11-13T21:05:13Z",
-          "updated": "2026-11-13T21:05:13Z",
-          "detail": "0 of 4 units landed; #39 in progress; #40 up next.",
+          "updated": "2026-11-15T12:10:29Z",
+          "detail": "1 of 4 units landed; #40 in progress; #41 up next.",
           "steps": [
             "sizing",
             "interview",
@@ -3119,7 +3119,8 @@ window.dashboardLive&&window.dashboardLive("plan",
     "repoBoard": "../../../dashboards/index.html"
   },
   "issueBoards": {
-    "39": "27-bottools-trumpbot-support-rewrite/39-workspace-tools/dashboard.html"
+    "39": "27-bottools-trumpbot-support-rewrite/39-workspace-tools/dashboard.html",
+    "40": "27-bottools-trumpbot-support-rewrite/40-rewrites/dashboard.html"
   }
 }
 );

@@ -3,11 +3,11 @@ window.dashboardLive&&window.dashboardLive("board",
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-15T11:54:50Z",
+  "generated": "2026-11-15T20:36:58Z",
   "asOf": "2026-11-15",
   "tree": {
-    "ref": "docs/issue-39-extend-workspace-tools",
-    "sha": "8b06da7"
+    "ref": "docs/issue-40-rewrite-bottools-trumpbot-support",
+    "sha": "ffb272c"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -782,23 +782,23 @@ window.dashboardLive&&window.dashboardLive("board",
       "branch": null,
       "system": null,
       "step": "implementation",
-      "detail": "0 of 4 units landed; #39 in progress; #40 up next.",
+      "detail": "1 of 4 units landed; #40 in progress; #41 up next.",
       "since": "2026-11-13T21:05:13Z",
-      "updated": "2026-11-13T21:05:13Z",
+      "updated": "2026-11-15T12:10:29Z",
       "qa": [],
       "qaMax": 3,
       "status": "building",
       "fixOf": null,
       "landed": null,
       "reconciliation": {
-        "state": "planned",
-        "landed": 0,
+        "state": "partial",
+        "landed": 1,
         "total": 4
       },
       "active": false,
       "chain": {
         "total": 4,
-        "landed": 0,
+        "landed": 1,
         "dropped": 0,
         "deferred": 0,
         "left": 0,
@@ -806,17 +806,17 @@ window.dashboardLive&&window.dashboardLive("board",
         "done": false,
         "current": [
           {
-            "issue": 39,
-            "slug": "workspace-tools",
+            "issue": 40,
+            "slug": "rewrites",
             "step": "document"
           }
         ],
         "next": {
-          "issue": 40,
-          "slug": "rewrites",
+          "issue": 41,
+          "slug": "residual-measurement",
           "blockedBy": [
             {
-              "issue": 39
+              "issue": 40
             }
           ]
         },
@@ -825,13 +825,13 @@ window.dashboardLive&&window.dashboardLive("board",
             "n": 1,
             "issue": 39,
             "name": "Extend the workspace tools",
-            "state": "current"
+            "state": "done"
           },
           {
             "n": 2,
             "issue": 40,
             "name": "Rewrite BotTools, TrumpBot and Support",
-            "state": "todo"
+            "state": "current"
           },
           {
             "n": 3,
@@ -899,7 +899,8 @@ window.dashboardLive&&window.dashboardLive("board",
     {
       "issue": 39,
       "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
-      "state": "OPEN",
+      "state": "CLOSED",
+      "stateReason": "COMPLETED",
       "created": "2026-11-13",
       "parent": 27,
       "waitsOn": [],
@@ -907,17 +908,17 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 40,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         }
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools/",
-      "branch": "docs/issue-39-extend-workspace-tools",
+      "branch": null,
       "system": "toolchain",
-      "step": "document",
-      "detail": "Document: 4 of 6 tasks done; State boards current.",
-      "since": "2026-11-15T10:12:32Z",
-      "updated": "2026-11-15T11:45:28Z",
+      "step": "landed",
+      "detail": "Landed in PR #44.",
+      "since": "2026-11-15T12:03:34Z",
+      "updated": "2026-11-15T12:03:34Z",
       "qa": [
         {
           "pass": 1,
@@ -994,15 +995,20 @@ window.dashboardLive&&window.dashboardLive("board",
         }
       ],
       "qaMax": 3,
-      "status": "building",
+      "status": "landed",
       "fixOf": null,
-      "landed": null,
+      "landed": {
+        "pr": 44,
+        "merge": "ffb272c37c6c0dc50f58f0fd295142d15473a643",
+        "version": null,
+        "date": "2026-11-15"
+      },
       "reconciliation": {
-        "state": "planned",
+        "state": "as-built",
         "landed": null,
         "total": null
       },
-      "active": true,
+      "active": false,
       "systemName": "Toolchain",
       "group": "27",
       "order": 1
@@ -1016,8 +1022,10 @@ window.dashboardLive&&window.dashboardLive("board",
       "waitsOn": [
         {
           "issue": 39,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-15T12:03:35Z",
+          "build": "clear",
           "locality": "local-repository"
         }
       ],
@@ -1033,24 +1041,46 @@ window.dashboardLive&&window.dashboardLive("board",
           "hold": "blocks"
         }
       ],
-      "board": null,
-      "folder": null,
-      "branch": null,
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/40-rewrites/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/40-rewrites/",
+      "branch": "docs/issue-40-rewrite-bottools-trumpbot-support",
       "system": "rewrite-pipeline",
-      "step": null,
-      "detail": "Filed as #40; its run has not started. It starts once #39, the workspace tools, has landed.",
-      "qa": [],
-      "qaMax": null,
-      "status": "next",
-      "landed": null,
-      "reconciliation": null,
-      "active": false,
-      "next": true,
-      "blockedBy": [
+      "step": "document",
+      "detail": "Document: 2 of 4 tasks done; State boards current.",
+      "since": "2026-11-15T20:14:20Z",
+      "updated": "2026-11-15T20:32:07Z",
+      "qa": [
         {
-          "issue": 39
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-15",
+          "at": "2026-11-15T20:13:40Z",
+          "findings": {
+            "documentation": 0,
+            "test": 7,
+            "code": 0
+          },
+          "severity": {
+            "minor": 7,
+            "other": 0
+          },
+          "route": "on-the-spot",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/40-rewrites/ca070e8d/tests/index.html",
+          "note": "The run was confirmed independently from its stage markers, its log, its checksum lists and GitHub: 794 recorded checks, 789 passed and none failed, the other 5 not yet due (the landing's four document checks and the owner's reading of the as-built record); three histories rewritten, each pushed once and proven clean, every count at its expectation. 7 findings (7 minor; 7 test), none about what was pushed. Three typed checks (the earlier records, the earlier tool folder at its pins, the output rule over the unit's outputs) and the state read after the request service refused BotTools' first call leave no line in the run log, so the as-built record states their results; the plan's test table listed the grant read under two test sets and the input and record checks under none; the pin list's own checksum is to be stated at the start and at the close; and restoring the deny rule lifted for the push, with the allow lines removed, needs a follow-up. The procedure showed no defect: a first call refused is a case the plan provides for. They touch the outcome, the verification and the records, and in readiness the earlier records' check, the grant read and the pin list. The fixes are made in the documents: the plan's test table, the as-built record and the consequences.",
+          "inPlace": "fixed"
         }
       ],
+      "qaMax": 3,
+      "status": "building",
+      "fixOf": null,
+      "landed": null,
+      "reconciliation": {
+        "state": "planned",
+        "landed": null,
+        "total": null
+      },
+      "active": true,
       "systemName": "Rewrite pipeline",
       "group": "27",
       "order": 2
@@ -1078,10 +1108,16 @@ window.dashboardLive&&window.dashboardLive("board",
       "detail": "Filed as #41; its run has not started. It starts once #40, the rewrites, has landed.",
       "qa": [],
       "qaMax": null,
-      "status": "not-started",
+      "status": "next",
       "landed": null,
       "reconciliation": null,
       "active": false,
+      "next": true,
+      "blockedBy": [
+        {
+          "issue": 40
+        }
+      ],
       "systemName": "Residual-exposure measurement",
       "group": "27",
       "order": 3
@@ -1280,7 +1316,8 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 39,
           "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
-          "state": "OPEN"
+          "state": "CLOSED",
+          "stateReason": "COMPLETED"
         },
         {
           "issue": 40,
