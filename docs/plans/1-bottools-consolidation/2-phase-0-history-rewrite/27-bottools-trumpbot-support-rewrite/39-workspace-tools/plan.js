@@ -10,7 +10,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   "title": "Extend the workspace tools",
   "issueTitle": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
   "function": "The workspace tools were written for GKB2 and GKB, two public repositories with one branch each, and cannot yet run BotTools, which is public with two branches and a webhook, or TrumpBot and Support, which are private: they push one branch, assume a public repository with no webhook and a positive control with probe arguments, run stage 9 right after each push, and two of them name GKB2 and GKB outside the parameter table. This unit builds a new, self-contained tool folder from the earlier one, which stays as it ran: four tool sets on one library, for the rewrites, the residual measurement and the clone replacement, and a self-test run by test kind; the three repositories' parameter rows, proven against what the repositories report; and every gap and follow-up the GKB2 and GKB unit recorded for this work, closed before the first push. Unit 1 of #27, with no version moved; it writes nothing to GitHub and changes no repository and no checkout.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-13T21:05:13Z",
   "parent": {
     "issue": 27,
@@ -23,7 +23,13 @@ window.dashboardLive&&window.dashboardLive("plan",
     "sha": "9f22646",
     "date": "2026-11-13"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "ffb272c37c6c0dc50f58f0fd295142d15473a643",
+    "merge": "ffb272c37c6c0dc50f58f0fd295142d15473a643",
+    "pr": 44,
+    "date": "2026-11-15",
+    "at": "2026-11-15T12:03:34Z"
+  },
   "systems": [
     {
       "slug": "toolchain",
@@ -36,10 +42,10 @@ window.dashboardLive&&window.dashboardLive("plan",
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-15T10:12:32Z",
-    "updated": "2026-11-15T12:00:11Z",
-    "detail": "Document: 6 of 6 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-15T12:03:34Z",
+    "updated": "2026-11-15T12:03:34Z",
+    "detail": "Landed in PR #44.",
     "steps": [
       "sizing",
       "interview",
@@ -54,9 +60,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -276,9 +280,8 @@ window.dashboardLive&&window.dashboardLive("plan",
     },
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-15T12:00:11Z",
-      "note": "6 of 6 tasks done"
+      "name": "landed",
+      "at": "2026-11-15T12:03:34Z"
     },
     "history": {
       "sizing": [
@@ -998,6 +1001,95 @@ window.dashboardLive&&window.dashboardLive("plan",
             ]
           },
           "outage": "the session ended and a new session took the run up"
+        },
+        {
+          "since": "2026-11-15T10:12:32Z",
+          "ended": "2026-11-15T12:02:27Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-15T12:00:11Z",
+            "note": "6 of 6 tasks done"
+          },
+          "detail": "Document: 6 of 6 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "documentation-review",
+                "name": "Review the tools' inline documentation",
+                "state": "done",
+                "started": "2026-11-15T06:54:35Z",
+                "finished": "2026-11-15T10:17:44Z",
+                "report": "A fresh documentation check ran over all 25 Appendix A tool files. Two findings, both already known from an earlier review pass: a stale header-comment claim in one script about check ordering, and a stale parenthetical in another script's function comment about a copy's source file. No other findings. Whether to fix these on the spot (which moves a pin and needs a rebuild and re-run) or record them as known gaps is being put to the user before the reconcile-documentation task closes."
+              },
+              {
+                "id": "reconcile-documentation",
+                "name": "Reconcile documentation",
+                "state": "done",
+                "started": "2026-11-15T10:17:44Z",
+                "finished": "2026-11-15T11:37:22Z",
+                "report": "The tools folder is saved again from the plan at pin list 60f5760b…31bf and every step run again on the real workspace, with no stop and nothing differing from the plan's expected lines. All 24 pinned files are at their pins. The gating tests 84, the deterministic tests 63, the component tests 92, the integration tests 579, the nonfunctional tests 28 and the coverage check 7 (393 expectations and stops reached), no failure, between 11:09Z and 11:35Z. The earlier tools folder is at its pins before and after, and the three earlier record files are unchanged. The as-built record's statements that waited on this run are being filled in."
+              },
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "started": "2026-11-15T10:44:59Z",
+                "finished": "2026-11-15T11:44:39Z",
+                "report": "The as-built record describes the build on the final pins (pin list 60f5760b…31bf) with two deviations: the five reworded header comments with the folder saved and run again, and the gating tests run in the background. The consequences are reconciled: the outcome of each assumption, the known gaps (three printed labels' wording, the two self-test limits), and the earlier unit's consequences carry 31 dated notes, the tracking unit's its link line. The plan's text now names the runner's end line after a step's STAGE line and the empty self-test folder a run leaves. The README does not change and the CHANGELOG takes no entry: the landing carries documents and boards only and no version moves."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-15T11:44:39Z",
+                "report": "The as-built record describes the build on the final pins (pin list 60f5760b…31bf) with two deviations: the five reworded header comments with the folder saved and run again, and the gating tests run in the background. The consequences are reconciled: the outcome of each assumption, the known gaps (three printed labels' wording, the two self-test limits), and the earlier unit's consequences carry 31 dated notes, the tracking unit's its link line. The plan's text now names the runner's end line after a step's STAGE line and the empty self-test folder a run leaves. The README does not change and the CHANGELOG takes no entry: the landing carries documents and boards only and no version moves."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-15T11:44:39Z",
+                "finished": "2026-11-15T11:55:55Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-15T11:55:55Z",
+                "finished": "2026-11-15T12:00:11Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-15T12:02:27Z",
+          "ended": "2026-11-15T12:03:29Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-15T12:02:27Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-15T12:03:29Z",
+          "ended": "2026-11-15T12:03:34Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "merge",
+            "at": "2026-11-15T12:03:29Z",
+            "note": "merging PR #44"
+          },
+          "detail": "Merge: merging it in PR #44."
         }
       ]
     },
@@ -1192,6 +1284,13 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-14",
       "ref": "plan.md",
       "note": "five stages: a readiness stage that writes nothing but the unit's data file, the folder saved from the plan's 25 files and their pins, the self-test by test kind with its coverage check, the three repositories read once, and a close-out that shows both folders at their pins and the earlier records and the refs unchanged; nothing written to GitHub, to any repository or to any checkout; nothing needed research"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-15",
+      "ref": "PR #44",
+      "note": "merged as ffb272c"
     }
   ],
   "trail": [
@@ -1365,6 +1464,23 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-15",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Merge: merging it in PR #44",
+      "ref": "PR #44"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Landed in PR #44, merge ffb272c",
+      "ref": "PR #44"
     }
   ],
   "rows": [
@@ -2916,8 +3032,8 @@ window.dashboardLive&&window.dashboardLive("plan",
     }
   ],
   "impact": {
-    "basis": "plan",
-    "summary": "No module is published and no version moves: the landing carries documents and generated boards only. Nothing is written to GitHub and no repository or checkout changes; on this machine a second tool folder, `tools/g27/`, stands beside the earlier one, which stays at its pins, and the rest of #27 runs its sets from it (`consequences.md` §1 to §4; the known gaps in §5: the stage runner's header, two behaviours no case shows, and three labels that word the archive check as the row's; the follow-ups in §6).",
+    "basis": "as-built",
+    "summary": "As built, no module is published and no version moves: the landing carries documents and generated boards only. Nothing was written to GitHub, where the three repositories were only read; on this machine a second tool folder, `tools/g27/`, stands beside the earlier one, which equals its pins before and after, and the rest of #27 runs its sets from it. The read of BotTools answers the parent design’s gap on the webhook deliveries list (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
     "none": null,
     "release": {
       "bump": "none",
@@ -2931,7 +3047,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "repository",
         "system": null,
         "effect": "none",
-        "summary": "Nothing is written. Each is read once, read only, and again at the close-out to show its refs and settings as they were; the reads spend calls of the authenticated rate limit only.",
+        "summary": "Nothing is written. Each is read, read only, and read again at the close-out, which found its refs and settings as they were; the reads spend calls of the authenticated rate limit only.",
         "link": "consequences.md#21-github"
       },
       {
@@ -2947,7 +3063,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "operator",
         "system": "toolchain",
         "effect": "additive",
-        "summary": "The run log gains the unit's lines, whose start lines show plain-word arguments only, and the unit's one record folder holds the checksums of the preparation unit's earlier records as the readiness reads found them, one file per repository; no earlier record is written.",
+        "summary": "The run log gains the unit’s lines, whose start lines show plain-word arguments only. The unit’s one record folder, `run/g27/`, holds the checksums of the preparation unit’s earlier records as the readiness reads first found them, one file per repository, and the three empty folders for a unit’s requests, replies and step markers; the landing’s privacy-gate run writes its argument file and overwrites the gate’s last-run files. No earlier record is written.",
         "link": "consequences.md#22-this-machine"
       },
       {
@@ -2999,7 +3115,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     ],
     "api": [],
     "conversion": [],
-    "source": "consequences.md §1 to §6; plan.md Interfaces with sibling units",
+    "source": "consequences.md §1 to §6, reconciled with the build; final-implementation.md §1 and §4",
     "link": "consequences.md#2-blast-radius"
   },
   "tests": {
