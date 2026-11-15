@@ -170,6 +170,9 @@ the three findings files; and read-only reads of GitHub, the workspace and the c
   after such a refusal, and the call runs again only after the service has restarted; the service then runs the same
   request again itself, under the same id with the next attempt number. The GKB2 push met this once
   ([that unit's as-built record, deviation 4](../26-gkb2-gkb-rewrite/final-implementation.md#4-deviations-from-the-plan)).
+
+  > **Dated note, 2026-11-15.** The rewrites (#40) met it once, at BotTools' first push call. The allow line, placed after the refusal in the global settings file the running request service reads, took effect without a restart: the service ran the same request again itself, under the same id with the next attempt number. The allow lines of the two later pushes, placed with it and so before their calls, kept both from being refused ([the rewrites' as-built record, deviations 1 and 2](40-rewrites/final-implementation.md#4-deviations-from-the-plan)). A unit can therefore have its allow lines placed up front, one per procedure, before its first call, and needs a restart only if a call is refused with its line in place. The rerun of §8.3 needs no restart either, and the rows of §12 and §16 read accordingly.
+
 - **A request's procedure runs as one shell,** its entries unchanged and in order, so a guard that stops ends the
   procedure before its write. The actions this work uses are `push-mirror` and `replace-clone`.
 - **A reply** arrives as one document that holds the procedure's printed lines as list entries on a single line; the
@@ -716,6 +719,9 @@ asked once, up front, at the request service's console, before the unit runs.
 - **A refused call.** When the request service's own check refuses a call a section covers, nothing has run. The unit
   reads the state, the allow line is placed, the service restarts and runs the same request again itself. The unit
   sends nothing a second time for it, and classes the outcome from the reply of the rerun and its own read.
+
+  > **Dated note, 2026-11-15.** At the rewrites the rerun came without a restart, once the allow line was in place (§2.4, its dated note). For the clone replacement, "the allow line and the restart that a refused call needs" in the table above therefore reads: one allow line per procedure, which may be placed before the procedure's first call, and a restart only if a call is refused with its line in place.
+
 - **The landings.** Each unit lands through its own pull request on KotlinBottools, which closes that unit's
   sub-issue only. No pull request uses a closing keyword for #27, #2 or #1. #27 is closed when its last unit has
   landed. A landing is not made under a unit's job.
