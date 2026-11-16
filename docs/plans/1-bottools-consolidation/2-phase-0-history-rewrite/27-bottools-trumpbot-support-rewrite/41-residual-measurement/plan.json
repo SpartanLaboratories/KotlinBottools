@@ -1,0 +1,2408 @@
+{
+  "schema": "plan-board/1",
+  "repo": "SpartanLaboratories/KotlinBottools",
+  "issue": 41,
+  "slug": "41-residual-measurement",
+  "folder": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement",
+  "kind": "issue",
+  "title": "Measure what GitHub still serves",
+  "issueTitle": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+  "function": "GitHub keeps serving every pre-rewrite object by id after the pushes of BotTools, TrumpBot and Support, and nothing has measured yet what it still serves of the three old histories. This unit measures it in counts, once all three repositories hold their stage-8 marker and every branch reads at its rewritten tip: authenticated probes of every old branch tip, every first-changed commit, their trees and a sample of purged blobs in all three, with controls around every batch; anonymous probes and feed reads of BotTools alone, the other two being private; the activity feed and the events read twice, at least 6 minutes apart, a read outside the events' window recorded as not valid, never as absent; and each repository's report row completed, in counts only, under a checksum list for #28's report and cleanup. Unit 3 of #27, with no version moved; it writes nothing to GitHub, removes nothing GitHub still serves, changes no checkout, and its landing carries documents only.",
+  "status": "building",
+  "sized": "2026-11-15T20:55:34Z",
+  "parent": {
+    "issue": 27,
+    "board": "../dashboard.html"
+  },
+  "fixOf": null,
+  "branch": "docs/issue-41-measure-bottools-trumpbot-support-residue",
+  "baseline": {
+    "ref": "main",
+    "sha": "9170254e888696dc0683701383c02bd455ecfdc2",
+    "date": "2026-11-15"
+  },
+  "asBuilt": null,
+  "systems": [
+    {
+      "slug": "residual-exposure",
+      "name": "Residual-exposure measurement",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    }
+  ],
+  "wip": {
+    "step": "document",
+    "since": "2026-11-16T02:50:34Z",
+    "updated": "2026-11-16T03:20:43Z",
+    "detail": "Document: 4 of 4 tasks done; every task done.",
+    "steps": [
+      "sizing",
+      "interview",
+      "research",
+      "plan",
+      "branch",
+      "implementation",
+      "qa",
+      "remediation",
+      "document",
+      "landing",
+      "merge",
+      "landed"
+    ],
+    "current": [
+      "built"
+    ],
+    "questions": [],
+    "research": null,
+    "interview": [],
+    "plan": null,
+    "stages": [
+      {
+        "id": "S0",
+        "name": "Readiness",
+        "state": "done",
+        "rows": [
+          "readiness"
+        ],
+        "brief": "The unit's data file is written, the tools are at their pins, the quick gate passes, the rewrites' records equal their checksum lists, and the three repositories hold their stage-8 markers and their rewritten tips.",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "S0.unit",
+            "name": "The unit's data file",
+            "state": "done",
+            "finished": "2026-11-15T21:43:59Z"
+          },
+          {
+            "id": "S0.tools",
+            "name": "The tools at their pins",
+            "state": "done",
+            "finished": "2026-11-15T21:44:14Z"
+          },
+          {
+            "id": "S0.quick",
+            "name": "The quick gate",
+            "state": "done",
+            "finished": "2026-11-15T21:44:46Z"
+          },
+          {
+            "id": "S0.pins",
+            "name": "The tool versions",
+            "state": "done",
+            "finished": "2026-11-15T21:44:56Z"
+          },
+          {
+            "id": "S0.records",
+            "name": "The rewrites' records against their checksum lists",
+            "state": "done",
+            "finished": "2026-11-15T21:45:06Z"
+          },
+          {
+            "id": "S0.markers",
+            "name": "The stage-8 markers",
+            "state": "done",
+            "finished": "2026-11-15T21:45:14Z"
+          },
+          {
+            "id": "S0.reads",
+            "name": "The three repositories read",
+            "state": "done",
+            "finished": "2026-11-15T21:45:27Z"
+          }
+        ],
+        "ref": "plan.md#s0--readiness",
+        "started": "2026-11-15T21:42:41Z",
+        "finished": "2026-11-15T21:45:37Z",
+        "report": "Readiness passed, every step as the plan expects. The unit's data file is written and the run log held 15504 lines before the unit's steps. The tools are at their pins (96 ok lines). The quick gate passed 63 deterministic checks. The tool versions are as recorded (7 ok lines). The rewrites' records equal their checksum lists (49, 28, 29 and 28 files). The three repositories hold their stage-8 markers, every branch is at its rewritten tip and the pull-request refs are as recorded (12 ok lines). No stop, no wait, no deviation. Next: the events gate over the three repositories; a repository's stage starts when its gate opens.",
+        "result": "passed"
+      },
+      {
+        "id": "S1",
+        "name": "BotTools",
+        "state": "done",
+        "rows": [
+          "readiness",
+          "authenticated-probes",
+          "anonymous-probes",
+          "feed-reads",
+          "report-rows",
+          "residual-stays",
+          "unprovable"
+        ],
+        "brief": "Once BotTools' events list its push or 6 hours have passed, what GitHub still serves of its old history is probed and tallied, authenticated and anonymously, its feeds are read twice, and its report row is completed and checksummed.",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "S1.gate",
+            "name": "The events gate",
+            "state": "done",
+            "finished": "2026-11-16T01:47:00Z"
+          },
+          {
+            "id": "S1.budget",
+            "name": "The anonymous budget",
+            "state": "done",
+            "finished": "2026-11-16T01:47:20Z"
+          },
+          {
+            "id": "S1.9",
+            "name": "Step 9: the probes, the first feed reads and the report row",
+            "state": "done",
+            "finished": "2026-11-16T01:51:42Z"
+          },
+          {
+            "id": "S1.feeds",
+            "name": "The second feed reads",
+            "state": "done",
+            "finished": "2026-11-16T01:58:02Z"
+          },
+          {
+            "id": "S1.reads",
+            "name": "The repository read again",
+            "state": "done",
+            "finished": "2026-11-16T01:58:33Z"
+          },
+          {
+            "id": "S1.record",
+            "name": "The report row completed and checksummed",
+            "state": "done",
+            "finished": "2026-11-16T01:58:53Z"
+          }
+        ],
+        "ref": "plan.md#s1--bottools",
+        "started": "2026-11-15T21:45:37Z",
+        "finished": "2026-11-16T01:59:01Z",
+        "report": "BotTools is measured and recorded. Its gate opened on the 6 hours at the 27th check (01:47:00Z on 2026-11-16), after 26 checks that printed a wait; the events then listed the push of 1 of its 2 pushed branches. The anonymous budget read 60 calls left. Step 9 passed with 15 ok lines and 2 RECORD lines, no void batch, no stop and no wait: every probe answered served (authenticated: commits 3, trees 3, blobs 39, want 2; anonymous: web 3, want commits 3, trees 3, blobs 39, REST commits 3, trees 3, blobs 3), and answers other than the expected ones are 0. The first feed reads are all valid, anonymous 3 of 3: the activity feed and the web page list 2 old ids and 2 current ids, the events 1 and 1 where the plan's expected value is 2 and 2, because the events list one of the two pushes; the plan records the memberships as measured. The second reads, made 360 seconds or more after the first, read the same counts, anonymous 3 of 3 valid. The repository read again as recorded (6 ok lines). The report row is complete at 31 lines, with the pull-request residual line and the webhook deliveries; 11 record files and 5 run records are checksummed. No deviation. Next: TrumpBot, whose gate opened at the same check."
+      },
+      {
+        "id": "S2",
+        "name": "TrumpBot",
+        "state": "done",
+        "rows": [
+          "authenticated-probes",
+          "feed-reads",
+          "report-rows",
+          "unprovable"
+        ],
+        "brief": "The same for TrumpBot once its gate opens, authenticated only.",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "S2.gate",
+            "name": "The events gate",
+            "state": "done",
+            "finished": "2026-11-16T01:59:29Z"
+          },
+          {
+            "id": "S2.9",
+            "name": "Step 9: the probes, the first feed reads and the report row",
+            "state": "done",
+            "finished": "2026-11-16T02:01:27Z"
+          },
+          {
+            "id": "S2.feeds",
+            "name": "The second feed reads",
+            "state": "done",
+            "finished": "2026-11-16T02:07:33Z"
+          },
+          {
+            "id": "S2.reads",
+            "name": "The repository read again",
+            "state": "done",
+            "finished": "2026-11-16T02:07:59Z"
+          },
+          {
+            "id": "S2.record",
+            "name": "The report row completed and checksummed",
+            "state": "done",
+            "finished": "2026-11-16T02:08:16Z"
+          }
+        ],
+        "ref": "plan.md#s2--trumpbot",
+        "started": "2026-11-16T01:59:01Z",
+        "finished": "2026-11-16T02:08:17Z",
+        "report": "TrumpBot is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:46:29Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 2 pushed branches. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 3, trees 3, blobs 50 of the 199 in the manifest, want 2), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 2 old ids and 2 current ids. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 2 and 2: the events listed no push of the rewrite once the 6 hours had passed, the case the plan's assumption on the events' lag provides for. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines; 11 record files and 9 run records are checksummed. No deviation. Next: Support, whose gate is open on the 6 hours."
+      },
+      {
+        "id": "S3",
+        "name": "Support",
+        "state": "done",
+        "rows": [
+          "authenticated-probes",
+          "feed-reads",
+          "report-rows",
+          "unprovable"
+        ],
+        "brief": "The same for Support once its gate opens, authenticated only.",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "S3.gate",
+            "name": "The events gate",
+            "state": "done",
+            "finished": "2026-11-16T02:08:36Z"
+          },
+          {
+            "id": "S3.9",
+            "name": "Step 9: the probes, the first feed reads and the report row",
+            "state": "done",
+            "finished": "2026-11-16T02:10:38Z"
+          },
+          {
+            "id": "S3.feeds",
+            "name": "The second feed reads",
+            "state": "done",
+            "finished": "2026-11-16T02:16:42Z"
+          },
+          {
+            "id": "S3.reads",
+            "name": "The repository read again",
+            "state": "done",
+            "finished": "2026-11-16T02:17:09Z"
+          },
+          {
+            "id": "S3.record",
+            "name": "The report row completed and checksummed",
+            "state": "done",
+            "finished": "2026-11-16T02:17:27Z"
+          }
+        ],
+        "ref": "plan.md#s3--support",
+        "started": "2026-11-16T02:08:17Z",
+        "finished": "2026-11-16T02:17:46Z",
+        "report": "Support is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:51:56Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 1 pushed branch. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 2, trees 2, blobs 60 of the 7259 in the manifest, want 1), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 1 old id and 1 current id. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 1 and 1: the events listed no push of the rewrite once the 6 hours had passed. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines and carries its line on what the probes cannot prove; 11 record files and 13 run records are checksummed. No deviation. All three repositories are recorded. Next: the close-out."
+      },
+      {
+        "id": "S4",
+        "name": "Close-out",
+        "state": "done",
+        "rows": [
+          "report-rows"
+        ],
+        "brief": "The rewrites' records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "S4.records",
+            "name": "The checksum lists",
+            "state": "done",
+            "finished": "2026-11-16T02:18:11Z"
+          },
+          {
+            "id": "S4.tools",
+            "name": "The tools at their pins",
+            "state": "done",
+            "finished": "2026-11-16T02:18:51Z"
+          },
+          {
+            "id": "S4.g26",
+            "name": "The earlier tool folder at its pins",
+            "state": "done",
+            "finished": "2026-11-16T02:19:30Z"
+          },
+          {
+            "id": "S4.outputs",
+            "name": "The output rule over the unit's outputs",
+            "state": "done",
+            "finished": "2026-11-16T02:19:58Z"
+          }
+        ],
+        "ref": "plan.md#s4--close-out",
+        "started": "2026-11-16T02:17:46Z",
+        "finished": "2026-11-16T02:20:14Z",
+        "report": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, TrumpBot, Support), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
+        "result": "passed"
+      }
+    ],
+    "remediation": {
+      "pass": 1,
+      "route": "on-the-spot",
+      "steps": [
+        {
+          "name": "The count of runner steps corrected to 19",
+          "state": "done",
+          "finished": "2026-11-16T02:47:09Z",
+          "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
+        },
+        {
+          "name": "The anonymous budget's readings stated beside the calls made",
+          "state": "done",
+          "finished": "2026-11-16T02:47:09Z",
+          "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
+        },
+        {
+          "name": "The pace between probes stated",
+          "state": "done",
+          "finished": "2026-11-16T02:47:09Z",
+          "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
+        }
+      ]
+    },
+    "open": [],
+    "event": {
+      "name": "document",
+      "at": "2026-11-16T03:20:43Z",
+      "note": "4 of 4 tasks done"
+    },
+    "history": {
+      "sizing": [
+        {
+          "since": null,
+          "ended": "2026-11-15T20:55:34Z",
+          "endedBy": "sized",
+          "to": "plan"
+        }
+      ],
+      "plan": [
+        {
+          "since": "2026-11-15T20:55:34Z",
+          "ended": "2026-11-15T21:09:24Z",
+          "endedBy": "halted",
+          "to": "plan",
+          "event": {
+            "name": "sized",
+            "at": "2026-11-15T20:55:34Z"
+          },
+          "detail": "Unit 3 of the three-repository work: the residual measurement over BotTools, TrumpBot and Support. The unit's slice of the parent design (section 9) is validated against the workspace as the rewrites left it, then planned in detail.",
+          "plan": {
+            "state": "re-pass",
+            "from": "parent",
+            "since": "2026-11-15T20:55:34Z",
+            "stages": [
+              {
+                "id": "re-pass",
+                "state": "current",
+                "started": "2026-11-15T20:55:34Z"
+              },
+              {
+                "id": "write",
+                "state": "todo"
+              },
+              {
+                "id": "check",
+                "state": "todo"
+              },
+              {
+                "id": "consequences",
+                "state": "todo"
+              },
+              {
+                "id": "report",
+                "state": "todo"
+              }
+            ]
+          },
+          "held": true,
+          "asked": [
+            {
+              "text": "When should the measurement make its feed reads, given that the events can lag by up to 6 hours and a recorded read is never made again?",
+              "options": [
+                "Now: the run starts once the plan is written; the events reads of TrumpBot and Support will most likely be recorded as not valid",
+                "Per repository, once its events list a push event for every branch it pushed, or once 6 hours have passed since its push, whichever comes first",
+                "After the lag for all three: every repository's stage 9 starts from 01:51Z on 2026-11-16"
+              ],
+              "answer": "Per repository: its first feed reads wait until its events list the push of every branch it pushed, or until 6 hours have passed since its push.",
+              "asked": "2026-11-15T21:09:24Z",
+              "answered": "2026-11-15T21:11:19Z"
+            }
+          ]
+        },
+        {
+          "since": "2026-11-15T21:11:19Z",
+          "ended": "2026-11-15T21:39:48Z",
+          "endedBy": "plan-accepted",
+          "to": "branch",
+          "event": {
+            "name": "plan-stage",
+            "at": "2026-11-15T21:39:18Z"
+          },
+          "detail": "The consequences record that the measurement only reads GitHub and writes new records in the data folder and the workspace, that the events gate is what the phase takes up, what the residual report takes, and the known gaps of a measurement made by sample and by feed.",
+          "plan": {
+            "state": "re-pass",
+            "from": "parent",
+            "since": "2026-11-15T20:55:34Z",
+            "stages": [
+              {
+                "id": "re-pass",
+                "state": "done",
+                "started": "2026-11-15T20:55:34Z",
+                "finished": "2026-11-15T21:24:16Z",
+                "report": "The slice holds against the workspace and GitHub as the rewrites left them: every record the measurement reads is in place and equals its checksum list, every branch is at its rewritten tip, the authenticated routes answer on both private repositories, and each repository's measurement waits until its events list its push or 6 hours have passed."
+              },
+              {
+                "id": "write",
+                "state": "done",
+                "started": "2026-11-15T21:24:16Z",
+                "finished": "2026-11-15T21:34:50Z",
+                "report": "The draft holds five stages: readiness, one stage per repository that starts when its events gate opens, and a close-out, with the gate and the checksum and output checks as typed read-only blocks and every step's expected lines taken from the tools."
+              },
+              {
+                "id": "check",
+                "state": "done",
+                "started": "2026-11-15T21:34:50Z",
+                "finished": "2026-11-15T21:37:54Z",
+                "report": "The check found the plan in line with the tools' source, the rewrites' records as built and the parent design's section 9, and fixed small points in place: the wording of the protocol-v2 probe, the stop row of the anonymous budget, the records step 9 needs, the flowchart's edges and a source link.",
+                "result": "accepted"
+              },
+              {
+                "id": "consequences",
+                "state": "done",
+                "started": "2026-11-15T21:37:54Z",
+                "finished": "2026-11-15T21:39:18Z",
+                "report": "The consequences record that the measurement only reads GitHub and writes new records in the data folder and the workspace, that the events gate is what the phase takes up, what the residual report takes, and the known gaps of a measurement made by sample and by feed."
+              },
+              {
+                "id": "report",
+                "state": "done",
+                "started": "2026-11-15T21:39:18Z",
+                "finished": "2026-11-15T21:39:48Z",
+                "report": "The plan is accepted as written: five stages (readiness, one stage per repository behind its events gate, the close-out), with the consequences recorded and no consideration left open."
+              }
+            ]
+          }
+        }
+      ],
+      "branch": [
+        {
+          "since": "2026-11-15T21:39:48Z",
+          "ended": "2026-11-15T21:42:41Z",
+          "endedBy": "branch-cut",
+          "to": "implementation",
+          "event": {
+            "name": "plan-accepted",
+            "at": "2026-11-15T21:39:48Z"
+          },
+          "detail": "The plan is accepted as written: five stages (readiness, one stage per repository behind its events gate, the close-out), with the consequences recorded and no consideration left open.",
+          "branch": "docs/issue-41-measure-bottools-trumpbot-support-residue"
+        }
+      ],
+      "implementation": [
+        {
+          "since": "2026-11-15T21:42:41Z",
+          "ended": "2026-11-16T02:21:47Z",
+          "endedBy": "qa-pass",
+          "to": "qa",
+          "event": {
+            "name": "implementation-stage",
+            "at": "2026-11-16T02:20:14Z",
+            "note": "S4 reported done; Quality Review next"
+          },
+          "detail": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, TrumpBot, Support), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
+          "stages": [
+            {
+              "id": "S0",
+              "name": "Readiness",
+              "state": "done",
+              "rows": [
+                "readiness"
+              ],
+              "brief": "The unit's data file is written, the tools are at their pins, the quick gate passes, the rewrites' records equal their checksum lists, and the three repositories hold their stage-8 markers and their rewritten tips.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S0.unit",
+                  "name": "The unit's data file",
+                  "state": "done",
+                  "finished": "2026-11-15T21:43:59Z"
+                },
+                {
+                  "id": "S0.tools",
+                  "name": "The tools at their pins",
+                  "state": "done",
+                  "finished": "2026-11-15T21:44:14Z"
+                },
+                {
+                  "id": "S0.quick",
+                  "name": "The quick gate",
+                  "state": "done",
+                  "finished": "2026-11-15T21:44:46Z"
+                },
+                {
+                  "id": "S0.pins",
+                  "name": "The tool versions",
+                  "state": "done",
+                  "finished": "2026-11-15T21:44:56Z"
+                },
+                {
+                  "id": "S0.records",
+                  "name": "The rewrites' records against their checksum lists",
+                  "state": "done",
+                  "finished": "2026-11-15T21:45:06Z"
+                },
+                {
+                  "id": "S0.markers",
+                  "name": "The stage-8 markers",
+                  "state": "done",
+                  "finished": "2026-11-15T21:45:14Z"
+                },
+                {
+                  "id": "S0.reads",
+                  "name": "The three repositories read",
+                  "state": "done",
+                  "finished": "2026-11-15T21:45:27Z"
+                }
+              ],
+              "ref": "plan.md#s0--readiness",
+              "started": "2026-11-15T21:42:41Z",
+              "finished": "2026-11-15T21:45:37Z",
+              "report": "Readiness passed, every step as the plan expects. The unit's data file is written and the run log held 15504 lines before the unit's steps. The tools are at their pins (96 ok lines). The quick gate passed 63 deterministic checks. The tool versions are as recorded (7 ok lines). The rewrites' records equal their checksum lists (49, 28, 29 and 28 files). The three repositories hold their stage-8 markers, every branch is at its rewritten tip and the pull-request refs are as recorded (12 ok lines). No stop, no wait, no deviation. Next: the events gate over the three repositories; a repository's stage starts when its gate opens.",
+              "result": "passed"
+            },
+            {
+              "id": "S1",
+              "name": "BotTools",
+              "state": "done",
+              "rows": [
+                "readiness",
+                "authenticated-probes",
+                "anonymous-probes",
+                "feed-reads",
+                "report-rows",
+                "residual-stays",
+                "unprovable"
+              ],
+              "brief": "Once BotTools' events list its push or 6 hours have passed, what GitHub still serves of its old history is probed and tallied, authenticated and anonymously, its feeds are read twice, and its report row is completed and checksummed.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S1.gate",
+                  "name": "The events gate",
+                  "state": "done",
+                  "finished": "2026-11-16T01:47:00Z"
+                },
+                {
+                  "id": "S1.budget",
+                  "name": "The anonymous budget",
+                  "state": "done",
+                  "finished": "2026-11-16T01:47:20Z"
+                },
+                {
+                  "id": "S1.9",
+                  "name": "Step 9: the probes, the first feed reads and the report row",
+                  "state": "done",
+                  "finished": "2026-11-16T01:51:42Z"
+                },
+                {
+                  "id": "S1.feeds",
+                  "name": "The second feed reads",
+                  "state": "done",
+                  "finished": "2026-11-16T01:58:02Z"
+                },
+                {
+                  "id": "S1.reads",
+                  "name": "The repository read again",
+                  "state": "done",
+                  "finished": "2026-11-16T01:58:33Z"
+                },
+                {
+                  "id": "S1.record",
+                  "name": "The report row completed and checksummed",
+                  "state": "done",
+                  "finished": "2026-11-16T01:58:53Z"
+                }
+              ],
+              "ref": "plan.md#s1--bottools",
+              "started": "2026-11-15T21:45:37Z",
+              "finished": "2026-11-16T01:59:01Z",
+              "report": "BotTools is measured and recorded. Its gate opened on the 6 hours at the 27th check (01:47:00Z on 2026-11-16), after 26 checks that printed a wait; the events then listed the push of 1 of its 2 pushed branches. The anonymous budget read 60 calls left. Step 9 passed with 15 ok lines and 2 RECORD lines, no void batch, no stop and no wait: every probe answered served (authenticated: commits 3, trees 3, blobs 39, want 2; anonymous: web 3, want commits 3, trees 3, blobs 39, REST commits 3, trees 3, blobs 3), and answers other than the expected ones are 0. The first feed reads are all valid, anonymous 3 of 3: the activity feed and the web page list 2 old ids and 2 current ids, the events 1 and 1 where the plan's expected value is 2 and 2, because the events list one of the two pushes; the plan records the memberships as measured. The second reads, made 360 seconds or more after the first, read the same counts, anonymous 3 of 3 valid. The repository read again as recorded (6 ok lines). The report row is complete at 31 lines, with the pull-request residual line and the webhook deliveries; 11 record files and 5 run records are checksummed. No deviation. Next: TrumpBot, whose gate opened at the same check."
+            },
+            {
+              "id": "S2",
+              "name": "TrumpBot",
+              "state": "done",
+              "rows": [
+                "authenticated-probes",
+                "feed-reads",
+                "report-rows",
+                "unprovable"
+              ],
+              "brief": "The same for TrumpBot once its gate opens, authenticated only.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S2.gate",
+                  "name": "The events gate",
+                  "state": "done",
+                  "finished": "2026-11-16T01:59:29Z"
+                },
+                {
+                  "id": "S2.9",
+                  "name": "Step 9: the probes, the first feed reads and the report row",
+                  "state": "done",
+                  "finished": "2026-11-16T02:01:27Z"
+                },
+                {
+                  "id": "S2.feeds",
+                  "name": "The second feed reads",
+                  "state": "done",
+                  "finished": "2026-11-16T02:07:33Z"
+                },
+                {
+                  "id": "S2.reads",
+                  "name": "The repository read again",
+                  "state": "done",
+                  "finished": "2026-11-16T02:07:59Z"
+                },
+                {
+                  "id": "S2.record",
+                  "name": "The report row completed and checksummed",
+                  "state": "done",
+                  "finished": "2026-11-16T02:08:16Z"
+                }
+              ],
+              "ref": "plan.md#s2--trumpbot",
+              "started": "2026-11-16T01:59:01Z",
+              "finished": "2026-11-16T02:08:17Z",
+              "report": "TrumpBot is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:46:29Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 2 pushed branches. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 3, trees 3, blobs 50 of the 199 in the manifest, want 2), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 2 old ids and 2 current ids. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 2 and 2: the events listed no push of the rewrite once the 6 hours had passed, the case the plan's assumption on the events' lag provides for. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines; 11 record files and 9 run records are checksummed. No deviation. Next: Support, whose gate is open on the 6 hours."
+            },
+            {
+              "id": "S3",
+              "name": "Support",
+              "state": "done",
+              "rows": [
+                "authenticated-probes",
+                "feed-reads",
+                "report-rows",
+                "unprovable"
+              ],
+              "brief": "The same for Support once its gate opens, authenticated only.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S3.gate",
+                  "name": "The events gate",
+                  "state": "done",
+                  "finished": "2026-11-16T02:08:36Z"
+                },
+                {
+                  "id": "S3.9",
+                  "name": "Step 9: the probes, the first feed reads and the report row",
+                  "state": "done",
+                  "finished": "2026-11-16T02:10:38Z"
+                },
+                {
+                  "id": "S3.feeds",
+                  "name": "The second feed reads",
+                  "state": "done",
+                  "finished": "2026-11-16T02:16:42Z"
+                },
+                {
+                  "id": "S3.reads",
+                  "name": "The repository read again",
+                  "state": "done",
+                  "finished": "2026-11-16T02:17:09Z"
+                },
+                {
+                  "id": "S3.record",
+                  "name": "The report row completed and checksummed",
+                  "state": "done",
+                  "finished": "2026-11-16T02:17:27Z"
+                }
+              ],
+              "ref": "plan.md#s3--support",
+              "started": "2026-11-16T02:08:17Z",
+              "finished": "2026-11-16T02:17:46Z",
+              "report": "Support is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:51:56Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 1 pushed branch. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 2, trees 2, blobs 60 of the 7259 in the manifest, want 1), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 1 old id and 1 current id. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 1 and 1: the events listed no push of the rewrite once the 6 hours had passed. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines and carries its line on what the probes cannot prove; 11 record files and 13 run records are checksummed. No deviation. All three repositories are recorded. Next: the close-out."
+            },
+            {
+              "id": "S4",
+              "name": "Close-out",
+              "state": "done",
+              "rows": [
+                "report-rows"
+              ],
+              "brief": "The rewrites' records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S4.records",
+                  "name": "The checksum lists",
+                  "state": "done",
+                  "finished": "2026-11-16T02:18:11Z"
+                },
+                {
+                  "id": "S4.tools",
+                  "name": "The tools at their pins",
+                  "state": "done",
+                  "finished": "2026-11-16T02:18:51Z"
+                },
+                {
+                  "id": "S4.g26",
+                  "name": "The earlier tool folder at its pins",
+                  "state": "done",
+                  "finished": "2026-11-16T02:19:30Z"
+                },
+                {
+                  "id": "S4.outputs",
+                  "name": "The output rule over the unit's outputs",
+                  "state": "done",
+                  "finished": "2026-11-16T02:19:58Z"
+                }
+              ],
+              "ref": "plan.md#s4--close-out",
+              "started": "2026-11-16T02:17:46Z",
+              "finished": "2026-11-16T02:20:14Z",
+              "report": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, TrumpBot, Support), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
+              "result": "passed"
+            }
+          ]
+        }
+      ],
+      "qa": [
+        {
+          "since": "2026-11-16T02:21:47Z",
+          "ended": "2026-11-16T02:44:24Z",
+          "endedBy": "qa-pass",
+          "to": "remediation",
+          "event": {
+            "name": "qa-pass",
+            "at": "2026-11-16T02:21:47Z",
+            "note": "Quality Review 1: running"
+          },
+          "detail": "All five stages passed with no stop. The change set against the base holds documents and boards only; the run is checked against its plan from the markers, the run log, the checksum lists and GitHub.",
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-16",
+              "at": "2026-11-16T02:44:24Z",
+              "findings": {
+                "test": 4,
+                "code": 4
+              },
+              "severity": {
+                "minor": 8,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/ca070e8d/tests/index.html",
+              "note": "The run was found correct and complete: every stage and step ran once with the planned lines and counts, the issue's four conditions are met, and nothing was written to GitHub. The eight findings are five wording points in the as-built record and the consequences: the count of runner steps (19, not 18), the anonymous budget's readings stated beside the calls made, the pace between probes, an acceptance section, and the outcome of the plan's assumptions. They touch the anonymous probes and the report rows."
+            }
+          ]
+        }
+      ],
+      "remediation": [
+        {
+          "since": "2026-11-16T02:44:24Z",
+          "ended": "2026-11-16T02:50:34Z",
+          "endedBy": "document",
+          "to": "document",
+          "event": {
+            "name": "implementation-stage",
+            "at": "2026-11-16T02:47:09Z",
+            "note": "3 of 3 sub-steps done"
+          },
+          "detail": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run.",
+          "remediation": {
+            "pass": 1,
+            "route": "on-the-spot",
+            "steps": [
+              {
+                "name": "The count of runner steps corrected to 19",
+                "state": "done",
+                "finished": "2026-11-16T02:47:09Z",
+                "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
+              },
+              {
+                "name": "The anonymous budget's readings stated beside the calls made",
+                "state": "done",
+                "finished": "2026-11-16T02:47:09Z",
+                "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
+              },
+              {
+                "name": "The pace between probes stated",
+                "state": "done",
+                "finished": "2026-11-16T02:47:09Z",
+                "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
+              }
+            ]
+          },
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-16",
+              "at": "2026-11-16T02:44:24Z",
+              "findings": {
+                "test": 4,
+                "code": 4
+              },
+              "severity": {
+                "minor": 8,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/ca070e8d/tests/index.html",
+              "note": "The run was found correct and complete: every stage and step ran once with the planned lines and counts, the issue's four conditions are met, and nothing was written to GitHub. The eight findings are five wording points in the as-built record and the consequences: the count of runner steps (19, not 18), the anonymous budget's readings stated beside the calls made, the pace between probes, an acceptance section, and the outcome of the plan's assumptions. They touch the anonymous probes and the report rows."
+            }
+          ]
+        }
+      ]
+    },
+    "next": null,
+    "qa": [
+      {
+        "pass": 1,
+        "verdict": "changes-requested",
+        "date": "2026-11-16",
+        "at": "2026-11-16T02:44:24Z",
+        "findings": {
+          "test": 4,
+          "code": 4
+        },
+        "severity": {
+          "minor": 8,
+          "other": 0
+        },
+        "route": "on-the-spot",
+        "report": "build/reports/tests/index.html",
+        "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/ca070e8d/tests/index.html",
+        "note": "The run was found correct and complete: every stage and step ran once with the planned lines and counts, the issue's four conditions are met, and nothing was written to GitHub. The eight findings are five wording points in the as-built record and the consequences: the count of runner steps (19, not 18), the anonymous budget's readings stated beside the calls made, the pace between probes, an acceptance section, and the outcome of the plan's assumptions. They touch the anonymous probes and the report rows."
+      }
+    ],
+    "qaMax": 3,
+    "waitingOn": null,
+    "resume": null,
+    "blockers": {
+      "waitsOn": [],
+      "blocks": []
+    },
+    "landing": null,
+    "asked": [
+      {
+        "step": "plan",
+        "text": "When should the measurement make its feed reads, given that the events can lag by up to 6 hours and a recorded read is never made again?",
+        "options": [
+          "Now: the run starts once the plan is written; the events reads of TrumpBot and Support will most likely be recorded as not valid",
+          "Per repository, once its events list a push event for every branch it pushed, or once 6 hours have passed since its push, whichever comes first",
+          "After the lag for all three: every repository's stage 9 starts from 01:51Z on 2026-11-16"
+        ],
+        "answer": "Per repository: its first feed reads wait until its events list the push of every branch it pushed, or until 6 hours have passed since its push.",
+        "asked": "2026-11-15T21:09:24Z",
+        "answered": "2026-11-15T21:11:19Z"
+      }
+    ],
+    "waits": [
+      {
+        "step": "plan",
+        "since": "2026-11-15T21:09:24Z",
+        "ended": "2026-11-15T21:11:19Z",
+        "by": "halted"
+      }
+    ],
+    "document": {
+      "tasks": [
+        {
+          "id": "reconcile-plan",
+          "name": "Reconcile the plan with the run",
+          "state": "done",
+          "started": "2026-11-16T02:50:34Z",
+          "finished": "2026-11-16T03:04:06Z",
+          "report": "The as-built record now holds its acceptance section, the six criteria each against its reading, and two deviations: two readings made beside the procedure, and a note added to the parent research. The consequences record the outcome of each assumption: eight held, and the one on the events did not hold for any repository, since after 6 hours they listed 1 of 2, 0 of 2 and 0 of 1 pushed branches. The plan's status reads built and the parent consequences carry the unit's link line. The README and the CHANGELOG take no change: the landing carries documents and boards only and no version moves."
+        },
+        {
+          "id": "readme-changelog",
+          "name": "README and CHANGELOG",
+          "state": "done",
+          "finished": "2026-11-16T03:04:06Z",
+          "report": "The as-built record now holds its acceptance section, the six criteria each against its reading, and two deviations: two readings made beside the procedure, and a note added to the parent research. The consequences record the outcome of each assumption: eight held, and the one on the events did not hold for any repository, since after 6 hours they listed 1 of 2, 0 of 2 and 0 of 1 pushed branches. The plan's status reads built and the parent consequences carry the unit's link line. The README and the CHANGELOG take no change: the landing carries documents and boards only and no version moves."
+        },
+        {
+          "id": "state-boards",
+          "name": "State boards",
+          "state": "done",
+          "started": "2026-11-16T03:04:06Z",
+          "finished": "2026-11-16T03:17:23Z"
+        },
+        {
+          "id": "document-landing",
+          "name": "Document commit",
+          "state": "done",
+          "started": "2026-11-16T03:17:23Z",
+          "finished": "2026-11-16T03:20:43Z"
+        }
+      ]
+    }
+  },
+  "milestones": [
+    {
+      "column": "gap",
+      "label": "Research verified, in #27's run",
+      "date": "2026-11-13",
+      "ref": "../research/README.md",
+      "note": "written on this board when the run started, from #27's architecture: the current state of the three repositories and the verified outside-world facts (§2.1, §2.5), this unit's design in §9, its non-goals in §4, #28's inputs in §13.4 and its row in §16, with #27's consequences (§2.1, §5, §6); and from the state the earlier units left: the rewrites' consequences (§2.1, §4, §5) and as-built record (§3.3, §3.4), and the residual set and its known gap in the tools unit's plan and consequences"
+    },
+    {
+      "column": "considered",
+      "label": "Architecture signed off, in #27's run",
+      "date": "2026-11-13",
+      "ref": "../architecture.md",
+      "note": "the options #27's architecture weighed for this unit: §9, §11, §15, §17 and §13.4, with its consequences' §6 for what is left in place; the unit's own plan adds to them at plan acceptance"
+    },
+    {
+      "column": "verdict",
+      "label": "Plan accepted",
+      "date": "2026-11-15",
+      "ref": "plan.md",
+      "note": "five stages: readiness at once, then BotTools, TrumpBot and Support, each when its events gate opens (its events list the push of every branch it pushed, or 6 hours have passed since its push), probed, read twice and recorded in counts only, and a close-out; nothing is written to GitHub; the plan weighs no option beyond the parent design's"
+    }
+  ],
+  "trail": [
+    {
+      "date": "2026-11-15",
+      "column": "gap",
+      "label": "Sized; the plan starts"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Halted at the plan: waiting on you (the owner's answer on when the feed reads are made)"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Resumed at the plan"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "gap",
+      "label": "Nothing to research; the plan next"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Plan stage: write · re-pass: done — The slice holds against the workspace and GitHub as the rewrites left them: every record the measurement reads is in place and equals its checksum list, every branch is at its rewritten tip, the authenticated routes answer on both private repositories, and each repository's measurement waits until its events list its push or 6 hours have passed."
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Plan stage: check/accept · write: done — The draft holds five stages: readiness, one stage per repository that starts when its events gate opens, and a close-out, with the gate and the checksum and output checks as typed read-only blocks and every step's expected lines taken from the tools."
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Plan stage: write consequences · check/accept: accepted — The check found the plan in line with the tools' source, the rewrites' records as built and the parent design's section 9, and fixed small points in place: the wording of the protocol-v2 probe, the stop row of the anonymous budget, the records step 9 needs, the flowchart's edges and a source link."
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Plan stage: report · write consequences: done — The consequences record that the measurement only reads GitHub and writes new records in the data folder and the workspace, that the events gate is what the phase takes up, what the residual report takes, and the known gaps of a measurement made by sample and by feed."
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Plan accepted",
+      "ref": "plan.md"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Branch `docs/issue-41-measure-bottools-trumpbot-support-residue` cut; implementation starts at S0"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "S0 done; S1 current: BotTools"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "S1 done; S2 current: TrumpBot"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "S2 done; S3 current: Support"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "S3 done; S4 current: Close-out"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Implementation done (5 stages); Quality Review next"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Quality Review 1: running"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Quality Review 1: changes requested, 8 findings (8 minor; 4 test, 4 code)"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Correction: 3 sub-steps done; every sub-step done"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Document: Reconcile the plan with the run current"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Document: State boards current"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Document: Document commit current"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Document: every task done"
+    }
+  ],
+  "rows": [
+    {
+      "id": "readiness",
+      "group": "Readiness",
+      "name": "Readiness: the rewrites' records, every branch at its rewritten tip, the token and the anonymous budget",
+      "system": "residual-exposure",
+      "where": "the residual set's readiness step · the unit's data file, following the rewrites' records",
+      "gap": {
+        "kind": "missing",
+        "summary": "Nothing yet starts the measurement from what the rewrites left. Its start condition is all three repositories holding their stage-8 marker, with every branch read at its rewritten tip; the rewrites hand on their records under one checksum list, which this unit compares and never writes, and the residual set's readiness, which checks all of it and the anonymous budget, has run only on made-up data.",
+        "evidence": [
+          "`../architecture.md:542` — start condition: all three repositories hold their stage-8 marker, and a read of each shows every branch at its rewritten tip",
+          "`../architecture.md:577` — unit 2's records are compared with their checksum lists at the unit's start and are never written",
+          "`../40-rewrites/consequences.md:125` — the residual measurement takes each repository's stage-8 marker, its records with their checksum list, the time of each push, BotTools' webhook delivery counts and every branch at its rewritten tip",
+          "`../39-workspace-tools/plan.md:478` — the residual set's readiness: the markers, the reads, and the token with the anonymous budget, a short budget a wait",
+          "`../39-workspace-tools/plan.md:1193` — the residual set's real run is this unit's; the tools unit proved it on made-up data"
+        ],
+        "source": "../architecture.md §9.1, §9.3; ../40-rewrites/consequences.md §4; ../39-workspace-tools/plan.md, The residual set",
+        "link": "../architecture.md#91-when-it-runs"
+      },
+      "options": [
+        {
+          "id": "after-last-push",
+          "name": "Stage 9 once the last push is verified: the residual set's readiness first, following the rewrites' records read only, then the three repositories measured independently, in any order, promptly after the last push",
+          "verdict": "accepted",
+          "why": "The measurement belongs to its own system, holds no push back and needs no grant; a spent anonymous budget is a wait until the printed time, and the rewrites' records are only compared.",
+          "source": "../architecture.md §9, §9.1, §11",
+          "link": "../architecture.md#91-when-it-runs"
+        },
+        {
+          "id": "after-each-push",
+          "name": "Stage 9 right after each push, inside the rewrites, as for GKB2 and GKB",
+          "verdict": "declined",
+          "why": "It belongs to another system, it holds the next repository's push for probes and feed reads, and the events lag by up to 6 hours, so reads made minutes after a push are mostly not valid.",
+          "source": "../architecture.md §15",
+          "link": "../architecture.md#15-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "text": "The unit's data file was written first, naming the rewrites' records and this unit's record folder; the run log held 15,504 lines before the unit's steps.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#31-readiness-s0",
+            "excerpt": {
+              "ref": "final-implementation.md#31-readiness-s0",
+              "heading": "3.1 Readiness (`S0`)",
+              "paragraph": "Run on 2026-11-15 between 21:43Z and 21:46Z. Every step printed what the plan expects; no step stopped or waited.",
+              "hash": "f24d7c8ee8c5"
+            }
+          },
+          {
+            "text": "Before anything was read from GitHub the tools held their pins (96 checks), the quick gate passed 63 deterministic checks and the tool versions were as recorded (7 checks).",
+            "state": "as-planned",
+            "ref": "final-implementation.md#31-readiness-s0",
+            "excerpt": {
+              "ref": "final-implementation.md#31-readiness-s0",
+              "heading": "3.1 Readiness (`S0`)",
+              "paragraph": "Run on 2026-11-15 between 21:43Z and 21:46Z. Every step printed what the plan expects; no step stopped or waited.",
+              "hash": "f24d7c8ee8c5"
+            }
+          },
+          {
+            "text": "The rewrites' run records and each repository's records equalled their checksum lists (49, 28, 29 and 28 files) and were not written.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#31-readiness-s0",
+            "excerpt": {
+              "ref": "final-implementation.md#31-readiness-s0",
+              "heading": "3.1 Readiness (`S0`)",
+              "paragraph": "Run on 2026-11-15 between 21:43Z and 21:46Z. Every step printed what the plan expects; no step stopped or waited.",
+              "hash": "f24d7c8ee8c5"
+            }
+          },
+          {
+            "text": "The three repositories held their stage-8 markers, and every branch read at its rewritten tip with the pull-request refs as recorded (12 checks).",
+            "state": "as-planned",
+            "ref": "final-implementation.md#31-readiness-s0",
+            "excerpt": {
+              "ref": "final-implementation.md#31-readiness-s0",
+              "heading": "3.1 Readiness (`S0`)",
+              "paragraph": "Run on 2026-11-15 between 21:43Z and 21:46Z. Every step printed what the plan expects; no step stopped or waited.",
+              "hash": "f24d7c8ee8c5"
+            }
+          },
+          {
+            "text": "Readiness ran at once, with no stop and no wait; when BotTools' gate opened the token was available and the anonymous budget read 60 calls left of the 34 needed.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#33-bottools-s1",
+            "excerpt": {
+              "ref": "final-implementation.md#33-bottools-s1",
+              "heading": "3.3 BotTools (`S1`)",
+              "paragraph": "The gate opened on the 6 hours at the check of 2026-11-16T01:47:00Z; at the last check that read its events (01:37:40Z) they listed the push of 1 of its 2 pushed branches.",
+              "hash": "957f2b9e75c5"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Write the unit's data file first, naming the rewrites' records in `from` and this unit's record folder in `runs`, with no grant, request or target.",
+            "ref": "plan.md#the-units-data-file",
+            "excerpt": {
+              "ref": "plan.md#the-units-data-file",
+              "heading": "The unit's data file",
+              "paragraph": "`WS\\tmp\\g27\\units\\g41.txt` is the data file the tools read through `G27_UNIT` (format). `S0.unit` writes it with exactly these lines:",
+              "hash": "b046c94f8b26"
+            }
+          },
+          {
+            "text": "Prove the tool folder at its pins, run the quick gate and check the tool versions before anything is read from GitHub.",
+            "ref": "plan.md#s0--readiness",
+            "excerpt": {
+              "ref": "plan.md#s0--readiness",
+              "heading": "S0 — Readiness",
+              "paragraph": "Nothing is written to GitHub; everything is a read, a local check or the quick gate. `S0` runs at once.",
+              "hash": "846f0f1e936b"
+            }
+          },
+          {
+            "text": "Compare the rewrites' run records and each repository's records with their checksum lists, and never write them.",
+            "ref": "plan.md#s0--readiness",
+            "excerpt": {
+              "ref": "plan.md#s0--readiness",
+              "heading": "S0 — Readiness",
+              "paragraph": "Nothing is written to GitHub; everything is a read, a local check or the quick gate. `S0` runs at once.",
+              "hash": "846f0f1e936b"
+            }
+          },
+          {
+            "text": "Require each repository's stage-8 marker in the rewrites' records, every branch read at its rewritten tip and the pull-request refs as recorded.",
+            "ref": "plan.md#s0--readiness",
+            "excerpt": {
+              "ref": "plan.md#s0--readiness",
+              "heading": "S0 — Readiness",
+              "paragraph": "Nothing is written to GitHub; everything is a read, a local check or the quick gate. `S0` runs at once.",
+              "hash": "846f0f1e936b"
+            }
+          },
+          {
+            "text": "Run readiness at once, before any gate opens, and read the token and BotTools' anonymous budget in a step of their own when BotTools' gate opens, a short budget being a wait until the time it prints.",
+            "ref": "plan.md#steps-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-of-a-repository",
+              "heading": "Steps of a repository",
+              "paragraph": "The steps are the same for the three repositories: `S1.gate` to `S1.record` for BotTools, `S2.gate` to `S2.record` for TrumpBot (with no `budget` step) and `S3.gate` to `S3.record` for Support, each stage starting when its gate opens. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g41\\status\\` and requires the marker of the one before it.",
+              "hash": "d38e89fc8c2d"
+            }
+          }
+        ],
+        "defense": "Every readiness check only reads, so a stop leaves nothing written but the unit's own data file, scratch folder and the run log's lines, and the readiness steps run again from the one that stopped.",
+        "steps": [
+          {
+            "id": "S0.tools",
+            "what": "Prove every file of the tool folder and every reused tool at its size and sha256.",
+            "check": "96 `ok` lines and `STAGE S0.tools OK`",
+            "link": "plan.md#s0--readiness"
+          },
+          {
+            "id": "S0.records",
+            "what": "Compare the rewrites' four checksum lists with their records.",
+            "check": "four `ok` lines and `STAGE S0.records OK`",
+            "link": "plan.md#s0--readiness"
+          },
+          {
+            "id": "S0.reads",
+            "what": "Read the three repositories against the rewrites' records.",
+            "check": "12 `ok` lines and `STAGE R0.reads OK`",
+            "link": "plan.md#s0--readiness"
+          },
+          {
+            "id": "S1.budget",
+            "what": "Read the token and BotTools' anonymous budget.",
+            "check": "`STAGE R0.budget OK`, or one `WAIT` line",
+            "link": "plan.md#steps-of-a-repository"
+          }
+        ],
+        "tests": [
+          "gating — the tools at their pins, the tool versions and the rewrites' records against their checksum lists",
+          "deterministic — the quick gate, 63 cases",
+          "integration — the reads of the rewrites' records, of GitHub and of the anonymous rate limit"
+        ],
+        "risks": [
+          "Something pushes to or changes a repository while the unit runs: the reads stop on a branch away from its rewritten tip or a changed pull-request ref, and the unit hands back (assumption A1)",
+          "The tools meet the real repositories otherwise than their stand-ins: a step stops at its own check, with nothing written to GitHub (assumption A6)"
+        ],
+        "source": "plan.md S0 — Readiness; The unit's data file; Steps of a repository",
+        "link": "plan.md#s0--readiness"
+      }
+    },
+    {
+      "id": "authenticated-probes",
+      "group": "Stage 9",
+      "name": "Authenticated probes of all three repositories",
+      "system": "residual-exposure",
+      "where": "stage 9 per repository · its four authenticated batches",
+      "gap": {
+        "kind": "missing",
+        "summary": "Nothing has measured what GitHub still serves of the three old histories to a signed-in reader. GitHub keeps serving every pre-rewrite object by id, with no documented expiry, so every old branch tip, every first-changed commit, their trees and the purged blobs of all three are expected still served to a reader with access; the rewrites counted only BotTools' pull-request residual, on its fresh mirror.",
+        "evidence": [
+          "`../consequences.md:57` — GitHub keeps serving every pre-rewrite object by id, with no documented expiry",
+          "`../architecture.md:553` — authenticated probes of every old branch tip, every first-changed commit, their trees, a sample of manifest blobs and a protocol-v2 `want` of each old tip: all 39 of BotTools' blobs, 50 of TrumpBot's 199, 60 of Support's 7,259",
+          "`../architecture.md:562` — every old object of the three repositories is expected still served to an authenticated reader with access",
+          "`../40-rewrites/consequences.md:159` — what GitHub still serves of the three old histories is not measured by the rewrites"
+        ],
+        "source": "../architecture.md §9.2; ../consequences.md §2.1; ../40-rewrites/consequences.md §5",
+        "link": "../architecture.md#92-what-is-measured"
+      },
+      "options": [
+        {
+          "id": "controlled-batches",
+          "name": "Four authenticated batches per repository, commits, trees, blobs and the `want` of each old tip, each bracketed by controls: a rewritten commit, its tree and one of its blobs expected served, an id that exists nowhere expected absent; the blob sample evenly spaced and bounded at 60",
+          "verdict": "accepted",
+          "why": "The sets and controls are the parent's and the GKB2 and GKB unit's. A batch whose controls fail is void, and a status outside a route's answers, a failed control or a void batch stops the set, which is run again later with fresh controls; an answer that differs from the expectation is a result and is recorded.",
+          "source": "../architecture.md §9.2",
+          "link": "../architecture.md#92-what-is-measured"
+        }
+      ],
+      "asBuilt": {
+        "state": "amended",
+        "summary": null,
+        "statements": [
+          {
+            "text": "All three repositories were probed authenticated in their four batches, every probe served: commits, trees, blobs and the `want` of each old tip 3, 3, 39 and 2 for BotTools, 3, 3, 50 and 2 for TrumpBot, and 2, 2, 60 and 1 for Support, at the tools' pinned pace of 0.4 seconds, read beside the procedure.",
+            "state": "amended",
+            "ref": "final-implementation.md#3-measurements",
+            "excerpt": {
+              "ref": "final-implementation.md#3-measurements",
+              "heading": "3. Measurements",
+              "paragraph": "The words of the typed blocks (`S0.unit`, `S0.records`, the events gate, `S4.records`, `S4.g26` and `S4.outputs`), which run outside the runner, are given here as the blocks printed them.",
+              "hash": "fa57e9581cb6"
+            }
+          },
+          {
+            "text": "Every manifest blob of BotTools was probed, 39 of 39, and evenly spaced samples of the others: 50 of TrumpBot's 199 and 60 of Support's 7,259.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#3-measurements",
+            "excerpt": {
+              "ref": "final-implementation.md#3-measurements",
+              "heading": "3. Measurements",
+              "paragraph": "The words of the typed blocks (`S0.unit`, `S0.records`, the events gate, `S4.records`, `S4.g26` and `S4.outputs`), which run outside the runner, are given here as the blocks printed them.",
+              "hash": "fa57e9581cb6"
+            }
+          },
+          {
+            "text": "No batch was void: no step 9 printed a `VOID`, `STOP` or `WAIT` line.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "The plan's other goals: nothing was written to GitHub and nothing it serves was removed (§1); no version moves, and the landing carries documents and generated boards only.",
+              "hash": "8321ba72699f"
+            }
+          },
+          {
+            "text": "No answer differed from the expectation, 0 in each repository's row, so no set was stopped or run again.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "The plan's other goals: nothing was written to GitHub and nothing it serves was removed (§1); no version moves, and the landing carries documents and generated boards only.",
+              "hash": "8321ba72699f"
+            }
+          },
+          {
+            "text": "Every tally was printed as a count, and the id sets went to files of their own, which each repository's record step found in place.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#3-measurements",
+            "excerpt": {
+              "ref": "final-implementation.md#3-measurements",
+              "heading": "3. Measurements",
+              "paragraph": "The words of the typed blocks (`S0.unit`, `S0.records`, the events gate, `S4.records`, `S4.g26` and `S4.outputs`), which run outside the runner, are given here as the blocks printed them.",
+              "hash": "fa57e9581cb6"
+            }
+          }
+        ],
+        "changes": [
+          {
+            "what": "The pace between probes, the tools' pinned 0.4 seconds, was read beside the procedure, from the library's pinned default and the absence of an override.",
+            "why": "The test plan names the pace among what the nonfunctional tests show, and the tools print no line for it and keep no record of it; the reading writes nothing and changes no step's outcome (the as-built record, deviation 1).",
+            "when": "Implementation",
+            "ref": "final-implementation.md#4-deviations-from-the-plan",
+            "link": "../architecture.md#14-extension-and-stability"
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Probe all three repositories authenticated in four batches: every old branch tip and first-changed commit, their trees, a sample of manifest blobs, and a protocol-v2 `want` of each old tip.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Take every manifest blob of BotTools and an evenly spaced sample of at most 60 of each other repository's: 50 of TrumpBot's 199 and 60 of Support's 7,259.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Bracket every batch with opening and closing controls, a rewritten commit, its tree and a blob expected served and an id that exists nowhere expected absent, and hold a batch void when its closing controls fail.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Record every answer that differs from the expectation as a count; stop on a void batch or a status outside a route's answers, and run step 9 again after one 9-minute wait with fresh controls, a second stop handing back.",
+            "ref": "plan.md#stops-and-the-state-each-leaves",
+            "excerpt": {
+              "ref": "plan.md#stops-and-the-state-each-leaves",
+              "heading": "Stops and the state each leaves",
+              "paragraph": "Nothing here is irreversible: the unit writes nothing to GitHub.",
+              "hash": "d0e2385535c3"
+            }
+          },
+          {
+            "text": "Print and write counts only: the id sets go to files of their own and are never printed.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          }
+        ],
+        "defense": "The sets and controls are the parent design's and the earlier GKB2 and GKB measurement's, and a probe only reads, so a stopped batch costs a wait and a fresh run, never a change on the server.",
+        "steps": [
+          {
+            "id": "Sn.9",
+            "what": "Step 9 of each repository, once its gate is open.",
+            "check": "the four `auth-*` tallies, no `VOID` or `STOP` line, and `STAGE <repo>.p9 OK`",
+            "link": "plan.md#steps-of-a-repository"
+          }
+        ],
+        "tests": [
+          "e2e — the real step 9 over the three repositories, the steps' own checks its assertions",
+          "nonfunctional — the pace of 0.4 seconds between probes"
+        ],
+        "risks": [
+          "The private repositories' old objects may answer otherwise than BotTools': such an answer is recorded and counted, and a status outside a route's answers stops the batch (assumption A3)",
+          "A secondary rate limit on a route stops the set: step 9 runs again after one 9-minute wait, and a second stop hands back"
+        ],
+        "source": "plan.md Step 9 and its close-out; Steps of a repository; Stops and the state each leaves",
+        "link": "plan.md#step-9-and-its-close-out"
+      }
+    },
+    {
+      "id": "anonymous-probes",
+      "group": "Stage 9",
+      "name": "Anonymous probes and anonymous feed reads, BotTools only",
+      "system": "residual-exposure",
+      "where": "stage 9 for BotTools · its anonymous batches, feed reads and REST budget",
+      "gap": {
+        "kind": "missing",
+        "summary": "BotTools' old objects are expected served to anyone, and nothing has probed them anonymously since its push. BotTools is public, and its two pull-request refs, hidden from a push, keep 13 old commits and all 39 purged blobs fetchable; the anonymous REST budget bounds what one set can call, and a private repository's objects are readable by nobody anonymously.",
+        "evidence": [
+          "`../architecture.md:554` — anonymous probes, the web commit route, the `want` route and a small REST sample within the anonymous budget: BotTools only",
+          "`../consequences.md:60` — BotTools' pull-request refs keep 13 old commits and all 39 purged blobs fetchable",
+          "`../architecture.md:566` — the anonymous REST budget is read before BotTools' set and compared with the calls made at its end",
+          "`../architecture.md:204` — a private repository's objects are readable by anyone with read access who is signed in, and by nobody anonymously"
+        ],
+        "source": "../architecture.md §2.5, §9.2; ../consequences.md §2.1",
+        "link": "../architecture.md#92-what-is-measured"
+      },
+      "options": [
+        {
+          "id": "anonymous-public-only",
+          "name": "Anonymous batches, the web commit route, the `want` route and a small REST sample, and anonymous reads of the activity page, the activity feed and the events, for BotTools alone, its anonymous REST budget read before its set and compared with the calls made at its end",
+          "verdict": "accepted",
+          "why": "Only BotTools is public, so only its old objects can be served to anyone; a short budget is a wait, not a stop, only BotTools spends it, and a reading that disagrees with the calls is recorded.",
+          "source": "../architecture.md §9.2, §17",
+          "link": "../architecture.md#92-what-is-measured"
+        },
+        {
+          "id": "anonymous-private",
+          "name": "Anonymous probes of the private repositories",
+          "verdict": "declined",
+          "why": "Every anonymous answer is \"not found\", whatever the repository holds.",
+          "source": "../architecture.md §15",
+          "link": "../architecture.md#15-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "amended",
+        "statements": [
+          {
+            "text": "BotTools was probed anonymously under the same controls, with no void batch: web 3, `want` of commits 3, trees 3 and blobs 39, REST commits 3, trees 3 and blobs 3, every one served.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#33-bottools-s1",
+            "excerpt": {
+              "ref": "final-implementation.md#33-bottools-s1",
+              "heading": "3.3 BotTools (`S1`)",
+              "paragraph": "The gate opened on the 6 hours at the check of 2026-11-16T01:47:00Z; at the last check that read its events (01:37:40Z) they listed the push of 1 of its 2 pushed branches.",
+              "hash": "957f2b9e75c5"
+            }
+          },
+          {
+            "text": "Its web activity page, activity feed and events were read anonymously in both feed reads, 3 of 3 valid each time.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#33-bottools-s1",
+            "excerpt": {
+              "ref": "final-implementation.md#33-bottools-s1",
+              "heading": "3.3 BotTools (`S1`)",
+              "paragraph": "The gate opened on the 6 hours at the check of 2026-11-16T01:47:00Z; at the last check that read its events (01:37:40Z) they listed the push of 1 of its 2 pushed branches.",
+              "hash": "957f2b9e75c5"
+            }
+          },
+          {
+            "text": "The budget read 60 calls left before step 9, of the 28 it needed, 50 at the start of the second feed reads and 48 after them, that last count read beside the procedure: a fall of 10 across a span in which step 9 made 21 anonymous REST calls and its first feed read about 2. It was never short, and no disagreement above the tool's limit was recorded.",
+            "state": "amended",
+            "ref": "final-implementation.md#33-bottools-s1",
+            "excerpt": {
+              "ref": "final-implementation.md#33-bottools-s1",
+              "heading": "3.3 BotTools (`S1`)",
+              "paragraph": "The gate opened on the 6 hours at the check of 2026-11-16T01:47:00Z; at the last check that read its events (01:37:40Z) they listed the push of 1 of its 2 pushed branches.",
+              "hash": "957f2b9e75c5"
+            }
+          },
+          {
+            "text": "The anonymous probes and feed reads were made for BotTools alone, in its own stage.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#33-bottools-s1",
+            "excerpt": {
+              "ref": "final-implementation.md#33-bottools-s1",
+              "heading": "3.3 BotTools (`S1`)",
+              "paragraph": "The gate opened on the 6 hours at the check of 2026-11-16T01:47:00Z; at the last check that read its events (01:37:40Z) they listed the push of 1 of its 2 pushed branches.",
+              "hash": "957f2b9e75c5"
+            }
+          }
+        ],
+        "changes": [
+          {
+            "what": "The anonymous budget's last remaining count, 48, was read beside the procedure, from the count the tools keep after the second feed reads.",
+            "why": "The test plan names the budget's reading against the calls among what the nonfunctional tests show, and the count after step 9's own last call is not kept; the reading writes nothing and changes no step's outcome (the as-built record, deviation 1).",
+            "when": "Implementation, BotTools (S1)",
+            "ref": "final-implementation.md#4-deviations-from-the-plan",
+            "link": "../architecture.md#92-what-is-measured"
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Probe BotTools alone anonymously as well: the web commit route, the `want` route and a bounded REST sample, under the same controls.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Read BotTools' web activity page, activity feed and events anonymously in both feed reads.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Check the anonymous budget at the start of step 9, and record it when the reading at the start, less the last remaining count, exceeds the 28 calls the step can make.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Make no anonymous probe or feed read of TrumpBot or Support.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No write to GitHub and no removal: no ref, pull request, object or cached view is removed, and no GitHub Support ticket is filed. · No anonymous probe or feed read of TrumpBot or Support. They are private. · No tool change. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No count of BotTools' webhook deliveries (the rewrites counted them once) and no read of a delivery's payload. · No split of BotTools' pull-request residual by ref. The row carries the rewrites' record for the two refs together. · No report on #2, no …",
+              "hash": "2eac8b7767f0"
+            }
+          }
+        ],
+        "defense": "Only BotTools is public, so only its old objects can be served to anyone, and only it spends the anonymous budget; every anonymous request to a private repository answers not found, and a short budget is a wait, never a stop.",
+        "steps": [
+          {
+            "id": "S1.9",
+            "what": "BotTools' anonymous batches and anonymous first feed reads, inside its step 9.",
+            "check": "the seven `anon-*` tallies with their `ok` lines and `RECORD feed reads that are valid (a current id listed): anonymous <v> of 3`",
+            "link": "plan.md#steps-of-a-repository"
+          }
+        ],
+        "tests": [
+          "e2e — BotTools' real anonymous batches and feed reads",
+          "integration — the anonymous rate limit read before the set and compared with the calls"
+        ],
+        "risks": [
+          "Something else spends the machine's anonymous budget while BotTools' stage runs: the step prints a `WAIT`, or records that the budget's reading disagrees with the calls (assumption A4)",
+          "The anonymous web activity page may list no activity id: that read is recorded not valid, which is a result (assumption A5)"
+        ],
+        "source": "plan.md Step 9 and its close-out; S1 — BotTools; Non-goals",
+        "link": "plan.md#s1--bottools"
+      }
+    },
+    {
+      "id": "feed-reads",
+      "group": "Stage 9",
+      "name": "The feed reads, each made twice, inside the events' window",
+      "system": "residual-exposure",
+      "where": "stage 9 and the close-out's second reads · the activity feed and the events of each repository",
+      "gap": {
+        "kind": "risk",
+        "summary": "The pushes' traces in the feeds can be read for a limited time only. Each pushed branch published one event and one force-push entry in its repository's activity feed, five of each across the three; the events cover 30 days from each push, BotTools' made on 2026-11-15, and can lag by up to 6 hours, so a read made too early or too late lists nothing for a reason that is not absence.",
+        "evidence": [
+          "`../40-rewrites/consequences.md:60` — per rewritten branch an event and a force-push entry in the activity feed, five in all",
+          "`../40-rewrites/final-implementation.md:103` — GitHub's `pushed_at`: 19:38:58Z, 19:45:21Z and 19:50:39Z",
+          "`../architecture.md:544` — the events cover 30 days from each push and can lag by up to 6 hours; a read before the lag has passed or outside the 30 days is not valid, never absent",
+          "`../40-rewrites/consequences.md:129` — the events of BotTools' push cover 30 days from 2026-11-15; the residual measurement follows the rewrites' landing promptly"
+        ],
+        "source": "../architecture.md §9.1, §9.2; ../40-rewrites/consequences.md §2.1, §4; ../40-rewrites/final-implementation.md §3.3",
+        "link": "../architecture.md#91-when-it-runs"
+      },
+      "options": [
+        {
+          "id": "two-reads-validity",
+          "name": "Authenticated reads of the activity feed and the events of all three, for membership of the pre-rewrite ids with the force-push entries counted per branch, and BotTools' anonymous reads; every read made again at least 6 minutes after the first, each read's validity recorded",
+          "verdict": "accepted",
+          "why": "A feed read counts only when it lists a current id of the repository, and a read before the lag has passed or outside the 30 days is recorded as not valid, never as absent; the second reads, at least 6 minutes later, and a prompt start answer a measurement run too early or too late.",
+          "source": "../architecture.md §9.1, §9.2, §17",
+          "link": "../architecture.md#91-when-it-runs"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "text": "Each repository's step 9 waited behind its events gate, which opened on the 6 hours for all three, BotTools' and TrumpBot's at the check of 01:47:00Z on 2026-11-16 and Support's read open at 01:59:29Z; at the last checks that read their events, these listed the push of 1 of 2, 0 of 2 and 0 of 1 pushed branches.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#32-the-events-gate",
+            "excerpt": {
+              "ref": "final-implementation.md#32-the-events-gate",
+              "heading": "3.2 The events gate",
+              "paragraph": "No gate opened on the events: each repository's gate opened on its 6 hours. The gate writes no record of its own; each of its checks is a row here. A cell holds the first word of the repository's line and its count: `k of n` is the number of the repository's pushed branches whose push the events list. `WAIT` is a repository waiting while no gate is open, `note` one waiting while another is open, `ok` an open gate. A repository whose stage has started is not checked again. The 6 hours since each push end on 2026-11-16 at 01:40:49Z (BotTools), 01:46:29Z (TrumpBot) and 01:51:56Z (Support).",
+              "hash": "1e03f687db71"
+            }
+          },
+          {
+            "text": "The stages ran one at a time, BotTools, TrumpBot, then Support, each starting once the one before was recorded, after 26 checks that waited about 9 minutes apart.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#32-the-events-gate",
+            "excerpt": {
+              "ref": "final-implementation.md#32-the-events-gate",
+              "heading": "3.2 The events gate",
+              "paragraph": "No gate opened on the events: each repository's gate opened on its 6 hours. The gate writes no record of its own; each of its checks is a row here. A cell holds the first word of the repository's line and its count: `k of n` is the number of the repository's pushed branches whose push the events list. `WAIT` is a repository waiting while no gate is open, `note` one waiting while another is open, `ok` an open gate. A repository whose stage has started is not checked again. The 6 hours since each push end on 2026-11-16 at 01:40:49Z (BotTools), 01:46:29Z (TrumpBot) and 01:51:56Z (Support).",
+              "hash": "1e03f687db71"
+            }
+          },
+          {
+            "text": "The activity feed and the events of all three were read authenticated in step 9 and read again in each repository's second feed reads, 383, 368 and 366 seconds after the first for BotTools, TrumpBot and Support.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#36-the-close-out-s4-and-the-run-log",
+            "excerpt": {
+              "ref": "final-implementation.md#36-the-close-out-s4-and-the-run-log",
+              "heading": "3.6 The close-out (`S4`) and the run log",
+              "paragraph": "Run on 2026-11-16 between 02:18Z and 02:20Z, after the third repository's record. Every step printed what the plan expects.",
+              "hash": "b8f6f5d19cc4"
+            }
+          },
+          {
+            "text": "BotTools' reads were all valid, its events reads listing 1 old id and 1 current id where the plan expected 2 and 2; TrumpBot's and Support's activity feed reads were valid, and their events reads, which listed no current id, were recorded not valid on both reads, never absent.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#3-measurements",
+            "excerpt": {
+              "ref": "final-implementation.md#3-measurements",
+              "heading": "3. Measurements",
+              "paragraph": "The words of the typed blocks (`S0.unit`, `S0.records`, the events gate, `S4.records`, `S4.g26` and `S4.outputs`), which run outside the runner, are given here as the blocks printed them.",
+              "hash": "fa57e9581cb6"
+            }
+          },
+          {
+            "text": "Each step 9 recorded its push as 0 days old, inside the events' 30 days, and no recorded read was made again.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#3-measurements",
+            "excerpt": {
+              "ref": "final-implementation.md#3-measurements",
+              "heading": "3. Measurements",
+              "paragraph": "The words of the typed blocks (`S0.unit`, `S0.records`, the events gate, `S4.records`, `S4.g26` and `S4.outputs`), which run outside the runner, are given here as the blocks printed them.",
+              "hash": "fa57e9581cb6"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "numbered",
+        "statements": [
+          {
+            "text": "Hold each repository's step 9, which makes the first feed reads, behind an events gate that opens once its events list the rewrite's push of every branch it pushed, or once 6 hours have passed since the time the rewrites recorded for its push.",
+            "ref": "plan.md#the-events-gate",
+            "excerpt": {
+              "ref": "plan.md#the-events-gate",
+              "heading": "The events gate",
+              "paragraph": "The gate is a typed read-only block (`Sn.gate`). It reads each named repository's `ref-map`, `commit-map` and the push's recorded time in `DATA\\run\\g40\\times.txt`, and the repository's events from GitHub; it writes nothing and prints ids, refs and paths never.",
+              "hash": "d078919f2c1b"
+            }
+          },
+          {
+            "text": "Run each repository's stage whole as its gate opens, in the order BotTools, TrumpBot, Support when two open at one check, one stage at a time, with a 9-minute wait between checks while every gate waits.",
+            "ref": "plan.md#shape-of-the-run",
+            "excerpt": {
+              "ref": "plan.md#shape-of-the-run",
+              "heading": "Shape of the run",
+              "paragraph": "Five stages. `S0` reads and checks and runs at once, before any gate opens; its only writes are the unit's data file, its scratch folder and the run log's lines. `S1`, `S2` and `S3` measure BotTools, TrumpBot and Support, each in the steps of its own table; a repository's stage starts only when its events gate has opened. `S4` is the close-out, after the third repository's record. The landing's document checks follow, outside the table. Every stop leaves the state its row of \"Stops and the state each leaves\" names.",
+              "hash": "cccb0b45ae39"
+            }
+          },
+          {
+            "text": "Read the activity feed and the events of all three authenticated in step 9, and every read again at least 360 seconds after the first.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Count a read only when it lists a current id of the repository; record one that lists none as not valid and one `gh` refuses as not read, never as absent.",
+            "ref": "plan.md#the-events-gate",
+            "excerpt": {
+              "ref": "plan.md#the-events-gate",
+              "heading": "The events gate",
+              "paragraph": "The gate is a typed read-only block (`Sn.gate`). It reads each named repository's `ref-map`, `commit-map` and the push's recorded time in `DATA\\run\\g40\\times.txt`, and the repository's events from GitHub; it writes nothing and prints ids, refs and paths never.",
+              "hash": "d078919f2c1b"
+            }
+          },
+          {
+            "text": "Record the events' 30-day window from the push's recorded time, and never make a recorded read again.",
+            "ref": "plan.md#the-events-gate",
+            "excerpt": {
+              "ref": "plan.md#the-events-gate",
+              "heading": "The events gate",
+              "paragraph": "The gate is a typed read-only block (`Sn.gate`). It reads each named repository's `ref-map`, `commit-map` and the push's recorded time in `DATA\\run\\g40\\times.txt`, and the repository's events from GitHub; it writes nothing and prints ids, refs and paths never.",
+              "hash": "d078919f2c1b"
+            }
+          }
+        ],
+        "defense": "The earlier GKB2 and GKB measurement read its events minutes after each push and found them listing nothing; the gate keeps this unit's first reads after the events' lag, and a read that still lists no current id says only that it is not valid.",
+        "steps": [
+          {
+            "id": "Sn.gate",
+            "what": "The events gate over the repositories whose stage has not started.",
+            "check": "`ok    gate <repo>: …; its step 9 may run`, else `WAIT` and one 9-minute wait",
+            "link": "plan.md#steps-of-a-repository"
+          },
+          {
+            "id": "Sn.feeds",
+            "what": "The second feed reads, at least 360 seconds after the first.",
+            "check": "the second-read lines and `STAGE R1.feeds OK`",
+            "link": "plan.md#steps-of-a-repository"
+          }
+        ],
+        "tests": [
+          "e2e — the real first and second feed reads of the three repositories",
+          "nonfunctional — the spacing of each repository's two feed reads, read from `times.txt`, each at least 360 seconds"
+        ],
+        "risks": [
+          "GitHub lists no push within 6 hours: the gate opens at the 6 hours, and an events read that lists no current id is recorded not valid (assumption A2)",
+          "The events' push payload loses `before` and `head`: no events read is valid, and each gate opens only at the 6 hours (assumption A8)",
+          "The steps run after the events' 30 days, which end on 2026-12-15: step 9 records the window, and the events reads are not valid (assumption A9)"
+        ],
+        "source": "plan.md The events gate; Shape of the run; Step 9 and its close-out",
+        "link": "plan.md#the-events-gate"
+      }
+    },
+    {
+      "id": "report-rows",
+      "group": "The records",
+      "name": "The report rows, in counts only, and the unit's checksum lists",
+      "system": "residual-exposure",
+      "where": "the close-out's record step · each repository's report row and the unit's checksum lists",
+      "gap": {
+        "kind": "missing",
+        "summary": "No repository's report row is written yet. #28 compiles the three rows, with BotTools' pull-request residual and its webhook delivery count; the rewrites counted that residual, 39 of 39 purged blobs and 28 commits on every ref, and the 2 push deliveries, and wrote no row; and how the close-out strips the record folder's path is read from the code, as no case of the self-test shows it.",
+        "evidence": [
+          "`../architecture.md:798` — #28 takes the three report rows, with BotTools' pull-request residual and its webhook delivery count",
+          "`../40-rewrites/final-implementation.md:127` — BotTools' residual: 39 of 39 manifest blobs, 28 commits on every ref",
+          "`../40-rewrites/final-implementation.md:125` — BotTools' webhook: 2 push deliveries since the push",
+          "`../architecture.md:475` — the rewrites write no report row",
+          "`../39-workspace-tools/consequences.md:152` — the residual close-out strips the record folder's path from the names of the probes' id sets as literal text, and no case tells that from a pattern match; the residual measurement's run reaches it"
+        ],
+        "source": "../architecture.md §8.4, §9.3, §13.4; ../40-rewrites/final-implementation.md §3.4; ../39-workspace-tools/consequences.md §5",
+        "link": "../architecture.md#93-the-report-rows"
+      },
+      "options": [
+        {
+          "id": "row-once-counts",
+          "name": "The record step writes each repository's row once, however often it runs, in counts only, from the rewrites' recorded counts and this unit's tallies, with what the probes cannot prove, then the unit's checksum lists",
+          "verdict": "accepted",
+          "why": "Every result is a tally, with no id, body or header value printed; the rows are what #28 compiles, and the rewrites' records stay as they were.",
+          "source": "../architecture.md §9.2, §9.3, §13.4",
+          "link": "../architecture.md#93-the-report-rows"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "text": "Each repository's row was written once in step 9, in counts only: its fixed lines, its tallies, its first feed reads, 0 answers other than the expected ones and the line on what the probes cannot prove, 25 lines for BotTools and 13 for TrumpBot and Support.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#3-measurements",
+            "excerpt": {
+              "ref": "final-implementation.md#3-measurements",
+              "heading": "3. Measurements",
+              "paragraph": "The words of the typed blocks (`S0.unit`, `S0.records`, the events gate, `S4.records`, `S4.g26` and `S4.outputs`), which run outside the runner, are given here as the blocks printed them.",
+              "hash": "fa57e9581cb6"
+            }
+          },
+          {
+            "text": "Each repository was read again after its second feed reads and was as recorded, 6 checks each.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#3-measurements",
+            "excerpt": {
+              "ref": "final-implementation.md#3-measurements",
+              "heading": "3. Measurements",
+              "paragraph": "The words of the typed blocks (`S0.unit`, `S0.records`, the events gate, `S4.records`, `S4.g26` and `S4.outputs`), which run outside the runner, are given here as the blocks printed them.",
+              "hash": "fa57e9581cb6"
+            }
+          },
+          {
+            "text": "The second feed reads were appended to each row once, making 31, 16 and 16 lines, and each repository's 11 new record files and the run folder's 13 run records were checksummed.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "The plan's other goals: nothing was written to GitHub and nothing it serves was removed (§1); no version moves, and the landing carries documents and generated boards only.",
+              "hash": "8321ba72699f"
+            }
+          },
+          {
+            "text": "The close-out passed: all eight checksum lists verified (49, 28, 29 and 28 files, then 13, 11, 11 and 11), the tools and the earlier tool folder were at their pins, and the output rule held over the unit's 555 lines of the run log, the lines of its 19 runner steps and of no other unit, and over its 9 records.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#36-the-close-out-s4-and-the-run-log",
+            "excerpt": {
+              "ref": "final-implementation.md#36-the-close-out-s4-and-the-run-log",
+              "heading": "3.6 The close-out (`S4`) and the run log",
+              "paragraph": "Run on 2026-11-16 between 02:18Z and 02:20Z, after the third repository's record. Every step printed what the plan expects.",
+              "hash": "b8f6f5d19cc4"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Write each repository's report row once, in step 9, in counts only: the commits before and after, the paths and blobs kept, the manifest, the secret-scan results, the probe tallies, the first feed reads, the answers other than the expected ones and what the probes cannot prove.",
+            "ref": "plan.md#records-and-where-they-live",
+            "excerpt": {
+              "ref": "plan.md#records-and-where-they-live",
+              "heading": "Records and where they live",
+              "paragraph": "`DATA\\rewrite\\<repo>\\` keeps the preparation unit's and the rewrites' records, never written. This unit adds new files beside them:",
+              "hash": "5812647026b1"
+            }
+          },
+          {
+            "text": "Read each repository again after its second feed reads: every branch at its rewritten tip, the pull-request refs, the default branch, visibility and archive state, the webhook count and the preparation unit's earlier records.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Append the second feed reads to the row once, then write the checksum list over the repository's 11 new record files and over the run folder.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Close out with the rewrites' four checksum lists and this unit's four, the tools and the earlier tool folder at their pins, and the output rule over the unit's part of the run log and its records.",
+            "ref": "plan.md#s4--close-out",
+            "excerpt": {
+              "ref": "plan.md#s4--close-out",
+              "heading": "S4 — Close-out",
+              "paragraph": "After the third repository's record.",
+              "hash": "525d1ddb21a5"
+            }
+          }
+        ],
+        "defense": "Every result is a tally, with no id, path, name or secret written outside the data folder and the workspace; the rows are what #28 compiles, and the rewrites' records are compared, never written.",
+        "steps": [
+          {
+            "id": "Sn.record",
+            "what": "The report row completed and checksummed.",
+            "check": "`ok    <repo>: 11 record files checksummed under the rewrite folder` and `STAGE R1.record OK`",
+            "link": "plan.md#steps-of-a-repository"
+          },
+          {
+            "id": "S4.records",
+            "what": "The eight checksum lists.",
+            "check": "8 `ok` lines and `STAGE S4.records OK`",
+            "link": "plan.md#s4--close-out"
+          },
+          {
+            "id": "S4.outputs",
+            "what": "The output rule over the unit's outputs.",
+            "check": "`STAGE S4.outputs OK`",
+            "link": "plan.md#s4--close-out"
+          }
+        ],
+        "tests": [
+          "gating — the checksum lists at the close-out, and the tools and the earlier tool folder at their pins",
+          "integration — each repository read again against the rewrites' records, and the checksum lists at the data folder's boundary",
+          "nonfunctional — the output rule over the unit's part of the run log and its records"
+        ],
+        "risks": [
+          "A repository changes during the measurement: its reads stop, the measurement stands as a reading of the server before the change, and the unit hands back with the counts (assumption A1)",
+          "The close-out strips the record folder's path from the id sets' names as literal text; the rewrite folders' path holds no pattern character, so the strip is the same either way, and a failure is a stop that names the checksum list"
+        ],
+        "source": "plan.md Records and where they live; Step 9 and its close-out; S4 — Close-out",
+        "link": "plan.md#records-and-where-they-live"
+      }
+    },
+    {
+      "id": "residual-stays",
+      "group": "Left for later",
+      "name": "BotTools' pull-request residual, measured and left in place",
+      "system": "residual-exposure",
+      "where": "BotTools' `refs/pull/2/head` and `refs/pull/3/head`",
+      "gap": {
+        "kind": "risk",
+        "summary": "BotTools' pull-request refs keep its old history fetchable after the push. GitHub hides them from a push, so they keep 13 old commits and all 39 purged blobs, and its two pull requests keep showing their pre-rewrite commits; BotTools was public before, so the exposure is not new.",
+        "evidence": [
+          "`../consequences.md:60` — the pull-request refs, hidden from a push, keep 13 old commits and all 39 purged blobs fetchable",
+          "`../consequences.md:229` — only a request to GitHub Support, which the phase does not make, or the repository's removal would end it"
+        ],
+        "source": "../consequences.md §2.1, §6",
+        "link": "../consequences.md#21-github"
+      },
+      "options": [
+        {
+          "id": "count-claim-no-removal",
+          "name": "Measured and recorded, with no removal claimed; nothing GitHub still serves is removed, and the residual stays a follow-up",
+          "verdict": "accepted",
+          "why": "Only a request to GitHub Support, which the phase does not make, or the repository's removal would end it.",
+          "source": "../architecture.md §5; ../consequences.md §6",
+          "link": "../consequences.md#6-follow-ups"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "Nothing GitHub serves of BotTools was removed and no GitHub Support ticket was filed: its stage only read.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "On GitHub, nothing: the unit's contact with GitHub was reads, as consequences, §2.1 describes. Every branch of the three repositories was at its rewritten tip and their pull-request refs as recorded, at `S0.reads` and again at each repository's `Sn.reads` (§3.1, §3.3 to §3.5). · In the workspace and the data folder, what consequences, §2.2 lists, with the counts of §3: in each `DATA\\rewrite\\<repo>\\` the report row, the probe tallies, the feed reads and the id sets under `g41.SHA256SUMS`, and in `DATA\\run\\g41\\` the unit's run records under `SHA256SUMS`. · Unchanged: the tool folder …",
+              "hash": "fe96c3e21fbf"
+            }
+          },
+          {
+            "text": "BotTools' row carries the rewrites' record of its pull-request residual, 39 of 39 manifest blobs and 28 commits on every ref, with the pull-request refs read as recorded at readiness and again after the second feed reads.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#33-bottools-s1",
+            "excerpt": {
+              "ref": "final-implementation.md#33-bottools-s1",
+              "heading": "3.3 BotTools (`S1`)",
+              "paragraph": "The gate opened on the 6 hours at the check of 2026-11-16T01:47:00Z; at the last check that read its events (01:37:40Z) they listed the push of 1 of its 2 pushed branches.",
+              "hash": "957f2b9e75c5"
+            }
+          },
+          {
+            "text": "The residual stays a follow-up of the phase's consequences.",
+            "state": "as-planned",
+            "ref": "consequences.md#6-follow-ups",
+            "excerpt": {
+              "ref": "consequences.md#6-follow-ups",
+              "heading": "6. Follow-ups",
+              "paragraph": "None of this unit's own. No tool defect was met: the tool folder stays at its pins, and the tools unit's consequences take no dated note. · BotTools' pull-request residual, the credentials and BotTools' webhook stay the parent consequences' follow-ups (§6). · A tool defect a later run meets is corrected under the tools unit's rule (its consequences, §4), with a dated note there.",
+              "hash": "ae9316abe914"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "leave",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Remove nothing GitHub still serves: no ref, pull request, object or cached view, and no GitHub Support ticket is filed.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No write to GitHub and no removal: no ref, pull request, object or cached view is removed, and no GitHub Support ticket is filed. · No anonymous probe or feed read of TrumpBot or Support. They are private. · No tool change. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No count of BotTools' webhook deliveries (the rewrites counted them once) and no read of a delivery's payload. · No split of BotTools' pull-request residual by ref. The row carries the rewrites' record for the two refs together. · No report on #2, no …",
+              "hash": "2eac8b7767f0"
+            }
+          },
+          {
+            "text": "Carry the rewrites' record of BotTools' pull-request residual into its row, the two refs together, with the refs read as recorded at readiness and after the second feed reads.",
+            "ref": "plan.md#step-9-and-its-close-out",
+            "excerpt": {
+              "ref": "plan.md#step-9-and-its-close-out",
+              "heading": "Step 9 and its close-out",
+              "paragraph": "What the tools do (the tools plan, \"The residual set\"); this unit adds nothing to it.",
+              "hash": "a667f5915216"
+            }
+          },
+          {
+            "text": "Leave the residual a follow-up of the phase's consequences.",
+            "ref": "plan.md#sequencing-and-follow-ups",
+            "excerpt": {
+              "ref": "plan.md#sequencing-and-follow-ups",
+              "heading": "Sequencing and follow-ups",
+              "paragraph": "Order. `S0` at once. Then the gates and stages: each repository's stage when its gate opens, whole, one at a time (at 21:17Z BotTools' events listed the push of 1 of its 2 branches and the others' none; the last gate opens at 2026-11-16T01:51:56Z at the latest). Then `S4`, the landing's document checks and the documents. The unit starts after #40 landed (pull request #45, merged), and #28 stays blocked by #27.",
+              "hash": "f85f87c4fe4e"
+            }
+          }
+        ],
+        "defense": "Only a request to GitHub Support, which the phase does not make, or the repository's removal would end it; the measurement records what is still served.",
+        "source": "plan.md Non-goals; Step 9 and its close-out; Sequencing and follow-ups",
+        "link": "plan.md#non-goals"
+      }
+    },
+    {
+      "id": "unprovable",
+      "group": "Left for later",
+      "name": "What the probes cannot prove",
+      "system": "residual-exposure",
+      "where": "each repository's report row",
+      "gap": {
+        "kind": "risk",
+        "summary": "A measurement of what GitHub serves cannot show that anything is gone. The probes cannot prove that GitHub has dropped the old objects, that cached views are gone, that no third-party copy exists, or that secret scanning examined the old objects.",
+        "evidence": [
+          "`../consequences.md:216` — what the probes cannot prove: dropped objects, cached views, third-party copies, secret scanning of the old objects",
+          "`../architecture.md:576` — each report row records what the probes cannot prove (parent §12.4)"
+        ],
+        "source": "../consequences.md §5; ../architecture.md §9.3",
+        "link": "../consequences.md#5-known-gaps"
+      },
+      "options": [
+        {
+          "id": "stated-in-row",
+          "name": "Stated in each repository's report row, beside its tallies",
+          "verdict": "accepted",
+          "why": "The rows carry it as the parent design's §12.4 sets it out; what the rows count is what was measured.",
+          "source": "../architecture.md §9.3",
+          "link": "../architecture.md#93-the-report-rows"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "Each repository's completed row carries the line on what the probes cannot prove, in the plan's words, as the last of the lines step 9 wrote: the 25th of BotTools' 31 lines and the 13th of TrumpBot's and Support's 16.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#3-measurements",
+            "excerpt": {
+              "ref": "final-implementation.md#3-measurements",
+              "heading": "3. Measurements",
+              "paragraph": "The words of the typed blocks (`S0.unit`, `S0.records`, the events gate, `S4.records`, `S4.g26` and `S4.outputs`), which run outside the runner, are given here as the blocks printed them.",
+              "hash": "fa57e9581cb6"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "leave",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "End each repository's report row with what the probes cannot prove: that GitHub has dropped the old objects, that cached views are gone, that no third-party copy exists, or that secret scanning examined the old objects.",
+            "ref": "plan.md#records-and-where-they-live",
+            "excerpt": {
+              "ref": "plan.md#records-and-where-they-live",
+              "heading": "Records and where they live",
+              "paragraph": "`DATA\\rewrite\\<repo>\\` keeps the preparation unit's and the rewrites' records, never written. This unit adds new files beside them:",
+              "hash": "5812647026b1"
+            }
+          }
+        ],
+        "defense": "A measurement of what GitHub serves shows only what is served; each row says what it cannot show, beside what was measured.",
+        "source": "plan.md Records and where they live",
+        "link": "plan.md#records-and-where-they-live"
+      }
+    },
+    {
+      "id": "report-and-cleanup",
+      "group": "Left for later",
+      "name": "The report on #2 and the cleanup",
+      "system": "residual-exposure",
+      "where": "#28, the residual report and cleanup",
+      "gap": {
+        "kind": "missing",
+        "summary": "The phase's report and cleanup come after this unit. #28 stays blocked by #27 and takes the three report rows, the residual records and every unit's records with their checksum lists; the report on #2, the re-verification of the data folder and the deletion of the workspace are its.",
+        "evidence": [
+          "`../architecture.md:796` — #28 stays blocked by #27 and takes the three report rows, the residual records and every unit's records with their checksum lists",
+          "`../architecture.md:248` — no report on #2, no re-verification of the data folder and no deletion of the workspace: those are #28's"
+        ],
+        "source": "../architecture.md §4, §13.4; ../consequences.md §4",
+        "link": "../architecture.md#134-28s-inputs"
+      },
+      "options": [
+        {
+          "id": "left-to-28",
+          "name": "Left to #28, which compiles the three report rows and takes the residual records and the checksum lists",
+          "verdict": "accepted",
+          "why": "The unit writes nothing to GitHub and owns no report on #2; its rows are the input #28 compiles.",
+          "source": "../architecture.md §5, §13.4",
+          "link": "../architecture.md#134-28s-inputs"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "text": "No report was written on #2 and nothing was cleaned up: the unit added its records beside the earlier ones in the data folder, and its data file and scratch folder stay in the workspace for #28 to delete.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "On GitHub, nothing: the unit's contact with GitHub was reads, as consequences, §2.1 describes. Every branch of the three repositories was at its rewritten tip and their pull-request refs as recorded, at `S0.reads` and again at each repository's `Sn.reads` (§3.1, §3.3 to §3.5). · In the workspace and the data folder, what consequences, §2.2 lists, with the counts of §3: in each `DATA\\rewrite\\<repo>\\` the report row, the probe tallies, the feed reads and the id sets under `g41.SHA256SUMS`, and in `DATA\\run\\g41\\` the unit's run records under `SHA256SUMS`. · Unchanged: the tool folder …",
+              "hash": "fe96c3e21fbf"
+            }
+          },
+          {
+            "text": "The three report rows of 31, 16 and 16 lines, BotTools' carrying its pull-request residual and webhook delivery count, the probe tallies, the feed reads with each read's validity and the id sets were left in the data folder for #28, under their checksum lists.",
+            "state": "as-planned",
+            "ref": "consequences.md#4-sibling-units-and-neighbouring-issues",
+            "excerpt": {
+              "ref": "consequences.md#4-sibling-units-and-neighbouring-issues",
+              "heading": "4. Sibling units and neighbouring issues",
+              "paragraph": "What the later units and issues take from this unit. The contract is plan, \"Interfaces with sibling units\"; this is its summary.",
+              "hash": "2b6b6f3ef9da"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "leave",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Write no report on #2, re-verify no data folder and clean nothing up: those are #28's.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No write to GitHub and no removal: no ref, pull request, object or cached view is removed, and no GitHub Support ticket is filed. · No anonymous probe or feed read of TrumpBot or Support. They are private. · No tool change. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No count of BotTools' webhook deliveries (the rewrites counted them once) and no read of a delivery's payload. · No split of BotTools' pull-request residual by ref. The row carries the rewrites' record for the two refs together. · No report on #2, no …",
+              "hash": "2eac8b7767f0"
+            }
+          },
+          {
+            "text": "Hand #28 the three report rows, the probe tallies, the feed records with their validity, the id sets and the checksum lists.",
+            "ref": "plan.md#interfaces-with-sibling-units",
+            "excerpt": {
+              "ref": "plan.md#interfaces-with-sibling-units",
+              "heading": "Interfaces with sibling units",
+              "paragraph": "Takes from `workspace-tools` (#39, landed):",
+              "hash": "3617cfba6cc8"
+            }
+          }
+        ],
+        "defense": "The unit writes nothing to GitHub and owns no report on #2; its rows are the input #28 compiles, and #28 stays blocked by #27.",
+        "source": "plan.md Non-goals; Interfaces with sibling units",
+        "link": "plan.md#non-goals"
+      }
+    }
+  ],
+  "impact": {
+    "basis": "plan",
+    "summary": "No module is published and no version moves: the landing carries documents and generated boards only. The unit reads GitHub, authenticated for all three repositories and anonymously for BotTools alone, writes nothing there and removes nothing it serves; on this machine it adds new records beside the earlier ones in the workspace and the data folder. #28 takes the three report rows with their checksum lists (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
+    "none": null,
+    "release": {
+      "bump": "none",
+      "version": null,
+      "note": "no module is published and no version moves",
+      "nothingPublished": true
+    },
+    "downstream": [
+      {
+        "who": "BotTools on GitHub (public)",
+        "kind": "repository",
+        "system": null,
+        "effect": "none",
+        "summary": "Read only, authenticated and anonymously: its probes, the web activity page, the activity feed and the events, twice each. The anonymous reads spend the machine's anonymous budget, 21 calls in step 9's sets and a few in each feed read. Its pull-request refs keep its old history fetchable, counted and not removed.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "TrumpBot and Support on GitHub (private)",
+        "kind": "repository",
+        "system": null,
+        "effect": "none",
+        "summary": "Read only, authenticated: the probes and the feed reads, and their events at each check of the gate while they wait. Their old objects stay readable by those with access.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "The workspace",
+        "kind": "operator",
+        "system": "residual-exposure",
+        "effect": "additive",
+        "summary": "The unit's data file and its scratch folder are added, which #28 deletes with the workspace; the tool folders, the stage runner, the mirrors, the untouched backups and the fresh mirrors are not changed.",
+        "link": "consequences.md#22-this-machine"
+      },
+      {
+        "who": "The data folder",
+        "kind": "operator",
+        "system": "residual-exposure",
+        "effect": "additive",
+        "summary": "New files beside each repository's earlier records, which are not written: the id sets, the tallies, the feed reads and the report row under a checksum list of their own; the unit's record folder with its checksum list; the run log's lines and the files of the landing's document checks.",
+        "link": "consequences.md#22-this-machine"
+      },
+      {
+        "who": "The TrumpBot clone, every other checkout and the request service",
+        "kind": "operator",
+        "system": null,
+        "effect": "none",
+        "summary": "Untouched: the unit sends no request and needs no grant, and this working tree changes only by the landing.",
+        "link": "consequences.md#22-this-machine"
+      },
+      {
+        "who": "KotlinBottools' documents and boards",
+        "kind": "repository",
+        "system": null,
+        "effect": "additive",
+        "summary": "The unit's plan, consequences and as-built record, one link line in the parent consequences, a note in the parent research's verification results, and the regenerated boards; the parent design takes no dated note, and there is no README change and no CHANGELOG entry.",
+        "link": "consequences.md#23-documents-and-generated-boards"
+      }
+    ],
+    "adaptation": [
+      {
+        "who": "The owner",
+        "system": null,
+        "need": "none",
+        "summary": "Nothing is asked beforehand or during the run: the unit sends no request and needs no grant.",
+        "link": "consequences.md#22-this-machine"
+      },
+      {
+        "who": "The residual report and cleanup, #28",
+        "system": null,
+        "need": "required",
+        "summary": "It takes the three report rows, with BotTools' pull-request residual and webhook delivery count, the probe tallies, the feed reads with each read's validity, the id sets and the checksum lists of each repository's folder and of the unit's run folder.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "who": "The clone replacement, #42",
+        "system": null,
+        "need": "none",
+        "summary": "Independent of this unit: it may run while this unit waits for a gate, its records its own, its steps' lines joining the shared run log.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      }
+    ],
+    "api": [],
+    "conversion": [],
+    "source": "consequences.md §1 to §6; plan.md",
+    "link": "consequences.md",
+    "changes": [
+      {
+        "entry": "downstream.5",
+        "what": "The landing also carries a note in the verification results of the parent research, and the parent design takes no dated note.",
+        "why": "The push findings expected one push event per rewritten branch within the events' documented lag of up to 6 hours, and after the 6 hours the events listed 1 of BotTools' 2 pushes and none of TrumpBot's 2 or Support's 1; the verification results are where the research keeps what a build found against its claims, and the measurement ran as the parent design's §9 describes (the as-built record, deviation 2).",
+        "when": "Document",
+        "ref": "final-implementation.md#4-deviations-from-the-plan"
+      }
+    ]
+  },
+  "tests": {
+    "base": "main",
+    "updated": "2026-11-16T02:44:24Z",
+    "added": [],
+    "amended": [],
+    "relevant": [
+      {
+        "class": "gselftest.sh deterministic",
+        "module": "tools/g27",
+        "testSet": "deterministic",
+        "tests": 63,
+        "result": {
+          "state": "passed",
+          "passed": 63,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-16T02:44:24Z"
+        }
+      }
+    ]
+  },
+  "roadmap": {
+    "issue": 27,
+    "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
+    "asOf": "2026-11-15",
+    "items": [
+      {
+        "issue": 39,
+        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
+        "state": "CLOSED",
+        "stateReason": "COMPLETED"
+      },
+      {
+        "issue": 40,
+        "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+        "state": "CLOSED",
+        "stateReason": "COMPLETED"
+      },
+      {
+        "issue": 41,
+        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+        "state": "OPEN"
+      },
+      {
+        "issue": 42,
+        "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+        "state": "OPEN"
+      }
+    ]
+  },
+  "followUps": [
+    {
+      "issue": 28,
+      "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
+      "note": "takes the three report rows, the probe tallies, the feed records with their validity, the id sets and the checksum lists"
+    },
+    {
+      "name": "BotTools' pull-request residual, the credentials and BotTools' webhook",
+      "note": "stay the parent consequences' follow-ups; this unit leaves none of its own"
+    },
+    {
+      "name": "A tool defect the run meets",
+      "note": "stops the unit and is corrected under the tools unit's rule, with a dated note in its consequences"
+    }
+  ],
+  "documents": [
+    {
+      "label": "plan.md",
+      "path": "plan.md",
+      "note": "the requirements, the shape of the run, the events gate, step 9 and its close-out, the records, the stops, the procedure S0 to S4 with every expected line, the test plan and the interfaces with the sibling units"
+    },
+    {
+      "label": "consequences.md",
+      "path": "consequences.md",
+      "note": "the published artifacts (none), the blast radius on GitHub, this machine and the documents, the adoption, the sibling units, the known gaps and the follow-ups"
+    },
+    {
+      "label": "Architecture",
+      "path": "../architecture.md",
+      "note": "the parent design: unit `residual-measurement`, §9 the residual measurement, with §5.1, §11, §12, §13.4 and §17"
+    },
+    {
+      "label": "#27's research",
+      "path": "../research/README.md",
+      "note": "the research questions of the parent design, with the verification and the summary"
+    },
+    {
+      "label": "The push findings",
+      "path": "../research/two-branch-lease-push.md",
+      "note": "what a force-push of two branches publishes, and the events' 30 days and lag"
+    },
+    {
+      "label": "#27's consequences",
+      "path": "../consequences.md",
+      "note": "the blast radius, known gaps and follow-ups of the whole of #27, which this unit's consequences do not restate"
+    },
+    {
+      "label": "The workspace tools' plan",
+      "path": "../39-workspace-tools/plan.md",
+      "note": "the residual set this unit runs: its commands and printed lines"
+    },
+    {
+      "label": "The rewrites' as-built record",
+      "path": "../40-rewrites/final-implementation.md",
+      "note": "the records this unit reads: the pushes' times, BotTools' residual and webhook deliveries"
+    }
+  ],
+  "notes": {
+    "corrections": [
+      {
+        "what": "An implementation stage's report of 2026-11-16 02:20:14 UTC is reworded in the report that closed S4 and #27's mirror of it: The unit's part of the run log holds 19 runner steps (19 start lines and 19 end lines); 18 is the count of stage lines, the quick gate printing none. The as-built record is corrected to the same count. The passage now reads \"The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit.\"",
+        "when": "2026-11-16",
+        "reword": {
+          "event": "implementation-stage",
+          "at": "2026-11-16T02:20:14Z",
+          "from": "sha256:122059bace39",
+          "to": "sha256:f58748a1aecb"
+        }
+      },
+      {
+        "what": "The As built statements' references into final-implementation.md are brought to the sections that now hold what each rests on: the reconciled record numbers Readiness, the events gate, BotTools, Support and the close-out §3.1, §3.2, §3.3, §3.5 and §3.6 under §3 Measurements, after §1 What was built and §2 Acceptance, so the anchors the statements cited named no section; a statement on all three repositories now cites §3 or §2. The reference of residual-stays' third statement to consequences.md §6 stands, its excerpt copied again from the reconciled section.",
+        "when": "2026-11-16"
+      }
+    ]
+  },
+  "issueBoards": {
+    "2": "../../dashboard.html",
+    "39": "../39-workspace-tools/dashboard.html",
+    "40": "../40-rewrites/dashboard.html"
+  },
+  "links": {
+    "workBoard": "../../../../index.html",
+    "repoBoard": "../../../../../dashboards/index.html"
+  }
+}

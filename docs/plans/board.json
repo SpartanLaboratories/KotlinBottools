@@ -1,11 +1,11 @@
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-15T20:36:58Z",
-  "asOf": "2026-11-15",
+  "generated": "2026-11-16T03:16:14Z",
+  "asOf": "2026-11-16",
   "tree": {
-    "ref": "docs/issue-40-rewrite-bottools-trumpbot-support",
-    "sha": "ffb272c"
+    "ref": "docs/issue-41-measure-bottools-trumpbot-support-residue",
+    "sha": "9170254"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -780,9 +780,9 @@
       "branch": null,
       "system": null,
       "step": "implementation",
-      "detail": "1 of 4 units landed; #40 in progress; #41 up next.",
+      "detail": "2 of 4 units landed; #41 in progress; #42 up next.",
       "since": "2026-11-13T21:05:13Z",
-      "updated": "2026-11-15T12:10:29Z",
+      "updated": "2026-11-15T20:55:34Z",
       "qa": [],
       "qaMax": 3,
       "status": "building",
@@ -790,13 +790,13 @@
       "landed": null,
       "reconciliation": {
         "state": "partial",
-        "landed": 1,
+        "landed": 2,
         "total": 4
       },
       "active": false,
       "chain": {
         "total": 4,
-        "landed": 1,
+        "landed": 2,
         "dropped": 0,
         "deferred": 0,
         "left": 0,
@@ -804,19 +804,15 @@
         "done": false,
         "current": [
           {
-            "issue": 40,
-            "slug": "rewrites",
+            "issue": 41,
+            "slug": "residual-measurement",
             "step": "document"
           }
         ],
         "next": {
-          "issue": 41,
-          "slug": "residual-measurement",
-          "blockedBy": [
-            {
-              "issue": 40
-            }
-          ]
+          "issue": 42,
+          "slug": "clone-replacement",
+          "blockedBy": []
         },
         "units": [
           {
@@ -829,13 +825,13 @@
             "n": 2,
             "issue": 40,
             "name": "Rewrite BotTools, TrumpBot and Support",
-            "state": "current"
+            "state": "done"
           },
           {
             "n": 3,
             "issue": 41,
             "name": "Measure what GitHub still serves",
-            "state": "todo"
+            "state": "current"
           },
           {
             "n": 4,
@@ -905,7 +901,9 @@
       "blocks": [
         {
           "issue": 40,
-          "state": "OPEN",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-15T20:48:30Z",
           "hold": "enables"
         }
       ],
@@ -1014,7 +1012,8 @@
     {
       "issue": 40,
       "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
-      "state": "OPEN",
+      "state": "CLOSED",
+      "stateReason": "COMPLETED",
       "created": "2026-11-13",
       "parent": 27,
       "waitsOn": [
@@ -1031,22 +1030,22 @@
         {
           "issue": 42,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         },
         {
           "issue": 41,
           "state": "OPEN",
-          "hold": "blocks"
+          "hold": "enables"
         }
       ],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/40-rewrites/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/40-rewrites/",
-      "branch": "docs/issue-40-rewrite-bottools-trumpbot-support",
+      "branch": null,
       "system": "rewrite-pipeline",
-      "step": "document",
-      "detail": "Document: 2 of 4 tasks done; State boards current.",
-      "since": "2026-11-15T20:14:20Z",
-      "updated": "2026-11-15T20:32:07Z",
+      "step": "landed",
+      "detail": "Landed in PR #45.",
+      "since": "2026-11-15T20:48:29Z",
+      "updated": "2026-11-15T20:48:29Z",
       "qa": [
         {
           "pass": 1,
@@ -1070,15 +1069,20 @@
         }
       ],
       "qaMax": 3,
-      "status": "building",
+      "status": "landed",
       "fixOf": null,
-      "landed": null,
+      "landed": {
+        "pr": 45,
+        "merge": "9170254e888696dc0683701383c02bd455ecfdc2",
+        "version": null,
+        "date": "2026-11-15"
+      },
       "reconciliation": {
-        "state": "planned",
+        "state": "as-built",
         "landed": null,
         "total": null
       },
-      "active": true,
+      "active": false,
       "systemName": "Rewrite pipeline",
       "group": "27",
       "order": 2
@@ -1092,30 +1096,53 @@
       "waitsOn": [
         {
           "issue": 40,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-15T20:48:30Z",
+          "build": "clear",
           "locality": "local-repository"
         }
       ],
       "blocks": [],
-      "board": null,
-      "folder": null,
-      "branch": null,
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/",
+      "branch": "docs/issue-41-measure-bottools-trumpbot-support-residue",
       "system": "residual-exposure",
-      "step": null,
-      "detail": "Filed as #41; its run has not started. It starts once #40, the rewrites, has landed.",
-      "qa": [],
-      "qaMax": null,
-      "status": "next",
-      "landed": null,
-      "reconciliation": null,
-      "active": false,
-      "next": true,
-      "blockedBy": [
+      "step": "document",
+      "detail": "Document: 2 of 4 tasks done; State boards current.",
+      "since": "2026-11-16T02:50:34Z",
+      "updated": "2026-11-16T03:05:20Z",
+      "qa": [
         {
-          "issue": 40
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-16",
+          "at": "2026-11-16T02:44:24Z",
+          "findings": {
+            "test": 4,
+            "code": 4
+          },
+          "severity": {
+            "minor": 8,
+            "other": 0
+          },
+          "route": "on-the-spot",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/ca070e8d/tests/index.html",
+          "note": "The run was found correct and complete: every stage and step ran once with the planned lines and counts, the issue's four conditions are met, and nothing was written to GitHub. The eight findings are five wording points in the as-built record and the consequences: the count of runner steps (19, not 18), the anonymous budget's readings stated beside the calls made, the pace between probes, an acceptance section, and the outcome of the plan's assumptions. They touch the anonymous probes and the report rows.",
+          "inPlace": "fixed"
         }
       ],
+      "qaMax": 3,
+      "status": "building",
+      "fixOf": null,
+      "landed": null,
+      "reconciliation": {
+        "state": "partial",
+        "landed": null,
+        "total": null
+      },
+      "active": true,
       "systemName": "Residual-exposure measurement",
       "group": "27",
       "order": 3
@@ -1129,8 +1156,10 @@
       "waitsOn": [
         {
           "issue": 40,
-          "state": "OPEN",
-          "build": "blocking",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-15T20:48:30Z",
+          "build": "clear",
           "locality": "local-repository"
         }
       ],
@@ -1143,10 +1172,12 @@
       "detail": "Filed as #42; its run has not started. It starts once #40, the rewrites, has landed.",
       "qa": [],
       "qaMax": null,
-      "status": "not-started",
+      "status": "next",
       "landed": null,
       "reconciliation": null,
       "active": false,
+      "next": true,
+      "blockedBy": [],
       "systemName": "Clone realignment",
       "group": "27",
       "order": 4
@@ -1320,7 +1351,8 @@
         {
           "issue": 40,
           "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
-          "state": "OPEN"
+          "state": "CLOSED",
+          "stateReason": "COMPLETED"
         },
         {
           "issue": 41,

@@ -1,7 +1,7 @@
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "docs/issue-40-rewrite-bottools-trumpbot-support", "sha": "ffb272c", "date": "2026-11-15T12:03:34Z"},
-  "lastAmended": {"issue": 40, "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support", "sha": "ffb272c"},
-  "written": {"sha": "ffb272c"}
+  "asIs": {"ref": "docs/issue-41-measure-bottools-trumpbot-support-residue", "sha": "9170254", "date": "2026-11-15T20:48:28Z"},
+  "lastAmended": {"issue": 41, "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support", "sha": "9170254"},
+  "written": {"sha": "9170254"}
 }

@@ -2,8 +2,8 @@
 
 This file holds the questions this unit's design rests on that need evidence beyond what the phase's earlier findings
 established, and the earlier findings that already answer the rest. Each new question is answered by its own findings
-file in this folder. The verification of the claims those findings rest on, and the summary of what they establish,
-follow below the questions.
+file in this folder. The verification of the claims those findings rest on, with what the builds found against them,
+and the summary of what they establish, follow below the questions.
 
 **What the work is.** BotTools, TrumpBot and Support are rewritten, force-pushed and proven clean as GKB2 and GKB were,
 what GitHub still serves of their old histories is measured, and the local TrumpBot clone is replaced by a fresh clone
@@ -212,6 +212,26 @@ The 32 outside-world claims the three findings files end with were checked at th
   the earlier save step's removal of its own folder before saving, the purge lists' sizes (9, 23 and 6 lines), the 13 old
   commits behind BotTools' pull-request refs, none of them reachable only from those refs before the rewrite, the clone's
   inherited access entries, and the system configuration's credential helper, which is not `gh`.
+
+### In the build
+
+What the builds found against the findings ([the rewrites' as-built record](../40-rewrites/final-implementation.md#3-measurements)
+and [the residual measurement's](../41-residual-measurement/final-implementation.md#3-measurements)):
+
+- **Did not hold in the build: the events of the pushes.** The push findings take one push event per rewritten branch from
+  the per-ref fields of the event's schema, and GitHub documents the events' latency as 30 seconds to 6 hours
+  ([§4.5](two-branch-lease-push.md#45-what-a-force-push-of-two-branches-publishes-and-how-to-count-it-documented-observed-idiom),
+  claims 15 and 20). The events of BotTools listed one push event of the rewrite, for `main`, and those of TrumpBot and
+  Support none, at every read from about 2 hours to between 6 hours 19 minutes and 6 hours 26 minutes after each push: the
+  last reads, the residual measurement's second feed reads on 2026-11-16, listed the push of 1 of BotTools' 2 branches and
+  of none of TrumpBot's 2 or Support's 1. Whether GitHub lists those pushes later than its documented latency or not at all
+  is not established. The measurement waited for them until 6 hours had passed since each push and recorded its events
+  reads as it found them: BotTools' valid with 1 of its 2 pushes listed, TrumpBot's and Support's not valid. No deviation
+  followed, since the measurement's plan provided for it
+  ([its assumption A2](../41-residual-measurement/plan.md#assumptions)).
+- **Held as found:** one `force_push` entry in each activity feed per rewritten branch, 2, 2 and 1, as the rewrites'
+  as-built record states and every feed read of the measurement listed them; and BotTools' two push deliveries to its
+  webhook, one per branch, counted right after its push.
 
 ---
 
