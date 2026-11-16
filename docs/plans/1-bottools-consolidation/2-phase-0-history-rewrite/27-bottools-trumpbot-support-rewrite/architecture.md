@@ -627,6 +627,8 @@ only after a stop that follows the rename.
   graph was built from the pre-rewrite tree, so it describes files the rewrite removes. The hooks and the exclude
   entry are recorded by name, size and checksum, never printed, and nothing runs the hooks during the replacement.
 
+> **Dated note, 2026-11-16** (with §2.2, §3, §10.5, §12 and §16). The graph service now places its board files' ignore, `.graphifyignore` (a copy of its template), at the root of each checkout with a graph, with an entry `/.graphifyignore` in `.git/info/exclude`; the TrumpBot clone holds 60 files git does not track (4, 55 and that one) and two exclude entries. The ignore and its entry belong to the graph's footprint and are not carried. The clone set's closed-set guard admits no file outside the two folders and names folders only, so the file is taken out of the old clone at the owner's word before the unit's census, and the graph service leaves the checkout alone until the replacement is complete; the exclude entry stays and is recorded. After the code-only build the fresh clone holds the ignore and its entry beside the graph's, which the read-back records as one difference; the replacement stands. The tools, the three procedures and the grant's row are unchanged.
+
 ### 10.4 The fresh clone, its proofs and the deletion
 
 - **The fresh clone** is made at the same path from TrumpBot's URL, with `gh` as the only credential helper, since

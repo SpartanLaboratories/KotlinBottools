@@ -163,6 +163,8 @@ the unit lands. #27 is closed when its last unit has landed.
 
 `residual-measurement` (#41) has landed; what it leaves for the units after it and for #28 is in [its consequences, §4](41-residual-measurement/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
 
+`clone-replacement` (#42) has landed; what it leaves for #28 is in [its consequences, §4](42-clone-replacement/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
+
 **What the units take from the earlier units of the phase:**
 
 - from [the preparation unit](../21-preparation/consequences.md) (#21): the mirrors, the untouched backups, the

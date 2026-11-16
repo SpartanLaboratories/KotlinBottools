@@ -215,8 +215,9 @@ The 32 outside-world claims the three findings files end with were checked at th
 
 ### In the build
 
-What the builds found against the findings ([the rewrites' as-built record](../40-rewrites/final-implementation.md#3-measurements)
-and [the residual measurement's](../41-residual-measurement/final-implementation.md#3-measurements)):
+What the builds found against the findings ([the rewrites' as-built record](../40-rewrites/final-implementation.md#3-measurements),
+[the residual measurement's](../41-residual-measurement/final-implementation.md#3-measurements) and
+[the clone replacement's](../42-clone-replacement/final-implementation.md#3-measurements)):
 
 - **Did not hold in the build: the events of the pushes.** The push findings take one push event per rewritten branch from
   the per-ref fields of the event's schema, and GitHub documents the events' latency as 30 seconds to 6 hours
@@ -232,6 +233,21 @@ and [the residual measurement's](../41-residual-measurement/final-implementation
 - **Held as found:** one `force_push` entry in each activity feed per rewritten branch, 2, 2 and 1, as the rewrites'
   as-built record states and every feed read of the measurement listed them; and BotTools' two push deliveries to its
   webhook, one per branch, counted right after its push.
+- **Did not hold in the build: the graph's footprint after the code-only build.** The summary has the clone hold the two
+  hooks and the one exclude entry again once the code-only graph build has run
+  ([§2](#2-moving-the-old-clone-aside-and-the-fresh-clone)). The build of 2026-11-16 left the two hooks, the graph's exclude
+  entry and a second entry, `/.graphifyignore`, with the graph service's board files' ignore at the clone's root, which the
+  read-back recorded as its one difference. The graph service places that ignore with every graph since 2026-11-15; the old
+  clone held it too, as a file outside the two folders the closed set allows, until the owner took it out before the census
+  ([the parent design's dated note under §10.3](../architecture.md#103-what-is-carried-and-what-is-not)). No deviation
+  followed, since the clone replacement's plan provided for it
+  ([its graph read-back](../42-clone-replacement/plan.md#s3--the-graph)).
+- **Held as found:** what a plain clone writes here
+  ([the clone findings, §3.3](clone-move-aside-on-windows.md#33-what-a-plain-git-clone-writes-here)): the fresh TrumpBot
+  clone held exactly the ten local configuration keys, no hook beyond the samples, an exclude file of comment lines only, one
+  pack and no `FETCH_HEAD`; and the rename on the clone's own volume, made on its first try, which kept the old clone's
+  access entries as they were until its deletion
+  ([§3.2](clone-move-aside-on-windows.md#32-who-may-read-the-old-clone-afterwards)).
 
 ---
 
