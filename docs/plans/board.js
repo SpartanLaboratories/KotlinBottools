@@ -3,11 +3,11 @@ window.dashboardLive&&window.dashboardLive("board",
 {
   "schema": "work-board/1",
   "repo": "SpartanLaboratories/KotlinBottools",
-  "generated": "2026-11-16T03:16:14Z",
+  "generated": "2026-11-16T20:26:19Z",
   "asOf": "2026-11-16",
   "tree": {
-    "ref": "docs/issue-41-measure-bottools-trumpbot-support-residue",
-    "sha": "9170254"
+    "ref": "docs/issue-42-replace-trumpbot-clone",
+    "sha": "f11f7ab"
   },
   "links": {
     "repoBoard": "../dashboards/index.html"
@@ -782,9 +782,9 @@ window.dashboardLive&&window.dashboardLive("board",
       "branch": null,
       "system": null,
       "step": "implementation",
-      "detail": "2 of 4 units landed; #41 in progress; #42 up next.",
+      "detail": "3 of 4 units landed; #42 in progress.",
       "since": "2026-11-13T21:05:13Z",
-      "updated": "2026-11-15T20:55:34Z",
+      "updated": "2026-11-16T03:31:47Z",
       "qa": [],
       "qaMax": 3,
       "status": "building",
@@ -792,13 +792,13 @@ window.dashboardLive&&window.dashboardLive("board",
       "landed": null,
       "reconciliation": {
         "state": "partial",
-        "landed": 2,
+        "landed": 3,
         "total": 4
       },
       "active": false,
       "chain": {
         "total": 4,
-        "landed": 2,
+        "landed": 3,
         "dropped": 0,
         "deferred": 0,
         "left": 0,
@@ -806,16 +806,12 @@ window.dashboardLive&&window.dashboardLive("board",
         "done": false,
         "current": [
           {
-            "issue": 41,
-            "slug": "residual-measurement",
+            "issue": 42,
+            "slug": "clone-replacement",
             "step": "document"
           }
         ],
-        "next": {
-          "issue": 42,
-          "slug": "clone-replacement",
-          "blockedBy": []
-        },
+        "next": null,
         "units": [
           {
             "n": 1,
@@ -833,13 +829,13 @@ window.dashboardLive&&window.dashboardLive("board",
             "n": 3,
             "issue": 41,
             "name": "Measure what GitHub still serves",
-            "state": "current"
+            "state": "done"
           },
           {
             "n": 4,
             "issue": 42,
             "name": "Replace the TrumpBot clone",
-            "state": "todo"
+            "state": "current"
           }
         ]
       },
@@ -1036,7 +1032,9 @@ window.dashboardLive&&window.dashboardLive("board",
         },
         {
           "issue": 41,
-          "state": "OPEN",
+          "state": "CLOSED",
+          "stateReason": "COMPLETED",
+          "closedAt": "2026-11-16T03:24:16Z",
           "hold": "enables"
         }
       ],
@@ -1092,7 +1090,8 @@ window.dashboardLive&&window.dashboardLive("board",
     {
       "issue": 41,
       "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
-      "state": "OPEN",
+      "state": "CLOSED",
+      "stateReason": "COMPLETED",
       "created": "2026-11-13",
       "parent": 27,
       "waitsOn": [
@@ -1108,12 +1107,12 @@ window.dashboardLive&&window.dashboardLive("board",
       "blocks": [],
       "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/dashboard.html",
       "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/",
-      "branch": "docs/issue-41-measure-bottools-trumpbot-support-residue",
+      "branch": null,
       "system": "residual-exposure",
-      "step": "document",
-      "detail": "Document: 2 of 4 tasks done; State boards current.",
-      "since": "2026-11-16T02:50:34Z",
-      "updated": "2026-11-16T03:05:20Z",
+      "step": "landed",
+      "detail": "Landed in PR #46.",
+      "since": "2026-11-16T03:24:15Z",
+      "updated": "2026-11-16T03:24:15Z",
       "qa": [
         {
           "pass": 1,
@@ -1136,15 +1135,20 @@ window.dashboardLive&&window.dashboardLive("board",
         }
       ],
       "qaMax": 3,
-      "status": "building",
+      "status": "landed",
       "fixOf": null,
-      "landed": null,
+      "landed": {
+        "pr": 46,
+        "merge": "f11f7abecdc68f1153e5904c325ff6bfb0709ea0",
+        "version": null,
+        "date": "2026-11-16"
+      },
       "reconciliation": {
-        "state": "partial",
+        "state": "as-built",
         "landed": null,
         "total": null
       },
-      "active": true,
+      "active": false,
       "systemName": "Residual-exposure measurement",
       "group": "27",
       "order": 3
@@ -1166,20 +1170,45 @@ window.dashboardLive&&window.dashboardLive("board",
         }
       ],
       "blocks": [],
-      "board": null,
-      "folder": null,
-      "branch": null,
+      "board": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement/dashboard.html",
+      "folder": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement/",
+      "branch": "docs/issue-42-replace-trumpbot-clone",
       "system": "clone-realignment",
-      "step": null,
-      "detail": "Filed as #42; its run has not started. It starts once #40, the rewrites, has landed.",
-      "qa": [],
-      "qaMax": null,
-      "status": "next",
+      "step": "document",
+      "detail": "Document: 2 of 4 tasks done; State boards current.",
+      "since": "2026-11-16T20:04:58Z",
+      "updated": "2026-11-16T20:15:27Z",
+      "qa": [
+        {
+          "pass": 1,
+          "verdict": "changes-requested",
+          "date": "2026-11-16",
+          "at": "2026-11-16T20:03:47Z",
+          "findings": {
+            "test": 0,
+            "code": 2
+          },
+          "severity": {
+            "minor": 2,
+            "other": 0
+          },
+          "route": "on-the-spot",
+          "note": "Every item the issue asks was verified on the clone; the two fixes are wordings in the as-built record: the replacement reply's stored line count, and the reason the run went on past the request builder's defect.",
+          "report": "build/reports/tests/index.html",
+          "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement/ca070e8d/tests/index.html",
+          "inPlace": "fixed"
+        }
+      ],
+      "qaMax": 3,
+      "status": "building",
+      "fixOf": null,
       "landed": null,
-      "reconciliation": null,
-      "active": false,
-      "next": true,
-      "blockedBy": [],
+      "reconciliation": {
+        "state": "as-built",
+        "landed": null,
+        "total": null
+      },
+      "active": true,
       "systemName": "Clone realignment",
       "group": "27",
       "order": 4
@@ -1359,7 +1388,8 @@ window.dashboardLive&&window.dashboardLive("board",
         {
           "issue": 41,
           "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
-          "state": "OPEN"
+          "state": "CLOSED",
+          "stateReason": "COMPLETED"
         },
         {
           "issue": 42,
@@ -1370,6 +1400,15 @@ window.dashboardLive&&window.dashboardLive("board",
     }
   ],
   "unscheduled": [
+    {
+      "issue": 47,
+      "title": "Workspace clone tools: the deletion and move-back requests carry the replacement's check sentences",
+      "labels": [
+        "type: bug"
+      ],
+      "created": "2026-11-16",
+      "system": "toolchain"
+    },
     {
       "issue": 33,
       "title": "Library ships a logging backend: logback-classic is an implementation dependency",

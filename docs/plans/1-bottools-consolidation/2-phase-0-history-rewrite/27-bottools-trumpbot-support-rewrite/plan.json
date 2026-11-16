@@ -63,8 +63,8 @@
   "wip": {
     "step": "implementation",
     "since": "2026-11-13T21:05:13Z",
-    "updated": "2026-11-15T20:55:34Z",
-    "detail": "2 of 4 units landed; #41 in progress; #42 up next.",
+    "updated": "2026-11-16T03:31:47Z",
+    "detail": "3 of 4 units landed; #42 in progress.",
     "steps": [
       "sizing",
       "interview",
@@ -78,7 +78,7 @@
       "landed"
     ],
     "current": [
-      "residual-measurement.built"
+      "clone-replacement.built"
     ],
     "questions": [],
     "research": null,
@@ -294,7 +294,7 @@
         }
       ]
     },
-    "next": "clone-replacement",
+    "next": null,
     "qa": [],
     "qaMax": 3,
     "waitingOn": null,
@@ -523,6 +523,16 @@
       "date": "2026-11-15",
       "column": "built",
       "label": "#41 started"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "#41 landed"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "#42 started"
     }
   ],
   "rows": [
@@ -1117,917 +1127,6 @@
         "issue": 41,
         "board": "41-residual-measurement/dashboard.html",
         "folder": "41-residual-measurement/",
-        "live": {
-          "step": "document",
-          "since": "2026-11-16T02:50:34Z",
-          "updated": "2026-11-16T03:20:43Z",
-          "detail": "Document: 4 of 4 tasks done; every task done.",
-          "steps": [
-            "sizing",
-            "interview",
-            "research",
-            "plan",
-            "branch",
-            "implementation",
-            "qa",
-            "remediation",
-            "document",
-            "landing",
-            "merge",
-            "landed"
-          ],
-          "waitingOn": null,
-          "resume": null,
-          "qa": [
-            {
-              "pass": 1,
-              "verdict": "changes-requested",
-              "date": "2026-11-16",
-              "at": "2026-11-16T02:44:24Z",
-              "findings": {
-                "test": 4,
-                "code": 4
-              },
-              "severity": {
-                "minor": 8,
-                "other": 0
-              },
-              "route": "on-the-spot",
-              "report": "build/reports/tests/index.html",
-              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/ca070e8d/tests/index.html",
-              "note": "The run was found correct and complete: every stage and step ran once with the planned lines and counts, the issue's four conditions are met, and nothing was written to GitHub. The eight findings are five wording points in the as-built record and the consequences: the count of runner steps (19, not 18), the anonymous budget's readings stated beside the calls made, the pace between probes, an acceptance section, and the outcome of the plan's assumptions. They touch the anonymous probes and the report rows."
-            }
-          ],
-          "qaMax": 3,
-          "status": "building",
-          "branch": "docs/issue-41-measure-bottools-trumpbot-support-residue",
-          "event": {
-            "name": "document",
-            "at": "2026-11-16T03:20:43Z",
-            "note": "4 of 4 tasks done"
-          },
-          "asked": [
-            {
-              "step": "plan",
-              "text": "When should the measurement make its feed reads, given that the events can lag by up to 6 hours and a recorded read is never made again?",
-              "options": [
-                "Now: the run starts once the plan is written; the events reads of TrumpBot and Support will most likely be recorded as not valid",
-                "Per repository, once its events list a push event for every branch it pushed, or once 6 hours have passed since its push, whichever comes first",
-                "After the lag for all three: every repository's stage 9 starts from 01:51Z on 2026-11-16"
-              ],
-              "answer": "Per repository: its first feed reads wait until its events list the push of every branch it pushed, or until 6 hours have passed since its push.",
-              "asked": "2026-11-15T21:09:24Z",
-              "answered": "2026-11-15T21:11:19Z"
-            }
-          ],
-          "stages": [
-            {
-              "id": "S0",
-              "name": "Readiness",
-              "state": "done",
-              "rows": [
-                "readiness"
-              ],
-              "brief": "The unit's data file is written, the tools are at their pins, the quick gate passes, the rewrites' records equal their checksum lists, and the three repositories hold their stage-8 markers and their rewritten tips.",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "S0.unit",
-                  "name": "The unit's data file",
-                  "state": "done",
-                  "finished": "2026-11-15T21:43:59Z"
-                },
-                {
-                  "id": "S0.tools",
-                  "name": "The tools at their pins",
-                  "state": "done",
-                  "finished": "2026-11-15T21:44:14Z"
-                },
-                {
-                  "id": "S0.quick",
-                  "name": "The quick gate",
-                  "state": "done",
-                  "finished": "2026-11-15T21:44:46Z"
-                },
-                {
-                  "id": "S0.pins",
-                  "name": "The tool versions",
-                  "state": "done",
-                  "finished": "2026-11-15T21:44:56Z"
-                },
-                {
-                  "id": "S0.records",
-                  "name": "The rewrites' records against their checksum lists",
-                  "state": "done",
-                  "finished": "2026-11-15T21:45:06Z"
-                },
-                {
-                  "id": "S0.markers",
-                  "name": "The stage-8 markers",
-                  "state": "done",
-                  "finished": "2026-11-15T21:45:14Z"
-                },
-                {
-                  "id": "S0.reads",
-                  "name": "The three repositories read",
-                  "state": "done",
-                  "finished": "2026-11-15T21:45:27Z"
-                }
-              ],
-              "ref": "plan.md#s0--readiness",
-              "started": "2026-11-15T21:42:41Z",
-              "finished": "2026-11-15T21:45:37Z",
-              "report": "Readiness passed, every step as the plan expects. The unit's data file is written and the run log held 15504 lines before the unit's steps. The tools are at their pins (96 ok lines). The quick gate passed 63 deterministic checks. The tool versions are as recorded (7 ok lines). The rewrites' records equal their checksum lists (49, 28, 29 and 28 files). The three repositories hold their stage-8 markers, every branch is at its rewritten tip and the pull-request refs are as recorded (12 ok lines). No stop, no wait, no deviation. Next: the events gate over the three repositories; a repository's stage starts when its gate opens.",
-              "result": "passed"
-            },
-            {
-              "id": "S1",
-              "name": "BotTools",
-              "state": "done",
-              "rows": [
-                "readiness",
-                "authenticated-probes",
-                "anonymous-probes",
-                "feed-reads",
-                "report-rows",
-                "residual-stays",
-                "unprovable"
-              ],
-              "brief": "Once BotTools' events list its push or 6 hours have passed, what GitHub still serves of its old history is probed and tallied, authenticated and anonymously, its feeds are read twice, and its report row is completed and checksummed.",
-              "kind": "work",
-              "steps": [
-                {
-                  "id": "S1.gate",
-                  "name": "The events gate",
-                  "state": "done",
-                  "finished": "2026-11-16T01:47:00Z"
-                },
-                {
-                  "id": "S1.budget",
-                  "name": "The anonymous budget",
-                  "state": "done",
-                  "finished": "2026-11-16T01:47:20Z"
-                },
-                {
-                  "id": "S1.9",
-                  "name": "Step 9: the probes, the first feed reads and the report row",
-                  "state": "done",
-                  "finished": "2026-11-16T01:51:42Z"
-                },
-                {
-                  "id": "S1.feeds",
-                  "name": "The second feed reads",
-                  "state": "done",
-                  "finished": "2026-11-16T01:58:02Z"
-                },
-                {
-                  "id": "S1.reads",
-                  "name": "The repository read again",
-                  "state": "done",
-                  "finished": "2026-11-16T01:58:33Z"
-                },
-                {
-                  "id": "S1.record",
-                  "name": "The report row completed and checksummed",
-                  "state": "done",
-                  "finished": "2026-11-16T01:58:53Z"
-                }
-              ],
-              "ref": "plan.md#s1--bottools",
-              "started": "2026-11-15T21:45:37Z",
-              "finished": "2026-11-16T01:59:01Z",
-              "report": "BotTools is measured and recorded. Its gate opened on the 6 hours at the 27th check (01:47:00Z on 2026-11-16), after 26 checks that printed a wait; the events then listed the push of 1 of its 2 pushed branches. The anonymous budget read 60 calls left. Step 9 passed with 15 ok lines and 2 RECORD lines, no void batch, no stop and no wait: every probe answered served (authenticated: commits 3, trees 3, blobs 39, want 2; anonymous: web 3, want commits 3, trees 3, blobs 39, REST commits 3, trees 3, blobs 3), and answers other than the expected ones are 0. The first feed reads are all valid, anonymous 3 of 3: the activity feed and the web page list 2 old ids and 2 current ids, the events 1 and 1 where the plan's expected value is 2 and 2, because the events list one of the two pushes; the plan records the memberships as measured. The second reads, made 360 seconds or more after the first, read the same counts, anonymous 3 of 3 valid. The repository read again as recorded (6 ok lines). The report row is complete at 31 lines, with the pull-request residual line and the webhook deliveries; 11 record files and 5 run records are checksummed. No deviation. Next: TrumpBot, whose gate opened at the same check."
-            },
-            {
-              "id": "S2",
-              "name": "TrumpBot",
-              "state": "done",
-              "rows": [
-                "authenticated-probes",
-                "feed-reads",
-                "report-rows",
-                "unprovable"
-              ],
-              "brief": "The same for TrumpBot once its gate opens, authenticated only.",
-              "kind": "work",
-              "steps": [
-                {
-                  "id": "S2.gate",
-                  "name": "The events gate",
-                  "state": "done",
-                  "finished": "2026-11-16T01:59:29Z"
-                },
-                {
-                  "id": "S2.9",
-                  "name": "Step 9: the probes, the first feed reads and the report row",
-                  "state": "done",
-                  "finished": "2026-11-16T02:01:27Z"
-                },
-                {
-                  "id": "S2.feeds",
-                  "name": "The second feed reads",
-                  "state": "done",
-                  "finished": "2026-11-16T02:07:33Z"
-                },
-                {
-                  "id": "S2.reads",
-                  "name": "The repository read again",
-                  "state": "done",
-                  "finished": "2026-11-16T02:07:59Z"
-                },
-                {
-                  "id": "S2.record",
-                  "name": "The report row completed and checksummed",
-                  "state": "done",
-                  "finished": "2026-11-16T02:08:16Z"
-                }
-              ],
-              "ref": "plan.md#s2--trumpbot",
-              "started": "2026-11-16T01:59:01Z",
-              "finished": "2026-11-16T02:08:17Z",
-              "report": "TrumpBot is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:46:29Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 2 pushed branches. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 3, trees 3, blobs 50 of the 199 in the manifest, want 2), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 2 old ids and 2 current ids. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 2 and 2: the events listed no push of the rewrite once the 6 hours had passed, the case the plan's assumption on the events' lag provides for. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines; 11 record files and 9 run records are checksummed. No deviation. Next: Support, whose gate is open on the 6 hours."
-            },
-            {
-              "id": "S3",
-              "name": "Support",
-              "state": "done",
-              "rows": [
-                "authenticated-probes",
-                "feed-reads",
-                "report-rows",
-                "unprovable"
-              ],
-              "brief": "The same for Support once its gate opens, authenticated only.",
-              "kind": "work",
-              "steps": [
-                {
-                  "id": "S3.gate",
-                  "name": "The events gate",
-                  "state": "done",
-                  "finished": "2026-11-16T02:08:36Z"
-                },
-                {
-                  "id": "S3.9",
-                  "name": "Step 9: the probes, the first feed reads and the report row",
-                  "state": "done",
-                  "finished": "2026-11-16T02:10:38Z"
-                },
-                {
-                  "id": "S3.feeds",
-                  "name": "The second feed reads",
-                  "state": "done",
-                  "finished": "2026-11-16T02:16:42Z"
-                },
-                {
-                  "id": "S3.reads",
-                  "name": "The repository read again",
-                  "state": "done",
-                  "finished": "2026-11-16T02:17:09Z"
-                },
-                {
-                  "id": "S3.record",
-                  "name": "The report row completed and checksummed",
-                  "state": "done",
-                  "finished": "2026-11-16T02:17:27Z"
-                }
-              ],
-              "ref": "plan.md#s3--support",
-              "started": "2026-11-16T02:08:17Z",
-              "finished": "2026-11-16T02:17:46Z",
-              "report": "Support is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:51:56Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 1 pushed branch. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 2, trees 2, blobs 60 of the 7259 in the manifest, want 1), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 1 old id and 1 current id. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 1 and 1: the events listed no push of the rewrite once the 6 hours had passed. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines and carries its line on what the probes cannot prove; 11 record files and 13 run records are checksummed. No deviation. All three repositories are recorded. Next: the close-out."
-            },
-            {
-              "id": "S4",
-              "name": "Close-out",
-              "state": "done",
-              "rows": [
-                "report-rows"
-              ],
-              "brief": "The rewrites' records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "S4.records",
-                  "name": "The checksum lists",
-                  "state": "done",
-                  "finished": "2026-11-16T02:18:11Z"
-                },
-                {
-                  "id": "S4.tools",
-                  "name": "The tools at their pins",
-                  "state": "done",
-                  "finished": "2026-11-16T02:18:51Z"
-                },
-                {
-                  "id": "S4.g26",
-                  "name": "The earlier tool folder at its pins",
-                  "state": "done",
-                  "finished": "2026-11-16T02:19:30Z"
-                },
-                {
-                  "id": "S4.outputs",
-                  "name": "The output rule over the unit's outputs",
-                  "state": "done",
-                  "finished": "2026-11-16T02:19:58Z"
-                }
-              ],
-              "ref": "plan.md#s4--close-out",
-              "started": "2026-11-16T02:17:46Z",
-              "finished": "2026-11-16T02:20:14Z",
-              "report": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, TrumpBot, Support), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
-              "result": "passed"
-            }
-          ],
-          "remediation": {
-            "pass": 1,
-            "route": "on-the-spot",
-            "steps": [
-              {
-                "name": "The count of runner steps corrected to 19",
-                "state": "done",
-                "finished": "2026-11-16T02:47:09Z",
-                "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
-              },
-              {
-                "name": "The anonymous budget's readings stated beside the calls made",
-                "state": "done",
-                "finished": "2026-11-16T02:47:09Z",
-                "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
-              },
-              {
-                "name": "The pace between probes stated",
-                "state": "done",
-                "finished": "2026-11-16T02:47:09Z",
-                "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
-              }
-            ]
-          },
-          "document": {
-            "tasks": [
-              {
-                "id": "reconcile-plan",
-                "name": "Reconcile the plan with the run",
-                "state": "done",
-                "started": "2026-11-16T02:50:34Z",
-                "finished": "2026-11-16T03:04:06Z",
-                "report": "The as-built record now holds its acceptance section, the six criteria each against its reading, and two deviations: two readings made beside the procedure, and a note added to the parent research. The consequences record the outcome of each assumption: eight held, and the one on the events did not hold for any repository, since after 6 hours they listed 1 of 2, 0 of 2 and 0 of 1 pushed branches. The plan's status reads built and the parent consequences carry the unit's link line. The README and the CHANGELOG take no change: the landing carries documents and boards only and no version moves."
-              },
-              {
-                "id": "readme-changelog",
-                "name": "README and CHANGELOG",
-                "state": "done",
-                "finished": "2026-11-16T03:04:06Z",
-                "report": "The as-built record now holds its acceptance section, the six criteria each against its reading, and two deviations: two readings made beside the procedure, and a note added to the parent research. The consequences record the outcome of each assumption: eight held, and the one on the events did not hold for any repository, since after 6 hours they listed 1 of 2, 0 of 2 and 0 of 1 pushed branches. The plan's status reads built and the parent consequences carry the unit's link line. The README and the CHANGELOG take no change: the landing carries documents and boards only and no version moves."
-              },
-              {
-                "id": "state-boards",
-                "name": "State boards",
-                "state": "done",
-                "started": "2026-11-16T03:04:06Z",
-                "finished": "2026-11-16T03:17:23Z"
-              },
-              {
-                "id": "document-landing",
-                "name": "Document commit",
-                "state": "done",
-                "started": "2026-11-16T03:17:23Z",
-                "finished": "2026-11-16T03:20:43Z"
-              }
-            ]
-          },
-          "history": {
-            "sizing": [
-              {
-                "since": null,
-                "ended": "2026-11-15T20:55:34Z",
-                "endedBy": "sized",
-                "to": "plan"
-              }
-            ],
-            "plan": [
-              {
-                "since": "2026-11-15T20:55:34Z",
-                "ended": "2026-11-15T21:09:24Z",
-                "endedBy": "halted",
-                "to": "plan",
-                "event": {
-                  "name": "sized",
-                  "at": "2026-11-15T20:55:34Z"
-                },
-                "detail": "Unit 3 of the three-repository work: the residual measurement over BotTools, TrumpBot and Support. The unit's slice of the parent design (section 9) is validated against the workspace as the rewrites left it, then planned in detail.",
-                "plan": {
-                  "state": "re-pass",
-                  "from": "parent",
-                  "since": "2026-11-15T20:55:34Z",
-                  "stages": [
-                    {
-                      "id": "re-pass",
-                      "state": "current",
-                      "started": "2026-11-15T20:55:34Z"
-                    },
-                    {
-                      "id": "write",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "check",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "consequences",
-                      "state": "todo"
-                    },
-                    {
-                      "id": "report",
-                      "state": "todo"
-                    }
-                  ]
-                },
-                "held": true,
-                "asked": [
-                  {
-                    "text": "When should the measurement make its feed reads, given that the events can lag by up to 6 hours and a recorded read is never made again?",
-                    "options": [
-                      "Now: the run starts once the plan is written; the events reads of TrumpBot and Support will most likely be recorded as not valid",
-                      "Per repository, once its events list a push event for every branch it pushed, or once 6 hours have passed since its push, whichever comes first",
-                      "After the lag for all three: every repository's stage 9 starts from 01:51Z on 2026-11-16"
-                    ],
-                    "answer": "Per repository: its first feed reads wait until its events list the push of every branch it pushed, or until 6 hours have passed since its push.",
-                    "asked": "2026-11-15T21:09:24Z",
-                    "answered": "2026-11-15T21:11:19Z"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-15T21:11:19Z",
-                "ended": "2026-11-15T21:39:48Z",
-                "endedBy": "plan-accepted",
-                "to": "branch",
-                "event": {
-                  "name": "plan-stage",
-                  "at": "2026-11-15T21:39:18Z"
-                },
-                "detail": "The consequences record that the measurement only reads GitHub and writes new records in the data folder and the workspace, that the events gate is what the phase takes up, what the residual report takes, and the known gaps of a measurement made by sample and by feed.",
-                "plan": {
-                  "state": "re-pass",
-                  "from": "parent",
-                  "since": "2026-11-15T20:55:34Z",
-                  "stages": [
-                    {
-                      "id": "re-pass",
-                      "state": "done",
-                      "started": "2026-11-15T20:55:34Z",
-                      "finished": "2026-11-15T21:24:16Z",
-                      "report": "The slice holds against the workspace and GitHub as the rewrites left them: every record the measurement reads is in place and equals its checksum list, every branch is at its rewritten tip, the authenticated routes answer on both private repositories, and each repository's measurement waits until its events list its push or 6 hours have passed."
-                    },
-                    {
-                      "id": "write",
-                      "state": "done",
-                      "started": "2026-11-15T21:24:16Z",
-                      "finished": "2026-11-15T21:34:50Z",
-                      "report": "The draft holds five stages: readiness, one stage per repository that starts when its events gate opens, and a close-out, with the gate and the checksum and output checks as typed read-only blocks and every step's expected lines taken from the tools."
-                    },
-                    {
-                      "id": "check",
-                      "state": "done",
-                      "started": "2026-11-15T21:34:50Z",
-                      "finished": "2026-11-15T21:37:54Z",
-                      "report": "The check found the plan in line with the tools' source, the rewrites' records as built and the parent design's section 9, and fixed small points in place: the wording of the protocol-v2 probe, the stop row of the anonymous budget, the records step 9 needs, the flowchart's edges and a source link.",
-                      "result": "accepted"
-                    },
-                    {
-                      "id": "consequences",
-                      "state": "done",
-                      "started": "2026-11-15T21:37:54Z",
-                      "finished": "2026-11-15T21:39:18Z",
-                      "report": "The consequences record that the measurement only reads GitHub and writes new records in the data folder and the workspace, that the events gate is what the phase takes up, what the residual report takes, and the known gaps of a measurement made by sample and by feed."
-                    },
-                    {
-                      "id": "report",
-                      "state": "done",
-                      "started": "2026-11-15T21:39:18Z",
-                      "finished": "2026-11-15T21:39:48Z",
-                      "report": "The plan is accepted as written: five stages (readiness, one stage per repository behind its events gate, the close-out), with the consequences recorded and no consideration left open."
-                    }
-                  ]
-                }
-              }
-            ],
-            "branch": [
-              {
-                "since": "2026-11-15T21:39:48Z",
-                "ended": "2026-11-15T21:42:41Z",
-                "endedBy": "branch-cut",
-                "to": "implementation",
-                "event": {
-                  "name": "plan-accepted",
-                  "at": "2026-11-15T21:39:48Z"
-                },
-                "detail": "The plan is accepted as written: five stages (readiness, one stage per repository behind its events gate, the close-out), with the consequences recorded and no consideration left open.",
-                "branch": "docs/issue-41-measure-bottools-trumpbot-support-residue"
-              }
-            ],
-            "implementation": [
-              {
-                "since": "2026-11-15T21:42:41Z",
-                "ended": "2026-11-16T02:21:47Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-16T02:20:14Z",
-                  "note": "S4 reported done; Quality Review next"
-                },
-                "detail": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, TrumpBot, Support), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Readiness",
-                    "state": "done",
-                    "rows": [
-                      "readiness"
-                    ],
-                    "brief": "The unit's data file is written, the tools are at their pins, the quick gate passes, the rewrites' records equal their checksum lists, and the three repositories hold their stage-8 markers and their rewritten tips.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S0.unit",
-                        "name": "The unit's data file",
-                        "state": "done",
-                        "finished": "2026-11-15T21:43:59Z"
-                      },
-                      {
-                        "id": "S0.tools",
-                        "name": "The tools at their pins",
-                        "state": "done",
-                        "finished": "2026-11-15T21:44:14Z"
-                      },
-                      {
-                        "id": "S0.quick",
-                        "name": "The quick gate",
-                        "state": "done",
-                        "finished": "2026-11-15T21:44:46Z"
-                      },
-                      {
-                        "id": "S0.pins",
-                        "name": "The tool versions",
-                        "state": "done",
-                        "finished": "2026-11-15T21:44:56Z"
-                      },
-                      {
-                        "id": "S0.records",
-                        "name": "The rewrites' records against their checksum lists",
-                        "state": "done",
-                        "finished": "2026-11-15T21:45:06Z"
-                      },
-                      {
-                        "id": "S0.markers",
-                        "name": "The stage-8 markers",
-                        "state": "done",
-                        "finished": "2026-11-15T21:45:14Z"
-                      },
-                      {
-                        "id": "S0.reads",
-                        "name": "The three repositories read",
-                        "state": "done",
-                        "finished": "2026-11-15T21:45:27Z"
-                      }
-                    ],
-                    "ref": "plan.md#s0--readiness",
-                    "started": "2026-11-15T21:42:41Z",
-                    "finished": "2026-11-15T21:45:37Z",
-                    "report": "Readiness passed, every step as the plan expects. The unit's data file is written and the run log held 15504 lines before the unit's steps. The tools are at their pins (96 ok lines). The quick gate passed 63 deterministic checks. The tool versions are as recorded (7 ok lines). The rewrites' records equal their checksum lists (49, 28, 29 and 28 files). The three repositories hold their stage-8 markers, every branch is at its rewritten tip and the pull-request refs are as recorded (12 ok lines). No stop, no wait, no deviation. Next: the events gate over the three repositories; a repository's stage starts when its gate opens.",
-                    "result": "passed"
-                  },
-                  {
-                    "id": "S1",
-                    "name": "BotTools",
-                    "state": "done",
-                    "rows": [
-                      "readiness",
-                      "authenticated-probes",
-                      "anonymous-probes",
-                      "feed-reads",
-                      "report-rows",
-                      "residual-stays",
-                      "unprovable"
-                    ],
-                    "brief": "Once BotTools' events list its push or 6 hours have passed, what GitHub still serves of its old history is probed and tallied, authenticated and anonymously, its feeds are read twice, and its report row is completed and checksummed.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S1.gate",
-                        "name": "The events gate",
-                        "state": "done",
-                        "finished": "2026-11-16T01:47:00Z"
-                      },
-                      {
-                        "id": "S1.budget",
-                        "name": "The anonymous budget",
-                        "state": "done",
-                        "finished": "2026-11-16T01:47:20Z"
-                      },
-                      {
-                        "id": "S1.9",
-                        "name": "Step 9: the probes, the first feed reads and the report row",
-                        "state": "done",
-                        "finished": "2026-11-16T01:51:42Z"
-                      },
-                      {
-                        "id": "S1.feeds",
-                        "name": "The second feed reads",
-                        "state": "done",
-                        "finished": "2026-11-16T01:58:02Z"
-                      },
-                      {
-                        "id": "S1.reads",
-                        "name": "The repository read again",
-                        "state": "done",
-                        "finished": "2026-11-16T01:58:33Z"
-                      },
-                      {
-                        "id": "S1.record",
-                        "name": "The report row completed and checksummed",
-                        "state": "done",
-                        "finished": "2026-11-16T01:58:53Z"
-                      }
-                    ],
-                    "ref": "plan.md#s1--bottools",
-                    "started": "2026-11-15T21:45:37Z",
-                    "finished": "2026-11-16T01:59:01Z",
-                    "report": "BotTools is measured and recorded. Its gate opened on the 6 hours at the 27th check (01:47:00Z on 2026-11-16), after 26 checks that printed a wait; the events then listed the push of 1 of its 2 pushed branches. The anonymous budget read 60 calls left. Step 9 passed with 15 ok lines and 2 RECORD lines, no void batch, no stop and no wait: every probe answered served (authenticated: commits 3, trees 3, blobs 39, want 2; anonymous: web 3, want commits 3, trees 3, blobs 39, REST commits 3, trees 3, blobs 3), and answers other than the expected ones are 0. The first feed reads are all valid, anonymous 3 of 3: the activity feed and the web page list 2 old ids and 2 current ids, the events 1 and 1 where the plan's expected value is 2 and 2, because the events list one of the two pushes; the plan records the memberships as measured. The second reads, made 360 seconds or more after the first, read the same counts, anonymous 3 of 3 valid. The repository read again as recorded (6 ok lines). The report row is complete at 31 lines, with the pull-request residual line and the webhook deliveries; 11 record files and 5 run records are checksummed. No deviation. Next: TrumpBot, whose gate opened at the same check."
-                  },
-                  {
-                    "id": "S2",
-                    "name": "TrumpBot",
-                    "state": "done",
-                    "rows": [
-                      "authenticated-probes",
-                      "feed-reads",
-                      "report-rows",
-                      "unprovable"
-                    ],
-                    "brief": "The same for TrumpBot once its gate opens, authenticated only.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S2.gate",
-                        "name": "The events gate",
-                        "state": "done",
-                        "finished": "2026-11-16T01:59:29Z"
-                      },
-                      {
-                        "id": "S2.9",
-                        "name": "Step 9: the probes, the first feed reads and the report row",
-                        "state": "done",
-                        "finished": "2026-11-16T02:01:27Z"
-                      },
-                      {
-                        "id": "S2.feeds",
-                        "name": "The second feed reads",
-                        "state": "done",
-                        "finished": "2026-11-16T02:07:33Z"
-                      },
-                      {
-                        "id": "S2.reads",
-                        "name": "The repository read again",
-                        "state": "done",
-                        "finished": "2026-11-16T02:07:59Z"
-                      },
-                      {
-                        "id": "S2.record",
-                        "name": "The report row completed and checksummed",
-                        "state": "done",
-                        "finished": "2026-11-16T02:08:16Z"
-                      }
-                    ],
-                    "ref": "plan.md#s2--trumpbot",
-                    "started": "2026-11-16T01:59:01Z",
-                    "finished": "2026-11-16T02:08:17Z",
-                    "report": "TrumpBot is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:46:29Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 2 pushed branches. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 3, trees 3, blobs 50 of the 199 in the manifest, want 2), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 2 old ids and 2 current ids. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 2 and 2: the events listed no push of the rewrite once the 6 hours had passed, the case the plan's assumption on the events' lag provides for. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines; 11 record files and 9 run records are checksummed. No deviation. Next: Support, whose gate is open on the 6 hours."
-                  },
-                  {
-                    "id": "S3",
-                    "name": "Support",
-                    "state": "done",
-                    "rows": [
-                      "authenticated-probes",
-                      "feed-reads",
-                      "report-rows",
-                      "unprovable"
-                    ],
-                    "brief": "The same for Support once its gate opens, authenticated only.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S3.gate",
-                        "name": "The events gate",
-                        "state": "done",
-                        "finished": "2026-11-16T02:08:36Z"
-                      },
-                      {
-                        "id": "S3.9",
-                        "name": "Step 9: the probes, the first feed reads and the report row",
-                        "state": "done",
-                        "finished": "2026-11-16T02:10:38Z"
-                      },
-                      {
-                        "id": "S3.feeds",
-                        "name": "The second feed reads",
-                        "state": "done",
-                        "finished": "2026-11-16T02:16:42Z"
-                      },
-                      {
-                        "id": "S3.reads",
-                        "name": "The repository read again",
-                        "state": "done",
-                        "finished": "2026-11-16T02:17:09Z"
-                      },
-                      {
-                        "id": "S3.record",
-                        "name": "The report row completed and checksummed",
-                        "state": "done",
-                        "finished": "2026-11-16T02:17:27Z"
-                      }
-                    ],
-                    "ref": "plan.md#s3--support",
-                    "started": "2026-11-16T02:08:17Z",
-                    "finished": "2026-11-16T02:17:46Z",
-                    "report": "Support is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:51:56Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 1 pushed branch. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 2, trees 2, blobs 60 of the 7259 in the manifest, want 1), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 1 old id and 1 current id. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 1 and 1: the events listed no push of the rewrite once the 6 hours had passed. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines and carries its line on what the probes cannot prove; 11 record files and 13 run records are checksummed. No deviation. All three repositories are recorded. Next: the close-out."
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Close-out",
-                    "state": "done",
-                    "rows": [
-                      "report-rows"
-                    ],
-                    "brief": "The rewrites' records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S4.records",
-                        "name": "The checksum lists",
-                        "state": "done",
-                        "finished": "2026-11-16T02:18:11Z"
-                      },
-                      {
-                        "id": "S4.tools",
-                        "name": "The tools at their pins",
-                        "state": "done",
-                        "finished": "2026-11-16T02:18:51Z"
-                      },
-                      {
-                        "id": "S4.g26",
-                        "name": "The earlier tool folder at its pins",
-                        "state": "done",
-                        "finished": "2026-11-16T02:19:30Z"
-                      },
-                      {
-                        "id": "S4.outputs",
-                        "name": "The output rule over the unit's outputs",
-                        "state": "done",
-                        "finished": "2026-11-16T02:19:58Z"
-                      }
-                    ],
-                    "ref": "plan.md#s4--close-out",
-                    "started": "2026-11-16T02:17:46Z",
-                    "finished": "2026-11-16T02:20:14Z",
-                    "report": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, TrumpBot, Support), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
-                    "result": "passed"
-                  }
-                ]
-              }
-            ],
-            "qa": [
-              {
-                "since": "2026-11-16T02:21:47Z",
-                "ended": "2026-11-16T02:44:24Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-16T02:21:47Z",
-                  "note": "Quality Review 1: running"
-                },
-                "detail": "All five stages passed with no stop. The change set against the base holds documents and boards only; the run is checked against its plan from the markers, the run log, the checksum lists and GitHub.",
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-16",
-                    "at": "2026-11-16T02:44:24Z",
-                    "findings": {
-                      "test": 4,
-                      "code": 4
-                    },
-                    "severity": {
-                      "minor": 8,
-                      "other": 0
-                    },
-                    "route": "on-the-spot",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/ca070e8d/tests/index.html",
-                    "note": "The run was found correct and complete: every stage and step ran once with the planned lines and counts, the issue's four conditions are met, and nothing was written to GitHub. The eight findings are five wording points in the as-built record and the consequences: the count of runner steps (19, not 18), the anonymous budget's readings stated beside the calls made, the pace between probes, an acceptance section, and the outcome of the plan's assumptions. They touch the anonymous probes and the report rows."
-                  }
-                ]
-              }
-            ],
-            "remediation": [
-              {
-                "since": "2026-11-16T02:44:24Z",
-                "ended": "2026-11-16T02:50:34Z",
-                "endedBy": "document",
-                "to": "document",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-16T02:47:09Z",
-                  "note": "3 of 3 sub-steps done"
-                },
-                "detail": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run.",
-                "remediation": {
-                  "pass": 1,
-                  "route": "on-the-spot",
-                  "steps": [
-                    {
-                      "name": "The count of runner steps corrected to 19",
-                      "state": "done",
-                      "finished": "2026-11-16T02:47:09Z",
-                      "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
-                    },
-                    {
-                      "name": "The anonymous budget's readings stated beside the calls made",
-                      "state": "done",
-                      "finished": "2026-11-16T02:47:09Z",
-                      "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
-                    },
-                    {
-                      "name": "The pace between probes stated",
-                      "state": "done",
-                      "finished": "2026-11-16T02:47:09Z",
-                      "report": "Three statements of the as-built record were corrected from the run log and the kept counts, with no step run again: the unit's part of the log holds 19 runner steps, 18 of which print a stage line; the anonymous budget read 60 before step 9, 50 before the second feed reads and 48 after them, with no shortage and no disagreement above the tool's limit; and the pace between probes was the tools' pinned 0.4 seconds with no override. The acceptance section and the outcome of the plan's assumptions are written when the plan is reconciled with the run."
-                    }
-                  ]
-                },
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-16",
-                    "at": "2026-11-16T02:44:24Z",
-                    "findings": {
-                      "test": 4,
-                      "code": 4
-                    },
-                    "severity": {
-                      "minor": 8,
-                      "other": 0
-                    },
-                    "route": "on-the-spot",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement/ca070e8d/tests/index.html",
-                    "note": "The run was found correct and complete: every stage and step ran once with the planned lines and counts, the issue's four conditions are met, and nothing was written to GitHub. The eight findings are five wording points in the as-built record and the consequences: the count of runner steps (19, not 18), the anonymous budget's readings stated beside the calls made, the pace between probes, an acceptance section, and the outcome of the plan's assumptions. They touch the anonymous probes and the report rows."
-                  }
-                ]
-              }
-            ]
-          },
-          "rowNames": {
-            "readiness": "Readiness: the rewrites' records, every branch at its rewritten tip, the token and the anonymous budget",
-            "authenticated-probes": "Authenticated probes of all three repositories",
-            "anonymous-probes": "Anonymous probes and anonymous feed reads, BotTools only",
-            "feed-reads": "The feed reads, each made twice, inside the events' window",
-            "report-rows": "The report rows, in counts only, and the unit's checksum lists",
-            "residual-stays": "BotTools' pull-request residual, measured and left in place",
-            "unprovable": "What the probes cannot prove"
-          },
-          "recon": {
-            "interview": {
-              "reconstructed": true,
-              "ended": null,
-              "trail": [],
-              "milestones": []
-            },
-            "research": {
-              "reconstructed": true,
-              "ended": "2026-11-15",
-              "trail": [
-                {
-                  "date": "2026-11-15",
-                  "label": "Nothing to research; the plan next"
-                }
-              ],
-              "milestones": [
-                {
-                  "date": "2026-11-13",
-                  "label": "Research verified, in #27's run",
-                  "ref": "../research/README.md",
-                  "note": "written on this board when the run started, from #27's architecture: the current state of the three repositories and the verified outside-world facts (§2.1, §2.5), this unit's design in §9, its non-goals in §4, #28's inputs in §13.4 and its row in §16, with #27's consequences (§2.1, §5, §6); and from the state the earlier units left: the rewrites' consequences (§2.1, §4, §5) and as-built record (§3.3, §3.4), and the residual set and its known gap in the tools unit's plan and consequences"
-                }
-              ]
-            }
-          }
-        },
         "tests": {
           "base": "main",
           "updated": "2026-11-16T02:44:24Z",
@@ -2049,6 +1148,10 @@
               }
             }
           ]
+        },
+        "landing": {
+          "pr": 46,
+          "merge": "f11f7abecdc68f1153e5904c325ff6bfb0709ea0"
         }
       },
       "gap": {
@@ -2089,8 +1192,8 @@
         }
       ],
       "asBuilt": {
-        "state": "pending",
-        "summary": "Filed as #41; its run has not started. It starts once #40, the rewrites, has landed."
+        "state": "landed",
+        "summary": "#41 landed through PR #46 as f11f7ab. It read what GitHub still serves of the three old histories, authenticated for all three and anonymously for BotTools alone, each repository once 6 hours had passed since its push, as no repository's events listed every push it made within them. Every old object probed is still served, no answer differed from the expectation, and nothing was written to GitHub. Each repository's report row, of 31, 16 and 16 lines, and the unit's records carry their checksum lists; #28 takes them."
       },
       "verdict": {
         "kind": "build",
@@ -2173,7 +1276,1671 @@
         "blockedBy": [
           40
         ],
-        "issue": 42
+        "issue": 42,
+        "board": "42-clone-replacement/dashboard.html",
+        "folder": "42-clone-replacement/",
+        "live": {
+          "step": "document",
+          "since": "2026-11-16T20:04:58Z",
+          "updated": "2026-11-16T20:32:24Z",
+          "detail": "Document: 4 of 4 tasks done; every task done.",
+          "steps": [
+            "sizing",
+            "interview",
+            "research",
+            "plan",
+            "branch",
+            "implementation",
+            "qa",
+            "remediation",
+            "document",
+            "landing",
+            "merge",
+            "landed"
+          ],
+          "waitingOn": null,
+          "resume": null,
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-16",
+              "at": "2026-11-16T20:03:47Z",
+              "findings": {
+                "test": 0,
+                "code": 2
+              },
+              "severity": {
+                "minor": 2,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "note": "Every item the issue asks was verified on the clone; the two fixes are wordings in the as-built record: the replacement reply's stored line count, and the reason the run went on past the request builder's defect.",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement/ca070e8d/tests/index.html"
+            }
+          ],
+          "qaMax": 3,
+          "status": "building",
+          "branch": "docs/issue-42-replace-trumpbot-clone",
+          "event": {
+            "name": "document",
+            "at": "2026-11-16T20:32:24Z",
+            "note": "4 of 4 tasks done"
+          },
+          "asked": [
+            {
+              "step": "implementation",
+              "text": "Place the three allow lines for the replacement, the deletion and the move back (and a fourth for closing #27) in the global settings file before the first call?",
+              "answer": null,
+              "asked": "2026-11-16T04:35:59Z",
+              "answered": "2026-11-16T05:57:48Z"
+            },
+            {
+              "step": "implementation",
+              "text": "Delete the board files' ignore at the root of the TrumpBot clone, leaving its exclude line, and run no graph job on that checkout until the replacement is complete?",
+              "answer": null,
+              "asked": "2026-11-16T04:35:59Z",
+              "answered": "2026-11-16T05:57:48Z"
+            },
+            {
+              "step": "implementation",
+              "text": "Give the word for the code-only graph build of the fresh clone with its two hooks, once the clone is replaced and proven and the old clone deleted?",
+              "answer": null,
+              "asked": "2026-11-16T04:35:59Z",
+              "answered": "2026-11-16T05:57:48Z"
+            },
+            {
+              "step": "implementation",
+              "text": "Give the section phase-0-tracking-27-close, so that #27 is closed by request after the landing; otherwise #27 is closed by hand?",
+              "options": [
+                "Give the section",
+                "Close #27 by hand"
+              ],
+              "answer": null,
+              "asked": "2026-11-16T04:35:59Z",
+              "answered": "2026-11-16T05:57:48Z"
+            },
+            {
+              "step": "implementation",
+              "text": "Place the four checked allow lines (the replacement, the deletion, the move back, the closing of #27) in the global settings file?",
+              "answer": null,
+              "asked": "2026-11-16T06:07:27Z",
+              "answered": "2026-11-16T19:23:43Z"
+            }
+          ],
+          "stages": [
+            {
+              "id": "S0",
+              "name": "Readiness",
+              "state": "done",
+              "rows": [
+                "readiness",
+                "grant"
+              ],
+              "brief": "The unit's data file and grant wording are written, the tools are at their pins, the rewrites' records equal their checksum lists, the grant is in place, and the clone passes its guards with its census recorded.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S0.unit",
+                  "name": "The unit's data file and grant wording",
+                  "state": "done",
+                  "finished": "2026-11-16T06:04:04Z"
+                },
+                {
+                  "id": "S0.tools",
+                  "name": "The tools at their pins",
+                  "state": "done",
+                  "finished": "2026-11-16T06:04:20Z"
+                },
+                {
+                  "id": "S0.quick",
+                  "name": "The quick gate",
+                  "state": "done",
+                  "finished": "2026-11-16T06:04:36Z"
+                },
+                {
+                  "id": "S0.pins",
+                  "name": "The tool versions",
+                  "state": "done",
+                  "finished": "2026-11-16T06:04:45Z"
+                },
+                {
+                  "id": "S0.records",
+                  "name": "The rewrites' records, the backup and the manifest",
+                  "state": "done",
+                  "finished": "2026-11-16T06:04:59Z"
+                },
+                {
+                  "id": "S0.grant",
+                  "name": "The grant read",
+                  "state": "done",
+                  "finished": "2026-11-16T06:05:08Z"
+                },
+                {
+                  "id": "S0.checks",
+                  "name": "The clone's guards",
+                  "state": "done",
+                  "finished": "2026-11-16T06:05:31Z"
+                },
+                {
+                  "id": "S0.census",
+                  "name": "The clone's census recorded",
+                  "state": "done",
+                  "finished": "2026-11-16T06:05:39Z"
+                }
+              ],
+              "ref": "plan.md#s0--readiness",
+              "started": "2026-11-16T04:35:47Z",
+              "finished": "2026-11-16T06:05:39Z",
+              "report": "Readiness passed: the unit's data file and grant wording written (the run log held 16157 lines before the unit); the tools at their pins (96 ok); the quick gate 63 of 63; the tool versions 7 ok; the rewrites' records, the earlier records, the untouched backup (22 files), the manifest (199 blobs) and the stage-8 marker equal their lists; the grant read with 11 ok and one RECORD (the section holds no Settings line, every action, the issue, the branch, the targets and the end as needed); the clone's guards 17 ok with the two expected RECORD lines and the server's heads at the new column; the census recorded: untracked 59 (carried 4, not carried 55, elsewhere 0), hooks 2, exclude lines 2, config keys 12. One deviation is logged in final-implementation.md: the grant's wording differs by its Settings line.",
+              "result": "passed"
+            },
+            {
+              "id": "S1",
+              "name": "The replacement",
+              "state": "done",
+              "rows": [
+                "move",
+                "carried",
+                "fresh-clone"
+              ],
+              "brief": "The old clone is renamed aside, a fresh clone of the rewritten repository is made at its path with the four carried files restored, and the unit's own reads prove the fresh clone and the old clone aside.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S1.request",
+                  "name": "The replacement request built and handed off",
+                  "state": "done",
+                  "finished": "2026-11-16T06:06:41Z"
+                },
+                {
+                  "id": "S1.send",
+                  "name": "The request sent",
+                  "state": "done",
+                  "finished": "2026-11-16T19:23:43Z"
+                },
+                {
+                  "id": "S1.reply",
+                  "name": "The reply stored",
+                  "state": "done",
+                  "finished": "2026-11-16T19:29:17Z"
+                },
+                {
+                  "id": "S1.outcome",
+                  "name": "The outcome read",
+                  "state": "done",
+                  "finished": "2026-11-16T19:29:35Z"
+                },
+                {
+                  "id": "S1.proofs",
+                  "name": "The fresh clone proven",
+                  "state": "done",
+                  "finished": "2026-11-16T19:30:01Z"
+                },
+                {
+                  "id": "S1.carried",
+                  "name": "The four restored files read against their checksums",
+                  "state": "done",
+                  "finished": "2026-11-16T19:30:16Z"
+                },
+                {
+                  "id": "S1.aside",
+                  "name": "The old clone read whole at the recorded path",
+                  "state": "done",
+                  "finished": "2026-11-16T19:30:35Z"
+                },
+                {
+                  "id": "S1.back",
+                  "name": "The move back, only after a stop that follows the rename",
+                  "steps": [
+                    {
+                      "id": "S1.back.request",
+                      "name": "The move-back request built and handed off"
+                    },
+                    {
+                      "id": "S1.back.send",
+                      "name": "The request sent"
+                    },
+                    {
+                      "id": "S1.back.reply",
+                      "name": "The reply stored"
+                    },
+                    {
+                      "id": "S1.back.outcome",
+                      "name": "The outcome read"
+                    },
+                    {
+                      "id": "S1.back.census",
+                      "name": "The old clone's census read at the clone's path"
+                    },
+                    {
+                      "id": "S1.back.checks",
+                      "name": "The clone's guards read again"
+                    }
+                  ]
+                }
+              ],
+              "ref": "plan.md#s1--the-replacement",
+              "started": "2026-11-16T06:05:39Z",
+              "finished": "2026-11-16T19:30:35Z",
+              "report": "The replacement passed: the request ran once and its reply was stored as done (88 printed lines: the 84 of the eight entries and the 4 check sentences the reply carries), OUTCOME complete entries=8 of 8 stops=0 status=done. The unit's own reads: the fresh clone's proofs 18 ok (the old commits and the 199 manifest blobs missing, the untouched backup's control whole, ten local keys, no hook, a comment-only exclude file, no FETCH_HEAD); the four restored files equal their checksums and are the only untracked files, and the same checksums hold for the old clone aside; the old clone aside equals its recorded census (differing lines 0: untracked 59, hooks 2, exclude lines 2, config keys 12). The move back was not needed. A second deviation is logged in final-implementation.md: the reply was saved as a byte-for-byte copy of the delivered file."
+            },
+            {
+              "id": "S2",
+              "name": "The deletion",
+              "state": "done",
+              "rows": [
+                "deletion",
+                "leftover"
+              ],
+              "brief": "The old clone is deleted at its recorded path, and no old-clone path remains.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S2.request",
+                  "name": "The deletion request built and handed off",
+                  "state": "done",
+                  "finished": "2026-11-16T19:31:14Z"
+                },
+                {
+                  "id": "S2.send",
+                  "name": "The request sent",
+                  "state": "done",
+                  "finished": "2026-11-16T19:31:53Z"
+                },
+                {
+                  "id": "S2.reply",
+                  "name": "The reply stored",
+                  "state": "done",
+                  "finished": "2026-11-16T19:36:31Z"
+                },
+                {
+                  "id": "S2.outcome",
+                  "name": "The outcome read",
+                  "state": "done",
+                  "finished": "2026-11-16T19:36:40Z"
+                },
+                {
+                  "id": "S2.gone",
+                  "name": "No old-clone path remains",
+                  "state": "done",
+                  "finished": "2026-11-16T19:36:57Z"
+                }
+              ],
+              "ref": "plan.md#s2--the-deletion",
+              "started": "2026-11-16T19:30:35Z",
+              "finished": "2026-11-16T19:36:57Z",
+              "report": "The deletion ended: the request ran once and its reply was stored as done (16 printed lines), OUTCOME complete entries=3 of 3 stops=0 status=done; the unit's own read finds no old-clone path left and the fresh clone in place (2 ok, STAGE K1.gone OK). A third deviation is logged in final-implementation.md: the deletion request carries the replacement's four check sentences, as the pinned request builder writes one list for every kind; the deletion's own markers all printed."
+            },
+            {
+              "id": "S3",
+              "name": "The graph",
+              "state": "done",
+              "rows": [
+                "graph",
+                "grant"
+              ],
+              "brief": "The graph service builds a code-only graph of the fresh clone with its two hooks, and the unit reads the graph and its hooks back.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S3.notice",
+                  "name": "The graph service told",
+                  "state": "done",
+                  "finished": "2026-11-16T19:38:03Z"
+                },
+                {
+                  "id": "S3.wait",
+                  "name": "The build waited for",
+                  "state": "done",
+                  "finished": "2026-11-16T19:47:31Z"
+                },
+                {
+                  "id": "S3.graph",
+                  "name": "The graph read back",
+                  "state": "done",
+                  "finished": "2026-11-16T19:47:54Z"
+                }
+              ],
+              "ref": "plan.md#s3--the-graph",
+              "started": "2026-11-16T19:36:57Z",
+              "finished": "2026-11-16T19:47:54Z",
+              "report": "The graph is rebuilt and read back: the first read after the notice waited, and after one wait of 9 minutes the graph file and both hooks were present. The read-back gave 9 ok and the one expected RECORD (one untracked file outside the two folders, the board files' ignore at the root), then STAGE K1.graph OK: the graph's folder exists and holds files, the hooks beyond the samples are exactly the graph's, the exclude file holds the graph's entry, no extra key but at most lfs.repositoryformatversion, the carried files unchanged, the remote-tracking refs at the new column and the old commits and manifest blobs still missing."
+            },
+            {
+              "id": "S4",
+              "name": "Close-out",
+              "state": "done",
+              "rows": [
+                "leftover"
+              ],
+              "brief": "The earlier records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S4.records",
+                  "name": "The checksum lists",
+                  "state": "done",
+                  "finished": "2026-11-16T19:48:22Z"
+                },
+                {
+                  "id": "S4.tools",
+                  "name": "The tools at their pins",
+                  "state": "done",
+                  "finished": "2026-11-16T19:49:10Z"
+                },
+                {
+                  "id": "S4.g26",
+                  "name": "The earlier tool folder at its pins",
+                  "state": "done",
+                  "finished": "2026-11-16T19:49:57Z"
+                },
+                {
+                  "id": "S4.outputs",
+                  "name": "The output rule over the unit's outputs",
+                  "state": "done",
+                  "finished": "2026-11-16T19:50:17Z"
+                }
+              ],
+              "ref": "plan.md#s4--close-out",
+              "started": "2026-11-16T19:47:54Z",
+              "finished": "2026-11-16T19:50:17Z",
+              "report": "The close-out passed: the rewrites' run records (49 files), TrumpBot's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
+              "result": "passed"
+            }
+          ],
+          "remediation": {
+            "pass": 1,
+            "route": "on-the-spot",
+            "steps": [
+              {
+                "name": "State the replacement reply as stored: 88 lines, the procedure's lines and the four check strings",
+                "state": "done",
+                "finished": "2026-11-16T20:04:42Z",
+                "report": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed."
+              },
+              {
+                "name": "Rest the third deviation on the facts of the deletion instead of a reading of the stop rule",
+                "state": "done",
+                "finished": "2026-11-16T20:04:42Z",
+                "report": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed."
+              }
+            ]
+          },
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile the plan with the build",
+                "state": "done",
+                "started": "2026-11-16T20:04:58Z",
+                "finished": "2026-11-16T20:13:55Z"
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-16T20:13:55Z"
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-16T20:13:55Z",
+                "finished": "2026-11-16T20:28:28Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-16T20:28:28Z",
+                "finished": "2026-11-16T20:32:24Z"
+              }
+            ]
+          },
+          "history": {
+            "sizing": [
+              {
+                "since": null,
+                "ended": "2026-11-16T03:31:47Z",
+                "endedBy": "sized",
+                "to": "plan"
+              }
+            ],
+            "plan": [
+              {
+                "since": "2026-11-16T03:31:47Z",
+                "ended": "2026-11-16T04:31:50Z",
+                "endedBy": "plan-accepted",
+                "to": "branch",
+                "event": {
+                  "name": "plan-stage",
+                  "at": "2026-11-16T04:25:27Z"
+                },
+                "detail": "The consequences record that the unit writes nothing to GitHub, that the clone is replaced with its four carried files and its graph rebuilt, that the old clone sits aside on its own volume until its deletion, what the residual report and cleanup takes, and the known gaps of a fresh clone, the rename and the graph build.",
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-16T03:31:47Z",
+                  "stages": [
+                    {
+                      "id": "re-pass",
+                      "state": "done",
+                      "started": "2026-11-16T03:31:47Z",
+                      "finished": "2026-11-16T04:03:28Z",
+                      "report": "The slice holds against the clone, the rewrites' records, the tools and the request service as they are now, but for one file: the graph service's board files' ignore at the clone's root, which the owner takes out before the unit's census, as the parent design's dated note now says; no question about the intent remains open."
+                    },
+                    {
+                      "id": "write",
+                      "state": "done",
+                      "started": "2026-11-16T04:03:28Z",
+                      "finished": "2026-11-16T04:19:08Z",
+                      "report": "The draft holds five stages: readiness with the clone's checks and census, the replacement as one request read back by the unit, the deletion as a second request, the graph's build at the owner's word and its read-back, and a close-out, with every expected line taken from the clone set's code and the move back only after a stop that follows the rename."
+                    },
+                    {
+                      "id": "check",
+                      "state": "done",
+                      "started": "2026-11-16T04:19:08Z",
+                      "finished": "2026-11-16T04:23:38Z",
+                      "report": "The check found the plan in line with the clone set's code, the rewrites' records as built and the parent design's section 10, and fixed small points in place: the status line, the rule for a shell beside the clone, a request's attempt number and resend key, and the state a stop before the rename leaves.",
+                      "result": "accepted"
+                    },
+                    {
+                      "id": "consequences",
+                      "state": "done",
+                      "started": "2026-11-16T04:23:38Z",
+                      "finished": "2026-11-16T04:25:27Z",
+                      "report": "The consequences record that the unit writes nothing to GitHub, that the clone is replaced with its four carried files and its graph rebuilt, that the old clone sits aside on its own volume until its deletion, what the residual report and cleanup takes, and the known gaps of a fresh clone, the rename and the graph build."
+                    },
+                    {
+                      "id": "report",
+                      "state": "done",
+                      "started": "2026-11-16T04:25:27Z",
+                      "finished": "2026-11-16T04:31:50Z",
+                      "report": "The report gives a five-stage procedure over the pinned clone set, the grant section with three allow lines, the graph-build word, the removal of the board files' ignore and a second section for closing #27, all asked of the owner up front."
+                    }
+                  ]
+                }
+              }
+            ],
+            "branch": [
+              {
+                "since": "2026-11-16T04:31:50Z",
+                "ended": "2026-11-16T04:35:47Z",
+                "endedBy": "branch-cut",
+                "to": "implementation",
+                "event": {
+                  "name": "plan-accepted",
+                  "at": "2026-11-16T04:31:50Z"
+                },
+                "detail": "The report gives a five-stage procedure over the pinned clone set, the grant section with three allow lines, the graph-build word, the removal of the board files' ignore and a second section for closing #27, all asked of the owner up front.",
+                "branch": "docs/issue-42-replace-trumpbot-clone"
+              }
+            ],
+            "implementation": [
+              {
+                "since": "2026-11-16T04:35:47Z",
+                "ended": "2026-11-16T04:35:59Z",
+                "endedBy": "halted",
+                "to": "implementation",
+                "event": {
+                  "name": "branch-cut",
+                  "at": "2026-11-16T04:35:47Z"
+                },
+                "detail": "Branch `docs/issue-42-replace-trumpbot-clone` cut; implementation starts at S0: Readiness.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Readiness",
+                    "state": "current",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S0.unit",
+                        "name": "The unit's data file and grant wording"
+                      },
+                      {
+                        "id": "S0.tools",
+                        "name": "The tools at their pins"
+                      },
+                      {
+                        "id": "S0.quick",
+                        "name": "The quick gate"
+                      },
+                      {
+                        "id": "S0.pins",
+                        "name": "The tool versions"
+                      },
+                      {
+                        "id": "S0.records",
+                        "name": "The rewrites' records, the backup and the manifest"
+                      },
+                      {
+                        "id": "S0.grant",
+                        "name": "The grant read"
+                      },
+                      {
+                        "id": "S0.checks",
+                        "name": "The clone's guards"
+                      },
+                      {
+                        "id": "S0.census",
+                        "name": "The clone's census recorded"
+                      }
+                    ],
+                    "ref": "plan.md#s0--readiness",
+                    "brief": "The unit's data file and grant wording are written, the tools are at their pins, the rewrites' records equal their checksum lists, the grant is in place, and the clone passes its guards with its census recorded.",
+                    "started": "2026-11-16T04:35:47Z"
+                  },
+                  {
+                    "id": "S1",
+                    "name": "The replacement",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S1.request",
+                        "name": "The replacement request built and handed off"
+                      },
+                      {
+                        "id": "S1.send",
+                        "name": "The request sent"
+                      },
+                      {
+                        "id": "S1.reply",
+                        "name": "The reply stored"
+                      },
+                      {
+                        "id": "S1.outcome",
+                        "name": "The outcome read"
+                      },
+                      {
+                        "id": "S1.proofs",
+                        "name": "The fresh clone proven"
+                      },
+                      {
+                        "id": "S1.carried",
+                        "name": "The four restored files read against their checksums"
+                      },
+                      {
+                        "id": "S1.aside",
+                        "name": "The old clone read whole at the recorded path"
+                      },
+                      {
+                        "id": "S1.back",
+                        "name": "The move back, only after a stop that follows the rename",
+                        "steps": [
+                          {
+                            "id": "S1.back.request",
+                            "name": "The move-back request built and handed off"
+                          },
+                          {
+                            "id": "S1.back.send",
+                            "name": "The request sent"
+                          },
+                          {
+                            "id": "S1.back.reply",
+                            "name": "The reply stored"
+                          },
+                          {
+                            "id": "S1.back.outcome",
+                            "name": "The outcome read"
+                          },
+                          {
+                            "id": "S1.back.census",
+                            "name": "The old clone's census read at the clone's path"
+                          },
+                          {
+                            "id": "S1.back.checks",
+                            "name": "The clone's guards read again"
+                          }
+                        ]
+                      }
+                    ],
+                    "ref": "plan.md#s1--the-replacement",
+                    "brief": "The old clone is renamed aside, a fresh clone of the rewritten repository is made at its path with the four carried files restored, and the unit's own reads prove the fresh clone and the old clone aside."
+                  },
+                  {
+                    "id": "S2",
+                    "name": "The deletion",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S2.request",
+                        "name": "The deletion request built and handed off"
+                      },
+                      {
+                        "id": "S2.send",
+                        "name": "The request sent"
+                      },
+                      {
+                        "id": "S2.reply",
+                        "name": "The reply stored"
+                      },
+                      {
+                        "id": "S2.outcome",
+                        "name": "The outcome read"
+                      },
+                      {
+                        "id": "S2.gone",
+                        "name": "No old-clone path remains"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-deletion",
+                    "brief": "The old clone is deleted at its recorded path, and no old-clone path remains."
+                  },
+                  {
+                    "id": "S3",
+                    "name": "The graph",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.notice",
+                        "name": "The graph service told"
+                      },
+                      {
+                        "id": "S3.wait",
+                        "name": "The build waited for"
+                      },
+                      {
+                        "id": "S3.graph",
+                        "name": "The graph read back"
+                      }
+                    ],
+                    "ref": "plan.md#s3--the-graph",
+                    "brief": "The graph service builds a code-only graph of the fresh clone with its two hooks, and the unit reads the graph and its hooks back."
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Close-out",
+                    "state": "todo",
+                    "rows": [],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.records",
+                        "name": "The checksum lists"
+                      },
+                      {
+                        "id": "S4.tools",
+                        "name": "The tools at their pins"
+                      },
+                      {
+                        "id": "S4.g26",
+                        "name": "The earlier tool folder at its pins"
+                      },
+                      {
+                        "id": "S4.outputs",
+                        "name": "The output rule over the unit's outputs"
+                      }
+                    ],
+                    "ref": "plan.md#s4--close-out",
+                    "brief": "The earlier records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive."
+                  }
+                ],
+                "held": true,
+                "asked": [
+                  {
+                    "text": "Place the three allow lines for the replacement, the deletion and the move back (and a fourth for closing #27) in the global settings file before the first call?",
+                    "answer": null,
+                    "asked": "2026-11-16T04:35:59Z",
+                    "answered": "2026-11-16T05:57:48Z"
+                  },
+                  {
+                    "text": "Delete the board files' ignore at the root of the TrumpBot clone, leaving its exclude line, and run no graph job on that checkout until the replacement is complete?",
+                    "answer": null,
+                    "asked": "2026-11-16T04:35:59Z",
+                    "answered": "2026-11-16T05:57:48Z"
+                  },
+                  {
+                    "text": "Give the word for the code-only graph build of the fresh clone with its two hooks, once the clone is replaced and proven and the old clone deleted?",
+                    "answer": null,
+                    "asked": "2026-11-16T04:35:59Z",
+                    "answered": "2026-11-16T05:57:48Z"
+                  },
+                  {
+                    "text": "Give the section phase-0-tracking-27-close, so that #27 is closed by request after the landing; otherwise #27 is closed by hand?",
+                    "options": [
+                      "Give the section",
+                      "Close #27 by hand"
+                    ],
+                    "answer": null,
+                    "asked": "2026-11-16T04:35:59Z",
+                    "answered": "2026-11-16T05:57:48Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-16T05:57:48Z",
+                "ended": "2026-11-16T06:07:27Z",
+                "endedBy": "halted",
+                "to": "implementation",
+                "event": {
+                  "name": "step-complete",
+                  "at": "2026-11-16T06:06:41Z"
+                },
+                "detail": "Readiness passed: the unit's data file and grant wording written (the run log held 16157 lines before the unit); the tools at their pins (96 ok); the quick gate 63 of 63; the tool versions 7 ok; the rewrites' records, the earlier records, the untouched backup (22 files), the manifest (199 blobs) and the stage-8 marker equal their lists; the grant read with 11 ok and one RECORD (the section holds no Settings line, every action, the issue, the branch, the targets and the end as needed); the clone's guards 17 ok with the two expected RECORD lines and the server's heads at the new column; the census recorded: untracked 59 (carried 4, not carried 55, elsewhere 0), hooks 2, exclude lines 2, config keys 12. One deviation is logged in final-implementation.md: the grant's wording differs by its Settings line.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Readiness",
+                    "state": "done",
+                    "rows": [
+                      "readiness",
+                      "grant"
+                    ],
+                    "brief": "The unit's data file and grant wording are written, the tools are at their pins, the rewrites' records equal their checksum lists, the grant is in place, and the clone passes its guards with its census recorded.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S0.unit",
+                        "name": "The unit's data file and grant wording",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:04Z"
+                      },
+                      {
+                        "id": "S0.tools",
+                        "name": "The tools at their pins",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:20Z"
+                      },
+                      {
+                        "id": "S0.quick",
+                        "name": "The quick gate",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:36Z"
+                      },
+                      {
+                        "id": "S0.pins",
+                        "name": "The tool versions",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:45Z"
+                      },
+                      {
+                        "id": "S0.records",
+                        "name": "The rewrites' records, the backup and the manifest",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:59Z"
+                      },
+                      {
+                        "id": "S0.grant",
+                        "name": "The grant read",
+                        "state": "done",
+                        "finished": "2026-11-16T06:05:08Z"
+                      },
+                      {
+                        "id": "S0.checks",
+                        "name": "The clone's guards",
+                        "state": "done",
+                        "finished": "2026-11-16T06:05:31Z"
+                      },
+                      {
+                        "id": "S0.census",
+                        "name": "The clone's census recorded",
+                        "state": "done",
+                        "finished": "2026-11-16T06:05:39Z"
+                      }
+                    ],
+                    "ref": "plan.md#s0--readiness",
+                    "started": "2026-11-16T04:35:47Z",
+                    "finished": "2026-11-16T06:05:39Z",
+                    "report": "Readiness passed: the unit's data file and grant wording written (the run log held 16157 lines before the unit); the tools at their pins (96 ok); the quick gate 63 of 63; the tool versions 7 ok; the rewrites' records, the earlier records, the untouched backup (22 files), the manifest (199 blobs) and the stage-8 marker equal their lists; the grant read with 11 ok and one RECORD (the section holds no Settings line, every action, the issue, the branch, the targets and the end as needed); the clone's guards 17 ok with the two expected RECORD lines and the server's heads at the new column; the census recorded: untracked 59 (carried 4, not carried 55, elsewhere 0), hooks 2, exclude lines 2, config keys 12. One deviation is logged in final-implementation.md: the grant's wording differs by its Settings line.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S1",
+                    "name": "The replacement",
+                    "state": "current",
+                    "rows": [
+                      "move",
+                      "carried",
+                      "fresh-clone"
+                    ],
+                    "brief": "The old clone is renamed aside, a fresh clone of the rewritten repository is made at its path with the four carried files restored, and the unit's own reads prove the fresh clone and the old clone aside.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S1.request",
+                        "name": "The replacement request built and handed off",
+                        "state": "done",
+                        "finished": "2026-11-16T06:06:41Z"
+                      },
+                      {
+                        "id": "S1.send",
+                        "name": "The request sent"
+                      },
+                      {
+                        "id": "S1.reply",
+                        "name": "The reply stored"
+                      },
+                      {
+                        "id": "S1.outcome",
+                        "name": "The outcome read"
+                      },
+                      {
+                        "id": "S1.proofs",
+                        "name": "The fresh clone proven"
+                      },
+                      {
+                        "id": "S1.carried",
+                        "name": "The four restored files read against their checksums"
+                      },
+                      {
+                        "id": "S1.aside",
+                        "name": "The old clone read whole at the recorded path"
+                      },
+                      {
+                        "id": "S1.back",
+                        "name": "The move back, only after a stop that follows the rename",
+                        "steps": [
+                          {
+                            "id": "S1.back.request",
+                            "name": "The move-back request built and handed off"
+                          },
+                          {
+                            "id": "S1.back.send",
+                            "name": "The request sent"
+                          },
+                          {
+                            "id": "S1.back.reply",
+                            "name": "The reply stored"
+                          },
+                          {
+                            "id": "S1.back.outcome",
+                            "name": "The outcome read"
+                          },
+                          {
+                            "id": "S1.back.census",
+                            "name": "The old clone's census read at the clone's path"
+                          },
+                          {
+                            "id": "S1.back.checks",
+                            "name": "The clone's guards read again"
+                          }
+                        ]
+                      }
+                    ],
+                    "ref": "plan.md#s1--the-replacement",
+                    "started": "2026-11-16T06:05:39Z"
+                  },
+                  {
+                    "id": "S2",
+                    "name": "The deletion",
+                    "state": "todo",
+                    "rows": [
+                      "deletion",
+                      "leftover"
+                    ],
+                    "brief": "The old clone is deleted at its recorded path, and no old-clone path remains.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S2.request",
+                        "name": "The deletion request built and handed off"
+                      },
+                      {
+                        "id": "S2.send",
+                        "name": "The request sent"
+                      },
+                      {
+                        "id": "S2.reply",
+                        "name": "The reply stored"
+                      },
+                      {
+                        "id": "S2.outcome",
+                        "name": "The outcome read"
+                      },
+                      {
+                        "id": "S2.gone",
+                        "name": "No old-clone path remains"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-deletion"
+                  },
+                  {
+                    "id": "S3",
+                    "name": "The graph",
+                    "state": "todo",
+                    "rows": [
+                      "graph"
+                    ],
+                    "brief": "The graph service builds a code-only graph of the fresh clone with its two hooks, and the unit reads the graph and its hooks back.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.notice",
+                        "name": "The graph service told"
+                      },
+                      {
+                        "id": "S3.wait",
+                        "name": "The build waited for"
+                      },
+                      {
+                        "id": "S3.graph",
+                        "name": "The graph read back"
+                      }
+                    ],
+                    "ref": "plan.md#s3--the-graph"
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Close-out",
+                    "state": "todo",
+                    "rows": [
+                      "leftover"
+                    ],
+                    "brief": "The earlier records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.records",
+                        "name": "The checksum lists"
+                      },
+                      {
+                        "id": "S4.tools",
+                        "name": "The tools at their pins"
+                      },
+                      {
+                        "id": "S4.g26",
+                        "name": "The earlier tool folder at its pins"
+                      },
+                      {
+                        "id": "S4.outputs",
+                        "name": "The output rule over the unit's outputs"
+                      }
+                    ],
+                    "ref": "plan.md#s4--close-out"
+                  }
+                ],
+                "held": true,
+                "asked": [
+                  {
+                    "text": "Place the four checked allow lines (the replacement, the deletion, the move back, the closing of #27) in the global settings file?",
+                    "answer": null,
+                    "asked": "2026-11-16T06:07:27Z",
+                    "answered": "2026-11-16T19:23:43Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-16T19:23:43Z",
+                "ended": "2026-11-16T19:52:03Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-16T19:50:17Z",
+                  "note": "S4 reported done; Quality Review next"
+                },
+                "detail": "The close-out passed: the rewrites' run records (49 files), TrumpBot's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Readiness",
+                    "state": "done",
+                    "rows": [
+                      "readiness",
+                      "grant"
+                    ],
+                    "brief": "The unit's data file and grant wording are written, the tools are at their pins, the rewrites' records equal their checksum lists, the grant is in place, and the clone passes its guards with its census recorded.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S0.unit",
+                        "name": "The unit's data file and grant wording",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:04Z"
+                      },
+                      {
+                        "id": "S0.tools",
+                        "name": "The tools at their pins",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:20Z"
+                      },
+                      {
+                        "id": "S0.quick",
+                        "name": "The quick gate",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:36Z"
+                      },
+                      {
+                        "id": "S0.pins",
+                        "name": "The tool versions",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:45Z"
+                      },
+                      {
+                        "id": "S0.records",
+                        "name": "The rewrites' records, the backup and the manifest",
+                        "state": "done",
+                        "finished": "2026-11-16T06:04:59Z"
+                      },
+                      {
+                        "id": "S0.grant",
+                        "name": "The grant read",
+                        "state": "done",
+                        "finished": "2026-11-16T06:05:08Z"
+                      },
+                      {
+                        "id": "S0.checks",
+                        "name": "The clone's guards",
+                        "state": "done",
+                        "finished": "2026-11-16T06:05:31Z"
+                      },
+                      {
+                        "id": "S0.census",
+                        "name": "The clone's census recorded",
+                        "state": "done",
+                        "finished": "2026-11-16T06:05:39Z"
+                      }
+                    ],
+                    "ref": "plan.md#s0--readiness",
+                    "started": "2026-11-16T04:35:47Z",
+                    "finished": "2026-11-16T06:05:39Z",
+                    "report": "Readiness passed: the unit's data file and grant wording written (the run log held 16157 lines before the unit); the tools at their pins (96 ok); the quick gate 63 of 63; the tool versions 7 ok; the rewrites' records, the earlier records, the untouched backup (22 files), the manifest (199 blobs) and the stage-8 marker equal their lists; the grant read with 11 ok and one RECORD (the section holds no Settings line, every action, the issue, the branch, the targets and the end as needed); the clone's guards 17 ok with the two expected RECORD lines and the server's heads at the new column; the census recorded: untracked 59 (carried 4, not carried 55, elsewhere 0), hooks 2, exclude lines 2, config keys 12. One deviation is logged in final-implementation.md: the grant's wording differs by its Settings line.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S1",
+                    "name": "The replacement",
+                    "state": "done",
+                    "rows": [
+                      "move",
+                      "carried",
+                      "fresh-clone"
+                    ],
+                    "brief": "The old clone is renamed aside, a fresh clone of the rewritten repository is made at its path with the four carried files restored, and the unit's own reads prove the fresh clone and the old clone aside.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S1.request",
+                        "name": "The replacement request built and handed off",
+                        "state": "done",
+                        "finished": "2026-11-16T06:06:41Z"
+                      },
+                      {
+                        "id": "S1.send",
+                        "name": "The request sent",
+                        "state": "done",
+                        "finished": "2026-11-16T19:23:43Z"
+                      },
+                      {
+                        "id": "S1.reply",
+                        "name": "The reply stored",
+                        "state": "done",
+                        "finished": "2026-11-16T19:29:17Z"
+                      },
+                      {
+                        "id": "S1.outcome",
+                        "name": "The outcome read",
+                        "state": "done",
+                        "finished": "2026-11-16T19:29:35Z"
+                      },
+                      {
+                        "id": "S1.proofs",
+                        "name": "The fresh clone proven",
+                        "state": "done",
+                        "finished": "2026-11-16T19:30:01Z"
+                      },
+                      {
+                        "id": "S1.carried",
+                        "name": "The four restored files read against their checksums",
+                        "state": "done",
+                        "finished": "2026-11-16T19:30:16Z"
+                      },
+                      {
+                        "id": "S1.aside",
+                        "name": "The old clone read whole at the recorded path",
+                        "state": "done",
+                        "finished": "2026-11-16T19:30:35Z"
+                      },
+                      {
+                        "id": "S1.back",
+                        "name": "The move back, only after a stop that follows the rename",
+                        "steps": [
+                          {
+                            "id": "S1.back.request",
+                            "name": "The move-back request built and handed off"
+                          },
+                          {
+                            "id": "S1.back.send",
+                            "name": "The request sent"
+                          },
+                          {
+                            "id": "S1.back.reply",
+                            "name": "The reply stored"
+                          },
+                          {
+                            "id": "S1.back.outcome",
+                            "name": "The outcome read"
+                          },
+                          {
+                            "id": "S1.back.census",
+                            "name": "The old clone's census read at the clone's path"
+                          },
+                          {
+                            "id": "S1.back.checks",
+                            "name": "The clone's guards read again"
+                          }
+                        ]
+                      }
+                    ],
+                    "ref": "plan.md#s1--the-replacement",
+                    "started": "2026-11-16T06:05:39Z",
+                    "finished": "2026-11-16T19:30:35Z",
+                    "report": "The replacement passed: the request ran once and its reply was stored as done (88 printed lines: the 84 of the eight entries and the 4 check sentences the reply carries), OUTCOME complete entries=8 of 8 stops=0 status=done. The unit's own reads: the fresh clone's proofs 18 ok (the old commits and the 199 manifest blobs missing, the untouched backup's control whole, ten local keys, no hook, a comment-only exclude file, no FETCH_HEAD); the four restored files equal their checksums and are the only untracked files, and the same checksums hold for the old clone aside; the old clone aside equals its recorded census (differing lines 0: untracked 59, hooks 2, exclude lines 2, config keys 12). The move back was not needed. A second deviation is logged in final-implementation.md: the reply was saved as a byte-for-byte copy of the delivered file."
+                  },
+                  {
+                    "id": "S2",
+                    "name": "The deletion",
+                    "state": "done",
+                    "rows": [
+                      "deletion",
+                      "leftover"
+                    ],
+                    "brief": "The old clone is deleted at its recorded path, and no old-clone path remains.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S2.request",
+                        "name": "The deletion request built and handed off",
+                        "state": "done",
+                        "finished": "2026-11-16T19:31:14Z"
+                      },
+                      {
+                        "id": "S2.send",
+                        "name": "The request sent",
+                        "state": "done",
+                        "finished": "2026-11-16T19:31:53Z"
+                      },
+                      {
+                        "id": "S2.reply",
+                        "name": "The reply stored",
+                        "state": "done",
+                        "finished": "2026-11-16T19:36:31Z"
+                      },
+                      {
+                        "id": "S2.outcome",
+                        "name": "The outcome read",
+                        "state": "done",
+                        "finished": "2026-11-16T19:36:40Z"
+                      },
+                      {
+                        "id": "S2.gone",
+                        "name": "No old-clone path remains",
+                        "state": "done",
+                        "finished": "2026-11-16T19:36:57Z"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-deletion",
+                    "started": "2026-11-16T19:30:35Z",
+                    "finished": "2026-11-16T19:36:57Z",
+                    "report": "The deletion ended: the request ran once and its reply was stored as done (16 printed lines), OUTCOME complete entries=3 of 3 stops=0 status=done; the unit's own read finds no old-clone path left and the fresh clone in place (2 ok, STAGE K1.gone OK). A third deviation is logged in final-implementation.md: the deletion request carries the replacement's four check sentences, as the pinned request builder writes one list for every kind; the deletion's own markers all printed."
+                  },
+                  {
+                    "id": "S3",
+                    "name": "The graph",
+                    "state": "done",
+                    "rows": [
+                      "graph",
+                      "grant"
+                    ],
+                    "brief": "The graph service builds a code-only graph of the fresh clone with its two hooks, and the unit reads the graph and its hooks back.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.notice",
+                        "name": "The graph service told",
+                        "state": "done",
+                        "finished": "2026-11-16T19:38:03Z"
+                      },
+                      {
+                        "id": "S3.wait",
+                        "name": "The build waited for",
+                        "state": "done",
+                        "finished": "2026-11-16T19:47:31Z"
+                      },
+                      {
+                        "id": "S3.graph",
+                        "name": "The graph read back",
+                        "state": "done",
+                        "finished": "2026-11-16T19:47:54Z"
+                      }
+                    ],
+                    "ref": "plan.md#s3--the-graph",
+                    "started": "2026-11-16T19:36:57Z",
+                    "finished": "2026-11-16T19:47:54Z",
+                    "report": "The graph is rebuilt and read back: the first read after the notice waited, and after one wait of 9 minutes the graph file and both hooks were present. The read-back gave 9 ok and the one expected RECORD (one untracked file outside the two folders, the board files' ignore at the root), then STAGE K1.graph OK: the graph's folder exists and holds files, the hooks beyond the samples are exactly the graph's, the exclude file holds the graph's entry, no extra key but at most lfs.repositoryformatversion, the carried files unchanged, the remote-tracking refs at the new column and the old commits and manifest blobs still missing."
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Close-out",
+                    "state": "done",
+                    "rows": [
+                      "leftover"
+                    ],
+                    "brief": "The earlier records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.records",
+                        "name": "The checksum lists",
+                        "state": "done",
+                        "finished": "2026-11-16T19:48:22Z"
+                      },
+                      {
+                        "id": "S4.tools",
+                        "name": "The tools at their pins",
+                        "state": "done",
+                        "finished": "2026-11-16T19:49:10Z"
+                      },
+                      {
+                        "id": "S4.g26",
+                        "name": "The earlier tool folder at its pins",
+                        "state": "done",
+                        "finished": "2026-11-16T19:49:57Z"
+                      },
+                      {
+                        "id": "S4.outputs",
+                        "name": "The output rule over the unit's outputs",
+                        "state": "done",
+                        "finished": "2026-11-16T19:50:17Z"
+                      }
+                    ],
+                    "ref": "plan.md#s4--close-out",
+                    "started": "2026-11-16T19:47:54Z",
+                    "finished": "2026-11-16T19:50:17Z",
+                    "report": "The close-out passed: the rewrites' run records (49 files), TrumpBot's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
+                    "result": "passed"
+                  }
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "since": "2026-11-16T19:52:03Z",
+                "ended": "2026-11-16T20:03:47Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-16T19:52:03Z",
+                  "note": "Quality Review 1: running"
+                },
+                "detail": "Quality Review 1 running.",
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-16",
+                    "at": "2026-11-16T20:03:47Z",
+                    "findings": {
+                      "test": 0,
+                      "code": 2
+                    },
+                    "severity": {
+                      "minor": 2,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "note": "Every item the issue asks was verified on the clone; the two fixes are wordings in the as-built record: the replacement reply's stored line count, and the reason the run went on past the request builder's defect.",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement/ca070e8d/tests/index.html"
+                  }
+                ]
+              }
+            ],
+            "remediation": [
+              {
+                "since": "2026-11-16T20:03:47Z",
+                "ended": "2026-11-16T20:04:58Z",
+                "endedBy": "document",
+                "to": "document",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-16T20:04:42Z",
+                  "note": "2 of 2 sub-steps done"
+                },
+                "detail": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed.",
+                "remediation": {
+                  "pass": 1,
+                  "route": "on-the-spot",
+                  "steps": [
+                    {
+                      "name": "State the replacement reply as stored: 88 lines, the procedure's lines and the four check strings",
+                      "state": "done",
+                      "finished": "2026-11-16T20:04:42Z",
+                      "report": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed."
+                    },
+                    {
+                      "name": "Rest the third deviation on the facts of the deletion instead of a reading of the stop rule",
+                      "state": "done",
+                      "finished": "2026-11-16T20:04:42Z",
+                      "report": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed."
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-16",
+                    "at": "2026-11-16T20:03:47Z",
+                    "findings": {
+                      "test": 0,
+                      "code": 2
+                    },
+                    "severity": {
+                      "minor": 2,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "note": "Every item the issue asks was verified on the clone; the two fixes are wordings in the as-built record: the replacement reply's stored line count, and the reason the run went on past the request builder's defect.",
+                    "report": "build/reports/tests/index.html",
+                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement/ca070e8d/tests/index.html"
+                  }
+                ]
+              }
+            ]
+          },
+          "rowNames": {
+            "readiness": "Readiness: TrumpBot proven, the clone set at its pins, the read-only checks and the census of the clone",
+            "move": "The old clone moved aside by one rename on its own volume",
+            "carried": "What is carried: the four `.idea/` files, and nothing else git does not track",
+            "fresh-clone": "The fresh clone at the same path, and its proofs",
+            "deletion": "The old clone deleted at its recorded path",
+            "graph": "The graph rebuilt from the rewritten tree, and read back",
+            "leftover": "A leftover of the old clone, and #28's confirmation that no old-clone path remains",
+            "grant": "The grant for this unit's job, and what is asked up front"
+          },
+          "recon": {
+            "interview": {
+              "reconstructed": true,
+              "ended": null,
+              "trail": [],
+              "milestones": []
+            },
+            "research": {
+              "reconstructed": true,
+              "ended": "2026-11-16",
+              "trail": [
+                {
+                  "date": "2026-11-16",
+                  "label": "Nothing to research; the plan next"
+                }
+              ],
+              "milestones": [
+                {
+                  "date": "2026-11-13",
+                  "label": "Research verified, in #27's run",
+                  "ref": "../research/README.md",
+                  "note": "written on this board when the run started, from #27's research question on moving the old clone aside and its summary, and its architecture's current state of the clone, the volumes, the tools and the request service (§2.2 to §2.5), this unit's design in §10 and its row in §16, with #27's consequences (§2.2, §5, §6); and from the state the earlier units left: the tools unit's clone set and the assumptions it left to this unit's run, and the rewrites' records for TrumpBot"
+                }
+              ]
+            }
+          }
+        },
+        "tests": {
+          "updated": "2026-11-16T20:03:47Z",
+          "added": [],
+          "amended": [],
+          "relevant": [
+            {
+              "class": "s0-ready tools",
+              "module": "workspace tools",
+              "testSet": "gating",
+              "tests": 96,
+              "result": {
+                "state": "passed",
+                "passed": 96,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:50:17Z"
+              }
+            },
+            {
+              "class": "s0-ready pins",
+              "module": "workspace tools",
+              "testSet": "gating",
+              "tests": 7,
+              "result": {
+                "state": "passed",
+                "passed": 7,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T06:05:39Z"
+              }
+            },
+            {
+              "class": "S0.records",
+              "module": "workspace tools",
+              "testSet": "gating",
+              "tests": 7,
+              "result": {
+                "state": "passed",
+                "passed": 7,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T06:05:39Z"
+              }
+            },
+            {
+              "class": "s0-ready grant",
+              "module": "workspace tools",
+              "testSet": "gating",
+              "tests": 11,
+              "result": {
+                "state": "passed",
+                "passed": 11,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T06:05:39Z"
+              }
+            },
+            {
+              "class": "gselftest deterministic",
+              "module": "workspace tools",
+              "testSet": "deterministic",
+              "tests": 63,
+              "result": {
+                "state": "passed",
+                "passed": 63,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T06:05:39Z"
+              }
+            },
+            {
+              "class": "k1-clone checks",
+              "module": "workspace tools",
+              "testSet": "integration",
+              "tests": 17,
+              "result": {
+                "state": "passed",
+                "passed": 17,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T06:05:39Z"
+              }
+            },
+            {
+              "class": "k1-clone census",
+              "module": "workspace tools",
+              "testSet": "integration",
+              "tests": 7,
+              "result": {
+                "state": "passed",
+                "passed": 7,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T06:05:39Z"
+              }
+            },
+            {
+              "class": "replace-clone procedure (8 entries)",
+              "module": "workspace tools",
+              "testSet": "e2e",
+              "tests": 8,
+              "result": {
+                "state": "passed",
+                "passed": 8,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:30:35Z"
+              }
+            },
+            {
+              "class": "k1-clone proofs",
+              "module": "workspace tools",
+              "testSet": "integration",
+              "tests": 18,
+              "result": {
+                "state": "passed",
+                "passed": 18,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:30:35Z"
+              }
+            },
+            {
+              "class": "S1.carried",
+              "module": "workspace tools",
+              "testSet": "integration",
+              "tests": 4,
+              "result": {
+                "state": "passed",
+                "passed": 4,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:30:35Z"
+              }
+            },
+            {
+              "class": "k1-clone census aside",
+              "module": "workspace tools",
+              "testSet": "integration",
+              "tests": 6,
+              "result": {
+                "state": "passed",
+                "passed": 6,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:30:35Z"
+              }
+            },
+            {
+              "class": "replace-clone deletion procedure (3 entries)",
+              "module": "workspace tools",
+              "testSet": "e2e",
+              "tests": 3,
+              "result": {
+                "state": "passed",
+                "passed": 3,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:36:57Z"
+              }
+            },
+            {
+              "class": "k1-clone gone",
+              "module": "workspace tools",
+              "testSet": "integration",
+              "tests": 2,
+              "result": {
+                "state": "passed",
+                "passed": 2,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:36:57Z"
+              }
+            },
+            {
+              "class": "S3.wait",
+              "module": "workspace tools",
+              "testSet": "integration",
+              "tests": 1,
+              "result": {
+                "state": "passed",
+                "passed": 1,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:47:54Z"
+              }
+            },
+            {
+              "class": "k1-clone graph",
+              "module": "workspace tools",
+              "testSet": "integration",
+              "tests": 9,
+              "result": {
+                "state": "passed",
+                "passed": 9,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:47:54Z"
+              }
+            },
+            {
+              "class": "S4.records",
+              "module": "workspace tools",
+              "testSet": "gating",
+              "tests": 5,
+              "result": {
+                "state": "passed",
+                "passed": 5,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:50:17Z"
+              }
+            },
+            {
+              "class": "S4.g26",
+              "module": "workspace tools",
+              "testSet": "gating",
+              "tests": 3,
+              "result": {
+                "state": "passed",
+                "passed": 3,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:50:17Z"
+              }
+            },
+            {
+              "class": "S4.outputs",
+              "module": "workspace tools",
+              "testSet": "nonfunctional",
+              "tests": 4,
+              "result": {
+                "state": "passed",
+                "passed": 4,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T19:50:17Z"
+              }
+            },
+            {
+              "class": "gselftest.sh deterministic",
+              "module": "tools/g27",
+              "tests": 63,
+              "result": {
+                "state": "passed",
+                "passed": 63,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 1,
+                "at": "2026-11-16T20:03:47Z"
+              }
+            }
+          ]
+        }
       },
       "gap": {
         "kind": "risk",
@@ -2277,7 +3044,7 @@
               "ref": "architecture.md#103-what-is-carried-and-what-is-not",
               "heading": "10.3 What is carried, and what is not",
               "paragraph": "Carried: the four `.idea/` files, archived with a checksum list behind a closed-set guard over the 59 files git does not track: 4 under `.idea/`, 55 under `graphify-out/`, 0 anywhere else. A file outside the two folders is a stop, because it would be dropped silently. The carried folder and the not-carried folder are policy values. · Not carried: the 55 graph files, the exclude entry, the two hooks and the two extra configuration keys. The graph was built from the pre-rewrite tree, so it describes files the rewrite removes. The hooks and the exclude entry are recorded by name, size and …",
-              "hash": "f1073d641e7e"
+              "hash": "6acd6367afb2"
             }
           },
           {
@@ -2317,7 +3084,7 @@
               "ref": "architecture.md#10-the-clone-replacement",
               "heading": "10. The clone replacement",
               "paragraph": "Unit 4, `clone-replacement`. It runs once TrumpBot's push is proven: TrumpBot holds its stage-8 marker, and the server's heads equal `ref-map`'s new column.",
-              "hash": "73e836bdea23"
+              "hash": "af6711cb9f24"
             }
           }
         ],
@@ -2369,7 +3136,7 @@
         "kind": "repository",
         "system": null,
         "effect": "additive",
-        "summary": "Each rewritten branch adds one force-push entry to its repository's activity feed, whose `before` is a pre-rewrite tip, and one event. BotTools' webhook, to a CircleCI host, receives one push delivery per branch, 2 in all, recorded by count; it stays as it is.",
+        "summary": "Each rewritten branch added one force-push entry to its repository's activity feed, whose `before` is a pre-rewrite tip, and every activity feed lists them. The events, after 6 hours, listed the push of 1 of BotTools' 2 branches and none of TrumpBot's 2 or Support's 1; whether GitHub lists the others later is not established. BotTools' webhook, to a CircleCI host, received one push delivery per branch, 2 in all, recorded by count; it stays as it is.",
         "link": "consequences.md#21-github"
       },
       {
@@ -2501,16 +3268,37 @@
       },
       {
         "unit": "residual-measurement",
-        "basis": "plan",
-        "summary": "As planned, no module is published and no version moves; the landing carries documents and generated boards only. The unit reads what GitHub still serves of the three old histories, authenticated for all three and anonymously for BotTools alone, each repository once its events list its push or 6 hours have passed, and writes nothing to GitHub and removes nothing. On this machine it adds new records beside the earlier ones in the workspace and the data folder; #28 takes the three report rows with their checksum lists.",
+        "basis": "as-built",
+        "summary": "As built, no module is published and no version moves; the landing carries documents and generated boards only. The unit read what GitHub still serves of the three old histories, authenticated for all three and anonymously for BotTools alone, each repository once 6 hours had passed since its push, and wrote nothing to GitHub and removed nothing: every old object probed is still served. On this machine it added new records beside the earlier ones in the workspace and the data folder; #28 takes the three report rows, of 31, 16 and 16 lines, with their checksum lists.",
         "release": {
           "bump": "none",
           "version": null,
           "note": "no module is published and no version moves",
           "nothingPublished": true
         },
-        "source": "41-residual-measurement/consequences.md §1 to §6; 41-residual-measurement/plan.md",
-        "link": "41-residual-measurement/consequences.md#2-blast-radius"
+        "source": "41-residual-measurement/consequences.md §1 to §6, reconciled with the build; 41-residual-measurement/final-implementation.md",
+        "link": "41-residual-measurement/consequences.md#2-blast-radius",
+        "changes": [
+          {
+            "what": "The landing also carries a note in the verification results of this design's research, and this design takes no dated note.",
+            "why": "The push findings expected one push event per rewritten branch within the events' documented lag of up to 6 hours, and after the 6 hours the events listed 1 of BotTools' 2 pushes and none of TrumpBot's 2 or Support's 1; the measurement ran as this design's §9 describes.",
+            "when": "#41 landing",
+            "ref": "41-residual-measurement/final-implementation.md#4-deviations-from-the-plan"
+          }
+        ]
+      },
+      {
+        "unit": "clone-replacement",
+        "basis": "plan",
+        "summary": "As planned, no module is published and no version moves; the landing carries documents and generated boards only. Nothing is written to GitHub until the landing, after which #27 is closed. On this machine the TrumpBot clone is replaced by a fresh clone with its four `.idea/` files, by two requests under the unit's own grant, the old clone deleted at its recorded path after the unit's read of the fresh clone, and the graph rebuilt by the graph service; the graph service's board files' ignore, now part of a graph's footprint (this design's dated note under §10.3), is not carried. #28 takes the record that no old-clone path remains.",
+        "release": {
+          "bump": "none",
+          "version": null,
+          "note": "no module is published and no version moves",
+          "nothingPublished": true
+        },
+        "source": "42-clone-replacement/consequences.md §1 to §6",
+        "link": "42-clone-replacement/consequences.md#2-blast-radius"
       }
     ],
     "changes": [
@@ -2527,6 +3315,14 @@
         "none": true,
         "why": "The three force-pushes landed as the initiative's impact records them: 16 commits to 15, 11 to 9 and 2 to 1, BotTools' pull-request refs keeping 13 old commits and its 39 purged blobs fetchable, and two push deliveries to its webhook. That an allow line takes effect without a restart changes this design's procedure for the clone replacement, in dated notes on §2.4 and §12, not the initiative's impact.",
         "ref": "40-rewrites/consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "unit": "residual-measurement",
+        "when": "#41 landing",
+        "entry": "downstream.2",
+        "what": "The events did not list every rewritten branch's push: after each push's 6 hours they listed the push of 1 of BotTools' 2 branches and none of TrumpBot's 2 or Support's 1, while every activity feed lists each force push.",
+        "why": "The initiative's impact took one event per rewritten branch; the residual measurement read the events until 6 hours had passed since each push and recorded what they listed. Whether GitHub lists the other pushes later is not established, a known gap of the unit.",
+        "ref": "41-residual-measurement/consequences.md#5-known-gaps"
       }
     ]
   },
