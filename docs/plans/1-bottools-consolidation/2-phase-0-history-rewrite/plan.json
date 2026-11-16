@@ -2023,8 +2023,8 @@
         "live": {
           "step": "implementation",
           "since": "2026-11-13T21:05:13Z",
-          "updated": "2026-11-15T12:10:29Z",
-          "detail": "1 of 4 units landed; #40 in progress; #41 up next.",
+          "updated": "2026-11-15T20:55:34Z",
+          "detail": "2 of 4 units landed; #41 in progress; #42 up next.",
           "steps": [
             "sizing",
             "interview",
@@ -3118,6 +3118,6 @@
   },
   "issueBoards": {
     "39": "27-bottools-trumpbot-support-rewrite/39-workspace-tools/dashboard.html",
-    "40": "27-bottools-trumpbot-support-rewrite/40-rewrites/dashboard.html"
+    "41": "27-bottools-trumpbot-support-rewrite/41-residual-measurement/dashboard.html"
   }
 }
