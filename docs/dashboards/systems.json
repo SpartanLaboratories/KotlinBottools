@@ -5,8 +5,8 @@
     {"slug": "kotlinbottools", "name": "KotlinBottools", "kind": "repo", "parent": null, "status": "built",
      "function": "A Kotlin Discord bot framework on JDA: hierarchical text and slash commands, XML-backed guild and member data, event responders and polling services, built by one Gradle build at 7.5-SNAPSHOT.",
      "paths": ["."], "version": null,
-     "asIs": {"ref": "docs/issue-40-rewrite-bottools-trumpbot-support", "sha": "ffb272c", "date": "2026-11-15T12:03:34Z"},
-     "lastAmended": {"issue": 40, "sha": "ffb272c"},
+     "asIs": {"ref": "docs/issue-41-measure-bottools-trumpbot-support-residue", "sha": "9170254", "date": "2026-11-15T20:48:28Z"},
+     "lastAmended": {"issue": 41, "sha": "9170254"},
      "board": "index.html", "dsl": "workspace.dsl"},
 
     {"slug": "toolchain", "name": "Toolchain", "kind": "system", "parent": "workspace-lifecycle", "status": "planned", "visibility": "internal-repo",
