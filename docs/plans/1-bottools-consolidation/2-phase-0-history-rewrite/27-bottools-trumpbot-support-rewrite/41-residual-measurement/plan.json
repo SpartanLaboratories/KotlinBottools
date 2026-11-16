@@ -8,7 +8,7 @@
   "title": "Measure what GitHub still serves",
   "issueTitle": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
   "function": "GitHub keeps serving every pre-rewrite object by id after the pushes of BotTools, TrumpBot and Support, and nothing has measured yet what it still serves of the three old histories. This unit measures it in counts, once all three repositories hold their stage-8 marker and every branch reads at its rewritten tip: authenticated probes of every old branch tip, every first-changed commit, their trees and a sample of purged blobs in all three, with controls around every batch; anonymous probes and feed reads of BotTools alone, the other two being private; the activity feed and the events read twice, at least 6 minutes apart, a read outside the events' window recorded as not valid, never as absent; and each repository's report row completed, in counts only, under a checksum list for #28's report and cleanup. Unit 3 of #27, with no version moved; it writes nothing to GitHub, removes nothing GitHub still serves, changes no checkout, and its landing carries documents only.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-15T20:55:34Z",
   "parent": {
     "issue": 27,
@@ -21,7 +21,13 @@
     "sha": "9170254e888696dc0683701383c02bd455ecfdc2",
     "date": "2026-11-15"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "f11f7abecdc68f1153e5904c325ff6bfb0709ea0",
+    "merge": "f11f7abecdc68f1153e5904c325ff6bfb0709ea0",
+    "pr": 46,
+    "date": "2026-11-16",
+    "at": "2026-11-16T03:24:15Z"
+  },
   "systems": [
     {
       "slug": "residual-exposure",
@@ -34,10 +40,10 @@
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-16T02:50:34Z",
-    "updated": "2026-11-16T03:20:43Z",
-    "detail": "Document: 4 of 4 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-16T03:24:15Z",
+    "updated": "2026-11-16T03:24:15Z",
+    "detail": "Landed in PR #46.",
     "steps": [
       "sizing",
       "interview",
@@ -52,9 +58,7 @@
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -343,9 +347,8 @@
     },
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-16T03:20:43Z",
-      "note": "4 of 4 tasks done"
+      "name": "landed",
+      "at": "2026-11-16T03:24:15Z"
     },
     "history": {
       "sizing": [
@@ -842,6 +845,81 @@
             }
           ]
         }
+      ],
+      "document": [
+        {
+          "since": "2026-11-16T02:50:34Z",
+          "ended": "2026-11-16T03:23:06Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-16T03:20:43Z",
+            "note": "4 of 4 tasks done"
+          },
+          "detail": "Document: 4 of 4 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile the plan with the run",
+                "state": "done",
+                "started": "2026-11-16T02:50:34Z",
+                "finished": "2026-11-16T03:04:06Z",
+                "report": "The as-built record now holds its acceptance section, the six criteria each against its reading, and two deviations: two readings made beside the procedure, and a note added to the parent research. The consequences record the outcome of each assumption: eight held, and the one on the events did not hold for any repository, since after 6 hours they listed 1 of 2, 0 of 2 and 0 of 1 pushed branches. The plan's status reads built and the parent consequences carry the unit's link line. The README and the CHANGELOG take no change: the landing carries documents and boards only and no version moves."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-16T03:04:06Z",
+                "report": "The as-built record now holds its acceptance section, the six criteria each against its reading, and two deviations: two readings made beside the procedure, and a note added to the parent research. The consequences record the outcome of each assumption: eight held, and the one on the events did not hold for any repository, since after 6 hours they listed 1 of 2, 0 of 2 and 0 of 1 pushed branches. The plan's status reads built and the parent consequences carry the unit's link line. The README and the CHANGELOG take no change: the landing carries documents and boards only and no version moves."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-16T03:04:06Z",
+                "finished": "2026-11-16T03:17:23Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-16T03:17:23Z",
+                "finished": "2026-11-16T03:20:43Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-16T03:23:06Z",
+          "ended": "2026-11-16T03:24:07Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-16T03:23:06Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-16T03:24:07Z",
+          "ended": "2026-11-16T03:24:15Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "merge",
+            "at": "2026-11-16T03:24:07Z",
+            "note": "merging PR #46"
+          },
+          "detail": "Merge: merging it in PR #46."
+        }
       ]
     },
     "next": null,
@@ -950,6 +1028,13 @@
       "date": "2026-11-15",
       "ref": "plan.md",
       "note": "five stages: readiness at once, then BotTools, TrumpBot and Support, each when its events gate opens (its events list the push of every branch it pushed, or 6 hours have passed since its push), probed, read twice and recorded in counts only, and a close-out; nothing is written to GitHub; the plan weighs no option beyond the parent design's"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-16",
+      "ref": "PR #46",
+      "note": "merged as f11f7ab"
     }
   ],
   "trail": [
@@ -1063,6 +1148,23 @@
       "date": "2026-11-16",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Merge: merging it in PR #46",
+      "ref": "PR #46"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Landed in PR #46, merge f11f7ab",
+      "ref": "PR #46"
     }
   ],
   "rows": [
@@ -2174,8 +2276,8 @@
     }
   ],
   "impact": {
-    "basis": "plan",
-    "summary": "No module is published and no version moves: the landing carries documents and generated boards only. The unit reads GitHub, authenticated for all three repositories and anonymously for BotTools alone, writes nothing there and removes nothing it serves; on this machine it adds new records beside the earlier ones in the workspace and the data folder. #28 takes the three report rows with their checksum lists (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
+    "basis": "as-built",
+    "summary": "As built, no module is published and no version moves: the landing carries documents and generated boards only. The unit read GitHub, authenticated for all three repositories and anonymously for BotTools alone, wrote nothing there and removed nothing it serves: every old object probed is still served. On this machine it added new records beside the earlier ones in the workspace and the data folder. #28 takes the three report rows, of 31, 16 and 16 lines, with their checksum lists (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
     "none": null,
     "release": {
       "bump": "none",
@@ -2258,7 +2360,7 @@
     ],
     "api": [],
     "conversion": [],
-    "source": "consequences.md §1 to §6; plan.md",
+    "source": "consequences.md §1 to §6, reconciled with the build; final-implementation.md",
     "link": "consequences.md",
     "changes": [
       {

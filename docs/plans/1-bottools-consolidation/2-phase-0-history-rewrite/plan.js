@@ -2025,8 +2025,8 @@ window.dashboardLive&&window.dashboardLive("plan",
         "live": {
           "step": "implementation",
           "since": "2026-11-13T21:05:13Z",
-          "updated": "2026-11-15T20:55:34Z",
-          "detail": "2 of 4 units landed; #41 in progress; #42 up next.",
+          "updated": "2026-11-16T03:31:47Z",
+          "detail": "3 of 4 units landed; #42 in progress.",
           "steps": [
             "sizing",
             "interview",
@@ -3120,7 +3120,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   },
   "issueBoards": {
     "39": "27-bottools-trumpbot-support-rewrite/39-workspace-tools/dashboard.html",
-    "41": "27-bottools-trumpbot-support-rewrite/41-residual-measurement/dashboard.html"
+    "42": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/dashboard.html"
   }
 }
 );
