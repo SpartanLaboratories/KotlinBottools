@@ -3,7 +3,7 @@
 Researched 2026-10-21 for [KotlinBottools#2](https://github.com/SpartanLaboratories/KotlinBottools/issues/2).
 
 Method in one paragraph. KotlinBottools was read from this clone with `git` (both branches, 61 commits). GKB2, GKB,
-BotTools, TrumpBot and Support were read only through the GitHub API: every ref that `git ls-remote` shows, every
+BotTools and the private repositories were read only through the GitHub API: every ref that `git ls-remote` shows, every
 commit reachable from each ref tip (`gh api "repos/SpartanLaboratories/<repo>/commits?sha=<tip>&per_page=100"
 --paginate --slurp`), and one `git/trees/<tree>?recursive=1` call per distinct commit tree (`truncated` was false for
 every tree). From those commit graphs and trees a content-free stand-in repository was built per repository in a
@@ -28,10 +28,10 @@ data sits in an ordinary local folder.
 ## 2. Bottom line
 
 - **The rewrite removes 10 commits across the six repositories, not 6: three of them (one each in KotlinBottools, GKB
-  and TrumpBot) are merge commits that become empty.** A merge whose side branch held only commits inside the purge
+  and the first private repository) are merge commits that become empty.** A merge whose side branch held only commits inside the purge
   list is flattened and then pruned (filter-repo manual, `--prune-degenerate`). Commit counts (rewritten mirror, branches and
-  tags, equal to every ref): KotlinBottools 61 to 59, GKB2 32 to 30, GKB 11 to 9, BotTools 16 to 15, TrumpBot 11 to 9,
-  Support 2 to 1. A fresh mirror of the server after the push also holds the old commits behind the pull-request refs:
+  tags, equal to every ref): KotlinBottools 61 to 59, GKB2 32 to 30, GKB 11 to 9, BotTools 16 to 15, the first private repository 11 to 9,
+  the second 2 to 1. A fresh mirror of the server after the push also holds the old commits behind the pull-request refs:
   GKB2 30 + 15 = 45, BotTools 15 + 13 = 28. `You rewrote C (of T)` has C = T everywhere; `first-changed-commits` has
   one line per repository.
 - **Survivors are clean.** After the rewrite 115 / 82 / 60 / 82 / 56 / 29 distinct paths remain (same order), all of
@@ -79,7 +79,7 @@ section 7), **inference** (derived; labelled).
 of the server after the push (it also downloads `refs/pull/*`, which the server keeps unrewritten). Blobs are over every
 commit tree of every ref.
 
-| | KotlinBottools | GKB2 | GKB | BotTools | TrumpBot | Support |
+| | KotlinBottools | GKB2 | GKB | BotTools | The first private repository | The second private repository |
 |---|---|---|---|---|---|---|
 | Refs in the mirror (branches; pull) | 2; 0 | 1; 1 | 1; 0 | 2; 2 | 2; 0 | 1; 0 |
 | `T`, all refs | 61 (`main` 20, planning-only 41) | 32 | 11 | 16 | 11 | 2 |
@@ -125,15 +125,14 @@ over history) are the only part that grows. The other five histories are static 
 | GKB | "Delete key.txt", 2023-03-25 | non-merge |
 | GKB | "Merge branch 'master' of ...", 2023-04-04 | degenerate merge: its second-parent side held only the commit above |
 | BotTools | "Converted to Gradle Project", 2022-10-14 | non-merge, 2 changed paths: `lib/.project` and a file under `lib/.settings/` |
-| TrumpBot | "Delete key.txt", 2022-10-09 | non-merge |
-| TrumpBot | "Merge branch 'main' of ...", 2022-10-11 | degenerate merge: its second-parent side held only the commit above |
-| Support | "Native Libraries", 2022-10-01 | non-merge, adds the 32 files of `natives/` |
+| The first private repository | "Delete key.txt", 2022-10-09 | non-merge |
+| The first private repository | "Merge branch 'main' of ...", 2022-10-11 | degenerate merge: its second-parent side held only the commit above |
+| The second private repository | "Native Libraries", 2022-10-01 | non-merge, adds the 32 files of `natives/` |
 
 The parent research (section 3.3) counted only the non-merge commits and so predicted 1, 2, 1, 1, 1 for KotlinBottools,
-GKB2, GKB, BotTools and TrumpBot (and no Support entry). The filter-repo manual states the rule it missed: "merge
+GKB2, GKB, BotTools and the first private repository (and no entry for the second). The filter-repo manual states the rule it missed: "merge
 commits ... can become degenerate with the pruning of other commits ... If such merge commits have no file changes,
-they can be pruned." An exit test that expected the parent's counts would fail on four repositories (KotlinBottools, GKB, TrumpBot and
-Support). No branch is
+they can be pruned." An exit test that expected the parent's counts would fail on four repositories (KotlinBottools, GKB and the private repositories). No branch is
 deleted: every ref survives (`ref-map` has no all-zero `new` value). The planning branch's commit "chore: stop tracking
 IDE and Gradle cache files" survives with only its `.gitignore` change.
 
@@ -152,12 +151,12 @@ least 1/1, so none is a typo or a rename.
 - **BotTools:** `.gradle/` 17/11, `.classpath` 1/16, `.project` 1/16, `.settings/` 2/16, `lib/.classpath` 1/11,
   `lib/.project` 1/12, `lib/.settings/` 1/12, `lib/bin/` 3/11, `youtube-dl.exe` 1/11. These include the
   `Working-Branch` commit.
-- **TrumpBot:** `key.txt` 1/4, `key.pem` 1/11, `BotData.xml` 1/11, `WebParseKeys.xml` 1/11, `botdata.css` 1/4,
+- **The first private repository:** `key.txt` 1/4, `key.pem` 1/11, `BotData.xml` 1/11, `WebParseKeys.xml` 1/11, `botdata.css` 1/4,
   `guildData/` 30/11, `services/` 1/9, `res/` 126/11, `log.txt` 1/11, `list.dat` 1/11, `list.idx` 1/11, `dl.bat` 1/11,
   `javadoc.xml` 1/11, `youtube-dl` 1/4, `youtube-dl.exe` 1/7, `ffmpeg.exe` 1/11, `ffprobe.exe` 1/11, `framed.png`
   1/11, `framed photo.png` 1/11, `bin/` 1/5, `.classpath` 1/11, `.project` 1/11, `.settings/` 2/11. These include the
   `feature/pokercommand` commits.
-- **Support:** `.classpath` 1/2, `.project` 1/2, `.settings/` 1/2, `doc/` 23/2, `natives/` 32/1, `lib/` 7,406/2.
+- **The second private repository:** `.classpath` 1/2, `.project` 1/2, `.settings/` 1/2, `doc/` 23/2, `natives/` 32/1, `lib/` 7,406/2.
 
 #### A.4 What survives (observed)
 
@@ -203,7 +202,7 @@ folders, further files; member names are the text of the `tName` elements.
 | Source | Guild folders (of them under 5 characters) | Distinct member names (under 5) | Distinct id-shaped numbers (occurrences) |
 |---|---|---|---|
 | KotlinBottools `main` | 6 (2) | 159 (12) | 20 (30) |
-| TrumpBot `main` | 6 (2) | 159 (11) | 11 (17) |
+| The first private repository's `main` | 6 (2) | 159 (11) | 11 (17) |
 | GKB2 at the parent of the commit that deletes `guildData/` | 6 (2) | 207 (14) | 15 (21) |
 | GKB `master` (added as a fourth source) | 6 (2) | 158 (12) | 14 (20) |
 | Union over every version in the four histories | 6 (2) | 240 (14) | 25 |
@@ -223,15 +222,15 @@ One guild folder is a seeded template named with an ordinary English word. No gu
 | GKB2 commit messages and identities (public) | 32 | 0 | 0 | 0 | 0 | 0 |
 | GKB (public) | 11 | 0 | 0 | 0 | 0 | 0 |
 | BotTools (public) | 16 | 0 | 0 | 0 | 0 | 0 |
-| TrumpBot (private) | 11 | 2 (1 word) | 0 | 0 | 0 | 0 |
-| Support (private) | 2 | 0 | 0 | 0 | 0 | 0 |
+| The first private repository | 11 | 2 (1 word) | 0 | 0 | 0 | 0 |
+| The second private repository | 2 | 0 | 0 | 0 | 0 | 0 |
 
-- **By list source.** The KotlinBottools, GKB2, GKB and union lists give identical counts. The TrumpBot list gives 34 /
+- **By list source.** The KotlinBottools, GKB2, GKB and union lists give identical counts. The first private repository's list gives 34 /
   138 / 36 / 11 (it lacks the 8-character word below), so the extra 243 hits belong to that one word.
 - **Where the 5+ character hits are (masked locations, observed).** Three words account for all 415 hits in the files.
   (1) An 8-character word that is the name of one of the six repositories: 243 hits in 19 files (research documents
-  that name that repository, e.g. "BotTools, `<NAME>` and Support"), 7 in the bodies of issues #1, #2 and #16, 2 in the
-  comments of #1, 2 in TrumpBot's commit messages ("`<NAME>` 1.2.2.1" and a merge message). (2) A 7-character ordinary
+  that name that repository, e.g. "BotTools, `<NAME>` and the second private repository"), 7 in the bodies of issues #1, #2 and #16, 2 in the
+  comments of #1, 2 in the first private repository's commit messages ("`<NAME>` 1.2.2.1" and a merge message). (2) A 7-character ordinary
   word, 34 hits in 8 files ("retention period and `<NAME>` size"). (3) The 8-character template guild folder, an
   ordinary word: 138 hits in 23 files ("the configured `<GUILD>`"). None is a person or a server. With these three words on the
   allow-list the gate reports 0 blocking hits; the under-5-character counts (43 and 11) are single letters and common
@@ -259,7 +258,7 @@ ids of the six repositories (KotlinBottools' ids were also checked against `git 
 | Location | Tokens | Files or issues | Distinct commits |
 |---|---|---|---|
 | Files on KotlinBottools `main` | 0 | 0 | 0 |
-| Files on the planning branch | 154 (all 7 characters) | 16 | 55 (KotlinBottools 17, GKB2 13, GKB 7, BotTools 7, TrumpBot 10, Support 1) |
+| Files on the planning branch | 154 (all 7 characters) | 16 | 55 (KotlinBottools 17, GKB2 13, GKB 7, BotTools 7, the first private repository 10, the second 1) |
 | All surviving versions of all files in history | 193 | 18 | 56 (KotlinBottools 18) |
 | KotlinBottools commit messages | 0 | | |
 | KotlinBottools issues and comments (#1 to #19) | 0 | | |
@@ -282,7 +281,7 @@ branch-baseline line), three briefs 1 each.
 - **Once KotlinBottools is public the 17 to 18 KotlinBottools ids are lookup keys** for the old objects (sibling
   findings section 3.1: every web and REST route serves an unreferenced commit by 4 or more hex digits; one old tip
   yields the whole old history). The ids of GKB2, GKB and BotTools are in repositories that were already public. The
-  TrumpBot and Support ids resolve only for readers of those private repositories.
+  the private repositories ids resolve only for readers of those private repositories.
 
 ### 3.D References that a fresh repository under the same name would affect
 
@@ -297,7 +296,7 @@ All observed on 2026-10-21 (`gh api graphql` on `Issue.subIssues`, `blockedBy`, 
 | Tracked-issue (task-list) links | 0 |
 | Milestone `1.0.0` | 1, on #3 to #16 (14 open issues, no due date) |
 | Labels in use | `type: feature` on 16 issues, `type: tracking` on #1; 12 labels exist (9 defaults, 3 custom; `type: bug` is unused) |
-| Projects v2 linked, items from this repository | 0 (the organisation's 5 projects hold items of GKB2, TrumpBot, BotTools and drafts only) |
+| Projects v2 linked, items from this repository | 0 (the organisation's 5 projects hold items of GKB2, the first private repository, BotTools and drafts only) |
 | Webhooks, deploy keys, Actions secrets, variables, environments | 0, 0, 0, 0, 0 |
 | Forks, stars, watchers, collaborators, teams | 0, 0, 1, 1, 0 |
 | Branch protection | none; rulesets could not be read on a private Free repository (HTTP 403) |
@@ -307,7 +306,7 @@ Text citations of KotlinBottools issue numbers (observed by regular-expression c
 
 | Corpus | `KotlinBottools#N` | `/KotlinBottools/issues/N` | Bare `#N` that points at KotlinBottools | Numbers cited |
 |---|---|---|---|---|
-| KotlinBottools documents on the planning branch | 32 | 10 | about 14 (of 200 bare tokens; the rest name GKB2, BotTools, TrumpBot, WebTools or filter-repo issues) | #1, #2, and the range #1 to #19 |
+| KotlinBottools documents on the planning branch | 32 | 10 | about 14 (of 200 bare tokens; the rest name GKB2, BotTools, the first private repository, WebTools or filter-repo issues) | #1, #2, and the range #1 to #19 |
 | KotlinBottools issue bodies | 0 | 0 | 63 in all 19 issues | #1 to #19 |
 | KotlinBottools issue comments | 0 | 0 | 4 | #2, #9, #16, #19 |
 | MagicBot issues (7 of 8 cite) | 47 | 2 (in its tracking issue) | 0 (its 26 bare tokens are its own numbers) | #1, #2, #6 to #11, #15, #16 |
@@ -401,7 +400,7 @@ Line numbers are those of the planning branch at the time of reading.
 | `consequences.md` section 2.4 (line 175) | "The copies are kept access-restricted" | "kept in a local folder outside every repository" |
 | `consequences.md` section 3.1, item 4 (lines 227 to 231) | "the access-restricted location ...; the GitHub Support tickets" | "the local folder for the legacy data copies"; delete the tickets |
 | parent `research/README.md` (lines 1608 to 1610, 1648 to 1661, 1680 to 1684, 1939, 1940) | "kept access-restricted"; "a Support ticket where one applies"; "no pull-request ref reaches a purged blob"; the Support gap | the same replacements |
-| parent `research/bot-repository-history-purge.md`, bottom line and sections 3.3, 6.1, 6.3 steps 2 and 8, 6.5 | the Support ticket, "encrypted or access-restricted", the pruned counts (1, 2, 1, 1, 1) | rewrite in place: ticket removed, counts 2, 2, 2, 1, 2 and 1 for Support |
+| parent `research/bot-repository-history-purge.md`, bottom line and sections 3.3, 6.1, 6.3 steps 2 and 8, 6.5 | the Support ticket, "encrypted or access-restricted", the pruned counts (1, 2, 1, 1, 1) | rewrite in place: ticket removed, counts 2, 2, 2, 1, 2 and 1 for the second private repository |
 | issue #1 body (line 58) | "no secret file remains anywhere in the history of any bot-related repository" | "...in any branch or tag"; old objects stay retrievable by id and through three pull-request refs |
 | issue #2 body (lines 14, 15, 23 to 26, 31, 42 to 44) | "access-restricted location"; "Ask GitHub Support"; "after any Support ticket"; "fresh mirror with pull-request refs fetched" | as in the roadmap rows above |
 | issue #2 body (line 5) | "written in `docs/plans/1-bottools-consolidation/0-<slug>/`" | "`2-<slug>/`" (the folder is `2-phase-0-history-rewrite`) |
@@ -417,7 +416,7 @@ The first column's file names are paths below `docs/plans/1-bottools-consolidati
   named `key.txt`, `keys.txt`, `key.pem`, `BotData.xml` or `WebParseKeys.xml`, and no `guildData` directory (no tree was
   truncated). Code search (`gh api "search/code?q=filename:<name>+org:<org>"`) lists only KotlinBottools for `key.txt`,
   KotlinBottools and GKB2 for `BotData.xml` and `WebParseKeys.xml`, KotlinBottools alone for `path:guildData` (29 hits)
-  and nothing in `SpartanLabsGaming`. It misses GKB and TrumpBot, which hold those files, because GitHub's code search
+  and nothing in `SpartanLabsGaming`. It misses GKB and the first private repository, which hold those files, because GitHub's code search
   covers only the default branch of repositories it has indexed ("We currently only support searching for code on the
   default branch of a repository") and returned HTTP 403 rate-limit errors during the sweep, so the tree scan is the
   authoritative result. Nothing outside the six repositories
@@ -473,7 +472,7 @@ The first column's file names are paths below `docs/plans/1-bottools-consolidati
 
 ### 6.1 The expectation table and the exit-test script
 
-- Use the table in 3.A.1 as the oracle for GKB2, GKB, BotTools, TrumpBot and Support, provided nothing was pushed to them
+- Use the table in 3.A.1 as the oracle for GKB2, GKB, BotTools and the private repositories, provided nothing was pushed to them
   since 2026-10-21. For KotlinBottools use the rules `after = T - 2`, `C = T`, and derive paths, blobs and the largest
   blob at rewrite time from the untouched backup mirror with the sibling classifier (`blobs_kept`) and a small count of
   distinct kept paths.
@@ -556,13 +555,13 @@ python -I expect_check.py GKB2.git      --branch-commits 30 --paths 82 --blobs 2
 python -I expect_check.py GKB2.git      --scope heads --branch-commits 30 --all-commits 45 --paths 82 --blobs 211 --max-blob 100000 --wrapper-jar yes   # fresh
 python -I expect_check.py GKB.git       --branch-commits 9  --paths 60 --blobs 113 --max-blob 100000 --wrapper-jar yes
 python -I expect_check.py BotTools.git  --scope heads --branch-commits 15 --all-commits 28 --paths 82 --blobs 145 --max-blob 100000 --wrapper-jar no   # fresh
-python -I expect_check.py TrumpBot.git  --branch-commits 9  --paths 56 --blobs 106 --max-blob 100000 --wrapper-jar no
-python -I expect_check.py Support.git   --branch-commits 1  --paths 29 --blobs 29  --max-blob 100000 --wrapper-jar no
+python -I expect_check.py ….git  --branch-commits 9  --paths 56 --blobs 106 --max-blob 100000 --wrapper-jar no
+python -I expect_check.py ….git   --branch-commits 1  --paths 29 --blobs 29  --max-blob 100000 --wrapper-jar no
 python -I expect_check.py KotlinBottools.git --branch-commits $((T-2)) --paths <kept paths> --blobs <blobs_kept> --max-blob 1048576 --wrapper-jar yes
 ```
 
 The script passed on all six rewritten stand-ins and on simulated fresh mirrors of GKB2 and BotTools (rewritten branches
-beside the unrewritten pull refs), and failed with the right counts on an unrewritten Support stand-in (5 failed checks)
+beside the unrewritten pull refs), and failed with the right counts on an unrewritten stand-in for the second private repository (5 failed checks)
 and on a deliberately wrong expectation. Over every ref of those fresh mirrors the blob counts are 281 and 184
 (`git rev-list --objects --all`), which is the residual the report states.
 
@@ -592,7 +591,7 @@ gh api "repos/SpartanLaboratories/KotlinBottools/issues/comments?per_page=100" -
 gh api "repos/SpartanLaboratories/KotlinBottools/pulls?state=all" --jq length        # 0 (a non-zero count: dump their bodies and comments too)
 python -I privacy_gate.py --legacy "%USERPROFILE%/BotLegacyData" --allow "$GATE/allow.txt" \
     --repo "$WS/KotlinBottools.git" --repo "$WS/GKB2.git" --repo "$WS/GKB.git" --repo "$WS/BotTools.git" \
-    --repo "$WS/TrumpBot.git" --repo "$WS/Support.git" --json "$GATE/issues.json" --json "$GATE/comments.json"
+    --repo "$WS/….git" --repo "$WS/….git" --json "$GATE/issues.json" --json "$GATE/comments.json"
 # expect: "GATE: 0 blocking hit(s)", exit status 0
 ```
 
@@ -934,7 +933,7 @@ the findings; they are not listed here.
 - **Expectations assume nothing is pushed to the five static repositories before their rewrite** and that the API's view
   (read 2026-10-21) equals the mirror's. Re-derive with the classifier from the backup mirror.
 - **Sizes of surviving blobs come from the API tree entries,** not from the stand-ins.
-- **The baseline name lists were built straight from the repositories** (local git for KotlinBottools and TrumpBot, API
+- **The baseline name lists were built straight from the repositories** (local git for KotlinBottools and the first private repository, API
   blobs for GKB2 and GKB); the procedure reads the local data copy instead. The sibling findings make that copy
   byte-identical to the blobs, so the lists should be equal; the first real run prints the list sizes (`lists:` line) to
   compare with the table in 3.B.

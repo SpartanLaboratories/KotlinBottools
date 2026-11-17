@@ -41,11 +41,10 @@ The rewrite itself changes two source files on `main` through the path scrub
   - Every branch survives.
   - Documents cite commits by subject, and the pre-rewrite ids they already cite stay as dated
     citations.
-- **GKB2, GKB, BotTools, TrumpBot and Support are force-pushed in place.**
-  - Their default branches and their other branches (BotTools `Working-Branch`, TrumpBot
+- **GKB2, GKB, BotTools and the private repositories are force-pushed in place.**
+  - Their default branches and their other branches (BotTools `Working-Branch`, the first private repository's
     `feature/pokercommand`) carry the rewritten history.
-  - Their visibility does not change: GKB2, GKB and BotTools stay public, and TrumpBot and
-    Support stay private.
+  - Their visibility does not change: GKB2, GKB and BotTools stay public, and the private repositories stay private.
   - Their archiving with README pointers is Phase 17's.
 - **KotlinBottools is not force-pushed.** Its rewritten history goes to a fresh repository that
   takes the name and becomes public (§2.2).
@@ -153,8 +152,8 @@ The rewrite itself changes two source files on `main` through the path scrub
   data:
   - `key.txt` and `WebParseKeys.xml`;
   - the `services/` polling state and `res/`;
-  - TrumpBot's data files, binaries and `key.pem`;
-  - Support's vendored libraries and natives.
+  - the first private repository's data files, binaries and `key.pem`;
+  - the second private repository's vendored libraries and natives.
 - **git-filter-repo 2.47.0 stays installed** in the user scheme. gitleaks lives only in the
   workspace and in the tools copy.
 - **This working directory** is realigned in place.
@@ -162,10 +161,10 @@ The rewrite itself changes two source files on `main` through the path scrub
   - Its refs and reflogs are reset to the rewritten history.
   - Its old objects are deleted, or remain unreachable until the deferred step (§6).
   - IntelliJ IDEA's Local History may keep copies of the removed files, outside git.
-- **The TrumpBot clone** is replaced by a fresh clone at the same path, with its four untracked
+- **The private repository clone** is replaced by a fresh clone at the same path, with its four untracked
   `.idea/` files restored.
 
-  > **Dated note, 2026-11-13.** The TrumpBot clone keeps its four `.idea/` files and nothing else that git does not track. Its code knowledge graph, built from the pre-rewrite tree, is not carried and is rebuilt from the rewritten tree. Until the clone replacement deletes it, the old clone lies aside on its own volume, outside the workspace ([unit 7's consequences, §2.2](27-bottools-trumpbot-support-rewrite/consequences.md#22-this-machine)).
+  > **Dated note, 2026-11-13.** The private repository clone keeps its four `.idea/` files and nothing else that git does not track. Its code knowledge graph, built from the pre-rewrite tree, is not carried and is rebuilt from the rewritten tree. Until the clone replacement deletes it, the old clone lies aside on its own volume, outside the workspace ([unit 7's consequences, §2.2](27-rewrite-bottools-and-the-private-repositories/consequences.md#22-this-machine)).
 
 ### 2.6 Documents
 
@@ -212,7 +211,7 @@ The rewrite itself changes two source files on `main` through the path scrub
 4. `repository-hygiene`
 5. `kotlinbottools-publish`
 6. `gkb2-gkb-rewrite`
-7. `bottools-trumpbot-support-rewrite`
+7. `bottools-…-rewrite`
 8. `residual-report-and-cleanup`
 
 `preparation` has landed; what it leaves for the units after it is in [its consequences, §4](21-preparation/consequences.md#4-sibling-units-and-neighbouring-issues).
@@ -227,9 +226,9 @@ The rewrite itself changes two source files on `main` through the path scrub
 
 `gkb2-gkb-rewrite` has landed; what it leaves for the units after it is in [its consequences, §4](26-gkb2-gkb-rewrite/consequences.md#4-sibling-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
 
-> **Dated note, 2026-11-13.** `bottools-trumpbot-support-rewrite` is carried out as four units, sub-issues of #27, in the order of [its design, §16](27-bottools-trumpbot-support-rewrite/architecture.md#16-decomposition); what the work leaves behind is in [its consequences](27-bottools-trumpbot-support-rewrite/consequences.md).
+> **Dated note, 2026-11-13.** `bottools-…-rewrite` is carried out as four units, sub-issues of #27, in the order of [its design, §16](27-rewrite-bottools-and-the-private-repositories/architecture.md#16-decomposition); what the work leaves behind is in [its consequences](27-rewrite-bottools-and-the-private-repositories/consequences.md).
 
-`bottools-trumpbot-support-rewrite` has landed as its four units, #39 to #42; what it leaves for the unit after it is in [its consequences, §4](27-bottools-trumpbot-support-rewrite/consequences.md#4-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
+`bottools-…-rewrite` has landed as its four units, #39 to #42; what it leaves for the unit after it is in [its consequences, §4](27-rewrite-bottools-and-the-private-repositories/consequences.md#4-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
 
 `residual-report-and-cleanup` has run; what it leaves is in [its consequences, §4](28-residual-report-and-cleanup/consequences.md#4-sibling-units-and-neighbouring-issues), with the final state of the phase's known gaps and follow-ups in §5 and §6 there.
 
@@ -238,7 +237,7 @@ The rewrite itself changes two source files on `main` through the path scrub
 - **#1,** the tracking issue. Its planning documents land with #2's own landing.
 - **#3, Phase 1.** It starts once unit 3 has landed, from the rewritten `main` of the public
   repository.
-- **#16, Phase 17.** It archives GKB2, GKB, BotTools, TrumpBot and Support once all six purges are
+- **#16, Phase 17.** It archives GKB2, GKB, BotTools and the private repositories once all six purges are
   done.
 - **MagicBot#2, Phase 13.** It waits on unit 5, and receives the `.gitleaks.toml` comment.
 - **WebTools #55.** Its relationships to #9 and #16 are kept.
@@ -275,15 +274,15 @@ The rewrite itself changes two source files on `main` through the path scrub
 
   > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **The real histories have not yet been rewritten or scanned.** The derived counts, filter-repo's
-  log lines, the scan times on TrumpBot and Support, and whether each real token file matches the
+  log lines, the scan times on the private repositories, and whether each real token file matches the
   token rule are confirmed by the units' first runs, each behind its own stop.
 
   > **Dated note, 2026-11-13.** GKB2 and GKB are rewritten, pushed and scanned. Every count equals its expectation row, on the
   > rewritten mirror and on the fresh mirror; filter-repo rewrote every commit of each; and the positive control on each
   > untouched backup equals the preparation unit's record line for line ([unit 6's as-built record, §3](26-gkb2-gkb-rewrite/final-implementation.md#3-measurements)).
-  > BotTools, TrumpBot and Support are unit 7's (#27).
+  > BotTools and the private repositories are unit 7's (#27).
 
-  > **Dated note, 2026-11-13.** For BotTools, TrumpBot and Support that is the rewrites unit of #27 ([its design, §8](27-bottools-trumpbot-support-rewrite/architecture.md#8-the-rewrites)).
+  > **Dated note, 2026-11-13.** For BotTools and the private repositories that is the rewrites unit of #27 ([its design, §8](27-rewrite-bottools-and-the-private-repositories/architecture.md#8-the-rewrites)).
 
   > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **The secret-scan workflow and the Linux gitleaks binary have not run on GitHub.** The
@@ -299,9 +298,9 @@ The rewrite itself changes two source files on `main` through the path scrub
 
   > **Dated note, 2026-11-13.** Run for GKB2 and GKB, before each push and on each fresh mirror: neither has a default-rule
   > finding in a kept file ([unit 6's as-built record, §3.4](26-gkb2-gkb-rewrite/final-implementation.md#34-the-exit-tests)).
-  > BotTools, TrumpBot and Support remain.
+  > BotTools and the private repositories remain.
 
-  > **Dated note, 2026-11-13.** For BotTools, TrumpBot and Support the scans run in the rewrites unit of #27, before each push and on each fresh mirror ([its design, §8](27-bottools-trumpbot-support-rewrite/architecture.md#8-the-rewrites)).
+  > **Dated note, 2026-11-13.** For BotTools and the private repositories the scans run in the rewrites unit of #27, before each push and on each fresh mirror ([its design, §8](27-rewrite-bottools-and-the-private-repositories/architecture.md#8-the-rewrites)).
 
   > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **The privacy gate's name lists** come from the member files' name elements and the folder
@@ -309,7 +308,7 @@ The rewrite itself changes two source files on `main` through the path scrub
   characters are counted, not reviewed.
 
   > **Dated note, 2026-11-17.** Final state: it stands, as a limit of the gate's method ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
-- **The liveness of two credentials is not established:** the 2023 session cookie and TrumpBot's
+- **The liveness of two credentials is not established:** the 2023 session cookie and the first private repository's
   private key. The bot tokens are dead.
 
   > **Dated note, 2026-11-17.** Final state: open, the owner's ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
@@ -361,7 +360,7 @@ The rewrite itself changes two source files on `main` through the path scrub
   3's as-built record.
 
   > **Dated note, 2026-11-17.** Final state: closed: none was deferred ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
-- **The credentials.** Rotate the 2023 session cookie and TrumpBot's private key if either could
+- **The credentials.** Rotate the 2023 session cookie and the first private repository's private key if either could
   still be live.
 
   > **Dated note, 2026-11-17.** Final state: open, the owner's ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
@@ -378,7 +377,7 @@ The rewrite itself changes two source files on `main` through the path scrub
 - **Default-rule findings.** Any finding recorded in a kept file of a legacy repository needs a
   decision: a `targetRules` allowlist for that one rule and path, or acceptance as recorded.
 
-  > **Dated note, 2026-11-13.** This holds for a finding in a kept file of TrumpBot or Support, whose kept files stay private, as for one in a public repository ([unit 7's design, §8.4](27-bottools-trumpbot-support-rewrite/architecture.md#84-records)).
+  > **Dated note, 2026-11-13.** This holds for a finding in a kept file of either private repository, whose kept files stay private, as for one in a public repository ([unit 7's design, §8.4](27-rewrite-bottools-and-the-private-repositories/architecture.md#84-records)).
 
   > **Dated note, 2026-11-17.** Final state: closed: the one finding is settled ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **Machine-local paths in issue texts.** If unit 5's gate counts any in the public repository's

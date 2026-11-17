@@ -2832,7 +2832,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#interfaces-with-sibling-units",
               "heading": "Interfaces with sibling units",
               "paragraph": "Expects from `kotlinbottools-rewrite-and-swap` (#23, landed): · the rewritten `main` on the fresh repository, with this checkout realigned; · the known default-rule finding recorded in its consequences §5, which this unit settles with the scoped table; · the corrected privacy gate and the allow-list in the data folder. · Provides to `kotlinbottools-publish` (#25): · the workflow on `main`, with its allowlist controls step, its first runs passed; · the finding settled, so the visibility change no longer waits on it; · the workspace `gitleaks.toml` equal to `main`'s `.gitleaks.toml` (3,824 …",
-              "hash": "a11b049e7b35"
+              "hash": "64a48bbf3df8"
             }
           }
         ],
@@ -2874,7 +2874,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "consequences.md#4-sibling-units-and-neighbouring-issues",
               "heading": "4. Sibling units and neighbouring issues",
               "paragraph": "What the later units take from this unit. The contract is plan, Interfaces with sibling units; this is its summary.",
-              "hash": "42f5fb69c874"
+              "hash": "eb6ebd5bf190"
             }
           }
         ]

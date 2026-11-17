@@ -67,7 +67,7 @@
     - the guild-count watch;
     - backups kept for 14 days.
 - **The predecessors.**
-  - GKB2, GKB, BotTools, TrumpBot and Support are archived with README pointers. Their open
+  - GKB2, GKB, BotTools and the private repositories are archived with README pointers. Their open
     issues are closed first.
   - No secret file remains in the history of any of the six repositories.
 
@@ -281,8 +281,7 @@ graph TD
 >   - machine-local paths replaced in KotlinBottools' history;
 >   - the planning pull request lands before the rewrite, as #2's own landing.
 > - **Units,** sub-issues of #2: preparation; transfer rehearsal; KotlinBottools rewrite and swap;
->   repository hygiene; KotlinBottools publication; GKB2 and GKB rewrite; BotTools, TrumpBot and
->   Support rewrite; residual report and cleanup.
+>   repository hygiene; KotlinBottools publication; GKB2 and GKB rewrite; BotTools and the private repositories rewrite; residual report and cleanup.
 > - **Unblocks:** Phase 1 once the rewrite-and-swap unit has landed; MagicBot's Phase 13 once the
 >   publication unit has landed.
 > - **Done when:**
@@ -292,12 +291,12 @@ graph TD
 >   - its numbers and links are intact (§1.2 of the Phase 0 design).
 
 - **Scope** (architecture §11, §14 unit 0):
-  - **Copy the legacy data out.** The data of KotlinBottools, GKB2 and TrumpBot goes to an
+  - **Copy the legacy data out.** The data of KotlinBottools, GKB2 and the first private repository goes to an
     access-restricted location, with a manifest of the blob ids to purge.
   - **Rewrite the six repositories, in this order:**
     1. KotlinBottools;
     2. GKB2 and GKB;
-    3. BotTools, TrumpBot and Support.
+    3. BotTools and the private repositories.
 
     Each uses `git filter-repo` with a root-anchored path list, run in a mirror clone, and then a
     force-push.
@@ -633,9 +632,9 @@ The capabilities Dota 2 uses become Stable Core once MagicBot's Phase 14 has pro
      (§5).
   7. **Archiving the predecessors:**
      - their open issues are closed first, each pointing to what replaces it: GKB2 #2 to #5,
-       BotTools #1 and TrumpBot #1;
+       BotTools #1 and the first private repository #1;
      - a README pointer to `bottools` is committed in each;
-     - then GKB2, GKB, BotTools, TrumpBot and Support are archived.
+     - then GKB2, GKB, BotTools and the private repositories are archived.
 
      The order matters: an archived repository's issues and code are read-only.
 - **Depends on:**

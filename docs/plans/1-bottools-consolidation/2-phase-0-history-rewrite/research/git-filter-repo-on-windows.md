@@ -181,7 +181,7 @@ adds: use `/` never `\`, no absolute or `.`/`..` paths.
   `get_config_settings` (issues #684, #638; checked: this machine's config parses, and a one-line
   pre-check is in 6.4); LFS plus submodule crash under `--sensitive-data-removal` (applies only if
   `HEAD:.gitattributes` has `filter=lfs`; on the default branches, which are the mirrors' HEAD, the
-  `.gitattributes` of KotlinBottools, BotTools, TrumpBot and Support contain no `filter=lfs`, and GKB2 and
+  `.gitattributes` of KotlinBottools, BotTools and the private repositories contain no `filter=lfs`, and GKB2 and
   GKB have no `.gitattributes`; read through the GitHub contents API); `--sensitive-data-removal requires git >= 2.36.0`
   check; many-refs performance (reported in issue #638: about 3 900 tags and five hours; these repositories
   have a handful of refs); gpgsig parsing (git's `fast-export --signed-commits` defaults to `strip`, and 2.47.0 does not

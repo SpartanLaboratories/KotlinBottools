@@ -58,7 +58,7 @@ class GuildDataParser(private val reader: BaseXMLReader = BaseXMLReader()) : XML
     @Synchronized
     fun updateServerDatabase() {
         // DO NOT DELETE    use if the infinite whitespace in xml files bug occurs again
-        //for(Guild g: Botmain.jda.getGuilds())Trimmer.trim("%USERPROFILE%\\OneDrive\\Documents\\Programming\\workspace\\TrumpBotTest\\guildData\\" + g.getName() + "\\MemberData.xml");
+        //for(Guild g: Botmain.jda.getGuilds())Trimmer.trim("%USERPROFILE%\\OneDrive\\Documents\\Programming\\workspace\\…Test\\guildData\\" + g.getName() + "\\MemberData.xml");
         Bot.jda!!.guilds.forEach(::updateServerDatabase)
         //Botmain.out("Finished updating server member database")
     }

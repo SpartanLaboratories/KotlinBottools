@@ -71,7 +71,7 @@ archived GKB2, keep it for reference.
 
 ### 2.1 The six repositories and their history
 
-- **Phase 0 rewrites six histories:** KotlinBottools, GKB2, GKB, BotTools, TrumpBot and Support.
+- **Phase 0 rewrites six histories:** KotlinBottools, GKB2, GKB, BotTools and the private repositories.
 - **Hashes change, and clones are replaced.**
   - Every commit hash in the five bot repositories changes, because each root commit holds a
     purged path.
@@ -79,14 +79,14 @@ archived GKB2, keep it for reference.
   - The planning branch is rewritten with `main`, and the planning pull request is opened from
     it afterwards.
   - Every existing clone is deleted and cloned again, never pulled. That includes the
-    maintainer's working copies of KotlinBottools and TrumpBot.
+    maintainer's working copies of KotlinBottools and the first private repository.
 - **No forks.** None of the six repositories has a fork (checked 2026-10-20).
   - So the force-push reaches every copy GitHub hosts, with two exceptions, both left to GitHub
     Support (architecture §11):
     - the pull-request refs: GKB2 #6, and BotTools #2 and #3;
     - cached views of rewritten commits.
 - **Visibility.**
-  - **Today:** GKB2, GKB and BotTools are public; KotlinBottools, TrumpBot and Support are
+  - **Today:** GKB2, GKB and BotTools are public; KotlinBottools and the private repositories are
     private.
   - **KotlinBottools** becomes public at the end of Phase 0.
   - **The other five** are archived in Phase 17, after their open issues are closed. An archived
@@ -96,7 +96,7 @@ archived GKB2, keep it for reference.
     ([`research/codebase-inventory-and-fate.md`](research/codebase-inventory-and-fate.md) §7).
   - **BotTools #1** asks for event-data getters and setters. The typed event registry replaces
     them.
-  - **TrumpBot #1** reports that Dota 2's automatic reports do not work. MagicBot's tracker
+  - **The first private repository #1** reports that Dota 2's automatic reports do not work. MagicBot's tracker
     replaces them.
 
 > **Dated note, 2026-11-07** ([`2-phase-0-history-rewrite/consequences.md`](2-phase-0-history-rewrite/consequences.md) §2).
@@ -106,7 +106,7 @@ archived GKB2, keep it for reference.
 >   stays private and archived as `KotlinBottools-legacy`.
 > - No Support ticket is filed. GKB2's and BotTools' pull-request refs and every cached view stay,
 >   and the residual is measured and reported.
-> - KotlinBottools' main working copy is realigned in place rather than cloned again; the TrumpBot
+> - KotlinBottools' main working copy is realigned in place rather than cloned again; the private repository
 >   clone is cloned again.
 
 ### 2.2 Consumers

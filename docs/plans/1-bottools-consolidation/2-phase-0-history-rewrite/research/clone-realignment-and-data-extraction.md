@@ -12,7 +12,7 @@ conventions `WS` (workspace) and `OUT` (outputs directory) are those of
 ## 1. Question
 
 With git 2.55 on Windows, how are `%PROJECTS%\KotlinBottools` (the session's working directory,
-which is never deleted or renamed) and `%PROJECTS%\TrumpBot` brought onto the rewritten histories
+which is never deleted or renamed) and `%PROJECTS%\…` brought onto the rewritten histories
 so that no pre-rewrite object remains in either; how are `BotData.xml` and `guildData/` copied byte-exactly
 from three untouched pre-rewrite mirrors despite `core.autocrlf=true`; and how is the per-repository manifest of
 blob ids built so that it lists exactly the blobs the rewrite makes unreachable? The answer is four runbook
@@ -32,7 +32,7 @@ KotlinBottools reaches GitHub (force-push, or delete-and-recreate under the same
   the same check against the untouched backup (none missing, the control) plus `git count-objects -v`
   (`packs: 1`, `garbage: 0`). **Exit status is not proof on Windows:** with a locked file, `git reset --hard`
   exits 0 and leaves the file, and `git gc` exits 0 silently and leaves the old `.pack`.
-- **TrumpBot: replace the clone, with the old one moved aside and deleted last.** Keep the untracked and
+- **The first private repository: replace the clone, with the old one moved aside and deleted last.** Keep the untracked and
   ignored files in a tar with a checksum list, `mv` the clone into `WS` (a same-volume rename, which fails
   cleanly while any process holds a handle inside), `git clone` the rewritten repository at the same path,
   restore the files with `tar --keep-old-files`, prove, then `rm -rf` the old clone. In-place cleaning is
@@ -175,7 +175,7 @@ Tiers: source (`compat/mingw.c` at `v2.55.0.windows.5`), observed.
     `garbage: 1`. Its bytes still hold the old objects. `cat-file -e` already says "missing" for them (a pack
     without an index is invisible), so only the file count and `garbage` expose it.
   - The baseline on this machine, with IntelliJ IDEA running but idle: no file under either clone's `.git`,
-    and no file of TrumpBot's tree, was held open (the probe in 6.3 returned 0).
+    and no file of the first private repository's tree, was held open (the probe in 6.3 returned 0).
 - **The prompt.** `mingw_unlink` retries a failed delete five times (sleeps of 0, 1, 10, 20, 40 ms) and then
   calls `ask_yes_no_if_possible`, which (1) runs the program named by `GIT_ASK_YESNO` with the question as its
   only argument and returns "yes" (retry) exactly when that program exits 0, else (2) if stdin or stderr is not a
@@ -187,7 +187,7 @@ Tiers: source (`compat/mingw.c` at `v2.55.0.windows.5`), observed.
   or not a terminal exists, and whether or not it can be started. A hook that exits 0 would retry without
   limit. The variable is documented nowhere but the source.
 - **Renames.** `mv <dir> <elsewhere>` of a directory that contains an open file fails with `Permission denied`
-  and moves nothing, also when the opener allowed delete sharing (observed). TrumpBot's clone is therefore moved
+  and moves nothing, also when the opener allowed delete sharing (observed). The first private repository's clone is therefore moved
   first: success proves that nobody holds a handle inside it.
 - **Read-only packs.** Git writes `.pack`, `.idx` and `.rev` files read-only (attribute R, observed). Both Git
   Bash `rm -rf <clone>` and PowerShell `Remove-Item -LiteralPath <clone> -Recurse -Force` removed a clone with
@@ -259,8 +259,8 @@ execution reported on this stack.
 |---|---|---|
 | This clone | (a) documented procedure, hardened | **Chosen.** Every step is checkable with git's own output; nothing but refs, the index, reflogs and objects is touched; `.git` is never moved while IntelliJ and the session hold it |
 | This clone | (b) replace `.git` with a fresh clone's | Not scripted; fallback if block 4 fails twice. Clean by construction, but it renames `.git` (Windows refuses while any handle is open inside), drops the two branches' upstream settings and the index (`git reset` and `git branch --set-upstream-to` to repair), and leaves the old `.git` to delete |
-| TrumpBot | (a) clone again, old one aside | **Chosen**, with the order: aside, clone, restore, prove, delete |
-| TrumpBot | (b) clean in place | Rejected: the same procedure as this clone with the same lock risks; the fresh clone is cleaner and cheaper (the remote history is small) |
+| The first private repository | (a) clone again, old one aside | **Chosen**, with the order: aside, clone, restore, prove, delete |
+| The first private repository | (b) clean in place | Rejected: the same procedure as this clone with the same lock risks; the fresh clone is cleaner and cheaper (the remote history is small) |
 | Data copy | (a) `git archive \| tar -x` | Rejected: converts (3.5) |
 | Data copy | (b) archive with `-c core.autocrlf=false -c core.eol=lf` | Rejected: correct only while no attribute converts |
 | Data copy | (c) `git cat-file blob` per `ls-tree -r -z` record | **Chosen** |
@@ -282,7 +282,7 @@ execution reported on this stack.
 - **GitHub's "Removing sensitive data from a repository"** (docs `main`) says the same: "High risk of
   recontamination ... They need to either discard their clone and re-clone, or carefully walk through multiple
   steps to clean up their clone first", and refers to the filter-repo manual for the steps. Re-clone is the
-  recommended path for every copy that can be re-cloned (TrumpBot).
+  recommended path for every copy that can be re-cloned (the first private repository).
 - **filter-repo itself** ends a run in the mirror with `git reflog expire --expire=now --all` and `git gc
   --prune=now`; the sibling findings keep the backup mirror untouched so that a control can still read the old
   objects. 6.3 reuses that control.
@@ -339,10 +339,10 @@ export URL=https://github.com/SpartanLaboratories/KotlinBottools.git
 export BK="$BKROOT/$REPO.git"  RM="$OUT/$REPO"  LIST="$WS/lists/$REPO-purge.txt"  MANIFEST="$DATA/manifests/$REPO.blobs"
 ```
 
-For TrumpBot the same file is sourced with `REPO=TrumpBot`, `CLONE=%PROJECTS%/TrumpBot` and the
-TrumpBot URL. Run order for the phase: **6.1 first, before any rewrite; 6.2 for each repository right after its
+For the first private repository the same file is sourced with `REPO=…`, `CLONE=%PROJECTS%/…` and the
+first private repository's URL. Run order for the phase: **6.1 first, before any rewrite; 6.2 for each repository right after its
 backup mirror exists; 6.3 after KotlinBottools' rewritten mirror has been pushed and proven; 6.5 after
-TrumpBot's.** The first network command per repository may open a Git Credential Manager sign-in (both
+the first private repository's.** The first network command per repository may open a Git Credential Manager sign-in (both
 repositories are private); complete it, it is not a STOP.
 
 ### 6.1 Procedure 3: the legacy data copy (before any rewrite)
@@ -350,9 +350,9 @@ repositories are private); complete it, it is not a STOP.
 Sources, read from the untouched mirrors: KotlinBottools `refs/heads/main`; GKB2 at the parent of the commit
 that deleted `guildData/` from `master` (subject "No DB updates", 2023-10-29; found by the rule below, whose
 result is checked: one parent, no `guildData` blob in the deleting commit, 29 in its parent, and
-`BotData.xml` present); TrumpBot `refs/heads/main`. Files: `BotData.xml` and everything under `guildData/`.
+`BotData.xml` present); the first private repository's `refs/heads/main`. Files: `BotData.xml` and everything under `guildData/`.
 Read-only checks on 2026-10-21 give the expected counts: KotlinBottools `main` 29 + 1, GKB2 29 + 1 (GitHub API
-trees; the parent of the deleting commit), TrumpBot `main` 30 + 1; the KotlinBottools and TrumpBot entries are
+trees; the parent of the deleting commit), the first private repository's `main` 30 + 1; the entries of KotlinBottools and the first private repository are
 all mode 100644 blobs (the copy stops on any other mode).
 
 Layout (`DATA`, an ordinary folder under the user profile; `icacls` shows only `SYSTEM`, `Administrators` and the
@@ -363,7 +363,7 @@ used; the profile folder is neither under OneDrive nor under `%PROJECTS%\`):
 %USERPROFILE%/BotLegacyData/
   KotlinBottools-main/        BotData.xml, guildData/...        the copied files, same relative paths
   GKB2-last-with-data/        BotData.xml, guildData/...
-  TrumpBot-main/              BotData.xml, guildData/...
+  …-main/              BotData.xml, guildData/...
   records/<label>.ls-tree.z   the git ls-tree -r -z record the copy is verified against (mode, blob id, path)
   records/<label>.sha256      sha256sum of every copied file (relative paths)
   manifests/<repo>.blobs      6.2: blob ids to purge, one per line
@@ -374,7 +374,7 @@ used; the profile folder is neither under OneDrive nor under `%PROJECTS%\`):
 
 `copy-data.sh` (functions in `datacopy.sh`, 6.8). Expected output: three `ok` lines for the destination, then per
 source a "`<label>: guildData=29 (want 29) BotData.xml=1 (want 1) unexpected_entries=0 write_failures=0`" line
-and a "`records=30 files_on_disk=30 hash_mismatches=0`" line (TrumpBot 30 + 1), and `copy complete`. STOP on
+and a "`records=30 files_on_disk=30 hash_mismatches=0`" line (the first private repository 30 + 1), and `copy complete`. STOP on
 any `STOP`, on `hash_mismatches` above 0, on `unexpected_entries` above 0. The copy is re-verified without
 network or mirrors at any later time with `recheck_data <label>` (prints `rc=0`), and once more immediately before
 the workspace is deleted.
@@ -450,10 +450,10 @@ expect "guildData files at its parent"            29 "$(git --git-dir "$G2" ls-t
 copy_data "$G2" "$P" GKB2-last-with-data 29 1            || exit 1
 verify_data "$G2" GKB2-last-with-data                    || exit 1
 
-# 3. TrumpBot main
-TB="$BKROOT/TrumpBot.git"
-copy_data "$TB" refs/heads/main TrumpBot-main 30 1       || exit 1
-verify_data "$TB" TrumpBot-main                          || exit 1
+# 3. … main
+TB="$BKROOT/….git"
+copy_data "$TB" refs/heads/main …-main 30 1       || exit 1
+verify_data "$TB" …-main                          || exit 1
 
 : > "$DATA/COPY-VERIFIED"; echo "copy complete"
 ```
@@ -572,7 +572,7 @@ main()
 ```bash
 . "$TOOLS/lib.sh"          # needs WS (lists/<repo>-purge.txt), TOOLS, DATA, BKROOT; REPOS defaults to the six bot repositories
 mkdir -p "$DATA/manifests"
-for REPO in ${REPOS:-KotlinBottools GKB2 GKB BotTools TrumpBot Support}; do
+for REPO in ${REPOS:-KotlinBottools GKB2 GKB BotTools … …}; do
   G="$BKROOT/$REPO.git"; LIST="$WS/lists/$REPO-purge.txt"; M="$DATA/manifests/$REPO.blobs"; C="$DATA/manifests/$REPO.counts"
   expect "$REPO: backup is a bare mirror" true "$(git --git-dir "$G" rev-parse --is-bare-repository)"
   python -I "$TOOLS/blob_manifest.py" "$G" "$LIST" "$M" > "$C"; expect "$REPO: builder status" 0 "$?"
@@ -921,41 +921,41 @@ the rewritten mirror: while it was empty, block 2 stopped at its first check wit
 intact (a bare `git fetch --prune` against it deleted all four and exited 0); after the push, blocks 2 to 4
 passed with the same outputs as in the force-push case.
 
-### 6.5 Procedure 2: replacing the TrumpBot clone
+### 6.5 Procedure 2: replacing the private repository clone
 
-Preconditions as in 6.3, with the TrumpBot rewrite pushed and proven and the project closed in the IDE. The
+Preconditions as in 6.3, with the first private repository's rewrite pushed and proven and the project closed in the IDE. The
 clone has no hooks, no local excludes, no stash, a single local branch `main` and the local keys `core`,
-`remote`, `branch`, `submodule`, `lfs` only (read 2026-10-21; block `trumpbot-1` checks it), and four
+`remote`, `branch`, `submodule`, `lfs` only (read 2026-10-21; block `…-1` checks it), and four
 untracked or ignored files, all in `.idea/`.
 
-**`trumpbot-1-prepare.sh`** (touches nothing in the clone): the checks, `local branches: 1`, `untracked and
+**`…-1-prepare.sh`** (touches nothing in the clone): the checks, `local branches: 1`, `untracked and
 ignored files: 4`, and `tar status`, `tar entries`, `sha256 list lines` `ok`. It writes
 `WS/tb-untracked.tar` and `WS/tb-untracked.sha256`. STOP changes nothing.
 
-**`trumpbot-2-replace.sh`**: server heads equal `ref-map`; `mv` of the clone to `WS/TrumpBot-old` (a rename on one
+**`…-2-replace.sh`**: server heads equal `ref-map`; `mv` of the clone to `WS/…-old` (a rename on one
 volume: it fails without effect when any process holds a handle inside); `git clone` of the rewritten repository
 to the same path; `tar --keep-old-files` restores the files (it refuses to overwrite, so a collision is a STOP);
 checksums verify; the untracked and ignored set equals the saved list; remote-tracking refs equal `ref-map`;
 `main` equals `origin/main`; one pack, no loose objects, `fsck`; then the same proofs as block 4 (every first
 changed commit, every changed or pruned commit and every manifest blob missing, the control present). If a STOP
-occurs *after* the `mv`, the old clone is intact in `WS/TrumpBot-old`: move it back (`mv "$WS/TrumpBot-old"
+occurs *after* the `mv`, the old clone is intact in `WS/…-old`: move it back (`mv "$WS/…-old"
 "$CLONE"` after removing a partial new clone) and report.
 
 Last, only after every check passed:
 
 ```bash
-rm -rf "$WS/TrumpBot-old"; echo "rm rc=$?"; [ -e "$WS/TrumpBot-old" ] && echo "STOP  old clone still exists" || echo "ok    old clone removed"
+rm -rf "$WS/…-old"; echo "rm rc=$?"; [ -e "$WS/…-old" ] && echo "STOP  old clone still exists" || echo "ok    old clone removed"
 ```
 
 `rm: cannot remove ... Device or resource busy` or a remaining directory means a process holds a file: find it,
 close it, run
-`powershell.exe -NoProfile -Command "Remove-Item -LiteralPath '$(cygpath -w "$WS/TrumpBot-old")' -Recurse -Force"`
+`powershell.exe -NoProfile -Command "Remove-Item -LiteralPath '$(cygpath -w "$WS/…-old")' -Recurse -Force"`
 and check again. The new clone is not affected by a partial deletion. `feature/pokercommand` exists only as
 `origin/feature/pokercommand`, as before. The tracked files the rewrite removed (`res/`, `list.dat`,
 `ffmpeg.exe`, `key.pem`, ...) are not in the new clone and survive only in the backup mirror until the phase
 deletes it; only `BotData.xml` and `guildData/` are in `DATA`.
 
-**`trumpbot-1-prepare.sh`**
+**`…-1-prepare.sh`**
 
 ```bash
 . "$TOOLS/lib.sh"; mkdir -p "$WS/tmp"; cd "$CLONE" || { echo "STOP  cd"; exit 1; }
@@ -982,15 +982,15 @@ expect "tar entries" "$N" "$(tar --force-local -tf "$WS/tb-untracked.tar" | wc -
 xargs -0 sha256sum < "$WS/tmp/tb-others.z" > "$WS/tb-untracked.sha256";            expect "sha256 list lines" "$N" "$(wc -l < "$WS/tb-untracked.sha256" | tr -d ' ')"
 ```
 
-**`trumpbot-2-replace.sh`**
+**`…-2-replace.sh`**
 
 ```bash
 . "$TOOLS/lib.sh"; cd "$WS" || { echo "STOP  cd"; exit 1; }
 awk 'NR>1 && $3 ~ /^refs\/heads\// && $2 !~ /^0+$/ {print $2" "$3}' "$RM/ref-map" | sort > "$WS/tmp/expected-heads.txt"
 git ls-remote --heads "$URL" | tr '\t' ' ' | sort > "$WS/tmp/ls-remote.txt"
 expect "server heads == ref-map"   0 "$(cmp -s "$WS/tmp/ls-remote.txt" "$WS/tmp/expected-heads.txt"; echo $?)"
-expect "old clone location free"   0 "$(yn "$WS/TrumpBot-old")"
-mv "$CLONE" "$WS/TrumpBot-old";                                                     expect "move of the old clone" 0 "$?"
+expect "old clone location free"   0 "$(yn "$WS/…-old")"
+mv "$CLONE" "$WS/…-old";                                                     expect "move of the old clone" 0 "$?"
 expect "old path is gone"          0 "$(yn "$CLONE")"
 git clone --quiet "$URL" "$CLONE";                                                  expect "clone status" 0 "$?"
 cd "$CLONE" || { echo "STOP  cd"; exit 1; }
@@ -1012,7 +1012,7 @@ prove_removed "$CLONE/.git"
 
 ### 6.6 Expected surviving blobs, and the exit tests that use the manifest
 
-For a repository whose every ref is rewritten (the local rewritten mirror; KotlinBottools and TrumpBot, which
+For a repository whose every ref is rewritten (the local rewritten mirror; KotlinBottools and the first private repository, which
 have no `refs/pull/*`, also in a fresh clone from GitHub):
 
 ```bash
@@ -1047,8 +1047,8 @@ turns "judgement" into a lookup with exactly two outcomes, a target or a STOP.
 
 Saved once from this document (listings above): `lib.sh`, `datacopy.sh`, `copy-data.sh`, `blob_manifest.py`,
 `manifests.sh`, `realign-1-preflight.sh`, `realign-2-fetch.sh`, `realign-3-move.sh`, `realign-3b-verify.sh`,
-`realign-4-purge.sh`, `predict_removed.py`, `untracked_collisions.py`, `lockprobe.py`, `trumpbot-1-prepare.sh`,
-`trumpbot-2-replace.sh`. They were exercised end to end on throwaway fixtures (a six-commit history with a pruned
+`realign-4-purge.sh`, `predict_removed.py`, `untracked_collisions.py`, `lockprobe.py`, `…-1-prepare.sh`,
+`…-2-replace.sh`. They were exercised end to end on throwaway fixtures (a six-commit history with a pruned
 commit, content-identical files under purged and kept paths, an empty blob, a pull ref, an untracked and an
 ignored file, a branch that was never pushed; a locked file; a locked pack; a path with a bracket, comma and
 space; CRLF, LF, mixed and binary blobs): all `ok`, and the intended STOPs (a branch with its own commit, an
@@ -1280,7 +1280,7 @@ untracked file in the way, a locked tracked file) fired.
 - **Delete-and-recreate was simulated with local bare repositories**; GitHub-specific effects (repository id,
   default-branch selection, credential prompts, `refs/pull/*`) were not tested.
 - **Files the rewrite removes other than `BotData.xml` and `guildData/`** (`key.txt`, `WebParseKeys.xml`,
-  `services/`, `res/`, TrumpBot's `list.dat`, binaries and `key.pem`) are not preserved anywhere by these
+  `services/`, `res/`, the first private repository's `list.dat`, binaries and `key.pem`) are not preserved anywhere by these
   procedures; they remain only in the backup mirrors until the phase deletes them.
 - **`tasklist` as a precondition is flaky** by design (3.6); the blocks are repeated, not worked around.
 - **Everything the sibling findings leave open** (for example filter-repo on a kept path that `fast-import`

@@ -33,14 +33,14 @@ This file holds three things:
 ### 1.1 The work these questions serve
 
 Phase 0 removes secrets, data, IDE files and build output from the histories of six
-repositories: KotlinBottools, GKB2, GKB, BotTools, TrumpBot and Support. KotlinBottools then
+repositories: KotlinBottools, GKB2, GKB, BotTools and the private repositories. KotlinBottools then
 becomes public.
 
 - **The rewrite.** Each repository is rewritten with `git filter-repo` from a mirror clone, using
   a root-anchored literal path list, and then force-pushed. The order is:
   1. KotlinBottools;
   2. GKB2 and GKB;
-  3. BotTools, TrumpBot and Support.
+  3. BotTools and the private repositories.
 - **Execution.** Each unit of the phase is a sub-issue of #2, carried out from one Windows 11
   machine by its own run, which follows a written plan literally.
   - Every step has a check and a stop condition.
@@ -64,12 +64,12 @@ becomes public.
   places:
   - KotlinBottools `main`;
   - GKB2 at its last state before its data was deleted;
-  - TrumpBot `main`.
+  - The first private repository's `main`.
 
   A manifest of the blob ids to purge is recorded beside the copy, outside every repository.
 - **The main working copy.** KotlinBottools' main working copy on this machine is the working
   directory of the sessions that work on the repository. It cannot be deleted or renamed, so it is
-  brought onto the rewritten history in place. The local TrumpBot clone is deleted and cloned
+  brought onto the rewritten history in place. The local private repository clone is deleted and cloned
   again.
 - **The mirror clones** live in a dedicated workspace outside every project folder. They are
   deleted once the exit tests pass, so only the data copy remains.
@@ -97,8 +97,8 @@ becomes public.
 | GKB2 | public; `master`; `refs/pull/6/head` |
 | GKB | public; `master` |
 | BotTools | public; `main`, `Working-Branch`; `refs/pull/2/head`, `refs/pull/3/head` |
-| TrumpBot | private; `main`, `feature/pokercommand` |
-| Support | private; `main` |
+| The first private repository | private; `main`, `feature/pokercommand` |
+| The second private repository | private; `main` |
 | Secret scanning | off on GKB2, GKB and BotTools; on, with push protection, on MagicBot, whose `.gitleaks.toml` already guards the predecessor bots' token and data file names |
 
 ### 1.2 Reuse first
@@ -123,7 +123,7 @@ The two branches that research could not inspect have since been read through th
 - **BotTools `Working-Branch`** is one commit beyond its merge base with `main`. That commit:
   - removes a file under `lib/bin/`, a path the list already purges;
   - adds a publishing block, which holds no credential, to `lib/build.gradle`.
-- **TrumpBot `feature/pokercommand`** is two commits ahead of `main`. Both touch `src/commands/`
+- **The first private repository's `feature/pokercommand`** is two commits ahead of `main`. Both touch `src/commands/`
   only. A pattern scan of their patches found no token shape, no id-sized number, no credential
   assignment and no private-key header.
 
@@ -275,14 +275,14 @@ the new histories, and what the rewrite leaves and touches.
 
 **Findings:** [`github-residual-exposure-and-visibility.md`](github-residual-exposure-and-visibility.md)
 
-#### 4. How are this clone and the TrumpBot clone brought onto the rewritten histories, and how are the legacy data and the blob manifests captured exactly, with git 2.55 on Windows?
+#### 4. How are this clone and the private repository clone brought onto the rewritten histories, and how are the legacy data and the blob manifests captured exactly, with git 2.55 on Windows?
 
 **Options to compare:**
 
 - **This clone:**
   - git-filter-repo's documented procedure for other copies of a rewritten repository;
   - replacing this clone's `.git` with a fresh clone's.
-- **TrumpBot:**
+- **The first private repository:**
   - delete and clone again, keeping its untracked files;
   - clean it in place.
 - **The data copy:**
@@ -342,7 +342,7 @@ the new histories, and what the rewrite leaves and touches.
   - the largest surviving blob;
   - the commits that disappear.
 - The parent research's purge lists stay root-anchored and complete for every ref, including
-  BotTools `Working-Branch` and TrumpBot `feature/pokercommand`.
+  BotTools `Working-Branch` and the first private repository's `feature/pokercommand`.
 - Nothing that becomes public with KotlinBottools names a guild, a member or a Discord id. That
   covers:
   - the documents on both branches;
@@ -562,7 +562,7 @@ Source: findings 2, §3 and §6.
     pure rename;
   - each untouched pre-rewrite mirror.
 
-  BotTools and Support hold none of the guarded files, so for them the control is a negative baseline
+  BotTools and the second private repository hold none of the guarded files, so for them the control is a negative baseline
   only.
 - **The exit tests.**
   - The branches-and-tags scan of each rewritten mirror must be clean.
@@ -632,7 +632,7 @@ Source: findings 3, §3 and §6; findings 5, §3.A and §3.D.
   - every pre-rewrite id printed in a published document is a key.
 
   Nothing can be recalled once anyone has forked or fetched. GKB2, GKB and BotTools were public before
-  the rewrite, so their exposure is not new. TrumpBot and Support stay private.
+  the rewrite, so their exposure is not new. The private repositories stay private.
 - **Self-service alternatives to a Support ticket.** Two exist:
   - a fresh repository under the same name, made public instead of the old one, which starts with an
     empty object store;
@@ -673,7 +673,7 @@ Source: findings 4, §3 and §6.
 
   The variant in which the rewritten history goes to a fresh repository under the same name uses the
   same procedure. In that variant the check of the server's heads is essential.
-- **TrumpBot.**
+- **The first private repository.**
   1. Its untracked files (4, all under `.idea/`) are archived with a checksum list.
   2. The clone is moved into the workspace. A directory rename fails while any file inside it is open,
      which makes the move the lock probe.
@@ -692,7 +692,7 @@ Source: findings 4, §3 and §6.
     - KotlinBottools `main`: 29 files under `guildData/` plus `BotData.xml`;
     - GKB2 at the parent of the commit that deletes `guildData/` ("No DB updates", 2023-10-29): 29
       plus 1;
-    - TrumpBot `main`: 30 plus 1.
+    - The first private repository's `main`: 30 plus 1.
   - The destination is `%USERPROFILE%\BotLegacyData`, an ordinary folder under the user profile. By
     default only the user, SYSTEM and Administrators may open it. Folders at a drive's root are not
     used, because they grant `Authenticated Users` the right to modify.
@@ -714,7 +714,7 @@ Source: findings 4, §3 and §6.
   - Native programs get mixed-form paths: a drive letter followed by forward slashes.
   - `tar` runs with `--force-local`.
   - **The KotlinBottools project stays open in IntelliJ IDEA for the whole run**, because the session
-    that runs Phase 0 works inside that IDE. TrumpBot is not open in it.
+    that runs Phase 0 works inside that IDE. The first private repository is not open in it.
   - **Background git activity.** While the project is open, the IDE's git integration runs short git
     commands in the background and reads files under `.git` directly. Either can hold the index lock
     or a pack file for a moment. A reset or ref update that meets a transient lock error is therefore
@@ -733,10 +733,10 @@ Source: findings 4, §3 and §6.
 Source: findings 5, §3 and §6.
 
 - **Pruned commits.** The rewrite prunes 10 commits. Three of them are merges — one each in
-  KotlinBottools, GKB and TrumpBot — whose second-parent side held only a pruned commit.
+  KotlinBottools, GKB and the first private repository — whose second-parent side held only a pruned commit.
   - Commits before and after, counting branches and tags:
 
-    | KotlinBottools | GKB2 | GKB | BotTools | TrumpBot | Support |
+    | KotlinBottools | GKB2 | GKB | BotTools | The first private repository | The second private repository |
     |---|---|---|---|---|---|
     | 61 → 59 | 32 → 30 | 11 → 9 | 16 → 15 | 11 → 9 | 2 → 1 |
 
@@ -745,7 +745,7 @@ Source: findings 5, §3 and §6.
   - `first-changed-commits` holds one line per repository.
 - **What survives:**
 
-  | | KotlinBottools | GKB2 | GKB | BotTools | TrumpBot | Support |
+  | | KotlinBottools | GKB2 | GKB | BotTools | The first private repository | The second private repository |
   |---|---|---|---|---|---|---|
   | Distinct paths | 115 | 82 | 60 | 82 | 56 | 29 |
   | Blobs kept | 317 | 211 | 113 | 145 | 106 | 29 |
@@ -879,7 +879,7 @@ Source: findings 5, §3 and §6.
 - **For the clones:**
   - replacing this clone's `.git` with a fresh clone's, because the tracked files the rewrite removes
     would stay behind as untracked files;
-  - cleaning TrumpBot's clone in place.
+  - cleaning the first private repository's clone in place.
 - **For the data folder:** a folder at a drive's root, because it grants `Authenticated Users` the
   right to modify.
 - **For citations:** rewriting pre-rewrite ids from `commit-map`. Ten commits have no new id, and a

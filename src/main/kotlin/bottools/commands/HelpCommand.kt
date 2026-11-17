@@ -14,7 +14,7 @@ class HelpCommand : Command("help") {
     }
 
     private fun executeGenericVersion() {
-        eb = eb //.setAuthor("Hello, I am TrumpBot")
+        eb = eb //.setAuthor("Hello, I am …")
             .setTitle("Here is what I can do:")
         createFields()
         sendEmbed()

@@ -2,28 +2,28 @@
 
 For: SpartanLaboratories/KotlinBottools#1
 Date read: 2026-10-20
-Applies to: KotlinBottools `main` b2f2078 (planning branch `ccr-2c690a64-fz5whf` at f0f480d), GKB2 `master` 9422f85, GKB `master` b6ad0f7, BotTools `main` 9e74d1c, TrumpBot `main` a66dd38, Support `main` c6b8fe5; git-filter-repo documentation at `main` (newest release listed: v2.47.0); GitHub's documentation repository at `main`; git 2.43.0 locally.
+Applies to: KotlinBottools `main` b2f2078 (planning branch `ccr-2c690a64-fz5whf` at f0f480d), GKB2 `master` 9422f85, GKB `master` b6ad0f7, BotTools `main` 9e74d1c, the first private repository's `main` a66dd38, the second's `main` c6b8fe5; git-filter-repo documentation at `main` (newest release listed: v2.47.0); GitHub's documentation repository at `main`; git 2.43.0 locally.
 
 Commit hashes in this file are the hashes **before** the rewrite. Every one of them changes (see Findings 6).
 No secret value, cookie value, guild name, member name or member id appears in this file. Secrets are named by path, blob and size only.
 
 ## 1. Question
 
-Which tracked paths in the history of KotlinBottools, GKB2, GKB, BotTools, TrumpBot (and Support, if it is bot-related) are secrets, data, runtime state, binaries, IDE files or build output, and how are they removed from every ref of each repository on GitHub so that:
+Which tracked paths in the history of KotlinBottools, GKB2, GKB, BotTools, the first private repository (and the second, if it is bot-related) are secrets, data, runtime state, binaries, IDE files or build output, and how are they removed from every ref of each repository on GitHub so that:
 
 - no secret or data file remains anywhere in any history;
 - each default branch is force-pushed once;
-- GKB2, GKB, BotTools and TrumpBot can then be archived (read-only), and KotlinBottools can then be made public;
+- GKB2, GKB, BotTools and the first private repository can then be archived (read-only), and KotlinBottools can then be made public;
 - the rewrite works although none of the leaked tokens is current?
 
 ## 2. Bottom line
 
-- **Scope: five repositories, plus Support as a light pass.** Support is bot-related: it is TrumpBot's Eclipse companion project (TrumpBot's `.classpath` lists `/Support`, TrumpBot's `TimeCommand` imports `com.spartanlaboratories.util.Date`, which only Support defines) and it vendors the lavaplayer natives and ForecastIO client that TrumpBot's `PlayCommand` and `FIOWeatherCommand` use. It holds **no** secret and **no** data (verified by exact-string and pattern scans), so its purge is binary and IDE hygiene only. Its future (archive or keep) is not set by this work.
-- **Secrets are confined to whole-file paths; a path rewrite is sufficient.** Across all six histories, every leaked token and cookie string occurs only in `key.txt` / `keys.txt` / `key.pem` / `BotData.xml` (34 candidate strings searched in every blob of every repository, plus commit messages, author fields and ref names). No credential is hard-coded in source or in committed build output. Do the rewrite with `git filter-repo --sensitive-data-removal --invert-paths --paths-from-file <list>`, one list per repository (section 6.2). `--replace-text` is not needed. BFG is rejected: it matches by name anywhere in the tree (it would delete the source packages named `services` in KotlinBottools, GKB2 and BotTools) and protects the current commit by default (every secret path in KotlinBottools, GKB, TrumpBot and GKB2 is still in the current tree).
+- **Scope: five repositories, plus the second private repository as a light pass.** The second private repository is bot-related: it is the first private repository's Eclipse companion project (the first private repository's `.classpath` lists `/…`, the first private repository's `TimeCommand` imports `com.spartanlaboratories.util.Date`, which only the second defines) and it vendors the lavaplayer natives and ForecastIO client that the first private repository's `PlayCommand` and `FIOWeatherCommand` use. It holds **no** secret and **no** data (verified by exact-string and pattern scans), so its purge is binary and IDE hygiene only. Its future (archive or keep) is not set by this work.
+- **Secrets are confined to whole-file paths; a path rewrite is sufficient.** Across all six histories, every leaked token and cookie string occurs only in `key.txt` / `keys.txt` / `key.pem` / `BotData.xml` (34 candidate strings searched in every blob of every repository, plus commit messages, author fields and ref names). No credential is hard-coded in source or in committed build output. Do the rewrite with `git filter-repo --sensitive-data-removal --invert-paths --paths-from-file <list>`, one list per repository (section 6.2). `--replace-text` is not needed. BFG is rejected: it matches by name anywhere in the tree (it would delete the source packages named `services` in KotlinBottools, GKB2 and BotTools) and protects the current commit by default (every secret path in KotlinBottools, GKB, the first private repository and GKB2 is still in the current tree).
 - **Use root-anchored literal paths only.** `services/`, `res/` and `bin/` also occur as source package or build directories (`src/main/kotlin/bottools/services/`, `lib/src/main/java/BotTools/services/`). Nested data copies exist too (`src/test/guildData/` in KotlinBottools, `lib/bin/` and `lib/.settings/` in BotTools), so a "top-level only" list is incomplete. Per-repository lists are in section 6.2.
-- **GitHub will keep the old history in places a force-push cannot reach.** On 2026-10-20 the remote shows `refs/pull/6/head` on GKB2 and `refs/pull/2/head`, `refs/pull/3/head` on BotTools; KotlinBottools, GKB, TrumpBot and Support have none. These read-only refs, plus cached commit views and any fork, keep the pre-rewrite objects until GitHub Support dereferences the PRs and runs garbage collection. GitHub states that Support helps only where the risk "can't be mitigated by rotating affected credentials". Because every token here is already dead, the credible grounds for a ticket are the personal data (Discord member and guild identifiers) in `guildData/` and `logs/` of the public repositories GKB2 and GKB, and in KotlinBottools before it goes public.
+- **GitHub will keep the old history in places a force-push cannot reach.** On 2026-10-20 the remote shows `refs/pull/6/head` on GKB2 and `refs/pull/2/head`, `refs/pull/3/head` on BotTools; KotlinBottools, GKB and the private repositories have none. These read-only refs, plus cached commit views and any fork, keep the pre-rewrite objects until GitHub Support dereferences the PRs and runs garbage collection. GitHub states that Support helps only where the risk "can't be mitigated by rotating affected credentials". Because every token here is already dead, the credible grounds for a ticket are the personal data (Discord member and guild identifiers) in `guildData/` and `logs/` of the public repositories GKB2 and GKB, and in KotlinBottools before it goes public.
 - **Merging the planning branch through a pull request before the rewrite creates `refs/pull/N/*` in KotlinBottools that pin the old history.** KotlinBottools has no PR refs today. Each PR merged before the rewrite is one more ref Support must clear before the repository is made public. The exit test is a fresh `git clone --mirror` that also fetches `refs/pull/*` and finds no purged path and no listed blob id (section 6.5).
-- **Archive and publish only after exit tests pass.** Archiving makes branches, tags, PRs and commits read-only, so the rewrite, the Support ticket and the README pointer commit all come first. Two branches exist on the remote that are not on disk (BotTools `Working-Branch`, TrumpBot `feature/pokercommand`); they must be covered by a mirror clone or deleted.
+- **Archive and publish only after exit tests pass.** Archiving makes branches, tags, PRs and commits read-only, so the rewrite, the Support ticket and the README pointer commit all come first. Two branches exist on the remote that are not on disk (BotTools `Working-Branch`, the first private repository's `feature/pokercommand`); they must be covered by a mirror clone or deleted.
 - **Secret scanning after the purge: GitHub secret scanning plus gitleaks run as a binary.** The gitleaks default rules would probably miss a bare `key.txt` (the Discord rule requires the word "discord" near a 64-hex value), so the repository needs a small custom rule set. `gitleaks/gitleaks-action` needs a licence key for organisation accounts; the MIT-licensed binary does not.
 
 ## 3. Findings
@@ -98,7 +98,7 @@ No credential and no data path. Binary and IDE material only:
 
 `lib/` is the Gradle subproject that holds the source; it is **not** a purge path. `lib/src/main/java/BotTools/services/` is a Java package and must survive.
 
-#### TrumpBot (private; remote refs: `main`, `feature/pokercommand`; 9 commits on disk)
+#### The first private repository (remote refs: `main`, `feature/pokercommand`; 9 commits on disk)
 
 | Path | Kind | Added | Removed | In current tree |
 |---|---|---|---|---|
@@ -107,7 +107,7 @@ No credential and no data path. Binary and IDE material only:
 | `BotData.xml` | runtime state, 3 versions, no cookie values | 41efd16 | never | yes |
 | `WebParseKeys.xml` | scraping markers | 41efd16 | never | yes |
 | `guildData/` | per-guild XML, 30 paths, about 1.3 MB | 41efd16 | never | yes |
-| `services/` | `services/game services/DOTA 2.xml` | 49d4389 2022-10-03 "TrumpBot 1.2.2.1" | never | yes |
+| `services/` | `services/game services/DOTA 2.xml` | 49d4389 2022-10-03 "… 1.2.2.1" | never | yes |
 | `res/` | 126 paths: icons, piece images, trivia and zip-code text | 41efd16 | never | yes |
 | `log.txt` | log | 41efd16 | never | yes |
 | `list.dat`, `list.idx` | 11.9 MB and 5.9 MB (two versions) data files | 41efd16 | never | yes |
@@ -122,19 +122,19 @@ No credential and no data path. Binary and IDE material only:
 
 Size: unique blobs total about 125 MB, of which about 124.6 MB are purge paths.
 
-#### Support (private; remote ref: `main`; 2 commits)
+#### The second private repository (remote ref: `main`; 2 commits)
 
 About 7,400 tracked files: Java sources (`src/com/spartanlaboratories/{chess,measurements,util}`), generated Javadoc (`doc/`), vendored third-party libraries (`lib/poi-5.0.0`, `lib/commons-io-2.11.0`, `lib/commons-fileupload-1.4-bin`, `lib/ForecastIO`), lavaplayer native sources and 24 compiled native or jar binaries (`natives/`, `lib/natives/`, `lib/lavaplayer dependencies/`), and Eclipse metadata (`.classpath`, `.project`, `.settings/`). Pack size 21.8 MiB. No credential, data or state path; no exact-string or pattern hit.
 
 ### 3.2 Secrets outside the secret paths (observed, 2026-10-20)
 
 - **Exact-string search.** 34 candidate strings were built in memory from every version of every `key.txt`, `keys.txt` and `key.pem` (each line) and every cookie `value` in every `BotData.xml` of the five bot repositories. Each was searched, byte for byte, in every blob reachable from any ref in all six repositories, and in commit messages, author and committer fields, and ref names. Output was limited to paths and counts.
-  - Each token string occurs only in its own key file (KotlinBottools `key.txt`: 1 blob; GKB2 `key.txt`/`keys.txt`: the same blob; GKB `key.txt`: 2 blobs; TrumpBot `key.txt` and `key.pem`).
+  - Each token string occurs only in its own key file (KotlinBottools `key.txt`: 1 blob; GKB2 `key.txt`/`keys.txt`: the same blob; GKB `key.txt`: 2 blobs; the first private repository `key.txt` and `key.pem`).
   - Each cookie value occurs only in `BotData.xml`. One 145-character session cookie is shared by three repositories (KotlinBottools: 2 blobs, GKB2: 2 blobs, GKB: 5 blobs), which is why the cookie section must be removed from all three.
-  - Zero hits in commit metadata, ref names or Support.
+  - Zero hits in commit metadata, ref names or the second private repository.
 - **Pattern scan.** All text blobs under 3 MB were scanned for: Discord-bot-token shape, PEM private-key headers, GitHub tokens, AWS key ids, Discord webhook URLs, `key|secret|token|password|cookie` assignments with a 16+ character value, URL key parameters, and Dark-Sky-style forecast URLs. The only hits were the key files themselves. The assignment and URL-parameter patterns matched nothing in any repository, so no API key is hard-coded in source.
-- **Hits that are not secrets.** 32+ character hex strings occur in the research documents of this repository (commit hashes), a vendored-documentation page in Support, a jar-hash path in TrumpBot's `.classpath`, and a favicon asset name inside a URL in an early version of TrumpBot's `DotaCommand.java`.
-- **Personal identifiers outside `guildData/`.** Discord-id-sized integer literals occur in `logs/` of GKB2 and GKB and once in TrumpBot's `src/commands/InviteCommand.java`. The logs go with the purge; the single literal in source is left in place.
+- **Hits that are not secrets.** 32+ character hex strings occur in the research documents of this repository (commit hashes), a vendored-documentation page in the second private repository, a jar-hash path in the first private repository's `.classpath`, and a favicon asset name inside a URL in an early version of the first private repository's `DotaCommand.java`.
+- **Personal identifiers outside `guildData/`.** Discord-id-sized integer literals occur in `logs/` of GKB2 and GKB and once in the first private repository's `src/commands/InviteCommand.java`. The logs go with the purge; the single literal in source is left in place.
 - **Limits.** The pattern scan is heuristic and did not cover blobs over 3 MB or binary files; the exact-string search covered every blob of any size but only for the 34 known strings.
 
 ### 3.3 How `git filter-repo` removes paths (consensus: git-filter-repo manual and GitHub's documentation agree; version: manual at `main`, GitHub documentation at `main`; flag needs v2.47 or newer)
@@ -142,7 +142,7 @@ About 7,400 tracked files: Java sources (`src/com/spartanlaboratories/{chess,mea
 - `--invert-paths` with `--path <file-or-dir>` removes exactly those paths from every commit on every ref; all names are relative to the repository root and renames are not followed, so a file that moved needs both names (`key.txt` and `keys.txt` in GKB2). Source: [git-filter-repo manual, "Path based filtering" and "Filtering based on many paths"](https://raw.githubusercontent.com/newren/git-filter-repo/main/Documentation/git-filter-repo.txt).
 - `--paths-from-file` takes one directive per line (`literal:` default, `glob:`, `regex:`), ignores blank and `#` lines, and combines with `--invert-paths`.
 - `--path-glob` uses Python `fnmatch`, in which `*` crosses `/`. A glob such as `*/services/*` would therefore delete source packages. Literal root-relative paths do not have that failure.
-- Commits that touch only removed paths become empty and are pruned (`--prune-empty auto`, the default). By the rule applied to the on-disk histories, one commit is pruned in KotlinBottools (0e88310), two in GKB2 (af44c24, e3a6fea), and one each in GKB (4a88004), BotTools (c7ecd43) and TrumpBot (23575a6).
+- Commits that touch only removed paths become empty and are pruned (`--prune-empty auto`, the default). By the rule applied to the on-disk histories, one commit is pruned in KotlinBottools (0e88310), two in GKB2 (af44c24, e3a6fea), and one each in GKB (4a88004), BotTools (c7ecd43) and the first private repository (23575a6).
 - `--sensitive-data-removal` (alias `--sdr`) fetches all refs first, records the first changed commits and the refs that changed, reports orphaned LFS objects, and prints cleanup instructions. GitHub requires "at least version 2.47". Files under `.git/filter-repo/` after a run: `commit-map` (old to new hash), `ref-map`, `changed-refs`, `first-changed-commits`.
 - The default for `--replace-refs` is `update-no-add`, so no `refs/replace/*` are created and none are pushed by `--mirror`.
 - The clone should be fresh: `git clone --mirror` (with `--no-local` for a local source). Without it, filter-repo aborts through its fresh-clone check. `--force` bypasses the check and is discouraged by the author.
@@ -164,8 +164,8 @@ About 7,400 tracked files: Java sources (`src/com/spartanlaboratories/{chess,mea
 | GKB2 | public | `master` | #6 "Data commands" (merged 2023-09-04), head dd0a8de, a commit on `master` | 0 |
 | GKB | public | `master` | none | 0 |
 | BotTools | public | `main`, `Working-Branch` (tip 8f0dddb, **not on disk**) | #2, #3 (both merged, heads 2fb52da and d5a6215 are on `main`) | 0 |
-| TrumpBot | private | `main`, `feature/pokercommand` (tip 5913379, **not on disk**) | none | not checkable |
-| Support | private | `main` | none | not checkable |
+| The first private repository | private | `main`, `feature/pokercommand` (tip 5913379, **not on disk**) | none | not checkable |
+| The second private repository | private | `main` | none | not checkable |
 
 The three public repositories have no releases or tags. Sources: `git ls-remote origin` run read-only from the on-disk clones; GitHub pages fetched with WebFetch (forks, pull requests, branches, tags) — a model-summarised read of the page, not a raw API response.
 
@@ -196,12 +196,12 @@ The three public repositories have no releases or tags. Sources: `git ls-remote 
 ## 5. Pitfalls and regrets
 
 1. **Unanchored name rules delete source.** `services/` is a source package in KotlinBottools (`src/main/kotlin/bottools/services/`), GKB2 and BotTools (`lib/src/main/java/BotTools/services/`). The same applies to `.gitignore`: an unanchored `services/` or `res/` would hide those packages.
-2. **Current-tree-only lists miss history-only files.** GKB2's `guildData/`, `logs/`, `key.txt` and `keys.txt`, GKB's `key.txt` and TrumpBot's `key.txt` are no longer in a current tree and would not be found by `git ls-files`. KotlinBottools' second data copy `src/test/guildData/` is not at the root. Run `git filter-repo --analyze` (path report) on each mirror clone before finalising a list.
-3. **Branches that are not on disk.** BotTools `Working-Branch` and TrumpBot `feature/pokercommand` contain commits that are absent from the on-disk clones, so their content is unknown. `git push --mirror` from a mirror clone rewrites them; a clone made from only the default branch would leave them untouched on the server, still carrying the old history.
-4. **Recontamination.** A clone made before the rewrite, followed by `git pull` and `git push`, brings the old history back. Old tags are not replaced by `git fetch --tags`. The clones in this working environment (`/home/user/KotlinBottools`, `/home/user/GKB2`, `/home/user/spartanlaboratories/{gkb,bottools}`, `/home/user/trumpbot`, `/home/user/support`) are such clones and should be deleted and re-cloned, not pulled.
+2. **Current-tree-only lists miss history-only files.** GKB2's `guildData/`, `logs/`, `key.txt` and `keys.txt`, GKB's `key.txt` and the first private repository's `key.txt` are no longer in a current tree and would not be found by `git ls-files`. KotlinBottools' second data copy `src/test/guildData/` is not at the root. Run `git filter-repo --analyze` (path report) on each mirror clone before finalising a list.
+3. **Branches that are not on disk.** BotTools `Working-Branch` and the first private repository's `feature/pokercommand` contain commits that are absent from the on-disk clones, so their content is unknown. `git push --mirror` from a mirror clone rewrites them; a clone made from only the default branch would leave them untouched on the server, still carrying the old history.
+4. **Recontamination.** A clone made before the rewrite, followed by `git pull` and `git push`, brings the old history back. Old tags are not replaced by `git fetch --tags`. The clones in this working environment (`/home/user/KotlinBottools`, `/home/user/GKB2`, `/home/user/spartanlaboratories/{gkb,bottools}`, `/home/user/…`, `/home/user/…`) are such clones and should be deleted and re-cloned, not pulled.
 5. **PR refs created before the rewrite pin the old history.** Merging the planning branch through a PR before the rewrite adds `refs/pull/N/head` (and a merge ref) to KotlinBottools. They are read-only, survive the force-push, and become fetchable by anyone when the repository is made public, unless Support has cleared them.
 6. **Support may decline.** Support will not remove "non-sensitive data" and considers whether rotation mitigates the risk. Tokens are dead, so a ticket argued on tokens will probably be declined; one argued on personal data in public repositories is stronger. This is a judgement, not a documented rule.
-7. **Every commit hash changes.** The root commit of every repository contains purge paths (KotlinBottools 59020d3, GKB2 b426c15, GKB 91aff75, BotTools 037070e, TrumpBot 41efd16), so all descendants change. Documents citing baselines (`b2f2078`, `9422f85`) go stale; `.git/filter-repo/commit-map` provides old to new. Five commits disappear entirely (section 3.3), and signatures are dropped.
+7. **Every commit hash changes.** The root commit of every repository contains purge paths (KotlinBottools 59020d3, GKB2 b426c15, GKB 91aff75, BotTools 037070e, the first private repository 41efd16), so all descendants change. Documents citing baselines (`b2f2078`, `9422f85`) go stale; `.git/filter-repo/commit-map` provides old to new. Five commits disappear entirely (section 3.3), and signatures are dropped.
 8. **Public exposure already happened.** GKB2 and GKB are public and carry session cookies, member data and logs in their current trees or history; whoever cloned them earlier keeps them. The rewrite shrinks future exposure; it does not recall copies.
 9. **Gitleaks defaults and public logs.** Once KotlinBottools is public, Actions logs are public; a scan job without `--redact` would print any finding into them.
 10. **A protection rule or ruleset can block the force-push** and must be lifted temporarily (GitHub documentation, "Side effects of rewriting history").
@@ -210,8 +210,8 @@ The three public repositories have no releases or tags. Sources: `git ls-remote 
 
 ### 6.1 Scope and order
 
-- Include all five bot repositories and Support (light pass).
-- Order: capture and copy first (6.3), then KotlinBottools (it blocks all later work and must be clean before it goes public), then GKB2 and GKB (public, personal data), then BotTools, TrumpBot and Support.
+- Include all five bot repositories and the second private repository (light pass).
+- Order: capture and copy first (6.3), then KotlinBottools (it blocks all later work and must be clean before it goes public), then GKB2 and GKB (public, personal data), then BotTools and the private repositories.
 - Per repository: rewrite, push, Support ticket (only where the exposure argument applies: GKB2, GKB, KotlinBottools; BotTools holds no secret or data, so a ticket for its two PR refs is unlikely to be honoured and not needed for the exit criterion unless it is stated to include PR refs), exit tests, README pointer commit (the four archived repositories), then archive or publish.
 
 ### 6.2 Path lists (literal, root-anchored; used with `--invert-paths --paths-from-file`)
@@ -220,15 +220,15 @@ The three public repositories have no releases or tags. Sources: `git ls-remote 
 - **GKB2:** `key.txt`, `keys.txt`, `BotData.xml`, `WebParseKeys.xml`, `guildData/`, `logs/`, `res/`, `services/`, `.idea/`, `src/jvmTest/resources/screenshot.png`.
 - **GKB:** `key.txt`, `BotData.xml`, `WebParseKeys.xml`, `guildData/`, `logs/`, `res/`, `services/`, `.idea/`, `screenshot.png`, `cutout.png`, `src/jvmTest/resources/screenshot.png`.
 - **BotTools:** `.gradle/`, `.classpath`, `.project`, `.settings/`, `lib/.classpath`, `lib/.project`, `lib/.settings/`, `lib/bin/`, `youtube-dl.exe`.
-- **TrumpBot:** `key.txt`, `key.pem`, `BotData.xml`, `WebParseKeys.xml`, `botdata.css`, `guildData/`, `services/`, `res/`, `log.txt`, `list.dat`, `list.idx`, `dl.bat`, `javadoc.xml`, `youtube-dl`, `youtube-dl.exe`, `ffmpeg.exe`, `ffprobe.exe`, `framed.png`, `framed photo.png`, `bin/`, `.classpath`, `.project`, `.settings/`.
-- **Support:** `.classpath`, `.project`, `.settings/`, `doc/`, `natives/`, `lib/` (vendored libraries and natives; the Java sources under `src/` stay). If Support is kept, the vendored libraries belong in a dependency manager, not in history; that choice is open (Gaps).
+- **The first private repository:** `key.txt`, `key.pem`, `BotData.xml`, `WebParseKeys.xml`, `botdata.css`, `guildData/`, `services/`, `res/`, `log.txt`, `list.dat`, `list.idx`, `dl.bat`, `javadoc.xml`, `youtube-dl`, `youtube-dl.exe`, `ffmpeg.exe`, `ffprobe.exe`, `framed.png`, `framed photo.png`, `bin/`, `.classpath`, `.project`, `.settings/`.
+- **The second private repository:** `.classpath`, `.project`, `.settings/`, `doc/`, `natives/`, `lib/` (vendored libraries and natives; the Java sources under `src/` stay). If the second private repository is kept, the vendored libraries belong in a dependency manager, not in history; that choice is open (Gaps).
 - Kept: `gradle/wrapper/gradle-wrapper.jar`, `src/main/resources/ReactionRoles.xml` (empty template).
 - The `res/zip codes.txt` file (GKB2, 4.3 MB) goes with `res/`; the weather plugin replaces it with a geocoder.
 
 ### 6.3 Runbook facts (per repository, in this order)
 
 1. Stop pushes; close or merge open PRs; note every branch on the remote (`git ls-remote origin`); lift force-push blocks.
-2. Copy the legacy data outside every repository, before anything is rewritten: `git archive <rev> guildData | tar -x -C <outside-dir>` for KotlinBottools `main` (last touched by 239210e 2025-09-24, 29 files), GKB2 at `af44c24^` (the last version before deletion, 29 files, 2023-10), and, if its older data is wanted, TrumpBot `main` (30 files). Which copy the importer reads is a data-ownership call, not made here. Store the copy encrypted or access-restricted: it holds Discord member data.
+2. Copy the legacy data outside every repository, before anything is rewritten: `git archive <rev> guildData | tar -x -C <outside-dir>` for KotlinBottools `main` (last touched by 239210e 2025-09-24, 29 files), GKB2 at `af44c24^` (the last version before deletion, 29 files, 2023-10), and, if its older data is wanted, the first private repository's `main` (30 files). Which copy the importer reads is a data-ownership call, not made here. Store the copy encrypted or access-restricted: it holds Discord member data.
 3. Record a manifest of the blob ids and paths to be purged (`git rev-list --objects --all`, filtered by the path list). Blob ids are not secrets and let the exit test run without reading any secret.
 4. `git clone --mirror <url> <repo>.git` into a clean directory outside the working trees; keep one untouched backup copy until the exit tests pass, then delete it (it contains the secrets).
 5. `git filter-repo --sensitive-data-removal --invert-paths --paths-from-file ../<repo>-purge.txt` inside the mirror (git-filter-repo v2.47 or newer). Keep `commit-map`, `changed-refs` and the printed "First Changed Commit(s)".
@@ -407,11 +407,11 @@ out/
   - `rtyley.github.io` (DNS failure): BFG's documentation was read from the HTML in the BFG repository's `gh-pages` branch.
   - `github.com/newren/git-filter-repo` (curl 403): used WebFetch for the releases page only; the release year is not shown there.
 - **Support's policy on this case is not established.** Whether GitHub Support will clear PR refs and cached views for repositories whose leaked tokens are already dead, but which hold personal data, is a judgement from the documentation wording, not a documented rule. The outcome is known only after a ticket. Not established: whether Support can act on an already archived repository (this report sequences the ticket before archiving so the question does not arise).
-- **Not inspected, content unknown.** BotTools `Working-Branch` (tip 8f0dddb) and TrumpBot `feature/pokercommand` (tip 5913379) are on the remote but not on disk; fetching them was outside the read-only boundary. Their history, and any additional purge paths in it, are unknown. TrumpBot and Support were inspected only through the coordinator's checkouts (9 and 2 commits); other remote refs on them, if any, appear only as listed in section 3.5.
-- **Forks and PR counts of the private repositories** (KotlinBottools, TrumpBot, Support) could not be read; only `git ls-remote` was available (no `refs/pull/*`, which means no PRs have ever been opened, but forks are invisible to it). An organisation owner must check "Insights, Forks" before each rewrite. Forks and PR counts of the public repositories come from WebFetch summaries of GitHub pages, not from the API.
+- **Not inspected, content unknown.** BotTools `Working-Branch` (tip 8f0dddb) and the first private repository's `feature/pokercommand` (tip 5913379) are on the remote but not on disk; fetching them was outside the read-only boundary. Their history, and any additional purge paths in it, are unknown. The private repositories were inspected only through the coordinator's checkouts (9 and 2 commits); other remote refs on them, if any, appear only as listed in section 3.5.
+- **Forks and PR counts of the private repositories** (KotlinBottools, the first private repository, the second) could not be read; only `git ls-remote` was available (no `refs/pull/*`, which means no PRs have ever been opened, but forks are invisible to it). An organisation owner must check "Insights, Forks" before each rewrite. Forks and PR counts of the public repositories come from WebFetch summaries of GitHub pages, not from the API.
 - **Branch protection, rulesets, signed commits.** Whether any repository has a rule that blocks force-pushes, and whether any commit is signed, was not checked (no API access).
 - **Copies outside GitHub.** Whether GKB2 and GKB (public since at least their last commits) were mirrored or archived elsewhere cannot be established from here and cannot be undone by the rewrite.
 - **gitleaks behaviour is inferred, not run.** The claim that the default rules would miss a bare token file comes from reading the default configuration; gitleaks is not installed here. The custom rules in 6.7 are untested; a dry run against a copy of the pre-rewrite mirror (with `--redact`) should confirm that they flag every blob in the manifest.
-- **Which `guildData/` copy the legacy importer reads** (KotlinBottools `main`, GKB2 at `af44c24^`, TrumpBot `main`) is not decided here; section 6.3 only requires that every candidate copy is saved outside the repositories before the rewrite.
-- **Support's future** (archive, keep private, replace the vendored libraries by dependencies) is not set by the work; the light pass in 6.2 assumes it stays as a private reference repository.
-- **Whether `res/` assets in TrumpBot are redistributable** (icons, trivia, piece images) is not assessed; they are removed as bulk assets under the stated rule.
+- **Which `guildData/` copy the legacy importer reads** (KotlinBottools `main`, GKB2 at `af44c24^`, the first private repository's `main`) is not decided here; section 6.3 only requires that every candidate copy is saved outside the repositories before the rewrite.
+- **The second private repository's future** (archive, keep private, replace the vendored libraries by dependencies) is not set by the work; the light pass in 6.2 assumes it stays as a private reference repository.
+- **Whether `res/` assets in the first private repository are redistributable** (icons, trivia, piece images) is not assessed; they are removed as bulk assets under the stated rule.

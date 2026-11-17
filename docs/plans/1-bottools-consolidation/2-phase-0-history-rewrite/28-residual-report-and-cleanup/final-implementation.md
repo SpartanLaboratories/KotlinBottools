@@ -39,7 +39,7 @@ one `RECORD` line, `S0.grant`'s.
   document checks run from the tools copy.
 - **No workspace.** `WS` was renamed beside itself on its first try and removed; both it and its rename target are confirmed
   absent, with no entry left over (§3.5).
-- **The old TrumpBot clone's recorded path** is absent, read at readiness and again at the close-out, and git-filter-repo is
+- **The old private repository clone's recorded path** is absent, read at readiness and again at the close-out, and git-filter-repo is
   installed at its recorded version (§3.1, §3.7).
 - **The follow-ups,** each read at `S2.read` as the plan's table expects (§3.2) and recorded in
   [consequences, §6](consequences.md#6-follow-ups).
@@ -53,7 +53,7 @@ one `RECORD` line, `S0.grant`'s.
 - **After the landing,** as [plan, After the landing: the closing of #2](plan.md#after-the-landing-the-closing-of-2) orders:
   #2's closing, the planning-state note and the data folder's final list. What each needs is in
   [consequences, §6](consequences.md#6-follow-ups).
-- **Unchanged:** the three data copies, the manifests and every earlier record (§3.2, §3.7); the TrumpBot clone, whose four carried
+- **Unchanged:** the three data copies, the manifests and every earlier record (§3.2, §3.7); the private repository clone, whose four carried
   files verify against their list; this checkout, apart from the landing. Nothing was written to GitHub but the comment.
 
 ---
@@ -135,7 +135,7 @@ given with their results (§3.6).
 ### 3.4 The checks moved (`S4`)
 
 - `S4.sources`: 12 `ok` lines and `STAGE D.sources OK`: the commit maps' old columns hold 87, 32, 11, 16, 11 and 2 ids and the
-  manifests 346, 81, 58, 39, 199 and 7,259 blobs (KotlinBottools, GKB2, GKB, BotTools, TrumpBot, Support); each old column equals
+  manifests 346, 81, 58, 39, 199 and 7,259 blobs (KotlinBottools, GKB2, GKB, BotTools, the first private repository, the second); each old column equals
   its backup's commit set, with 0 differing lines (deviation 8).
 - `S4.routes`: 13 `ok` lines and `STAGE S4.routes OK`: the original route's four arms pass, the moved route's four arms pass, the
   two routes read the same 19 pending documents, and their two id outputs, their paths output and their gate output are equal
@@ -232,8 +232,8 @@ gives them, and `S6.readback` found the comment equal to that body. Its first ta
 | GKB2 | 32 | 30 | 82 | 211 | 81 |
 | GKB | 11 | 9 | 60 | 113 | 58 |
 | BotTools | 16 | 15 | 82 | 145 | 39 |
-| TrumpBot | 11 | 9 | 56 | 106 | 199 |
-| Support | 2 | 1 | 29 | 29 | 7,259 |
+| The first private repository | 11 | 9 | 56 | 106 | 199 |
+| The second private repository | 2 | 1 | 29 | 29 | 7,259 |
 
 Section 8, the one section with filled values, as posted:
 
@@ -244,7 +244,7 @@ Section 8, the one section with filled values, as posted:
 - **The tools.** The 139 files of the workspace tools were copied byte for byte into the data folder and verified against a list
   taken before the copy and 88 rows of the pin lists; the document checks run from the copy.
 - **The workspace.** 10234 files in 5966 folders (791 MB, no link of any kind) were renamed beside themselves, after 1 of 5 tries,
-  and removed; both paths are confirmed absent, with 0 entries left over. The old TrumpBot clone's recorded path is confirmed
+  and removed; both paths are confirmed absent, with 0 entries left over. The old private repository clone's recorded path is confirmed
   absent, and git-filter-repo stays installed.
 
 ---
@@ -283,7 +283,7 @@ Each deviation names the section of [`plan.md`](plan.md) it departs from, why, a
    read both paths absent with the data folder and the checkout as before. With no line placed, no line is left to remove when the
    unit lands ([plan, The follow-ups](plan.md#the-follow-ups), the table's row for the two allow lines and the section). That part
    of the plan rested on [the phase design, §11](../architecture.md#11-version-control) (a unit's local work is its own, with no
-   request) and on the allow lines of [unit 7's design, §12](../27-bottools-trumpbot-support-rewrite/architecture.md#12-version-control-and-requests).
+   request) and on the allow lines of [unit 7's design, §12](../27-rewrite-bottools-and-the-private-repositories/architecture.md#12-version-control-and-requests).
 5. **Two `ok` lines are worded otherwise than the Expected text** ([plan, S1 — The data folder re-verified](plan.md#s1--the-data-folder-re-verified)
    and [S6 — The report posted](plan.md#s6--the-report-posted), Expected):
    - the census's second line: the Expected text reads `ok    the list over the 344 files under no list holds 344 lines and

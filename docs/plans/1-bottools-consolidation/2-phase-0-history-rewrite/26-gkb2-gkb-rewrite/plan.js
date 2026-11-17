@@ -3438,7 +3438,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
               "paragraph": "No secret scanning or push protection on GKB2 or GKB. Both repositories are archived by Phase 17, not made scanned here. · No commit in a legacy repository, and none to add a README, a `.gitignore` or a CHANGELOG: Phase 17 archives them with README pointers (architecture §4). · No path scrub: the machine-local paths are replaced in KotlinBottools only. · No Support ticket, and `refs/pull/6/head` stays: GKB2's residual is measured, not removed. · No edit of GKB2's issues or its pull request, and no edit of #26's body. · No re-derivation of the manifests or the rows. They are re-verified …",
-              "hash": "8769cd1a4df4"
+              "hash": "69175eea27ce"
             }
           },
           {
@@ -3448,7 +3448,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
               "paragraph": "No secret scanning or push protection on GKB2 or GKB. Both repositories are archived by Phase 17, not made scanned here. · No commit in a legacy repository, and none to add a README, a `.gitignore` or a CHANGELOG: Phase 17 archives them with README pointers (architecture §4). · No path scrub: the machine-local paths are replaced in KotlinBottools only. · No Support ticket, and `refs/pull/6/head` stays: GKB2's residual is measured, not removed. · No edit of GKB2's issues or its pull request, and no edit of #26's body. · No re-derivation of the manifests or the rows. They are re-verified …",
-              "hash": "8769cd1a4df4"
+              "hash": "69175eea27ce"
             }
           }
         ],
@@ -3510,7 +3510,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#interfaces-with-sibling-units",
               "heading": "Interfaces with sibling units",
               "paragraph": "Expects from `preparation` (#21, landed):",
-              "hash": "7d67c1e6d6bf"
+              "hash": "2c6c4cbedad8"
             }
           },
           {
@@ -3520,7 +3520,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
               "paragraph": "No secret scanning or push protection on GKB2 or GKB. Both repositories are archived by Phase 17, not made scanned here. · No commit in a legacy repository, and none to add a README, a `.gitignore` or a CHANGELOG: Phase 17 archives them with README pointers (architecture §4). · No path scrub: the machine-local paths are replaced in KotlinBottools only. · No Support ticket, and `refs/pull/6/head` stays: GKB2's residual is measured, not removed. · No edit of GKB2's issues or its pull request, and no edit of #26's body. · No re-derivation of the manifests or the rows. They are re-verified …",
-              "hash": "8769cd1a4df4"
+              "hash": "69175eea27ce"
             }
           }
         ],

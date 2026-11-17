@@ -100,8 +100,8 @@ line, and `UNIT OK`.
 | GKB2 | 2 | 22 |
 | GKB | 1 | 22 |
 | BotTools | 4 | 22 |
-| TrumpBot | 2 | 22 |
-| Support | 1 | 22 |
+| The first private repository | 2 | 22 |
+| The second private repository | 1 | 22 |
 
 ### 3.4 The legacy data copy
 
@@ -109,7 +109,7 @@ line, and `UNIT OK`.
 |---|---:|---:|
 | KotlinBottools `main` | 30 | 0 |
 | GKB2 at the parent of the commit that deletes `guildData/` | 30 | 0 |
-| TrumpBot `main` | 31 | 0 |
+| The first private repository's `main` | 31 | 0 |
 
 ### 3.5 Manifests and expectation rows
 
@@ -121,8 +121,8 @@ rewrite proves `P`.
 | GKB2 | 32 | 2 | 30 | 82 | 211 | 292 | 81 | 0 | 60,756 |
 | GKB | 11 | 2 | 9 | 60 | 113 | 171 | 58 | 0 | 60,756 |
 | BotTools | 16 | 1 | 15 | 82 | 145 | 184 | 39 | 2 | 27,168 |
-| TrumpBot | 11 | 2 | 9 | 56 | 106 | 305 | 199 | 0 | 25,952 |
-| Support | 2 | 1 | 1 | 29 | 29 | 7,288 | 7,259 | 0 | 14,302 |
+| The first private repository | 11 | 2 | 9 | 56 | 106 | 305 | 199 | 0 | 25,952 |
+| The second private repository | 2 | 1 | 1 | 29 | 29 | 7,288 | 7,259 | 0 | 14,302 |
 
 The variants pinned to the pull-request refs equal their predictions: GKB2 `blobs_kept=281`,
 `manifest=11`; BotTools `blobs_kept=184`, `manifest=0`.
@@ -133,11 +133,11 @@ The variants pinned to the pull-request refs equal their predictions: GKB2 `blob
 |---|---:|---|---|
 | GKB2 | 79 | `RESULT: FINDINGS` | `CONTROL OK`; every named token and data-file probe above zero |
 | GKB | 59 | `RESULT: FINDINGS` | `CONTROL OK`; every named token and data-file probe above zero |
-| TrumpBot | 3,518 | `RESULT: FINDINGS` | `CONTROL OK`; every named token, key and data-file probe above zero |
+| The first private repository | 3,518 | `RESULT: FINDINGS` | `CONTROL OK`; every named token, key and data-file probe above zero |
 | BotTools | 0 | `RESULT: CLEAN` | the six owned rule ids absent |
-| Support | 0 | `RESULT: CLEAN` | the six owned rule ids absent |
+| The second private repository | 0 | `RESULT: CLEAN` | the six owned rule ids absent |
 
-- **Token rule:** its probes fired on every real token file of GKB2, GKB and TrumpBot. No
+- **Token rule:** its probes fired on every real token file of GKB2, GKB and the first private repository. No
   coverage gap was recorded.
 - **Findings in kept files:** 0 in all five repositories (`total_kept=0`; the limit of that count is
   in the consequences).

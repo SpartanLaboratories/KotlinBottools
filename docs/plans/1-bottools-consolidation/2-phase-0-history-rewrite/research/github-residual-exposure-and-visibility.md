@@ -179,7 +179,7 @@ above is what `git fetch origin <sha>` sends under protocol v2; the server's ans
   repository return 200 to anyone once the repository is public, because the only difference between the two requests
   is whether the caller may read the repository. The same holds for the old KotlinBottools history, with one
   consequence that the other five repositories do not share: **GKB2, GKB and BotTools were public before the rewrite, so
-  their old objects were already readable by anyone; KotlinBottools' were not.** TrumpBot and Support stay private.
+  their old objects were already readable by anyone; KotlinBottools' were not.** The private repositories stay private.
 - Corroboration of "visibility does not gate objects": Truffle Security (2024-07-24) shows commits made in a private
   fork before the upstream was made public are reachable through the public upstream, and GitHub's reply was that
   "it's clear as day that GitHub designed repositories to work like this" with a link to its documentation.
@@ -560,7 +560,7 @@ Proved by the exit tests, per repository, without Support:
 1. Every branch and tag on GitHub equals the rewritten tip (`P5`, two channels), and no remote ref points at a
    pre-rewrite tip.
 2. A fresh `git clone --mirror` contains no purged path in `git log --all` and no purged blob reachable from any branch
-   or tag (sibling exit tests and the `comm` line above). For KotlinBottools, GKB, TrumpBot and Support, which have no
+   or tag (sibling exit tests and the `comm` line above). For KotlinBottools, GKB and the private repositories, which have no
    pull-request ref, the same holds for every ref GitHub advertises.
 3. For GKB2 and BotTools, the number of purged blobs reachable only through `refs/pull/6/head` (GKB2) and
    `refs/pull/2/head`, `refs/pull/3/head` (BotTools) is measured and reported as the residual.
@@ -577,7 +577,7 @@ Not proved, and stated as such in the report:
 
 Residual exposure to report, per repository: GKB2, GKB, BotTools (public): the old history stays as public as it was
 before the rewrite, now reachable by id and, for GKB2 and BotTools, by `refs/pull/*`; the public activity feed lists the
-old tips. TrumpBot and Support (private): the old objects stay readable by those with read access. KotlinBottools: see 6.6.
+old tips. The private repositories: the old objects stay readable by those with read access. KotlinBottools: see 6.6.
 
 ### 6.5 KotlinBottools: gates, visibility change, scanning settings
 

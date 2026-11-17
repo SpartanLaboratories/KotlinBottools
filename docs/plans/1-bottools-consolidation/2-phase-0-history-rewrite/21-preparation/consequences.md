@@ -30,8 +30,7 @@ boards only; §2.4 points to the full account.
 
 None beyond the landing itself (§2.4). The unit wrote nothing else to GitHub: no repository, ref,
 issue or setting changed. It read all six repositories with `git ls-remote`, cloned each one once
-with `git clone --mirror`, and read upstream release data. KotlinBottools, GKB2, GKB, BotTools,
-TrumpBot and Support are as they were.
+with `git clone --mirror`, and read upstream release data. KotlinBottools, GKB2, GKB, BotTools and the private repositories are as they were.
 
 ### 2.2 This machine
 
@@ -54,7 +53,7 @@ Local, and deliberate:
 
 Neither changed. The unit only read KotlinBottools' checkout (`git show main:...` of the
 research documents, and the checkout's worktree listing), so an open IDE had nothing to contend
-with, and it looked at the TrumpBot clone only to confirm that it sits beside the KotlinBottools
+with, and it looked at the private repository clone only to confirm that it sits beside the KotlinBottools
 checkout.
 
 ### 2.4 Documents and generated boards
@@ -80,7 +79,7 @@ the expression file are consumed by the phase's later units (§4).
 [`plan.md`](plan.md); this is its summary):
 
 - **Every later unit** (`transfer-rehearsal`, `kotlinbottools-rewrite-and-swap`, `repository-hygiene`,
-  `kotlinbottools-publish`, `gkb2-gkb-rewrite`, `bottools-trumpbot-support-rewrite`,
+  `kotlinbottools-publish`, `gkb2-gkb-rewrite`, `bottools-…-rewrite`,
   `residual-report-and-cleanup`) consumes the installed filter-repo and gitleaks, the saved tools,
   the `env.sh` contract, the six lists, `COPY-VERIFIED`, and the runner and as-run log.
 
@@ -115,7 +114,7 @@ the expression file are consumed by the phase's later units (§4).
 - **`kotlinbottools-rewrite-and-swap`** also consumes the expression file with its pinned size and
   hash and the fixture's expected scrub counts. It takes its own fresh KotlinBottools mirror and
   backup at its start, replacing this unit's copies of those two, which serve the data copy only.
-- **`gkb2-gkb-rewrite`** and **`bottools-trumpbot-support-rewrite`** also consume the five static
+- **`gkb2-gkb-rewrite`** and **`bottools-…-rewrite`** also consume the five static
   repositories' backups, manifests and expectation rows.
 - **`kotlinbottools-publish`** also accounts for every commit id in the generated boards' generated
   fields in its id-reference check (§6).

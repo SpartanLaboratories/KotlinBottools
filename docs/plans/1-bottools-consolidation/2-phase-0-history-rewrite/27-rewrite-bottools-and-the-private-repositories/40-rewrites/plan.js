@@ -1,0 +1,3445 @@
+/* plan.js: plan.json as a script, written by plan/scripts/embed.js beside the board for its live view (plan/RULES.md §1). Do not edit: edit plan.json and re-embed. */
+window.dashboardLive&&window.dashboardLive("plan",
+{
+  "schema": "plan-board/1",
+  "repo": "SpartanLaboratories/KotlinBottools",
+  "issue": 40,
+  "slug": "40-rewrites",
+  "folder": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/40-rewrites",
+  "kind": "issue",
+  "title": "Rewrite BotTools and the private repositories",
+  "issueTitle": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
+  "function": "BotTools and the private repositories still carry purged paths in their histories, 39, 199 and 7,259 purged blobs, and every root commit holds one, so every commit and every branch of the three changes in the rewrite. This unit rewrites them in that order, each from its mirror checked unchanged since the preparation unit, and each starting only once the one before it has passed its exit tests: the rewrite with its post-run checks and the scan before the push; one atomic push per repository, on request, with an explicit lease on every branch's recorded tip after a dry run of the same line, two branches for BotTools and the first private repository and one for the second; the outcome classed from counted markers and read back at every branch, with a push never repeated blindly; per-ref verification, with BotTools' webhook deliveries counted right after its push; and a fresh mirror with its exit tests, with BotTools' pull-request residual counted. Unit 2 of #27, with no version moved; it changes no checkout, and its landing carries documents only.",
+  "status": "built",
+  "sized": "2026-11-15T12:10:29Z",
+  "parent": {
+    "issue": 27,
+    "board": "../dashboard.html"
+  },
+  "fixOf": null,
+  "branch": "docs/issue-40-rewrite-bottools-…",
+  "baseline": {
+    "ref": "main",
+    "sha": "ffb272c37c6c0dc50f58f0fd295142d15473a643",
+    "date": "2026-11-15"
+  },
+  "asBuilt": {
+    "sha": "9170254e888696dc0683701383c02bd455ecfdc2",
+    "merge": "9170254e888696dc0683701383c02bd455ecfdc2",
+    "pr": 45,
+    "date": "2026-11-15",
+    "at": "2026-11-15T20:48:29Z"
+  },
+  "systems": [
+    {
+      "slug": "rewrite-pipeline",
+      "name": "Rewrite pipeline",
+      "slot": 0,
+      "top": "Internal Tooling",
+      "status": "planned",
+      "board": null,
+      "plain": true
+    }
+  ],
+  "wip": {
+    "step": "landed",
+    "since": "2026-11-15T20:48:29Z",
+    "updated": "2026-11-15T20:48:29Z",
+    "detail": "Landed in PR #45.",
+    "steps": [
+      "sizing",
+      "interview",
+      "research",
+      "plan",
+      "branch",
+      "implementation",
+      "qa",
+      "remediation",
+      "document",
+      "landing",
+      "merge",
+      "landed"
+    ],
+    "current": [],
+    "questions": [],
+    "research": null,
+    "interview": [],
+    "plan": null,
+    "stages": [
+      {
+        "id": "S0",
+        "name": "Readiness",
+        "state": "done",
+        "rows": [
+          "readiness"
+        ],
+        "brief": "The tools, pins, inputs, repositories, grant and earlier records are as recorded, and the quick gate passes.",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "S0.unit",
+            "name": "The unit's data file and grant wording",
+            "state": "done",
+            "finished": "2026-11-15T18:58:43Z"
+          },
+          {
+            "id": "S0.tools",
+            "name": "The tools at their pins",
+            "state": "done",
+            "finished": "2026-11-15T18:58:59Z"
+          },
+          {
+            "id": "S0.gate",
+            "name": "The quick gate",
+            "state": "done",
+            "finished": "2026-11-15T18:59:19Z"
+          },
+          {
+            "id": "S0.pins",
+            "name": "The tool versions",
+            "state": "done",
+            "finished": "2026-11-15T18:59:30Z"
+          },
+          {
+            "id": "S0.inputs",
+            "name": "The rows against the data",
+            "state": "done",
+            "finished": "2026-11-15T18:59:44Z"
+          },
+          {
+            "id": "S0.records",
+            "name": "The earlier records as the tools unit recorded them",
+            "state": "done",
+            "finished": "2026-11-15T18:59:52Z"
+          },
+          {
+            "id": "S0.repos",
+            "name": "The three repositories read",
+            "state": "done",
+            "finished": "2026-11-15T19:00:23Z"
+          },
+          {
+            "id": "S0.grant",
+            "name": "The grant read",
+            "state": "done",
+            "finished": "2026-11-15T19:00:33Z"
+          }
+        ],
+        "ref": "plan.md#s0--readiness",
+        "started": "2026-11-15T18:57:24Z",
+        "finished": "2026-11-15T19:00:42Z",
+        "report": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
+        "result": "passed"
+      },
+      {
+        "id": "S1",
+        "name": "BotTools",
+        "state": "done",
+        "rows": [
+          "order",
+          "rewrite",
+          "push",
+          "outcome",
+          "verification",
+          "exit-tests",
+          "records"
+        ],
+        "brief": "BotTools' history is rewritten, pushed on request, verified ref by ref and proven clean on a fresh mirror, with its push deliveries and pull-request residual counted.",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "S1.1",
+            "name": "List proof and pre-run checks",
+            "state": "done",
+            "finished": "2026-11-15T19:01:05Z"
+          },
+          {
+            "id": "S1.2",
+            "name": "Positive control on the untouched backup",
+            "state": "done",
+            "finished": "2026-11-15T19:01:16Z"
+          },
+          {
+            "id": "S1.3",
+            "name": "The rewrite",
+            "state": "done",
+            "finished": "2026-11-15T19:01:34Z"
+          },
+          {
+            "id": "S1.4",
+            "name": "Post-run checks and the scan before the push",
+            "state": "done",
+            "finished": "2026-11-15T19:01:46Z"
+          },
+          {
+            "id": "S1.5",
+            "name": "Push preparation",
+            "state": "done",
+            "finished": "2026-11-15T19:02:01Z"
+          },
+          {
+            "id": "S1.6",
+            "name": "The push, on request",
+            "steps": [
+              {
+                "id": "S1.6.request",
+                "name": "The request read, rebuilt and checked",
+                "state": "done",
+                "finished": "2026-11-15T19:02:19Z"
+              },
+              {
+                "id": "S1.6.send",
+                "name": "The request sent",
+                "state": "done",
+                "finished": "2026-11-15T19:03:10Z"
+              },
+              {
+                "id": "S1.6.reply",
+                "name": "The reply stored",
+                "state": "done",
+                "finished": "2026-11-15T19:40:38Z"
+              },
+              {
+                "id": "S1.6.check",
+                "name": "The outcome classified and read back",
+                "state": "done",
+                "finished": "2026-11-15T19:40:49Z"
+              }
+            ],
+            "state": "done",
+            "finished": "2026-11-15T19:40:49Z"
+          },
+          {
+            "id": "S1.7",
+            "name": "Per-ref verification",
+            "state": "done",
+            "finished": "2026-11-15T19:41:10Z"
+          },
+          {
+            "id": "S1.8",
+            "name": "Fresh mirror and exit tests",
+            "state": "done",
+            "finished": "2026-11-15T19:41:23Z"
+          }
+        ],
+        "ref": "plan.md#s1--bottools",
+        "started": "2026-11-15T19:00:42Z",
+        "finished": "2026-11-15T19:41:35Z",
+        "report": "BotTools is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (16 commits and 4 refs before). Positive control on the untouched backup: 8 of 8, clean, 0 findings, 0 kept findings, equal to the earlier record. The rewrite: 6 of 6, 16 of 16 commits rewritten. Post-run checks: 15 commits after, 82 paths, 145 blobs, largest blob 27168 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 22 of 22, 2 pull-request refs recorded, 0 webhook deliveries listed before the push. The push: the first call was refused before any entry ran (state read: every branch at its old tip, the pull-request refs unchanged, no stream file); the same request then ran once as attempt 2 and its reply holds 11 printed lines; class pushed, tally forced=2 and done=1 in the dry run and the push, the state read back as both, each of the 2 branches at its new tip, the pull-request refs unchanged. Per-ref verification: 14 of 14; webhook deliveries listed now 2 (event push 2), before the push 0, push deliveries since the push 2; the webhook equals its snapshot; 2 heads, all rewritten, and 2 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=39 manifest=39 missing=0 distinct_all=184 every_ref_commits=28; the expectation check passed (15 commits on branches, 28 on every ref, 82 paths, 145 blobs); the scan of branches and tags is clean (15 commits, 0 findings); the scan of every ref is clean (28 commits, 0 findings, no rule). No default-rule finding. No deviation from the plan's steps."
+      },
+      {
+        "id": "S2",
+        "name": "First private repository",
+        "state": "done",
+        "rows": [
+          "order",
+          "rewrite",
+          "push",
+          "outcome",
+          "verification",
+          "exit-tests",
+          "records"
+        ],
+        "brief": "The same for the first private repository, once BotTools holds its stage-8 marker.",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "S2.1",
+            "name": "List proof and pre-run checks",
+            "state": "done",
+            "finished": "2026-11-15T19:41:54Z"
+          },
+          {
+            "id": "S2.2",
+            "name": "Positive control on the untouched backup",
+            "state": "done",
+            "finished": "2026-11-15T19:42:09Z"
+          },
+          {
+            "id": "S2.3",
+            "name": "The rewrite",
+            "state": "done",
+            "finished": "2026-11-15T19:42:29Z"
+          },
+          {
+            "id": "S2.4",
+            "name": "Post-run checks and the scan before the push",
+            "state": "done",
+            "finished": "2026-11-15T19:42:42Z"
+          },
+          {
+            "id": "S2.5",
+            "name": "Push preparation",
+            "state": "done",
+            "finished": "2026-11-15T19:42:54Z"
+          },
+          {
+            "id": "S2.6",
+            "name": "The push, on request",
+            "steps": [
+              {
+                "id": "S2.6.request",
+                "name": "The request read, rebuilt and checked",
+                "state": "done",
+                "finished": "2026-11-15T19:43:12Z"
+              },
+              {
+                "id": "S2.6.send",
+                "name": "The request sent",
+                "state": "done",
+                "finished": "2026-11-15T19:43:50Z"
+              },
+              {
+                "id": "S2.6.reply",
+                "name": "The reply stored",
+                "state": "done",
+                "finished": "2026-11-15T19:46:17Z"
+              },
+              {
+                "id": "S2.6.check",
+                "name": "The outcome classified and read back",
+                "state": "done",
+                "finished": "2026-11-15T19:46:29Z"
+              }
+            ],
+            "state": "done",
+            "finished": "2026-11-15T19:46:29Z"
+          },
+          {
+            "id": "S2.7",
+            "name": "Per-ref verification",
+            "state": "done",
+            "finished": "2026-11-15T19:46:45Z"
+          },
+          {
+            "id": "S2.8",
+            "name": "Fresh mirror and exit tests",
+            "state": "done",
+            "finished": "2026-11-15T19:46:59Z"
+          }
+        ],
+        "ref": "plan.md#s2--the-first-private-repository",
+        "started": "2026-11-15T19:41:35Z",
+        "finished": "2026-11-15T19:47:08Z",
+        "report": "The first private repository is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (11 commits and 2 refs before). Positive control on the untouched backup: 10 of 10, scan status 1 with 3518 findings, the control verdict passed, 0 kept findings, the scan summary, the control file and the kept-findings file each equal to the earlier record. The rewrite: 6 of 6, 11 of 11 commits rewritten. Post-run checks: 9 commits after, 56 paths, 106 blobs, largest blob 25952 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=2 and done=1 in the dry run and the push, the state read back as both, each of the 2 branches at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 2 heads, all rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=199 missing=199 distinct_all=106 every_ref_commits=9; the expectation check passed (9 commits on branches and on every ref, 56 paths, 106 blobs); the scan of branches and tags is clean (9 commits, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
+      },
+      {
+        "id": "S3",
+        "name": "Second private repository",
+        "state": "done",
+        "rows": [
+          "order",
+          "rewrite",
+          "push",
+          "outcome",
+          "verification",
+          "exit-tests",
+          "records"
+        ],
+        "brief": "The same for the second private repository, once the first private repository holds its stage-8 marker.",
+        "kind": "work",
+        "steps": [
+          {
+            "id": "S3.1",
+            "name": "List proof and pre-run checks",
+            "state": "done",
+            "finished": "2026-11-15T19:47:25Z"
+          },
+          {
+            "id": "S3.2",
+            "name": "Positive control on the untouched backup",
+            "state": "done",
+            "finished": "2026-11-15T19:47:42Z"
+          },
+          {
+            "id": "S3.3",
+            "name": "The rewrite",
+            "state": "done",
+            "finished": "2026-11-15T19:47:56Z"
+          },
+          {
+            "id": "S3.4",
+            "name": "Post-run checks and the scan before the push",
+            "state": "done",
+            "finished": "2026-11-15T19:48:09Z"
+          },
+          {
+            "id": "S3.5",
+            "name": "Push preparation",
+            "state": "done",
+            "finished": "2026-11-15T19:48:22Z"
+          },
+          {
+            "id": "S3.6",
+            "name": "The push, on request",
+            "steps": [
+              {
+                "id": "S3.6.request",
+                "name": "The request read, rebuilt and checked",
+                "state": "done",
+                "finished": "2026-11-15T19:48:39Z"
+              },
+              {
+                "id": "S3.6.send",
+                "name": "The request sent",
+                "state": "done",
+                "finished": "2026-11-15T19:49:10Z"
+              },
+              {
+                "id": "S3.6.reply",
+                "name": "The reply stored",
+                "state": "done",
+                "finished": "2026-11-15T19:51:44Z"
+              },
+              {
+                "id": "S3.6.check",
+                "name": "The outcome classified and read back",
+                "state": "done",
+                "finished": "2026-11-15T19:51:56Z"
+              }
+            ],
+            "state": "done",
+            "finished": "2026-11-15T19:51:56Z"
+          },
+          {
+            "id": "S3.7",
+            "name": "Per-ref verification",
+            "state": "done",
+            "finished": "2026-11-15T19:52:12Z"
+          },
+          {
+            "id": "S3.8",
+            "name": "Fresh mirror and exit tests",
+            "state": "done",
+            "finished": "2026-11-15T19:52:26Z"
+          }
+        ],
+        "ref": "plan.md#s3--the-second-private-repository",
+        "started": "2026-11-15T19:47:08Z",
+        "finished": "2026-11-15T19:52:35Z",
+        "report": "The second private repository is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (2 commits and 1 ref before). Positive control on the untouched backup: 8 of 8, clean, 0 findings, 0 kept findings, equal to the earlier record. The rewrite: 6 of 6, 2 of 2 commits rewritten. Post-run checks: 1 commit after, 29 paths, 29 blobs, largest blob 14302 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=1 and done=1 in the dry run and the push, the state read back as both, the 1 branch at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 1 head, rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=7259 missing=7259 distinct_all=29 every_ref_commits=1; the expectation check passed (1 commit on branches and on every ref, 29 paths, 29 blobs); the scan of branches and tags is clean (1 commit, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
+      },
+      {
+        "id": "S4",
+        "name": "Close-out",
+        "state": "done",
+        "rows": [
+          "verification",
+          "records"
+        ],
+        "brief": "The three repositories are read again, the unit's checksum lists are written, the tools and the earlier tool folder are at their pins, and the unit's outputs hold nothing sensitive.",
+        "kind": "check",
+        "steps": [
+          {
+            "id": "S4.reads",
+            "name": "Final reads of the three repositories",
+            "state": "done",
+            "finished": "2026-11-15T19:52:58Z"
+          },
+          {
+            "id": "S4.record",
+            "name": "The checksum lists",
+            "state": "done",
+            "finished": "2026-11-15T19:53:10Z"
+          },
+          {
+            "id": "S4.tools",
+            "name": "The tools at their pins",
+            "state": "done",
+            "finished": "2026-11-15T19:53:24Z"
+          },
+          {
+            "id": "S4.g26",
+            "name": "The earlier tool folder at its pins",
+            "state": "done",
+            "finished": "2026-11-15T19:53:40Z"
+          },
+          {
+            "id": "S4.outputs",
+            "name": "The output rule over the unit's outputs",
+            "state": "done",
+            "finished": "2026-11-15T19:53:56Z"
+          }
+        ],
+        "ref": "plan.md#s4--close-out",
+        "started": "2026-11-15T19:52:35Z",
+        "finished": "2026-11-15T19:54:07Z",
+        "report": "Close-out passed: all five steps completed with no stop. Final reads of the three repositories: 20 of 20 checks (8 for BotTools, 6 for the first private repository, 6 for the second): every branch at its rewritten tip, the pull-request refs as recorded, the default branch, visibility and archive state as recorded, the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged. The checksum lists: 28, 29 and 28 record files checksummed for BotTools and the private repositories, and 49 run records. The tools are at their pins (96 of 96 checks). The earlier tool folder is at its pins (21 of 21 pinned files, 22 files in the folder; the 21 reused tools equal their list). The output rule over the unit's outputs passed (4 of 4 checks): the unit's part of the log holds 1025 lines with 0 stops, 0 waits, 0 next lines and 10 recorded readings, no drive-letter path and no 40-digit id; the 3 stored replies hold neither; the 3 request files hold no 40-digit id. No deviation from the plan's steps.",
+        "result": "passed"
+      }
+    ],
+    "remediation": {
+      "pass": 1,
+      "route": "on-the-spot"
+    },
+    "open": [],
+    "event": {
+      "name": "landed",
+      "at": "2026-11-15T20:48:29Z"
+    },
+    "history": {
+      "sizing": [
+        {
+          "since": null,
+          "ended": "2026-11-15T12:10:29Z",
+          "endedBy": "sized",
+          "to": "plan"
+        }
+      ],
+      "plan": [
+        {
+          "since": "2026-11-15T12:10:29Z",
+          "ended": "2026-11-15T12:49:38Z",
+          "endedBy": "halted",
+          "to": "plan",
+          "event": {
+            "name": "researched",
+            "at": "2026-11-15T12:23:30Z"
+          },
+          "detail": "No decision of this unit needs evidence from outside the repository: the parent design's research settles the push and its outcome, and the landed workspace tools fix the mechanics. The plan is written against the tools, the records and the three repositories as they stand today, all found as the tools unit left them.",
+          "plan": {
+            "state": "re-pass",
+            "from": "parent",
+            "since": "2026-11-15T12:10:29Z"
+          },
+          "held": true,
+          "asked": [
+            {
+              "text": "File writes into the main working tree are refused for this run. Where should it write the unit's documents?",
+              "options": [
+                "Allow writes in the main working tree for this repository",
+                "Give the run a separate working tree for its branch",
+                "Stop this run and take the unit up in another session"
+              ],
+              "answer": null,
+              "asked": "2026-11-15T12:49:38Z",
+              "answered": "2026-11-15T18:25:11Z"
+            }
+          ]
+        },
+        {
+          "since": "2026-11-15T18:25:11Z",
+          "ended": "2026-11-15T18:55:27Z",
+          "endedBy": "plan-accepted",
+          "to": "branch",
+          "event": {
+            "name": "resumed",
+            "at": "2026-11-15T18:25:11Z"
+          },
+          "detail": "The owner allowed writes in the main working tree. The drafted plan and its consequences are now in the unit's folder; the draft is checked against the tools, the records and the three repositories as they stand before it is accepted.",
+          "plan": {
+            "state": "re-pass",
+            "from": "parent",
+            "since": "2026-11-15T12:10:29Z"
+          }
+        }
+      ],
+      "branch": [
+        {
+          "since": "2026-11-15T18:55:27Z",
+          "ended": "2026-11-15T18:57:24Z",
+          "endedBy": "branch-cut",
+          "to": "implementation",
+          "event": {
+            "name": "plan-accepted",
+            "at": "2026-11-15T18:55:27Z"
+          },
+          "detail": "The plan is in the unit's folder. Every command, expected line and count of its procedure was checked against the workspace tools' source and measurements, and the workspace, the records and the three repositories were read as the plan describes them. Five stages: readiness, BotTools, the first private repository, the second, close-out; three pushes, each on request.",
+          "branch": "docs/issue-40-rewrite-bottools-…"
+        }
+      ],
+      "implementation": [
+        {
+          "since": "2026-11-15T18:57:24Z",
+          "ended": "2026-11-15T19:07:42Z",
+          "endedBy": "halted",
+          "to": "implementation",
+          "event": {
+            "name": "step-complete",
+            "at": "2026-11-15T19:03:10Z"
+          },
+          "detail": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
+          "stages": [
+            {
+              "id": "S0",
+              "name": "Readiness",
+              "state": "done",
+              "rows": [
+                "readiness"
+              ],
+              "brief": "The tools, pins, inputs, repositories, grant and earlier records are as recorded, and the quick gate passes.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S0.unit",
+                  "name": "The unit's data file and grant wording",
+                  "state": "done",
+                  "finished": "2026-11-15T18:58:43Z"
+                },
+                {
+                  "id": "S0.tools",
+                  "name": "The tools at their pins",
+                  "state": "done",
+                  "finished": "2026-11-15T18:58:59Z"
+                },
+                {
+                  "id": "S0.gate",
+                  "name": "The quick gate",
+                  "state": "done",
+                  "finished": "2026-11-15T18:59:19Z"
+                },
+                {
+                  "id": "S0.pins",
+                  "name": "The tool versions",
+                  "state": "done",
+                  "finished": "2026-11-15T18:59:30Z"
+                },
+                {
+                  "id": "S0.inputs",
+                  "name": "The rows against the data",
+                  "state": "done",
+                  "finished": "2026-11-15T18:59:44Z"
+                },
+                {
+                  "id": "S0.records",
+                  "name": "The earlier records as the tools unit recorded them",
+                  "state": "done",
+                  "finished": "2026-11-15T18:59:52Z"
+                },
+                {
+                  "id": "S0.repos",
+                  "name": "The three repositories read",
+                  "state": "done",
+                  "finished": "2026-11-15T19:00:23Z"
+                },
+                {
+                  "id": "S0.grant",
+                  "name": "The grant read",
+                  "state": "done",
+                  "finished": "2026-11-15T19:00:33Z"
+                }
+              ],
+              "ref": "plan.md#s0--readiness",
+              "started": "2026-11-15T18:57:24Z",
+              "finished": "2026-11-15T19:00:42Z",
+              "report": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
+              "result": "passed"
+            },
+            {
+              "id": "S1",
+              "name": "BotTools",
+              "state": "current",
+              "rows": [
+                "order",
+                "rewrite",
+                "push",
+                "outcome",
+                "verification",
+                "exit-tests",
+                "records"
+              ],
+              "brief": "BotTools' history is rewritten, pushed on request, verified ref by ref and proven clean on a fresh mirror, with its push deliveries and pull-request residual counted.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S1.1",
+                  "name": "List proof and pre-run checks",
+                  "state": "done",
+                  "finished": "2026-11-15T19:01:05Z"
+                },
+                {
+                  "id": "S1.2",
+                  "name": "Positive control on the untouched backup",
+                  "state": "done",
+                  "finished": "2026-11-15T19:01:16Z"
+                },
+                {
+                  "id": "S1.3",
+                  "name": "The rewrite",
+                  "state": "done",
+                  "finished": "2026-11-15T19:01:34Z"
+                },
+                {
+                  "id": "S1.4",
+                  "name": "Post-run checks and the scan before the push",
+                  "state": "done",
+                  "finished": "2026-11-15T19:01:46Z"
+                },
+                {
+                  "id": "S1.5",
+                  "name": "Push preparation",
+                  "state": "done",
+                  "finished": "2026-11-15T19:02:01Z"
+                },
+                {
+                  "id": "S1.6",
+                  "name": "The push, on request",
+                  "steps": [
+                    {
+                      "id": "S1.6.request",
+                      "name": "The request read, rebuilt and checked",
+                      "state": "done",
+                      "finished": "2026-11-15T19:02:19Z"
+                    },
+                    {
+                      "id": "S1.6.send",
+                      "name": "The request sent",
+                      "state": "done",
+                      "finished": "2026-11-15T19:03:10Z"
+                    },
+                    {
+                      "id": "S1.6.reply",
+                      "name": "The reply stored"
+                    },
+                    {
+                      "id": "S1.6.check",
+                      "name": "The outcome classified and read back"
+                    }
+                  ]
+                },
+                {
+                  "id": "S1.7",
+                  "name": "Per-ref verification"
+                },
+                {
+                  "id": "S1.8",
+                  "name": "Fresh mirror and exit tests"
+                }
+              ],
+              "ref": "plan.md#s1--bottools",
+              "started": "2026-11-15T19:00:42Z"
+            },
+            {
+              "id": "S2",
+              "name": "First private repository",
+              "state": "todo",
+              "rows": [
+                "order",
+                "rewrite",
+                "push",
+                "outcome",
+                "verification",
+                "exit-tests",
+                "records"
+              ],
+              "brief": "The same for the first private repository, once BotTools holds its stage-8 marker.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S2.1",
+                  "name": "List proof and pre-run checks"
+                },
+                {
+                  "id": "S2.2",
+                  "name": "Positive control on the untouched backup"
+                },
+                {
+                  "id": "S2.3",
+                  "name": "The rewrite"
+                },
+                {
+                  "id": "S2.4",
+                  "name": "Post-run checks and the scan before the push"
+                },
+                {
+                  "id": "S2.5",
+                  "name": "Push preparation"
+                },
+                {
+                  "id": "S2.6",
+                  "name": "The push, on request",
+                  "steps": [
+                    {
+                      "id": "S2.6.request",
+                      "name": "The request read, rebuilt and checked"
+                    },
+                    {
+                      "id": "S2.6.send",
+                      "name": "The request sent"
+                    },
+                    {
+                      "id": "S2.6.reply",
+                      "name": "The reply stored"
+                    },
+                    {
+                      "id": "S2.6.check",
+                      "name": "The outcome classified and read back"
+                    }
+                  ]
+                },
+                {
+                  "id": "S2.7",
+                  "name": "Per-ref verification"
+                },
+                {
+                  "id": "S2.8",
+                  "name": "Fresh mirror and exit tests"
+                }
+              ],
+              "ref": "plan.md#s2--the-first-private-repository"
+            },
+            {
+              "id": "S3",
+              "name": "Second private repository",
+              "state": "todo",
+              "rows": [
+                "order",
+                "rewrite",
+                "push",
+                "outcome",
+                "verification",
+                "exit-tests",
+                "records"
+              ],
+              "brief": "The same for the second private repository, once the first private repository holds its stage-8 marker.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S3.1",
+                  "name": "List proof and pre-run checks"
+                },
+                {
+                  "id": "S3.2",
+                  "name": "Positive control on the untouched backup"
+                },
+                {
+                  "id": "S3.3",
+                  "name": "The rewrite"
+                },
+                {
+                  "id": "S3.4",
+                  "name": "Post-run checks and the scan before the push"
+                },
+                {
+                  "id": "S3.5",
+                  "name": "Push preparation"
+                },
+                {
+                  "id": "S3.6",
+                  "name": "The push, on request",
+                  "steps": [
+                    {
+                      "id": "S3.6.request",
+                      "name": "The request read, rebuilt and checked"
+                    },
+                    {
+                      "id": "S3.6.send",
+                      "name": "The request sent"
+                    },
+                    {
+                      "id": "S3.6.reply",
+                      "name": "The reply stored"
+                    },
+                    {
+                      "id": "S3.6.check",
+                      "name": "The outcome classified and read back"
+                    }
+                  ]
+                },
+                {
+                  "id": "S3.7",
+                  "name": "Per-ref verification"
+                },
+                {
+                  "id": "S3.8",
+                  "name": "Fresh mirror and exit tests"
+                }
+              ],
+              "ref": "plan.md#s3--the-second-private-repository"
+            },
+            {
+              "id": "S4",
+              "name": "Close-out",
+              "state": "todo",
+              "rows": [
+                "verification",
+                "records"
+              ],
+              "brief": "The three repositories are read again, the unit's checksum lists are written, the tools and the earlier tool folder are at their pins, and the unit's outputs hold nothing sensitive.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S4.reads",
+                  "name": "Final reads of the three repositories"
+                },
+                {
+                  "id": "S4.record",
+                  "name": "The checksum lists"
+                },
+                {
+                  "id": "S4.tools",
+                  "name": "The tools at their pins"
+                },
+                {
+                  "id": "S4.g26",
+                  "name": "The earlier tool folder at its pins"
+                },
+                {
+                  "id": "S4.outputs",
+                  "name": "The output rule over the unit's outputs"
+                }
+              ],
+              "ref": "plan.md#s4--close-out"
+            }
+          ],
+          "held": true,
+          "asked": [
+            {
+              "text": "BotTools' push call was refused by the request service's own check before anything ran. Will you place the allow line for that exact command and restart the service, so that it runs the same request again?",
+              "answer": null,
+              "asked": "2026-11-15T19:07:42Z",
+              "answered": "2026-11-15T19:39:52Z"
+            }
+          ]
+        },
+        {
+          "since": "2026-11-15T19:39:52Z",
+          "ended": "2026-11-15T19:55:06Z",
+          "endedBy": "qa-pass",
+          "to": "qa",
+          "event": {
+            "name": "implementation-stage",
+            "at": "2026-11-15T19:54:07Z",
+            "note": "S4 reported done; Quality Review next"
+          },
+          "detail": "Close-out passed: all five steps completed with no stop. Final reads of the three repositories: 20 of 20 checks (8 for BotTools, 6 for the first private repository, 6 for the second): every branch at its rewritten tip, the pull-request refs as recorded, the default branch, visibility and archive state as recorded, the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged. The checksum lists: 28, 29 and 28 record files checksummed for BotTools and the private repositories, and 49 run records. The tools are at their pins (96 of 96 checks). The earlier tool folder is at its pins (21 of 21 pinned files, 22 files in the folder; the 21 reused tools equal their list). The output rule over the unit's outputs passed (4 of 4 checks): the unit's part of the log holds 1025 lines with 0 stops, 0 waits, 0 next lines and 10 recorded readings, no drive-letter path and no 40-digit id; the 3 stored replies hold neither; the 3 request files hold no 40-digit id. No deviation from the plan's steps.",
+          "stages": [
+            {
+              "id": "S0",
+              "name": "Readiness",
+              "state": "done",
+              "rows": [
+                "readiness"
+              ],
+              "brief": "The tools, pins, inputs, repositories, grant and earlier records are as recorded, and the quick gate passes.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S0.unit",
+                  "name": "The unit's data file and grant wording",
+                  "state": "done",
+                  "finished": "2026-11-15T18:58:43Z"
+                },
+                {
+                  "id": "S0.tools",
+                  "name": "The tools at their pins",
+                  "state": "done",
+                  "finished": "2026-11-15T18:58:59Z"
+                },
+                {
+                  "id": "S0.gate",
+                  "name": "The quick gate",
+                  "state": "done",
+                  "finished": "2026-11-15T18:59:19Z"
+                },
+                {
+                  "id": "S0.pins",
+                  "name": "The tool versions",
+                  "state": "done",
+                  "finished": "2026-11-15T18:59:30Z"
+                },
+                {
+                  "id": "S0.inputs",
+                  "name": "The rows against the data",
+                  "state": "done",
+                  "finished": "2026-11-15T18:59:44Z"
+                },
+                {
+                  "id": "S0.records",
+                  "name": "The earlier records as the tools unit recorded them",
+                  "state": "done",
+                  "finished": "2026-11-15T18:59:52Z"
+                },
+                {
+                  "id": "S0.repos",
+                  "name": "The three repositories read",
+                  "state": "done",
+                  "finished": "2026-11-15T19:00:23Z"
+                },
+                {
+                  "id": "S0.grant",
+                  "name": "The grant read",
+                  "state": "done",
+                  "finished": "2026-11-15T19:00:33Z"
+                }
+              ],
+              "ref": "plan.md#s0--readiness",
+              "started": "2026-11-15T18:57:24Z",
+              "finished": "2026-11-15T19:00:42Z",
+              "report": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
+              "result": "passed"
+            },
+            {
+              "id": "S1",
+              "name": "BotTools",
+              "state": "done",
+              "rows": [
+                "order",
+                "rewrite",
+                "push",
+                "outcome",
+                "verification",
+                "exit-tests",
+                "records"
+              ],
+              "brief": "BotTools' history is rewritten, pushed on request, verified ref by ref and proven clean on a fresh mirror, with its push deliveries and pull-request residual counted.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S1.1",
+                  "name": "List proof and pre-run checks",
+                  "state": "done",
+                  "finished": "2026-11-15T19:01:05Z"
+                },
+                {
+                  "id": "S1.2",
+                  "name": "Positive control on the untouched backup",
+                  "state": "done",
+                  "finished": "2026-11-15T19:01:16Z"
+                },
+                {
+                  "id": "S1.3",
+                  "name": "The rewrite",
+                  "state": "done",
+                  "finished": "2026-11-15T19:01:34Z"
+                },
+                {
+                  "id": "S1.4",
+                  "name": "Post-run checks and the scan before the push",
+                  "state": "done",
+                  "finished": "2026-11-15T19:01:46Z"
+                },
+                {
+                  "id": "S1.5",
+                  "name": "Push preparation",
+                  "state": "done",
+                  "finished": "2026-11-15T19:02:01Z"
+                },
+                {
+                  "id": "S1.6",
+                  "name": "The push, on request",
+                  "steps": [
+                    {
+                      "id": "S1.6.request",
+                      "name": "The request read, rebuilt and checked",
+                      "state": "done",
+                      "finished": "2026-11-15T19:02:19Z"
+                    },
+                    {
+                      "id": "S1.6.send",
+                      "name": "The request sent",
+                      "state": "done",
+                      "finished": "2026-11-15T19:03:10Z"
+                    },
+                    {
+                      "id": "S1.6.reply",
+                      "name": "The reply stored",
+                      "state": "done",
+                      "finished": "2026-11-15T19:40:38Z"
+                    },
+                    {
+                      "id": "S1.6.check",
+                      "name": "The outcome classified and read back",
+                      "state": "done",
+                      "finished": "2026-11-15T19:40:49Z"
+                    }
+                  ],
+                  "state": "done",
+                  "finished": "2026-11-15T19:40:49Z"
+                },
+                {
+                  "id": "S1.7",
+                  "name": "Per-ref verification",
+                  "state": "done",
+                  "finished": "2026-11-15T19:41:10Z"
+                },
+                {
+                  "id": "S1.8",
+                  "name": "Fresh mirror and exit tests",
+                  "state": "done",
+                  "finished": "2026-11-15T19:41:23Z"
+                }
+              ],
+              "ref": "plan.md#s1--bottools",
+              "started": "2026-11-15T19:00:42Z",
+              "finished": "2026-11-15T19:41:35Z",
+              "report": "BotTools is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (16 commits and 4 refs before). Positive control on the untouched backup: 8 of 8, clean, 0 findings, 0 kept findings, equal to the earlier record. The rewrite: 6 of 6, 16 of 16 commits rewritten. Post-run checks: 15 commits after, 82 paths, 145 blobs, largest blob 27168 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 22 of 22, 2 pull-request refs recorded, 0 webhook deliveries listed before the push. The push: the first call was refused before any entry ran (state read: every branch at its old tip, the pull-request refs unchanged, no stream file); the same request then ran once as attempt 2 and its reply holds 11 printed lines; class pushed, tally forced=2 and done=1 in the dry run and the push, the state read back as both, each of the 2 branches at its new tip, the pull-request refs unchanged. Per-ref verification: 14 of 14; webhook deliveries listed now 2 (event push 2), before the push 0, push deliveries since the push 2; the webhook equals its snapshot; 2 heads, all rewritten, and 2 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=39 manifest=39 missing=0 distinct_all=184 every_ref_commits=28; the expectation check passed (15 commits on branches, 28 on every ref, 82 paths, 145 blobs); the scan of branches and tags is clean (15 commits, 0 findings); the scan of every ref is clean (28 commits, 0 findings, no rule). No default-rule finding. No deviation from the plan's steps."
+            },
+            {
+              "id": "S2",
+              "name": "First private repository",
+              "state": "done",
+              "rows": [
+                "order",
+                "rewrite",
+                "push",
+                "outcome",
+                "verification",
+                "exit-tests",
+                "records"
+              ],
+              "brief": "The same for the first private repository, once BotTools holds its stage-8 marker.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S2.1",
+                  "name": "List proof and pre-run checks",
+                  "state": "done",
+                  "finished": "2026-11-15T19:41:54Z"
+                },
+                {
+                  "id": "S2.2",
+                  "name": "Positive control on the untouched backup",
+                  "state": "done",
+                  "finished": "2026-11-15T19:42:09Z"
+                },
+                {
+                  "id": "S2.3",
+                  "name": "The rewrite",
+                  "state": "done",
+                  "finished": "2026-11-15T19:42:29Z"
+                },
+                {
+                  "id": "S2.4",
+                  "name": "Post-run checks and the scan before the push",
+                  "state": "done",
+                  "finished": "2026-11-15T19:42:42Z"
+                },
+                {
+                  "id": "S2.5",
+                  "name": "Push preparation",
+                  "state": "done",
+                  "finished": "2026-11-15T19:42:54Z"
+                },
+                {
+                  "id": "S2.6",
+                  "name": "The push, on request",
+                  "steps": [
+                    {
+                      "id": "S2.6.request",
+                      "name": "The request read, rebuilt and checked",
+                      "state": "done",
+                      "finished": "2026-11-15T19:43:12Z"
+                    },
+                    {
+                      "id": "S2.6.send",
+                      "name": "The request sent",
+                      "state": "done",
+                      "finished": "2026-11-15T19:43:50Z"
+                    },
+                    {
+                      "id": "S2.6.reply",
+                      "name": "The reply stored",
+                      "state": "done",
+                      "finished": "2026-11-15T19:46:17Z"
+                    },
+                    {
+                      "id": "S2.6.check",
+                      "name": "The outcome classified and read back",
+                      "state": "done",
+                      "finished": "2026-11-15T19:46:29Z"
+                    }
+                  ],
+                  "state": "done",
+                  "finished": "2026-11-15T19:46:29Z"
+                },
+                {
+                  "id": "S2.7",
+                  "name": "Per-ref verification",
+                  "state": "done",
+                  "finished": "2026-11-15T19:46:45Z"
+                },
+                {
+                  "id": "S2.8",
+                  "name": "Fresh mirror and exit tests",
+                  "state": "done",
+                  "finished": "2026-11-15T19:46:59Z"
+                }
+              ],
+              "ref": "plan.md#s2--the-first-private-repository",
+              "started": "2026-11-15T19:41:35Z",
+              "finished": "2026-11-15T19:47:08Z",
+              "report": "The first private repository is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (11 commits and 2 refs before). Positive control on the untouched backup: 10 of 10, scan status 1 with 3518 findings, the control verdict passed, 0 kept findings, the scan summary, the control file and the kept-findings file each equal to the earlier record. The rewrite: 6 of 6, 11 of 11 commits rewritten. Post-run checks: 9 commits after, 56 paths, 106 blobs, largest blob 25952 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=2 and done=1 in the dry run and the push, the state read back as both, each of the 2 branches at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 2 heads, all rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=199 missing=199 distinct_all=106 every_ref_commits=9; the expectation check passed (9 commits on branches and on every ref, 56 paths, 106 blobs); the scan of branches and tags is clean (9 commits, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
+            },
+            {
+              "id": "S3",
+              "name": "Second private repository",
+              "state": "done",
+              "rows": [
+                "order",
+                "rewrite",
+                "push",
+                "outcome",
+                "verification",
+                "exit-tests",
+                "records"
+              ],
+              "brief": "The same for the second private repository, once the first private repository holds its stage-8 marker.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S3.1",
+                  "name": "List proof and pre-run checks",
+                  "state": "done",
+                  "finished": "2026-11-15T19:47:25Z"
+                },
+                {
+                  "id": "S3.2",
+                  "name": "Positive control on the untouched backup",
+                  "state": "done",
+                  "finished": "2026-11-15T19:47:42Z"
+                },
+                {
+                  "id": "S3.3",
+                  "name": "The rewrite",
+                  "state": "done",
+                  "finished": "2026-11-15T19:47:56Z"
+                },
+                {
+                  "id": "S3.4",
+                  "name": "Post-run checks and the scan before the push",
+                  "state": "done",
+                  "finished": "2026-11-15T19:48:09Z"
+                },
+                {
+                  "id": "S3.5",
+                  "name": "Push preparation",
+                  "state": "done",
+                  "finished": "2026-11-15T19:48:22Z"
+                },
+                {
+                  "id": "S3.6",
+                  "name": "The push, on request",
+                  "steps": [
+                    {
+                      "id": "S3.6.request",
+                      "name": "The request read, rebuilt and checked",
+                      "state": "done",
+                      "finished": "2026-11-15T19:48:39Z"
+                    },
+                    {
+                      "id": "S3.6.send",
+                      "name": "The request sent",
+                      "state": "done",
+                      "finished": "2026-11-15T19:49:10Z"
+                    },
+                    {
+                      "id": "S3.6.reply",
+                      "name": "The reply stored",
+                      "state": "done",
+                      "finished": "2026-11-15T19:51:44Z"
+                    },
+                    {
+                      "id": "S3.6.check",
+                      "name": "The outcome classified and read back",
+                      "state": "done",
+                      "finished": "2026-11-15T19:51:56Z"
+                    }
+                  ],
+                  "state": "done",
+                  "finished": "2026-11-15T19:51:56Z"
+                },
+                {
+                  "id": "S3.7",
+                  "name": "Per-ref verification",
+                  "state": "done",
+                  "finished": "2026-11-15T19:52:12Z"
+                },
+                {
+                  "id": "S3.8",
+                  "name": "Fresh mirror and exit tests",
+                  "state": "done",
+                  "finished": "2026-11-15T19:52:26Z"
+                }
+              ],
+              "ref": "plan.md#s3--the-second-private-repository",
+              "started": "2026-11-15T19:47:08Z",
+              "finished": "2026-11-15T19:52:35Z",
+              "report": "The second private repository is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (2 commits and 1 ref before). Positive control on the untouched backup: 8 of 8, clean, 0 findings, 0 kept findings, equal to the earlier record. The rewrite: 6 of 6, 2 of 2 commits rewritten. Post-run checks: 1 commit after, 29 paths, 29 blobs, largest blob 14302 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=1 and done=1 in the dry run and the push, the state read back as both, the 1 branch at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 1 head, rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=7259 missing=7259 distinct_all=29 every_ref_commits=1; the expectation check passed (1 commit on branches and on every ref, 29 paths, 29 blobs); the scan of branches and tags is clean (1 commit, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
+            },
+            {
+              "id": "S4",
+              "name": "Close-out",
+              "state": "done",
+              "rows": [
+                "verification",
+                "records"
+              ],
+              "brief": "The three repositories are read again, the unit's checksum lists are written, the tools and the earlier tool folder are at their pins, and the unit's outputs hold nothing sensitive.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S4.reads",
+                  "name": "Final reads of the three repositories",
+                  "state": "done",
+                  "finished": "2026-11-15T19:52:58Z"
+                },
+                {
+                  "id": "S4.record",
+                  "name": "The checksum lists",
+                  "state": "done",
+                  "finished": "2026-11-15T19:53:10Z"
+                },
+                {
+                  "id": "S4.tools",
+                  "name": "The tools at their pins",
+                  "state": "done",
+                  "finished": "2026-11-15T19:53:24Z"
+                },
+                {
+                  "id": "S4.g26",
+                  "name": "The earlier tool folder at its pins",
+                  "state": "done",
+                  "finished": "2026-11-15T19:53:40Z"
+                },
+                {
+                  "id": "S4.outputs",
+                  "name": "The output rule over the unit's outputs",
+                  "state": "done",
+                  "finished": "2026-11-15T19:53:56Z"
+                }
+              ],
+              "ref": "plan.md#s4--close-out",
+              "started": "2026-11-15T19:52:35Z",
+              "finished": "2026-11-15T19:54:07Z",
+              "report": "Close-out passed: all five steps completed with no stop. Final reads of the three repositories: 20 of 20 checks (8 for BotTools, 6 for the first private repository, 6 for the second): every branch at its rewritten tip, the pull-request refs as recorded, the default branch, visibility and archive state as recorded, the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged. The checksum lists: 28, 29 and 28 record files checksummed for BotTools and the private repositories, and 49 run records. The tools are at their pins (96 of 96 checks). The earlier tool folder is at its pins (21 of 21 pinned files, 22 files in the folder; the 21 reused tools equal their list). The output rule over the unit's outputs passed (4 of 4 checks): the unit's part of the log holds 1025 lines with 0 stops, 0 waits, 0 next lines and 10 recorded readings, no drive-letter path and no 40-digit id; the 3 stored replies hold neither; the 3 request files hold no 40-digit id. No deviation from the plan's steps.",
+              "result": "passed"
+            }
+          ]
+        }
+      ],
+      "qa": [
+        {
+          "since": "2026-11-15T19:55:06Z",
+          "ended": "2026-11-15T20:13:40Z",
+          "endedBy": "qa-pass",
+          "to": "remediation",
+          "event": {
+            "name": "qa-pass",
+            "at": "2026-11-15T19:55:06Z",
+            "note": "Quality Review 1: running"
+          },
+          "detail": "Quality Review 1 running.",
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-15",
+              "at": "2026-11-15T20:13:40Z",
+              "findings": {
+                "documentation": 0,
+                "test": 7,
+                "code": 0
+              },
+              "severity": {
+                "minor": 7,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/40-rewrites/ca070e8d/tests/index.html",
+              "note": "The run was confirmed independently from its stage markers, its log, its checksum lists and GitHub: 794 recorded checks, 789 passed and none failed, the other 5 not yet due (the landing's four document checks and the owner's reading of the as-built record); three histories rewritten, each pushed once and proven clean, every count at its expectation. 7 findings (7 minor; 7 test), none about what was pushed. Three typed checks (the earlier records, the earlier tool folder at its pins, the output rule over the unit's outputs) and the state read after the request service refused BotTools' first call leave no line in the run log, so the as-built record states their results; the plan's test table listed the grant read under two test sets and the input and record checks under none; the pin list's own checksum is to be stated at the start and at the close; and restoring the deny rule lifted for the push, with the allow lines removed, needs a follow-up. The procedure showed no defect: a first call refused is a case the plan provides for. They touch the outcome, the verification and the records, and in readiness the earlier records' check, the grant read and the pin list. The fixes are made in the documents: the plan's test table, the as-built record and the consequences."
+            }
+          ]
+        }
+      ],
+      "remediation": [
+        {
+          "since": "2026-11-15T20:13:40Z",
+          "ended": "2026-11-15T20:14:20Z",
+          "endedBy": "document",
+          "to": "document",
+          "event": {
+            "name": "qa-pass",
+            "at": "2026-11-15T20:13:40Z",
+            "note": "Quality Review 1: changes-requested"
+          },
+          "detail": "The run was confirmed independently from its markers, its log, its checksum lists and GitHub: three histories rewritten, pushed once each and proven clean, every count at its expectation. Seven minor test findings, none about what was pushed: three typed checks (the earlier records, the earlier tool folder, the output rule) and the state read after the refused call leave no line in the run log, so the as-built record must state their results; the grant read was listed under two test sets and two steps under none in the plan's test table; the pin list's own checksum is to be stated at the start and the close; and the restoring of the lifted rule and the removal of the allow lines need a follow-up. The procedure review found no defect: the refused first call is a case the plan provides for, and the second attempt without a restart is a deviation to record.",
+          "remediation": {
+            "pass": 1,
+            "route": "on-the-spot"
+          },
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-15",
+              "at": "2026-11-15T20:13:40Z",
+              "findings": {
+                "documentation": 0,
+                "test": 7,
+                "code": 0
+              },
+              "severity": {
+                "minor": 7,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "report": "build/reports/tests/index.html",
+              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/40-rewrites/ca070e8d/tests/index.html",
+              "note": "The run was confirmed independently from its stage markers, its log, its checksum lists and GitHub: 794 recorded checks, 789 passed and none failed, the other 5 not yet due (the landing's four document checks and the owner's reading of the as-built record); three histories rewritten, each pushed once and proven clean, every count at its expectation. 7 findings (7 minor; 7 test), none about what was pushed. Three typed checks (the earlier records, the earlier tool folder at its pins, the output rule over the unit's outputs) and the state read after the request service refused BotTools' first call leave no line in the run log, so the as-built record states their results; the plan's test table listed the grant read under two test sets and the input and record checks under none; the pin list's own checksum is to be stated at the start and at the close; and restoring the deny rule lifted for the push, with the allow lines removed, needs a follow-up. The procedure showed no defect: a first call refused is a case the plan provides for. They touch the outcome, the verification and the records, and in readiness the earlier records' check, the grant read and the pin list. The fixes are made in the documents: the plan's test table, the as-built record and the consequences."
+            }
+          ]
+        }
+      ],
+      "document": [
+        {
+          "since": "2026-11-15T20:14:20Z",
+          "ended": "2026-11-15T20:46:54Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-15T20:42:31Z",
+            "note": "4 of 4 tasks done"
+          },
+          "detail": "Document: 4 of 4 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Write the as-built record and reconcile the plan and consequences",
+                "state": "done",
+                "started": "2026-11-15T20:14:20Z",
+                "finished": "2026-11-15T20:30:12Z",
+                "report": "The as-built record is written with four deviations: the refused BotTools request ran again without a restart of the request service; three allow lines were placed at once; the time recorded for each push is the time it was classed; two reads were made beside the procedure. The consequences carry the outcome of every assumption, the known gaps and the follow-ups; the parent consequences have the unit's link line and the parent design two dated notes. No README or CHANGELOG change: no command, module, dependency or published artifact of this repository moves."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-15T20:30:12Z",
+                "report": "The as-built record is written with four deviations: the refused BotTools request ran again without a restart of the request service; three allow lines were placed at once; the time recorded for each push is the time it was classed; two reads were made beside the procedure. The consequences carry the outcome of every assumption, the known gaps and the follow-ups; the parent consequences have the unit's link line and the parent design two dated notes. No README or CHANGELOG change: no command, module, dependency or published artifact of this repository moves."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-15T20:30:12Z",
+                "finished": "2026-11-15T20:39:17Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-15T20:39:17Z",
+                "finished": "2026-11-15T20:42:31Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-15T20:46:54Z",
+          "ended": "2026-11-15T20:48:23Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-15T20:46:54Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-15T20:48:23Z",
+          "ended": "2026-11-15T20:48:29Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "merge",
+            "at": "2026-11-15T20:48:23Z",
+            "note": "merging PR #45"
+          },
+          "detail": "Merge: merging it in PR #45."
+        }
+      ]
+    },
+    "next": null,
+    "qa": [
+      {
+        "pass": 1,
+        "verdict": "changes-requested",
+        "date": "2026-11-15",
+        "at": "2026-11-15T20:13:40Z",
+        "findings": {
+          "documentation": 0,
+          "test": 7,
+          "code": 0
+        },
+        "severity": {
+          "minor": 7,
+          "other": 0
+        },
+        "route": "on-the-spot",
+        "report": "build/reports/tests/index.html",
+        "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/40-rewrites/ca070e8d/tests/index.html",
+        "note": "The run was confirmed independently from its stage markers, its log, its checksum lists and GitHub: 794 recorded checks, 789 passed and none failed, the other 5 not yet due (the landing's four document checks and the owner's reading of the as-built record); three histories rewritten, each pushed once and proven clean, every count at its expectation. 7 findings (7 minor; 7 test), none about what was pushed. Three typed checks (the earlier records, the earlier tool folder at its pins, the output rule over the unit's outputs) and the state read after the request service refused BotTools' first call leave no line in the run log, so the as-built record states their results; the plan's test table listed the grant read under two test sets and the input and record checks under none; the pin list's own checksum is to be stated at the start and at the close; and restoring the deny rule lifted for the push, with the allow lines removed, needs a follow-up. The procedure showed no defect: a first call refused is a case the plan provides for. They touch the outcome, the verification and the records, and in readiness the earlier records' check, the grant read and the pin list. The fixes are made in the documents: the plan's test table, the as-built record and the consequences."
+      }
+    ],
+    "qaMax": 3,
+    "waitingOn": null,
+    "resume": null,
+    "blockers": {
+      "waitsOn": [],
+      "blocks": []
+    },
+    "landing": null,
+    "asked": [
+      {
+        "step": "plan",
+        "text": "File writes into the main working tree are refused for this run. Where should it write the unit's documents?",
+        "options": [
+          "Allow writes in the main working tree for this repository",
+          "Give the run a separate working tree for its branch",
+          "Stop this run and take the unit up in another session"
+        ],
+        "answer": null,
+        "asked": "2026-11-15T12:49:38Z",
+        "answered": "2026-11-15T18:25:11Z"
+      },
+      {
+        "step": "implementation",
+        "text": "BotTools' push call was refused by the request service's own check before anything ran. Will you place the allow line for that exact command and restart the service, so that it runs the same request again?",
+        "answer": null,
+        "asked": "2026-11-15T19:07:42Z",
+        "answered": "2026-11-15T19:39:52Z"
+      }
+    ],
+    "waits": [
+      {
+        "step": "plan",
+        "since": "2026-11-15T12:49:38Z",
+        "ended": "2026-11-15T18:25:11Z",
+        "by": "halted"
+      },
+      {
+        "step": "implementation",
+        "since": "2026-11-15T19:07:42Z",
+        "ended": "2026-11-15T19:39:52Z",
+        "by": "halted"
+      }
+    ],
+    "document": {
+      "tasks": [
+        {
+          "id": "reconcile-plan",
+          "name": "Write the as-built record and reconcile the plan and consequences",
+          "state": "done",
+          "started": "2026-11-15T20:14:20Z",
+          "finished": "2026-11-15T20:30:12Z",
+          "report": "The as-built record is written with four deviations: the refused BotTools request ran again without a restart of the request service; three allow lines were placed at once; the time recorded for each push is the time it was classed; two reads were made beside the procedure. The consequences carry the outcome of every assumption, the known gaps and the follow-ups; the parent consequences have the unit's link line and the parent design two dated notes. No README or CHANGELOG change: no command, module, dependency or published artifact of this repository moves."
+        },
+        {
+          "id": "readme-changelog",
+          "name": "README and CHANGELOG",
+          "state": "done",
+          "finished": "2026-11-15T20:30:12Z",
+          "report": "The as-built record is written with four deviations: the refused BotTools request ran again without a restart of the request service; three allow lines were placed at once; the time recorded for each push is the time it was classed; two reads were made beside the procedure. The consequences carry the outcome of every assumption, the known gaps and the follow-ups; the parent consequences have the unit's link line and the parent design two dated notes. No README or CHANGELOG change: no command, module, dependency or published artifact of this repository moves."
+        },
+        {
+          "id": "state-boards",
+          "name": "State boards",
+          "state": "done",
+          "started": "2026-11-15T20:30:12Z",
+          "finished": "2026-11-15T20:39:17Z"
+        },
+        {
+          "id": "document-landing",
+          "name": "Document commit",
+          "state": "done",
+          "started": "2026-11-15T20:39:17Z",
+          "finished": "2026-11-15T20:42:31Z"
+        }
+      ]
+    }
+  },
+  "milestones": [
+    {
+      "column": "gap",
+      "label": "Research verified, in #27's run",
+      "date": "2026-11-13",
+      "ref": "../research/README.md",
+      "note": "written on this board when the run started, from #27's research question on the push of a repository's branches and its summary, and its architecture's current state of the three repositories, the request service and the verified outside-world facts (§2.1, §2.4, §2.5), with this unit's design in §8 and its row in §16"
+    },
+    {
+      "column": "considered",
+      "label": "Architecture signed off, in #27's run",
+      "date": "2026-11-13",
+      "ref": "../architecture.md",
+      "note": "the options #27's architecture weighed for this unit: §8, §11, §12, §15 and §16, with the research summary's options for the push; the unit's own plan adds to them at plan acceptance"
+    },
+    {
+      "column": "verdict",
+      "label": "Plan accepted",
+      "date": "2026-11-15",
+      "ref": "plan.md",
+      "note": "five stages: a readiness stage that only reads and writes the unit's own data file, then BotTools and the private repositories, each rewritten, pushed on request by one atomic lease push, verified ref by ref and proven on a fresh mirror, each starting once the one before holds its stage-8 marker, and a close-out; three writes to GitHub; the plan weighs no option beyond the parent design's, and nothing needed research beyond it"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-15",
+      "ref": "PR #45",
+      "note": "merged as 9170254"
+    }
+  ],
+  "trail": [
+    {
+      "date": "2026-11-15",
+      "column": "gap",
+      "label": "Sized; the plan starts"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "gap",
+      "label": "Nothing to research; the plan next"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Halted at the plan: waiting on you (The owner's choice of where this run may write its documents.)"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Resumed at the plan"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "verdict",
+      "label": "Plan accepted",
+      "ref": "plan.md"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Branch `docs/issue-40-rewrite-bottools-…` cut; implementation starts at S0"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "S0 done; S1 current: BotTools"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Halted at implementation: waiting on you (The owner, at the request service's console: the allow line for BotTools' push and the service's restart.)"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Resumed at implementation"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "S1 done; S2 current: the first private repository"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "S2 done; S3 current: the second private repository"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "S3 done; S4 current: Close-out"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Implementation done (5 stages); Quality Review next"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Quality Review 1: running"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Quality Review 1: changes requested, 7 findings (7 minor; 7 test)"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Document: Write the as-built record and reconcile the plan and consequences current"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Document: State boards current"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Document: Document commit current"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Merge: merging it in PR #45",
+      "ref": "PR #45"
+    },
+    {
+      "date": "2026-11-15",
+      "column": "built",
+      "label": "Landed in PR #45, merge 9170254",
+      "ref": "PR #45"
+    }
+  ],
+  "rows": [
+    {
+      "id": "readiness",
+      "group": "Readiness",
+      "name": "Readiness: the tools at their pins, the inputs unchanged, the three repositories read, the grant and the quick gate",
+      "where": "the rewrite set's readiness step · the grant section for the unit's job",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "missing",
+        "summary": "Nothing yet lets the unit push. The request service's grant file for this repository has no section, its settings deny the lease push as a text pattern that a section cannot override, and its own check can refuse a call a section covers; and the tools the unit runs, with the mirrors and backups it rewrites from, are to be found as the earlier units left them before any stage runs.",
+        "evidence": [
+          "`../architecture.md:165` — the grant file is empty: no job has a section",
+          "`../architecture.md:166` — the settings deny `git push --force-with-lease` as a text pattern, and a section cannot override a deny rule",
+          "`../architecture.md:169` — the service's own check can refuse a call a section covers; an allow line and a restart follow",
+          "`../39-workspace-tools/plan.md:1254` — the folder at its pins first, then the pins, the inputs, the three repositories and the grant",
+          "`../39-workspace-tools/plan.md:1273` — each later unit runs the quick gate before anything else"
+        ],
+        "source": "../architecture.md §2.4, §12; ../39-workspace-tools/plan.md, Interfaces with sibling units",
+        "link": "../architecture.md#24-the-request-service"
+      },
+      "options": [
+        {
+          "id": "asked-up-front",
+          "name": "Everything the unit needs from the owner asked once, before it runs, at the request service's console: the grant section for its job, scoped to the three repositories with one request each in the form of the push; the lift of the deny rule on the lease push for the job, restored when the section ends; and the allow line and the restart a refused call needs. Then the readiness reads, before BotTools' stage 1",
+          "verdict": "accepted",
+          "why": "No unit stops for a person before a push: every stop is a failed check, and the grant's scope names the three targets and no other.",
+          "source": "../architecture.md §8.1, §11, §12",
+          "link": "../architecture.md#12-version-control-and-requests"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "The unit's data file and the grant's wording were written first, and the run log's length before the unit's steps was kept: 14447 lines."
+          },
+          {
+            "state": "as-planned",
+            "text": "Before any repository was read, the tool folder and every reused tool held their pins (96 of 96 checks), the quick gate passed (63 of 63 deterministic checks) and the tool versions were as recorded (7 of 7 checks)."
+          },
+          {
+            "state": "as-planned",
+            "text": "The three repositories' inputs equalled their rows and the data (62 of 62 checks); the checksums of their 5, 6 and 5 earlier records were recorded for this unit and equal those the tools unit recorded (3 of 3 checks)."
+          },
+          {
+            "state": "as-planned",
+            "text": "The three repositories read from GitHub as their rows record them (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with five readings recorded, the rulesets read of each of the two private repositories refused with HTTP 403 among them, as expected."
+          },
+          {
+            "state": "as-planned",
+            "text": "The grant section was in place and read before the first rewrite: it equals the unit's wording apart from its date (12 of 12 checks). Readiness stopped nowhere and wrote nothing to GitHub."
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Write the unit's data file and the grant's wording first, so every tool of the rewrite set reads this unit's job, issue, branch, targets and record folder.",
+            "ref": "plan.md#the-units-data-file",
+            "excerpt": {
+              "ref": "plan.md#the-units-data-file",
+              "heading": "The unit's data file",
+              "paragraph": "`WS\\tmp\\g27\\units\\g40.txt` is the data file the tools read through `G27_UNIT` (format). `S0.unit` writes it with exactly these lines:",
+              "hash": "24d8b8dd672c"
+            }
+          },
+          {
+            "text": "Prove the tool folder and every reused tool at their pins and run the quick gate, then the tool versions, before any repository is touched.",
+            "ref": "plan.md#s0--readiness",
+            "excerpt": {
+              "ref": "plan.md#s0--readiness",
+              "heading": "S0 — Readiness",
+              "paragraph": "Nothing is written to GitHub; everything is a read, a local check or the quick gate. The owner has given the grant (Design, \"The grant\") before `S0.grant` runs; the other steps do not wait for it.",
+              "hash": "396149233e89"
+            }
+          },
+          {
+            "text": "Check each repository's purge list, mirror, untouched backup and earlier records against their recorded checksums, and record those checksums for this unit.",
+            "ref": "plan.md#s0--readiness",
+            "excerpt": {
+              "ref": "plan.md#s0--readiness",
+              "heading": "S0 — Readiness",
+              "paragraph": "Nothing is written to GitHub; everything is a read, a local check or the quick gate. The owner has given the grant (Design, \"The grant\") before `S0.grant` runs; the other steps do not wait for it.",
+              "hash": "396149233e89"
+            }
+          },
+          {
+            "text": "Read the three repositories from GitHub against their rows, with the server's refs against the listing taken at the clone.",
+            "ref": "plan.md#s0--readiness",
+            "excerpt": {
+              "ref": "plan.md#s0--readiness",
+              "heading": "S0 — Readiness",
+              "paragraph": "Nothing is written to GitHub; everything is a read, a local check or the quick gate. The owner has given the grant (Design, \"The grant\") before `S0.grant` runs; the other steps do not wait for it.",
+              "hash": "396149233e89"
+            }
+          },
+          {
+            "text": "Ask the owner up front for the grant section, the lift of the deny rule on the lease push in every settings file the request service loads, and the allow line with the service's restart should its own check refuse a covered call; read the grant before the first rewrite.",
+            "ref": "plan.md#the-grant",
+            "excerpt": {
+              "ref": "plan.md#the-grant",
+              "heading": "The grant",
+              "paragraph": "Asked of the owner at the request service's console before the unit runs, all three:",
+              "hash": "42bd020612c6"
+            }
+          }
+        ],
+        "defense": "Every check here only reads, so a stop leaves nothing written but the unit's own data file, wording and scratch, and everything a push relies on is proven before the first mirror is rewritten.",
+        "steps": [
+          {
+            "id": "S0.tools",
+            "what": "Prove every file of the tool folder and every reused tool at its size and sha256.",
+            "check": "96 `ok` lines and `STAGE S0.tools OK`",
+            "link": "plan.md#s0--readiness"
+          },
+          {
+            "id": "S0.gate",
+            "what": "Run the quick gate under the unit's data file.",
+            "check": "`ok    gselftest deterministic: 63 checks passed`",
+            "link": "plan.md#s0--readiness"
+          },
+          {
+            "id": "S0.grant",
+            "what": "Read the grant section against the unit's wording.",
+            "check": "`STAGE S0.grant OK`",
+            "link": "plan.md#s0--readiness"
+          }
+        ],
+        "tests": [
+          "gating — the tools, the tool versions, the earlier records and the grant read",
+          "deterministic — the quick gate, 63 cases",
+          "integration — the reads of GitHub and of the request service's grant file"
+        ],
+        "risks": [
+          "A lifted deny rule or an allow line that is missing shows only at the first request: the request is refused before anything runs, every branch is read at its old tip, and it is sent again only under the resend rule (assumption A4)"
+        ],
+        "source": "plan.md S0 — Readiness; The grant; The unit's data file",
+        "link": "plan.md#s0--readiness"
+      }
+    },
+    {
+      "id": "order",
+      "group": "The rewrites",
+      "name": "The order: BotTools, then the first private repository, then the second",
+      "where": "the stage-8 marker each repository waits for",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "risk",
+        "summary": "Two kinds of push are untried against GitHub. BotTools' push is the only one GitHub's push protection for users applies to, and the first atomic push of two branches this phase makes against GitHub; whether GitHub's receive path applies an atomic push all or nothing is not documented.",
+        "evidence": [
+          "`../architecture.md:116` — push protection for users applies to pushes to public repositories: to BotTools' push and to neither of the other two",
+          "`../architecture.md:188` — GitHub advertises `atomic`; that its receive path applies an atomic push all or nothing is not documented",
+          "`../consequences.md:199` — BotTools' push is the first atomic push of two branches this phase makes against GitHub"
+        ],
+        "source": "../architecture.md §2.1, §2.5; ../consequences.md §5",
+        "link": "../architecture.md#81-shape"
+      },
+      "options": [
+        {
+          "id": "bottools-first-gated",
+          "name": "BotTools, the first private repository, the second, each repository's stage 1 starting only once the one before it holds its stage-8 marker",
+          "verdict": "accepted",
+          "why": "What GitHub's receive path does with push protection and with an atomic push of two leases is known before a private repository is pushed, and a stop leaves the repositories after it waiting.",
+          "source": "../architecture.md §8.1, §11",
+          "link": "../architecture.md#81-shape"
+        },
+        {
+          "id": "one-unit-per-repository",
+          "name": "One rewrite unit per repository",
+          "verdict": "declined",
+          "why": "The same procedure three times, with three grants, three readiness runs and three landings between the pushes, which moves the residual measurement further from BotTools' push; the order between repositories is already a gate inside the tools.",
+          "source": "../architecture.md §15",
+          "link": "../architecture.md#15-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "BotTools was rewritten first, then the first private repository, then the second, each through all eight of its steps with no stop."
+          },
+          {
+            "state": "as-planned",
+            "text": "The private repositories each started only once the repository before it held its stage-8 marker: their pre-run checks, the order gate among them, passed 27 of 27."
+          },
+          {
+            "state": "as-planned",
+            "text": "BotTools' push, the only one push protection for users applies to and the first atomic push of two leases, was classed pushed with both branches at their new tips and nothing refused by GitHub, before the first private repository was pushed."
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "numbered",
+        "statements": [
+          {
+            "text": "Rewrite BotTools first, then the first private repository, then the second.",
+            "ref": "plan.md#shape-of-the-run",
+            "excerpt": {
+              "ref": "plan.md#shape-of-the-run",
+              "heading": "Shape of the run",
+              "paragraph": "Five stages. `S0` reads and checks; its only writes are the unit's data file and wording, its scratch folder, its record folder with the three `records-at-s0.<repo>.sums`, and the run log's lines. `S1`, `S2` and `S3` rewrite, push and prove BotTools and the private repositories in eight steps each, one per stage of the pipeline; `S2` starts only once BotTools holds its stage-8 marker and `S3` once the first private repository holds its. `S4` is the close-out. The landing's document checks follow, outside the table. Every stop leaves the state its row of \"Stops and the state each leaves\" names.",
+              "hash": "9b218d1d6cef"
+            }
+          },
+          {
+            "text": "Start a repository only once the one before it holds its stage-8 marker, which the tools enforce at step 1 from the parameter table's `needs` column.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Push BotTools first because its push is the only one GitHub's push protection for users applies to and the first atomic push of two leases, so what GitHub does with either is known before a private repository is pushed.",
+            "ref": "plan.md#shape-of-the-run",
+            "excerpt": {
+              "ref": "plan.md#shape-of-the-run",
+              "heading": "Shape of the run",
+              "paragraph": "Five stages. `S0` reads and checks; its only writes are the unit's data file and wording, its scratch folder, its record folder with the three `records-at-s0.<repo>.sums`, and the run log's lines. `S1`, `S2` and `S3` rewrite, push and prove BotTools and the private repositories in eight steps each, one per stage of the pipeline; `S2` starts only once BotTools holds its stage-8 marker and `S3` once the first private repository holds its. `S4` is the close-out. The landing's document checks follow, outside the table. Every stop leaves the state its row of \"Stops and the state each leaves\" names.",
+              "hash": "9b218d1d6cef"
+            }
+          }
+        ],
+        "defense": "Nothing reaches GitHub before BotTools' step 6, and each later repository waits on proof that the one before it ended clean on a fresh mirror, so an unexpected answer from GitHub stops the unit with at most one repository pushed.",
+        "steps": [
+          {
+            "id": "Sn.1",
+            "what": "Step 1 of the first private repository and of the second requires the stage-8 marker of the repository before it.",
+            "check": "`STAGE <repo>.p1 OK`, else a stop naming the missing marker",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          }
+        ],
+        "tests": [
+          "e2e — the real run of the three repositories in order, each gated on the one before"
+        ],
+        "risks": [
+          "Push protection for users refuses BotTools' push: BotTools stays on its old history, the two private repositories wait, and the owner decides from the kept error file; the unit never bypasses (assumption A12)"
+        ],
+        "source": "plan.md Shape of the run; Steps 1 to 8 of a repository",
+        "link": "plan.md#shape-of-the-run"
+      }
+    },
+    {
+      "id": "rewrite",
+      "group": "The rewrites",
+      "name": "Stages 1 to 5: the rewrite, its checks and the push preparation",
+      "where": "each repository's workspace mirror and untouched backup · the rewrite set's steps 1 to 5",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "missing",
+        "summary": "Every commit of the three histories is still to be rewritten. Every root commit holds a purged path, so BotTools' 16 commits are to become 15, the first private repository's 11 become 9 and the second's 2 become 1, removing 39, 199 and 7,259 purged blobs; the positive control on each untouched backup and step 4's handling of its error streams have not yet run on a real repository.",
+        "evidence": [
+          "`../architecture.md:104` — commits before and after: 16 → 15, 11 → 9, 2 → 1",
+          "`../architecture.md:106` — purged blobs: 39, 199 and 7,259",
+          "`../architecture.md:119` — every root commit changes, so every commit is rewritten",
+          "`../39-workspace-tools/consequences.md:177` — the positive control on an untouched backup, equal to its record, is the rewrites' step 2",
+          "`../39-workspace-tools/consequences.md:149` — that step 4's discarded error streams keep a shell message off the console is read from the code, not shown by a case; the rewrites run step 4"
+        ],
+        "source": "../architecture.md §2.1; ../39-workspace-tools/consequences.md §5",
+        "link": "../architecture.md#21-the-three-repositories"
+      },
+      "options": [
+        {
+          "id": "parent-stages",
+          "name": "The parent's stages 1 to 5 per repository, from its mirror checked unchanged: the list proof and the pre-run checks, the positive control on the untouched backup, the one invocation, the post-run checks with the scan before the push, and the push preparation, where BotTools' baseline of webhook deliveries is taken",
+          "verdict": "accepted",
+          "why": "The pipeline as GKB2 and GKB were rewritten; a stop before a push changes nothing on GitHub, the mirror is reset from its untouched backup, and the one invocation never runs twice in a mirror.",
+          "source": "../architecture.md §8.1, §11",
+          "link": "../architecture.md#81-shape"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "Before each rewrite the list proof and the pre-run checks passed, 27 of 27 for each repository, with 16 commits and 4 refs before for BotTools, 11 and 2 for the first private repository, 2 and 1 for the second."
+          },
+          {
+            "state": "as-planned",
+            "text": "The positive control on each untouched backup equalled the earlier record: BotTools 8 of 8 and the second private repository 8 of 8, clean with 0 findings; the first private repository 10 of 10, scan status 1 with 3518 findings, the control verdict passed, its scan summary, control file and kept-findings file each equal; 0 kept findings in all three."
+          },
+          {
+            "state": "as-planned",
+            "text": "Each mirror was rewritten by one run that passed its 6 checks: 16 of 16 commits rewritten for BotTools, 11 of 11 for the first private repository, 2 of 2 for the second."
+          },
+          {
+            "state": "as-planned",
+            "text": "After the rewrite the counts equalled the expectation row: 15 commits, 82 paths, 145 blobs and a largest blob of 27168 bytes for BotTools; 9, 56, 106 and 25952 for the first private repository; 1, 29, 29 and 14302 for the second private repository. Every manifest blob was missing, the scan of branches and tags before the push was clean with 0 findings, and 13 output files were checksummed for each."
+          },
+          {
+            "state": "as-planned",
+            "text": "The push preparation passed, 22 of 22 for BotTools with 2 pull-request refs recorded and its webhook's snapshot and baseline taken (0 deliveries listed before the push), and 17 of 17 for the first private repository and for the second with 0 pull-request refs recorded; each built its request file."
+          },
+          {
+            "state": "as-planned",
+            "text": "Nothing stopped before a push, so no mirror was discarded."
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "numbered",
+        "statements": [
+          {
+            "text": "Prove the purge list byte by byte, and the mirror and its untouched backup against their checksums, before the rewrite.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Run the positive control on the untouched backup and require it to equal the preparation unit's record line for line.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Rewrite each mirror with exactly one `git filter-repo --sensitive-data-removal --invert-paths --paths-from-file` run, its rewrite counts confirmed.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Require the commits, paths, blobs and largest blob after the rewrite to equal the expectation row (15, 9 and 1 commits), every manifest blob to be missing, and the scan of branches and tags to be clean before the push.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Prepare the push: delete the mirror's local pull-request refs, compare the server's heads with the clone's, take BotTools' webhook snapshot and deliveries baseline, and build the request file.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Discard the mirror on any stop before the push: copy the untouched backup back and restart the repository at step 1.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          }
+        ],
+        "defense": "Every step before the push runs again from a reset mirror, so a wrong count or a surviving blob costs a restart, never a write to GitHub; a custom-rule finding is a stop, and a default-rule finding in a kept file is recorded as a follow-up.",
+        "steps": [
+          {
+            "id": "Sn.3",
+            "what": "The rewrite, one invocation per mirror.",
+            "check": "six `ok` lines and `STAGE <repo>.p3 OK`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          },
+          {
+            "id": "Sn.4",
+            "what": "The post-run checks and the scan of branches and tags before the push.",
+            "check": "`ok    gitleaks before the push: RESULT: CLEAN` and `STAGE <repo>.p4 OK`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          },
+          {
+            "id": "Sn.5",
+            "what": "The push preparation and the request file.",
+            "check": "`STAGE <repo>.p5 OK`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          }
+        ],
+        "tests": [
+          "e2e — steps 1 to 5 of each repository on its real mirror, the steps' own checks its assertions"
+        ],
+        "risks": [
+          "The positive control differs from the preparation unit's record: the scan configuration's change is not inert for that repository, and the unit hands back before anything is rewritten",
+          "A scan runs past the scan wrapper's 30-minute cap, most likely on the second private repository: the step stops before the push and runs again after a reset (assumption A9)"
+        ],
+        "source": "plan.md Steps 1 to 8 of a repository, steps 1 to 5",
+        "link": "plan.md#steps-1-to-8-of-a-repository"
+      }
+    },
+    {
+      "id": "push",
+      "group": "The rewrites",
+      "name": "Stage 6: one atomic lease push per repository, on request",
+      "where": "one `push-mirror` request per repository · 2, 2 and 1 branches",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "missing",
+        "summary": "BotTools and the first private repository each have two branches, and the established push carries one. The earlier findings settle a refspec push of one branch under an explicit lease after a dry run; how several leases behave in one push, with or without `--atomic`, and which states each form can leave on the server, they did not establish.",
+        "evidence": [
+          "`../architecture.md:102` — the branches: `main` and `Working-Branch`, `main` and `feature/pokercommand`, `main`",
+          "`../research/README.md:31` — the push of one branch under an explicit lease, after a dry run, is established",
+          "`../research/README.md:73` — two branches each for BotTools and the first private repository; several leases in one push are not established",
+          "`../research/README.md:222` — with `--atomic` a stale lease sends nothing; without it one branch is updated"
+        ],
+        "source": "../architecture.md §2.1; ../research/README.md, question 1 and Summary §1",
+        "link": "../research/README.md#1-the-push-of-a-repositorys-branches"
+      },
+      "options": [
+        {
+          "id": "one-atomic-lease-push",
+          "name": "One request per repository, by file with the file's sha256, its procedure run as one shell: the guards, then one `git push --porcelain --atomic` with one explicit lease on the tip the mirror clone recorded and one refspec per branch, run first as a dry run of the same line, the push requiring the dry run's clean tally",
+          "verdict": "accepted",
+          "why": "A stale lease or a refusal on one branch sends nothing, so each repository ends wholly rewritten or unchanged and a branch moved since the clone is never overwritten; the second private repository takes the same path with one lease.",
+          "source": "../architecture.md §8.2",
+          "link": "../architecture.md#82-the-push"
+        },
+        {
+          "id": "push-without-atomic",
+          "name": "One push of both branches without `--atomic`",
+          "verdict": "declined",
+          "why": "Every failure that concerns one branch leaves a half-rewritten repository, whose only repair is a second force-push.",
+          "source": "../architecture.md §15",
+          "link": "../architecture.md#15-alternatives-considered"
+        },
+        {
+          "id": "push-per-branch",
+          "name": "One push per branch, as two requests or two pushes in one request",
+          "verdict": "declined",
+          "why": "It makes the half-rewritten repository an ordinary state between the two pushes, doubles the requests, and keeps the same race window in each push.",
+          "source": "../architecture.md §15",
+          "link": "../architecture.md#15-alternatives-considered"
+        },
+        {
+          "id": "mirror-or-force",
+          "name": "`--mirror`, `--force` or a `+` refspec",
+          "verdict": "declined",
+          "why": "git ignores a lease under each, and `--mirror` would delete a server branch created after the clone.",
+          "source": "../architecture.md §15",
+          "link": "../architecture.md#15-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "Each repository was pushed by one request of the request service, sent by file with its sha256, and each reply holds the 11 printed lines of a clean push."
+          },
+          {
+            "state": "as-planned",
+            "text": "The guards passed in each reply ahead of the dry run, and each class read the pull-request refs unchanged."
+          },
+          {
+            "state": "as-planned",
+            "text": "Each push ran as one atomic push after a dry run of the same line, both tallying the expected forced count: forced=2 for BotTools and the first private repository, forced=1 for the second, each with done=1."
+          },
+          {
+            "state": "as-planned",
+            "text": "Each request file was built by a push preparation that passed, whose builder asserts that none of `--mirror`, `--force`, `-f` or a leading `+` appears."
+          },
+          {
+            "state": "as-planned",
+            "text": "Three pushes were made, one per repository; after each, the verification found the pull-request refs, the default branch and the visibility as recorded and the repository not archived, and BotTools' webhook equal to its snapshot."
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Push each repository by one request of the request service under the grant's job, by file with the file's sha256, its six entries run as one shell.",
+            "ref": "plan.md#the-push",
+            "excerpt": {
+              "ref": "plan.md#the-push",
+              "heading": "The push",
+              "paragraph": "The tools build, class and read back the push; the contract is the tools plan's \"The push\". What this unit relies on:",
+              "hash": "3a3b317395a7"
+            }
+          },
+          {
+            "text": "Guard first: the mirror and its origin, the local refs against the rewritten heads, and the server's heads and pull-request refs against their records.",
+            "ref": "plan.md#the-push",
+            "excerpt": {
+              "ref": "plan.md#the-push",
+              "heading": "The push",
+              "paragraph": "The tools build, class and read back the push; the contract is the tools plan's \"The push\". What this unit relies on:",
+              "hash": "3a3b317395a7"
+            }
+          },
+          {
+            "text": "Run one `git push --porcelain --atomic` with one explicit lease on each branch's recorded tip and one refspec per branch, first as a dry run of the same line, the push requiring the dry run's expected tally: 2, 2 and 1 branches.",
+            "ref": "plan.md#the-push",
+            "excerpt": {
+              "ref": "plan.md#the-push",
+              "heading": "The push",
+              "paragraph": "The tools build, class and read back the push; the contract is the tools plan's \"The push\". What this unit relies on:",
+              "hash": "3a3b317395a7"
+            }
+          },
+          {
+            "text": "Never use `--mirror`, `--force`, `-f` or a leading `+`, which the request builder asserts.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "45b08453424b"
+            }
+          },
+          {
+            "text": "Make exactly these three writes to GitHub: no issue, comment, label, setting, visibility or webhook changes, and no ref is deleted.",
+            "ref": "plan.md#what-the-unit-writes-to-github",
+            "excerpt": {
+              "ref": "plan.md#what-the-unit-writes-to-github",
+              "heading": "What the unit writes to GitHub",
+              "paragraph": "Exactly three pushes: the branches of `SpartanLaboratories/BotTools`, of `SpartanLaboratories/…` and of `SpartanLaboratories/…`, each a `push-mirror` request under the job `phase-0-bottools-…-rewrite`, in that order. It sends no issue, comment, label, setting, visibility or security change and deletes no ref. The unit's landing on KotlinBottools is the run's ordinary landing and is not made under the job.",
+              "hash": "306ca492ac3e"
+            }
+          }
+        ],
+        "defense": "Under `--atomic` a stale lease or a refusal on one branch sends nothing, so each repository ends wholly rewritten or unchanged, and a branch moved since the clone is never overwritten.",
+        "steps": [
+          {
+            "id": "Sn.6.request",
+            "what": "Read the state, rebuild and check the request file, and hand it on to be sent once.",
+            "check": "`PROCEED  REQUEST push-<repo> …`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          },
+          {
+            "id": "Sn.6.check",
+            "what": "Class the stored reply and read every branch back.",
+            "check": "`CLASS pushed …` and `STAGE <repo>.p6 OK`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          }
+        ],
+        "tests": [
+          "e2e — the three real pushes, each classed and read back",
+          "integration — the reads of GitHub around each push"
+        ],
+        "risks": [
+          "GitHub's receive path may not apply an atomic push as one unit: a partial state is handed back with a reading per branch, and nothing is pushed without a person's decision (assumption A1)",
+          "The credential the request service pushes with may be refused for a private repository: every branch stays at its old tip, and the owner fixes the credential before the same request is sent again (assumption A5)"
+        ],
+        "source": "plan.md The push; What the unit writes to GitHub; Requirements",
+        "link": "plan.md#the-push"
+      }
+    },
+    {
+      "id": "outcome",
+      "group": "The rewrites",
+      "name": "The outcome: a class, a read-back of every branch, and a resend only when nothing was sent",
+      "where": "each push's stored reply · every branch and the pull-request refs on GitHub",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "risk",
+        "summary": "A push's answer alone cannot say what the server holds. A lost connection leaves every branch at its old tip or every branch at its new one, and only a read of every branch tells which; GitHub's side of an atomic push is not documented; and the field of a delivered reply that holds a procedure's printed lines is not named, so the first push request is the check.",
+        "evidence": [
+          "`../architecture.md:190` — a lost connection leaves every branch at its old tip or every branch at its new one; only a read of every branch names the state",
+          "`../architecture.md:188` — whether GitHub applies an atomic push all or nothing is not documented",
+          "`../consequences.md:204` — the field of a delivered reply that holds the printed lines is not named; the rewrites' first push request is the check",
+          "`../39-workspace-tools/consequences.md:166` — no request was sent and no reply stored by the tools unit",
+          "`../39-workspace-tools/consequences.md:187` — the rewrites' first real push, refusal or lost connection is the check"
+        ],
+        "source": "../architecture.md §2.5; ../consequences.md §5; ../39-workspace-tools/consequences.md §5",
+        "link": "../consequences.md#5-known-gaps"
+      },
+      "options": [
+        {
+          "id": "class-state-resend",
+          "name": "The outcome classed from the exit statuses, the tally and the counted markers; after any non-zero status, one read of every branch and of the pull-request refs naming the state, neither, both or partial; partial handed back with each branch's reading; a request sent again only after a transport failure, a guard's stop or the service's refusal, with the state neither and the pull-request refs unchanged",
+          "verdict": "accepted",
+          "why": "A push is never repeated blindly: a push that landed although its answer was lost is recorded rather than sent twice, and no push follows a partial state without a person's decision.",
+          "source": "../architecture.md §8.3",
+          "link": "../architecture.md#83-outcome-read-back-and-resend"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "Each of the three pushes was classed pushed from the markers of its stored reply."
+          },
+          {
+            "state": "as-planned",
+            "text": "The one call that ended with no push, BotTools' first, was followed by a read of every branch and the pull-request refs: every branch at its old tip, the refs unchanged, no stream file. After each push the state read back as both: every branch at its new tip, the pull-request refs unchanged."
+          },
+          {
+            "state": "as-planned",
+            "text": "No push was sent a second time and no reply took a class that hands back."
+          },
+          {
+            "state": "as-planned",
+            "text": "The service's own check refused BotTools' first call before any entry ran; once the allow lines were placed, the service ran the same request again itself, under the same id as its second attempt, and that reply was stored and classed. The private repositories' requests each ran once, on their first attempt."
+          },
+          {
+            "state": "as-planned",
+            "text": "Each reply was stored as the service delivered it, 11 printed lines each."
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Class each push from counted markers in its stored reply: pushed, refused by the service, stopped by a guard, transport, a stale lease, refused by push protection, refused by a rule, or unclassified.",
+            "ref": "plan.md#the-push",
+            "excerpt": {
+              "ref": "plan.md#the-push",
+              "heading": "The push",
+              "paragraph": "The tools build, class and read back the push; the contract is the tools plan's \"The push\". What this unit relies on:",
+              "hash": "3a3b317395a7"
+            }
+          },
+          {
+            "text": "After any non-zero status, read every branch and the pull-request refs from GitHub to name the state: neither, both or partial.",
+            "ref": "plan.md#the-push",
+            "excerpt": {
+              "ref": "plan.md#the-push",
+              "heading": "The push",
+              "paragraph": "The tools build, class and read back the push; the contract is the tools plan's \"The push\". What this unit relies on:",
+              "hash": "3a3b317395a7"
+            }
+          },
+          {
+            "text": "Send a request again only when the class is transport, a guard's stop or a refusal by the service, the state is neither and the pull-request refs are unchanged; every other class hands back, and a push is never repeated blindly.",
+            "ref": "plan.md#the-push",
+            "excerpt": {
+              "ref": "plan.md#the-push",
+              "heading": "The push",
+              "paragraph": "The tools build, class and read back the push; the contract is the tools plan's \"The push\". What this unit relies on:",
+              "hash": "3a3b317395a7"
+            }
+          },
+          {
+            "text": "When the service's own check refuses a covered call, read the state, have the allow line placed and the service restarted, and class the service's own rerun under the same id; send nothing a second time.",
+            "ref": "plan.md#the-push",
+            "excerpt": {
+              "ref": "plan.md#the-push",
+              "heading": "The push",
+              "paragraph": "The tools build, class and read back the push; the contract is the tools plan's \"The push\". What this unit relies on:",
+              "hash": "3a3b317395a7"
+            }
+          },
+          {
+            "text": "Store each reply in the form the request service delivers it, so the first push request shows the field that holds the printed lines.",
+            "ref": "plan.md#assumptions",
+            "excerpt": {
+              "ref": "plan.md#assumptions",
+              "heading": "Assumptions",
+              "paragraph": "",
+              "hash": "e78a0ca1c621"
+            }
+          }
+        ],
+        "defense": "The state is read from GitHub, never from the reply, so a lost answer is settled by reading the server, and a partial or unexplained outcome stops the unit with the counts rather than a second force-push.",
+        "steps": [
+          {
+            "id": "Sn.6.reply",
+            "what": "Store the reply as delivered.",
+            "check": "`ok    stored reply 1 for push-<repo> as done (11 printed lines)`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          },
+          {
+            "id": "Sn.6.check",
+            "what": "Read every branch and the pull-request refs back after the class.",
+            "check": "`read back: the state is both, the pull-request refs are unchanged: yes`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          }
+        ],
+        "tests": [
+          "e2e — each real reply classed and every branch read back"
+        ],
+        "risks": [
+          "The wording of a real refusal or a lost connection may not match the markers: such a reply is unclassified and hands back with the counts (assumption A8)",
+          "The delivered reply may not hold the printed lines where the tools read them: the check stops plainly, keeps no class, and the state is read from GitHub (assumption A3)"
+        ],
+        "source": "plan.md The push: the class table and the resend rule; Assumptions",
+        "link": "plan.md#the-push"
+      }
+    },
+    {
+      "id": "verification",
+      "group": "Proofs",
+      "name": "Stage 7: per-ref verification, with BotTools' webhook deliveries counted",
+      "where": "each repository on two channels · BotTools' webhook",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "risk",
+        "summary": "BotTools' push deliveries can be counted for three days only. Its one active webhook, to a CircleCI host, takes one push delivery per rewritten branch, and GitHub lists a webhook's deliveries for three days, with no payload; no delivery of a push has been counted yet.",
+        "evidence": [
+          "`../architecture.md:109` — one webhook, active, to a CircleCI host, subscribed to push events, with no delivery retained",
+          "`../architecture.md:192` — per rewritten branch, one push delivery to BotTools' webhook; deliveries are listed for three days, with no payload",
+          "`../39-workspace-tools/consequences.md:132` — the list of deliveries is readable with the credential the run uses",
+          "`../39-workspace-tools/consequences.md:170` — no push was made and no delivery reached the webhook; the rewrites' step 7 is the check"
+        ],
+        "source": "../architecture.md §2.1, §2.5; ../39-workspace-tools/consequences.md §4, §5",
+        "link": "../architecture.md#25-verified-outside-world-facts"
+      },
+      "options": [
+        {
+          "id": "count-at-stage-7",
+          "name": "Heads and tags compared on two channels with the rewritten heads, no head at a pre-rewrite commit, and the pull-request refs, the default branch, the visibility and the archive state as recorded; for BotTools, the push deliveries since the baseline counted once, right after the push, and the webhook read as unchanged",
+          "verdict": "accepted",
+          "why": "The count is taken inside the same unit before GitHub's three-day list drops the deliveries, and the webhook stays as it is.",
+          "source": "../architecture.md §8.1, §17",
+          "link": "../architecture.md#81-shape"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "Each repository passed its per-ref verification right after its push, on both channels, 14 of 14 checks for BotTools and 10 of 10 for the first private repository and for the second: BotTools' 2 heads, the first private repository's 2 and the second's 1 all rewritten, with no tag."
+          },
+          {
+            "state": "as-planned",
+            "text": "The pull-request refs were as recorded, 2 for BotTools and 0 for the others, the default branch and the visibility as recorded, and no repository archived."
+          },
+          {
+            "state": "as-planned",
+            "text": "BotTools' webhook deliveries were counted once, right after its push, and recorded as measured: 2 listed now (event push 2) against 0 before the push, so 2 push deliveries since it; the webhook equals its snapshot."
+          },
+          {
+            "state": "as-planned",
+            "text": "The close-out read the three repositories once more and passed, 20 of 20 checks (8 for BotTools, 6 for the first private repository, 6 for the second): every branch at its rewritten tip, the pull-request refs, the default branch, the visibility, the archive state and the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged."
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Verify each repository on two channels after its push: `git ls-remote --refs` and the REST branches listing each equal the rewritten heads, no tag exists and no head points at a pre-rewrite commit.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Require the pull-request refs, the default branch and the visibility as recorded, and the repository not archived.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Count BotTools' push deliveries once, right after its push and before any other check, record the count as measured (2 expected), and read the webhook as equal to its snapshot.",
+            "ref": "plan.md#stage-7-and-stage-8-for-bottools",
+            "excerpt": {
+              "ref": "plan.md#stage-7-and-stage-8-for-bottools",
+              "heading": "Stage 7 and stage 8 for BotTools",
+              "paragraph": "`S1.5` takes a snapshot of BotTools' webhook (every field but `last_response` and the secret, the URL only as its sha256) and a baseline count of the deliveries GitHub lists (all, and of event `push`). `S1.7` counts them once, right after the push, because GitHub lists deliveries for three days only, prints `RECORD webhook deliveries: listed now <a> (event push: <b>); listed before the push <c> (event push: <d>); push deliveries since the push: <b − d>` and reads the webhook as \"equal\" to its snapshot. The count is recorded as measured and never asserted (2 is expected), and a later run of …",
+              "hash": "7247ae6a74b4"
+            }
+          },
+          {
+            "text": "Read the three repositories once more at the close-out.",
+            "ref": "plan.md#s4--close-out",
+            "excerpt": {
+              "ref": "plan.md#s4--close-out",
+              "heading": "S4 — Close-out",
+              "paragraph": "After the three repositories hold their stage-8 markers.",
+              "hash": "850845f8c5b1"
+            }
+          }
+        ],
+        "defense": "GitHub lists a webhook's deliveries for three days only, so they are counted inside this unit; a failure after a push means the remote may be partly updated, so the unit stops with the readings and repeats nothing.",
+        "steps": [
+          {
+            "id": "Sn.7",
+            "what": "Per-ref verification of each repository.",
+            "check": "`ok    the repository holds <N> head(s), all rewritten, and <P> pull-request ref(s), as recorded` and `STAGE <repo>.p7 OK`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          }
+        ],
+        "tests": [
+          "integration — the read-backs of GitHub on two channels",
+          "e2e — the verification of each real push"
+        ],
+        "risks": [
+          "GitHub may not yet list BotTools' push deliveries when they are counted: the lower count is recorded as measured and never counted again (assumption A7)",
+          "A delivery may change a field of the webhook besides its last response: the step stops after a landed push and hands back with the readings (assumption A6)"
+        ],
+        "source": "plan.md Steps 1 to 8 of a repository, step 7; Stage 7 and stage 8 for BotTools; S4 — Close-out",
+        "link": "plan.md#steps-1-to-8-of-a-repository"
+      }
+    },
+    {
+      "id": "exit-tests",
+      "group": "Proofs",
+      "name": "Stage 8: a fresh mirror and its exit tests, with BotTools' pull-request residual counted",
+      "where": "a fresh mirror of each repository · BotTools' `refs/pull/2/head` and `refs/pull/3/head`",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "missing",
+        "summary": "No fresh mirror of any of the three repositories exists yet. So nothing shows any of them clean as GitHub serves it; and BotTools' two pull-request refs, hidden from a push, keep all 39 of its purged blobs reachable, a fresh mirror after the push being expected to hold 28 commits on every ref.",
+        "evidence": [
+          "`../architecture.md:159` — the workspace holds the mirror and the untouched backup of each repository, and no fresh mirror of any of them yet",
+          "`../architecture.md:103` — BotTools' pull-request refs: `refs/pull/2/head`, `refs/pull/3/head`",
+          "`../architecture.md:113` — all 39 purged blobs stay reachable through the two pull-request refs; a fresh mirror holds 28 commits on every ref"
+        ],
+        "source": "../architecture.md §2.1, §2.3",
+        "link": "../architecture.md#21-the-three-repositories"
+      },
+      "options": [
+        {
+          "id": "exit-tests-and-residual",
+          "name": "The exit tests on a fresh mirror of each repository, whose stage-8 marker the next repository waits for; for BotTools, the manifest blobs reachable from every ref (39 of 39 expected), the commits on every ref (28 expected) and the every-ref scan's findings by rule, counted and recorded without stopping",
+          "verdict": "accepted",
+          "why": "The residual is what the hidden pull-request refs keep, so it is measured and recorded rather than read as a failure of the rewrite; a custom-rule finding on the fresh mirror still hands back.",
+          "source": "../architecture.md §8.1, §11",
+          "link": "../architecture.md#81-shape"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "A fresh mirror of each repository was taken at its step 8 and passed the exit tests, 17 checks each, its heads the rewritten ones."
+          },
+          {
+            "state": "as-planned",
+            "text": "The expectation check on the heads passed for each: 15 commits on branches and 28 on every ref, 82 paths and 145 blobs for BotTools; 9 commits on branches and on every ref, 56 paths and 106 blobs for the first private repository; 1 commit, 29 paths and 29 blobs for the second private repository. No manifest blob is reachable from branches and tags."
+          },
+          {
+            "state": "as-planned",
+            "text": "The scan of branches and tags was clean for each, 15, 9 and 1 commits with 0 findings, and no default-rule finding was recorded, so none is left as a follow-up."
+          },
+          {
+            "state": "as-planned",
+            "text": "BotTools' pull-request residual was counted and recorded, not stopped on: all 39 manifest blobs still reachable from every ref, over 28 commits; its every-ref scan was clean, 0 findings, no rule."
+          },
+          {
+            "state": "as-planned",
+            "text": "Each repository's step 8 ended with its stage-8 marker, and the next repository started only from it."
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Take a fresh mirror of each repository anew at every run of step 8, its heads equal to the rewritten ones, no tag, and the pull-request refs as recorded.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Require the expectation check on the heads to pass and no manifest blob to be reachable from branches and tags.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Require the secret scan of branches and tags to be clean: a custom-rule finding hands back, and a default-rule finding in a kept file is recorded by rule id and count as a follow-up.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          },
+          {
+            "text": "Count BotTools' pull-request residual and the commits on every ref (39 of 39 blobs and 28 commits expected), and record its every-ref scan by rule, never as a stop.",
+            "ref": "plan.md#stage-7-and-stage-8-for-bottools",
+            "excerpt": {
+              "ref": "plan.md#stage-7-and-stage-8-for-bottools",
+              "heading": "Stage 7 and stage 8 for BotTools",
+              "paragraph": "`S1.5` takes a snapshot of BotTools' webhook (every field but `last_response` and the secret, the URL only as its sha256) and a baseline count of the deliveries GitHub lists (all, and of event `push`). `S1.7` counts them once, right after the push, because GitHub lists deliveries for three days only, prints `RECORD webhook deliveries: listed now <a> (event push: <b>); listed before the push <c> (event push: <d>); push deliveries since the push: <b − d>` and reads the webhook as \"equal\" to its snapshot. The count is recorded as measured and never asserted (2 is expected), and a later run of …",
+              "hash": "7247ae6a74b4"
+            }
+          },
+          {
+            "text": "Let the next repository start only from the stage-8 marker this step writes.",
+            "ref": "plan.md#steps-1-to-8-of-a-repository",
+            "excerpt": {
+              "ref": "plan.md#steps-1-to-8-of-a-repository",
+              "heading": "Steps 1 to 8 of a repository",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` …",
+              "hash": "ba50769f0dc3"
+            }
+          }
+        ],
+        "defense": "Only a mirror taken fresh from GitHub shows each repository clean as GitHub serves it, and BotTools' pull-request refs, hidden from a push, are counted rather than treated as a failure.",
+        "steps": [
+          {
+            "id": "Sn.8",
+            "what": "Fresh mirror and exit tests of each repository.",
+            "check": "`ok    gitleaks: RESULT: CLEAN on branches and tags` and `STAGE <repo>.p8 OK`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          },
+          {
+            "id": "S1.8",
+            "what": "BotTools' pull-request residual counted.",
+            "check": "`residual_blobs=39 manifest=39 missing=0 distinct_all=184 every_ref_commits=28`",
+            "link": "plan.md#steps-1-to-8-of-a-repository"
+          }
+        ],
+        "tests": [
+          "e2e — a fresh mirror and the exit tests of each repository"
+        ],
+        "risks": [
+          "A finding on the fresh mirror comes after the push and cannot be undone by the unit: a custom-rule finding hands back with the counts, and the repositories after it wait"
+        ],
+        "source": "plan.md Steps 1 to 8 of a repository, step 8; Stage 7 and stage 8 for BotTools",
+        "link": "plan.md#steps-1-to-8-of-a-repository"
+      }
+    },
+    {
+      "id": "records",
+      "group": "Proofs",
+      "name": "The records and the close-out",
+      "where": "new files beside the preparation unit's records · the unit's checksum lists",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "missing",
+        "summary": "The units after this one, and the report and cleanup, start from records this unit has not yet written. The residual measurement and the clone replacement take each repository's stage-8 marker, maps, fresh mirror, exit-test counts and push time; #28 takes every unit's records with their checksum lists and any default-rule finding by rule id and count; the preparation unit's records beside them are never written.",
+        "evidence": [
+          "`../consequences.md:153` — what the rewrites hand on, per repository and for BotTools",
+          "`../consequences.md:180` — #28 takes every unit's records with their checksum lists",
+          "`../consequences.md:181` — and any default-rule finding, by rule id and count",
+          "`../consequences.md:91` — each repository's records sit beside the preparation unit's, which are never written"
+        ],
+        "source": "../consequences.md §2.2, §4",
+        "link": "../consequences.md#4-units-and-neighbouring-issues"
+      },
+      "options": [
+        {
+          "id": "new-files-only",
+          "name": "New files only, beside the preparation unit's records; a default-rule finding in a kept file recorded by rule id and file count, with no path and no value, before the push and on the fresh mirror, and taken up as a follow-up; a close-out that reads the three repositories once more and writes the unit's checksum lists; no report row",
+          "verdict": "accepted",
+          "why": "Every earlier record stays as it was, the records, which hold pre-rewrite ids and paths, are never committed, printed or quoted, and the report rows stay the residual measurement's.",
+          "source": "../architecture.md §8.4; ../consequences.md §2.2, §6",
+          "link": "../architecture.md#84-records"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "The unit's records were added as new files: 28, 29 and 28 record files for BotTools and the private repositories beside the earlier records, which read unchanged at the close-out, and 49 run records, the requests, replies, step markers and classes among them, in the unit's own record folder."
+          },
+          {
+            "state": "as-planned",
+            "text": "The output rule passed, 4 of 4 checks: the unit's part of the log holds 1025 lines, with 0 stops, 0 waits, 0 next lines and 10 recorded readings, and no drive-letter path or 40-digit id; the 3 stored replies hold neither, and the 3 request files hold no 40-digit id."
+          },
+          {
+            "state": "as-planned",
+            "text": "The close-out put the records under their checksum lists, found the tools at their pins (96 of 96 checks) and the earlier tool folder at its pins (21 of 21 pinned files, 22 files in the folder, the 21 reused tools equal to their list), and ran the output rule last."
+          },
+          {
+            "state": "as-planned",
+            "text": "What the residual measurement (#41), the clone replacement (#42) and #28 read through their data files' `from` stands: each repository's stage-8 marker and its records under their checksum lists, with no default-rule finding to hand on."
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "build",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Add the unit's records as new files beside the preparation unit's records, which are never written, and keep its requests, replies, step markers, classes and push times in the unit's own record folder.",
+            "ref": "plan.md#records-and-where-they-live",
+            "excerpt": {
+              "ref": "plan.md#records-and-where-they-live",
+              "heading": "Records and where they live",
+              "paragraph": "`DATA\\rewrite\\<repo>\\` keeps the preparation unit's records, never written. This unit adds new files beside them (named in the steps' headers): `filter-repo.log`, `commit-map`, `ref-map`, `changed-refs`, `first-changed-commits`, `suboptimal-issues`, `next-steps.txt`, `purge-list.txt`, `g27-prerun.env`, `entries-before.txt`, `entries-after.txt`, `g27-control-scan.txt`, `g27-control-kept.txt` (and `g27-control.txt` for the first private repository), `expect-check.txt`, `gitleaks-prepush.txt`, `default-rule-findings-prepush.txt` (when the scan finds), `push-expect.txt`, `server-pull-refs.txt`, …",
+              "hash": "57c5414029f4"
+            }
+          },
+          {
+            "text": "Keep everything there out of every console line, stored reply and document: counts, rule ids, fixed markers and file names only.",
+            "ref": "plan.md#requirements",
+            "excerpt": {
+              "ref": "plan.md#requirements",
+              "heading": "Requirements",
+              "paragraph": "Goals",
+              "hash": "45b08453424b"
+            }
+          },
+          {
+            "text": "Close out with the checksum lists over the unit's records, the tools and the earlier tool folder at their pins, and the output rule over the unit's log, stored replies and request files.",
+            "ref": "plan.md#s4--close-out",
+            "excerpt": {
+              "ref": "plan.md#s4--close-out",
+              "heading": "S4 — Close-out",
+              "paragraph": "After the three repositories hold their stage-8 markers.",
+              "hash": "850845f8c5b1"
+            }
+          },
+          {
+            "text": "Hand the residual measurement, the clone replacement and #28 their inputs through their data files' `from`, as the interfaces with the sibling units state them.",
+            "ref": "plan.md#interfaces-with-sibling-units",
+            "excerpt": {
+              "ref": "plan.md#interfaces-with-sibling-units",
+              "heading": "Interfaces with sibling units",
+              "paragraph": "Takes from `workspace-tools` (#39, landed):",
+              "hash": "1f66fa4e3827"
+            }
+          }
+        ],
+        "defense": "The later units read this unit's records only through its data file and checksum lists, so they start from proven inputs, and nothing that holds an id, a path or a name leaves the data folder.",
+        "steps": [
+          {
+            "id": "S4.record",
+            "what": "Write the checksum lists over the unit's records.",
+            "check": "per repository `ok    <repo>: every record of the rewrite stages exists`",
+            "link": "plan.md#s4--close-out"
+          },
+          {
+            "id": "S4.outputs",
+            "what": "Apply the output rule over the unit's own outputs, as the last step.",
+            "check": "four `ok` lines",
+            "link": "plan.md#s4--close-out"
+          }
+        ],
+        "tests": [
+          "gating — the tools and the earlier tool folder at their pins at the close-out",
+          "nonfunctional — the output rule over the unit's log, stored replies and request files"
+        ],
+        "risks": [
+          "Something else writes to the run log, the tool folder or the unit's data file while the unit runs: the close-out's pin checks and the log count read at the start stop on it (assumption A14)"
+        ],
+        "source": "plan.md Records and where they live; S4 — Close-out; Interfaces with sibling units",
+        "link": "plan.md#records-and-where-they-live"
+      }
+    },
+    {
+      "id": "following-units",
+      "group": "Left for later",
+      "name": "Stage 9 and the clone replacement",
+      "where": "the residual measurement, #41 · the clone replacement, #42",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "missing",
+        "summary": "This unit measures nothing GitHub still serves beyond BotTools' residual count, and changes no checkout. Stage 9's probes and feed reads, and the replacement of the private repository clone, which keeps the old history, follow the pushes.",
+        "evidence": [
+          "`../architecture.md:673` — units 3 and 4 both wait for unit 2 and for nothing of each other",
+          "`../architecture.md:858` — the rewrites change no checkout on this machine",
+          "`../consequences.md:79` — clones taken before the pushes keep the old histories; the one known clone, the first private repository's, is replaced"
+        ],
+        "source": "../architecture.md §11, §16; ../consequences.md §2.1",
+        "link": "../architecture.md#16-decomposition"
+      },
+      "options": [
+        {
+          "id": "left-to-41-and-42",
+          "name": "Left to the residual measurement (#41), over the three repositories once the last push is verified, and the clone replacement (#42), once the first private repository is proven",
+          "verdict": "accepted",
+          "why": "The measurement waits for the last push and reads within the events' window; the clone replacement writes to a checkout, not to GitHub, under another grant.",
+          "source": "../architecture.md §15, §16",
+          "link": "../architecture.md#16-decomposition"
+        },
+        {
+          "id": "stage-9-after-each-push",
+          "name": "Stage 9 right after each push, inside the rewrites, as for GKB2 and GKB",
+          "verdict": "declined",
+          "why": "It belongs to another system, it holds the next repository's push for probes and feed reads, and the events lag by up to 6 hours, so reads made minutes after a push are mostly not valid.",
+          "source": "../architecture.md §15",
+          "link": "../architecture.md#15-alternatives-considered"
+        },
+        {
+          "id": "clone-replacement-in-rewrites",
+          "name": "The clone replacement as the last step of the rewrites",
+          "verdict": "declined",
+          "why": "A stop in the replacement would hold the rewrites' landing and the residual measurement, although neither depends on the clone; its write and its grant are of another kind.",
+          "source": "../architecture.md §15",
+          "link": "../architecture.md#15-alternatives-considered"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "No stage 9 ran: the unit's stages ended with the close-out, and the residual probes, the feed reads and the report rows are left to the residual measurement (#41)."
+          },
+          {
+            "state": "as-planned",
+            "text": "No clone was replaced and no graph built: the unit ran only its readiness, the eight steps of each repository and the close-out, and the first private repository's clone replacement is left to #42."
+          },
+          {
+            "state": "as-planned",
+            "text": "No report row was written, the close-out's record step writing checksum lists only, and no report was posted on #2; the report and the cleanup are left to #28."
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "leave",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Run no stage 9: the residual probes, the feed reads and the report rows are the residual measurement's (#41), which follows this unit promptly as the events of BotTools' push cover 30 days and can lag by up to 6 hours.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · …",
+              "hash": "be8fa57a0cbb"
+            }
+          },
+          {
+            "text": "Replace no clone and build no graph: the first private repository's local clone is neither read nor touched; its replacement is #42's.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · …",
+              "hash": "be8fa57a0cbb"
+            }
+          },
+          {
+            "text": "Write no report row, no report on #2 and no cleanup, which are #28's.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · …",
+              "hash": "be8fa57a0cbb"
+            }
+          }
+        ],
+        "defense": "The measurement and the replacement need every branch at its rewritten tip, so they follow the pushes as units of their own.",
+        "source": "plan.md Non-goals; Sequencing and follow-ups",
+        "link": "plan.md#non-goals"
+      }
+    },
+    {
+      "id": "residual-stays",
+      "group": "Left for later",
+      "name": "BotTools' pull-request residual, counted and left in place",
+      "where": "BotTools' `refs/pull/2/head` and `refs/pull/3/head`",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "risk",
+        "summary": "BotTools' pull-request refs keep its old history fetchable after the push. GitHub hides them from a push, so they keep 13 old commits and all 39 purged blobs, and its two pull requests keep showing their pre-rewrite commits; BotTools was public before, so the exposure is not new.",
+        "evidence": [
+          "`../consequences.md:60` — the pull-request refs, hidden from a push, keep 13 old commits and all 39 purged blobs fetchable",
+          "`../consequences.md:227` — only a request to GitHub Support, which the phase does not make, or the repository's removal would end it"
+        ],
+        "source": "../consequences.md §2.1, §6",
+        "link": "../consequences.md#21-github"
+      },
+      "options": [
+        {
+          "id": "count-claim-no-removal",
+          "name": "Counted on the fresh mirror and recorded, with no removal claimed; the residual stays a follow-up",
+          "verdict": "accepted",
+          "why": "Only a request to GitHub Support, which the phase does not make, or the repository's removal would end it.",
+          "source": "../consequences.md §2.1, §6",
+          "link": "../consequences.md#6-follow-ups"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "BotTools' 2 pull-request refs were left as recorded, and read so after the push, on the fresh mirror and at the close-out; the old objects behind them stay reachable from every ref."
+          },
+          {
+            "state": "as-planned",
+            "text": "The residual was counted on BotTools' fresh mirror, 39 of 39 manifest blobs over 28 commits on every ref, and stays a follow-up.",
+            "ref": "consequences.md#6-follow-ups",
+            "excerpt": {
+              "ref": "consequences.md#6-follow-ups",
+              "heading": "6. Follow-ups",
+              "paragraph": "The request service's settings for this job. When the grant section moves to history, as #40 lands, the deny rule on `git push --force-with-lease` is restored in both settings files the service loads, and the three allow lines are removed from the global settings file, each read back once. The published copy of the service's settings is held back until then. · BotTools' pull-request residual stays, as the parent consequences record: only a request to GitHub Support, which the phase does not make, or the repository's removal would end it. · The credentials stay the parent consequences' …",
+              "hash": "bec744ddda0e"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "leave",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Remove nothing GitHub still serves: BotTools' pull-request refs and old objects stay, and no GitHub Support ticket is filed.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · …",
+              "hash": "be8fa57a0cbb"
+            }
+          },
+          {
+            "text": "Count the residual on BotTools' fresh mirror and leave it as a follow-up.",
+            "ref": "plan.md#sequencing-and-follow-ups",
+            "excerpt": {
+              "ref": "plan.md#sequencing-and-follow-ups",
+              "heading": "Sequencing and follow-ups",
+              "paragraph": "Order. The owner gives the grant, the lift and the contingent allow line (Design, \"The grant\"); `S0` (all eight steps for the three repositories, before any rewrite starts, because `S0.inputs` and `S0.repos` compare the mirrors and the servers with their recorded state); `S1`, then `S2`, then `S3`, each repository starting only when the previous holds its stage-8 marker; `S4`; the landing's document checks and the documents. The unit starts after the tools unit (#39) has landed, as it has (pull request #44), and blocks #41 and #42.",
+              "hash": "6e8cbc6b0ee6"
+            }
+          }
+        ],
+        "defense": "Only a request to GitHub Support, which the phase does not make, or the repository's removal would end it.",
+        "source": "plan.md Non-goals; Sequencing and follow-ups",
+        "link": "plan.md#non-goals"
+      }
+    },
+    {
+      "id": "webhook-kept",
+      "group": "Left for later",
+      "name": "BotTools' webhook, kept as it is",
+      "where": "BotTools' one webhook",
+      "system": "rewrite-pipeline",
+      "gap": {
+        "kind": "risk",
+        "summary": "BotTools' webhook will be sent the rewrite. It is active, to a CircleCI host, and subscribed to push events, so each rewritten branch sends it one push delivery, 2 in all; no commit of BotTools' history holds a CI configuration.",
+        "evidence": [
+          "`../architecture.md:109` — one webhook, active, to a CircleCI host, subscribed to push events",
+          "`../consequences.md:73` — one push delivery per rewritten branch, 2 in all; no commit holds a CI configuration"
+        ],
+        "source": "../architecture.md §2.1; ../consequences.md §2.1",
+        "link": "../consequences.md#21-github"
+      },
+      "options": [
+        {
+          "id": "kept-counted",
+          "name": "The webhook left as it is through this work, its deliveries recorded by count, never by payload",
+          "verdict": "accepted",
+          "why": "Whether to remove it belongs with the repository's archive, Phase 17 (#16).",
+          "source": "../consequences.md §2.1, §6",
+          "link": "../consequences.md#6-follow-ups"
+        }
+      ],
+      "asBuilt": {
+        "state": "as-planned",
+        "statements": [
+          {
+            "state": "as-planned",
+            "text": "BotTools' webhook was left as it was: it equalled its snapshot after the push and again at the close-out."
+          },
+          {
+            "state": "as-planned",
+            "text": "Its snapshot and deliveries baseline were taken at the push preparation, 0 deliveries listed; its deliveries were counted once after the push, 2 of event push, and it read as unchanged."
+          },
+          {
+            "state": "as-planned",
+            "text": "Whether to remove it stays a follow-up for Phase 17 (#16).",
+            "ref": "consequences.md#6-follow-ups",
+            "excerpt": {
+              "ref": "consequences.md#6-follow-ups",
+              "heading": "6. Follow-ups",
+              "paragraph": "The request service's settings for this job. When the grant section moves to history, as #40 lands, the deny rule on `git push --force-with-lease` is restored in both settings files the service loads, and the three allow lines are removed from the global settings file, each read back once. The published copy of the service's settings is held back until then. · BotTools' pull-request residual stays, as the parent consequences record: only a request to GitHub Support, which the phase does not make, or the repository's removal would end it. · The credentials stay the parent consequences' …",
+              "hash": "bec744ddda0e"
+            }
+          }
+        ]
+      },
+      "verdict": {
+        "kind": "leave",
+        "list": "bullets",
+        "statements": [
+          {
+            "text": "Change nothing on BotTools' webhook and read no delivery's payload.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · …",
+              "hash": "be8fa57a0cbb"
+            }
+          },
+          {
+            "text": "Snapshot it before the push, count its push deliveries once after it, and read it as unchanged.",
+            "ref": "plan.md#stage-7-and-stage-8-for-bottools",
+            "excerpt": {
+              "ref": "plan.md#stage-7-and-stage-8-for-bottools",
+              "heading": "Stage 7 and stage 8 for BotTools",
+              "paragraph": "`S1.5` takes a snapshot of BotTools' webhook (every field but `last_response` and the secret, the URL only as its sha256) and a baseline count of the deliveries GitHub lists (all, and of event `push`). `S1.7` counts them once, right after the push, because GitHub lists deliveries for three days only, prints `RECORD webhook deliveries: listed now <a> (event push: <b>); listed before the push <c> (event push: <d>); push deliveries since the push: <b − d>` and reads the webhook as \"equal\" to its snapshot. The count is recorded as measured and never asserted (2 is expected), and a later run of …",
+              "hash": "7247ae6a74b4"
+            }
+          },
+          {
+            "text": "Leave whether to remove it to Phase 17 (#16), when the repository is archived.",
+            "ref": "plan.md#sequencing-and-follow-ups",
+            "excerpt": {
+              "ref": "plan.md#sequencing-and-follow-ups",
+              "heading": "Sequencing and follow-ups",
+              "paragraph": "Order. The owner gives the grant, the lift and the contingent allow line (Design, \"The grant\"); `S0` (all eight steps for the three repositories, before any rewrite starts, because `S0.inputs` and `S0.repos` compare the mirrors and the servers with their recorded state); `S1`, then `S2`, then `S3`, each repository starting only when the previous holds its stage-8 marker; `S4`; the landing's document checks and the documents. The unit starts after the tools unit (#39) has landed, as it has (pull request #44), and blocks #41 and #42.",
+              "hash": "6e8cbc6b0ee6"
+            }
+          }
+        ],
+        "defense": "The webhook is sent one push delivery per rewritten branch whatever the unit does; the count is the record, and its removal belongs with the archiving.",
+        "source": "plan.md Non-goals; Stage 7 and stage 8 for BotTools; Sequencing and follow-ups",
+        "link": "plan.md#non-goals"
+      }
+    }
+  ],
+  "impact": {
+    "basis": "as-built",
+    "summary": "As built, no module is published and no version moves: the landing carries documents and generated boards only. Three force-pushes rewrote the histories of BotTools (public), the private repositories, five branches in all, each repository by one atomic push under a lease on every branch's recorded tip, and each landed whole; every commit id of the three changed, and nothing else on GitHub was written. On this machine the mirrors were rewritten beside their untouched backups, and fresh mirrors and the unit's records were added (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
+    "none": null,
+    "release": {
+      "bump": "none",
+      "version": null,
+      "note": "no module is published and no version moves",
+      "nothingPublished": true
+    },
+    "downstream": [
+      {
+        "who": "BotTools on GitHub (public)",
+        "kind": "repository",
+        "system": null,
+        "effect": "behaviour",
+        "summary": "`main` and `Working-Branch` rewritten, 16 commits to 15: every commit id changed and the purged paths left every commit. Its two pull-request refs keep 13 old commits and its 39 purged blobs fetchable, counted and not removed; its webhook took one push delivery per branch, two in all, counted once; push protection for users applied to its push alone and did not refuse it.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "The first private repository on GitHub",
+        "kind": "repository",
+        "system": null,
+        "effect": "behaviour",
+        "summary": "`main` and `feature/pokercommand` rewritten, 11 commits to 9: every commit id changed; its old objects stay readable by those with access.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "The second private repository on GitHub",
+        "kind": "repository",
+        "system": null,
+        "effect": "behaviour",
+        "summary": "`main` rewritten, 2 commits to 1: every commit id changed; its old objects stay readable by those with access.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "The private repository clone on this machine",
+        "kind": "operator",
+        "system": null,
+        "effect": "behaviour",
+        "summary": "Since the first private repository's push it shares no commit with the server's branches. This unit did not touch it; the clone replacement (#42) replaces it. No fork of the three repositories exists.",
+        "link": "consequences.md#21-github"
+      },
+      {
+        "who": "The workspace",
+        "kind": "operator",
+        "system": "rewrite-pipeline",
+        "effect": "behaviour",
+        "summary": "The three mirrors were rewritten in place and their untouched backups stay as they were; a fresh mirror of each, the unit's data file, the grant's wording, its scratch folder and the scans' reports were added. The tool folders were not changed; the phase's cleanup deletes the workspace.",
+        "link": "consequences.md#22-this-machine"
+      },
+      {
+        "who": "The data folder",
+        "kind": "operator",
+        "system": "rewrite-pipeline",
+        "effect": "additive",
+        "summary": "The unit's own record folder, and new files beside the preparation unit's records in each repository's folder, which were not written, each folder with its checksum list; the run log gained the unit's lines.",
+        "link": "consequences.md#22-this-machine"
+      },
+      {
+        "who": "The request service",
+        "kind": "operator",
+        "system": null,
+        "effect": "behaviour",
+        "summary": "Its local state changed at the owner's console only: the grant section of this unit's job, the deny rule on the lease push lifted for the job, and three allow lines, one per push, in the global settings file it reads, with no restart. All three stay until the section moves to history, when the deny rule is restored and the allow lines are removed.",
+        "link": "consequences.md#22-this-machine"
+      },
+      {
+        "who": "KotlinBottools' documents and boards",
+        "kind": "repository",
+        "system": null,
+        "effect": "additive",
+        "summary": "The unit's plan, consequences and as-built record, one link line in the parent consequences, dated notes on the parent design's §2.4 and §12, where the build changed what they describe, and the regenerated boards; no README change and no CHANGELOG entry.",
+        "link": "consequences.md#23-documents-and-generated-boards"
+      }
+    ],
+    "adaptation": [
+      {
+        "who": "The owner, before the unit runs",
+        "system": null,
+        "need": "required",
+        "summary": "Gave the grant section and the lift of the deny rule on the lease push. The lift did not yet hold in every settings file the request service loads at BotTools' first call, which the service's own check refused before anything ran; three allow lines, one per push, then went into the global settings file the running service reads, and no restart was needed.",
+        "link": "plan.md#the-grant"
+      },
+      {
+        "who": "The residual measurement, #41",
+        "system": null,
+        "need": "required",
+        "summary": "Its data file names this unit in `from`: each repository's stage-8 marker, its records with their checksum list, the time of each push, recorded as the time the push was classed, BotTools' delivery counts and every branch at its rewritten tip. It follows promptly, as the events of BotTools' push cover 30 days from 2026-11-15 and can lag by up to 6 hours.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "who": "The clone replacement, #42",
+        "system": null,
+        "need": "required",
+        "summary": "Its data file names this unit in `from`: the first private repository's stage-8 marker, with its maps, its manifest and its untouched backup. For its own requests, it takes what the parent design's §2.4 now says of allow lines and restarts, in its dated note.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "who": "The residual report and cleanup, #28",
+        "system": null,
+        "need": "required",
+        "summary": "It takes every record of this unit with its checksum list. No default-rule finding arose, so none is handed on.",
+        "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      }
+    ],
+    "api": [],
+    "conversion": [],
+    "source": "consequences.md §1 to §6, reconciled with the build; final-implementation.md",
+    "link": "consequences.md#2-blast-radius",
+    "changes": [
+      {
+        "entry": "downstream.6",
+        "what": "Three allow lines, one per push, went into the request service's global settings file at once, and the service ran BotTools' refused request again with no restart.",
+        "why": "Once the line was in the file the running service reads, it applied it, so a restart had nothing left to do; the later pushes met their lines already in place and neither was refused (the as-built record, deviations 1 and 2).",
+        "when": "Implementation, the pushes (step 6)",
+        "ref": "final-implementation.md#4-deviations-from-the-plan"
+      },
+      {
+        "entry": "adaptation.0",
+        "what": "The lift of the deny rule held in one of the two settings files the request service loads when the unit started, and in both from 19:09Z; BotTools' first call was refused by the service's own check before anything ran.",
+        "why": "The plan's path for such a call ran as designed: the state read named every branch at its old tip, nothing was sent twice, and the service ran the request again itself (consequences, A4).",
+        "when": "Implementation, the pushes (step 6)",
+        "ref": "consequences.md#5-known-gaps"
+      },
+      {
+        "entry": "adaptation.1",
+        "what": "The time recorded for each push is the time the push was classed, 111, 68 and 77 seconds after GitHub's own push time.",
+        "why": "The tool writes it when it classes the push as pushed, the first moment the unit knows the push landed; the residual measurement compares it with the events' window in whole days, so the difference changes nothing there (deviation 3).",
+        "when": "Implementation, the pushes (step 6)",
+        "ref": "final-implementation.md#4-deviations-from-the-plan"
+      },
+      {
+        "entry": "adaptation.2",
+        "what": "The clone replacement also takes, for its own requests, the parent design's dated note on allow lines and restarts.",
+        "why": "The build showed an allow line takes effect without a restart, so the parent design's §2.4 and §12 carry dated notes on it.",
+        "when": "Document",
+        "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
+      },
+      {
+        "entry": "adaptation.3",
+        "what": "No default-rule finding is handed on to the residual report and cleanup.",
+        "why": "None arose in BotTools or either private repository, before a push or on a fresh mirror.",
+        "when": "Implementation, steps 4 and 8",
+        "ref": "consequences.md#6-follow-ups"
+      },
+      {
+        "entry": "downstream.7",
+        "what": "The parent design took dated notes on its §2.4 and §12.",
+        "why": "The build changed what they describe: an allow line placed in the file the running request service reads took effect without a restart.",
+        "when": "Document",
+        "ref": "consequences.md#23-documents-and-generated-boards"
+      }
+    ]
+  },
+  "tests": {
+    "base": "main",
+    "updated": "2026-11-15T20:13:40Z",
+    "added": [],
+    "amended": [],
+    "relevant": [
+      {
+        "class": "s0-ready.sh tools",
+        "module": "tools/g27",
+        "testSet": "gating",
+        "tests": 192,
+        "result": {
+          "state": "passed",
+          "passed": 192,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-15T20:13:40Z"
+        }
+      },
+      {
+        "class": "gselftest.sh deterministic",
+        "module": "tools/g27",
+        "testSet": "deterministic",
+        "tests": 63,
+        "result": {
+          "state": "passed",
+          "passed": 63,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-15T20:13:40Z"
+        }
+      },
+      {
+        "class": "s0-ready.sh pins",
+        "module": "tools/g27",
+        "testSet": "gating",
+        "tests": 7,
+        "result": {
+          "state": "passed",
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-15T20:13:40Z"
+        }
+      },
+      {
+        "class": "s0-ready.sh inputs",
+        "module": "tools/g27",
+        "testSet": "integration",
+        "tests": 62,
+        "result": {
+          "state": "passed",
+          "passed": 62,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-15T20:13:40Z"
+        }
+      },
+      {
+        "class": "s0-ready.sh repos",
+        "module": "tools/g27",
+        "testSet": "integration",
+        "tests": 39,
+        "result": {
+          "state": "passed",
+          "passed": 39,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-15T20:13:40Z"
+        }
+      },
+      {
+        "class": "s0-ready.sh grant",
+        "module": "tools/g27",
+        "testSet": "integration",
+        "tests": 12,
+        "result": {
+          "state": "passed",
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-15T20:13:40Z"
+        }
+      },
+      {
+        "class": "c1-close.sh reads",
+        "module": "tools/g27",
+        "testSet": "integration",
+        "tests": 20,
+        "result": {
+          "state": "passed",
+          "passed": 20,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-15T20:13:40Z"
+        }
+      },
+      {
+        "class": "c1-close.sh record",
+        "module": "tools/g27",
+        "testSet": "integration",
+        "tests": 7,
+        "result": {
+          "state": "passed",
+          "passed": 7,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-15T20:13:40Z"
+        }
+      },
+      {
+        "class": "the output rule over the unit's outputs",
+        "module": "tools/g27",
+        "testSet": "nonfunctional",
+        "tests": 4,
+        "result": {
+          "state": "passed",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "pass": 1,
+          "at": "2026-11-15T20:13:40Z"
+        }
+      }
+    ]
+  },
+  "roadmap": {
+    "issue": 27,
+    "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
+    "asOf": "2026-11-15",
+    "items": [
+      {
+        "issue": 39,
+        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools and the private repositories",
+        "state": "CLOSED",
+        "stateReason": "COMPLETED"
+      },
+      {
+        "issue": 40,
+        "title": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
+        "state": "OPEN"
+      },
+      {
+        "issue": 41,
+        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
+        "state": "OPEN"
+      },
+      {
+        "issue": 42,
+        "title": "Phase 0 · 7.4 — Replace the private repository clone",
+        "state": "OPEN"
+      }
+    ]
+  },
+  "followUps": [
+    {
+      "issue": 41,
+      "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
+      "note": "runs promptly after this unit: stage 9's probes and feed reads, from this unit's records"
+    },
+    {
+      "issue": 42,
+      "title": "Phase 0 · 7.4 — Replace the private repository clone",
+      "note": "replaces the private repository clone, which shares no commit with the server's branches after the first private repository's push"
+    },
+    {
+      "issue": 28,
+      "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
+      "note": "takes every record of this unit with its checksum list, and any default-rule finding by repository, rule id and count"
+    },
+    {
+      "name": "Default-rule findings in kept files",
+      "note": "listed by repository, rule id and count at the reconciliation if the run records one; the owner decides between an allowlist for that one rule and path and acceptance as recorded"
+    },
+    {
+      "name": "BotTools' pull-request residual",
+      "note": "stays: only a request to GitHub Support, which the phase does not make, or the repository's removal would end it"
+    },
+    {
+      "name": "BotTools' webhook",
+      "note": "stays as it is; whether to remove it when the repository is archived is Phase 17's (#16)"
+    },
+    {
+      "name": "The credentials",
+      "note": "stay the parent consequences' follow-up"
+    },
+    {
+      "name": "A tool defect the run meets",
+      "note": "stops the unit before its write and is corrected by a new version of that file under the tools unit's rule, with a dated note in its consequences"
+    }
+  ],
+  "documents": [
+    {
+      "label": "plan.md",
+      "path": "plan.md",
+      "note": "the requirements, the shape of the run, the grant, the push with its class table and resend rule, the stops, the procedure S0 to S4 with every expected line, the test plan and the interfaces with the sibling units"
+    },
+    {
+      "label": "consequences.md",
+      "path": "consequences.md",
+      "note": "the published artifacts (none), the blast radius on GitHub, this machine and the documents, the adoption, the sibling units, the known gaps and the follow-ups"
+    },
+    {
+      "label": "Architecture",
+      "path": "../architecture.md",
+      "note": "the parent design: unit `rewrites`, §8 the rewrites, with §5.1, §11, §12, §13.4 and §17"
+    },
+    {
+      "label": "#27's research",
+      "path": "../research/README.md",
+      "note": "the research questions of the parent design, with the verification and the summary"
+    },
+    {
+      "label": "The push findings",
+      "path": "../research/two-branch-lease-push.md",
+      "note": "several leases in one push, `--atomic`, and what a force-push of two branches publishes"
+    },
+    {
+      "label": "#27's consequences",
+      "path": "../consequences.md",
+      "note": "the blast radius, known gaps and follow-ups of the whole of #27, which this unit's consequences do not restate"
+    },
+    {
+      "label": "The workspace tools' plan",
+      "path": "../39-workspace-tools/plan.md",
+      "note": "the tools this unit runs: their commands and printed lines"
+    }
+  ],
+  "notes": {},
+  "issueBoards": {
+    "2": "../../dashboard.html",
+    "39": "../39-workspace-tools/dashboard.html"
+  },
+  "links": {
+    "workBoard": "../../../../index.html",
+    "repoBoard": "../../../../../dashboards/index.html"
+  }
+}
+);

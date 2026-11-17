@@ -812,7 +812,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "31571648392f"
+              "hash": "c5f0416d98c3"
             }
           },
           {
@@ -822,7 +822,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
               "heading": "S1 — Workspace, tool files and version pins",
               "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
-              "hash": "d526c2bf1547"
+              "hash": "ca270a1011d9"
             }
           },
           {
@@ -832,7 +832,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
               "heading": "S1 — Workspace, tool files and version pins",
               "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
-              "hash": "d526c2bf1547"
+              "hash": "ca270a1011d9"
             }
           },
           {
@@ -842,7 +842,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#workspace-and-data-folder-layout",
               "heading": "Workspace and data-folder layout",
               "paragraph": "The layout is architecture §5, with these additions: `DATA/run/canary/` for the canary's count files, and, in `DATA/rewrite/<repo>/`, the files this unit writes (listed below).",
-              "hash": "a99636f4f485"
+              "hash": "9f6e5ffcfdd7"
             }
           }
         ],
@@ -928,7 +928,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
               "heading": "S1 — Workspace, tool files and version pins",
               "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
-              "hash": "d526c2bf1547"
+              "hash": "ca270a1011d9"
             }
           },
           {
@@ -938,7 +938,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
               "heading": "S1 — Workspace, tool files and version pins",
               "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
-              "hash": "d526c2bf1547"
+              "hash": "ca270a1011d9"
             }
           }
         ],
@@ -1241,7 +1241,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "31571648392f"
+              "hash": "c5f0416d98c3"
             }
           },
           {
@@ -1413,7 +1413,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s1--workspace-tool-files-and-version-pins",
               "heading": "S1 — Workspace, tool files and version pins",
               "paragraph": "Bootstrap: one call, typed exactly as written. It creates the two folders' first paths, records this checkout's main working-tree path in `kbt-path.txt`, saves `env.sh` and `save-tools.sh` from this plan and then runs `save-tools.sh`, which saves the tool files (44 in the folder when it has finished). It must run from inside the working tree that holds this plan. It contains no doubled backslash.",
-              "hash": "d526c2bf1547"
+              "hash": "ca270a1011d9"
             }
           },
           {
@@ -1433,7 +1433,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#current-state",
               "heading": "Current state",
               "paragraph": "Facts checked on 2026-11-08.",
-              "hash": "669d2b70b96d"
+              "hash": "df02893d1eb6"
             }
           },
           {
@@ -1586,7 +1586,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "31571648392f"
+              "hash": "c5f0416d98c3"
             }
           },
           {
@@ -1606,7 +1606,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "31571648392f"
+              "hash": "c5f0416d98c3"
             }
           },
           {
@@ -1715,7 +1715,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s5--the-six-path-lists",
               "heading": "S5 — The six path lists",
               "paragraph": "Writes `WS/lists/<repo>-purge.txt` with `printf '%s\\n'` (the entries of the parent purge research §6.2, unchanged) and copies them to `DATA/run/lists/` with a `SHA256SUMS`. Check: for each list the character proofs (no CR, pure ASCII, no NUL, ends in a newline, only the allowed characters, no dangerous form, no blank line, the entry count) and the recorded byte count and sha256:",
-              "hash": "9550542f90bf"
+              "hash": "0989e4bffcff"
             }
           },
           {
@@ -1725,7 +1725,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s5--the-six-path-lists",
               "heading": "S5 — The six path lists",
               "paragraph": "Writes `WS/lists/<repo>-purge.txt` with `printf '%s\\n'` (the entries of the parent purge research §6.2, unchanged) and copies them to `DATA/run/lists/` with a `SHA256SUMS`. Check: for each list the character proofs (no CR, pure ASCII, no NUL, ends in a newline, only the allowed characters, no dangerous form, no blank line, the entry count) and the recorded byte count and sha256:",
-              "hash": "9550542f90bf"
+              "hash": "0989e4bffcff"
             }
           },
           {
@@ -1735,7 +1735,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s5--the-six-path-lists",
               "heading": "S5 — The six path lists",
               "paragraph": "Writes `WS/lists/<repo>-purge.txt` with `printf '%s\\n'` (the entries of the parent purge research §6.2, unchanged) and copies them to `DATA/run/lists/` with a `SHA256SUMS`. Check: for each list the character proofs (no CR, pure ASCII, no NUL, ends in a newline, only the allowed characters, no dangerous form, no blank line, the entry count) and the recorded byte count and sha256:",
-              "hash": "9550542f90bf"
+              "hash": "0989e4bffcff"
             }
           }
         ],
@@ -1824,7 +1824,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#33-mirrors-and-backups",
               "heading": "3.3 Mirrors and backups",
               "paragraph": "",
-              "hash": "64ef130dbf49"
+              "hash": "77311b92996a"
             }
           }
         ]
@@ -1839,7 +1839,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
               "heading": "S6 — Authentication, mirrors and untouched backups",
               "paragraph": "First the proof, before anything is cloned:",
-              "hash": "24cea6fb55c7"
+              "hash": "9ae7d1374d8b"
             }
           },
           {
@@ -1849,7 +1849,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
               "heading": "S6 — Authentication, mirrors and untouched backups",
               "paragraph": "First the proof, before anything is cloned:",
-              "hash": "24cea6fb55c7"
+              "hash": "9ae7d1374d8b"
             }
           },
           {
@@ -1859,7 +1859,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
               "heading": "S6 — Authentication, mirrors and untouched backups",
               "paragraph": "First the proof, before anything is cloned:",
-              "hash": "24cea6fb55c7"
+              "hash": "9ae7d1374d8b"
             }
           }
         ],
@@ -1942,7 +1942,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#33-mirrors-and-backups",
               "heading": "3.3 Mirrors and backups",
               "paragraph": "",
-              "hash": "64ef130dbf49"
+              "hash": "77311b92996a"
             }
           },
           {
@@ -1979,7 +1979,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
               "heading": "S6 — Authentication, mirrors and untouched backups",
               "paragraph": "First the proof, before anything is cloned:",
-              "hash": "24cea6fb55c7"
+              "hash": "9ae7d1374d8b"
             }
           },
           {
@@ -1989,7 +1989,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
               "heading": "S6 — Authentication, mirrors and untouched backups",
               "paragraph": "First the proof, before anything is cloned:",
-              "hash": "24cea6fb55c7"
+              "hash": "9ae7d1374d8b"
             }
           },
           {
@@ -1999,7 +1999,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s6--authentication-mirrors-and-untouched-backups",
               "heading": "S6 — Authentication, mirrors and untouched backups",
               "paragraph": "First the proof, before anything is cloned:",
-              "hash": "24cea6fb55c7"
+              "hash": "9ae7d1374d8b"
             }
           },
           {
@@ -2125,7 +2125,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#34-the-legacy-data-copy",
               "heading": "3.4 The legacy data copy",
               "paragraph": "",
-              "hash": "501ee573d80c"
+              "hash": "17334e95b77e"
             }
           },
           {
@@ -2151,7 +2151,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s7--the-legacy-data-copy",
               "heading": "S7 — The legacy data copy",
               "paragraph": "Copies `BotData.xml` and `guildData/` from the three backup mirrors, blob by blob through `git cat-file blob` into the data folder, and verifies each file by `git hash-object --no-filters`. Check:",
-              "hash": "228cf57a4f0f"
+              "hash": "f4e1667344bd"
             }
           },
           {
@@ -2161,7 +2161,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s7--the-legacy-data-copy",
               "heading": "S7 — The legacy data copy",
               "paragraph": "Copies `BotData.xml` and `guildData/` from the three backup mirrors, blob by blob through `git cat-file blob` into the data folder, and verifies each file by `git hash-object --no-filters`. Check:",
-              "hash": "228cf57a4f0f"
+              "hash": "f4e1667344bd"
             }
           },
           {
@@ -2171,7 +2171,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s7--the-legacy-data-copy",
               "heading": "S7 — The legacy data copy",
               "paragraph": "Copies `BotData.xml` and `guildData/` from the three backup mirrors, blob by blob through `git cat-file blob` into the data folder, and verifies each file by `git hash-object --no-filters`. Check:",
-              "hash": "228cf57a4f0f"
+              "hash": "f4e1667344bd"
             }
           },
           {
@@ -2181,7 +2181,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s7--the-legacy-data-copy",
               "heading": "S7 — The legacy data copy",
               "paragraph": "Copies `BotData.xml` and `guildData/` from the three backup mirrors, blob by blob through `git cat-file blob` into the data folder, and verifies each file by `git hash-object --no-filters`. Check:",
-              "hash": "228cf57a4f0f"
+              "hash": "f4e1667344bd"
             }
           }
         ],
@@ -2259,7 +2259,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#35-manifests-and-expectation-rows",
               "heading": "3.5 Manifests and expectation rows",
               "paragraph": "All values equal the research table. `P` and the commits after are the table's own (`T − P`); each later rewrite proves `P`.",
-              "hash": "a59f60a28908"
+              "hash": "818fa7bd6afc"
             }
           },
           {
@@ -2270,7 +2270,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#35-manifests-and-expectation-rows",
               "heading": "3.5 Manifests and expectation rows",
               "paragraph": "All values equal the research table. `P` and the commits after are the table's own (`T − P`); each later rewrite proves `P`.",
-              "hash": "a59f60a28908"
+              "hash": "818fa7bd6afc"
             }
           },
           {
@@ -2281,7 +2281,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#35-manifests-and-expectation-rows",
               "heading": "3.5 Manifests and expectation rows",
               "paragraph": "All values equal the research table. `P` and the commits after are the table's own (`T − P`); each later rewrite proves `P`.",
-              "hash": "a59f60a28908"
+              "hash": "818fa7bd6afc"
             }
           },
           {
@@ -2292,7 +2292,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#35-manifests-and-expectation-rows",
               "heading": "3.5 Manifests and expectation rows",
               "paragraph": "All values equal the research table. `P` and the commits after are the table's own (`T − P`); each later rewrite proves `P`.",
-              "hash": "a59f60a28908"
+              "hash": "818fa7bd6afc"
             }
           }
         ]
@@ -2307,7 +2307,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
               "heading": "S8 — Manifests, expectation rows and positive controls",
               "paragraph": "One call per repository, in this order, with `run_in_background`:",
-              "hash": "2a105bffff20"
+              "hash": "b0bacfaf2cc7"
             }
           },
           {
@@ -2317,7 +2317,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
               "heading": "S8 — Manifests, expectation rows and positive controls",
               "paragraph": "One call per repository, in this order, with `run_in_background`:",
-              "hash": "2a105bffff20"
+              "hash": "b0bacfaf2cc7"
             }
           },
           {
@@ -2327,7 +2327,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
               "heading": "S8 — Manifests, expectation rows and positive controls",
               "paragraph": "One call per repository, in this order, with `run_in_background`:",
-              "hash": "2a105bffff20"
+              "hash": "b0bacfaf2cc7"
             }
           },
           {
@@ -2337,7 +2337,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
               "heading": "S8 — Manifests, expectation rows and positive controls",
               "paragraph": "One call per repository, in this order, with `run_in_background`:",
-              "hash": "2a105bffff20"
+              "hash": "b0bacfaf2cc7"
             }
           }
         ],
@@ -2405,7 +2405,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
               "heading": "3.6 Positive controls on the untouched backups",
               "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and the first private repository. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
-              "hash": "601c9df10c23"
+              "hash": "e5ecbb1c9f61"
             }
           },
           {
@@ -2416,7 +2416,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
               "heading": "3.6 Positive controls on the untouched backups",
               "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and the first private repository. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
-              "hash": "601c9df10c23"
+              "hash": "e5ecbb1c9f61"
             }
           },
           {
@@ -2427,7 +2427,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
               "heading": "3.6 Positive controls on the untouched backups",
               "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and the first private repository. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
-              "hash": "601c9df10c23"
+              "hash": "e5ecbb1c9f61"
             }
           },
           {
@@ -2438,7 +2438,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
               "heading": "3.6 Positive controls on the untouched backups",
               "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and the first private repository. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
-              "hash": "601c9df10c23"
+              "hash": "e5ecbb1c9f61"
             }
           }
         ]
@@ -2453,7 +2453,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
               "heading": "S8 — Manifests, expectation rows and positive controls",
               "paragraph": "One call per repository, in this order, with `run_in_background`:",
-              "hash": "2a105bffff20"
+              "hash": "b0bacfaf2cc7"
             }
           },
           {
@@ -2463,7 +2463,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
               "heading": "S8 — Manifests, expectation rows and positive controls",
               "paragraph": "One call per repository, in this order, with `run_in_background`:",
-              "hash": "2a105bffff20"
+              "hash": "b0bacfaf2cc7"
             }
           },
           {
@@ -2473,7 +2473,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
               "heading": "S8 — Manifests, expectation rows and positive controls",
               "paragraph": "One call per repository, in this order, with `run_in_background`:",
-              "hash": "2a105bffff20"
+              "hash": "b0bacfaf2cc7"
             }
           },
           {
@@ -2483,7 +2483,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
               "heading": "S8 — Manifests, expectation rows and positive controls",
               "paragraph": "One call per repository, in this order, with `run_in_background`:",
-              "hash": "2a105bffff20"
+              "hash": "b0bacfaf2cc7"
             }
           }
         ],
@@ -2620,7 +2620,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#workspace-and-data-folder-layout",
               "heading": "Workspace and data-folder layout",
               "paragraph": "The layout is architecture §5, with these additions: `DATA/run/canary/` for the canary's count files, and, in `DATA/rewrite/<repo>/`, the files this unit writes (listed below).",
-              "hash": "a99636f4f485"
+              "hash": "9f6e5ffcfdd7"
             }
           },
           {
@@ -2712,7 +2712,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "consequences.md#4-sibling-units-and-neighbouring-issues",
               "heading": "4. Sibling units and neighbouring issues",
               "paragraph": "What the later units consume (the contract is the \"Interfaces with sibling units\" section of `plan.md`; this is its summary):",
-              "hash": "0e72717905c0"
+              "hash": "af5660f874da"
             }
           }
         ]
@@ -2726,8 +2726,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the private repository clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 unless …",
-              "hash": "85755a919d0e"
+              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the private repository clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 …",
+              "hash": "c0de69ef7804"
             }
           },
           {
@@ -2736,8 +2736,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the private repository clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 unless …",
-              "hash": "85755a919d0e"
+              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the private repository clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 …",
+              "hash": "c0de69ef7804"
             }
           },
           {
@@ -2747,7 +2747,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#interfaces-with-sibling-units",
               "heading": "Interfaces with sibling units",
               "paragraph": "This unit has no dependencies: it starts once #2's planning documents have landed, and they have. It expects nothing from any sibling. What it provides, by slug:",
-              "hash": "eb50433f4bf0"
+              "hash": "b4f102569e4a"
             }
           }
         ],
@@ -2827,11 +2827,11 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       },
       {
-        "who": "`kotlinbottools-publish` (#25), `gkb2-gkb-rewrite` (#26), `bottools-trumpbot-support-rewrite` (#27) and `residual-report-and-cleanup` (#28)",
+        "who": "`kotlinbottools-publish` (#25), `gkb2-gkb-rewrite` (#26), `rewrite-bottools-and-the-private-repositories` (#27) and `residual-report-and-cleanup` (#28)",
         "kind": "consumer",
         "system": "kotlinbottools",
         "effect": "additive",
-        "summary": "Every one uses the installed and saved tools, the `env.sh` contract, the six lists, `COPY-VERIFIED`, the runner and the log. `gkb2-gkb-rewrite` and `bottools-trumpbot-support-rewrite` also use the five static repositories' backups, manifests and expectation rows; `kotlinbottools-publish` and `residual-report-and-cleanup` also use the proven authentication and the scan tools; `kotlinbottools-publish` accounts for the generated boards' commit ids in its id-reference check.",
+        "summary": "Every one uses the installed and saved tools, the `env.sh` contract, the six lists, `COPY-VERIFIED`, the runner and the log. `gkb2-gkb-rewrite` and `rewrite-bottools-and-the-private-repositories` also use the five static repositories' backups, manifests and expectation rows; `kotlinbottools-publish` and `residual-report-and-cleanup` also use the proven authentication and the scan tools; `kotlinbottools-publish` accounts for the generated boards' commit ids in its id-reference check.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       }
     ],
@@ -2873,7 +2873,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "entry": "downstream.7",
         "what": "What each of the four later units consumes is stated unit by unit.",
-        "why": "Only `gkb2-gkb-rewrite` and `bottools-trumpbot-support-rewrite` consume the backups, manifests and expectation rows the planned entry named for all four.",
+        "why": "Only `gkb2-gkb-rewrite` and `rewrite-bottools-and-the-private-repositories` consume the backups, manifests and expectation rows the planned entry named for all four.",
         "when": "Document",
         "ref": "consequences.md#4-sibling-units-and-neighbouring-issues"
       },

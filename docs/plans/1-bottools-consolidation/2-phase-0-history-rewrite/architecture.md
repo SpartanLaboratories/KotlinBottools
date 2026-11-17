@@ -60,17 +60,17 @@
 
 ### 1.1 What the phase must achieve
 
-1. **Six histories purged.** KotlinBottools, GKB2, GKB, BotTools, TrumpBot and Support are each
+1. **Six histories purged.** KotlinBottools, GKB2, GKB, BotTools and the private repositories are each
    rewritten by `git filter-repo --sensitive-data-removal --invert-paths --paths-from-file` in a
    mirror clone, using the root-anchored literal path list of the parent research §6.2, and then
    pushed with `git push --force --mirror`. The order is:
    1. KotlinBottools;
    2. GKB2 and GKB;
-   3. BotTools, TrumpBot and Support.
+   3. BotTools and the private repositories.
 
    > **Dated note, 2026-11-13.** GKB2 and GKB were not pushed with `--mirror`: the one branch of each, `master`, went by a refspec push with an explicit lease on the tip the clone recorded, run first as a dry run ([unit 6's plan, The push](26-gkb2-gkb-rewrite/plan.md#the-push); §6.4, stage 6, and the note there).
 
-   > **Dated note, 2026-11-13.** BotTools, TrumpBot and Support are not pushed with `--force --mirror` either. Each is pushed once: every branch in one `git push --porcelain --atomic` with an explicit lease per branch on the tip the clone recorded, to the repository's URL, after the same line run as a dry run; 2, 2 and 1 branches ([unit 7's design, §8.2](27-bottools-trumpbot-support-rewrite/architecture.md#82-the-push)).
+   > **Dated note, 2026-11-13.** BotTools and the private repositories are not pushed with `--force --mirror` either. Each is pushed once: every branch in one `git push --porcelain --atomic` with an explicit lease per branch on the tip the clone recorded, to the repository's URL, after the same line run as a dry run; 2, 2 and 1 branches ([unit 7's design, §8.2](27-rewrite-bottools-and-the-private-repositories/architecture.md#82-the-push)).
 
 2. **KotlinBottools made public through a fresh repository.** No GitHub Support ticket is filed,
    and GitHub keeps serving every pre-rewrite object of a repository by id (findings 3 §3.1,
@@ -111,11 +111,11 @@
    copied byte-exactly into an ordinary local folder outside every repository, from:
    - KotlinBottools `main`;
    - GKB2 at the parent of the commit that deletes `guildData/` ("No DB updates", 2023-10-29);
-   - TrumpBot `main`.
+   - The first private repository's `main`.
 
    The per-repository manifests of purged blob ids and the rewrite's records sit beside them.
 7. **Both local clones end on the rewritten histories:** this working directory in place, the
-   TrumpBot clone by replacement.
+   private repository clone by replacement.
 8. **The residual exposure is measured and reported**, not assumed away: what GitHub still
    serves of the old histories, and what GKB2's and BotTools' pull-request refs keep reachable.
 9. **Nothing sensitive is printed or written** by any step. None of the following appears in any
@@ -147,7 +147,7 @@
    - the gitleaks branches-and-tags scan clean, with the scan verified to have happened. A
      default-rule finding in a kept file is recorded and handled as §6.4 stage 8 states.
 
-   For KotlinBottools, GKB, TrumpBot and Support, which advertise no pull-request ref, the same
+   For KotlinBottools, GKB and the private repositories, which advertise no pull-request ref, the same
    holds for every advertised ref. For GKB2 (`refs/pull/6/head`) and BotTools (`refs/pull/2/head`,
    `refs/pull/3/head`), the purged blobs still reachable through those refs are counted and
    reported. The count cannot be zero.
@@ -168,7 +168,7 @@
    the mirror clone, and no issue is left in it.
 5. **The repository-hygiene change is merged into `main`,** and the secret-scan workflow has run
    green on `main` of the public repository.
-6. **This clone and the TrumpBot clone** reach no pre-rewrite commit from any ref, reflog, stash
+6. **This clone and the private repository clone** reach no pre-rewrite commit from any ref, reflog, stash
    or pseudo-ref, and `origin` of this clone is the fresh repository by id. The deletion of the
    old objects from this clone is either proven, or recorded as deferred with its exact commands
    (§9).
@@ -195,8 +195,8 @@ findings 3 §3.2, §3.8, §3.10; findings 4 §3.6, §6.3, §6.5; findings 5 §3.
 | GKB2 | public | `master` | `refs/pull/6/head` | 32 → 30 | 82 / 211 | 81 (70 stay reachable through the pull-request ref) |
 | GKB | public | `master` | none | 11 → 9 | 60 / 113 | 58 |
 | BotTools | public | `main`, `Working-Branch` | `refs/pull/2/head`, `refs/pull/3/head` | 16 → 15 | 82 / 145 | 39 (all 39 stay reachable through the pull-request refs) |
-| TrumpBot | private | `main`, `feature/pokercommand` | none | 11 → 9 | 56 / 106 | 199 |
-| Support | private | `main` | none | 2 → 1 | 29 / 29 | 7,259 |
+| The first private repository | private | `main`, `feature/pokercommand` | none | 11 → 9 | 56 / 106 | 199 |
+| The second private repository | private | `main` | none | 2 → 1 | 29 / 29 | 7,259 |
 
 > **Dated note, 2026-11-09.** KotlinBottools has been public since 2026-11-08: its activity feed's `PublicEvent` falls between feed events of 01:46Z and 21:53Z that day. Anonymous requests to the repository, its files, its archive and its activity page answer 200, and its `main` still tracks the files the rewrite purges, so those files and the pre-rewrite objects stay anonymously readable until the swap (§7.5). Secret scanning and push protection are off on it. The walk's source is therefore a public repository and its target a private one (§7.2). The public window goes into the residual report (§12.4).
 
@@ -205,7 +205,7 @@ findings 3 §3.2, §3.8, §3.10; findings 4 §3.6, §6.3, §6.5; findings 5 §3.
 - The rewrite prunes ten commits in all, three of them merges that become degenerate. Every ref
   survives (findings 5 §3.A).
 
-> **Dated note, 2026-11-13.** BotTools has one active webhook, to a CircleCI host, subscribed to push events. It stays as it is, and the push deliveries its rewrite makes are recorded by count. The repository ids are 540122713 (BotTools), 540208924 (TrumpBot) and 540146440 (Support) ([unit 7's design, §2.1](27-bottools-trumpbot-support-rewrite/architecture.md#21-the-three-repositories)).
+> **Dated note, 2026-11-13.** BotTools has one active webhook, to a CircleCI host, subscribed to push events. It stays as it is, and the push deliveries its rewrite makes are recorded by count. The repository ids are 540122713 (BotTools), 540208924 (the first private repository) and 540146440 (the second) ([unit 7's design, §2.1](27-rewrite-bottools-and-the-private-repositories/architecture.md#21-the-three-repositories)).
 
 **KotlinBottools' GitHub state.**
 
@@ -247,10 +247,10 @@ findings 3 §3.2, §3.8, §3.10; findings 4 §3.6, §6.3, §6.5; findings 5 §3.
   - no `.github/` directory exists on either branch;
   - the project is open in IntelliJ IDEA, and sessions working on the repository run inside that
     IDE, so the project stays open while the phase's units run.
-- **The local TrumpBot clone**, beside it: `main` only; one pack, no loose objects; four untracked
+- **The local private repository clone**, beside it: `main` only; one pack, no loose objects; four untracked
   files, all under `.idea/`. It is not open in IntelliJ.
 
-> **Dated note, 2026-11-13.** The TrumpBot clone now holds 59 files git does not track: the four under `.idea/` and 55 under `graphify-out/`, a code knowledge graph built from the pre-rewrite tree and ignored through one entry in the clone's own `.git/info/exclude`, with two git hooks that rebuild it and two local configuration keys a plain clone does not write. It sits on another volume than the workspace ([unit 7's design, §2.2](27-bottools-trumpbot-support-rewrite/architecture.md#22-the-trumpbot-clone-and-the-two-volumes)).
+> **Dated note, 2026-11-13.** The private repository clone now holds 59 files git does not track: the four under `.idea/` and 55 under `graphify-out/`, a code knowledge graph built from the pre-rewrite tree and ignored through one entry in the clone's own `.git/info/exclude`, with two git hooks that rebuild it and two local configuration keys a plain clone does not write. It sits on another volume than the workspace ([unit 7's design, §2.2](27-rewrite-bottools-and-the-private-repositories/architecture.md#22-the-private-repository-clone-and-the-two-volumes)).
 
 ### 2.3 Tools on the machine
 
@@ -326,8 +326,8 @@ findings 3 §3.2, §3.8, §3.10; findings 4 §3.6, §6.3, §6.5; findings 5 §3.
 | The user-scheme pip install of git-filter-repo lands on Git Bash's `PATH`, as observed. | `command -v git-filter-repo` fails. The single-file fallback of findings 1 §3.3 becomes the plan's alternative. |
 | The secret-scan workflow runs on GitHub's Ubuntu runner as its steps ran on the fixtures (findings 2 §6.9). | Its first run, on the hygiene pull request, is red, and that change does not merge. |
 | The privacy gate's name lists cover the names that matter. They are built from the member files' name elements and the folder names; names shorter than five characters are counted, not reviewed (findings 5 §3.B). | A name stored in another form passes the gate unseen. The gate stays the best available check, and the residue is recorded in the consequences. |
-| The bot tokens in the old histories are dead, and the session cookie and TrumpBot's private key are treated as dead. | Rotating them is a follow-up (consequences §6). No unit depends on their liveness. |
-| Each scan and rewrite fits within a unit's run on this machine, TrumpBot's and Support's included (findings 2 Known gaps). | The unit's plan splits the repository's steps across its stages; nothing in the design changes. |
+| The bot tokens in the old histories are dead, and the session cookie and the first private repository's private key are treated as dead. | Rotating them is a follow-up (consequences §6). No unit depends on their liveness. |
+| Each scan and rewrite fits within a unit's run on this machine, the private repositories' included (findings 2 Known gaps). | The unit's plan splits the repository's steps across its stages; nothing in the design changes. |
 | Default-rule findings in the legacy repositories' kept Kotlin and Java sources are false positives, if any occur. | Such a finding is recorded and becomes a follow-up (§6.4 stage 8), and KotlinBottools stops before its visibility change. |
 
 ---
@@ -342,11 +342,11 @@ findings 3 §3.2, §3.8, §3.10; findings 4 §3.6, §6.3, §6.5; findings 5 §3.
   three sources. The following exist nowhere once the workspace is deleted:
   - `key.txt` and `WebParseKeys.xml`;
   - the `services/` polling state and `res/`;
-  - TrumpBot's data files, binaries and `key.pem`;
-  - Support's vendored libraries and natives.
+  - the first private repository's data files, binaries and `key.pem`;
+  - the second private repository's vendored libraries and natives.
 - **No change to the maintainer's e-mail address** in commit headers, which is already public in
   three repositories' commits: no `--mailmap`.
-- **No path scrub in GKB2, GKB, BotTools, TrumpBot or Support.** Only KotlinBottools becomes newly
+- **No path scrub in GKB2, GKB, BotTools or the private repositories.** Only KotlinBottools becomes newly
   public. New documents name the profile directory `%USERPROFILE%`.
 - **No replacement of the pre-rewrite ids cited in older documents.** The public repository is
   fresh, so they resolve only in the private legacy repository (research README §3.7).
@@ -380,7 +380,7 @@ that holds the project checkouts, and outside OneDrive.
 BotLegacyData/
   KotlinBottools-main/      BotData.xml, guildData/...     the copied files, same relative paths
   GKB2-last-with-data/      BotData.xml, guildData/...
-  TrumpBot-main/            BotData.xml, guildData/...
+  …-main/            BotData.xml, guildData/...
   records/                  <label>.ls-tree.z, <label>.sha256   the copy's verification records
   manifests/                <repo>.blobs, .counts, .kept; GKB2 and BotTools also a refs/pull-pinned variant
   rewrite/<repo>/           filter-repo.log, commit-map, ref-map, changed-refs, first-changed-commits,
@@ -389,7 +389,7 @@ BotLegacyData/
                             status tallies; the gitleaks count files; the expectation-check output
   run/                      tool-versions.txt; lists/ (the six lists and their SHA256SUMS);
                             rehearsal/ and swap/ (repository ids, settings dumps, the link table,
-                            the number walk and its per-number results); realign/ and trumpbot/
+                            the number walk and its per-number results); realign/ and …/
                             (block outputs); gate/ (allow-list, issue and pull-request dumps, gate
                             outputs); scrub/ (the path-scrub expression file and its
                             before/after counts); tools/ (a copy of the workspace tools, taken at
@@ -405,7 +405,7 @@ things:
 - the machine-local path the scrub replaces, which its expression file must name. Nothing under `DATA` is ever committed, printed or quoted. The as-built
 records and the report on #2 carry counts only.
 
-> **Dated note, 2026-11-13.** `run/` also holds the run records of unit 7's four units, and at cleanup `run/tools/` receives both workspace tool folders: the GKB2 and GKB unit's, and the one for BotTools, TrumpBot and Support ([unit 7's design, §13.4](27-bottools-trumpbot-support-rewrite/architecture.md#134-28s-inputs)).
+> **Dated note, 2026-11-13.** `run/` also holds the run records of unit 7's four units, and at cleanup `run/tools/` receives both workspace tool folders: the GKB2 and GKB unit's, and the one for BotTools and the private repositories ([unit 7's design, §13.4](27-rewrite-bottools-and-the-private-repositories/architecture.md#134-28s-inputs)).
 
 ### 5.2 `%USERPROFILE%\BotWS` — the workspace (`WS`; deleted by the last unit)
 
@@ -414,7 +414,7 @@ BotWS/
   tools/            gitleaks-8.30.1/ and its download; gitleaks.toml and secret_scan.py (byte-identical
                     to the committed copies); blob_manifest.py, expect_check.py, privacy_gate.py,
                     oldid_refs.py, probe.sh, porcelain_tally.awk, count-entries.awk, lib.sh,
-                    datacopy.sh, copy-data.sh, manifests.sh, realign-*.sh, trumpbot-*.sh,
+                    datacopy.sh, copy-data.sh, manifests.sh, realign-*.sh, …-*.sh,
                     predict_removed.py, untracked_collisions.py, lockprobe.py, env.sh,
                     filter-repo-requirements.txt
   lists/            <repo>-purge.txt
@@ -426,7 +426,7 @@ BotWS/
   analysis/         filter-repo --analyze reports (every path ever present; counted, never listed)
   gitleaks/         JSON reports and logs (paths, commit ids, identities; never printed, never copied out)
   tmp/              block scratch files
-  TrumpBot-old/     the old TrumpBot clone, between its move and its deletion
+  …-old/     the old … clone, between its move and its deletion
 ```
 
 The tools are saved from the findings files, which hold them in full and record their sizes and
@@ -436,7 +436,7 @@ old objects, every scan report and every fixture.
 
 > **Dated note, 2026-11-12.** Once the repository-hygiene unit's change has merged, `WS/tools/gitleaks.toml` holds the bytes of the committed `.gitleaks.toml`. That file is the research configuration plus one scoped allowlist table (§10), with two sentences in its header comment: 3824 bytes, sha256 `c046de1754bd4bb3d92a62cd1651f3ea8bb2383ace96472595ee3ea49887568f`. `secret_scan.py` stays byte-identical to the research text ([the unit's plan](24-repository-hygiene/plan.md)).
 
-> **Dated note, 2026-11-13.** `TrumpBot-old/` is not in the workspace. The TrumpBot clone and the workspace are on different volumes, so a move into the workspace would be a copy followed by a deletion, not a rename. The old clone is moved aside by a rename on its own volume, to `%PROJECTS%\TrumpBot-old`, and deleted there by the clone replacement; the workspace's deletion never reaches it. `tools/` holds two tool folders, the GKB2 and GKB unit's and the one for BotTools, TrumpBot and Support, and the preparation unit's clone scripts are not run ([unit 7's design, §7.1 and §10.2](27-bottools-trumpbot-support-rewrite/architecture.md#102-the-move)).
+> **Dated note, 2026-11-13.** `…-old/` is not in the workspace. The private repository clone and the workspace are on different volumes, so a move into the workspace would be a copy followed by a deletion, not a rename. The old clone is moved aside by a rename on its own volume, to `%PROJECTS%\…-old`, and deleted there by the clone replacement; the workspace's deletion never reaches it. `tools/` holds two tool folders, the GKB2 and GKB unit's and the one for BotTools and the private repositories, and the preparation unit's clone scripts are not run ([unit 7's design, §7.1 and §10.2](27-rewrite-bottools-and-the-private-repositories/architecture.md#102-the-move)).
 
 ---
 
@@ -451,13 +451,13 @@ old objects, every scan report and every fixture.
 | **Rewrite pipeline** (§6.4) | Turn one backup-mirrored repository into a pushed, proven, rewritten repository, or stop before its push. | `WS/mirror`, `WS/fresh`, `DATA/rewrite` | list proof, pre-run checks, the invocation, post-run checks, the push's inputs and expected tally, per-ref verification, exit tests, residual probes | the push itself, which is requested (§11); the KotlinBottools push target (the swap's) |
 | **Repository swap** (§7) | Make the rewritten KotlinBottools public as a fresh repository without losing a number or a link. | GitHub; `DATA/run/swap`, `DATA/run/rehearsal` | the rehearsal's fixture and pass condition; the fresh repository's settings tuple; the link table; the number walk; link reconciliation; the rename and archive order; the visibility and scanning settings and their verification | carrying out the writes, which are requested (§11) |
 | **This clone's realignment** (§9) | Bring this working directory onto the rewritten history in place so that no push from it can carry old history. | this working directory, `DATA/run/realign` | the procedure, the push-safety proof, the deferred step | carrying out the procedure, which is requested (§11); any commit |
-| **TrumpBot clone replacement** (§9.5) | Replace the TrumpBot clone with a fresh one at the same path, keeping its untracked files. | the local TrumpBot clone, `WS/TrumpBot-old` | the procedure and its proofs | carrying it out, which is requested (§11) |
+| **The private repository clone replacement** (§9.5) | Replace the private repository clone with a fresh one at the same path, keeping its untracked files. | the local private repository clone, `WS/…-old` | the procedure and its proofs | carrying it out, which is requested (§11) |
 | **Repository hygiene artefacts** (§10) | Author the in-repo files and the README and changelog edits that land on `main` through their unit's pull request. | the unit's branch | `.gitignore`, `.gitleaks.toml`, `.github/scripts/secret_scan.py`, `.github/workflows/secret-scan.yml`, the README edit, `CHANGELOG.md`, their pre-commit scans | the landing, which is requested |
 | **Privacy gate and id-reference check** (§6.5) | Prove, by count, that nothing that becomes public with KotlinBottools names a guild, a member or a legacy id, and that nothing new cites a pre-rewrite id. | `WS/tools`, `DATA/run/gate` | the name lists (in memory, from `DATA`), the allow-list, the three gate runs, the id check | the data copy |
 | **Residual-exposure measurement** (§6.6) | Measure what GitHub still serves of each old history and report it in counts. | `DATA/rewrite/<repo>` | the status-only probes, the fresh-mirror reachability counts, the report table | any removal |
 | **Cleanup** (§6.7) | Leave the machine with the data folder and records, the two realigned clones, and nothing else of the phase. | `WS`, `DATA` | the data re-verification, the tools copy, the workspace deletion | the deferred gc step (§9.4) |
 
-> **Dated note, 2026-11-13.** The TrumpBot clone replacement lives in the local TrumpBot clone and in `%PROJECTS%\TrumpBot-old`, beside it on its own volume, not in `WS/TrumpBot-old` (§5.2 and its note) ([unit 7's design, §5](27-bottools-trumpbot-support-rewrite/architecture.md#5-system-inventory)).
+> **Dated note, 2026-11-13.** The private repository clone replacement lives in the local private repository clone and in `%PROJECTS%\…-old`, beside it on its own volume, not in `WS/…-old` (§5.2 and its note) ([unit 7's design, §5](27-rewrite-bottools-and-the-private-repositories/architecture.md#5-system-inventory)).
 
 ### 6.1 Toolchain
 
@@ -500,7 +500,7 @@ old objects, every scan report and every fixture.
   proved byte-wise (findings 1 §6.3): the byte count and sha256 recorded in the plan; no carriage
   return; pure ASCII; no blank line; only the allowed characters; as many lines as entries.
   - The six lists are the parent research's, unchanged.
-  - BotTools `Working-Branch` and TrumpBot `feature/pokercommand` add no entry (research README
+  - BotTools `Working-Branch` and the first private repository's `feature/pokercommand` add no entry (research README
     §1.2).
 - **The scripts:** the classifier `blob_manifest.py`, `expect_check.py`, `privacy_gate.py`,
   `oldid_refs.py`, `probe.sh`, `porcelain_tally.awk`, `count-entries.awk` and the clone scripts.
@@ -516,7 +516,7 @@ old objects, every scan report and every fixture.
   - `tar` runs with `--force-local`;
   - `gc.auto=0` and `maintenance.auto=false` are passed on every fetch, reset and gc.
 
-> **Dated note, 2026-11-13.** The tools that run BotTools', TrumpBot's and Support's rewrites, their residual measurement and the TrumpBot clone's replacement are a new, self-contained folder derived from the GKB2 and GKB unit's, saved and pinned by unit 7's tools unit; the clone scripts are rebuilt there as request procedures with a builder ([unit 7's design, §7](27-bottools-trumpbot-support-rewrite/architecture.md#7-the-tools)).
+> **Dated note, 2026-11-13.** The tools that run BotTools' and the private repositories' rewrites, their residual measurement and the private repository clone's replacement are a new, self-contained folder derived from the GKB2 and GKB unit's, saved and pinned by unit 7's tools unit; the clone scripts are rebuilt there as request procedures with a builder ([unit 7's design, §7](27-rewrite-bottools-and-the-private-repositories/architecture.md#7-the-tools)).
 
 ### 6.2 Backups and manifests
 
@@ -550,9 +550,9 @@ From the backup mirror and the list, each repository gets:
   KotlinBottools it is derived by rule.
 - **the positive-control scan** of the untouched backup, with the real configuration
   (findings 2 §6.7):
-  - for KotlinBottools, GKB2, GKB and TrumpBot, every path rule's distinct-file count equals
+  - for KotlinBottools, GKB2, GKB and the first private repository, every path rule's distinct-file count equals
     git's own count, and each named probe is non-zero;
-  - for BotTools and Support, the six owned rule ids are absent.
+  - for BotTools and the second private repository, the six owned rule ids are absent.
 
   This is the first real test of MagicBot's token regex against the real token files. A path
   probe that fires while the token probe does not is recorded in the as-built record, by rule id
@@ -572,7 +572,7 @@ Before any rewrite, the data is copied from the backup mirrors:
 |---|---|---|
 | KotlinBottools | `refs/heads/main` | 29 + 1 |
 | GKB2 | the parent of the commit that deletes `guildData/` | 29 + 1 |
-| TrumpBot | `refs/heads/main` | 30 + 1 |
+| The first private repository | `refs/heads/main` | 30 + 1 |
 
 - **GKB2's revision** is found by rule, not cited by id: `git rev-list -1 master -- guildData`
   gives the deleting commit, which has one parent, 29 files at the parent and none at itself. It
@@ -644,7 +644,7 @@ stops the repository before its push and discards its mirror; the backup stays.
      pushed since the clone;
    - the pull-request refs on the server are listed and recorded.
 
-   > **Dated note, 2026-11-13.** For BotTools the push preparation also takes a baseline count of its webhook's deliveries ([unit 7's design, §8.1](27-bottools-trumpbot-support-rewrite/architecture.md#81-shape)).
+   > **Dated note, 2026-11-13.** For BotTools the push preparation also takes a baseline count of its webhook's deliveries ([unit 7's design, §8.1](27-rewrite-bottools-and-the-private-repositories/architecture.md#81-shape)).
 6. **The push**, requested (§11) with the mirror path, the target and the expected tally
    (findings 3 §6.2 P3–P4).
    - It is a dry run, then the push, both `--porcelain --force --mirror` and both tallied.
@@ -657,7 +657,7 @@ stops the repository before its push and discards its mirror; the backup stays.
 
    > **Dated note, 2026-11-13.** GKB2's and GKB's dry run and push were `git push --porcelain --force-with-lease=refs/heads/master:<old tip> <url> refs/heads/master:refs/heads/master`: the one branch, with an explicit lease on the tip the clone recorded, not `--force --mirror`. Under `--mirror`, `--force` or a refspec with a leading `+`, git ignores a lease, and `--mirror` would delete a server branch created after the clone ([unit 6's research summary, §1](26-gkb2-gkb-rewrite/research/README.md#1-the-force-push)). The expected tally was `forced=1` and `done=1`, with every other count 0, and each push was classed `pushed`, with every refusal marker counted at 0, and read back at its new tip ([unit 6's as-built record, §3.3](26-gkb2-gkb-rewrite/final-implementation.md#33-the-pushes)).
 
-   > **Dated note, 2026-11-13.** BotTools, TrumpBot and Support are each pushed in one request: every branch in one `git push --porcelain --atomic` with an explicit lease per branch, after the same line run as a dry run, with the expected tally `forced=N` and `done=1` and every other count 0, N being 2, 2 and 1. The classes add the atomic sibling wording to the counted markers and a transport class read from a missing `To` line with `fatal:` markers. After any non-zero status a read of every branch names the state, neither, both or partial, and partial hands back ([unit 7's design, §8.2 and §8.3](27-bottools-trumpbot-support-rewrite/architecture.md#83-outcome-read-back-and-resend)).
+   > **Dated note, 2026-11-13.** BotTools and the private repositories are each pushed in one request: every branch in one `git push --porcelain --atomic` with an explicit lease per branch, after the same line run as a dry run, with the expected tally `forced=N` and `done=1` and every other count 0, N being 2, 2 and 1. The classes add the atomic sibling wording to the counted markers and a transport class read from a missing `To` line with `fatal:` markers. After any non-zero status a read of every branch names the state, neither, both or partial, and partial hands back ([unit 7's design, §8.2 and §8.3](27-rewrite-bottools-and-the-private-repositories/architecture.md#83-outcome-read-back-and-resend)).
 7. **Per-ref verification** on two channels, read by the unit (findings 3 §6.2 P5):
    - `git ls-remote --refs` and the REST `branches` listing both equal the local refs;
    - no remote ref points at an old tip;
@@ -668,7 +668,7 @@ stops the repository before its push and discards its mirror; the backup stays.
 
    > **Dated note, 2026-11-13.** For GKB2 and GKB the equality is over heads and tags: `git ls-remote --refs` over `refs/heads/*` and `refs/tags/*`, and the REST `branches` listing, which carries heads only, each equal the rewritten heads, with no tag; no head points at a pre-rewrite commit; and the pull-request refs equal their record from stage 5, since a push cannot change them and GKB2's `refs/pull/6/head` keeps its pre-rewrite commit. Both repositories passed ([unit 6's as-built record, §3.3](26-gkb2-gkb-rewrite/final-implementation.md#33-the-pushes)).
 
-   > **Dated note, 2026-11-13.** For BotTools, TrumpBot and Support the visibility is read as recorded, private for TrumpBot and Support. BotTools' push deliveries are counted right after its push, once, since GitHub lists a webhook's deliveries for three days only, and its webhook is read as unchanged ([unit 7's design, §8.1](27-bottools-trumpbot-support-rewrite/architecture.md#81-shape)).
+   > **Dated note, 2026-11-13.** For BotTools and the private repositories the visibility is read as recorded, private for the private repositories. BotTools' push deliveries are counted right after its push, once, since GitHub lists a webhook's deliveries for three days only, and its webhook is read as unchanged ([unit 7's design, §8.1](27-rewrite-bottools-and-the-private-repositories/architecture.md#81-shape)).
 8. **Fresh mirror and exit tests** on `WS/fresh/<repo>.git` (findings 2 §6.8, findings 3 §6.3,
    findings 5 §6.1):
    - `expect_check.py` with `--scope heads`, plus `--all-commits` where pull-request refs exist;
@@ -686,10 +686,10 @@ stops the repository before its push and discards its mirror; the backup stays.
    already public as they are. In KotlinBottools, a default-rule finding in a kept file stops the
    work before the visibility change, because there the file would become newly public.
 
-   > **Dated note, 2026-11-13.** A default-rule finding in a kept file of TrumpBot or Support is recorded and becomes a follow-up as one in a public repository does; their kept files stay private. For BotTools the every-ref counts are measured and recorded: 39 of 39 manifest blobs and 28 commits are expected ([unit 7's design, §8.1](27-bottools-trumpbot-support-rewrite/architecture.md#81-shape)).
+   > **Dated note, 2026-11-13.** A default-rule finding in a kept file of either private repository is recorded and becomes a follow-up as one in a public repository does; their kept files stay private. For BotTools the every-ref counts are measured and recorded: 39 of 39 manifest blobs and 28 commits are expected ([unit 7's design, §8.1](27-rewrite-bottools-and-the-private-repositories/architecture.md#81-shape)).
 9. **Residual probes** (§6.6).
 
-   > **Dated note, 2026-11-13.** For BotTools, TrumpBot and Support, stage 9 does not follow each push. It runs once, over all three, after the last push is verified, as unit 7's residual measurement; the gate between those repositories is the previous repository's stage 8 ([unit 7's design, §9](27-bottools-trumpbot-support-rewrite/architecture.md#9-the-residual-measurement)).
+   > **Dated note, 2026-11-13.** For BotTools and the private repositories, stage 9 does not follow each push. It runs once, over all three, after the last push is verified, as unit 7's residual measurement; the gate between those repositories is the previous repository's stage 8 ([unit 7's design, §9](27-rewrite-bottools-and-the-private-repositories/architecture.md#9-the-residual-measurement)).
 
 ### 6.5 Privacy gate and id-reference check
 
@@ -737,7 +737,7 @@ backup (findings 3 §6.3). Every result is a tally; no id or body is printed.
   - on the fresh mirror, the count of manifest blobs reachable from branches and tags (0) and
     from all refs.
 - **Expected results:**
-  - every old object of GKB2, GKB, BotTools, TrumpBot and Support is still served
+  - every old object of GKB2, GKB, BotTools and the private repositories is still served
     (200 / `SERVED`);
   - the pull-request residual is 70 of 81 for GKB2, and 39 of 39 for BotTools.
 - **KotlinBottools:**
@@ -751,7 +751,7 @@ backup (findings 3 §6.3). Every result is a tally; no id or body is printed.
 
 The report table (§12.4) goes into the units' as-built records and into the report on #2.
 
-> **Dated note, 2026-11-13.** For BotTools, TrumpBot and Support, "measured after its push" reads "measured after the last of the three pushes is verified". TrumpBot and Support get authenticated probes and feed reads only. A feed read outside the events' 30 days is recorded as not valid, never as absent. BotTools' residual of 39 is counted on its fresh mirror at stage 8 ([unit 7's design, §9](27-bottools-trumpbot-support-rewrite/architecture.md#9-the-residual-measurement)).
+> **Dated note, 2026-11-13.** For BotTools and the private repositories, "measured after its push" reads "measured after the last of the three pushes is verified". The private repositories get authenticated probes and feed reads only. A feed read outside the events' 30 days is recorded as not valid, never as absent. BotTools' residual of 39 is counted on its fresh mirror at stage 8 ([unit 7's design, §9](27-rewrite-bottools-and-the-private-repositories/architecture.md#9-the-residual-measurement)).
 
 ### 6.7 Cleanup
 
@@ -761,14 +761,14 @@ Cleanup runs in this order:
 2. `WS/tools` is copied to `DATA/run/tools`. The copy holds no secrets, and the deferred step
    needs it.
 3. `WS` is deleted entirely: the backups, mirrors, fresh mirrors, reports, canary, fixture,
-   analysis, lists, `tmp` and `TrumpBot-old`.
+   analysis, lists, `tmp` and `…-old`.
 4. Its deletion is confirmed.
 
 git-filter-repo stays installed in the user scheme, as a hash-verified package with no state of
 the phase in it. Nothing of the phase remains on the machine but `DATA`, the two realigned clones
 and the installed package.
 
-> **Dated note, 2026-11-13.** The workspace's deletion does not reach the old TrumpBot clone, which lies beside the clone on its own volume and which the clone replacement deletes itself. The cleanup confirms the recorded path absent, and a leftover is deleted at that path. The tools copy takes both tool folders ([unit 7's design, §10.4 and §13.4](27-bottools-trumpbot-support-rewrite/architecture.md#104-the-fresh-clone-its-proofs-and-the-deletion)).
+> **Dated note, 2026-11-13.** The workspace's deletion does not reach the old private repository clone, which lies beside the clone on its own volume and which the clone replacement deletes itself. The cleanup confirms the recorded path absent, and a leftover is deleted at that path. The tools copy takes both tool folders ([unit 7's design, §10.4 and §13.4](27-rewrite-bottools-and-the-private-repositories/architecture.md#104-the-fresh-clone-its-proofs-and-the-deletion)).
 
 > **Dated note, 2026-11-17.** The cleanup is unit 8's (#28), with two additions. The data folder's lists are completed by a list over the files that were under no list, so every file of `DATA` is under a list; the final list over the whole folder follows unit 8's landing. The landing's document checks, which read the backups and wrote their scratch in the workspace, run after the deletion from the tools copy, with the commit maps and the manifests as their id sources, proved equal to the backups' commit sets before the deletion ([unit 8's as-built record, §1](28-residual-report-and-cleanup/final-implementation.md#1-what-was-built)).
 
@@ -983,7 +983,7 @@ flowchart TD
     U4["4 repository-hygiene<br/>.gitignore, .gitleaks.toml, scan wrapper, workflow, README, CHANGELOG; merged after the secret-scan check passes"] --> U5
     U5["5 kotlinbottools-publish<br/>Gate 3 and id check; flip; scanning; anonymous measurements"] --> U8
     U6["6 gkb2-gkb-rewrite<br/>pipeline for GKB2 then GKB; residual measured"] --> U7
-    U7["7 bottools-trumpbot-support-rewrite<br/>pipeline for BotTools, TrumpBot, Support; residual measured; TrumpBot clone replaced"] --> U8
+    U7["7 bottools-…-rewrite<br/>pipeline for BotTools, the first private repository, the second; residual measured; the private repository clone replaced"] --> U8
     U8["8 residual-report-and-cleanup<br/>report posted on #2; DATA re-verified; WS deleted"]
 ```
 
@@ -1001,13 +1001,13 @@ flowchart TD
 | 3 | see §7.6 | per §7.6; nothing public at any point. In the realignment: a stop before the fetch leaves the clone unchanged; after it, the block is re-run once after the cause is gone; a failed object-deletion proof is recorded and deferred, not a stop (§9.4). **No push leaves this clone until the push-safety proof passes**, and the unit's landing is that first push |
 | 4 | none beyond its landing | a red secret-scan check stops the landing before the merge and hands back; the pull request stays open |
 | 5 | the visibility change; the scanning settings | a failed Gate 3, or a default-rule finding in a kept KotlinBottools file, leaves the repository private; a failed flip is reported, not retried another way; a failed `PATCH` after the flip is re-run at once |
-| 6–7 | each repository's force-push, once made | before its push: stop, discard its mirror, nothing changed on GitHub. After its push with a failed per-ref verification: stop, report the tally, no blind repeat; the remaining repositories wait. A default-rule finding in a kept file is recorded and becomes a follow-up (§6.4 stage 8). KotlinBottools' state stands, and Phase 1 is unblocked regardless. TrumpBot's clone: a stop after its move puts it back; its deletion is the last step |
+| 6–7 | each repository's force-push, once made | before its push: stop, discard its mirror, nothing changed on GitHub. After its push with a failed per-ref verification: stop, report the tally, no blind repeat; the remaining repositories wait. A default-rule finding in a kept file is recorded and becomes a follow-up (§6.4 stage 8). KotlinBottools' state stands, and Phase 1 is unblocked regardless. The first private repository's clone: a stop after its move puts it back; its deletion is the last step |
 | 8 | the workspace deleted | the data re-verification runs before the deletion, and stops it on a mismatch |
 
 No unit stops for a person before a push, a force-push or the visibility change. Every stop is a
 failed verification, and each unit's plan states what state each stop leaves.
 
-> **Dated note, 2026-11-13.** Unit 7's box and table row are carried out as four units of #27: the tools, the rewrites, the residual measurement and the clone replacement, the last two each after the rewrites. After a push with a non-zero status the state is read as neither, both or partial, and partial hands back; a stop after the TrumpBot clone's move renames it back ([unit 7's design, §11](27-bottools-trumpbot-support-rewrite/architecture.md#11-order-gates-and-failure-behaviour)).
+> **Dated note, 2026-11-13.** Unit 7's box and table row are carried out as four units of #27: the tools, the rewrites, the residual measurement and the clone replacement, the last two each after the rewrites. After a push with a non-zero status the state is read as neither, both or partial, and partial hands back; a stop after the private repository clone's move renames it back ([unit 7's design, §11](27-rewrite-bottools-and-the-private-repositories/architecture.md#11-order-gates-and-failure-behaviour)).
 
 ---
 
@@ -1141,14 +1141,14 @@ The backup control is not available then, because the workspace is gone; the con
 the unit, and the id files are the same. Until that step is done, the clone holds unreachable old
 objects that no push can carry.
 
-### 9.5 The TrumpBot clone
+### 9.5 The private repository clone
 
-The TrumpBot clone is replaced once TrumpBot's push is proven, as the last step of unit 7. It is
+The private repository clone is replaced once the first private repository's push is proven, as the last step of unit 7. It is
 carried out on request (§11), with the procedure from the unit's plan (findings 4 §6.5):
 
 1. Its four untracked files are archived with a checksum list.
 2. The server's heads must equal `ref-map`.
-3. The clone is moved to `WS/TrumpBot-old`. This same-volume rename fails without effect while
+3. The clone is moved to `WS/…-old`. This same-volume rename fails without effect while
    any process holds a file inside, so it doubles as the lock probe.
 4. A fresh clone is made at the same path.
 5. The untracked files are restored without overwriting.
@@ -1158,7 +1158,7 @@ carried out on request (§11), with the procedure from the unit's plan (findings
 
 The clone is not open in IntelliJ.
 
-> **Dated note, 2026-11-13.** The replacement is unit 7's clone replacement, a unit of its own after the rewrites. Step 1: of the 59 files git does not track, the four under `.idea/` are archived, behind a closed-set guard; the graph's files, the exclude entry, the two hooks and the two extra configuration keys are not carried. Step 3: the clone is moved to `%PROJECTS%\TrumpBot-old` by one rename on its own volume, behind a same-volume guard, its outcome read from the two paths. Step 5: the restored set equals the four-file list. Step 7: the deletion is the replacement's last step, requested after the unit's own read of the fresh clone. A code-only graph build follows, made by the graph service at the owner's word, with its two hooks, and read back ([unit 7's design, §10](27-bottools-trumpbot-support-rewrite/architecture.md#10-the-clone-replacement)).
+> **Dated note, 2026-11-13.** The replacement is unit 7's clone replacement, a unit of its own after the rewrites. Step 1: of the 59 files git does not track, the four under `.idea/` are archived, behind a closed-set guard; the graph's files, the exclude entry, the two hooks and the two extra configuration keys are not carried. Step 3: the clone is moved to `%PROJECTS%\…-old` by one rename on its own volume, behind a same-volume guard, its outcome read from the two paths. Step 5: the restored set equals the four-file list. Step 7: the deletion is the replacement's last step, requested after the unit's own read of the fresh clone. A code-only graph build follows, made by the graph service at the owner's word, with its two hooks, and read back ([unit 7's design, §10](27-rewrite-bottools-and-the-private-repositories/architecture.md#10-the-clone-replacement)).
 
 ---
 
@@ -1223,13 +1223,13 @@ GitHub or the checkout before it takes its next step. These writes are:
   settings;
 - issue transfers, placeholder issues, sub-issue and "blocked by" relationships, labels,
   milestones, comments and issue edits;
-- the realignment of this clone, the replacement of the TrumpBot clone, and any branch or
+- the realignment of this clone, the replacement of the private repository clone, and any branch or
   worktree of either;
 - each unit's landing: its commits, its branch, its pull request and the merge.
 
 > **Dated note, 2026-11-13.** Unit 6's two force-push requests carried the procedure, its inputs and its checks by reference: each named its request file in `DATA`, with the file's sha256 and a note asking that the procedure's entries be run as one shell and every printed line be given in the reply. The request service compared the hash with the file and ran the file's procedure ([unit 6's as-built record, deviations 9 and 10](26-gkb2-gkb-rewrite/final-implementation.md#4-deviations-from-the-plan)).
 
-> **Dated note, 2026-11-13.** BotTools', TrumpBot's and Support's pushes and the TrumpBot clone's replacement are requested by file with the file's sha256, each unit under its own job. #27 is the tracking issue of its units: each unit's landing closes its own sub-issue, and #27 is closed when its last unit lands ([unit 7's design, §12](27-bottools-trumpbot-support-rewrite/architecture.md#12-version-control-and-requests)).
+> **Dated note, 2026-11-13.** BotTools' and the private repositories' pushes and the private repository clone's replacement are requested by file with the file's sha256, each unit under its own job. #27 is the tracking issue of its units: each unit's landing closes its own sub-issue, and #27 is closed when its last unit lands ([unit 7's design, §12](27-rewrite-bottools-and-the-private-repositories/architecture.md#12-version-control-and-requests)).
 
 **The planning documents land first.** #2's own landing is a pull request from the planning
 branch into `main` of the pre-rewrite repository.
@@ -1367,7 +1367,7 @@ It states what the exit tests proved, and what they cannot prove (findings 3 §6
 - that no third-party copy exists;
 - that secret scanning examined the old objects.
 
-> **Dated note, 2026-11-13.** The rows of BotTools, TrumpBot and Support are completed by unit 7's residual measurement. BotTools' row also carries its webhook delivery count; TrumpBot's and Support's carry no anonymous tally ([unit 7's design, §9.3](27-bottools-trumpbot-support-rewrite/architecture.md#93-the-report-rows)).
+> **Dated note, 2026-11-13.** The rows of BotTools and the private repositories are completed by unit 7's residual measurement. BotTools' row also carries its webhook delivery count; the private repositories' carry no anonymous tally ([unit 7's design, §9.3](27-rewrite-bottools-and-the-private-repositories/architecture.md#93-the-report-rows)).
 
 ---
 
@@ -1401,7 +1401,7 @@ command.
 | Transfer only issues #1 to #19 and renumber everything after them | changes the numbers of #2's sub-issues and with them their plan-folder names and every citation of them; the placeholders keep every number at the cost of one closed issue per pull request |
 | The planning pull request after the rewrite, from the rewritten branch | the pre-rewrite repository is made private as `KotlinBottools-legacy` at the swap, so its pull-request refs stop being public then; landing the planning documents first lets every unit plan inside the folder on `main` |
 | Keep the planning branch after its merge, so that the 56 links naming it keep resolving | the links would show a frozen copy of the documents while `main` moves on; pointing them at `main` keeps them current before and after the swap |
-| Twelve units: the toolchain, the backups and the data copy apart; the KotlinBottools rewrite, the rehearsal, the swap and the realignment apart; the TrumpBot clone and the report apart | every landing adds commits to KotlinBottools, so a landing between its mirror clone and its push would be lost from the rewritten history, and the swap unit's own landing cannot precede the realignment; the KotlinBottools rewrite, swap and realignment are therefore one unit. Grouping the preparation and keeping the TrumpBot clone with TrumpBot's rewrite also means fewer pull-request numbers to reproduce |
+| Twelve units: the toolchain, the backups and the data copy apart; the KotlinBottools rewrite, the rehearsal, the swap and the realignment apart; the private repository clone and the report apart | every landing adds commits to KotlinBottools, so a landing between its mirror clone and its push would be lost from the rewritten history, and the swap unit's own landing cannot precede the realignment; the KotlinBottools rewrite, swap and realignment are therefore one unit. Grouping the preparation and keeping the private repository clone with the first private repository's rewrite also means fewer pull-request numbers to reproduce |
 | Rehearse with three repositories (a stand-alone "foreign" one) | the fourth issue that stays in the source repository gives the cross-repository shape after the transfer, and the real walk reads and re-creates every link regardless |
 | Realign this clone by cloning the fresh repository to a sibling path | §9.1 |
 | Replace this clone's `.git` with a fresh clone's | the tracked files the rewrite removes would stay behind as untracked files, and it renames `.git` while the IDE holds it (findings 4 §3.10) |
@@ -1409,7 +1409,7 @@ command.
 | Rewrite the pre-rewrite ids out of the older documents, or map the maintainer's address with `--mailmap` | the ids resolve only in the private legacy repository, and the address is already public in three repositories (research README §3.7, §3.8) |
 | Run the scrub with filter-repo's unreleased `main`, or under Python 3.13 | `main` brings every unreleased change since 2.47.0 into the rewrite of all six repositories, and a second interpreter adds an install to verify. Neither is needed, since the Python 3.14 defect is confined to `glob:` expressions and the scrub uses `regex:` only. Python 3.13 stays the fallback the fixture rehearsal can call for |
 | Express the scrub as `glob:` lines, or name this machine's account in the expression file | `glob:` lines hit the Python 3.14 defect; an account-specific line would put the account name into a file that must stay unshared. A generic account segment matches every user-profile path |
-| Scrub the other five repositories as well | GKB2, GKB and BotTools are public already, and TrumpBot and Support stay private; only KotlinBottools becomes newly public |
+| Scrub the other five repositories as well | GKB2, GKB and BotTools are public already, and the private repositories stay private; only KotlinBottools becomes newly public |
 | Rely on gitleaks' exit status, or on `git reset`/`git gc` exit status on Windows | each is 0 on failure in the cases the phase meets (findings 2 §3.3, findings 4 §3.6); counts and proofs decide |
 | The gitleaks GitHub Action; a job inside a shared `ci.yml`; a global allowlist; `-v` | the action needs an organisation licence; a shared file collides with Phase 1's; a path allowlist disables every rule for the paths it names; `-v` prints paths and identities (findings 2 §6) |
 | The workspace at a drive's root, for short paths | folders at a drive's root grant `Authenticated Users` modify, and the backups hold what the rewrite removes |
@@ -1435,7 +1435,7 @@ landing through its own pull request. Each unit's GitHub writes are requested (�
 | 4 | `repository-hygiene` | §10: the four files, the README edit and the new `CHANGELOG.md`; the pre-landing scans and byte checks; merged once the secret-scan check passes | 3 | none beyond its landing | fresh repository | no |
 | 5 | `kotlinbottools-publish` | Gate 3 and the id-reference check over the closed corpus; the pre-flip gate; the visibility change; the scanning `PATCH` and its verification; the anonymous measurements; the access check; the secret-scan run on `main` confirmed green | 4 | KotlinBottools' visibility and security settings | fresh repository | no |
 | 6 | `gkb2-gkb-rewrite` | the full pipeline (§6.4 stages 1–9) for GKB2, then GKB, from their mirrors (checked unchanged); the pull-request residual of GKB2 measured | 3 | GKB2 and GKB force-pushed | fresh repository | no |
-| 7 | `bottools-trumpbot-support-rewrite` | the same for BotTools, TrumpBot and Support; the pull-request residual of BotTools measured; then §9.5, the TrumpBot clone replaced | 6 | three force-pushes; the TrumpBot clone's replacement | fresh repository | no (the TrumpBot clone is replaced) |
+| 7 | `bottools-…-rewrite` | the same for BotTools and the private repositories; the pull-request residual of BotTools measured; then §9.5, the private repository clone replaced | 6 | three force-pushes; the private repository clone's replacement | fresh repository | no (the private repository clone is replaced) |
 | 8 | `residual-report-and-cleanup` | the report table compiled from the units' records and posted on #2; the follow-ups confirmed (the rehearsal repositories; the deferred gc step if any; any token-rule gap; any default-rule findings); `DATA` re-verified; tools copied to `DATA/run/tools`; `WS` deleted | 5, 7 | the report comment on #2 | fresh repository | no |
 
 Units 6 and 7 each instantiate the pipeline per repository from a parameter table, holding the
@@ -1448,7 +1448,7 @@ repository, with a hand-back state for each.
 
 > **Dated note, 2026-11-13.** Unit 6's scope included the corrected stage runner, which replaced the preparation unit's before its rewrites, so that a run's start line in the run log shows its arguments only when they are plain words ([unit 6's consequences, §3](26-gkb2-gkb-rewrite/consequences.md#3-adoption)).
 
-> **Dated note, 2026-11-13.** Unit 7 is carried out as four units, sub-issues of #27, in this order: the tools, the rewrites, then the residual measurement and the clone replacement, each of those two blocked by the rewrites alone ([unit 7's design, §16](27-bottools-trumpbot-support-rewrite/architecture.md#16-decomposition)).
+> **Dated note, 2026-11-13.** Unit 7 is carried out as four units, sub-issues of #27, in this order: the tools, the rewrites, then the residual measurement and the clone replacement, each of those two blocked by the rewrites alone ([unit 7's design, §16](27-rewrite-bottools-and-the-private-repositories/architecture.md#16-decomposition)).
 
 ---
 
@@ -1477,7 +1477,7 @@ repository, with a hand-back state for each.
 
 > **Dated note, 2026-11-11.** One suppression exists, the table of §10. It is scoped to one default rule, one KotlinBottools document and one exact text. It is inert in the five legacy repositories, which hold no such path, so their exit tests are unchanged. Any other default-rule finding is still recorded and handled as the row on default-rule findings above states.
 
-> **Dated note, 2026-11-13.** Between its move and its deletion, the old TrumpBot clone holds every pre-rewrite object of TrumpBot outside the workspace, beside the clone on its own volume, with the clone's own access entries; its deletion is requested as soon as the fresh clone has been read back ([unit 7's design, §17](27-bottools-trumpbot-support-rewrite/architecture.md#17-risks-at-the-systems-level)).
+> **Dated note, 2026-11-13.** Between its move and its deletion, the old private repository clone holds every pre-rewrite object of the first private repository outside the workspace, beside the clone on its own volume, with the clone's own access entries; its deletion is requested as soon as the fresh clone has been read back ([unit 7's design, §17](27-rewrite-bottools-and-the-private-repositories/architecture.md#17-risks-at-the-systems-level)).
 
 ---
 
