@@ -229,6 +229,10 @@ The rewrite itself changes two source files on `main` through the path scrub
 
 > **Dated note, 2026-11-13.** `bottools-trumpbot-support-rewrite` is carried out as four units, sub-issues of #27, in the order of [its design, §16](27-bottools-trumpbot-support-rewrite/architecture.md#16-decomposition); what the work leaves behind is in [its consequences](27-bottools-trumpbot-support-rewrite/consequences.md).
 
+`bottools-trumpbot-support-rewrite` has landed as its four units, #39 to #42; what it leaves for the unit after it is in [its consequences, §4](27-bottools-trumpbot-support-rewrite/consequences.md#4-units-and-neighbouring-issues), with its known gaps and follow-ups in §5 and §6 there.
+
+`residual-report-and-cleanup` has run; what it leaves is in [its consequences, §4](28-residual-report-and-cleanup/consequences.md#4-sibling-units-and-neighbouring-issues), with the final state of the phase's known gaps and follow-ups in §5 and §6 there.
+
 **Neighbouring issues:**
 
 - **#1,** the tracking issue. Its planning documents land with #2's own landing.
@@ -264,8 +268,12 @@ The rewrite itself changes two source files on `main` through the path scrub
   > the file's sha256, in place of the procedure's text. GKB2's was carried out at its second attempt under the same id, the
   > first having been refused before anything ran by one of the request service's own checks
   > ([unit 6's as-built record, deviations 4 and 10](26-gkb2-gkb-rewrite/final-implementation.md#4-deviations-from-the-plan)).
+
+  > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **The path scrub has been proved only on a fixture,** until unit 3 runs it on the real history.
   Its fidelity check and its zero-match count stop the unit before the push if it misbehaves.
+
+  > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **The real histories have not yet been rewritten or scanned.** The derived counts, filter-repo's
   log lines, the scan times on TrumpBot and Support, and whether each real token file matches the
   token rule are confirmed by the units' first runs, each behind its own stop.
@@ -276,10 +284,16 @@ The rewrite itself changes two source files on `main` through the path scrub
   > BotTools, TrumpBot and Support are unit 7's (#27).
 
   > **Dated note, 2026-11-13.** For BotTools, TrumpBot and Support that is the rewrites unit of #27 ([its design, §8](27-bottools-trumpbot-support-rewrite/architecture.md#8-the-rewrites)).
+
+  > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **The secret-scan workflow and the Linux gitleaks binary have not run on GitHub.** The
   repository-hygiene pull request is their first run.
+
+  > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **Issue transfers.** How a transfer treats numbers, closed issues, and sub-issue and "blocked by"
   links is undocumented. The rehearsal settles it before KotlinBottools is touched.
+
+  > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **gitleaks' default rules have not been run on the legacy repositories' kept sources.** Any
   finding is recorded by rule id and count, and becomes a follow-up.
 
@@ -288,17 +302,29 @@ The rewrite itself changes two source files on `main` through the path scrub
   > BotTools, TrumpBot and Support remain.
 
   > **Dated note, 2026-11-13.** For BotTools, TrumpBot and Support the scans run in the rewrites unit of #27, before each push and on each fresh mirror ([its design, §8](27-bottools-trumpbot-support-rewrite/architecture.md#8-the-rewrites)).
+
+  > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **The privacy gate's name lists** come from the member files' name elements and the folder
   names. A display name stored in another form can be missed, and names shorter than five
   characters are counted, not reviewed.
+
+  > **Dated note, 2026-11-17.** Final state: it stands, as a limit of the gate's method ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **The liveness of two credentials is not established:** the 2023 session cookie and TrumpBot's
   private key. The bot tokens are dead.
+
+  > **Dated note, 2026-11-17.** Final state: open, the owner's ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **The object deletion in this working directory** may be deferred, because IntelliJ IDEA keeps
   the project open during the run. Until the deferred step runs, the clone holds unreachable old
   objects that no push can carry.
+
+  > **Dated note, 2026-11-17.** Final state: closed: none was deferred ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **IntelliJ IDEA's Local History** may hold copies of the files the realignment removes. No git
   operation reaches them.
+
+  > **Dated note, 2026-11-17.** Final state: it stands, not measured ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 - **Git 2.56 exists.** The procedures were verified against 2.55.0.windows.5, which the units pin.
+
+  > **Dated note, 2026-11-17.** Final state: it stands ([unit 8's consequences, §5](28-residual-report-and-cleanup/consequences.md#5-known-gaps)).
 
 ---
 
@@ -311,36 +337,58 @@ The rewrite itself changes two source files on `main` through the path scrub
   would pass. It also has no rule for `keys.txt`, `key.pem`, `logs/` or `services/`. The fix is to
   drop the global allowlist, or scope an `[[allowlists]]` entry to one rule with `targetRules`, and
   to add the two path rules that KotlinBottools' configuration carries.
+
+  > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **Point the 56 planning-branch links at `main`** (§2.3).
 
   > **Dated note, 2026-11-13.** The publication unit (#25) pointed the links in the bodies of #1 to #19 at `main`. A plain mention of the branch's name in a comment on #1, 16 links in MagicBot #1 to #8 and 1 in WebTools #55 remain ([its consequences, §6](25-kotlinbottools-publish/consequences.md#6-follow-ups)).
+
+  > **Dated note, 2026-11-17.** Final state: the remaining traces are open, the owner's ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **Make the issue edits of §2.6.**
 
   > **Dated note, 2026-11-13.** #2's plan-folder line reads `2-phase-0-history-rewrite`, and #1's clause that placed the documents on the planning branch now places them on `main`, both edited by the publication unit (#25).
+
+  > **Dated note, 2026-11-17.** Final state: closed for this phase ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 
 **When the units have landed:**
 
 - **The rehearsal repositories.** Delete `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a` if
   they are not wanted. That needs the `delete_repo` scope, which the phase neither has nor uses.
+
+  > **Dated note, 2026-11-17.** Final state: open, the owner's ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **The deferred step.** If unit 3 recorded the object deletion as deferred, run it in this
   working directory with IntelliJ IDEA closed. The commands are in architecture §9.4 and in unit
   3's as-built record.
+
+  > **Dated note, 2026-11-17.** Final state: closed: none was deferred ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **The credentials.** Rotate the 2023 session cookie and TrumpBot's private key if either could
   still be live.
+
+  > **Dated note, 2026-11-17.** Final state: open, the owner's ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **The project's working notes on this machine.** Update the planning-state note with four facts:
   the public repository is a fresh one; the pre-rewrite repository is `KotlinBottools-legacy`,
   private and archived; the legacy data is in `%USERPROFILE%\BotLegacyData`; and whether the
   deferred step is still due.
+
+  > **Dated note, 2026-11-17.** Final state: due after unit 8's landing, when that unit's run updates the note ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **The token rule.** If a positive control showed it missing a real token, change the
   `discord-bot-token` regex in both KotlinBottools' and MagicBot's configurations.
+
+  > **Dated note, 2026-11-17.** Final state: closed: no gap ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **Default-rule findings.** Any finding recorded in a kept file of a legacy repository needs a
   decision: a `targetRules` allowlist for that one rule and path, or acceptance as recorded.
 
   > **Dated note, 2026-11-13.** This holds for a finding in a kept file of TrumpBot or Support, whose kept files stay private, as for one in a public repository ([unit 7's design, §8.4](27-bottools-trumpbot-support-rewrite/architecture.md#84-records)).
+
+  > **Dated note, 2026-11-17.** Final state: closed: the one finding is settled ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **Machine-local paths in issue texts.** If unit 5's gate counts any in the public repository's
   issues, pull-request texts or comments, edit those texts. The scrub covers files and commits
   only.
 
   > **Dated note, 2026-11-13.** Gate 3 counted 0 matches over the 3019 issue, pull-request, comment and revision texts and run logs of the public repository ([the publication unit's as-built record, §3.3](25-kotlinbottools-publish/final-implementation.md#33-the-corpus-gate-3-the-id-check-and-the-runs)); there is nothing to edit.
+
+  > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **`KotlinBottools-legacy`** stays private and archived. Deleting it later would also remove the
   only private copy of the old objects and the resolver of the dated citations.
+
+  > **Dated note, 2026-11-17.** Final state: it stands ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
