@@ -28,8 +28,8 @@ window.dashboardLive&&window.dashboardLive("plan",
   "wip": {
     "step": "implementation",
     "since": "2026-11-08T21:15:43Z",
-    "updated": "2026-11-13T18:00:43Z",
-    "detail": "6 of 8 units landed; #27 in progress; #28 up next.",
+    "updated": "2026-11-16T20:48:25Z",
+    "detail": "7 of 8 units landed; #28 in progress.",
     "steps": [
       "sizing",
       "interview",
@@ -43,7 +43,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "landed"
     ],
     "current": [
-      "bottools-trumpbot-support-rewrite.built"
+      "residual-report-and-cleanup.built"
     ],
     "questions": [],
     "research": null,
@@ -239,7 +239,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         }
       ]
     },
-    "next": "residual-report-and-cleanup",
+    "next": null,
     "qa": [],
     "qaMax": 3,
     "waitingOn": null,
@@ -525,6 +525,16 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-13",
       "column": "built",
       "label": "#27 started"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "#27 landed"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "#28 started"
     }
   ],
   "rows": [
@@ -2022,306 +2032,9 @@ window.dashboardLive&&window.dashboardLive("plan",
         "issue": 27,
         "board": "27-bottools-trumpbot-support-rewrite/dashboard.html",
         "folder": "27-bottools-trumpbot-support-rewrite/",
-        "live": {
-          "step": "implementation",
-          "since": "2026-11-13T21:05:13Z",
-          "updated": "2026-11-16T03:31:47Z",
-          "detail": "3 of 4 units landed; #42 in progress.",
-          "steps": [
-            "sizing",
-            "interview",
-            "research",
-            "architecture",
-            "document",
-            "landing",
-            "merge",
-            "sub-issues",
-            "implementation",
-            "landed"
-          ],
-          "waitingOn": null,
-          "resume": null,
-          "qa": [],
-          "qaMax": 3,
-          "status": "building",
-          "branch": "chore/issue-27-rewrite-bottools-and-private-repos",
-          "event": {
-            "name": "sub-issues-filed",
-            "at": "2026-11-13T20:42:32Z",
-            "note": "final: filing done"
-          },
-          "interview": [
-            {
-              "text": "Should each part of the unit stay inside one of the registry's systems, or may a rewrite part also extend the tools it runs and measure its own repository's residual, as the GKB2 and GKB unit did?",
-              "options": [
-                "Size them as the GKB2 and GKB unit was sized: each rewrite runs stages 1 to 9 for its repository and extends the tools it needs; only the clone replacement stands apart",
-                "One registry system each: the tool work is its own part with no GitHub write, the rewrites stop at stage 8, one residual part probes all three repositories after the last push, and the clone replacement is its own part"
-              ],
-              "answer": "Each part stays inside one system: the tools part extends the workspace tools before any push, with no write to GitHub; the rewrites run stages 1 to 8 for each repository, with BotTools' pull-request residual counted on its fresh mirror; one residual measurement runs stage 9 over all three repositories once the last push is verified; and the clone replacement is its own part, once TrumpBot's push is proven.",
-              "asked": "2026-11-13T18:24:56Z",
-              "answered": "2026-11-13T18:25:46Z"
-            },
-            {
-              "text": "What of the old TrumpBot clone's local state should the fresh clone keep? Besides the four files under .idea/ the clone now holds a knowledge graph built from the pre-rewrite tree, its exclude entry, two graph hooks and two local config keys.",
-              "options": [
-                "Keep everything: archive and restore the graph files, the exclude entry, the hooks and the two config keys",
-                "Keep the four .idea/ files only; the clone ends with no graph and no graph hooks",
-                "Keep the four .idea/ files only, and rebuild the graph from the rewritten tree once the fresh clone is proven"
-              ],
-              "answer": "The fresh clone keeps the four `.idea/` files only; once it is proven, the graph is rebuilt from the rewritten tree by a code-only build, which installs the two hooks again.",
-              "asked": "2026-11-13T18:24:56Z",
-              "answered": "2026-11-13T18:25:46Z"
-            },
-            {
-              "text": "Should BotTools' dormant CircleCI webhook stay as it is while its two branches are force-pushed?",
-              "options": [
-                "Leave it; the deliveries are recorded by count with the push",
-                "Deactivate it before the push and reactivate it after",
-                "Delete it"
-              ],
-              "answer": "The webhook stays as it is, and the deliveries the push makes are recorded by count.",
-              "asked": "2026-11-13T18:24:56Z",
-              "answered": "2026-11-13T18:25:46Z"
-            }
-          ],
-          "document": {
-            "tasks": [
-              {
-                "id": "reconcile-plan",
-                "name": "Design and consequences confirmed final",
-                "state": "done",
-                "started": "2026-11-13T19:54:43Z",
-                "finished": "2026-11-13T19:58:42Z",
-                "report": "The four planning documents are committed at d5192fc; main had not moved, so there was nothing to merge, and no version moved. The design and its consequences are final: the design leaves no consideration open, and what the units leave behind is recorded as known gaps and follow-ups in the consequences. Next: the state boards, with the four planned units drawn dashed."
-              },
-              {
-                "id": "state-boards",
-                "name": "State boards",
-                "state": "done",
-                "started": "2026-11-13T19:58:42Z",
-                "finished": "2026-11-13T20:23:36Z"
-              },
-              {
-                "id": "document-landing",
-                "name": "Document commit",
-                "state": "done",
-                "started": "2026-11-13T20:23:36Z",
-                "finished": "2026-11-13T20:26:39Z"
-              }
-            ]
-          },
-          "history": {
-            "sizing": [
-              {
-                "since": null,
-                "ended": "2026-11-13T18:00:43Z",
-                "endedBy": "sized",
-                "to": "architecture"
-              }
-            ],
-            "architecture": [
-              {
-                "since": "2026-11-13T18:00:43Z",
-                "ended": "2026-11-13T18:24:56Z",
-                "endedBy": "halted",
-                "to": "architecture",
-                "event": {
-                  "name": "sized",
-                  "at": "2026-11-13T18:00:43Z"
-                },
-                "detail": "Unit 7 of the history rewrite: BotTools, TrumpBot and Support are rewritten and force-pushed as GKB2 and GKB were, BotTools' pull-request residual is measured, and the local TrumpBot clone is replaced. The unit touches three systems, so this run designs it and splits it into units; nothing is built or pushed in this run. Next: the design, starting with the questions on intent.",
-                "held": true
-              },
-              {
-                "since": "2026-11-13T19:20:34Z",
-                "ended": "2026-11-13T19:43:46Z",
-                "endedBy": "architecture-signed-off",
-                "to": "document",
-                "event": {
-                  "name": "researched",
-                  "at": "2026-11-13T19:20:34Z"
-                },
-                "detail": "Research complete: 31 of the 32 claims hold at source and the one that fails was a wrong file citation for behaviour that holds. Each repository is pushed in one request as one atomic push with an explicit lease on every branch, after a dry run. The old TrumpBot clone is moved aside by a rename on its own volume and deleted last. The tools are rebuilt in a new folder, and the earlier folder stays as it ran. Next: the grand design and its units."
-              }
-            ],
-            "research": [
-              {
-                "since": "2026-11-13T18:25:46Z",
-                "ended": "2026-11-13T19:20:34Z",
-                "endedBy": "researched",
-                "to": "architecture",
-                "event": {
-                  "name": "verification-started",
-                  "at": "2026-11-13T19:08:33Z"
-                },
-                "detail": "The 32 outside-world claims the three findings rest on are being checked at their sources.",
-                "research": {
-                  "phase": "complete",
-                  "drafted": 0,
-                  "since": {
-                    "planning": "2026-11-13T18:28:47Z",
-                    "research": "2026-11-13T18:31:11Z",
-                    "verification": "2026-11-13T19:08:33Z",
-                    "complete": "2026-11-13T19:20:34Z"
-                  }
-                },
-                "questions": [
-                  {
-                    "question": "two-branch-lease-push",
-                    "rows": [],
-                    "findings": "research/two-branch-lease-push.md",
-                    "state": "complete",
-                    "started": "2026-11-13T18:31:11Z",
-                    "returned": "2026-11-13T19:07:20Z"
-                  },
-                  {
-                    "question": "clone-move-aside-on-windows",
-                    "rows": [],
-                    "findings": "research/clone-move-aside-on-windows.md",
-                    "state": "complete",
-                    "started": "2026-11-13T18:31:11Z",
-                    "returned": "2026-11-13T19:06:23Z"
-                  },
-                  {
-                    "question": "tool-changes-for-three-repositories",
-                    "rows": [],
-                    "findings": "research/tool-changes-for-three-repositories.md",
-                    "state": "complete",
-                    "started": "2026-11-13T18:31:11Z",
-                    "returned": "2026-11-13T18:56:23Z"
-                  }
-                ]
-              }
-            ],
-            "document": [
-              {
-                "since": "2026-11-13T19:43:46Z",
-                "ended": "2026-11-13T20:31:31Z",
-                "endedBy": "landing",
-                "to": "landing",
-                "event": {
-                  "name": "document",
-                  "at": "2026-11-13T20:26:39Z",
-                  "note": "3 of 3 tasks done"
-                },
-                "detail": "Document: 3 of 3 tasks done; every task done.",
-                "document": {
-                  "tasks": [
-                    {
-                      "id": "reconcile-plan",
-                      "name": "Design and consequences confirmed final",
-                      "state": "done",
-                      "started": "2026-11-13T19:54:43Z",
-                      "finished": "2026-11-13T19:58:42Z",
-                      "report": "The four planning documents are committed at d5192fc; main had not moved, so there was nothing to merge, and no version moved. The design and its consequences are final: the design leaves no consideration open, and what the units leave behind is recorded as known gaps and follow-ups in the consequences. Next: the state boards, with the four planned units drawn dashed."
-                    },
-                    {
-                      "id": "state-boards",
-                      "name": "State boards",
-                      "state": "done",
-                      "started": "2026-11-13T19:58:42Z",
-                      "finished": "2026-11-13T20:23:36Z"
-                    },
-                    {
-                      "id": "document-landing",
-                      "name": "Document commit",
-                      "state": "done",
-                      "started": "2026-11-13T20:23:36Z",
-                      "finished": "2026-11-13T20:26:39Z"
-                    }
-                  ]
-                }
-              }
-            ],
-            "landing": [
-              {
-                "since": "2026-11-13T20:31:31Z",
-                "ended": "2026-11-13T20:32:37Z",
-                "endedBy": "merge",
-                "to": "merge",
-                "event": {
-                  "name": "landing",
-                  "at": "2026-11-13T20:31:31Z",
-                  "note": "land accepted"
-                },
-                "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
-              }
-            ],
-            "merge": [
-              {
-                "since": "2026-11-13T20:32:37Z",
-                "ended": "2026-11-13T20:40:13Z",
-                "endedBy": "sub-issues-filed",
-                "to": "sub-issues",
-                "event": {
-                  "name": "landed",
-                  "at": "2026-11-13T20:33:14Z"
-                },
-                "detail": "The plan landed in PR #38; its units are filed next."
-              }
-            ],
-            "sub-issues": [
-              {
-                "since": "2026-11-13T20:40:13Z",
-                "ended": "2026-11-13T21:05:13Z",
-                "endedBy": "sized",
-                "to": "implementation",
-                "event": {
-                  "name": "sub-issues-filed",
-                  "at": "2026-11-13T20:42:32Z",
-                  "note": "final: filing done"
-                },
-                "detail": "4 of 4 units filed as sub-issues; each unit's board appears when its run starts.",
-                "units": {
-                  "done": 4,
-                  "total": 4
-                }
-              }
-            ]
-          },
-          "deviations": 0,
-          "recon": {
-            "interview": {
-              "reconstructed": true,
-              "ended": null,
-              "trail": [],
-              "milestones": [],
-              "interview": [
-                {
-                  "text": "Should each part of the unit stay inside one of the registry's systems, or may a rewrite part also extend the tools it runs and measure its own repository's residual, as the GKB2 and GKB unit did?",
-                  "options": [
-                    "Size them as the GKB2 and GKB unit was sized: each rewrite runs stages 1 to 9 for its repository and extends the tools it needs; only the clone replacement stands apart",
-                    "One registry system each: the tool work is its own part with no GitHub write, the rewrites stop at stage 8, one residual part probes all three repositories after the last push, and the clone replacement is its own part"
-                  ],
-                  "answer": "Each part stays inside one system: the tools part extends the workspace tools before any push, with no write to GitHub; the rewrites run stages 1 to 8 for each repository, with BotTools' pull-request residual counted on its fresh mirror; one residual measurement runs stage 9 over all three repositories once the last push is verified; and the clone replacement is its own part, once TrumpBot's push is proven.",
-                  "asked": "2026-11-13T18:24:56Z",
-                  "answered": "2026-11-13T18:25:46Z"
-                },
-                {
-                  "text": "What of the old TrumpBot clone's local state should the fresh clone keep? Besides the four files under .idea/ the clone now holds a knowledge graph built from the pre-rewrite tree, its exclude entry, two graph hooks and two local config keys.",
-                  "options": [
-                    "Keep everything: archive and restore the graph files, the exclude entry, the hooks and the two config keys",
-                    "Keep the four .idea/ files only; the clone ends with no graph and no graph hooks",
-                    "Keep the four .idea/ files only, and rebuild the graph from the rewritten tree once the fresh clone is proven"
-                  ],
-                  "answer": "The fresh clone keeps the four `.idea/` files only; once it is proven, the graph is rebuilt from the rewritten tree by a code-only build, which installs the two hooks again.",
-                  "asked": "2026-11-13T18:24:56Z",
-                  "answered": "2026-11-13T18:25:46Z"
-                },
-                {
-                  "text": "Should BotTools' dormant CircleCI webhook stay as it is while its two branches are force-pushed?",
-                  "options": [
-                    "Leave it; the deliveries are recorded by count with the push",
-                    "Deactivate it before the push and reactivate it after",
-                    "Delete it"
-                  ],
-                  "answer": "The webhook stays as it is, and the deliveries the push makes are recorded by count.",
-                  "asked": "2026-11-13T18:24:56Z",
-                  "answered": "2026-11-13T18:25:46Z"
-                }
-              ]
-            }
-          }
+        "landing": {
+          "pr": 48,
+          "merge": "053288047b6410bf22fca990cafc17d55051bf6d"
         }
       },
       "gap": {
@@ -2409,8 +2122,8 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "architecture.md#15-decomposition"
       },
       "asBuilt": {
-        "state": "pending",
-        "summary": "Filed as #27; its plan landed through PR #38 as `9f22646`, and #27 stays open while its four units are built. They are filed as #39 to #42 and none has started; #39 starts first.",
+        "state": "landed",
+        "summary": "#27 landed with its last unit, #42, through PR #48 as `0532880`; its plan landed through PR #38 as `9f22646`, its four units through PRs #44, #45, #46 and #48, and #27 is closed. BotTools (public), then TrumpBot and Support (private), were force-pushed in place, one atomic push each under a lease on every branch's recorded tip, five branches in all, 16 commits to 15, 11 to 9 and 2 to 1; each kept its visibility, each fresh mirror is clean, and no default-rule finding arose. GitHub still serves every old object probed, BotTools' pull-request refs keep its 39 purged blobs fetchable, as predicted, and the events listed the push of 1 of the 5 branches. The TrumpBot clone was replaced by a fresh clone with its four `.idea/` files, the old clone deleted at its recorded path outside the workspace, and its graph rebuilt from the rewritten tree. #47, filed against the tools' request builder, stays open. #28 takes the three report rows, every unit's records with their checksum lists, both tool folders and the stage runner, and the record that no old-clone path remains, and may start now that the unit has landed.",
         "changes": [
           {
             "what": "The TrumpBot clone is replaced by a unit of its own, the clone replacement, after the rewrites: of the 59 files git does not track in it, only the four under `.idea/` are carried and restored; the graph's 55 files, its exclude entry, its two hooks and the two extra configuration keys are not. The old clone is renamed aside on its own volume and deleted once the fresh clone has been read back, and a code-only graph build from the rewritten tree follows the deletion.",
@@ -2436,15 +2149,2371 @@ window.dashboardLive&&window.dashboardLive("plan",
           25,
           27
         ],
-        "issue": 28
+        "issue": 28,
+        "board": "28-residual-report-and-cleanup/dashboard.html",
+        "folder": "28-residual-report-and-cleanup/",
+        "live": {
+          "step": "document",
+          "since": "2026-11-17T00:50:00Z",
+          "updated": "2026-11-17T01:09:56Z",
+          "detail": "Document: 4 of 4 tasks done; every task done.",
+          "steps": [
+            "sizing",
+            "interview",
+            "research",
+            "plan",
+            "branch",
+            "implementation",
+            "qa",
+            "remediation",
+            "document",
+            "landing",
+            "merge",
+            "landed"
+          ],
+          "waitingOn": null,
+          "resume": null,
+          "qa": [
+            {
+              "pass": 1,
+              "verdict": "changes-requested",
+              "date": "2026-11-17",
+              "at": "2026-11-17T00:05:45Z",
+              "findings": {
+                "test": 7,
+                "code": 9
+              },
+              "severity": {
+                "minor": 5,
+                "other": 11
+              },
+              "route": "re-plan-then-remediation",
+              "note": "The sandbox tries passed again: the four sandbox scripts ran 79 cases, all passed (gating 41, component 22, integration 16), their output matching the recorded outputs line for line, and every stage's recorded results meet the plan. 16 findings (5 minor, 11 other; 7 test, 9 code). Open before the landing: the as-built record and the consequences are not yet reconciled with the run, the test plan claims more deletion-guard coverage than the sandbox tries hold, two reading scripts have no sandbox case, and the landing's document checks are still to run. They touch the workspace deletion, the report table, the data folder's re-verification and the follow-ups. The work itself is done; the fixes are to the unit's documents."
+            },
+            {
+              "pass": 2,
+              "verdict": "changes-requested",
+              "date": "2026-11-17",
+              "at": "2026-11-17T00:40:17Z",
+              "findings": {
+                "test": 5,
+                "code": 3
+              },
+              "severity": {
+                "minor": 8,
+                "other": 0
+              },
+              "route": "on-the-spot",
+              "note": "The sandbox tries passed again: the four sandbox scripts ran 79 cases, all passed (component 63, integration 16), and every point of Quality Review 1 is settled. 8 findings (8 minor; 5 test, 3 code), all wording fixes to the unit's documents, made in place with no additional review: more untested stops and two more failed-read gaps named, the test-set rows aligned with the sets' definitions, one more output-label deviation recorded, two phase notes worded as following the landing, and the landing's document checks run again over the final pending set. They touch the workspace's deletion, the residual-exposure report, the data folder's re-verification and the follow-ups."
+            }
+          ],
+          "qaMax": 3,
+          "status": "building",
+          "branch": "docs/issue-28-residual-exposure-report-workspace-cleanup",
+          "event": {
+            "name": "document",
+            "at": "2026-11-17T01:09:56Z",
+            "note": "4 of 4 tasks done"
+          },
+          "asked": [
+            {
+              "step": "implementation",
+              "text": "Place the allow line for the workspace's deletion (the plan's allow line 2, naming delete-ws.sh at sha256 da9b163e…ce1), so the deletion stage can run?",
+              "answer": null,
+              "asked": "2026-11-16T23:28:55Z",
+              "answered": "2026-11-16T23:37:37Z"
+            },
+            {
+              "step": "implementation",
+              "text": "Allow the removal command (delete-ws.sh remove), by placing the deletion's allow line or by approving the command when it is put to you again?",
+              "answer": null,
+              "asked": "2026-11-16T23:38:00Z",
+              "answered": "2026-11-16T23:46:42Z"
+            },
+            {
+              "step": "remediation",
+              "text": "The unit spans two systems, the residual-exposure report and the workspace cleanup, as the phase design assigned it, and its work has already run. Does it land as one unit, with the review's remaining points fixed in its documents?",
+              "options": [
+                "Land it as one unit (recommended)",
+                "Split it into a plan for each system"
+              ],
+              "answer": null,
+              "asked": "2026-11-17T00:05:45Z",
+              "answered": "2026-11-17T00:07:08Z"
+            }
+          ],
+          "stages": [
+            {
+              "id": "S0",
+              "name": "Readiness",
+              "state": "done",
+              "rows": [
+                "old-clone-path"
+              ],
+              "brief": "The record folder and the unit's scripts are saved, the tools are at their pins, the inputs, GitHub and the old clone's recorded path are read, and the grant is read.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S0.unit",
+                  "name": "The record folder and the unit's data file",
+                  "state": "done",
+                  "finished": "2026-11-16T22:39:11Z"
+                },
+                {
+                  "id": "S0.save",
+                  "name": "The scripts saved and pinned",
+                  "state": "done",
+                  "finished": "2026-11-16T22:39:45Z"
+                },
+                {
+                  "id": "S0.selftest",
+                  "name": "The scripts tried in a sandbox",
+                  "state": "done",
+                  "finished": "2026-11-16T23:23:47Z"
+                },
+                {
+                  "id": "S0.tools",
+                  "name": "The tools at their pins",
+                  "state": "done",
+                  "finished": "2026-11-16T23:24:02Z"
+                },
+                {
+                  "id": "S0.quick",
+                  "name": "The quick gate",
+                  "state": "done",
+                  "finished": "2026-11-16T23:24:20Z"
+                },
+                {
+                  "id": "S0.pins",
+                  "name": "The tool versions",
+                  "state": "done",
+                  "finished": "2026-11-16T23:24:28Z"
+                },
+                {
+                  "id": "S0.inputs",
+                  "name": "The inputs present",
+                  "state": "done",
+                  "finished": "2026-11-16T23:24:36Z"
+                },
+                {
+                  "id": "S0.github",
+                  "name": "GitHub read",
+                  "state": "done",
+                  "finished": "2026-11-16T23:24:45Z"
+                },
+                {
+                  "id": "S0.clone",
+                  "name": "The old clone's recorded path",
+                  "state": "done",
+                  "finished": "2026-11-16T23:24:52Z"
+                },
+                {
+                  "id": "S0.grant",
+                  "name": "The grant read",
+                  "state": "done",
+                  "finished": "2026-11-16T23:24:58Z"
+                }
+              ],
+              "ref": "plan.md#s0--readiness",
+              "started": "2026-11-16T22:37:16Z",
+              "finished": "2026-11-16T23:25:19Z",
+              "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+              "result": "passed"
+            },
+            {
+              "id": "S1",
+              "name": "Data folder re-verified",
+              "state": "done",
+              "rows": [
+                "data-reverify"
+              ],
+              "brief": "Every checksum list of the data folder verifies from its base, the data copies equal their blob ids, and the files under no list are counted and listed.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S1.lists",
+                  "name": "The 47 checksum lists",
+                  "state": "done",
+                  "finished": "2026-11-16T23:25:36Z"
+                },
+                {
+                  "id": "S1.copy",
+                  "name": "The data copies against their blob ids",
+                  "state": "done",
+                  "finished": "2026-11-16T23:25:47Z"
+                },
+                {
+                  "id": "S1.census",
+                  "name": "The files under no list",
+                  "state": "done",
+                  "finished": "2026-11-16T23:25:54Z"
+                }
+              ],
+              "ref": "plan.md#s1--the-data-folder-re-verified",
+              "started": "2026-11-16T23:25:19Z",
+              "finished": "2026-11-16T23:26:02Z",
+              "report": "The data folder verified. All 47 checksum lists equal their line counts and verify from their bases, the swap log's list by its rule; the 91 files of the three data copies equal their recorded blob ids with 0 mismatches; the census equals the plan's table (964 files, 620 under a list, 344 under none), and the 344 files under no list now have a list of their own, which verifies.",
+              "result": "passed"
+            },
+            {
+              "id": "S2",
+              "name": "Follow-ups read",
+              "state": "done",
+              "rows": [
+                "follow-ups"
+              ],
+              "brief": "Each follow-up of the phase is read on GitHub and in the records, and its state is recorded.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S2.read",
+                  "name": "The follow-ups read",
+                  "state": "done",
+                  "finished": "2026-11-16T23:26:25Z"
+                }
+              ],
+              "ref": "plan.md#s2--the-follow-ups-read",
+              "started": "2026-11-16T23:26:02Z",
+              "finished": "2026-11-16T23:26:36Z",
+              "report": "Every follow-up of the phase read as expected, 34 reads with no differing value: the rehearsal and legacy repositories private and archived, no deferred deletion, no token-rule gap, KotlinBottools' one settled default-rule finding, 0 machine-local paths in the public texts, the planning branch's traces (16, 1 and 1), #47 open, one sub-issue of #2 open, the CI files present without the cache ignore pattern, and the pull-request refs of GKB2 (1) and BotTools (2).",
+              "result": "passed"
+            },
+            {
+              "id": "S3",
+              "name": "Tools copied",
+              "state": "done",
+              "rows": [
+                "tools-copy"
+              ],
+              "brief": "The workspace tools are copied byte for byte into the data folder and verified against a list, the four pin lists and the runner's pin.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S3.list",
+                  "name": "The list over the source",
+                  "state": "done",
+                  "finished": "2026-11-16T23:26:52Z"
+                },
+                {
+                  "id": "S3.copy",
+                  "name": "The copy",
+                  "state": "done",
+                  "finished": "2026-11-16T23:27:00Z"
+                },
+                {
+                  "id": "S3.verify",
+                  "name": "The three proofs",
+                  "state": "done",
+                  "finished": "2026-11-16T23:27:14Z"
+                },
+                {
+                  "id": "S3.census",
+                  "name": "The copy's census",
+                  "state": "done",
+                  "finished": "2026-11-16T23:27:26Z"
+                }
+              ],
+              "ref": "plan.md#s3--the-tools-copied",
+              "started": "2026-11-16T23:26:36Z",
+              "finished": "2026-11-16T23:27:33Z",
+              "report": "The workspace tools are copied into the data folder: 139 files in 11 folders, listed before the copy. The copy equals that list with no file missing or extra, every row of the four pin lists (24, 22, 21 and 21, 88 in all) matches the copied file, and the stage runner holds its pin in both places. The copy's census is recorded by name and kind."
+            },
+            {
+              "id": "S4",
+              "name": "Checks moved",
+              "state": "done",
+              "rows": [
+                "tools-copy"
+              ],
+              "brief": "The commit sets the checks read from the backups are proved equal to the commit maps, and the document checks run from the copy agree with the originals over the same documents.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S4.sources",
+                  "name": "The id-source proof",
+                  "state": "done",
+                  "finished": "2026-11-16T23:27:47Z"
+                },
+                {
+                  "id": "S4.routes",
+                  "name": "Both routes over the same documents",
+                  "state": "done",
+                  "finished": "2026-11-16T23:28:07Z"
+                }
+              ],
+              "ref": "plan.md#s4--the-checks-moved",
+              "started": "2026-11-16T23:27:33Z",
+              "finished": "2026-11-16T23:28:19Z",
+              "report": "The document checks are moved off the workspace. For each of the six repositories the commit map's old column equals the untouched backup's commit set with no differing line (87, 32, 11, 16, 11 and 2 ids), and the manifests hold their recorded sizes. Both routes, the originals and the checks run from the tools copy, pass all four arms over the same pending documents, and their id, path and gate outputs are equal byte for byte. The workspace's deletion waits for its allow line, which the owner has not placed yet.",
+              "result": "passed"
+            },
+            {
+              "id": "S5",
+              "name": "Workspace deleted",
+              "state": "done",
+              "rows": [
+                "workspace-deletion"
+              ],
+              "brief": "The workspace is renamed beside itself, removed and confirmed absent, behind guards.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S5.guards",
+                  "name": "The deletion's guards",
+                  "steps": [
+                    {
+                      "id": "S5.guards.markers",
+                      "name": "This run's markers",
+                      "state": "done",
+                      "finished": "2026-11-16T23:37:37Z"
+                    },
+                    {
+                      "id": "S5.guards.census",
+                      "name": "The workspace's census recorded",
+                      "state": "done",
+                      "finished": "2026-11-16T23:37:37Z"
+                    },
+                    {
+                      "id": "S5.guards.copy",
+                      "name": "The tools copy read against the source again",
+                      "state": "done",
+                      "finished": "2026-11-16T23:37:37Z"
+                    }
+                  ],
+                  "state": "done",
+                  "finished": "2026-11-16T23:37:37Z"
+                },
+                {
+                  "id": "S5.rename",
+                  "name": "The rename and its lock probe",
+                  "state": "done",
+                  "finished": "2026-11-16T23:37:51Z"
+                },
+                {
+                  "id": "S5.remove",
+                  "name": "The renamed folder removed",
+                  "state": "done",
+                  "finished": "2026-11-16T23:46:42Z"
+                },
+                {
+                  "id": "S5.leftover",
+                  "name": "A leftover removed once more, only when one remains"
+                },
+                {
+                  "id": "S5.gone",
+                  "name": "Both paths confirmed absent",
+                  "state": "done",
+                  "finished": "2026-11-16T23:46:44Z"
+                }
+              ],
+              "ref": "plan.md#s5--the-workspace-deleted",
+              "started": "2026-11-16T23:28:19Z",
+              "finished": "2026-11-16T23:46:44Z",
+              "report": "The workspace is deleted: the guards passed (10234 files, 5966 folders, 791 MB, every source file equal to its copy), it was moved aside on the first try, removed with nothing left over, and both paths read absent with the data folder and the checkout as before. No deviation."
+            },
+            {
+              "id": "S6",
+              "name": "Report posted",
+              "state": "done",
+              "rows": [
+                "report-table"
+              ],
+              "brief": "The report's body is built from the plan's text and the records, checked, posted on #2 by request and read back.",
+              "kind": "work",
+              "steps": [
+                {
+                  "id": "S6.sources",
+                  "name": "The row lines proved",
+                  "state": "done",
+                  "finished": "2026-11-16T23:47:23Z"
+                },
+                {
+                  "id": "S6.fill",
+                  "name": "The body built",
+                  "state": "done",
+                  "finished": "2026-11-16T23:47:29Z"
+                },
+                {
+                  "id": "S6.checks",
+                  "name": "The body checked",
+                  "state": "done",
+                  "finished": "2026-11-16T23:47:40Z"
+                },
+                {
+                  "id": "S6.request",
+                  "name": "The request built and handed off",
+                  "state": "done",
+                  "finished": "2026-11-16T23:47:47Z"
+                },
+                {
+                  "id": "S6.send",
+                  "name": "The request sent",
+                  "state": "done",
+                  "finished": "2026-11-16T23:49:00Z"
+                },
+                {
+                  "id": "S6.reply",
+                  "name": "The reply stored",
+                  "state": "done",
+                  "finished": "2026-11-16T23:49:53Z"
+                },
+                {
+                  "id": "S6.readback",
+                  "name": "The comment read back",
+                  "state": "done",
+                  "finished": "2026-11-16T23:50:00Z"
+                }
+              ],
+              "ref": "plan.md#s6--the-report-posted",
+              "started": "2026-11-16T23:46:44Z",
+              "finished": "2026-11-16T23:50:06Z",
+              "report": "The residual-exposure report is posted on #2 as one comment. Its body was built from the plan's text with the 12 counts of this unit's own steps filled in (17,602 bytes, 148 lines), after every source line it draws on was found in its record. It passed the four document checks, the vocabulary scan and the shape checks before it was sent once. Read back from GitHub, it is the only comment with the report's title, it is the newest on #2, and its text equals the body."
+            },
+            {
+              "id": "S7",
+              "name": "Close-out",
+              "state": "done",
+              "rows": [
+                "old-clone-path",
+                "data-reverify"
+              ],
+              "brief": "The old clone's path, the package and every remaining list are read, and the unit's outputs and records hold nothing sensitive and are listed.",
+              "kind": "check",
+              "steps": [
+                {
+                  "id": "S7.clone",
+                  "name": "The old clone's recorded path",
+                  "state": "done",
+                  "finished": "2026-11-16T23:50:17Z"
+                },
+                {
+                  "id": "S7.package",
+                  "name": "The package",
+                  "state": "done",
+                  "finished": "2026-11-16T23:50:24Z"
+                },
+                {
+                  "id": "S7.lists",
+                  "name": "The lists again",
+                  "state": "done",
+                  "finished": "2026-11-16T23:50:34Z"
+                },
+                {
+                  "id": "S7.outputs",
+                  "name": "The output rule",
+                  "state": "done",
+                  "finished": "2026-11-16T23:50:43Z"
+                },
+                {
+                  "id": "S7.sums",
+                  "name": "The unit's checksum list",
+                  "state": "done",
+                  "finished": "2026-11-16T23:50:50Z"
+                }
+              ],
+              "ref": "plan.md#s7--close-out",
+              "started": "2026-11-16T23:50:06Z",
+              "finished": "2026-11-16T23:50:59Z",
+              "report": "Close-out passed. The old TrumpBot clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
+              "result": "passed"
+            }
+          ],
+          "remediation": {
+            "pass": 2,
+            "route": "on-the-spot",
+            "steps": [
+              {
+                "name": "Untested stops and failed-read gaps named in full",
+                "state": "done",
+                "finished": "2026-11-17T00:50:00Z",
+                "report": "The wording fixes are made: every stop no sandbox case makes fail is named script by script, four scripts' failed-read gaps are recorded, the test-set rule treats the local platform as the scripts' runtime, one more output label is a deviation, the phase notes say what follows the landing, and the closing's allow line is recorded as not known to be placed."
+              },
+              {
+                "name": "Test-set rule stated for the local platform",
+                "state": "done",
+                "finished": "2026-11-17T00:50:00Z",
+                "report": "The wording fixes are made: every stop no sandbox case makes fail is named script by script, four scripts' failed-read gaps are recorded, the test-set rule treats the local platform as the scripts' runtime, one more output label is a deviation, the phase notes say what follows the landing, and the closing's allow line is recorded as not known to be placed."
+              },
+              {
+                "name": "Output-label deviation and phase notes worded",
+                "state": "done",
+                "finished": "2026-11-17T00:50:00Z",
+                "report": "The wording fixes are made: every stop no sandbox case makes fail is named script by script, four scripts' failed-read gaps are recorded, the test-set rule treats the local platform as the scripts' runtime, one more output label is a deviation, the phase notes say what follows the landing, and the closing's allow line is recorded as not known to be placed."
+              }
+            ]
+          },
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "finished": "2026-11-17T00:50:00Z",
+                "report": "The plan, the as-built record and the consequences are reconciled with the build; README and CHANGELOG stay as they are."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-17T00:50:00Z",
+                "report": "The plan, the as-built record and the consequences are reconciled with the build; README and CHANGELOG stay as they are."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-17T01:00:49Z",
+                "finished": "2026-11-17T01:05:56Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-17T01:05:56Z",
+                "finished": "2026-11-17T01:09:56Z"
+              }
+            ]
+          },
+          "open": [
+            {
+              "text": "The sandbox tries of the census, the tools copy and the final list fail on 6 cases; the scripts are to be corrected in the plan with new pins before the unit goes on.",
+              "raised": "halted",
+              "shownOpen": "2026-11-16T22:43:24Z",
+              "resolved": "2026-11-16T23:23:41Z"
+            }
+          ],
+          "history": {
+            "sizing": [
+              {
+                "since": null,
+                "ended": "2026-11-16T20:48:25Z",
+                "endedBy": "sized",
+                "to": "plan"
+              }
+            ],
+            "plan": [
+              {
+                "since": "2026-11-16T20:48:25Z",
+                "ended": "2026-11-16T22:32:16Z",
+                "endedBy": "plan-accepted",
+                "to": "branch",
+                "event": {
+                  "name": "plan-stage",
+                  "at": "2026-11-16T22:31:13Z"
+                },
+                "detail": "The consequences record the report on #2 and its closing, the workspace's deletion with everything it removes, the data folder's additions, and every follow-up of the phase with who carries it out.",
+                "plan": {
+                  "state": "re-pass",
+                  "from": "parent",
+                  "since": "2026-11-16T20:48:25Z",
+                  "stages": [
+                    {
+                      "id": "re-pass",
+                      "state": "done",
+                      "started": "2026-11-16T20:48:25Z",
+                      "finished": "2026-11-16T21:26:30Z",
+                      "report": "The re-validation found every input of the cleanup in place, the six report rows, the records, the tool folders at their pins and the old clone's path absent, with one record appended to the swap log after its checksum list and document checks that need the workspace's backups."
+                    },
+                    {
+                      "id": "write",
+                      "state": "done",
+                      "started": "2026-11-16T21:26:30Z",
+                      "finished": "2026-11-16T22:15:02Z",
+                      "report": "The draft holds the cleanup in eight stages, from readiness through the data folder's re-verification, the tools copy, the moved document checks and the workspace's deletion to the posted report and the close-out, with the report's full text, 26 pinned files and the closing of #2 after the landing."
+                    },
+                    {
+                      "id": "check",
+                      "state": "done",
+                      "started": "2026-11-16T22:15:02Z",
+                      "finished": "2026-11-16T22:28:45Z",
+                      "report": "The check accepted the plan after correcting it in place: the id check names the five legacy repositories with a separate check of KotlinBottools' ids over the hand-written documents, the request step prints no path, the deletion's allow line names every command it covers, and six pinned files were pinned again.",
+                      "result": "accepted"
+                    },
+                    {
+                      "id": "consequences",
+                      "state": "done",
+                      "started": "2026-11-16T22:28:45Z",
+                      "finished": "2026-11-16T22:31:13Z",
+                      "report": "The consequences record the report on #2 and its closing, the workspace's deletion with everything it removes, the data folder's additions, and every follow-up of the phase with who carries it out."
+                    },
+                    {
+                      "id": "report",
+                      "state": "done",
+                      "started": "2026-11-16T22:31:13Z",
+                      "finished": "2026-11-16T22:32:16Z",
+                      "report": "The plan is accepted: eight stages that prove the data folder, copy the tools and move the checks before the workspace is deleted, then post the report on #2 and close #2 after the landing."
+                    }
+                  ]
+                }
+              }
+            ],
+            "branch": [
+              {
+                "since": "2026-11-16T22:32:16Z",
+                "ended": "2026-11-16T22:37:16Z",
+                "endedBy": "branch-cut",
+                "to": "implementation",
+                "event": {
+                  "name": "plan-accepted",
+                  "at": "2026-11-16T22:32:16Z"
+                },
+                "detail": "The plan is accepted: eight stages that prove the data folder, copy the tools and move the checks before the workspace is deleted, then post the report on #2 and close #2 after the landing.",
+                "branch": "docs/issue-28-residual-exposure-report-workspace-cleanup"
+              }
+            ],
+            "implementation": [
+              {
+                "since": "2026-11-16T22:37:16Z",
+                "ended": "2026-11-16T22:43:24Z",
+                "endedBy": "halted",
+                "to": "implementation",
+                "event": {
+                  "name": "step-complete",
+                  "at": "2026-11-16T22:39:45Z"
+                },
+                "detail": "Branch `docs/issue-28-residual-exposure-report-workspace-cleanup` cut; implementation starts at S0: Readiness.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Readiness",
+                    "state": "current",
+                    "rows": [
+                      "old-clone-path"
+                    ],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S0.unit",
+                        "name": "The record folder and the unit's data file",
+                        "state": "done",
+                        "finished": "2026-11-16T22:39:11Z"
+                      },
+                      {
+                        "id": "S0.save",
+                        "name": "The scripts saved and pinned",
+                        "state": "done",
+                        "finished": "2026-11-16T22:39:45Z"
+                      },
+                      {
+                        "id": "S0.selftest",
+                        "name": "The scripts tried in a sandbox"
+                      },
+                      {
+                        "id": "S0.tools",
+                        "name": "The tools at their pins"
+                      },
+                      {
+                        "id": "S0.quick",
+                        "name": "The quick gate"
+                      },
+                      {
+                        "id": "S0.pins",
+                        "name": "The tool versions"
+                      },
+                      {
+                        "id": "S0.inputs",
+                        "name": "The inputs present"
+                      },
+                      {
+                        "id": "S0.github",
+                        "name": "GitHub read"
+                      },
+                      {
+                        "id": "S0.clone",
+                        "name": "The old clone's recorded path"
+                      },
+                      {
+                        "id": "S0.grant",
+                        "name": "The grant read"
+                      }
+                    ],
+                    "ref": "plan.md#s0--readiness",
+                    "brief": "The record folder and the unit's scripts are saved, the tools are at their pins, the inputs, GitHub and the old clone's recorded path are read, and the grant is read.",
+                    "started": "2026-11-16T22:37:16Z"
+                  },
+                  {
+                    "id": "S1",
+                    "name": "Data folder re-verified",
+                    "state": "todo",
+                    "rows": [
+                      "data-reverify"
+                    ],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S1.lists",
+                        "name": "The 47 checksum lists"
+                      },
+                      {
+                        "id": "S1.copy",
+                        "name": "The data copies against their blob ids"
+                      },
+                      {
+                        "id": "S1.census",
+                        "name": "The files under no list"
+                      }
+                    ],
+                    "ref": "plan.md#s1--the-data-folder-re-verified",
+                    "brief": "Every checksum list of the data folder verifies from its base, the data copies equal their blob ids, and the files under no list are counted and listed."
+                  },
+                  {
+                    "id": "S2",
+                    "name": "Follow-ups read",
+                    "state": "todo",
+                    "rows": [
+                      "follow-ups"
+                    ],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S2.read",
+                        "name": "The follow-ups read"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-follow-ups-read",
+                    "brief": "Each follow-up of the phase is read on GitHub and in the records, and its state is recorded."
+                  },
+                  {
+                    "id": "S3",
+                    "name": "Tools copied",
+                    "state": "todo",
+                    "rows": [
+                      "tools-copy"
+                    ],
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.list",
+                        "name": "The list over the source"
+                      },
+                      {
+                        "id": "S3.copy",
+                        "name": "The copy"
+                      },
+                      {
+                        "id": "S3.verify",
+                        "name": "The three proofs"
+                      },
+                      {
+                        "id": "S3.census",
+                        "name": "The copy's census"
+                      }
+                    ],
+                    "ref": "plan.md#s3--the-tools-copied",
+                    "brief": "The workspace tools are copied byte for byte into the data folder and verified against a list, the four pin lists and the runner's pin."
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Checks moved",
+                    "state": "todo",
+                    "rows": [
+                      "tools-copy"
+                    ],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.sources",
+                        "name": "The id-source proof"
+                      },
+                      {
+                        "id": "S4.routes",
+                        "name": "Both routes over the same documents"
+                      }
+                    ],
+                    "ref": "plan.md#s4--the-checks-moved",
+                    "brief": "The commit sets the checks read from the backups are proved equal to the commit maps, and the document checks run from the copy agree with the originals over the same documents."
+                  },
+                  {
+                    "id": "S5",
+                    "name": "Workspace deleted",
+                    "state": "todo",
+                    "rows": [
+                      "workspace-deletion"
+                    ],
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S5.guards",
+                        "name": "The deletion's guards",
+                        "steps": [
+                          {
+                            "id": "S5.guards.markers",
+                            "name": "This run's markers"
+                          },
+                          {
+                            "id": "S5.guards.census",
+                            "name": "The workspace's census recorded"
+                          },
+                          {
+                            "id": "S5.guards.copy",
+                            "name": "The tools copy read against the source again"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "S5.rename",
+                        "name": "The rename and its lock probe"
+                      },
+                      {
+                        "id": "S5.remove",
+                        "name": "The renamed folder removed"
+                      },
+                      {
+                        "id": "S5.leftover",
+                        "name": "A leftover removed once more, only when one remains"
+                      },
+                      {
+                        "id": "S5.gone",
+                        "name": "Both paths confirmed absent"
+                      }
+                    ],
+                    "ref": "plan.md#s5--the-workspace-deleted",
+                    "brief": "The workspace is renamed beside itself, removed and confirmed absent, behind guards."
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Report posted",
+                    "state": "todo",
+                    "rows": [
+                      "report-table"
+                    ],
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S6.sources",
+                        "name": "The row lines proved"
+                      },
+                      {
+                        "id": "S6.fill",
+                        "name": "The body built"
+                      },
+                      {
+                        "id": "S6.checks",
+                        "name": "The body checked"
+                      },
+                      {
+                        "id": "S6.request",
+                        "name": "The request built and handed off"
+                      },
+                      {
+                        "id": "S6.send",
+                        "name": "The request sent"
+                      },
+                      {
+                        "id": "S6.reply",
+                        "name": "The reply stored"
+                      },
+                      {
+                        "id": "S6.readback",
+                        "name": "The comment read back"
+                      }
+                    ],
+                    "ref": "plan.md#s6--the-report-posted",
+                    "brief": "The report's body is built from the plan's text and the records, checked, posted on #2 by request and read back."
+                  },
+                  {
+                    "id": "S7",
+                    "name": "Close-out",
+                    "state": "todo",
+                    "rows": [
+                      "old-clone-path",
+                      "data-reverify"
+                    ],
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S7.clone",
+                        "name": "The old clone's recorded path"
+                      },
+                      {
+                        "id": "S7.package",
+                        "name": "The package"
+                      },
+                      {
+                        "id": "S7.lists",
+                        "name": "The lists again"
+                      },
+                      {
+                        "id": "S7.outputs",
+                        "name": "The output rule"
+                      },
+                      {
+                        "id": "S7.sums",
+                        "name": "The unit's checksum list"
+                      }
+                    ],
+                    "ref": "plan.md#s7--close-out",
+                    "brief": "The old clone's path, the package and every remaining list are read, and the unit's outputs and records hold nothing sensitive and are listed."
+                  }
+                ],
+                "held": true
+              },
+              {
+                "since": "2026-11-16T22:57:50Z",
+                "ended": "2026-11-16T23:28:55Z",
+                "endedBy": "halted",
+                "to": "implementation",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-16T23:28:19Z",
+                  "note": "S4 reported done; S5 current"
+                },
+                "detail": "The document checks are moved off the workspace. For each of the six repositories the commit map's old column equals the untouched backup's commit set with no differing line (87, 32, 11, 16, 11 and 2 ids), and the manifests hold their recorded sizes. Both routes, the originals and the checks run from the tools copy, pass all four arms over the same pending documents, and their id, path and gate outputs are equal byte for byte. The workspace's deletion waits for its allow line, which the owner has not placed yet.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Readiness",
+                    "state": "done",
+                    "rows": [
+                      "old-clone-path"
+                    ],
+                    "brief": "The record folder and the unit's scripts are saved, the tools are at their pins, the inputs, GitHub and the old clone's recorded path are read, and the grant is read.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S0.unit",
+                        "name": "The record folder and the unit's data file",
+                        "state": "done",
+                        "finished": "2026-11-16T22:39:11Z"
+                      },
+                      {
+                        "id": "S0.save",
+                        "name": "The scripts saved and pinned",
+                        "state": "done",
+                        "finished": "2026-11-16T22:39:45Z"
+                      },
+                      {
+                        "id": "S0.selftest",
+                        "name": "The scripts tried in a sandbox",
+                        "state": "done",
+                        "finished": "2026-11-16T23:23:47Z"
+                      },
+                      {
+                        "id": "S0.tools",
+                        "name": "The tools at their pins",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:02Z"
+                      },
+                      {
+                        "id": "S0.quick",
+                        "name": "The quick gate",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:20Z"
+                      },
+                      {
+                        "id": "S0.pins",
+                        "name": "The tool versions",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:28Z"
+                      },
+                      {
+                        "id": "S0.inputs",
+                        "name": "The inputs present",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:36Z"
+                      },
+                      {
+                        "id": "S0.github",
+                        "name": "GitHub read",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:45Z"
+                      },
+                      {
+                        "id": "S0.clone",
+                        "name": "The old clone's recorded path",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:52Z"
+                      },
+                      {
+                        "id": "S0.grant",
+                        "name": "The grant read",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:58Z"
+                      }
+                    ],
+                    "ref": "plan.md#s0--readiness",
+                    "started": "2026-11-16T22:37:16Z",
+                    "finished": "2026-11-16T23:25:19Z",
+                    "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S1",
+                    "name": "Data folder re-verified",
+                    "state": "done",
+                    "rows": [
+                      "data-reverify"
+                    ],
+                    "brief": "Every checksum list of the data folder verifies from its base, the data copies equal their blob ids, and the files under no list are counted and listed.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S1.lists",
+                        "name": "The 47 checksum lists",
+                        "state": "done",
+                        "finished": "2026-11-16T23:25:36Z"
+                      },
+                      {
+                        "id": "S1.copy",
+                        "name": "The data copies against their blob ids",
+                        "state": "done",
+                        "finished": "2026-11-16T23:25:47Z"
+                      },
+                      {
+                        "id": "S1.census",
+                        "name": "The files under no list",
+                        "state": "done",
+                        "finished": "2026-11-16T23:25:54Z"
+                      }
+                    ],
+                    "ref": "plan.md#s1--the-data-folder-re-verified",
+                    "started": "2026-11-16T23:25:19Z",
+                    "finished": "2026-11-16T23:26:02Z",
+                    "report": "The data folder verified. All 47 checksum lists equal their line counts and verify from their bases, the swap log's list by its rule; the 91 files of the three data copies equal their recorded blob ids with 0 mismatches; the census equals the plan's table (964 files, 620 under a list, 344 under none), and the 344 files under no list now have a list of their own, which verifies.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S2",
+                    "name": "Follow-ups read",
+                    "state": "done",
+                    "rows": [
+                      "follow-ups"
+                    ],
+                    "brief": "Each follow-up of the phase is read on GitHub and in the records, and its state is recorded.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S2.read",
+                        "name": "The follow-ups read",
+                        "state": "done",
+                        "finished": "2026-11-16T23:26:25Z"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-follow-ups-read",
+                    "started": "2026-11-16T23:26:02Z",
+                    "finished": "2026-11-16T23:26:36Z",
+                    "report": "Every follow-up of the phase read as expected, 34 reads with no differing value: the rehearsal and legacy repositories private and archived, no deferred deletion, no token-rule gap, KotlinBottools' one settled default-rule finding, 0 machine-local paths in the public texts, the planning branch's traces (16, 1 and 1), #47 open, one sub-issue of #2 open, the CI files present without the cache ignore pattern, and the pull-request refs of GKB2 (1) and BotTools (2).",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S3",
+                    "name": "Tools copied",
+                    "state": "done",
+                    "rows": [
+                      "tools-copy"
+                    ],
+                    "brief": "The workspace tools are copied byte for byte into the data folder and verified against a list, the four pin lists and the runner's pin.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.list",
+                        "name": "The list over the source",
+                        "state": "done",
+                        "finished": "2026-11-16T23:26:52Z"
+                      },
+                      {
+                        "id": "S3.copy",
+                        "name": "The copy",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:00Z"
+                      },
+                      {
+                        "id": "S3.verify",
+                        "name": "The three proofs",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:14Z"
+                      },
+                      {
+                        "id": "S3.census",
+                        "name": "The copy's census",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:26Z"
+                      }
+                    ],
+                    "ref": "plan.md#s3--the-tools-copied",
+                    "started": "2026-11-16T23:26:36Z",
+                    "finished": "2026-11-16T23:27:33Z",
+                    "report": "The workspace tools are copied into the data folder: 139 files in 11 folders, listed before the copy. The copy equals that list with no file missing or extra, every row of the four pin lists (24, 22, 21 and 21, 88 in all) matches the copied file, and the stage runner holds its pin in both places. The copy's census is recorded by name and kind."
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Checks moved",
+                    "state": "done",
+                    "rows": [
+                      "tools-copy"
+                    ],
+                    "brief": "The commit sets the checks read from the backups are proved equal to the commit maps, and the document checks run from the copy agree with the originals over the same documents.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.sources",
+                        "name": "The id-source proof",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:47Z"
+                      },
+                      {
+                        "id": "S4.routes",
+                        "name": "Both routes over the same documents",
+                        "state": "done",
+                        "finished": "2026-11-16T23:28:07Z"
+                      }
+                    ],
+                    "ref": "plan.md#s4--the-checks-moved",
+                    "started": "2026-11-16T23:27:33Z",
+                    "finished": "2026-11-16T23:28:19Z",
+                    "report": "The document checks are moved off the workspace. For each of the six repositories the commit map's old column equals the untouched backup's commit set with no differing line (87, 32, 11, 16, 11 and 2 ids), and the manifests hold their recorded sizes. Both routes, the originals and the checks run from the tools copy, pass all four arms over the same pending documents, and their id, path and gate outputs are equal byte for byte. The workspace's deletion waits for its allow line, which the owner has not placed yet.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S5",
+                    "name": "Workspace deleted",
+                    "state": "current",
+                    "rows": [
+                      "workspace-deletion"
+                    ],
+                    "brief": "The workspace is renamed beside itself, removed and confirmed absent, behind guards.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S5.guards",
+                        "name": "The deletion's guards",
+                        "steps": [
+                          {
+                            "id": "S5.guards.markers",
+                            "name": "This run's markers"
+                          },
+                          {
+                            "id": "S5.guards.census",
+                            "name": "The workspace's census recorded"
+                          },
+                          {
+                            "id": "S5.guards.copy",
+                            "name": "The tools copy read against the source again"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "S5.rename",
+                        "name": "The rename and its lock probe"
+                      },
+                      {
+                        "id": "S5.remove",
+                        "name": "The renamed folder removed"
+                      },
+                      {
+                        "id": "S5.leftover",
+                        "name": "A leftover removed once more, only when one remains"
+                      },
+                      {
+                        "id": "S5.gone",
+                        "name": "Both paths confirmed absent"
+                      }
+                    ],
+                    "ref": "plan.md#s5--the-workspace-deleted",
+                    "started": "2026-11-16T23:28:19Z"
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Report posted",
+                    "state": "todo",
+                    "rows": [
+                      "report-table"
+                    ],
+                    "brief": "The report's body is built from the plan's text and the records, checked, posted on #2 by request and read back.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S6.sources",
+                        "name": "The row lines proved"
+                      },
+                      {
+                        "id": "S6.fill",
+                        "name": "The body built"
+                      },
+                      {
+                        "id": "S6.checks",
+                        "name": "The body checked"
+                      },
+                      {
+                        "id": "S6.request",
+                        "name": "The request built and handed off"
+                      },
+                      {
+                        "id": "S6.send",
+                        "name": "The request sent"
+                      },
+                      {
+                        "id": "S6.reply",
+                        "name": "The reply stored"
+                      },
+                      {
+                        "id": "S6.readback",
+                        "name": "The comment read back"
+                      }
+                    ],
+                    "ref": "plan.md#s6--the-report-posted"
+                  },
+                  {
+                    "id": "S7",
+                    "name": "Close-out",
+                    "state": "todo",
+                    "rows": [
+                      "old-clone-path",
+                      "data-reverify"
+                    ],
+                    "brief": "The old clone's path, the package and every remaining list are read, and the unit's outputs and records hold nothing sensitive and are listed.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S7.clone",
+                        "name": "The old clone's recorded path"
+                      },
+                      {
+                        "id": "S7.package",
+                        "name": "The package"
+                      },
+                      {
+                        "id": "S7.lists",
+                        "name": "The lists again"
+                      },
+                      {
+                        "id": "S7.outputs",
+                        "name": "The output rule"
+                      },
+                      {
+                        "id": "S7.sums",
+                        "name": "The unit's checksum list"
+                      }
+                    ],
+                    "ref": "plan.md#s7--close-out"
+                  }
+                ],
+                "held": true,
+                "asked": [
+                  {
+                    "text": "Place the allow line for the workspace's deletion (the plan's allow line 2, naming delete-ws.sh at sha256 da9b163e…ce1), so the deletion stage can run?",
+                    "answer": null,
+                    "asked": "2026-11-16T23:28:55Z",
+                    "answered": "2026-11-16T23:37:37Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-16T23:37:37Z",
+                "ended": "2026-11-16T23:38:00Z",
+                "endedBy": "halted",
+                "to": "implementation",
+                "event": {
+                  "name": "step-complete",
+                  "at": "2026-11-16T23:37:51Z"
+                },
+                "detail": "The owner asked for the deletion's commands to be put to them for permission one by one instead of an allow line; the deletion stage runs on that answer.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Readiness",
+                    "state": "done",
+                    "rows": [
+                      "old-clone-path"
+                    ],
+                    "brief": "The record folder and the unit's scripts are saved, the tools are at their pins, the inputs, GitHub and the old clone's recorded path are read, and the grant is read.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S0.unit",
+                        "name": "The record folder and the unit's data file",
+                        "state": "done",
+                        "finished": "2026-11-16T22:39:11Z"
+                      },
+                      {
+                        "id": "S0.save",
+                        "name": "The scripts saved and pinned",
+                        "state": "done",
+                        "finished": "2026-11-16T22:39:45Z"
+                      },
+                      {
+                        "id": "S0.selftest",
+                        "name": "The scripts tried in a sandbox",
+                        "state": "done",
+                        "finished": "2026-11-16T23:23:47Z"
+                      },
+                      {
+                        "id": "S0.tools",
+                        "name": "The tools at their pins",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:02Z"
+                      },
+                      {
+                        "id": "S0.quick",
+                        "name": "The quick gate",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:20Z"
+                      },
+                      {
+                        "id": "S0.pins",
+                        "name": "The tool versions",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:28Z"
+                      },
+                      {
+                        "id": "S0.inputs",
+                        "name": "The inputs present",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:36Z"
+                      },
+                      {
+                        "id": "S0.github",
+                        "name": "GitHub read",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:45Z"
+                      },
+                      {
+                        "id": "S0.clone",
+                        "name": "The old clone's recorded path",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:52Z"
+                      },
+                      {
+                        "id": "S0.grant",
+                        "name": "The grant read",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:58Z"
+                      }
+                    ],
+                    "ref": "plan.md#s0--readiness",
+                    "started": "2026-11-16T22:37:16Z",
+                    "finished": "2026-11-16T23:25:19Z",
+                    "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S1",
+                    "name": "Data folder re-verified",
+                    "state": "done",
+                    "rows": [
+                      "data-reverify"
+                    ],
+                    "brief": "Every checksum list of the data folder verifies from its base, the data copies equal their blob ids, and the files under no list are counted and listed.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S1.lists",
+                        "name": "The 47 checksum lists",
+                        "state": "done",
+                        "finished": "2026-11-16T23:25:36Z"
+                      },
+                      {
+                        "id": "S1.copy",
+                        "name": "The data copies against their blob ids",
+                        "state": "done",
+                        "finished": "2026-11-16T23:25:47Z"
+                      },
+                      {
+                        "id": "S1.census",
+                        "name": "The files under no list",
+                        "state": "done",
+                        "finished": "2026-11-16T23:25:54Z"
+                      }
+                    ],
+                    "ref": "plan.md#s1--the-data-folder-re-verified",
+                    "started": "2026-11-16T23:25:19Z",
+                    "finished": "2026-11-16T23:26:02Z",
+                    "report": "The data folder verified. All 47 checksum lists equal their line counts and verify from their bases, the swap log's list by its rule; the 91 files of the three data copies equal their recorded blob ids with 0 mismatches; the census equals the plan's table (964 files, 620 under a list, 344 under none), and the 344 files under no list now have a list of their own, which verifies.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S2",
+                    "name": "Follow-ups read",
+                    "state": "done",
+                    "rows": [
+                      "follow-ups"
+                    ],
+                    "brief": "Each follow-up of the phase is read on GitHub and in the records, and its state is recorded.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S2.read",
+                        "name": "The follow-ups read",
+                        "state": "done",
+                        "finished": "2026-11-16T23:26:25Z"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-follow-ups-read",
+                    "started": "2026-11-16T23:26:02Z",
+                    "finished": "2026-11-16T23:26:36Z",
+                    "report": "Every follow-up of the phase read as expected, 34 reads with no differing value: the rehearsal and legacy repositories private and archived, no deferred deletion, no token-rule gap, KotlinBottools' one settled default-rule finding, 0 machine-local paths in the public texts, the planning branch's traces (16, 1 and 1), #47 open, one sub-issue of #2 open, the CI files present without the cache ignore pattern, and the pull-request refs of GKB2 (1) and BotTools (2).",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S3",
+                    "name": "Tools copied",
+                    "state": "done",
+                    "rows": [
+                      "tools-copy"
+                    ],
+                    "brief": "The workspace tools are copied byte for byte into the data folder and verified against a list, the four pin lists and the runner's pin.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.list",
+                        "name": "The list over the source",
+                        "state": "done",
+                        "finished": "2026-11-16T23:26:52Z"
+                      },
+                      {
+                        "id": "S3.copy",
+                        "name": "The copy",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:00Z"
+                      },
+                      {
+                        "id": "S3.verify",
+                        "name": "The three proofs",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:14Z"
+                      },
+                      {
+                        "id": "S3.census",
+                        "name": "The copy's census",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:26Z"
+                      }
+                    ],
+                    "ref": "plan.md#s3--the-tools-copied",
+                    "started": "2026-11-16T23:26:36Z",
+                    "finished": "2026-11-16T23:27:33Z",
+                    "report": "The workspace tools are copied into the data folder: 139 files in 11 folders, listed before the copy. The copy equals that list with no file missing or extra, every row of the four pin lists (24, 22, 21 and 21, 88 in all) matches the copied file, and the stage runner holds its pin in both places. The copy's census is recorded by name and kind."
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Checks moved",
+                    "state": "done",
+                    "rows": [
+                      "tools-copy"
+                    ],
+                    "brief": "The commit sets the checks read from the backups are proved equal to the commit maps, and the document checks run from the copy agree with the originals over the same documents.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.sources",
+                        "name": "The id-source proof",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:47Z"
+                      },
+                      {
+                        "id": "S4.routes",
+                        "name": "Both routes over the same documents",
+                        "state": "done",
+                        "finished": "2026-11-16T23:28:07Z"
+                      }
+                    ],
+                    "ref": "plan.md#s4--the-checks-moved",
+                    "started": "2026-11-16T23:27:33Z",
+                    "finished": "2026-11-16T23:28:19Z",
+                    "report": "The document checks are moved off the workspace. For each of the six repositories the commit map's old column equals the untouched backup's commit set with no differing line (87, 32, 11, 16, 11 and 2 ids), and the manifests hold their recorded sizes. Both routes, the originals and the checks run from the tools copy, pass all four arms over the same pending documents, and their id, path and gate outputs are equal byte for byte. The workspace's deletion waits for its allow line, which the owner has not placed yet.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S5",
+                    "name": "Workspace deleted",
+                    "state": "current",
+                    "rows": [
+                      "workspace-deletion"
+                    ],
+                    "brief": "The workspace is renamed beside itself, removed and confirmed absent, behind guards.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S5.guards",
+                        "name": "The deletion's guards",
+                        "steps": [
+                          {
+                            "id": "S5.guards.markers",
+                            "name": "This run's markers",
+                            "state": "done",
+                            "finished": "2026-11-16T23:37:37Z"
+                          },
+                          {
+                            "id": "S5.guards.census",
+                            "name": "The workspace's census recorded",
+                            "state": "done",
+                            "finished": "2026-11-16T23:37:37Z"
+                          },
+                          {
+                            "id": "S5.guards.copy",
+                            "name": "The tools copy read against the source again",
+                            "state": "done",
+                            "finished": "2026-11-16T23:37:37Z"
+                          }
+                        ],
+                        "state": "done",
+                        "finished": "2026-11-16T23:37:37Z"
+                      },
+                      {
+                        "id": "S5.rename",
+                        "name": "The rename and its lock probe",
+                        "state": "done",
+                        "finished": "2026-11-16T23:37:51Z"
+                      },
+                      {
+                        "id": "S5.remove",
+                        "name": "The renamed folder removed"
+                      },
+                      {
+                        "id": "S5.leftover",
+                        "name": "A leftover removed once more, only when one remains"
+                      },
+                      {
+                        "id": "S5.gone",
+                        "name": "Both paths confirmed absent"
+                      }
+                    ],
+                    "ref": "plan.md#s5--the-workspace-deleted",
+                    "started": "2026-11-16T23:28:19Z"
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Report posted",
+                    "state": "todo",
+                    "rows": [
+                      "report-table"
+                    ],
+                    "brief": "The report's body is built from the plan's text and the records, checked, posted on #2 by request and read back.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S6.sources",
+                        "name": "The row lines proved"
+                      },
+                      {
+                        "id": "S6.fill",
+                        "name": "The body built"
+                      },
+                      {
+                        "id": "S6.checks",
+                        "name": "The body checked"
+                      },
+                      {
+                        "id": "S6.request",
+                        "name": "The request built and handed off"
+                      },
+                      {
+                        "id": "S6.send",
+                        "name": "The request sent"
+                      },
+                      {
+                        "id": "S6.reply",
+                        "name": "The reply stored"
+                      },
+                      {
+                        "id": "S6.readback",
+                        "name": "The comment read back"
+                      }
+                    ],
+                    "ref": "plan.md#s6--the-report-posted"
+                  },
+                  {
+                    "id": "S7",
+                    "name": "Close-out",
+                    "state": "todo",
+                    "rows": [
+                      "old-clone-path",
+                      "data-reverify"
+                    ],
+                    "brief": "The old clone's path, the package and every remaining list are read, and the unit's outputs and records hold nothing sensitive and are listed.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S7.clone",
+                        "name": "The old clone's recorded path"
+                      },
+                      {
+                        "id": "S7.package",
+                        "name": "The package"
+                      },
+                      {
+                        "id": "S7.lists",
+                        "name": "The lists again"
+                      },
+                      {
+                        "id": "S7.outputs",
+                        "name": "The output rule"
+                      },
+                      {
+                        "id": "S7.sums",
+                        "name": "The unit's checksum list"
+                      }
+                    ],
+                    "ref": "plan.md#s7--close-out"
+                  }
+                ],
+                "held": true,
+                "asked": [
+                  {
+                    "text": "Allow the removal command (delete-ws.sh remove), by placing the deletion's allow line or by approving the command when it is put to you again?",
+                    "answer": null,
+                    "asked": "2026-11-16T23:38:00Z",
+                    "answered": "2026-11-16T23:46:42Z"
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-16T23:46:42Z",
+                "ended": "2026-11-16T23:51:28Z",
+                "endedBy": "qa-pass",
+                "to": "qa",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-16T23:50:59Z",
+                  "note": "S7 reported done; Quality Review next"
+                },
+                "detail": "Close-out passed. The old TrumpBot clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
+                "stages": [
+                  {
+                    "id": "S0",
+                    "name": "Readiness",
+                    "state": "done",
+                    "rows": [
+                      "old-clone-path"
+                    ],
+                    "brief": "The record folder and the unit's scripts are saved, the tools are at their pins, the inputs, GitHub and the old clone's recorded path are read, and the grant is read.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S0.unit",
+                        "name": "The record folder and the unit's data file",
+                        "state": "done",
+                        "finished": "2026-11-16T22:39:11Z"
+                      },
+                      {
+                        "id": "S0.save",
+                        "name": "The scripts saved and pinned",
+                        "state": "done",
+                        "finished": "2026-11-16T22:39:45Z"
+                      },
+                      {
+                        "id": "S0.selftest",
+                        "name": "The scripts tried in a sandbox",
+                        "state": "done",
+                        "finished": "2026-11-16T23:23:47Z"
+                      },
+                      {
+                        "id": "S0.tools",
+                        "name": "The tools at their pins",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:02Z"
+                      },
+                      {
+                        "id": "S0.quick",
+                        "name": "The quick gate",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:20Z"
+                      },
+                      {
+                        "id": "S0.pins",
+                        "name": "The tool versions",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:28Z"
+                      },
+                      {
+                        "id": "S0.inputs",
+                        "name": "The inputs present",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:36Z"
+                      },
+                      {
+                        "id": "S0.github",
+                        "name": "GitHub read",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:45Z"
+                      },
+                      {
+                        "id": "S0.clone",
+                        "name": "The old clone's recorded path",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:52Z"
+                      },
+                      {
+                        "id": "S0.grant",
+                        "name": "The grant read",
+                        "state": "done",
+                        "finished": "2026-11-16T23:24:58Z"
+                      }
+                    ],
+                    "ref": "plan.md#s0--readiness",
+                    "started": "2026-11-16T22:37:16Z",
+                    "finished": "2026-11-16T23:25:19Z",
+                    "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S1",
+                    "name": "Data folder re-verified",
+                    "state": "done",
+                    "rows": [
+                      "data-reverify"
+                    ],
+                    "brief": "Every checksum list of the data folder verifies from its base, the data copies equal their blob ids, and the files under no list are counted and listed.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S1.lists",
+                        "name": "The 47 checksum lists",
+                        "state": "done",
+                        "finished": "2026-11-16T23:25:36Z"
+                      },
+                      {
+                        "id": "S1.copy",
+                        "name": "The data copies against their blob ids",
+                        "state": "done",
+                        "finished": "2026-11-16T23:25:47Z"
+                      },
+                      {
+                        "id": "S1.census",
+                        "name": "The files under no list",
+                        "state": "done",
+                        "finished": "2026-11-16T23:25:54Z"
+                      }
+                    ],
+                    "ref": "plan.md#s1--the-data-folder-re-verified",
+                    "started": "2026-11-16T23:25:19Z",
+                    "finished": "2026-11-16T23:26:02Z",
+                    "report": "The data folder verified. All 47 checksum lists equal their line counts and verify from their bases, the swap log's list by its rule; the 91 files of the three data copies equal their recorded blob ids with 0 mismatches; the census equals the plan's table (964 files, 620 under a list, 344 under none), and the 344 files under no list now have a list of their own, which verifies.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S2",
+                    "name": "Follow-ups read",
+                    "state": "done",
+                    "rows": [
+                      "follow-ups"
+                    ],
+                    "brief": "Each follow-up of the phase is read on GitHub and in the records, and its state is recorded.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S2.read",
+                        "name": "The follow-ups read",
+                        "state": "done",
+                        "finished": "2026-11-16T23:26:25Z"
+                      }
+                    ],
+                    "ref": "plan.md#s2--the-follow-ups-read",
+                    "started": "2026-11-16T23:26:02Z",
+                    "finished": "2026-11-16T23:26:36Z",
+                    "report": "Every follow-up of the phase read as expected, 34 reads with no differing value: the rehearsal and legacy repositories private and archived, no deferred deletion, no token-rule gap, KotlinBottools' one settled default-rule finding, 0 machine-local paths in the public texts, the planning branch's traces (16, 1 and 1), #47 open, one sub-issue of #2 open, the CI files present without the cache ignore pattern, and the pull-request refs of GKB2 (1) and BotTools (2).",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S3",
+                    "name": "Tools copied",
+                    "state": "done",
+                    "rows": [
+                      "tools-copy"
+                    ],
+                    "brief": "The workspace tools are copied byte for byte into the data folder and verified against a list, the four pin lists and the runner's pin.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S3.list",
+                        "name": "The list over the source",
+                        "state": "done",
+                        "finished": "2026-11-16T23:26:52Z"
+                      },
+                      {
+                        "id": "S3.copy",
+                        "name": "The copy",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:00Z"
+                      },
+                      {
+                        "id": "S3.verify",
+                        "name": "The three proofs",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:14Z"
+                      },
+                      {
+                        "id": "S3.census",
+                        "name": "The copy's census",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:26Z"
+                      }
+                    ],
+                    "ref": "plan.md#s3--the-tools-copied",
+                    "started": "2026-11-16T23:26:36Z",
+                    "finished": "2026-11-16T23:27:33Z",
+                    "report": "The workspace tools are copied into the data folder: 139 files in 11 folders, listed before the copy. The copy equals that list with no file missing or extra, every row of the four pin lists (24, 22, 21 and 21, 88 in all) matches the copied file, and the stage runner holds its pin in both places. The copy's census is recorded by name and kind."
+                  },
+                  {
+                    "id": "S4",
+                    "name": "Checks moved",
+                    "state": "done",
+                    "rows": [
+                      "tools-copy"
+                    ],
+                    "brief": "The commit sets the checks read from the backups are proved equal to the commit maps, and the document checks run from the copy agree with the originals over the same documents.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S4.sources",
+                        "name": "The id-source proof",
+                        "state": "done",
+                        "finished": "2026-11-16T23:27:47Z"
+                      },
+                      {
+                        "id": "S4.routes",
+                        "name": "Both routes over the same documents",
+                        "state": "done",
+                        "finished": "2026-11-16T23:28:07Z"
+                      }
+                    ],
+                    "ref": "plan.md#s4--the-checks-moved",
+                    "started": "2026-11-16T23:27:33Z",
+                    "finished": "2026-11-16T23:28:19Z",
+                    "report": "The document checks are moved off the workspace. For each of the six repositories the commit map's old column equals the untouched backup's commit set with no differing line (87, 32, 11, 16, 11 and 2 ids), and the manifests hold their recorded sizes. Both routes, the originals and the checks run from the tools copy, pass all four arms over the same pending documents, and their id, path and gate outputs are equal byte for byte. The workspace's deletion waits for its allow line, which the owner has not placed yet.",
+                    "result": "passed"
+                  },
+                  {
+                    "id": "S5",
+                    "name": "Workspace deleted",
+                    "state": "done",
+                    "rows": [
+                      "workspace-deletion"
+                    ],
+                    "brief": "The workspace is renamed beside itself, removed and confirmed absent, behind guards.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S5.guards",
+                        "name": "The deletion's guards",
+                        "steps": [
+                          {
+                            "id": "S5.guards.markers",
+                            "name": "This run's markers",
+                            "state": "done",
+                            "finished": "2026-11-16T23:37:37Z"
+                          },
+                          {
+                            "id": "S5.guards.census",
+                            "name": "The workspace's census recorded",
+                            "state": "done",
+                            "finished": "2026-11-16T23:37:37Z"
+                          },
+                          {
+                            "id": "S5.guards.copy",
+                            "name": "The tools copy read against the source again",
+                            "state": "done",
+                            "finished": "2026-11-16T23:37:37Z"
+                          }
+                        ],
+                        "state": "done",
+                        "finished": "2026-11-16T23:37:37Z"
+                      },
+                      {
+                        "id": "S5.rename",
+                        "name": "The rename and its lock probe",
+                        "state": "done",
+                        "finished": "2026-11-16T23:37:51Z"
+                      },
+                      {
+                        "id": "S5.remove",
+                        "name": "The renamed folder removed",
+                        "state": "done",
+                        "finished": "2026-11-16T23:46:42Z"
+                      },
+                      {
+                        "id": "S5.leftover",
+                        "name": "A leftover removed once more, only when one remains"
+                      },
+                      {
+                        "id": "S5.gone",
+                        "name": "Both paths confirmed absent",
+                        "state": "done",
+                        "finished": "2026-11-16T23:46:44Z"
+                      }
+                    ],
+                    "ref": "plan.md#s5--the-workspace-deleted",
+                    "started": "2026-11-16T23:28:19Z",
+                    "finished": "2026-11-16T23:46:44Z",
+                    "report": "The workspace is deleted: the guards passed (10234 files, 5966 folders, 791 MB, every source file equal to its copy), it was moved aside on the first try, removed with nothing left over, and both paths read absent with the data folder and the checkout as before. No deviation."
+                  },
+                  {
+                    "id": "S6",
+                    "name": "Report posted",
+                    "state": "done",
+                    "rows": [
+                      "report-table"
+                    ],
+                    "brief": "The report's body is built from the plan's text and the records, checked, posted on #2 by request and read back.",
+                    "kind": "work",
+                    "steps": [
+                      {
+                        "id": "S6.sources",
+                        "name": "The row lines proved",
+                        "state": "done",
+                        "finished": "2026-11-16T23:47:23Z"
+                      },
+                      {
+                        "id": "S6.fill",
+                        "name": "The body built",
+                        "state": "done",
+                        "finished": "2026-11-16T23:47:29Z"
+                      },
+                      {
+                        "id": "S6.checks",
+                        "name": "The body checked",
+                        "state": "done",
+                        "finished": "2026-11-16T23:47:40Z"
+                      },
+                      {
+                        "id": "S6.request",
+                        "name": "The request built and handed off",
+                        "state": "done",
+                        "finished": "2026-11-16T23:47:47Z"
+                      },
+                      {
+                        "id": "S6.send",
+                        "name": "The request sent",
+                        "state": "done",
+                        "finished": "2026-11-16T23:49:00Z"
+                      },
+                      {
+                        "id": "S6.reply",
+                        "name": "The reply stored",
+                        "state": "done",
+                        "finished": "2026-11-16T23:49:53Z"
+                      },
+                      {
+                        "id": "S6.readback",
+                        "name": "The comment read back",
+                        "state": "done",
+                        "finished": "2026-11-16T23:50:00Z"
+                      }
+                    ],
+                    "ref": "plan.md#s6--the-report-posted",
+                    "started": "2026-11-16T23:46:44Z",
+                    "finished": "2026-11-16T23:50:06Z",
+                    "report": "The residual-exposure report is posted on #2 as one comment. Its body was built from the plan's text with the 12 counts of this unit's own steps filled in (17,602 bytes, 148 lines), after every source line it draws on was found in its record. It passed the four document checks, the vocabulary scan and the shape checks before it was sent once. Read back from GitHub, it is the only comment with the report's title, it is the newest on #2, and its text equals the body."
+                  },
+                  {
+                    "id": "S7",
+                    "name": "Close-out",
+                    "state": "done",
+                    "rows": [
+                      "old-clone-path",
+                      "data-reverify"
+                    ],
+                    "brief": "The old clone's path, the package and every remaining list are read, and the unit's outputs and records hold nothing sensitive and are listed.",
+                    "kind": "check",
+                    "steps": [
+                      {
+                        "id": "S7.clone",
+                        "name": "The old clone's recorded path",
+                        "state": "done",
+                        "finished": "2026-11-16T23:50:17Z"
+                      },
+                      {
+                        "id": "S7.package",
+                        "name": "The package",
+                        "state": "done",
+                        "finished": "2026-11-16T23:50:24Z"
+                      },
+                      {
+                        "id": "S7.lists",
+                        "name": "The lists again",
+                        "state": "done",
+                        "finished": "2026-11-16T23:50:34Z"
+                      },
+                      {
+                        "id": "S7.outputs",
+                        "name": "The output rule",
+                        "state": "done",
+                        "finished": "2026-11-16T23:50:43Z"
+                      },
+                      {
+                        "id": "S7.sums",
+                        "name": "The unit's checksum list",
+                        "state": "done",
+                        "finished": "2026-11-16T23:50:50Z"
+                      }
+                    ],
+                    "ref": "plan.md#s7--close-out",
+                    "started": "2026-11-16T23:50:06Z",
+                    "finished": "2026-11-16T23:50:59Z",
+                    "report": "Close-out passed. The old TrumpBot clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
+                    "result": "passed"
+                  }
+                ]
+              }
+            ],
+            "qa": [
+              {
+                "since": "2026-11-16T23:51:28Z",
+                "ended": "2026-11-17T00:05:45Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-16T23:51:28Z",
+                  "note": "Quality Review 1: running"
+                },
+                "detail": "Quality Review 1 running.",
+                "qa": [
+                  {
+                    "pass": 1,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-17",
+                    "at": "2026-11-17T00:05:45Z",
+                    "findings": {
+                      "test": 7,
+                      "code": 9
+                    },
+                    "severity": {
+                      "minor": 5,
+                      "other": 11
+                    },
+                    "note": "The sandbox tries passed again: the four sandbox scripts ran 79 cases, all passed (gating 41, component 22, integration 16), their output matching the recorded outputs line for line, and every stage's recorded results meet the plan. 16 findings (5 minor, 11 other; 7 test, 9 code). Open before the landing: the as-built record and the consequences are not yet reconciled with the run, the test plan claims more deletion-guard coverage than the sandbox tries hold, two reading scripts have no sandbox case, and the landing's document checks are still to run. They touch the workspace deletion, the report table, the data folder's re-verification and the follow-ups. The work itself is done; the fixes are to the unit's documents."
+                  }
+                ]
+              },
+              {
+                "since": "2026-11-17T00:07:08Z",
+                "ended": "2026-11-17T00:40:17Z",
+                "endedBy": "qa-pass",
+                "to": "remediation",
+                "event": {
+                  "name": "qa-pass",
+                  "at": "2026-11-17T00:27:55Z",
+                  "note": "Quality Review 2: running"
+                },
+                "detail": "Quality Review 2 running.",
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-17",
+                    "at": "2026-11-17T00:40:17Z",
+                    "findings": {
+                      "test": 5,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 8,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "note": "The sandbox tries passed again: the four sandbox scripts ran 79 cases, all passed (component 63, integration 16), and every point of Quality Review 1 is settled. 8 findings (8 minor; 5 test, 3 code), all wording fixes to the unit's documents, made in place with no additional review: more untested stops and two more failed-read gaps named, the test-set rows aligned with the sets' definitions, one more output-label deviation recorded, two phase notes worded as following the landing, and the landing's document checks run again over the final pending set. They touch the workspace's deletion, the residual-exposure report, the data folder's re-verification and the follow-ups."
+                  }
+                ]
+              }
+            ],
+            "remediation": [
+              {
+                "since": "2026-11-17T00:40:17Z",
+                "ended": "2026-11-17T00:50:00Z",
+                "endedBy": "document",
+                "to": "document",
+                "event": {
+                  "name": "implementation-stage",
+                  "at": "2026-11-17T00:50:00Z",
+                  "note": "3 of 3 sub-steps done"
+                },
+                "detail": "The wording fixes are made: every stop no sandbox case makes fail is named script by script, four scripts' failed-read gaps are recorded, the test-set rule treats the local platform as the scripts' runtime, one more output label is a deviation, the phase notes say what follows the landing, and the closing's allow line is recorded as not known to be placed.",
+                "remediation": {
+                  "pass": 2,
+                  "route": "on-the-spot",
+                  "steps": [
+                    {
+                      "name": "Untested stops and failed-read gaps named in full",
+                      "state": "done",
+                      "finished": "2026-11-17T00:50:00Z",
+                      "report": "The wording fixes are made: every stop no sandbox case makes fail is named script by script, four scripts' failed-read gaps are recorded, the test-set rule treats the local platform as the scripts' runtime, one more output label is a deviation, the phase notes say what follows the landing, and the closing's allow line is recorded as not known to be placed."
+                    },
+                    {
+                      "name": "Test-set rule stated for the local platform",
+                      "state": "done",
+                      "finished": "2026-11-17T00:50:00Z",
+                      "report": "The wording fixes are made: every stop no sandbox case makes fail is named script by script, four scripts' failed-read gaps are recorded, the test-set rule treats the local platform as the scripts' runtime, one more output label is a deviation, the phase notes say what follows the landing, and the closing's allow line is recorded as not known to be placed."
+                    },
+                    {
+                      "name": "Output-label deviation and phase notes worded",
+                      "state": "done",
+                      "finished": "2026-11-17T00:50:00Z",
+                      "report": "The wording fixes are made: every stop no sandbox case makes fail is named script by script, four scripts' failed-read gaps are recorded, the test-set rule treats the local platform as the scripts' runtime, one more output label is a deviation, the phase notes say what follows the landing, and the closing's allow line is recorded as not known to be placed."
+                    }
+                  ]
+                },
+                "qa": [
+                  {
+                    "pass": 2,
+                    "verdict": "changes-requested",
+                    "date": "2026-11-17",
+                    "at": "2026-11-17T00:40:17Z",
+                    "findings": {
+                      "test": 5,
+                      "code": 3
+                    },
+                    "severity": {
+                      "minor": 8,
+                      "other": 0
+                    },
+                    "route": "on-the-spot",
+                    "note": "The sandbox tries passed again: the four sandbox scripts ran 79 cases, all passed (component 63, integration 16), and every point of Quality Review 1 is settled. 8 findings (8 minor; 5 test, 3 code), all wording fixes to the unit's documents, made in place with no additional review: more untested stops and two more failed-read gaps named, the test-set rows aligned with the sets' definitions, one more output-label deviation recorded, two phase notes worded as following the landing, and the landing's document checks run again over the final pending set. They touch the workspace's deletion, the residual-exposure report, the data folder's re-verification and the follow-ups."
+                  }
+                ]
+              }
+            ]
+          },
+          "rowNames": {
+            "report-table": "The residual-exposure report: one table from the six repositories' report rows, posted on #2",
+            "follow-ups": "The phase's follow-ups, confirmed and recorded in the consequences",
+            "data-reverify": "The data folder re-verified against its checksum lists",
+            "tools-copy": "Both tool folders and the stage runner copied into the data folder",
+            "workspace-deletion": "The workspace deleted, and its deletion confirmed",
+            "old-clone-path": "The old TrumpBot clone's recorded path confirmed absent"
+          },
+          "recon": {
+            "interview": {
+              "reconstructed": true,
+              "ended": null,
+              "trail": [],
+              "milestones": []
+            },
+            "research": {
+              "reconstructed": true,
+              "ended": "2026-11-16",
+              "trail": [
+                {
+                  "date": "2026-11-16",
+                  "label": "Nothing to research; the plan next"
+                }
+              ],
+              "milestones": [
+                {
+                  "date": "2026-10-21",
+                  "label": "Research verified, in #2's run",
+                  "ref": "../research/README.md",
+                  "note": "written on this board when the run started, from #2's research (findings 3 on what the exit tests prove and cannot prove, findings 4 on the data copy's re-verification) and its architecture's layout of the data folder and the workspace (§5), the residual measurement (§6.6), the cleanup (§6.7) and the report (§12.4), with this unit's row in §15, the risks in §16 and what units 1 to 7 hand on in their consequences"
+                }
+              ]
+            }
+          }
+        },
+        "tests": {
+          "base": "0532880",
+          "updated": "2026-11-17T00:40:17Z",
+          "added": [],
+          "amended": [],
+          "relevant": [
+            {
+              "class": "the workspace tools' quick gate",
+              "module": "workspace tools",
+              "testSet": "deterministic",
+              "tests": 63,
+              "result": {
+                "state": "passed",
+                "passed": 63,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:25:19Z"
+              }
+            },
+            {
+              "class": "the data folder's checksum lists, blob ids and census",
+              "module": "data folder",
+              "testSet": "e2e",
+              "tests": 3,
+              "result": {
+                "state": "passed",
+                "passed": 3,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:26:02Z"
+              }
+            },
+            {
+              "class": "the follow-ups read on GitHub and in the records",
+              "module": "data folder and GitHub",
+              "testSet": "integration",
+              "tests": 34,
+              "result": {
+                "state": "passed",
+                "passed": 34,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:26:36Z"
+              }
+            },
+            {
+              "class": "the tools copy against its list, the four pin lists and the runner's pin",
+              "module": "tools copy",
+              "testSet": "gating",
+              "tests": 9,
+              "result": {
+                "state": "passed",
+                "passed": 9,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:27:33Z"
+              }
+            },
+            {
+              "class": "the id-source proof against the backups",
+              "module": "tools copy",
+              "testSet": "integration",
+              "tests": 12,
+              "result": {
+                "state": "passed",
+                "passed": 12,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:28:19Z"
+              }
+            },
+            {
+              "class": "both routes of the document checks over the same documents",
+              "module": "tools copy",
+              "testSet": "integration",
+              "tests": 13,
+              "result": {
+                "state": "passed",
+                "passed": 13,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:28:19Z"
+              }
+            },
+            {
+              "class": "the report's source lines, fill and checks",
+              "module": "report",
+              "testSet": "nonfunctional",
+              "tests": 3,
+              "result": {
+                "state": "passed",
+                "passed": 3,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:50:06Z"
+              }
+            },
+            {
+              "class": "the report read back from GitHub",
+              "module": "report",
+              "testSet": "e2e",
+              "tests": 1,
+              "result": {
+                "state": "passed",
+                "passed": 1,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:50:06Z"
+              }
+            },
+            {
+              "class": "the close-out reads of the old clone's path, the package and the lists",
+              "module": "data folder",
+              "testSet": "e2e",
+              "tests": 3,
+              "result": {
+                "state": "passed",
+                "passed": 3,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:50:59Z"
+              }
+            },
+            {
+              "class": "the output rule over the step outputs, the body, the reply and the request",
+              "module": "data folder",
+              "testSet": "nonfunctional",
+              "tests": 5,
+              "result": {
+                "state": "passed",
+                "passed": 5,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:50:59Z"
+              }
+            },
+            {
+              "class": "the unit's checksum list",
+              "module": "data folder",
+              "testSet": "gating",
+              "tests": 1,
+              "result": {
+                "state": "passed",
+                "passed": 1,
+                "failed": 0,
+                "skipped": 0,
+                "at": "2026-11-16T23:50:59Z"
+              }
+            },
+            {
+              "class": "selftest-1.sh",
+              "module": "g28",
+              "testSet": "component",
+              "tests": 17,
+              "result": {
+                "state": "passed",
+                "passed": 17,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 2,
+                "at": "2026-11-17T00:40:17Z"
+              }
+            },
+            {
+              "class": "selftest-2.sh",
+              "module": "g28",
+              "testSet": "component",
+              "tests": 24,
+              "result": {
+                "state": "passed",
+                "passed": 24,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 2,
+                "at": "2026-11-17T00:40:17Z"
+              }
+            },
+            {
+              "class": "selftest-3.sh",
+              "module": "g28",
+              "testSet": "component",
+              "tests": 22,
+              "result": {
+                "state": "passed",
+                "passed": 22,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 2,
+                "at": "2026-11-17T00:40:17Z"
+              }
+            },
+            {
+              "class": "selftest-4.sh",
+              "module": "g28",
+              "testSet": "integration",
+              "tests": 16,
+              "result": {
+                "state": "passed",
+                "passed": 16,
+                "failed": 0,
+                "skipped": 0,
+                "pass": 2,
+                "at": "2026-11-17T00:40:17Z"
+              }
+            }
+          ]
+        }
       },
       "gap": {
         "kind": "missing",
         "summary": "No record says what GitHub still serves of the old histories. The phase requires the residual exposure measured and reported rather than assumed away, and its workspace holds a copy of everything the rewrite removes for as long as the units take.",
         "evidence": [
-          "`architecture.md:106` — the residual exposure is measured and reported, not assumed away",
-          "`architecture.md:680` — the expected pull-request residual: 70 of 81 for GKB2, 39 of 39 for BotTools",
-          "`architecture.md:1330` — the workspace holds the old objects until the last unit deletes it"
+          "`architecture.md:119` — the residual exposure is measured and reported, not assumed away",
+          "`architecture.md:742` — the expected pull-request residual: 70 of 81 for GKB2, 39 of 39 for BotTools",
+          "`architecture.md:1469` — the workspace holds the old objects until the last unit deletes it"
         ],
         "source": "architecture.md §1.1, §6.6, §16",
         "link": "architecture.md#11-what-the-phase-must-achieve"
@@ -2498,7 +4567,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#67-cleanup",
               "heading": "6.7 Cleanup",
               "paragraph": "Cleanup runs in this order:",
-              "hash": "b1a132a093e5"
+              "hash": "56f25bf0ae1d"
             }
           },
           {
@@ -2597,7 +4666,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "operator",
         "system": null,
         "effect": "behaviour",
-        "summary": "The data folder remains with the legacy data and records; the workspace is deleted. This working directory is realigned in place, 41 tracked files leaving its tree, and the TrumpBot clone is replaced; git-filter-repo stays installed.",
+        "summary": "The data folder remains with the legacy data and records; the workspace is deleted. This working directory is realigned in place, 41 tracked files leaving its tree. The TrumpBot clone was replaced by a fresh clone that keeps only its four `.idea/` files, its code knowledge graph rebuilt from the rewritten tree, and the old clone, set aside on its own volume outside the workspace, was deleted there; git-filter-repo stays installed.",
         "link": "consequences.md#25-this-machine"
       }
     ],
@@ -2817,16 +4886,49 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       {
         "unit": "bottools-trumpbot-support-rewrite",
-        "basis": "plan",
-        "summary": "No module is published and no version moves; every landing carries documents and generated boards only. BotTools, TrumpBot and Support are force-pushed in place, one atomic push each with an explicit lease on every branch: every commit id changes and each keeps its visibility, and BotTools' pull-request refs keep its 39 purged blobs fetchable. The TrumpBot clone is replaced by a fresh one that keeps its four `.idea/` files, its graph rebuilt from the rewritten tree. The work is carried out as four units, sub-issues of #27; #28 takes their report rows and records.",
+        "basis": "as-built",
+        "summary": "No module was published and no version moved; every landing of #27 and its four units carried documents and generated boards only. BotTools (public), then TrumpBot and Support (private), were force-pushed in place, one atomic push each under a lease on every branch's recorded tip, five branches in all: every commit id changed, the purged files left every commit, and each kept its visibility and default branch. GitHub keeps serving every old object probed, BotTools' pull-request refs keep its 39 purged blobs fetchable, and the events listed the push of 1 of the 5 branches. The TrumpBot clone was replaced by a fresh clone with its four `.idea/` files, the old clone deleted at its recorded path outside the workspace, and its graph rebuilt from the rewritten tree. #47 stays open against the tools; #28 takes the three report rows, every unit's records with their checksum lists, both tool folders and the stage runner, and the record that no old-clone path remains.",
         "release": {
           "bump": "none",
           "version": null,
           "note": "no module is published and no version moves",
           "nothingPublished": true
         },
-        "source": "27-bottools-trumpbot-support-rewrite/consequences.md §1 to §6",
-        "link": "27-bottools-trumpbot-support-rewrite/consequences.md#2-blast-radius"
+        "source": "27-bottools-trumpbot-support-rewrite/consequences.md §1 to §6; its four units' consequences.md and final-implementation.md",
+        "link": "27-bottools-trumpbot-support-rewrite/consequences.md#2-blast-radius",
+        "changes": [
+          {
+            "what": "The events did not list every rewritten branch's push: after each push's 6 hours they listed the push of 1 of BotTools' 2 branches and none of TrumpBot's 2 or Support's 1, while every activity feed lists each force push.",
+            "why": "The unit's impact took one event per rewritten branch; the residual measurement read the events until 6 hours had passed since each push and recorded what they listed. Whether GitHub lists the other pushes later is not established.",
+            "when": "#41 landing",
+            "ref": "27-bottools-trumpbot-support-rewrite/41-residual-measurement/consequences.md#5-known-gaps"
+          },
+          {
+            "what": "The old clone held two exclude entries, the second the board files' ignore: that ignore is part of a graph's footprint, was taken out before the census and not carried, and the rebuilt graph placed it again with its own entry.",
+            "why": "The unit's impact took the old graph's footprint as one exclude entry, two hooks and two keys; the replacement's census recorded the ignore, and #27's design took a dated note stating it as part of a graph's footprint.",
+            "when": "#42 landing",
+            "ref": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/consequences.md#22-this-machine"
+          },
+          {
+            "what": "One issue, #47, was filed in KotlinBottools against the workspace tools, for the clone set's request builder; it stays open outside #27's units.",
+            "why": "The deletion request carried the replacement's check sentences. The defect changed no outcome, and the tool folder stays at its pins, so its fix is a new version of the pinned file under the tools' defect rule.",
+            "when": "#42 landing",
+            "ref": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/final-implementation.md#4-deviations-from-the-plan"
+          }
+        ]
+      },
+      {
+        "unit": "residual-report-and-cleanup",
+        "basis": "plan",
+        "summary": "No module is published and no version moves: the landing carries documents and generated boards only. The residual-exposure report is posted on #2 as one comment, and #2 is closed as completed after the landing. On this machine the data folder is re-verified and gains the tools copy and a list over every file, the workspace is deleted, and the old TrumpBot clone's recorded path is confirmed absent; every follow-up of the phase is recorded with who carries it out.",
+        "release": {
+          "bump": "none",
+          "version": null,
+          "note": "no module is published and no version moves",
+          "nothingPublished": true
+        },
+        "source": "28-residual-report-and-cleanup/consequences.md §1 to §6",
+        "link": "28-residual-report-and-cleanup/consequences.md"
       }
     ],
     "changes": [
@@ -2915,6 +5017,14 @@ window.dashboardLive&&window.dashboardLive("plan",
         "none": true,
         "why": "GKB2 and GKB were force-pushed in place, public and unarchived with every setting as it was, as the initiative's impact states; GitHub serves their old objects, and GKB2's pull-request ref keeps 70 of its 81 purged blobs fetchable, the research baseline's figure. Neither has a default-rule finding in a kept file, and what the run left on this machine stays in the data folder and the workspace.",
         "ref": "26-gkb2-gkb-rewrite/final-implementation.md#3-measurements"
+      },
+      {
+        "unit": "bottools-trumpbot-support-rewrite",
+        "entry": "downstream.7",
+        "when": "#27 landing",
+        "what": "The TrumpBot clone was replaced by a fresh clone that keeps only its four `.idea/` files: its code knowledge graph, built from the pre-rewrite tree, was not carried and was rebuilt from the rewritten tree, and the old clone was set aside on its own volume, outside the workspace, and deleted there, so the workspace's deletion does not reach it and no old-clone path remains.",
+        "why": "The old graph named files the rewrite removes, and the clone and the workspace are on different volumes, so a move into the workspace would have been a copy followed by a deletion; #27's design said so in dated notes on this phase's design and consequences, and its clone replacement carried it out.",
+        "ref": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/consequences.md#22-this-machine"
       }
     ]
   },
@@ -3111,6 +5221,10 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "what": "The units were recorded with no dependencies on one another, though the architecture's end-to-end order (§8) and the filed issues' blocked-by links give them: #22 after #21, #23 after #22, #24 and #26 after #23, #25 after #24, #27 after #26, and #28 after #25 and #27. Each unit now names its blockers.",
         "when": "2026-11-08"
+      },
+      {
+        "what": "The Row for #28 cited the design at lines 106, 680 and 1330, which no longer hold what it cites. It cites lines 119, 742 and 1469, where the residual exposure's measurement and report, the expected pull-request residual and the workspace's holding of the old objects stand.",
+        "when": "2026-11-16"
       }
     ]
   },
@@ -3119,7 +5233,6 @@ window.dashboardLive&&window.dashboardLive("plan",
     "repoBoard": "../../../dashboards/index.html"
   },
   "issueBoards": {
-    "39": "27-bottools-trumpbot-support-rewrite/39-workspace-tools/dashboard.html",
     "42": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/dashboard.html"
   }
 }

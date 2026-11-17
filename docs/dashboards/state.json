@@ -1,7 +1,7 @@
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "docs/issue-42-replace-trumpbot-clone", "sha": "f11f7ab", "date": "2026-11-16T03:24:15Z"},
-  "lastAmended": {"issue": 42, "title": "Phase 0 · 7.4 — Replace the TrumpBot clone", "sha": "f11f7ab"},
-  "written": {"sha": "f11f7ab"}
+  "asIs": {"ref": "docs/issue-28-residual-exposure-report-workspace-cleanup", "sha": "57b4ffb", "date": "2026-11-17T00:59:46Z"},
+  "lastAmended": {"issue": 28, "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup", "sha": "57b4ffb"},
+  "written": {"sha": "57b4ffb"}
 }

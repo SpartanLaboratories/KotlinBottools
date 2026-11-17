@@ -8,7 +8,7 @@
   "title": "Replace the TrumpBot clone",
   "issueTitle": "Phase 0 · 7.4 — Replace the TrumpBot clone",
   "function": "The local TrumpBot clone still holds TrumpBot's history from before the rewrite, which the server's branches no longer share, and a code knowledge graph built from that old tree. This unit has it replaced once TrumpBot's push is proven: the old clone renamed aside on its own volume as the lock probe, behind guards and with a bounded retry; a fresh clone made at the same path, with the four `.idea/` files restored and nothing else git does not track carried; the fresh clone proven to reach no pre-rewrite commit or purged blob, and read back by the unit before the old clone is deleted at its recorded path; then the graph rebuilt from the rewritten tree by a code-only build, with its two hooks, and read back. Unit 4 of #27, the last, with no version moved: every change to the clone is a request carried out under the grant for this unit's job, nothing is written to GitHub, this working tree changes only by the landing, and the landing carries documents only.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-16T03:31:47Z",
   "parent": {
     "issue": 27,
@@ -21,7 +21,13 @@
     "sha": "f11f7abecdc68f1153e5904c325ff6bfb0709ea0",
     "date": "2026-11-15"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "053288047b6410bf22fca990cafc17d55051bf6d",
+    "merge": "053288047b6410bf22fca990cafc17d55051bf6d",
+    "pr": 48,
+    "date": "2026-11-16",
+    "at": "2026-11-16T20:36:53Z"
+  },
   "systems": [
     {
       "slug": "clone-realignment",
@@ -34,10 +40,10 @@
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-16T20:04:58Z",
-    "updated": "2026-11-16T20:32:24Z",
-    "detail": "Document: 4 of 4 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-16T20:36:53Z",
+    "updated": "2026-11-16T20:36:53Z",
+    "detail": "Landed in PR #48.",
     "steps": [
       "sizing",
       "interview",
@@ -52,9 +58,7 @@
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -360,9 +364,8 @@
     },
     "open": [],
     "event": {
-      "name": "document",
-      "at": "2026-11-16T20:32:24Z",
-      "note": "4 of 4 tasks done"
+      "name": "landed",
+      "at": "2026-11-16T20:36:53Z"
     },
     "history": {
       "sizing": [
@@ -1313,6 +1316,79 @@
             }
           ]
         }
+      ],
+      "document": [
+        {
+          "since": "2026-11-16T20:04:58Z",
+          "ended": "2026-11-16T20:35:16Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-16T20:32:24Z",
+            "note": "4 of 4 tasks done"
+          },
+          "detail": "Document: 4 of 4 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile the plan with the build",
+                "state": "done",
+                "started": "2026-11-16T20:04:58Z",
+                "finished": "2026-11-16T20:13:55Z"
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-16T20:13:55Z"
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-16T20:13:55Z",
+                "finished": "2026-11-16T20:28:28Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-16T20:28:28Z",
+                "finished": "2026-11-16T20:32:24Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-16T20:35:16Z",
+          "ended": "2026-11-16T20:36:45Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-16T20:35:16Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-16T20:36:45Z",
+          "ended": "2026-11-16T20:36:53Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "merge",
+            "at": "2026-11-16T20:36:45Z",
+            "note": "merging PR #48"
+          },
+          "detail": "Merge: merging it in PR #48."
+        }
       ]
     },
     "next": null,
@@ -1452,6 +1528,13 @@
       "date": "2026-11-16",
       "ref": "plan.md",
       "note": "five stages: readiness at once, then the replacement and the unit's read of the fresh clone, the deletion at the recorded path, the graph waited for and read back, and a close-out; two requests, a third only after a stop that follows the rename; the owner's asks all given up front, with the removal of the board files' ignore before the census and a second section for closing #27 after the landing; the plan weighs no option beyond the parent design's"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-16",
+      "ref": "PR #48",
+      "note": "merged as 0532880"
     }
   ],
   "trail": [
@@ -1570,6 +1653,23 @@
       "date": "2026-11-16",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Merge: merging it in PR #48",
+      "ref": "PR #48"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Landed in PR #48, merge 0532880",
+      "ref": "PR #48"
     }
   ],
   "rows": [

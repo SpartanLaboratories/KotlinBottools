@@ -1,12 +1,12 @@
 {
   "repo": "SpartanLaboratories/KotlinBottools",
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "systems": [
     {"slug": "kotlinbottools", "name": "KotlinBottools", "kind": "repo", "parent": null, "status": "built",
      "function": "A Kotlin Discord bot framework on JDA: hierarchical text and slash commands, XML-backed guild and member data, event responders and polling services, built by one Gradle build at 7.5-SNAPSHOT.",
      "paths": ["."], "version": null,
-     "asIs": {"ref": "docs/issue-42-replace-trumpbot-clone", "sha": "f11f7ab", "date": "2026-11-16T03:24:15Z"},
-     "lastAmended": {"issue": 42, "sha": "f11f7ab"},
+     "asIs": {"ref": "docs/issue-28-residual-exposure-report-workspace-cleanup", "sha": "57b4ffb", "date": "2026-11-17T00:59:46Z"},
+     "lastAmended": {"issue": 28, "sha": "57b4ffb"},
      "board": "index.html", "dsl": "workspace.dsl"},
 
     {"slug": "toolchain", "name": "Toolchain", "kind": "system", "parent": "workspace-lifecycle", "status": "planned", "visibility": "internal-repo",

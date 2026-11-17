@@ -10,7 +10,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   "title": "Rewrite BotTools, TrumpBot and Support",
   "issueTitle": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
   "function": "BotTools, which is public, and TrumpBot and Support, which are private, still hold in their histories the files the phase purges: 39 purged blobs in BotTools, all of them also reachable through its pull-request refs, 199 in TrumpBot and 7,259 in Support. The local TrumpBot clone still holds TrumpBot's old history. The unit takes each repository through the rewrite pipeline as GKB2 and GKB were taken, BotTools first, then TrumpBot, then Support: the purge with its checks before and after, the force-push with its per-ref verification, the exit tests on a fresh mirror and the residual probes, with BotTools' pull-request residual counted. Once TrumpBot's push is proven, the clone is replaced by a fresh one at the same path, its four untracked files kept. The unit spans four systems, the toolchain, the rewrite pipeline, the residual-exposure measurement and the clone realignment, so this run designs it and splits it into units; nothing is rewritten, pushed or replaced in this run. Unit 7 of #2, with no version moved; the three repositories keep their visibility.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-13T18:00:43Z",
   "parent": {
     "issue": 2,
@@ -23,7 +23,13 @@ window.dashboardLive&&window.dashboardLive("plan",
     "sha": "416f36bda66c2050e320504d999a46e71ea18557",
     "date": "2026-11-13"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "053288047b6410bf22fca990cafc17d55051bf6d",
+    "merge": "053288047b6410bf22fca990cafc17d55051bf6d",
+    "pr": 48,
+    "date": "2026-11-16",
+    "at": "2026-11-16T20:36:53Z"
+  },
   "systems": [
     {
       "slug": "toolchain",
@@ -63,10 +69,10 @@ window.dashboardLive&&window.dashboardLive("plan",
     }
   ],
   "wip": {
-    "step": "implementation",
-    "since": "2026-11-13T21:05:13Z",
-    "updated": "2026-11-16T03:31:47Z",
-    "detail": "3 of 4 units landed; #42 in progress.",
+    "step": "landed",
+    "since": "2026-11-16T20:36:53Z",
+    "updated": "2026-11-16T20:36:53Z",
+    "detail": "Landed: 4 of 4 units, the last #42 in PR #48.",
     "steps": [
       "sizing",
       "interview",
@@ -79,9 +85,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "implementation",
       "landed"
     ],
-    "current": [
-      "clone-replacement.built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [
@@ -123,9 +127,9 @@ window.dashboardLive&&window.dashboardLive("plan",
     "remediation": null,
     "open": [],
     "event": {
-      "name": "sub-issues-filed",
-      "at": "2026-11-13T20:42:32Z",
-      "note": "final: filing done"
+      "name": "landed",
+      "at": "2026-11-16T20:36:53Z",
+      "note": "#42, its last unit, landed in PR #48"
     },
     "history": {
       "sizing": [
@@ -294,6 +298,20 @@ window.dashboardLive&&window.dashboardLive("plan",
             "total": 4
           }
         }
+      ],
+      "implementation": [
+        {
+          "since": "2026-11-13T21:05:13Z",
+          "ended": "2026-11-16T20:36:53Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "sub-issues-filed",
+            "at": "2026-11-13T20:42:32Z",
+            "note": "final: filing done"
+          },
+          "detail": "4 of 4 units landed."
+        }
       ]
     },
     "next": null,
@@ -365,6 +383,13 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-13",
       "ref": "d5192fc",
       "note": "the design final with its four units (§7 to §10, §16) and the consequences of the whole work, with no open point, in one commit with the phase design's 20 dated notes and the phase consequences' 5"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-16",
+      "ref": "PR #48",
+      "note": "merged as 0532880"
     }
   ],
   "trail": [
@@ -535,6 +560,17 @@ window.dashboardLive&&window.dashboardLive("plan",
       "date": "2026-11-16",
       "column": "built",
       "label": "#42 started"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "#42 landed"
+    },
+    {
+      "date": "2026-11-16",
+      "column": "built",
+      "label": "Landed: every unit, the last #42 in PR #48, merge 0532880",
+      "ref": "PR #48"
     }
   ],
   "rows": [
@@ -1281,1414 +1317,6 @@ window.dashboardLive&&window.dashboardLive("plan",
         "issue": 42,
         "board": "42-clone-replacement/dashboard.html",
         "folder": "42-clone-replacement/",
-        "live": {
-          "step": "document",
-          "since": "2026-11-16T20:04:58Z",
-          "updated": "2026-11-16T20:32:24Z",
-          "detail": "Document: 4 of 4 tasks done; every task done.",
-          "steps": [
-            "sizing",
-            "interview",
-            "research",
-            "plan",
-            "branch",
-            "implementation",
-            "qa",
-            "remediation",
-            "document",
-            "landing",
-            "merge",
-            "landed"
-          ],
-          "waitingOn": null,
-          "resume": null,
-          "qa": [
-            {
-              "pass": 1,
-              "verdict": "changes-requested",
-              "date": "2026-11-16",
-              "at": "2026-11-16T20:03:47Z",
-              "findings": {
-                "test": 0,
-                "code": 2
-              },
-              "severity": {
-                "minor": 2,
-                "other": 0
-              },
-              "route": "on-the-spot",
-              "note": "Every item the issue asks was verified on the clone; the two fixes are wordings in the as-built record: the replacement reply's stored line count, and the reason the run went on past the request builder's defect.",
-              "report": "build/reports/tests/index.html",
-              "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement/ca070e8d/tests/index.html"
-            }
-          ],
-          "qaMax": 3,
-          "status": "building",
-          "branch": "docs/issue-42-replace-trumpbot-clone",
-          "event": {
-            "name": "document",
-            "at": "2026-11-16T20:32:24Z",
-            "note": "4 of 4 tasks done"
-          },
-          "asked": [
-            {
-              "step": "implementation",
-              "text": "Place the three allow lines for the replacement, the deletion and the move back (and a fourth for closing #27) in the global settings file before the first call?",
-              "answer": null,
-              "asked": "2026-11-16T04:35:59Z",
-              "answered": "2026-11-16T05:57:48Z"
-            },
-            {
-              "step": "implementation",
-              "text": "Delete the board files' ignore at the root of the TrumpBot clone, leaving its exclude line, and run no graph job on that checkout until the replacement is complete?",
-              "answer": null,
-              "asked": "2026-11-16T04:35:59Z",
-              "answered": "2026-11-16T05:57:48Z"
-            },
-            {
-              "step": "implementation",
-              "text": "Give the word for the code-only graph build of the fresh clone with its two hooks, once the clone is replaced and proven and the old clone deleted?",
-              "answer": null,
-              "asked": "2026-11-16T04:35:59Z",
-              "answered": "2026-11-16T05:57:48Z"
-            },
-            {
-              "step": "implementation",
-              "text": "Give the section phase-0-tracking-27-close, so that #27 is closed by request after the landing; otherwise #27 is closed by hand?",
-              "options": [
-                "Give the section",
-                "Close #27 by hand"
-              ],
-              "answer": null,
-              "asked": "2026-11-16T04:35:59Z",
-              "answered": "2026-11-16T05:57:48Z"
-            },
-            {
-              "step": "implementation",
-              "text": "Place the four checked allow lines (the replacement, the deletion, the move back, the closing of #27) in the global settings file?",
-              "answer": null,
-              "asked": "2026-11-16T06:07:27Z",
-              "answered": "2026-11-16T19:23:43Z"
-            }
-          ],
-          "stages": [
-            {
-              "id": "S0",
-              "name": "Readiness",
-              "state": "done",
-              "rows": [
-                "readiness",
-                "grant"
-              ],
-              "brief": "The unit's data file and grant wording are written, the tools are at their pins, the rewrites' records equal their checksum lists, the grant is in place, and the clone passes its guards with its census recorded.",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "S0.unit",
-                  "name": "The unit's data file and grant wording",
-                  "state": "done",
-                  "finished": "2026-11-16T06:04:04Z"
-                },
-                {
-                  "id": "S0.tools",
-                  "name": "The tools at their pins",
-                  "state": "done",
-                  "finished": "2026-11-16T06:04:20Z"
-                },
-                {
-                  "id": "S0.quick",
-                  "name": "The quick gate",
-                  "state": "done",
-                  "finished": "2026-11-16T06:04:36Z"
-                },
-                {
-                  "id": "S0.pins",
-                  "name": "The tool versions",
-                  "state": "done",
-                  "finished": "2026-11-16T06:04:45Z"
-                },
-                {
-                  "id": "S0.records",
-                  "name": "The rewrites' records, the backup and the manifest",
-                  "state": "done",
-                  "finished": "2026-11-16T06:04:59Z"
-                },
-                {
-                  "id": "S0.grant",
-                  "name": "The grant read",
-                  "state": "done",
-                  "finished": "2026-11-16T06:05:08Z"
-                },
-                {
-                  "id": "S0.checks",
-                  "name": "The clone's guards",
-                  "state": "done",
-                  "finished": "2026-11-16T06:05:31Z"
-                },
-                {
-                  "id": "S0.census",
-                  "name": "The clone's census recorded",
-                  "state": "done",
-                  "finished": "2026-11-16T06:05:39Z"
-                }
-              ],
-              "ref": "plan.md#s0--readiness",
-              "started": "2026-11-16T04:35:47Z",
-              "finished": "2026-11-16T06:05:39Z",
-              "report": "Readiness passed: the unit's data file and grant wording written (the run log held 16157 lines before the unit); the tools at their pins (96 ok); the quick gate 63 of 63; the tool versions 7 ok; the rewrites' records, the earlier records, the untouched backup (22 files), the manifest (199 blobs) and the stage-8 marker equal their lists; the grant read with 11 ok and one RECORD (the section holds no Settings line, every action, the issue, the branch, the targets and the end as needed); the clone's guards 17 ok with the two expected RECORD lines and the server's heads at the new column; the census recorded: untracked 59 (carried 4, not carried 55, elsewhere 0), hooks 2, exclude lines 2, config keys 12. One deviation is logged in final-implementation.md: the grant's wording differs by its Settings line.",
-              "result": "passed"
-            },
-            {
-              "id": "S1",
-              "name": "The replacement",
-              "state": "done",
-              "rows": [
-                "move",
-                "carried",
-                "fresh-clone"
-              ],
-              "brief": "The old clone is renamed aside, a fresh clone of the rewritten repository is made at its path with the four carried files restored, and the unit's own reads prove the fresh clone and the old clone aside.",
-              "kind": "work",
-              "steps": [
-                {
-                  "id": "S1.request",
-                  "name": "The replacement request built and handed off",
-                  "state": "done",
-                  "finished": "2026-11-16T06:06:41Z"
-                },
-                {
-                  "id": "S1.send",
-                  "name": "The request sent",
-                  "state": "done",
-                  "finished": "2026-11-16T19:23:43Z"
-                },
-                {
-                  "id": "S1.reply",
-                  "name": "The reply stored",
-                  "state": "done",
-                  "finished": "2026-11-16T19:29:17Z"
-                },
-                {
-                  "id": "S1.outcome",
-                  "name": "The outcome read",
-                  "state": "done",
-                  "finished": "2026-11-16T19:29:35Z"
-                },
-                {
-                  "id": "S1.proofs",
-                  "name": "The fresh clone proven",
-                  "state": "done",
-                  "finished": "2026-11-16T19:30:01Z"
-                },
-                {
-                  "id": "S1.carried",
-                  "name": "The four restored files read against their checksums",
-                  "state": "done",
-                  "finished": "2026-11-16T19:30:16Z"
-                },
-                {
-                  "id": "S1.aside",
-                  "name": "The old clone read whole at the recorded path",
-                  "state": "done",
-                  "finished": "2026-11-16T19:30:35Z"
-                },
-                {
-                  "id": "S1.back",
-                  "name": "The move back, only after a stop that follows the rename",
-                  "steps": [
-                    {
-                      "id": "S1.back.request",
-                      "name": "The move-back request built and handed off"
-                    },
-                    {
-                      "id": "S1.back.send",
-                      "name": "The request sent"
-                    },
-                    {
-                      "id": "S1.back.reply",
-                      "name": "The reply stored"
-                    },
-                    {
-                      "id": "S1.back.outcome",
-                      "name": "The outcome read"
-                    },
-                    {
-                      "id": "S1.back.census",
-                      "name": "The old clone's census read at the clone's path"
-                    },
-                    {
-                      "id": "S1.back.checks",
-                      "name": "The clone's guards read again"
-                    }
-                  ]
-                }
-              ],
-              "ref": "plan.md#s1--the-replacement",
-              "started": "2026-11-16T06:05:39Z",
-              "finished": "2026-11-16T19:30:35Z",
-              "report": "The replacement passed: the request ran once and its reply was stored as done (88 printed lines: the 84 of the eight entries and the 4 check sentences the reply carries), OUTCOME complete entries=8 of 8 stops=0 status=done. The unit's own reads: the fresh clone's proofs 18 ok (the old commits and the 199 manifest blobs missing, the untouched backup's control whole, ten local keys, no hook, a comment-only exclude file, no FETCH_HEAD); the four restored files equal their checksums and are the only untracked files, and the same checksums hold for the old clone aside; the old clone aside equals its recorded census (differing lines 0: untracked 59, hooks 2, exclude lines 2, config keys 12). The move back was not needed. A second deviation is logged in final-implementation.md: the reply was saved as a byte-for-byte copy of the delivered file."
-            },
-            {
-              "id": "S2",
-              "name": "The deletion",
-              "state": "done",
-              "rows": [
-                "deletion",
-                "leftover"
-              ],
-              "brief": "The old clone is deleted at its recorded path, and no old-clone path remains.",
-              "kind": "work",
-              "steps": [
-                {
-                  "id": "S2.request",
-                  "name": "The deletion request built and handed off",
-                  "state": "done",
-                  "finished": "2026-11-16T19:31:14Z"
-                },
-                {
-                  "id": "S2.send",
-                  "name": "The request sent",
-                  "state": "done",
-                  "finished": "2026-11-16T19:31:53Z"
-                },
-                {
-                  "id": "S2.reply",
-                  "name": "The reply stored",
-                  "state": "done",
-                  "finished": "2026-11-16T19:36:31Z"
-                },
-                {
-                  "id": "S2.outcome",
-                  "name": "The outcome read",
-                  "state": "done",
-                  "finished": "2026-11-16T19:36:40Z"
-                },
-                {
-                  "id": "S2.gone",
-                  "name": "No old-clone path remains",
-                  "state": "done",
-                  "finished": "2026-11-16T19:36:57Z"
-                }
-              ],
-              "ref": "plan.md#s2--the-deletion",
-              "started": "2026-11-16T19:30:35Z",
-              "finished": "2026-11-16T19:36:57Z",
-              "report": "The deletion ended: the request ran once and its reply was stored as done (16 printed lines), OUTCOME complete entries=3 of 3 stops=0 status=done; the unit's own read finds no old-clone path left and the fresh clone in place (2 ok, STAGE K1.gone OK). A third deviation is logged in final-implementation.md: the deletion request carries the replacement's four check sentences, as the pinned request builder writes one list for every kind; the deletion's own markers all printed."
-            },
-            {
-              "id": "S3",
-              "name": "The graph",
-              "state": "done",
-              "rows": [
-                "graph",
-                "grant"
-              ],
-              "brief": "The graph service builds a code-only graph of the fresh clone with its two hooks, and the unit reads the graph and its hooks back.",
-              "kind": "work",
-              "steps": [
-                {
-                  "id": "S3.notice",
-                  "name": "The graph service told",
-                  "state": "done",
-                  "finished": "2026-11-16T19:38:03Z"
-                },
-                {
-                  "id": "S3.wait",
-                  "name": "The build waited for",
-                  "state": "done",
-                  "finished": "2026-11-16T19:47:31Z"
-                },
-                {
-                  "id": "S3.graph",
-                  "name": "The graph read back",
-                  "state": "done",
-                  "finished": "2026-11-16T19:47:54Z"
-                }
-              ],
-              "ref": "plan.md#s3--the-graph",
-              "started": "2026-11-16T19:36:57Z",
-              "finished": "2026-11-16T19:47:54Z",
-              "report": "The graph is rebuilt and read back: the first read after the notice waited, and after one wait of 9 minutes the graph file and both hooks were present. The read-back gave 9 ok and the one expected RECORD (one untracked file outside the two folders, the board files' ignore at the root), then STAGE K1.graph OK: the graph's folder exists and holds files, the hooks beyond the samples are exactly the graph's, the exclude file holds the graph's entry, no extra key but at most lfs.repositoryformatversion, the carried files unchanged, the remote-tracking refs at the new column and the old commits and manifest blobs still missing."
-            },
-            {
-              "id": "S4",
-              "name": "Close-out",
-              "state": "done",
-              "rows": [
-                "leftover"
-              ],
-              "brief": "The earlier records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
-              "kind": "check",
-              "steps": [
-                {
-                  "id": "S4.records",
-                  "name": "The checksum lists",
-                  "state": "done",
-                  "finished": "2026-11-16T19:48:22Z"
-                },
-                {
-                  "id": "S4.tools",
-                  "name": "The tools at their pins",
-                  "state": "done",
-                  "finished": "2026-11-16T19:49:10Z"
-                },
-                {
-                  "id": "S4.g26",
-                  "name": "The earlier tool folder at its pins",
-                  "state": "done",
-                  "finished": "2026-11-16T19:49:57Z"
-                },
-                {
-                  "id": "S4.outputs",
-                  "name": "The output rule over the unit's outputs",
-                  "state": "done",
-                  "finished": "2026-11-16T19:50:17Z"
-                }
-              ],
-              "ref": "plan.md#s4--close-out",
-              "started": "2026-11-16T19:47:54Z",
-              "finished": "2026-11-16T19:50:17Z",
-              "report": "The close-out passed: the rewrites' run records (49 files), TrumpBot's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
-              "result": "passed"
-            }
-          ],
-          "remediation": {
-            "pass": 1,
-            "route": "on-the-spot",
-            "steps": [
-              {
-                "name": "State the replacement reply as stored: 88 lines, the procedure's lines and the four check strings",
-                "state": "done",
-                "finished": "2026-11-16T20:04:42Z",
-                "report": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed."
-              },
-              {
-                "name": "Rest the third deviation on the facts of the deletion instead of a reading of the stop rule",
-                "state": "done",
-                "finished": "2026-11-16T20:04:42Z",
-                "report": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed."
-              }
-            ]
-          },
-          "document": {
-            "tasks": [
-              {
-                "id": "reconcile-plan",
-                "name": "Reconcile the plan with the build",
-                "state": "done",
-                "started": "2026-11-16T20:04:58Z",
-                "finished": "2026-11-16T20:13:55Z"
-              },
-              {
-                "id": "readme-changelog",
-                "name": "README and CHANGELOG",
-                "state": "done",
-                "finished": "2026-11-16T20:13:55Z"
-              },
-              {
-                "id": "state-boards",
-                "name": "State boards",
-                "state": "done",
-                "started": "2026-11-16T20:13:55Z",
-                "finished": "2026-11-16T20:28:28Z"
-              },
-              {
-                "id": "document-landing",
-                "name": "Document commit",
-                "state": "done",
-                "started": "2026-11-16T20:28:28Z",
-                "finished": "2026-11-16T20:32:24Z"
-              }
-            ]
-          },
-          "history": {
-            "sizing": [
-              {
-                "since": null,
-                "ended": "2026-11-16T03:31:47Z",
-                "endedBy": "sized",
-                "to": "plan"
-              }
-            ],
-            "plan": [
-              {
-                "since": "2026-11-16T03:31:47Z",
-                "ended": "2026-11-16T04:31:50Z",
-                "endedBy": "plan-accepted",
-                "to": "branch",
-                "event": {
-                  "name": "plan-stage",
-                  "at": "2026-11-16T04:25:27Z"
-                },
-                "detail": "The consequences record that the unit writes nothing to GitHub, that the clone is replaced with its four carried files and its graph rebuilt, that the old clone sits aside on its own volume until its deletion, what the residual report and cleanup takes, and the known gaps of a fresh clone, the rename and the graph build.",
-                "plan": {
-                  "state": "re-pass",
-                  "from": "parent",
-                  "since": "2026-11-16T03:31:47Z",
-                  "stages": [
-                    {
-                      "id": "re-pass",
-                      "state": "done",
-                      "started": "2026-11-16T03:31:47Z",
-                      "finished": "2026-11-16T04:03:28Z",
-                      "report": "The slice holds against the clone, the rewrites' records, the tools and the request service as they are now, but for one file: the graph service's board files' ignore at the clone's root, which the owner takes out before the unit's census, as the parent design's dated note now says; no question about the intent remains open."
-                    },
-                    {
-                      "id": "write",
-                      "state": "done",
-                      "started": "2026-11-16T04:03:28Z",
-                      "finished": "2026-11-16T04:19:08Z",
-                      "report": "The draft holds five stages: readiness with the clone's checks and census, the replacement as one request read back by the unit, the deletion as a second request, the graph's build at the owner's word and its read-back, and a close-out, with every expected line taken from the clone set's code and the move back only after a stop that follows the rename."
-                    },
-                    {
-                      "id": "check",
-                      "state": "done",
-                      "started": "2026-11-16T04:19:08Z",
-                      "finished": "2026-11-16T04:23:38Z",
-                      "report": "The check found the plan in line with the clone set's code, the rewrites' records as built and the parent design's section 10, and fixed small points in place: the status line, the rule for a shell beside the clone, a request's attempt number and resend key, and the state a stop before the rename leaves.",
-                      "result": "accepted"
-                    },
-                    {
-                      "id": "consequences",
-                      "state": "done",
-                      "started": "2026-11-16T04:23:38Z",
-                      "finished": "2026-11-16T04:25:27Z",
-                      "report": "The consequences record that the unit writes nothing to GitHub, that the clone is replaced with its four carried files and its graph rebuilt, that the old clone sits aside on its own volume until its deletion, what the residual report and cleanup takes, and the known gaps of a fresh clone, the rename and the graph build."
-                    },
-                    {
-                      "id": "report",
-                      "state": "done",
-                      "started": "2026-11-16T04:25:27Z",
-                      "finished": "2026-11-16T04:31:50Z",
-                      "report": "The report gives a five-stage procedure over the pinned clone set, the grant section with three allow lines, the graph-build word, the removal of the board files' ignore and a second section for closing #27, all asked of the owner up front."
-                    }
-                  ]
-                }
-              }
-            ],
-            "branch": [
-              {
-                "since": "2026-11-16T04:31:50Z",
-                "ended": "2026-11-16T04:35:47Z",
-                "endedBy": "branch-cut",
-                "to": "implementation",
-                "event": {
-                  "name": "plan-accepted",
-                  "at": "2026-11-16T04:31:50Z"
-                },
-                "detail": "The report gives a five-stage procedure over the pinned clone set, the grant section with three allow lines, the graph-build word, the removal of the board files' ignore and a second section for closing #27, all asked of the owner up front.",
-                "branch": "docs/issue-42-replace-trumpbot-clone"
-              }
-            ],
-            "implementation": [
-              {
-                "since": "2026-11-16T04:35:47Z",
-                "ended": "2026-11-16T04:35:59Z",
-                "endedBy": "halted",
-                "to": "implementation",
-                "event": {
-                  "name": "branch-cut",
-                  "at": "2026-11-16T04:35:47Z"
-                },
-                "detail": "Branch `docs/issue-42-replace-trumpbot-clone` cut; implementation starts at S0: Readiness.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Readiness",
-                    "state": "current",
-                    "rows": [],
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S0.unit",
-                        "name": "The unit's data file and grant wording"
-                      },
-                      {
-                        "id": "S0.tools",
-                        "name": "The tools at their pins"
-                      },
-                      {
-                        "id": "S0.quick",
-                        "name": "The quick gate"
-                      },
-                      {
-                        "id": "S0.pins",
-                        "name": "The tool versions"
-                      },
-                      {
-                        "id": "S0.records",
-                        "name": "The rewrites' records, the backup and the manifest"
-                      },
-                      {
-                        "id": "S0.grant",
-                        "name": "The grant read"
-                      },
-                      {
-                        "id": "S0.checks",
-                        "name": "The clone's guards"
-                      },
-                      {
-                        "id": "S0.census",
-                        "name": "The clone's census recorded"
-                      }
-                    ],
-                    "ref": "plan.md#s0--readiness",
-                    "brief": "The unit's data file and grant wording are written, the tools are at their pins, the rewrites' records equal their checksum lists, the grant is in place, and the clone passes its guards with its census recorded.",
-                    "started": "2026-11-16T04:35:47Z"
-                  },
-                  {
-                    "id": "S1",
-                    "name": "The replacement",
-                    "state": "todo",
-                    "rows": [],
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S1.request",
-                        "name": "The replacement request built and handed off"
-                      },
-                      {
-                        "id": "S1.send",
-                        "name": "The request sent"
-                      },
-                      {
-                        "id": "S1.reply",
-                        "name": "The reply stored"
-                      },
-                      {
-                        "id": "S1.outcome",
-                        "name": "The outcome read"
-                      },
-                      {
-                        "id": "S1.proofs",
-                        "name": "The fresh clone proven"
-                      },
-                      {
-                        "id": "S1.carried",
-                        "name": "The four restored files read against their checksums"
-                      },
-                      {
-                        "id": "S1.aside",
-                        "name": "The old clone read whole at the recorded path"
-                      },
-                      {
-                        "id": "S1.back",
-                        "name": "The move back, only after a stop that follows the rename",
-                        "steps": [
-                          {
-                            "id": "S1.back.request",
-                            "name": "The move-back request built and handed off"
-                          },
-                          {
-                            "id": "S1.back.send",
-                            "name": "The request sent"
-                          },
-                          {
-                            "id": "S1.back.reply",
-                            "name": "The reply stored"
-                          },
-                          {
-                            "id": "S1.back.outcome",
-                            "name": "The outcome read"
-                          },
-                          {
-                            "id": "S1.back.census",
-                            "name": "The old clone's census read at the clone's path"
-                          },
-                          {
-                            "id": "S1.back.checks",
-                            "name": "The clone's guards read again"
-                          }
-                        ]
-                      }
-                    ],
-                    "ref": "plan.md#s1--the-replacement",
-                    "brief": "The old clone is renamed aside, a fresh clone of the rewritten repository is made at its path with the four carried files restored, and the unit's own reads prove the fresh clone and the old clone aside."
-                  },
-                  {
-                    "id": "S2",
-                    "name": "The deletion",
-                    "state": "todo",
-                    "rows": [],
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S2.request",
-                        "name": "The deletion request built and handed off"
-                      },
-                      {
-                        "id": "S2.send",
-                        "name": "The request sent"
-                      },
-                      {
-                        "id": "S2.reply",
-                        "name": "The reply stored"
-                      },
-                      {
-                        "id": "S2.outcome",
-                        "name": "The outcome read"
-                      },
-                      {
-                        "id": "S2.gone",
-                        "name": "No old-clone path remains"
-                      }
-                    ],
-                    "ref": "plan.md#s2--the-deletion",
-                    "brief": "The old clone is deleted at its recorded path, and no old-clone path remains."
-                  },
-                  {
-                    "id": "S3",
-                    "name": "The graph",
-                    "state": "todo",
-                    "rows": [],
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S3.notice",
-                        "name": "The graph service told"
-                      },
-                      {
-                        "id": "S3.wait",
-                        "name": "The build waited for"
-                      },
-                      {
-                        "id": "S3.graph",
-                        "name": "The graph read back"
-                      }
-                    ],
-                    "ref": "plan.md#s3--the-graph",
-                    "brief": "The graph service builds a code-only graph of the fresh clone with its two hooks, and the unit reads the graph and its hooks back."
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Close-out",
-                    "state": "todo",
-                    "rows": [],
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S4.records",
-                        "name": "The checksum lists"
-                      },
-                      {
-                        "id": "S4.tools",
-                        "name": "The tools at their pins"
-                      },
-                      {
-                        "id": "S4.g26",
-                        "name": "The earlier tool folder at its pins"
-                      },
-                      {
-                        "id": "S4.outputs",
-                        "name": "The output rule over the unit's outputs"
-                      }
-                    ],
-                    "ref": "plan.md#s4--close-out",
-                    "brief": "The earlier records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive."
-                  }
-                ],
-                "held": true,
-                "asked": [
-                  {
-                    "text": "Place the three allow lines for the replacement, the deletion and the move back (and a fourth for closing #27) in the global settings file before the first call?",
-                    "answer": null,
-                    "asked": "2026-11-16T04:35:59Z",
-                    "answered": "2026-11-16T05:57:48Z"
-                  },
-                  {
-                    "text": "Delete the board files' ignore at the root of the TrumpBot clone, leaving its exclude line, and run no graph job on that checkout until the replacement is complete?",
-                    "answer": null,
-                    "asked": "2026-11-16T04:35:59Z",
-                    "answered": "2026-11-16T05:57:48Z"
-                  },
-                  {
-                    "text": "Give the word for the code-only graph build of the fresh clone with its two hooks, once the clone is replaced and proven and the old clone deleted?",
-                    "answer": null,
-                    "asked": "2026-11-16T04:35:59Z",
-                    "answered": "2026-11-16T05:57:48Z"
-                  },
-                  {
-                    "text": "Give the section phase-0-tracking-27-close, so that #27 is closed by request after the landing; otherwise #27 is closed by hand?",
-                    "options": [
-                      "Give the section",
-                      "Close #27 by hand"
-                    ],
-                    "answer": null,
-                    "asked": "2026-11-16T04:35:59Z",
-                    "answered": "2026-11-16T05:57:48Z"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-16T05:57:48Z",
-                "ended": "2026-11-16T06:07:27Z",
-                "endedBy": "halted",
-                "to": "implementation",
-                "event": {
-                  "name": "step-complete",
-                  "at": "2026-11-16T06:06:41Z"
-                },
-                "detail": "Readiness passed: the unit's data file and grant wording written (the run log held 16157 lines before the unit); the tools at their pins (96 ok); the quick gate 63 of 63; the tool versions 7 ok; the rewrites' records, the earlier records, the untouched backup (22 files), the manifest (199 blobs) and the stage-8 marker equal their lists; the grant read with 11 ok and one RECORD (the section holds no Settings line, every action, the issue, the branch, the targets and the end as needed); the clone's guards 17 ok with the two expected RECORD lines and the server's heads at the new column; the census recorded: untracked 59 (carried 4, not carried 55, elsewhere 0), hooks 2, exclude lines 2, config keys 12. One deviation is logged in final-implementation.md: the grant's wording differs by its Settings line.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Readiness",
-                    "state": "done",
-                    "rows": [
-                      "readiness",
-                      "grant"
-                    ],
-                    "brief": "The unit's data file and grant wording are written, the tools are at their pins, the rewrites' records equal their checksum lists, the grant is in place, and the clone passes its guards with its census recorded.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S0.unit",
-                        "name": "The unit's data file and grant wording",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:04Z"
-                      },
-                      {
-                        "id": "S0.tools",
-                        "name": "The tools at their pins",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:20Z"
-                      },
-                      {
-                        "id": "S0.quick",
-                        "name": "The quick gate",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:36Z"
-                      },
-                      {
-                        "id": "S0.pins",
-                        "name": "The tool versions",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:45Z"
-                      },
-                      {
-                        "id": "S0.records",
-                        "name": "The rewrites' records, the backup and the manifest",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:59Z"
-                      },
-                      {
-                        "id": "S0.grant",
-                        "name": "The grant read",
-                        "state": "done",
-                        "finished": "2026-11-16T06:05:08Z"
-                      },
-                      {
-                        "id": "S0.checks",
-                        "name": "The clone's guards",
-                        "state": "done",
-                        "finished": "2026-11-16T06:05:31Z"
-                      },
-                      {
-                        "id": "S0.census",
-                        "name": "The clone's census recorded",
-                        "state": "done",
-                        "finished": "2026-11-16T06:05:39Z"
-                      }
-                    ],
-                    "ref": "plan.md#s0--readiness",
-                    "started": "2026-11-16T04:35:47Z",
-                    "finished": "2026-11-16T06:05:39Z",
-                    "report": "Readiness passed: the unit's data file and grant wording written (the run log held 16157 lines before the unit); the tools at their pins (96 ok); the quick gate 63 of 63; the tool versions 7 ok; the rewrites' records, the earlier records, the untouched backup (22 files), the manifest (199 blobs) and the stage-8 marker equal their lists; the grant read with 11 ok and one RECORD (the section holds no Settings line, every action, the issue, the branch, the targets and the end as needed); the clone's guards 17 ok with the two expected RECORD lines and the server's heads at the new column; the census recorded: untracked 59 (carried 4, not carried 55, elsewhere 0), hooks 2, exclude lines 2, config keys 12. One deviation is logged in final-implementation.md: the grant's wording differs by its Settings line.",
-                    "result": "passed"
-                  },
-                  {
-                    "id": "S1",
-                    "name": "The replacement",
-                    "state": "current",
-                    "rows": [
-                      "move",
-                      "carried",
-                      "fresh-clone"
-                    ],
-                    "brief": "The old clone is renamed aside, a fresh clone of the rewritten repository is made at its path with the four carried files restored, and the unit's own reads prove the fresh clone and the old clone aside.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S1.request",
-                        "name": "The replacement request built and handed off",
-                        "state": "done",
-                        "finished": "2026-11-16T06:06:41Z"
-                      },
-                      {
-                        "id": "S1.send",
-                        "name": "The request sent"
-                      },
-                      {
-                        "id": "S1.reply",
-                        "name": "The reply stored"
-                      },
-                      {
-                        "id": "S1.outcome",
-                        "name": "The outcome read"
-                      },
-                      {
-                        "id": "S1.proofs",
-                        "name": "The fresh clone proven"
-                      },
-                      {
-                        "id": "S1.carried",
-                        "name": "The four restored files read against their checksums"
-                      },
-                      {
-                        "id": "S1.aside",
-                        "name": "The old clone read whole at the recorded path"
-                      },
-                      {
-                        "id": "S1.back",
-                        "name": "The move back, only after a stop that follows the rename",
-                        "steps": [
-                          {
-                            "id": "S1.back.request",
-                            "name": "The move-back request built and handed off"
-                          },
-                          {
-                            "id": "S1.back.send",
-                            "name": "The request sent"
-                          },
-                          {
-                            "id": "S1.back.reply",
-                            "name": "The reply stored"
-                          },
-                          {
-                            "id": "S1.back.outcome",
-                            "name": "The outcome read"
-                          },
-                          {
-                            "id": "S1.back.census",
-                            "name": "The old clone's census read at the clone's path"
-                          },
-                          {
-                            "id": "S1.back.checks",
-                            "name": "The clone's guards read again"
-                          }
-                        ]
-                      }
-                    ],
-                    "ref": "plan.md#s1--the-replacement",
-                    "started": "2026-11-16T06:05:39Z"
-                  },
-                  {
-                    "id": "S2",
-                    "name": "The deletion",
-                    "state": "todo",
-                    "rows": [
-                      "deletion",
-                      "leftover"
-                    ],
-                    "brief": "The old clone is deleted at its recorded path, and no old-clone path remains.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S2.request",
-                        "name": "The deletion request built and handed off"
-                      },
-                      {
-                        "id": "S2.send",
-                        "name": "The request sent"
-                      },
-                      {
-                        "id": "S2.reply",
-                        "name": "The reply stored"
-                      },
-                      {
-                        "id": "S2.outcome",
-                        "name": "The outcome read"
-                      },
-                      {
-                        "id": "S2.gone",
-                        "name": "No old-clone path remains"
-                      }
-                    ],
-                    "ref": "plan.md#s2--the-deletion"
-                  },
-                  {
-                    "id": "S3",
-                    "name": "The graph",
-                    "state": "todo",
-                    "rows": [
-                      "graph"
-                    ],
-                    "brief": "The graph service builds a code-only graph of the fresh clone with its two hooks, and the unit reads the graph and its hooks back.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S3.notice",
-                        "name": "The graph service told"
-                      },
-                      {
-                        "id": "S3.wait",
-                        "name": "The build waited for"
-                      },
-                      {
-                        "id": "S3.graph",
-                        "name": "The graph read back"
-                      }
-                    ],
-                    "ref": "plan.md#s3--the-graph"
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Close-out",
-                    "state": "todo",
-                    "rows": [
-                      "leftover"
-                    ],
-                    "brief": "The earlier records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S4.records",
-                        "name": "The checksum lists"
-                      },
-                      {
-                        "id": "S4.tools",
-                        "name": "The tools at their pins"
-                      },
-                      {
-                        "id": "S4.g26",
-                        "name": "The earlier tool folder at its pins"
-                      },
-                      {
-                        "id": "S4.outputs",
-                        "name": "The output rule over the unit's outputs"
-                      }
-                    ],
-                    "ref": "plan.md#s4--close-out"
-                  }
-                ],
-                "held": true,
-                "asked": [
-                  {
-                    "text": "Place the four checked allow lines (the replacement, the deletion, the move back, the closing of #27) in the global settings file?",
-                    "answer": null,
-                    "asked": "2026-11-16T06:07:27Z",
-                    "answered": "2026-11-16T19:23:43Z"
-                  }
-                ]
-              },
-              {
-                "since": "2026-11-16T19:23:43Z",
-                "ended": "2026-11-16T19:52:03Z",
-                "endedBy": "qa-pass",
-                "to": "qa",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-16T19:50:17Z",
-                  "note": "S4 reported done; Quality Review next"
-                },
-                "detail": "The close-out passed: the rewrites' run records (49 files), TrumpBot's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
-                "stages": [
-                  {
-                    "id": "S0",
-                    "name": "Readiness",
-                    "state": "done",
-                    "rows": [
-                      "readiness",
-                      "grant"
-                    ],
-                    "brief": "The unit's data file and grant wording are written, the tools are at their pins, the rewrites' records equal their checksum lists, the grant is in place, and the clone passes its guards with its census recorded.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S0.unit",
-                        "name": "The unit's data file and grant wording",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:04Z"
-                      },
-                      {
-                        "id": "S0.tools",
-                        "name": "The tools at their pins",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:20Z"
-                      },
-                      {
-                        "id": "S0.quick",
-                        "name": "The quick gate",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:36Z"
-                      },
-                      {
-                        "id": "S0.pins",
-                        "name": "The tool versions",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:45Z"
-                      },
-                      {
-                        "id": "S0.records",
-                        "name": "The rewrites' records, the backup and the manifest",
-                        "state": "done",
-                        "finished": "2026-11-16T06:04:59Z"
-                      },
-                      {
-                        "id": "S0.grant",
-                        "name": "The grant read",
-                        "state": "done",
-                        "finished": "2026-11-16T06:05:08Z"
-                      },
-                      {
-                        "id": "S0.checks",
-                        "name": "The clone's guards",
-                        "state": "done",
-                        "finished": "2026-11-16T06:05:31Z"
-                      },
-                      {
-                        "id": "S0.census",
-                        "name": "The clone's census recorded",
-                        "state": "done",
-                        "finished": "2026-11-16T06:05:39Z"
-                      }
-                    ],
-                    "ref": "plan.md#s0--readiness",
-                    "started": "2026-11-16T04:35:47Z",
-                    "finished": "2026-11-16T06:05:39Z",
-                    "report": "Readiness passed: the unit's data file and grant wording written (the run log held 16157 lines before the unit); the tools at their pins (96 ok); the quick gate 63 of 63; the tool versions 7 ok; the rewrites' records, the earlier records, the untouched backup (22 files), the manifest (199 blobs) and the stage-8 marker equal their lists; the grant read with 11 ok and one RECORD (the section holds no Settings line, every action, the issue, the branch, the targets and the end as needed); the clone's guards 17 ok with the two expected RECORD lines and the server's heads at the new column; the census recorded: untracked 59 (carried 4, not carried 55, elsewhere 0), hooks 2, exclude lines 2, config keys 12. One deviation is logged in final-implementation.md: the grant's wording differs by its Settings line.",
-                    "result": "passed"
-                  },
-                  {
-                    "id": "S1",
-                    "name": "The replacement",
-                    "state": "done",
-                    "rows": [
-                      "move",
-                      "carried",
-                      "fresh-clone"
-                    ],
-                    "brief": "The old clone is renamed aside, a fresh clone of the rewritten repository is made at its path with the four carried files restored, and the unit's own reads prove the fresh clone and the old clone aside.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S1.request",
-                        "name": "The replacement request built and handed off",
-                        "state": "done",
-                        "finished": "2026-11-16T06:06:41Z"
-                      },
-                      {
-                        "id": "S1.send",
-                        "name": "The request sent",
-                        "state": "done",
-                        "finished": "2026-11-16T19:23:43Z"
-                      },
-                      {
-                        "id": "S1.reply",
-                        "name": "The reply stored",
-                        "state": "done",
-                        "finished": "2026-11-16T19:29:17Z"
-                      },
-                      {
-                        "id": "S1.outcome",
-                        "name": "The outcome read",
-                        "state": "done",
-                        "finished": "2026-11-16T19:29:35Z"
-                      },
-                      {
-                        "id": "S1.proofs",
-                        "name": "The fresh clone proven",
-                        "state": "done",
-                        "finished": "2026-11-16T19:30:01Z"
-                      },
-                      {
-                        "id": "S1.carried",
-                        "name": "The four restored files read against their checksums",
-                        "state": "done",
-                        "finished": "2026-11-16T19:30:16Z"
-                      },
-                      {
-                        "id": "S1.aside",
-                        "name": "The old clone read whole at the recorded path",
-                        "state": "done",
-                        "finished": "2026-11-16T19:30:35Z"
-                      },
-                      {
-                        "id": "S1.back",
-                        "name": "The move back, only after a stop that follows the rename",
-                        "steps": [
-                          {
-                            "id": "S1.back.request",
-                            "name": "The move-back request built and handed off"
-                          },
-                          {
-                            "id": "S1.back.send",
-                            "name": "The request sent"
-                          },
-                          {
-                            "id": "S1.back.reply",
-                            "name": "The reply stored"
-                          },
-                          {
-                            "id": "S1.back.outcome",
-                            "name": "The outcome read"
-                          },
-                          {
-                            "id": "S1.back.census",
-                            "name": "The old clone's census read at the clone's path"
-                          },
-                          {
-                            "id": "S1.back.checks",
-                            "name": "The clone's guards read again"
-                          }
-                        ]
-                      }
-                    ],
-                    "ref": "plan.md#s1--the-replacement",
-                    "started": "2026-11-16T06:05:39Z",
-                    "finished": "2026-11-16T19:30:35Z",
-                    "report": "The replacement passed: the request ran once and its reply was stored as done (88 printed lines: the 84 of the eight entries and the 4 check sentences the reply carries), OUTCOME complete entries=8 of 8 stops=0 status=done. The unit's own reads: the fresh clone's proofs 18 ok (the old commits and the 199 manifest blobs missing, the untouched backup's control whole, ten local keys, no hook, a comment-only exclude file, no FETCH_HEAD); the four restored files equal their checksums and are the only untracked files, and the same checksums hold for the old clone aside; the old clone aside equals its recorded census (differing lines 0: untracked 59, hooks 2, exclude lines 2, config keys 12). The move back was not needed. A second deviation is logged in final-implementation.md: the reply was saved as a byte-for-byte copy of the delivered file."
-                  },
-                  {
-                    "id": "S2",
-                    "name": "The deletion",
-                    "state": "done",
-                    "rows": [
-                      "deletion",
-                      "leftover"
-                    ],
-                    "brief": "The old clone is deleted at its recorded path, and no old-clone path remains.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S2.request",
-                        "name": "The deletion request built and handed off",
-                        "state": "done",
-                        "finished": "2026-11-16T19:31:14Z"
-                      },
-                      {
-                        "id": "S2.send",
-                        "name": "The request sent",
-                        "state": "done",
-                        "finished": "2026-11-16T19:31:53Z"
-                      },
-                      {
-                        "id": "S2.reply",
-                        "name": "The reply stored",
-                        "state": "done",
-                        "finished": "2026-11-16T19:36:31Z"
-                      },
-                      {
-                        "id": "S2.outcome",
-                        "name": "The outcome read",
-                        "state": "done",
-                        "finished": "2026-11-16T19:36:40Z"
-                      },
-                      {
-                        "id": "S2.gone",
-                        "name": "No old-clone path remains",
-                        "state": "done",
-                        "finished": "2026-11-16T19:36:57Z"
-                      }
-                    ],
-                    "ref": "plan.md#s2--the-deletion",
-                    "started": "2026-11-16T19:30:35Z",
-                    "finished": "2026-11-16T19:36:57Z",
-                    "report": "The deletion ended: the request ran once and its reply was stored as done (16 printed lines), OUTCOME complete entries=3 of 3 stops=0 status=done; the unit's own read finds no old-clone path left and the fresh clone in place (2 ok, STAGE K1.gone OK). A third deviation is logged in final-implementation.md: the deletion request carries the replacement's four check sentences, as the pinned request builder writes one list for every kind; the deletion's own markers all printed."
-                  },
-                  {
-                    "id": "S3",
-                    "name": "The graph",
-                    "state": "done",
-                    "rows": [
-                      "graph",
-                      "grant"
-                    ],
-                    "brief": "The graph service builds a code-only graph of the fresh clone with its two hooks, and the unit reads the graph and its hooks back.",
-                    "kind": "work",
-                    "steps": [
-                      {
-                        "id": "S3.notice",
-                        "name": "The graph service told",
-                        "state": "done",
-                        "finished": "2026-11-16T19:38:03Z"
-                      },
-                      {
-                        "id": "S3.wait",
-                        "name": "The build waited for",
-                        "state": "done",
-                        "finished": "2026-11-16T19:47:31Z"
-                      },
-                      {
-                        "id": "S3.graph",
-                        "name": "The graph read back",
-                        "state": "done",
-                        "finished": "2026-11-16T19:47:54Z"
-                      }
-                    ],
-                    "ref": "plan.md#s3--the-graph",
-                    "started": "2026-11-16T19:36:57Z",
-                    "finished": "2026-11-16T19:47:54Z",
-                    "report": "The graph is rebuilt and read back: the first read after the notice waited, and after one wait of 9 minutes the graph file and both hooks were present. The read-back gave 9 ok and the one expected RECORD (one untracked file outside the two folders, the board files' ignore at the root), then STAGE K1.graph OK: the graph's folder exists and holds files, the hooks beyond the samples are exactly the graph's, the exclude file holds the graph's entry, no extra key but at most lfs.repositoryformatversion, the carried files unchanged, the remote-tracking refs at the new column and the old commits and manifest blobs still missing."
-                  },
-                  {
-                    "id": "S4",
-                    "name": "Close-out",
-                    "state": "done",
-                    "rows": [
-                      "leftover"
-                    ],
-                    "brief": "The earlier records and this unit's equal their checksum lists, the tools and the earlier tool folder are at their pins, and the unit's outputs and records hold nothing sensitive.",
-                    "kind": "check",
-                    "steps": [
-                      {
-                        "id": "S4.records",
-                        "name": "The checksum lists",
-                        "state": "done",
-                        "finished": "2026-11-16T19:48:22Z"
-                      },
-                      {
-                        "id": "S4.tools",
-                        "name": "The tools at their pins",
-                        "state": "done",
-                        "finished": "2026-11-16T19:49:10Z"
-                      },
-                      {
-                        "id": "S4.g26",
-                        "name": "The earlier tool folder at its pins",
-                        "state": "done",
-                        "finished": "2026-11-16T19:49:57Z"
-                      },
-                      {
-                        "id": "S4.outputs",
-                        "name": "The output rule over the unit's outputs",
-                        "state": "done",
-                        "finished": "2026-11-16T19:50:17Z"
-                      }
-                    ],
-                    "ref": "plan.md#s4--close-out",
-                    "started": "2026-11-16T19:47:54Z",
-                    "finished": "2026-11-16T19:50:17Z",
-                    "report": "The close-out passed: the rewrites' run records (49 files), TrumpBot's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
-                    "result": "passed"
-                  }
-                ]
-              }
-            ],
-            "qa": [
-              {
-                "since": "2026-11-16T19:52:03Z",
-                "ended": "2026-11-16T20:03:47Z",
-                "endedBy": "qa-pass",
-                "to": "remediation",
-                "event": {
-                  "name": "qa-pass",
-                  "at": "2026-11-16T19:52:03Z",
-                  "note": "Quality Review 1: running"
-                },
-                "detail": "Quality Review 1 running.",
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-16",
-                    "at": "2026-11-16T20:03:47Z",
-                    "findings": {
-                      "test": 0,
-                      "code": 2
-                    },
-                    "severity": {
-                      "minor": 2,
-                      "other": 0
-                    },
-                    "route": "on-the-spot",
-                    "note": "Every item the issue asks was verified on the clone; the two fixes are wordings in the as-built record: the replacement reply's stored line count, and the reason the run went on past the request builder's defect.",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement/ca070e8d/tests/index.html"
-                  }
-                ]
-              }
-            ],
-            "remediation": [
-              {
-                "since": "2026-11-16T20:03:47Z",
-                "ended": "2026-11-16T20:04:58Z",
-                "endedBy": "document",
-                "to": "document",
-                "event": {
-                  "name": "implementation-stage",
-                  "at": "2026-11-16T20:04:42Z",
-                  "note": "2 of 2 sub-steps done"
-                },
-                "detail": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed.",
-                "remediation": {
-                  "pass": 1,
-                  "route": "on-the-spot",
-                  "steps": [
-                    {
-                      "name": "State the replacement reply as stored: 88 lines, the procedure's lines and the four check strings",
-                      "state": "done",
-                      "finished": "2026-11-16T20:04:42Z",
-                      "report": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed."
-                    },
-                    {
-                      "name": "Rest the third deviation on the facts of the deletion instead of a reading of the stop rule",
-                      "state": "done",
-                      "finished": "2026-11-16T20:04:42Z",
-                      "report": "Both wording fixes are made in the as-built record; no further pass of the quality review is needed."
-                    }
-                  ]
-                },
-                "qa": [
-                  {
-                    "pass": 1,
-                    "verdict": "changes-requested",
-                    "date": "2026-11-16",
-                    "at": "2026-11-16T20:03:47Z",
-                    "findings": {
-                      "test": 0,
-                      "code": 2
-                    },
-                    "severity": {
-                      "minor": 2,
-                      "other": 0
-                    },
-                    "route": "on-the-spot",
-                    "note": "Every item the issue asks was verified on the clone; the two fixes are wordings in the as-built record: the replacement reply's stored line count, and the reason the run went on past the request builder's defect.",
-                    "report": "build/reports/tests/index.html",
-                    "reportCopy": "1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement/ca070e8d/tests/index.html"
-                  }
-                ]
-              }
-            ]
-          },
-          "rowNames": {
-            "readiness": "Readiness: TrumpBot proven, the clone set at its pins, the read-only checks and the census of the clone",
-            "move": "The old clone moved aside by one rename on its own volume",
-            "carried": "What is carried: the four `.idea/` files, and nothing else git does not track",
-            "fresh-clone": "The fresh clone at the same path, and its proofs",
-            "deletion": "The old clone deleted at its recorded path",
-            "graph": "The graph rebuilt from the rewritten tree, and read back",
-            "leftover": "A leftover of the old clone, and #28's confirmation that no old-clone path remains",
-            "grant": "The grant for this unit's job, and what is asked up front"
-          },
-          "recon": {
-            "interview": {
-              "reconstructed": true,
-              "ended": null,
-              "trail": [],
-              "milestones": []
-            },
-            "research": {
-              "reconstructed": true,
-              "ended": "2026-11-16",
-              "trail": [
-                {
-                  "date": "2026-11-16",
-                  "label": "Nothing to research; the plan next"
-                }
-              ],
-              "milestones": [
-                {
-                  "date": "2026-11-13",
-                  "label": "Research verified, in #27's run",
-                  "ref": "../research/README.md",
-                  "note": "written on this board when the run started, from #27's research question on moving the old clone aside and its summary, and its architecture's current state of the clone, the volumes, the tools and the request service (§2.2 to §2.5), this unit's design in §10 and its row in §16, with #27's consequences (§2.2, §5, §6); and from the state the earlier units left: the tools unit's clone set and the assumptions it left to this unit's run, and the rewrites' records for TrumpBot"
-                }
-              ]
-            }
-          }
-        },
         "tests": {
           "updated": "2026-11-16T20:03:47Z",
           "added": [],
@@ -2942,6 +1570,10 @@ window.dashboardLive&&window.dashboardLive("plan",
               }
             }
           ]
+        },
+        "landing": {
+          "pr": 48,
+          "merge": "053288047b6410bf22fca990cafc17d55051bf6d"
         }
       },
       "gap": {
@@ -3022,8 +1654,8 @@ window.dashboardLive&&window.dashboardLive("plan",
         }
       ],
       "asBuilt": {
-        "state": "pending",
-        "summary": "Filed as #42; its run has not started. It starts once #40, the rewrites, has landed."
+        "state": "landed",
+        "summary": "#42 landed through PR #48 as 0532880. It replaced the TrumpBot clone with a fresh clone of the rewritten repository at the same path, by two requests under the unit's own grant, its four `.idea/` files restored and equal to their checksums; the old clone stood aside on its own volume for about ten minutes and was deleted at its recorded path, so no old-clone path remains and no pre-rewrite commit or purged blob is reachable from the fresh clone. The graph was rebuilt from the rewritten tree, code-only, and read back with its two hooks. One issue, #47, was filed against the tools' request builder and changed no outcome; #28 takes the record that no old-clone path remains."
       },
       "verdict": {
         "kind": "build",
@@ -3107,8 +1739,8 @@ window.dashboardLive&&window.dashboardLive("plan",
     }
   ],
   "impact": {
-    "basis": "plan",
-    "summary": "No module is published and no version moves: every landing of #27 and its units carries documents and generated boards only. BotTools, which is public, and TrumpBot and Support, which are private, are force-pushed in place, one atomic push each: every commit id changes, the purged files leave every commit, and each keeps its visibility and default branch. BotTools' pull-request refs keep its 39 purged blobs fetchable, and the TrumpBot clone on this machine is replaced by a fresh one.",
+    "basis": "as-built",
+    "summary": "As built, no module is published and no version moves: every landing of #27 and its units carried documents and generated boards only. BotTools, which is public, and TrumpBot and Support, which are private, were force-pushed in place, one atomic push each: every commit id changed, the purged files left every commit, and each kept its visibility and default branch. BotTools' pull-request refs keep its 39 purged blobs fetchable, the events listed 1 of the 5 branch pushes, and the TrumpBot clone on this machine was replaced by a fresh clone, the old one deleted; #47 stays open against the tools.",
     "none": null,
     "release": {
       "bump": "none",
@@ -3146,7 +1778,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "consumer",
         "system": null,
         "effect": "breaking",
-        "summary": "They keep the old histories, and their branches share no commit with the server's afterwards. None of the three repositories has a fork, and the one known clone on this machine, TrumpBot's, is replaced.",
+        "summary": "They keep the old histories, and their branches share no commit with the server's afterwards. None of the three repositories has a fork, and the one known clone on this machine, TrumpBot's, was replaced.",
         "link": "consequences.md#21-github"
       },
       {
@@ -3154,8 +1786,8 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "operator",
         "system": "clone-realignment",
         "effect": "behaviour",
-        "summary": "Replaced by a fresh clone at the same path that keeps its four `.idea/` files. The old code knowledge graph, built from the pre-rewrite tree, goes with the old clone, with its exclude entry, its two hooks and two extra configuration keys; a code-only graph of the rewritten tree is built afterwards. Until its deletion the old clone sits beside it on the same volume, outside the workspace, holding TrumpBot's pre-rewrite objects.",
-        "link": "consequences.md#22-this-machine"
+        "summary": "Replaced by a fresh clone of the rewritten repository at the same path, its four `.idea/` files restored and equal to their checksums. The old code knowledge graph, built from the pre-rewrite tree, went with the old clone, with its two exclude entries, its two hooks and two extra configuration keys; the graph service's board files' ignore, part of a graph's footprint, was taken out before the census and not carried. A code-only graph of the rewritten tree was built afterwards, with its two hooks, its exclude entry and the ignore with its own entry. The old clone stood aside on the same volume, outside the workspace, for about ten minutes, and was deleted at its recorded path; no old-clone path remains.",
+        "link": "42-clone-replacement/consequences.md#22-this-machine"
       },
       {
         "who": "The workspace and the data folder",
@@ -3172,6 +1804,14 @@ window.dashboardLive&&window.dashboardLive("plan",
         "effect": "additive",
         "summary": "The phase design and the phase consequences take 20 and 5 dated notes with this design's landing, the GKB2 and GKB unit's consequences one per gap and follow-up the tools unit closes, and the registry of systems the four units in place of unit 7. No legacy repository receives a commit.",
         "link": "consequences.md#23-documents-and-generated-boards"
+      },
+      {
+        "who": "#47 on KotlinBottools' tracker",
+        "kind": "repository",
+        "system": "clone-realignment",
+        "effect": "additive",
+        "summary": "One issue filed against the workspace tools: the clone set's request builder writes the replacement's check sentences into every kind of request. It changed no outcome, the tool folder stays at its pins, and it stays open outside #27's units; #27's closing does not wait on it.",
+        "link": "42-clone-replacement/consequences.md#21-github"
       }
     ],
     "adaptation": [
@@ -3213,7 +1853,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     ],
     "api": [],
     "conversion": [],
-    "source": "consequences.md",
+    "source": "consequences.md §1 to §6, reconciled with the four units' as-built records",
     "link": "consequences.md#2-blast-radius",
     "units": [
       {
@@ -3291,16 +1931,36 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       {
         "unit": "clone-replacement",
-        "basis": "plan",
-        "summary": "As planned, no module is published and no version moves; the landing carries documents and generated boards only. Nothing is written to GitHub until the landing, after which #27 is closed. On this machine the TrumpBot clone is replaced by a fresh clone with its four `.idea/` files, by two requests under the unit's own grant, the old clone deleted at its recorded path after the unit's read of the fresh clone, and the graph rebuilt by the graph service; the graph service's board files' ignore, now part of a graph's footprint (this design's dated note under §10.3), is not carried. #28 takes the record that no old-clone path remains.",
+        "basis": "as-built",
+        "summary": "As built, no module is published and no version moves; the landing carries documents and generated boards only. On GitHub one issue, #47, was filed during the run against the tools' request builder, and #27 is closed after the landing. On this machine the TrumpBot clone was replaced by a fresh clone with its four `.idea/` files, by two requests under the unit's own grant, the old clone deleted at its recorded path after the unit's read of the fresh clone, and the graph rebuilt by the graph service, with the board files' ignore it places. #28 takes the record that no old-clone path remains.",
         "release": {
           "bump": "none",
           "version": null,
           "note": "no module is published and no version moves",
           "nothingPublished": true
         },
-        "source": "42-clone-replacement/consequences.md §1 to §6",
-        "link": "42-clone-replacement/consequences.md#2-blast-radius"
+        "source": "42-clone-replacement/consequences.md §1 to §6, reconciled with the build; 42-clone-replacement/final-implementation.md",
+        "link": "42-clone-replacement/consequences.md#2-blast-radius",
+        "changes": [
+          {
+            "what": "One issue, #47, was filed in KotlinBottools during the run, for the clone set's request builder; the plan wrote nothing to GitHub before the landing.",
+            "why": "The deletion request carried the replacement's four check sentences; the defect was filed for the tools once the deletion's own markers had printed and no old-clone path remained, and it changed no outcome.",
+            "when": "#42 landing",
+            "ref": "42-clone-replacement/final-implementation.md#4-deviations-from-the-plan"
+          },
+          {
+            "what": "The grant section was given without its `Settings:` line, so it does not itself name the allow lines to remove when it moves to history; the follow-up names them.",
+            "why": "The plan makes a differing wording a record, never a stop, and every part the readiness check reads was present.",
+            "when": "#42 landing",
+            "ref": "42-clone-replacement/final-implementation.md#4-deviations-from-the-plan"
+          },
+          {
+            "what": "The landing also carries a note in the verification results of this design's research, which the plan's documentation impact did not list.",
+            "why": "The research's summary has the clone hold the two hooks and the one exclude entry again after the graph's build; the build also left the board files' ignore with a second exclude entry, which the read-back recorded as its one difference.",
+            "when": "#42 landing",
+            "ref": "42-clone-replacement/consequences.md#23-documents-and-generated-boards"
+          }
+        ]
       }
     ],
     "changes": [
@@ -3325,6 +1985,22 @@ window.dashboardLive&&window.dashboardLive("plan",
         "what": "The events did not list every rewritten branch's push: after each push's 6 hours they listed the push of 1 of BotTools' 2 branches and none of TrumpBot's 2 or Support's 1, while every activity feed lists each force push.",
         "why": "The initiative's impact took one event per rewritten branch; the residual measurement read the events until 6 hours had passed since each push and recorded what they listed. Whether GitHub lists the other pushes later is not established, a known gap of the unit.",
         "ref": "41-residual-measurement/consequences.md#5-known-gaps"
+      },
+      {
+        "unit": "clone-replacement",
+        "when": "#42 landing",
+        "entry": "downstream.4",
+        "what": "The old clone held two exclude entries, the second the board files' ignore's: that ignore is part of a graph's footprint, was taken out before the census and not carried, and the rebuilt graph placed it again with its own entry.",
+        "why": "The initiative's impact took the old graph's footprint as one exclude entry, two hooks and two keys; the replacement's census recorded the ignore, and this design took a dated note under §10.3 stating it as part of a graph's footprint.",
+        "ref": "42-clone-replacement/consequences.md#22-this-machine"
+      },
+      {
+        "unit": "clone-replacement",
+        "when": "#42 landing",
+        "entry": "downstream.7",
+        "what": "One issue, #47, was filed in KotlinBottools against the workspace tools, for the clone set's request builder; it stays open outside #27's units.",
+        "why": "The deletion request carried the replacement's check sentences. The defect changed no outcome, and the tool folder stays at its pins, so its fix is a new version of the pinned file under the tools' defect rule.",
+        "ref": "42-clone-replacement/final-implementation.md#4-deviations-from-the-plan"
       }
     ]
   },
@@ -3411,6 +2087,9 @@ window.dashboardLive&&window.dashboardLive("plan",
   "links": {
     "workBoard": "../../../index.html",
     "repoBoard": "../../../../dashboards/index.html"
+  },
+  "issueBoards": {
+    "28": "../28-residual-report-and-cleanup/dashboard.html"
   }
 }
 );
