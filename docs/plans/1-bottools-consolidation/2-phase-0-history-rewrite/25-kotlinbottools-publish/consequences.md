@@ -105,7 +105,7 @@ No README change and no CHANGELOG entry: the landing carries documents only, and
 **What the later units take from this unit.** The contract is
 [plan, Interfaces with sibling units](plan.md#interfaces-with-sibling-units); this is its summary.
 
-- **`gkb2-gkb-rewrite` (#26)** and **`bottools-trumpbot-support-rewrite` (#27)** take the corrected anonymous probe rules for the
+- **`gkb2-gkb-rewrite` (#26)** and **`bottools-…-rewrite` (#27)** take the corrected anonymous probe rules for the
   anonymous measurements of their public repositories, and keep the two stale pins of the workspace scripts. They also take the
   follow-ups on the tools' self-tests and texts (§6).
 - **`residual-report-and-cleanup` (#28)** takes:

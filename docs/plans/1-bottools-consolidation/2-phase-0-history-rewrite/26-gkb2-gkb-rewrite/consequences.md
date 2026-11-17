@@ -81,7 +81,7 @@ histories (§2.1).
 - **Two scratch files of the preparation unit's `prove_removed`** sit directly in the workspace's `tmp/` folder rather than in this
   unit's scratch folder: every use of that function writes them there, over the previous use's, and the workspace's deletion removes
   them.
-- **The two clones on this machine** are unchanged: this checkout changes only by the landing, and the TrumpBot clone belongs to the
+- **The two clones on this machine** are unchanged: this checkout changes only by the landing, and the private repository clone belongs to the
   next rewrite unit.
 
 ### 2.3 Documents and generated boards
@@ -121,11 +121,10 @@ No README change and no CHANGELOG entry: the landing carries documents only. The
 **What the later units take from this unit.** The contract is
 [plan, Interfaces with sibling units](plan.md#interfaces-with-sibling-units); this is its summary.
 
-- **`bottools-trumpbot-support-rewrite` (#27)** takes:
+- **`bottools-…-rewrite` (#27)** takes:
   - the corrected runner and its pin;
   - the tools in `$WS/tools/g26/` with the parameter table, to which it adds its rows, extending the tools where its repositories
-    differ: BotTools has two branches and two pull-request refs, so its push needs one request per branch or `--atomic`; TrumpBot
-    and Support are private, so they have no anonymous probes;
+    differ: BotTools has two branches and two pull-request refs, so its push needs one request per branch or `--atomic`; the private repositories are private, so they have no anonymous probes;
   - the lease push with its guards, its expected tally and its table of classes, and the grant's shape with the decision on the
     request service's deny rule;
   - the readiness pattern and `ganon.sh`;
@@ -135,13 +134,13 @@ No README change and no CHANGELOG entry: the landing carries documents only. The
     there), so for #27 that form is the request's to ask for, while the self-test's stand-in models the other form, one entry to a
     shell. The two agree only for a procedure whose every entry sets the values it uses and whose every guard ends the shell.
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: the self-test's stand-in runs a procedure as one shell and checks the request file's hash
-    > ([its closure table, row 23](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 23](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: no script of the new folder names a repository outside the parameter table
-    > ([its closure table, row 24](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 24](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 - **`residual-report-and-cleanup` (#28)** takes:
   - GKB2's and GKB's report rows (`DATA/rewrite/<repo>/report-row.txt`), with GKB2's pull-request residual
     ([as built, §3.4](final-implementation.md#34-the-exit-tests));
@@ -203,17 +202,17 @@ does about each before its run.
   is deviation 5 of [the as-built record](final-implementation.md#4-deviations-from-the-plan). No self-test case feeds a reply in the delivered form: the
   stand-in stores the printed lines themselves.
 
-  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
   > (#39) in its new tool folder, with the follow-up "The stored reply" in §6: the reply is stored in the form the request service
   > delivers, a reply that cannot be read stops plainly, and the cases feed the delivered form
-  > ([its closure table, row 1](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+  > ([its closure table, row 1](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 - **The table of classes and the classifier differ for a reply with a dry-run status and no push status** (deviation 13 of
   [the as-built record](final-implementation.md#4-deviations-from-the-plan)).
 
-  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
   > (#39) in its new tool folder: the table of classes and the classifier state one rule, and the three readings of a reply with a
   > dry-run status and no push status have cases
-  > ([its closure table, row 2](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+  > ([its closure table, row 2](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 - **The tools' comments, headers and usage lines state less than the tools do**: contracts, files written, environment overrides,
   exit statuses and the reasons for non-obvious code, in the 13 points §6 lists for #27.
 - **Stops and branches that no test case reaches.** The real run proved the passing behaviour; these paths were exercised by no case.
@@ -221,15 +220,15 @@ does about each before its run.
   - **`p6-push.sh request`'s stop for a branch still at its old tip whose last attempt's class allows no resend** ("a push is never
     repeated blindly"). The case that exists reaches the stop for a branch that has moved;
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: the stop has a case
-    > ([its closure table, row 3](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 3](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - **the void tally when a probe batch's closing controls fail** (`batch` in `g26lib.sh`), the correction carried from the publication
     unit. The two cases that exist reach the void on the opening controls.
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: this path, and each path of the probes and the feeds listed below, has a case
-    > ([its closure table, row 13](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 13](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 
   The others, by tool. The list is not exhaustive: the rule for #27 is a case for every `expect` and every `STOP` of a step script.
   - **the push step:** `p6-push.sh check`'s branches for `refused-rule`, `refused-unattributed` and `unclassified` (the classification
@@ -240,13 +239,13 @@ does about each before its run.
     unchanged; the record of an incomplete scan after a push. `request`'s stops when the server's branch cannot be read and when the
     server's pull-request refs differ from their record. `cmd_classify`'s stops for no stored reply and for streams it cannot read;
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: each arm of the check has a case, the read-back that contradicts the class included
-    > ([its closure table, row 4](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 4](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: each stop of `request` and of `cmd_classify` named here has a case
-    > ([its closure table, row 5](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 5](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - **the probes and the feeds:**
     - a status outside a route's answers, on any route. The one case meant for it answers every `want` with another status, the opening
       controls' included, so it ends as a second void on the opening controls, and `probe_ids`' own stop is never reached;
@@ -264,95 +263,95 @@ does about each before its run.
     records' presence, the manifests' sizes, the clone's listing against the table, the control probes against the preparation unit's
     script, the every-ref commit count or the data copy's marker;
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: every expectation of `S0` has a case
-    > ([its closure table, row 12](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 12](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - **the runner:** the boundaries of a plain word, 40 against 41 characters (the case uses a 44-character word) and 6 against 7
     hexadecimal digits; an empty argument; the masking of a stage name; a non-zero status passed through the runner;
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39), except the runner's own header, which stays as pinned (row 31 of its closure table): each of these has a case against
-    > the runner at its pin ([its closure table, row 14](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > the runner at its pin ([its closure table, row 14](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - **the document checks:** `D.gate` has no case, `D.scan` the clean case only, and the two stops on the set of pending files none;
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: every check of the landing's document checks has a case, on a made-up checkout
-    > ([its closure table, row 15](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 15](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - **the steps of the pipeline:**
     - `p1`: every check but the list and the wait for the other repository, namely a push already requested, a mirror or backup that
       differs from its checksum list, the pre-run checks of the mirror, and a list entry that counts no commit;
 
-      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
       > (#39) in its new tool folder: every check of `p1` has a case
-      > ([its closure table, row 7](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+      > ([its closure table, row 7](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
     - `p2` and `p5`: every stop but the three with a case (a control file that differs; a pull-request ref the table does not list; a
       server branch that moved);
 
-      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
       > (#39) in its new tool folder: every stop of `p2` and `p5` has a case
-      > ([its closure table, row 6](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+      > ([its closure table, row 6](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
     - `p3` and `p4`: a count that differs, or a manifest blob that survives the rewrite;
 
-      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
       > (#39) in its new tool folder: every stop of `p3` and `p4` has a case
-      > ([its closure table, row 8](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+      > ([its closure table, row 8](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
     - `p7`: a head of the remote at a pre-rewrite commit; pull-request refs that differ from their record; a default branch,
       visibility or archive state that changed;
 
-      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
       > (#39) in its new tool folder: every stop of `p7` has a case, the disagreement of its second channel, listed above under the
       > probes and the feeds, included
-      > ([its closure table, row 10](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+      > ([its closure table, row 10](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
     - `p8`: a manifest blob reachable from a branch; a residual where there is no pull-request ref; a custom-rule finding on the fresh
       mirror; the record of a residual that differs from its expectation;
 
-      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
       > (#39) in its new tool folder: every stop of `p8` has a case
-      > ([its closure table, row 11](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+      > ([its closure table, row 11](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
     - `s3-close.sh`: every stop of `reads`, and a `WAIT` in `feeds`;
 
-      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
       > (#39) in its new tool folder: every stop of the close-out, now `r1-close.sh` and, for the rewrites, `c1-close.sh`, has a case,
       > and so has the `WAIT` of its feeds step
-      > ([its closure table, row 16](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+      > ([its closure table, row 16](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
     - `preset.sh`: the refusal when the server's branch has left its old tip; `need`: a step run out of order; `row`: a repository
       the table does not hold;
 
-      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+      > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
       > (#39) in its new tool folder: the refusal, the step run out of order and the missing row each have a case
-      > ([its closure table, row 9](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+      > ([its closure table, row 9](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - **pure transforms with no input-to-output case:** `pull_list` leaving merge refs out, `heads_new` leaving a pruned head out,
     `member_counts` matching by a 7-digit prefix, the manifest sample for a step above 1, and the REST blob sample for one or two blobs;
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: each transform has an input-to-output case
-    > ([its closure table, row 17](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 17](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - **non-functional claims with no check:** the 0.4-second pace and the 6-minute spacing of the feed reads, both of which the
     self-test sets to 0, so the wait loop of `s3-close.sh feeds` runs in no case; and the token never being printed, for which no case
     looks for the stand-in's token in any output.
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: the pace, the spacing and the token never printed have checks
-    > ([its closure table, row 18](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 18](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 - **The self-test runs as one script.** `gselftest.sh` is one sequential script of 317 lines that holds the cases of every test level,
   takes no selector, ends at its first failure, and ran for about seven and a half minutes in the recorded run. Its cases that run the
   tools against the stand-ins for GitHub exchange data with a simulated external interface, which the testing hierarchy files as
   the Level 3 integration tests; the plan files them as component tests.
 
-  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
   > (#39) in its new tool folder, with the follow-up "The self-test by test level" in §6: the self-test is run by test kind, each
   > kind with its total, and its cases that run the tools against stand-ins are integration tests
-  > ([its closure table, row 19](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+  > ([its closure table, row 19](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 - **The output rule is asserted for step 9's output and the runner's start line only.** The self-test asserts that step 9's whole
   output holds no 40-digit id and no path, and that the runner's start line shows no path and no id; no case asserts it for the other
   steps' output or for the self-test's own output. The run broke the rule twice, in the push step's first
   `request` and in the self-test's own run ([the as-built record, Deviations](final-implementation.md#4-deviations-from-the-plan)); the self-test's case
   for `request` looks for its `PROCEED` line only, so it passed with the same two lines in its output.
 
-  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
   > (#39) in its new tool folder, with the follow-up "The output rule everywhere" in §6: both causes are removed, and one assertion
   > covers every step's output and the self-test's own
-  > ([its closure table, row 20](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+  > ([its closure table, row 20](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 - **The anonymous budget read before a step 9 disagreed with the calls it counts** ([plan, Assumptions, A8](plan.md#assumptions)).
   The readings, the calls made and the last call's remainder are measured in
   [the as-built record, §3.5](final-implementation.md#35-what-github-still-serves). Counted back from that remainder through the
@@ -364,20 +363,20 @@ does about each before its run.
   and the budget cuts one or both anonymous REST feed reads, which count as not valid rather than as a stop; 25 or less stops a set. No
   stand-in case has a reading that lags: the stand-in answers `/rate_limit` from the same counter that the calls spend.
 
-  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
   > (#39) in its new tool folder, with the follow-up "The budget's reading" in §6: a reading that disagrees with the calls is
   > recorded, with a case
-  > ([its closure table, row 21](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+  > ([its closure table, row 21](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 - **The close-out's steps are not safe to run twice.** `s3-close.sh feeds` reads each named repository again in turn: run again after a
   `WAIT` at the second repository, it appends the first repository's second read a second time (10 lines where 5 belong).
   `s3-close.sh record`, run twice, appends its block of second feed reads to `report-row.txt` twice, and `g26.SHA256SUMS` then pins the
   doubled row. The stop table's answer for `S3` is to run the step again. The run met neither case: each step ran once, appending 5
   lines for each repository, with no `WAIT`.
 
-  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
   > (#39) in its new tool folder, with the follow-up "The close-out run twice" in §6: each close-out step is safe to run twice,
   > with a case that runs it twice
-  > ([its closure table, row 22](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+  > ([its closure table, row 22](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 
 **Outcome of the plan's assumptions** ([plan, Assumptions](plan.md#assumptions); the counts are in
 [the as-built record, §3](final-implementation.md#3-measurements)):
@@ -434,16 +433,16 @@ does about each before its run.
   case labels name a function or a step rather than a behaviour (`count_markers`, `fields`, `parse_rc: dry`, `B: step 7`, `S3.reads`,
   `S3.record`, `request E`).
 
-  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
   > (#39): each check is filed at its test kind, and every case label names a behaviour
-  > ([its closure table, row 25](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+  > ([its closure table, row 25](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 - **The plan's flowchart and ring map.** #27's plan draws the edges of its flowchart from the table of classes and the tools' own
   resends and hand-backs, and its map of the documentation rings from where the tools put each rule and what they comment
   (deviations 14 and 15 of [the as-built record](final-implementation.md#4-deviations-from-the-plan)).
 
-  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+  > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
   > (#39): its plan's flowchart and its map of the documentation levels follow the table of classes and the tools
-  > ([its closure table, row 26](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+  > ([its closure table, row 26](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 
 **The tools' own documentation, for #27 when it saves them again** (the known gap is in §5; the files are in
 [the as-built record, §1](final-implementation.md#1-what-was-built)).
@@ -453,44 +452,44 @@ does about each before its run.
     names the two classes `cmd_classify` gives itself, `refused-by-service` and `stopped-by-guard`, so no one contract lists the nine
     classes `p6-push.sh check` switches on.
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: documentation point 1 is closed; one contract of `g27_req.py` lists the nine classes, and the
     > new signature of `classify` is documented
-    > ([its closure table, row 27](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 27](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - `g26_req.py`'s docstrings: the module's environment line lists `WS` and `DATA`, which the tool never reads, and credits every
     variable to `row`; `cmd_build`'s leaves out its stop on a forbidden argument; `porcelain_tally`'s calls its result the expected
     tally, where it returns the stream's own tally, and leaves out its stop when `awk` fails.
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: documentation points 2 and 9 are closed, these docstrings and the line comments on the procedure
     > fragments named under "Line comments on non-obvious code" below, each stated beside the code of `g27_req.py`
-    > ([its closure table, row 28](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 28](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - `g26lib.sh`: no contract comment on `refs_listing`, `server_heads_tags`, `server_pulls` and `run_batch`, which other tools call. The
     two `server_` functions are credentialed network reads that print a normalised listing and return git's status; `run_batch` ends
     the calling script on a batch that does not pass.
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: documentation points 3, 4, 7, 8, 10 and 11 are closed: these contracts, the environment overrides
     > in every header that reads them, a "Writes:" clause in every step's header, `want_probe`'s framing, the comments of step 9 and
     > the smaller items, each stated beside the code
-    > ([its closure table, row 29](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 29](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
   - The environment overrides `G26_SCRATCH`, `G26_PARAMS`, `G26_ROWS`, `G26_PACE` and `G26_FEED_GAP`, which change a tool's folders,
     tables, pace and wait, are in no header.
   - Usage and exit statuses: `s3-close.sh`'s fallback usage leaves out the required repositories, and `gdocs.sh`'s leaves them out for
     `ids`; `p6-push.sh`'s header does not say that a `NEXT` also ends with status 1, nor that `SKIP` ends with 0 and no stage line;
     `run-stage.sh`'s header does not say that a stage name with other characters is shown as `<name>`.
 
-    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md)
+    > **Dated note, 2026-11-15.** Closed by the [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md)
     > (#39) in its new tool folder: documentation points 5, but the runner's header, 6, 12 and 13 are closed: the usage lines name
     > `REPO...`, `p6-push.sh`'s header gives the statuses of `NEXT` and `SKIP`, `feed_read`'s comment matches its code, and every
     > file has its regions and its language hints
-    > ([its closure table, row 30](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 30](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 
     > **Dated note, 2026-11-15.** Documentation point 5 is closed except the runner's own header, which stays as pinned: the
-    > [workspace tools unit](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md) (#39) reads the runner at its pin and
-    > never saves it again, and [its consequences](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/consequences.md#5-known-gaps)
+    > [workspace tools unit](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md) (#39) reads the runner at its pin and
+    > never saves it again, and [its consequences](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/consequences.md#5-known-gaps)
     > record the header as the one sub-item that stays open
-    > ([its closure table, row 31](../27-bottools-trumpbot-support-rewrite/39-workspace-tools/plan.md#the-closure-table)).
+    > ([its closure table, row 31](../27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/plan.md#the-closure-table)).
 - **Boundary.**
   - `ganon.sh`'s `feed_read`: its comment says that a budget stop or a status other than 200 makes that read not valid, and that it
     appends three lines; in the code a stop on a second or third page leaves the read valid when an earlier page listed a current id,

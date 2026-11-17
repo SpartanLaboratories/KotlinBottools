@@ -101,7 +101,7 @@ observation on 2026-11-09 with the commands in section 3.8.
   administrator of an organisation-owned repository on Free is blocked; the documented blocker is the
   owner-only policy, which is off.
 - **Read-back:** `GET` returns both `private` (boolean) and `visibility` (string). Observed on the
-  private `TrumpBot`: `private: true`, `visibility: "private"`. An unauthenticated request to a private
+  private `…`: `private: true`, `visibility: "private"`. An unauthenticated request to a private
   repository answers `404` by name, by id and on the web (observed), which is the proof that it is no
   longer public.
 - **Effect on transfers already made and on links: not documented.** The transfer page says people
@@ -190,7 +190,7 @@ observation on 2026-11-09 with the commands in section 3.8.
   `…/Homebrew/homebrew.git/info/refs?service=git-upload-pack` is `200` with no `Location`. A name that
   never existed answers `remote: Repository not found.` (observed for the unused
   `phase0-rehearsal-a`). A private repository needs credentials: anonymous `git ls-remote` of
-  `TrumpBot` prompts (and fails without a terminal), while the configured credential manager and the
+  `…` prompts (and fails without a terminal), while the configured credential manager and the
   one-off `-c "credential.helper=!gh auth git-credential"` both succeed. What it lists after another
   repository takes the name was not observable read-only; it lists that repository's heads (the staff
   statement above), and an empty repository lists nothing with exit status 0.
@@ -241,7 +241,7 @@ them. It is not a correctness risk, and the rehearsal should record its length i
 | Transferred issue, REST | `curl -sI -H "Authorization: Bearer $(gh auth token)" https://api.github.com/repos/dotnet/command-line-api/issues/2794` | `301`, `Location: …/repos/dotnet/sdk/issues/53825` |
 | Transferred issue, web | `curl -sI https://github.com/dotnet/command-line-api/issues/2794` | `302`, `Location: https://github.com/dotnet/sdk/issues/53825` |
 | Hops through `gh` | `gh api --verbose repos/dotnet/cli/issues/6020 \| grep -E '^< (HTTP\|Location)'` | `301`, `Location`, then `200` |
-| Private, anonymous | `curl -s -o /dev/null -w '%{http_code}' https://api.github.com/repos/SpartanLaboratories/TrumpBot` | `404` (by id and on the web too) |
+| Private, anonymous | `curl -s -o /dev/null -w '%{http_code}' https://api.github.com/repos/SpartanLaboratories/…` | `404` (by id and on the web too) |
 | Unused rehearsal names | `gh api repos/SpartanLaboratories/phase0-rehearsal-a`, `…-b` | `404` for both on 2026-11-09 |
 
 ## 4. How comparable projects do it

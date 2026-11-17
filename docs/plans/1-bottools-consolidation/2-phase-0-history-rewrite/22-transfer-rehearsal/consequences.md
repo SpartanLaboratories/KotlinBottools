@@ -92,7 +92,7 @@ tool's known gaps (§5) are closed.
 - **`residual-report-and-cleanup`** (#28) takes the two rehearsal repositories as a follow-up and
   carries KotlinBottools' public window in its report (architecture §12.4).
 - **`repository-hygiene`, `kotlinbottools-publish`, `gkb2-gkb-rewrite` and
-  `bottools-trumpbot-support-rewrite`** take nothing beyond what the units before them hand on.
+  `bottools-…-rewrite`** take nothing beyond what the units before them hand on.
 
 **Neighbouring issues:** #2, the tracking issue of the phase, and #1, its parent, are not closed by
 this unit. Nothing here changes MagicBot or WebTools.

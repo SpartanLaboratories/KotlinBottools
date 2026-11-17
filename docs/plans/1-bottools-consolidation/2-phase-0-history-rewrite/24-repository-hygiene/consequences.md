@@ -154,7 +154,7 @@ written before the landing and lands with it:
   - the workspace configuration equal to `main`'s `.gitleaks.toml` (§2.3), which its scan of KotlinBottools before the
     visibility change uses;
   - the shape check of a run's log, which its confirmation of the run on `main` can apply before the logs become public.
-- **`gkb2-gkb-rewrite` (#26)** and **`bottools-trumpbot-support-rewrite` (#27)** take:
+- **`gkb2-gkb-rewrite` (#26)** and **`bottools-…-rewrite` (#27)** take:
   - the new workspace configuration. Its one table is inert in their repositories, which hold no such path, so their
     scans report as before;
   - the two stale pins: their readiness checks take the new value, and nothing re-saves the configuration from the

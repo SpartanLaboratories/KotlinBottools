@@ -3208,7 +3208,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "consumer",
         "system": null,
         "effect": "none",
-        "summary": "`repository-hygiene`, `kotlinbottools-publish`, `gkb2-gkb-rewrite` and `bottools-trumpbot-support-rewrite` take nothing beyond what the units before them hand on.",
+        "summary": "`repository-hygiene`, `kotlinbottools-publish`, `gkb2-gkb-rewrite` and `rewrite-bottools-and-the-private-repositories` take nothing beyond what the units before them hand on.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       }
     ],

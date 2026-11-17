@@ -41,7 +41,7 @@ This file holds three things:
   `1.0.0-SNAPSHOT`. Later additions ship as `1.N.0` feature releases. The `7.x` line ends
   without a further release.
 - **Sources.** `GKB2` supplies the features being ported. `GKB2`, the earlier bot
-  repositories `GKB`, `BotTools` and `TrumpBot`, and TrumpBot's companion project `Support`
+  repositories `GKB`, `BotTools` and `…`, and the first private repository's companion project `…`
   are archived with pointers to `bottools`.
 
 The library is built as follows:
@@ -118,8 +118,8 @@ Poker follows after `1.0.0` as playable Texas hold 'em.
 - **Hosting.** Where MagicBot is hosted is outside this work.
 
 **History cleanup.** Before any of this, secrets, data, IDE and build files leave the tree and
-the history of every bot repository: `KotlinBottools`, `GKB2`, `GKB`, `BotTools`, `TrumpBot`,
-and `Support`, TrumpBot's companion project.
+the history of every bot repository: `KotlinBottools`, `GKB2`, `GKB`, `BotTools`, `…`,
+and `…`, the first private repository's companion project.
 
 - `git filter-repo` rewrites each repository, followed by a force-push.
 - No token found in these histories is current. The rewrite is hygiene before the repositories
@@ -547,7 +547,7 @@ it with a new system, drop it, or list it as a potential feature after the roadm
 **Requirements:**
 
 - No secret or data file remains in the history of `KotlinBottools`, `GKB2`, `GKB`,
-  `BotTools` or `TrumpBot`, or of `Support` if it is bot-related.
+  `BotTools` or `…`, or of `…` if it is bot-related.
 - `KotlinBottools`' known paths are `key.txt`, `guildData/`, `BotData.xml`,
   `WebParseKeys.xml`, `services/`, `res/`, `.gradle/` and `.idea/`.
 - `guildData/` is copied outside the repository first, because the legacy importer reads it.
@@ -839,8 +839,8 @@ These were checked against the code at the baselines:
   administrative command.
 - `BotListener` passes the stored default role to `getRoleById`, while `KotGDP` seeds that
   value as a role name. GKB2's `Test.testRead` prints the content of the token file it reads.
-- KotlinBottools' history holds a second data copy at `src/test/guildData/`. TrumpBot tracks
-  key files, data files and binaries, and its `.classpath` names the `Support` project. The
+- KotlinBottools' history holds a second data copy at `src/test/guildData/`. The first private repository tracks
+  key files, data files and binaries, and its `.classpath` names the `…` project. The
   three copies of the legacy data cover the same six servers (3.13).
 - MyGameTools' `build-logic` applies KGP 2.2.0 and vanniktech 0.36.0 on Gradle 9.7.1.
 - Both copies of `DotaCommand` (KotlinBottools' test source and GKB2's `jvmTest`) define
@@ -1597,14 +1597,14 @@ Source: [codebase-inventory-and-fate](codebase-inventory-and-fate.md) §2, §3, 
   `RssService`, which nothing calls, carries nothing over.
 - **Legacy data.** Three copies cover the same six servers and the same two linked members.
   KotlinBottools' copy is the newest (2025-09-24) and holds one of the links; GKB2's
-  (2023-09-17) holds both; TrumpBot's (2022-10-31) uses an older layout and links one of the
+  (2023-09-17) holds both; the first private repository's (2022-10-31) uses an older layout and links one of the
   two members to a different account. The six-entry Steam id list is the same in all three, and
   the server settings differ for one server only.
 - **The importer.** Folders and members are keyed by names, so the importer resolves guilds by
   name among the bot's guilds and members with `retrieveMembersByPrefix` plus an exact match,
   reports what it cannot resolve rather than guessing, and does not import the seeded defaults
   (`defaultRole` "online", `welcomeMessage` "hello") as choices. It reads KotlinBottools' and
-  GKB2's copies merged, the newer value winning for each server and member; TrumpBot's older
+  GKB2's copies merged, the newer value winning for each server and member; the first private repository's older
   layout is not imported. All three copies leave the repositories before the rewrite and are
   kept access-restricted, and the older copies are deleted once the import report has been
   checked.
@@ -1627,11 +1627,11 @@ Source: [codebase-inventory-and-fate](codebase-inventory-and-fate.md) §2, §3, 
 
 Source: [bot-repository-history-purge](bot-repository-history-purge.md) §2, §5, §6.
 
-- **Scope.** The five bot repositories (KotlinBottools, GKB2, GKB, BotTools, TrumpBot) and
-  `Support`, which is bot-related: it is TrumpBot's Eclipse companion (TrumpBot's `.classpath`
-  names `/Support`, and its `TimeCommand` imports Support's `Date`) and vendors a lavaplayer
-  native and a ForecastIO client. Support holds no secret and no data, so its pass removes
-  binaries and IDE files only. After its purge it is archived alongside TrumpBot, its only
+- **Scope.** The five bot repositories (KotlinBottools, GKB2, GKB, BotTools, the first private repository) and
+  `…`, which is bot-related: it is the first private repository's Eclipse companion (the first private repository's `.classpath`
+  names `/…`, and its `TimeCommand` imports the second's `Date`) and vendors a lavaplayer
+  native and a ForecastIO client. The second private repository holds no secret and no data, so its pass removes
+  binaries and IDE files only. After its purge it is archived alongside the first private repository, its only
   known consumer, with a README pointer.
 - **Secrets are confined to whole files** (`key.txt`, `keys.txt`, `key.pem`, `BotData.xml`)
   across all six histories; 34 candidate strings were searched in every blob, commit message,
@@ -1648,7 +1648,7 @@ Source: [bot-repository-history-purge](bot-repository-history-purge.md) §2, §5
 - **Order.** First, copy the legacy data out of every repository, access-restricted because it
   is personal data, and record a manifest of the blob ids to purge. Then KotlinBottools (it
   blocks later work and goes public), then GKB2 and GKB (public, with personal data), then
-  BotTools, TrumpBot and Support. Each goes through: rewrite and push; a Support ticket where
+  BotTools and the private repositories. Each goes through: rewrite and push; a Support ticket where
   one applies; the exit tests; a README pointer commit for the archived ones; then archive or
   make public.
 - **What a force-push cannot reach.** `refs/pull/*` (today GKB2 #6, BotTools #2 and #3), cached
@@ -1667,12 +1667,12 @@ Source: [bot-repository-history-purge](bot-repository-history-purge.md) §2, §5
   | GKB2 | `master` | `refs/pull/6/head` |
   | GKB | `master` | none |
   | BotTools | `main`, `Working-Branch` | `refs/pull/2/head`, `refs/pull/3/head` |
-  | TrumpBot | `main`, `feature/pokercommand` | none |
-  | Support | `main` | none |
+  | The first private repository | `main`, `feature/pokercommand` | none |
+  | The second private repository | `main` | none |
 
   The findings file's KotlinBottools entry lists a second branch, `ccr-2c690a64-fz5whf`, which
   no longer exists.
-- **Branches, hashes and clones.** The content of BotTools `Working-Branch` and TrumpBot
+- **Branches, hashes and clones.** The content of BotTools `Working-Branch` and the first private repository's
   `feature/pokercommand` has not been inspected; the mirror clone covers them. Every commit
   hash changes in all five bot repositories, because each root commit holds a purged path, so
   documents citing baselines are updated from `commit-map`. Existing clones are deleted and

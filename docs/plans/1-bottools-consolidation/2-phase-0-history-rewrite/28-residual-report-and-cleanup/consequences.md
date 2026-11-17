@@ -77,12 +77,12 @@ landing, #2's closing as completed (§2.1).
   - the rewrite mirrors, the fresh mirrors, the scan reports, the canary and the fixtures;
   - the preparation unit's earlier KotlinBottools mirror and backup, and the realignment's proof clones;
   - every unit's scratch, with the saved replies of the request service that the rewrites and the clone replacement record as
-    removed with the workspace ([their consequences](../27-bottools-trumpbot-support-rewrite/42-clone-replacement/consequences.md#5-known-gaps),
-    §5 there and in [the rewrites'](../27-bottools-trumpbot-support-rewrite/40-rewrites/consequences.md#5-known-gaps));
+    removed with the workspace ([their consequences](../27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/consequences.md#5-known-gaps),
+    §5 there and in [the rewrites'](../27-rewrite-bottools-and-the-private-repositories/40-rewrites/consequences.md#5-known-gaps));
   - the units' data files for the tools;
   - the pinned tool folders, whose copy now stands in the data folder.
 
-  Afterwards no copy of the old objects remains on this machine. GitHub still serves those of GKB2, GKB, BotTools, TrumpBot and Support
+  Afterwards no copy of the old objects remains on this machine. GitHub still serves those of GKB2, GKB, BotTools and the private repositories
   by id, and `KotlinBottools-legacy` holds KotlinBottools' privately. The ids that address them stay in `DATA`, in the commit maps and
   the manifests.
 - **`DATA` gains:**
@@ -100,7 +100,7 @@ landing, #2's closing as completed (§2.1).
   holds ids, paths or names and is never committed, printed or quoted.
 - **Unchanged:**
   - the three data copies, the manifests and every earlier record;
-  - the TrumpBot clone, whose four carried files are read against their list;
+  - the private repository clone, whose four carried files are read against their list;
   - this working tree, but for the landing;
   - git-filter-repo 2.47.0, which stays installed in the user scheme. gitleaks now lives only in the tools copy.
 - **The project's planning-state note** on this machine is updated after the landing, at the plan's `A.note`, with the four facts
@@ -120,7 +120,7 @@ The landing carries what [plan, File-by-file changes](plan.md#file-by-file-chang
 - this folder's plan with its two superseded versions, this document and the as-built record, which is the committed home of the
   posted report's table;
 - the phase consequences:
-  - §4 gains the line recording that `bottools-trumpbot-support-rewrite` (#27) has landed as its four units, and this unit's line;
+  - §4 gains the line recording that `bottools-…-rewrite` (#27) has landed as its four units, and this unit's line;
   - §5 and §6 take dated notes giving each known gap's and follow-up's final state, linking to this document;
 - dated callouts on the phase design where the build changes what it describes: §6.7, the cleanup, and §11, the closing of #2;
 - the regenerated boards.
@@ -156,7 +156,7 @@ The landing carries what [plan, File-by-file changes](plan.md#file-by-file-chang
 | [#24](https://github.com/SpartanLaboratories/KotlinBottools/issues/24), the repository hygiene | the committed scan configuration with its one scoped table, and the CI files' text follow-ups, now unblocked |
 | [#25](https://github.com/SpartanLaboratories/KotlinBottools/issues/25), the publication | KotlinBottools' publication row (the anonymous tallies, the feeds, the alert reads, the path count over 3,019 texts) and its tools |
 | [#26](https://github.com/SpartanLaboratories/KotlinBottools/issues/26), GKB2 and GKB | their two report rows with GKB2's pull-request residual, their records and the first tool folder |
-| [#27](https://github.com/SpartanLaboratories/KotlinBottools/issues/27), through its units [#39](https://github.com/SpartanLaboratories/KotlinBottools/issues/39) to [#42](https://github.com/SpartanLaboratories/KotlinBottools/issues/42) | the second tool folder at its pins with its readiness steps, quick gate and document checks; the three rows and records of BotTools, TrumpBot and Support with BotTools' pull-request residual and webhook deliveries; the old clone's recorded path; #47 |
+| [#27](https://github.com/SpartanLaboratories/KotlinBottools/issues/27), through its units [#39](https://github.com/SpartanLaboratories/KotlinBottools/issues/39) to [#42](https://github.com/SpartanLaboratories/KotlinBottools/issues/42) | the second tool folder at its pins with its readiness steps, quick gate and document checks; the three rows and records of BotTools and the private repositories with BotTools' pull-request residual and webhook deliveries; the old clone's recorded path; #47 |
 
 **What this unit leaves.** No unit of the phase follows it. It leaves:
 
@@ -184,10 +184,10 @@ What the build leaves open, then the outcome of each of the plan's assumptions.
 
 - **The report states the measurements as the units recorded them,** made between 2026-11-11 and 2026-11-16. Whether GitHub later
   drops the old objects, or later lists the pushes in the events, is not measured.
-- **The events' membership is not measured for GKB2, GKB, TrumpBot and Support,** whose every events read was not valid, and only in
+- **The events' membership is not measured for GKB2, GKB and the private repositories,** whose every events read was not valid, and only in
   part for BotTools, whose events list the push of 1 of its 2 branches
-  ([the residual measurement's consequences, §5](../27-bottools-trumpbot-support-rewrite/41-residual-measurement/consequences.md#5-known-gaps)).
-- **The blob probes are a sample:** 41 of GKB2's 81 purged blobs, 50 of TrumpBot's 199 and 60 of Support's 7,259. GKB's 58 and BotTools'
+  ([the residual measurement's consequences, §5](../27-rewrite-bottools-and-the-private-repositories/41-residual-measurement/consequences.md#5-known-gaps)).
+- **The blob probes are a sample:** 41 of GKB2's 81 purged blobs, 50 of the first private repository's 199 and 60 of the second's 7,259. GKB's 58 and BotTools'
   39 were probed whole.
 - **What the probes cannot prove:** that GitHub has dropped the old objects, that cached views are gone, that no third-party copy
   exists, or that secret scanning examined the old objects. The report says so.
@@ -208,7 +208,7 @@ What the build leaves open, then the outcome of each of the plan's assumptions.
 - **Four pinned scripts can read a failed read as a pass.** None of these cases arose in this run. The scripts are not changed: their
   steps have run, and the defects matter only to a later reuse of them.
   - `follow-ups.sh` counts the lines of a failed `gh auth status`, and of a failed pull-request listing, as 0, which is the value
-    expected for the token's scopes (no `delete_repo`) and for GKB's, TrumpBot's and Support's pull-request refs; a missing
+    expected for the token's scopes (no `delete_repo`) and for GKB's and the private repositories' pull-request refs; a missing
     `rewrite` folder likewise reads as no token-rule gap. That breaks the plan's rule that a failed read is never a zero
     ([plan, Error handling and logging](plan.md#error-handling-and-logging)). In this run the step's other GitHub reads answered, and
     the same listing returned GKB2's 1 and BotTools' 2 refs ([the as-built record, §3.2](final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2)).
@@ -270,7 +270,7 @@ Each follow-up of the phase, as this unit confirms it ([plan, The follow-ups](pl
   ([its consequences, §6](../23-kotlinbottools-rewrite-and-swap/consequences.md#6-follow-ups)).
 - **The token rule:** no gap. No positive control showed the token rule missing a real token.
 - **Default-rule findings:** one, in a kept KotlinBottools document (rule `curl-auth-user`, 2 findings in 1 file). The repository
-  hygiene unit settled it with one scoped allowlist table. There are none in GKB2, GKB, BotTools, TrumpBot or Support.
+  hygiene unit settled it with one scoped allowlist table. There are none in GKB2, GKB, BotTools or the private repositories.
 - **Machine-local paths in issue texts:** none to edit. The scrub's expressions matched 0 of the 3,019 public texts.
 - **The comment on MagicBot#2** on its scan configuration: on it since 2026-11-08.
 - **The issue edits of [the phase consequences, §2.6](../consequences.md#26-documents):** #2's plan-folder line reads
@@ -292,7 +292,7 @@ Each follow-up of the phase, as this unit confirms it ([plan, The follow-ups](pl
 
 - **The rehearsal repositories,** `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a`, are private and archived. The owner deletes
   them if they are unwanted; that needs the `delete_repo` scope, which the signed-in token lacks.
-- **The credentials:** the owner rotates the 2023 session cookie and TrumpBot's private key if either could still be live.
+- **The credentials:** the owner rotates the 2023 session cookie and the first private repository's private key if either could still be live.
 - **The deleted planning branch's traces outside KotlinBottools' bodies:** 16 links in MagicBot #1 to #8, 1 link in WebTools #55, and a
   plain mention in a comment on #1. These are the owner's to fix:
   - the links need body edits in those repositories, under grants this unit does not hold;

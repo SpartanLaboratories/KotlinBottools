@@ -100,7 +100,7 @@ Source: the repository created on 2026-11-09 as `phase0-rehearsal-b` by `POST or
 
 The second repository the organisation created that day (id **1450917603**, created public with `auto_init`, then made
 private and archived) reads the same on every row except `has_wiki`, which is REST `false` and GraphQL `true`. The two
-older private repositories read the same way on the rows checked (`Support`, `TrumpBot`: REST `has_wiki` false, GraphQL
+older private repositories read the same way on the rows checked (`…`, `…`: REST `has_wiki` false, GraphQL
 `hasWikiEnabled` true, `allow_forking` false, `security_and_analysis` null, workflow permissions `write`).
 
 **Caveats on these observations.** All were taken from repositories that have since been renamed and archived (and, for
@@ -188,7 +188,7 @@ is a rename, so the creation request first reads the name and finds it free (obs
 - Documented: "Wikis are available in public repositories with GitHub Free and GitHub Free for organizations, and in public
   and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud and GitHub Enterprise Server" (the
   availability line of the wiki pages; the source file writes the plan names as template variables).
-- Observed, four private repositories: where the stored value is on (1450917603, `Support`, `TrumpBot`), REST `has_wiki`
+- Observed, four private repositories: where the stored value is on (1450917603, `…`, `…`), REST `has_wiki`
   reads `false` and GraphQL `hasWikiEnabled` reads `true`, in the same minute. Where it was never on (1450918337), both read
   `false`. And the old repository's REST `has_wiki` changed from false (private) to true (public) with GraphQL true now.
   Reading: REST reports the wiki as off for a private Free repository whatever is stored; GraphQL reports the stored value.
@@ -202,8 +202,8 @@ is a rename, so the creation request first reads the name and finds it free (obs
 
 ### 3.7 `security_and_analysis` (observed, documented)
 
-A private repository of this Free organisation reports `security_and_analysis: null` (1450918337, 1450917603, `Support`,
-`TrumpBot`, and the old repository while it was private: earlier research §3.8). The same repository as a public one reports
+A private repository of this Free organisation reports `security_and_analysis: null` (1450918337, 1450917603, `…`,
+`…`, and the old repository while it was private: earlier research §3.8). The same repository as a public one reports
 the object of five `{"status":"disabled"}` entries (3.1). The read-back therefore expects `null` now; a `null` is correct, not
 a missing field. The unit changes none of it; the publication unit expects the object to appear, with the five statuses
 `disabled` unless something enables them (the 2024 default-on change excludes organisation repositories, as the earlier

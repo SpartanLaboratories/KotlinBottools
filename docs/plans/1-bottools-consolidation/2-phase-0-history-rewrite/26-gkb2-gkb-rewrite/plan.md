@@ -215,7 +215,7 @@ credential helper, under an organisation administrator's classic token that hold
 - **No re-derivation of the manifests or the rows.** They are re-verified against the recorded values only.
 - **No bypass of push protection** and no change to the pushing account's settings.
 - **No change to `k0-ready.sh` or `save-tools.sh`.** They are not run, and nothing re-saves the earlier configuration.
-- **BotTools, TrumpBot and Support** belong to the next rewrite unit (#27); **the report on #2** belongs to the cleanup unit (#28).
+- **BotTools and the private repositories** belong to the next rewrite unit (#27); **the report on #2** belongs to the cleanup unit (#28).
 
 ---
 
@@ -940,10 +940,10 @@ No product code changes; the tools' self-test and the steps' checks are the test
 
 **Expects from `kotlinbottools-publish` (#25, landed):** the corrected anonymous route rules (a 422 from `git/trees` means the id exists, as a blob; a protocol-v2 `want` needs HTTP 200 and its body read; controls bracket every batch and a failing closing control voids it; anonymous REST is limited to 60 calls an hour per address; a feed counts only when it lists a current id and is read again at least 6 minutes later), the anonymous helpers as the worked example `ganon.sh` derives from, and its follow-ups on those helpers.
 
-**Provides to `bottools-trumpbot-support-rewrite` (#27):**
+**Provides to `bottools-…-rewrite` (#27):**
 
 - the corrected runner and its new pin (`tools.sums`, Appendix B);
-- the per-repository tools in `$WS/tools/g26/`, driven by `params.txt` and the preparation unit's expectation rows, to which #27 adds its own rows and extends where its repositories differ: BotTools has two branches (`main`, `Working-Branch`) and two pull-request refs, so its push is one request per branch, or one request with `--atomic` and an extension of the request's refspec list and of `p5`, `p7` and `p8`'s per-branch checks, because a push of several refs can be applied in part (this unit pushes one ref and uses neither `--atomic` nor several refs); TrumpBot and Support are private, so their step 9 has no anonymous probes;
+- the per-repository tools in `$WS/tools/g26/`, driven by `params.txt` and the preparation unit's expectation rows, to which #27 adds its own rows and extends where its repositories differ: BotTools has two branches (`main`, `Working-Branch`) and two pull-request refs, so its push is one request per branch, or one request with `--atomic` and an extension of the request's refspec list and of `p5`, `p7` and `p8`'s per-branch checks, because a push of several refs can be applied in part (this unit pushes one ref and uses neither `--atomic` nor several refs); the private repositories are private, so their step 9 has no anonymous probes;
 - the lease push pattern: the refspec form with an explicit lease on a read-at-run-time old tip, the guards, the expected tally, the class table with its marker counts, and the grant's shape and the deny-rule decision (the grant names the push in the form used and lifts the text-pattern rule for the named requests);
 - the readiness pattern that pins the current scan configuration, so an accidental re-save of the earlier one is caught before any rewrite;
 - the anonymous helpers with served-expected semantics (`ganon.sh`), with the budget wait.

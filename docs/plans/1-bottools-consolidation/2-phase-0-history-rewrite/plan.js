@@ -630,7 +630,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#61-toolchain",
               "heading": "6.1 Toolchain",
               "paragraph": "git stays at 2.55.0.windows.5. The toolchain unit records `git --version` and stops if it differs: git 2.56 exists, and the procedures were verified against 2.55. Python 3.14.7, pip 26.2.1 and gh 2.100.0 are recorded too; a different Python minor or gh major stops. · git-filter-repo 2.47.0 comes from PyPI into the user scheme, hash-pinned (`--require-hashes --only-binary=:all: --no-deps`) (findings 1 §6.1, §6.2). · It is verified by two independent values, the `--version` blob-id prefix and the module's sha256, both equal to the upstream tag's script. · A throwaway fixture run confirms, on …",
-              "hash": "0c5d1fe0e890"
+              "hash": "113e1d278471"
             }
           },
           {
@@ -640,7 +640,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#61-toolchain",
               "heading": "6.1 Toolchain",
               "paragraph": "git stays at 2.55.0.windows.5. The toolchain unit records `git --version` and stops if it differs: git 2.56 exists, and the procedures were verified against 2.55. Python 3.14.7, pip 26.2.1 and gh 2.100.0 are recorded too; a different Python minor or gh major stops. · git-filter-repo 2.47.0 comes from PyPI into the user scheme, hash-pinned (`--require-hashes --only-binary=:all: --no-deps`) (findings 1 §6.1, §6.2). · It is verified by two independent values, the `--version` blob-id prefix and the module's sha256, both equal to the upstream tag's script. · A throwaway fixture run confirms, on …",
-              "hash": "0c5d1fe0e890"
+              "hash": "113e1d278471"
             }
           },
           {
@@ -650,7 +650,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#61-toolchain",
               "heading": "6.1 Toolchain",
               "paragraph": "git stays at 2.55.0.windows.5. The toolchain unit records `git --version` and stops if it differs: git 2.56 exists, and the procedures were verified against 2.55. Python 3.14.7, pip 26.2.1 and gh 2.100.0 are recorded too; a different Python minor or gh major stops. · git-filter-repo 2.47.0 comes from PyPI into the user scheme, hash-pinned (`--require-hashes --only-binary=:all: --no-deps`) (findings 1 §6.1, §6.2). · It is verified by two independent values, the `--version` blob-id prefix and the module's sha256, both equal to the upstream tag's script. · A throwaway fixture run confirms, on …",
-              "hash": "0c5d1fe0e890"
+              "hash": "113e1d278471"
             }
           },
           {
@@ -660,7 +660,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#62-backups-and-manifests",
               "heading": "6.2 Backups and manifests",
               "paragraph": "Each repository gets one `git clone --mirror`, copied at once (`cp -a`) to `WS/backup/<repo>.git` before any other git command runs in it. The clone itself becomes the mirror the rewrite later runs in (findings 1 §6.4).",
-              "hash": "bd13807717b1"
+              "hash": "bcb5d278749e"
             }
           },
           {
@@ -670,7 +670,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#63-legacy-data-copy",
               "heading": "6.3 Legacy data copy",
               "paragraph": "Before any rewrite, the data is copied from the backup mirrors:",
-              "hash": "26538322410d"
+              "hash": "b44b418656ba"
             }
           },
           {
@@ -680,7 +680,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#62-backups-and-manifests",
               "heading": "6.2 Backups and manifests",
               "paragraph": "Each repository gets one `git clone --mirror`, copied at once (`cp -a`) to `WS/backup/<repo>.git` before any other git command runs in it. The clone itself becomes the mirror the rewrite later runs in (findings 1 §6.4).",
-              "hash": "bd13807717b1"
+              "hash": "bcb5d278749e"
             }
           },
           {
@@ -690,7 +690,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5bc4c2ece6b9"
+              "hash": "0ed0c8d738df"
             }
           }
         ],
@@ -811,7 +811,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5bc4c2ece6b9"
+              "hash": "0ed0c8d738df"
             }
           }
         ],
@@ -1025,7 +1025,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "b10c8f3607f1"
+              "hash": "6c634d18186f"
             }
           },
           {
@@ -1035,7 +1035,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "b10c8f3607f1"
+              "hash": "6c634d18186f"
             }
           },
           {
@@ -1085,7 +1085,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5bc4c2ece6b9"
+              "hash": "0ed0c8d738df"
             }
           }
         ],
@@ -1534,7 +1534,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5bc4c2ece6b9"
+              "hash": "0ed0c8d738df"
             }
           }
         ],
@@ -1739,7 +1739,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "3471daa7bfa2"
+              "hash": "23c8309ed6bd"
             }
           },
           {
@@ -1749,7 +1749,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5bc4c2ece6b9"
+              "hash": "0ed0c8d738df"
             }
           }
         ],
@@ -1946,7 +1946,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "b10c8f3607f1"
+              "hash": "6c634d18186f"
             }
           },
           {
@@ -1956,7 +1956,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "3471daa7bfa2"
+              "hash": "23c8309ed6bd"
             }
           },
           {
@@ -1966,7 +1966,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5bc4c2ece6b9"
+              "hash": "0ed0c8d738df"
             }
           }
         ],
@@ -2017,21 +2017,21 @@ window.dashboardLive&&window.dashboardLive("plan",
       }
     },
     {
-      "id": "bottools-trumpbot-support-rewrite",
+      "id": "rewrite-bottools-and-the-private-repositories",
       "group": "Legacy repositories",
       "name": "Rewrite BotTools and the private repositories",
       "system": "internal-tooling",
       "where": "BotTools, public · the private repositories · the private repository clone",
       "unit": {
         "n": 7,
-        "slug": "bottools-trumpbot-support-rewrite",
+        "slug": "rewrite-bottools-and-the-private-repositories",
         "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
         "blockedBy": [
           26
         ],
         "issue": 27,
-        "board": "27-bottools-trumpbot-support-rewrite/dashboard.html",
-        "folder": "27-bottools-trumpbot-support-rewrite/",
+        "board": "27-rewrite-bottools-and-the-private-repositories/dashboard.html",
+        "folder": "27-rewrite-bottools-and-the-private-repositories/",
         "landing": {
           "pr": 48,
           "merge": "053288047b6410bf22fca990cafc17d55051bf6d"
@@ -2056,7 +2056,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           "verdict": "accepted",
           "why": "Each repository stops on its own gate, and the private repository clone is replaced only once the first private repository's push is proven, its untracked files kept.",
           "source": "architecture.md §6.4, §9.5",
-          "link": "architecture.md#95-the-trumpbot-clone"
+          "link": "architecture.md#95-the-private-repository-clone"
         },
         {
           "id": "one-unit-each",
@@ -2078,7 +2078,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
               "heading": "6.4 The rewrite pipeline (per repository)",
               "paragraph": "The same pipeline serves all six repositories. KotlinBottools differs in three ways: its push target (§7), the path scrub that runs in the same invocation, and the privacy gate that runs before its push. Each stage is a gate. A failure stops the repository before its push and discards its mirror; the backup stays.",
-              "hash": "b10c8f3607f1"
+              "hash": "6c634d18186f"
             }
           },
           {
@@ -2088,17 +2088,17 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "3471daa7bfa2"
+              "hash": "23c8309ed6bd"
             }
           },
           {
             "text": "Replace the private repository clone with a fresh one at the same path, restoring its untracked files, the old clone deleted last.",
-            "ref": "architecture.md#95-the-trumpbot-clone",
+            "ref": "architecture.md#95-the-private-repository-clone",
             "excerpt": {
-              "ref": "architecture.md#95-the-trumpbot-clone",
+              "ref": "architecture.md#95-the-private-repository-clone",
               "heading": "9.5 The private repository clone",
               "paragraph": "The private repository clone is replaced once the first private repository's push is proven, as the last step of unit 7. It is carried out on request (§11), with the procedure from the unit's plan (findings 4 §6.5):",
-              "hash": "d7e1113822a3"
+              "hash": "6ab141c154ae"
             }
           },
           {
@@ -2108,7 +2108,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5bc4c2ece6b9"
+              "hash": "0ed0c8d738df"
             }
           }
         ],
@@ -2129,8 +2129,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "what": "The private repository clone is replaced by a unit of its own, the clone replacement, after the rewrites: of the 59 files git does not track in it, only the four under `.idea/` are carried and restored; the graph's 55 files, its exclude entry, its two hooks and the two extra configuration keys are not. The old clone is renamed aside on its own volume and deleted once the fresh clone has been read back, and a code-only graph build from the rewritten tree follows the deletion.",
             "why": "The graph was built from the pre-rewrite tree and names files the rewrite removes, so the fresh clone gets a graph built from the rewritten tree instead; and the workspace sits on another volume than the clone, so a move into it would be a copy followed by a deletion, with no lock probe and the irreversible step first.",
             "when": "#27's design, its clone replacement",
-            "ref": "27-bottools-trumpbot-support-rewrite/architecture.md#103-what-is-carried-and-what-is-not",
-            "link": "architecture.md#95-the-trumpbot-clone"
+            "ref": "27-rewrite-bottools-and-the-private-repositories/architecture.md#103-what-is-carried-and-what-is-not",
+            "link": "architecture.md#95-the-private-repository-clone"
           }
         ]
       }
@@ -4547,7 +4547,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#124-the-report",
               "heading": "12.4 The report",
               "paragraph": "Each rewrite unit's as-built record carries its repositories' rows. Unit 8 compiles them into one table and posts it on #2.",
-              "hash": "193d17fea485"
+              "hash": "b7d7a842646b"
             }
           },
           {
@@ -4557,7 +4557,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5bc4c2ece6b9"
+              "hash": "0ed0c8d738df"
             }
           },
           {
@@ -4567,7 +4567,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#67-cleanup",
               "heading": "6.7 Cleanup",
               "paragraph": "Cleanup runs in this order:",
-              "hash": "56f25bf0ae1d"
+              "hash": "16eb3a1c3069"
             }
           },
           {
@@ -4577,7 +4577,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "5bc4c2ece6b9"
+              "hash": "0ed0c8d738df"
             }
           }
         ],
@@ -4731,7 +4731,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           },
           {
             "what": "What each of the four later units consumes is stated unit by unit.",
-            "why": "Only `gkb2-gkb-rewrite` and `bottools-trumpbot-support-rewrite` consume the backups, manifests and expectation rows the planned entry named for all four.",
+            "why": "Only `gkb2-gkb-rewrite` and `rewrite-bottools-and-the-private-repositories` consume the backups, manifests and expectation rows the planned entry named for all four.",
             "when": "Document",
             "ref": "21-preparation/consequences.md#4-sibling-units-and-neighbouring-issues"
           },
@@ -4885,7 +4885,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         ]
       },
       {
-        "unit": "bottools-trumpbot-support-rewrite",
+        "unit": "rewrite-bottools-and-the-private-repositories",
         "basis": "as-built",
         "summary": "No module was published and no version moved; every landing of #27 and its four units carried documents and generated boards only. BotTools (public), then the private repositories, were force-pushed in place, one atomic push each under a lease on every branch's recorded tip, five branches in all: every commit id changed, the purged files left every commit, and each kept its visibility and default branch. GitHub keeps serving every old object probed, BotTools' pull-request refs keep its 39 purged blobs fetchable, and the events listed the push of 1 of the 5 branches. The private repository clone was replaced by a fresh clone with its four `.idea/` files, the old clone deleted at its recorded path outside the workspace, and its graph rebuilt from the rewritten tree. #47 stays open against the tools; #28 takes the three report rows, every unit's records with their checksum lists, both tool folders and the stage runner, and the record that no old-clone path remains.",
         "release": {
@@ -4894,26 +4894,26 @@ window.dashboardLive&&window.dashboardLive("plan",
           "note": "no module is published and no version moves",
           "nothingPublished": true
         },
-        "source": "27-bottools-trumpbot-support-rewrite/consequences.md §1 to §6; its four units' consequences.md and final-implementation.md",
-        "link": "27-bottools-trumpbot-support-rewrite/consequences.md#2-blast-radius",
+        "source": "27-rewrite-bottools-and-the-private-repositories/consequences.md §1 to §6; its four units' consequences.md and final-implementation.md",
+        "link": "27-rewrite-bottools-and-the-private-repositories/consequences.md#2-blast-radius",
         "changes": [
           {
             "what": "The events did not list every rewritten branch's push: after each push's 6 hours they listed the push of 1 of BotTools' 2 branches and none of the first private repository's 2 or the second's 1, while every activity feed lists each force push.",
             "why": "The unit's impact took one event per rewritten branch; the residual measurement read the events until 6 hours had passed since each push and recorded what they listed. Whether GitHub lists the other pushes later is not established.",
             "when": "#41 landing",
-            "ref": "27-bottools-trumpbot-support-rewrite/41-residual-measurement/consequences.md#5-known-gaps"
+            "ref": "27-rewrite-bottools-and-the-private-repositories/41-residual-measurement/consequences.md#5-known-gaps"
           },
           {
             "what": "The old clone held two exclude entries, the second the board files' ignore: that ignore is part of a graph's footprint, was taken out before the census and not carried, and the rebuilt graph placed it again with its own entry.",
             "why": "The unit's impact took the old graph's footprint as one exclude entry, two hooks and two keys; the replacement's census recorded the ignore, and #27's design took a dated note stating it as part of a graph's footprint.",
             "when": "#42 landing",
-            "ref": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/consequences.md#22-this-machine"
+            "ref": "27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/consequences.md#22-this-machine"
           },
           {
             "what": "One issue, #47, was filed in KotlinBottools against the workspace tools, for the clone set's request builder; it stays open outside #27's units.",
             "why": "The deletion request carried the replacement's check sentences. The defect changed no outcome, and the tool folder stays at its pins, so its fix is a new version of the pinned file under the tools' defect rule.",
             "when": "#42 landing",
-            "ref": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/final-implementation.md#4-deviations-from-the-plan"
+            "ref": "27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/final-implementation.md#4-deviations-from-the-plan"
           }
         ]
       },
@@ -5019,12 +5019,12 @@ window.dashboardLive&&window.dashboardLive("plan",
         "ref": "26-gkb2-gkb-rewrite/final-implementation.md#3-measurements"
       },
       {
-        "unit": "bottools-trumpbot-support-rewrite",
+        "unit": "rewrite-bottools-and-the-private-repositories",
         "entry": "downstream.7",
         "when": "#27 landing",
         "what": "The private repository clone was replaced by a fresh clone that keeps only its four `.idea/` files: its code knowledge graph, built from the pre-rewrite tree, was not carried and was rebuilt from the rewritten tree, and the old clone was set aside on its own volume, outside the workspace, and deleted there, so the workspace's deletion does not reach it and no old-clone path remains.",
         "why": "The old graph named files the rewrite removes, and the clone and the workspace are on different volumes, so a move into the workspace would have been a copy followed by a deletion; #27's design said so in dated notes on this phase's design and consequences, and its clone replacement carried it out.",
-        "ref": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/consequences.md#22-this-machine"
+        "ref": "27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/consequences.md#22-this-machine"
       }
     ]
   },
@@ -5233,7 +5233,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     "repoBoard": "../../../dashboards/index.html"
   },
   "issueBoards": {
-    "42": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/dashboard.html"
+    "42": "27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/dashboard.html"
   }
 }
 );

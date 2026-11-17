@@ -111,7 +111,7 @@ boards.
 ## 3. Adoption
 
 No existing code adopts anything from this unit. Its tools are reused by the later rewrite units: the stage scripts are
-the worked example of the pipeline for GKB2 and GKB and for BotTools, TrumpBot and Support, and the corrected realignment
+the worked example of the pipeline for GKB2 and GKB and for BotTools and the private repositories, and the corrected realignment
 scripts and the push-safety proof are the reference for any later realignment of a checkout in place.
 
 ---
@@ -134,7 +134,7 @@ scripts and the push-safety proof are the reference for any later realignment of
   - the moved texts naming `KotlinBottools-next`, which its gate reads;
   - the forking and wiki settings to read again after the change to public;
   - the open issue-text edits of §6, to be made before it.
-- **`gkb2-gkb-rewrite`** (#26) and **`bottools-trumpbot-support-rewrite`** (#27) take the pipeline as this unit ran it,
+- **`gkb2-gkb-rewrite`** (#26) and **`bottools-…-rewrite`** (#27) take the pipeline as this unit ran it,
   with the tools as corrected during the run (plan Appendix A), the mirror push request proven, and the five static
   repositories' backups untouched; and the `run-stage.sh` gap of §5, to be closed before them.
 - **`residual-report-and-cleanup`** (#28) takes KotlinBottools' row of the residual report with its public window, and the
@@ -167,7 +167,7 @@ scripts and the push-safety proof are the reference for any later realignment of
   > nothing else ([that unit's plan, The scoped allowlist table](../24-repository-hygiene/plan.md#the-scoped-allowlist-table)).
 - **`run-stage.sh` writes a run's arguments into the run log,** and a manual run's argument can be a machine path, which
   then sits in `DATA/run/as-run.log`. The runner is the preparation unit's tool, reused at its recorded hash, so it was
-  left unchanged; it is fixed before GKB2 and GKB and BotTools, TrumpBot and Support are rewritten (#26, #27).
+  left unchanged; it is fixed before GKB2 and GKB and BotTools and the private repositories are rewritten (#26, #27).
 
   > **Dated note, 2026-11-13.** Closed by the [GKB2 and GKB rewrite unit](../26-gkb2-gkb-rewrite/plan.md) (#26), which replaced
   > the runner with a corrected one before its rewrites: its start line in the run log shows a run's arguments only when they

@@ -48,7 +48,7 @@
 ### 1.1 The library
 
 - **One home.** `KotlinBottools` becomes the single Discord-bot library. `GKB2` is a source to
-  port from, then archived with `GKB`, `BotTools`, `TrumpBot` and `Support`.
+  port from, then archived with `GKB`, `BotTools`, `…` and `…`.
 - **Six artifacts** under `io.github.spartanlaboratories`, sharing one version: `bottools-core`,
   `bottools-data-sqlite`, `bottools-http`, `bottools-stats`, `bottools-plugins` and the
   `bottools` umbrella. The first published version is `1.0.0`; every build before it is
@@ -158,7 +158,7 @@
   each later game is a MagicBot feature release (`1.N.0`); nothing is released before `1.0.0`.
 - **Legacy import:** a one-off `--import-legacy` step imports the old `guildData/*.xml` links
   and settings, resolving names to ids through the running bot, reading the KotlinBottools and
-  GKB2 copies merged with the newer value winning; TrumpBot's older layout is not imported. For
+  GKB2 copies merged with the newer value winning; the first private repository's older layout is not imported. For
   each linked member still in a guild, the old Dota 2 matches channel becomes a `MatchFeed`
   subscription in that channel, and GKB2's patch-notes channel becomes a `GameNews`
   subscription. The import writes data owned by the reaction-roles plugin, the stats framework
@@ -167,7 +167,7 @@
 ### 1.3 History and repositories
 
 - Before anything else, secrets, data, IDE and build files leave the tree and history of
-  `KotlinBottools`, `GKB2`, `GKB`, `BotTools`, `TrumpBot` and `Support`, by `git filter-repo`
+  `KotlinBottools`, `GKB2`, `GKB`, `BotTools`, `…` and `…`, by `git filter-repo`
   with root-anchored path lists from mirror clones, followed by a force-push. KotlinBottools'
   rewrite is the first act and rewrites the planning branch too; the planning pull request is
   opened afterwards, from the rewritten branch. KotlinBottools turns public at the end of its
@@ -176,7 +176,7 @@
   out without a credential — depends on that step, not on the other five purges.
 - After the `1.0.0` release the five source repositories are archived with README pointers to
   `bottools`. Their open issues are closed first, each pointing to what replaces it — GKB2 #2 to
-  #5, BotTools #1 (event-data accessors, replaced by the typed event registry) and TrumpBot #1
+  #5, BotTools #1 (event-data accessors, replaced by the typed event registry) and the first private repository #1
   (Dota 2's automatic reports, replaced by the match tracker) — because an archived repository's
   issues and code are read-only.
 
@@ -1486,9 +1486,9 @@ means the surface is kept and rewritten; **replace** means a new system takes th
   it says that the repository follows the organisation standard and states where the version
   lives and which artifacts share it (the six, for the library), and nothing of its own on
   lettered versions or `strictly`.
-- **GKB2, GKB, BotTools, TrumpBot, Support** — purged, then archived with README pointers after
+- **GKB2, GKB, BotTools, the first private repository, the second** — purged, then archived with README pointers after
   `1.0.0` (§11), once their open issues are closed: GKB2 #2 to #5 as obsolete
-  (`codebase-inventory-and-fate.md` §7), BotTools #1 and TrumpBot #1 as replaced (§1.3).
+  (`codebase-inventory-and-fate.md` §7), BotTools #1 and the first private repository #1 as replaced (§1.3).
 
 ---
 
@@ -1503,7 +1503,7 @@ clone, followed by `git push --force --mirror`: KotlinBottools (`key.txt`, `BotD
 `WebParseKeys.xml`, `guildData/`, `src/test/guildData/`, `services/`, `res/`, `.gradle/`,
 `.idea/`, `build/`, `.project`); GKB2 (`key.txt`, `keys.txt`, `BotData.xml`, `WebParseKeys.xml`,
 `guildData/`, `logs/`, `res/`, `services/`, `.idea/`, `src/jvmTest/resources/screenshot.png`);
-GKB, BotTools, TrumpBot and Support as listed in §6.2 of the findings. Kept:
+GKB, BotTools and the private repositories as listed in §6.2 of the findings. Kept:
 `gradle/wrapper/gradle-wrapper.jar`, `src/main/resources/ReactionRoles.xml`. BFG and
 `--replace-text` are not used: the secrets are whole files, and unanchored name matching would
 delete the `services` source packages.
@@ -1511,13 +1511,13 @@ delete the `services` source packages.
 **Order relative to everything else.**
 
 1. Copy the legacy data out of every repository (KotlinBottools `main`, GKB2 at `af44c24^`,
-   TrumpBot `main`) to an access-restricted location, and record a manifest of blob ids to purge.
+   the first private repository's `main`) to an access-restricted location, and record a manifest of blob ids to purge.
 2. KotlinBottools first: it blocks all later work and goes public at the end of this step, once
    its exit tests pass again following any Support ticket. The planning branch is in the same
    mirror and is rewritten with `main`; no pull request exists before this, and the planning
    pull request is opened afterwards from the rewritten branch, so no `refs/pull/*` pins the old
    history. The build skeleton (§14 unit 1) depends on this step alone.
-3. GKB2 and GKB (public, with personal data), then BotTools, TrumpBot and Support. These five
+3. GKB2 and GKB (public, with personal data), then BotTools and the private repositories. These five
    finish inside the same unit, in parallel with the later units; only the archiving after
    `1.0.0` waits for them.
 4. Per repository: rewrite and push; a GitHub Support ticket where the exposure argument applies
@@ -1652,7 +1652,7 @@ is a dependency order, not a schedule.
 | 14 | `magicbot-dota2` (MagicBot's track) | `OpenDotaProvider` over a `Trusted` `ApiClient`, `DotaConstants`, `DotaPresentation`, `DotaNewsFilter`, the aliases, the `ApiClientSpec` with the budget configuration; MagicBot's own `ApiClient` fake for its tests | `stats-provider-framework`, `magicbot-skeleton` (Level 3 and the running bot: `webtools-adapter`) |
 | 15 | `magicbot-legacy-import` (MagicBot's track) | `LegacyImporter` and its report (links, reaction-roles records and default role, `GameNews` and `MatchFeed` subscriptions); `--import-legacy` | `magicbot-skeleton`, `storage-sqlite`, `plugin-reaction-roles`, `stats-provider-framework`, `magicbot-dota2` (it writes their data) |
 | 16 | `magicbot-public-obligations` (MagicBot's track) | The policy and terms pages complete and served from Pages, the `privacy` built-in configured with both URLs, the GitHub issues link and the contact address, `GuildCountWatch`, sharding and `jobs.enabled` configuration, `BackupJob` at the 14-day retention | `magicbot-skeleton`, `bot-runtime` |
-| 17 | `release-1.0.0-and-archive` | WebTools' release carrying #55 — tagged and with a changelog entry (WebTools#58) — resolves from Maven Central; the published lane passes on JDK 21, `verifyReleasableMetadata` confirming the `strictly` pins and no `-SNAPSHOT`; MagicBot's snapshot path is checked (the second half of acceptance criterion 4) against a `1.0.0-SNAPSHOT` built on the released WebTools, before `1.0.0` is published; CHANGELOG and README final, Dokka on Pages, `1.0.0` published by hand; the five predecessors' open issues closed (GKB2 #2–#5, BotTools #1, TrumpBot #1), then GKB2/GKB/BotTools/TrumpBot/Support archived with pointers. **Complete when MagicBot `1.0.0` runs on the published `bottools` `1.0.0`** — that release is MagicBot's track's work, not the library's, and follows this unit's publish | all of the above, MagicBot's units 13 to 16 included; `history-rewrite` (all six repositories); the WebTools release (external) |
+| 17 | `release-1.0.0-and-archive` | WebTools' release carrying #55 — tagged and with a changelog entry (WebTools#58) — resolves from Maven Central; the published lane passes on JDK 21, `verifyReleasableMetadata` confirming the `strictly` pins and no `-SNAPSHOT`; MagicBot's snapshot path is checked (the second half of acceptance criterion 4) against a `1.0.0-SNAPSHOT` built on the released WebTools, before `1.0.0` is published; CHANGELOG and README final, Dokka on Pages, `1.0.0` published by hand; the five predecessors' open issues closed (GKB2 #2–#5, BotTools #1, the first private repository #1), then GKB2, GKB, BotTools and the private repositories archived with pointers. **Complete when MagicBot `1.0.0` runs on the published `bottools` `1.0.0`** — that release is MagicBot's track's work, not the library's, and follows this unit's publish | all of the above, MagicBot's units 13 to 16 included; `history-rewrite` (all six repositories); the WebTools release (external) |
 | 18 | `test-fixtures-artifact` (deferred, §17 C1; after 1.0.0) | Publication switched on for `bottools-http`'s test fixtures (`FakeApiClient`) and `bottools-core`'s (`FakeCommandContext`, the fake `Gateway`) and `bottools-stats`' provider test helpers, Experimental; plus a scripted-transport `ApiClientFactory` that runs the real adapter over WebTools' fake transport for consumers who need the cache and budget behaviour under scripted HTTP — which depends on where WebTools ships its fakes. Until then every fake stays unpublished in test sources and MagicBot writes its own | `release-1.0.0-and-archive`; WebTools#55 landed |
 | 19 | `poker` (post-1.0.0, a `1.N.0`) | Playable Texas hold 'em as a plugin, Experimental until one full game has been played; G2's table, seat and button flow as the idea; MagicBot installs the plugin, as it installs every plugin the library ships (a MagicBot feature release) | `release-1.0.0-and-archive`, `command-model` components |
 | 20 | `magicbot-marvel-rivals` (MagicBot's track; post-1.0.0; provisional) | Opens by reading the community API's pricing and terms; then the Experimental on-demand provider over a `Trusted` `ApiClient`; MagicBot `1.N.0` | `release-1.0.0-and-archive`, `stats-provider-framework` |
@@ -1661,7 +1661,7 @@ is a dependency order, not a schedule.
 
 > **Dated note, 2026-11-07 — unit 0.** It is carried out as eight sub-issues of #2, in this
 > order: preparation; transfer rehearsal; KotlinBottools rewrite and swap; repository hygiene;
-> KotlinBottools publication; GKB2 and GKB rewrite; BotTools, TrumpBot and Support rewrite;
+> KotlinBottools publication; GKB2 and GKB rewrite; BotTools and the private repositories rewrite;
 > residual report and cleanup ([`2-phase-0-history-rewrite/architecture.md`](2-phase-0-history-rewrite/architecture.md) §15). `build-skeleton` waits for the KotlinBottools
 > rewrite-and-swap unit, and MagicBot's skeleton waits for the publication unit.
 

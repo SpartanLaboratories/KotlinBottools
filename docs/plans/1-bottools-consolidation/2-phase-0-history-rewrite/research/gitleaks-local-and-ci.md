@@ -49,7 +49,7 @@ a full workflow file.
   both scan variants; then, per repository, the same options on the untouched pre-rewrite mirror must report the
   purged files, checked mechanically: every path rule's file count equals the independent count from
   `git log --numstat`, and each named probe (`key.txt`, `key.pem`, `BotData.xml`, `guildData/` ...) is non-zero.
-  BotTools and Support hold no token or data, so for them the control can only show that the rules do not fire
+  BotTools and the second private repository hold no token or data, so for them the control can only show that the rules do not fire
   on ordinary source; their sensitivity rests on the canary.
 - **CI: a separate `secret-scan.yml`** (`ubuntu-latest`, `contents: read`, `actions/checkout` v7.0.1 pinned to its
   commit with `fetch-depth: 0` and `persist-credentials: false`, the Linux x64 tarball pinned by sha256, a
@@ -116,7 +116,7 @@ mature projects visibly do), **report** (one upstream issue). Claim numbers refe
 - **Size limits (claim 23).** `--max-target-megabytes` defaults to 0 (no limit). In `git` mode it only skips the
   **regex** check of a fragment whose text exceeds the limit (debug log `skipping fragment: size`); path rules are
   unaffected; in `dir` mode it skips whole files. It should stay at 0 for exit tests: a limit would silently
-  shrink coverage. Large binaries cost nothing (skipped as binary); TrumpBot's 125 MB of blobs, mostly binaries,
+  shrink coverage. Large binaries cost nothing (skipped as binary); the first private repository's 125 MB of blobs, mostly binaries,
   are not a scanning concern.
 - **Names with spaces and non-ASCII characters** are handled (observed: `guildData/<name with spaces>/...`,
   accented names that git prints C-quoted, `services/game services/<name with spaces>.xml`); the report's `File`
@@ -207,7 +207,7 @@ mature projects visibly do), **report** (one upstream issue). Claim numbers refe
   A bare bot token in a file named `key.txt` matches none of them (observed: the default configuration reports
   nothing on a bare token-shaped file), which is why a token-shape rule is needed.
 - **Private keys:** `private-key` matches `-----BEGIN ... PRIVATE KEY-----` followed by at least 64 characters and a
-  `KEY-----` footer (claim 15). It flags the PEM in TrumpBot's `key.pem`, and it flags **any file that spells out
+  `KEY-----` footer (claim 15). It flags the PEM in the first private repository's `key.pem`, and it flags **any file that spells out
   both markers**, including a script or document that quotes them (observed: a helper script that contained a
   complete example block tripped it, and a history that once contained such a file stays red forever).
 - **`generic-api-key`:** keyword-gated (`access|auth|api|credential|creds|key|passw(or)d|secret|token`) assignment
@@ -883,7 +883,7 @@ awk '
 END { print (bad ? "CONTROL FAILED (" bad ")" : "CONTROL OK") }' "$OUT/$REPO/gitleaks-control.txt" | tee -a "$OUT/$REPO/gitleaks-control.txt"
 ```
 
-Pass condition for KotlinBottools, GKB2, GKB and TrumpBot: scan `status=1` with `RESULT: FINDINGS`, and the last
+Pass condition for KotlinBottools, GKB2, GKB and the first private repository: scan `status=1` with `RESULT: FINDINGS`, and the last
 line `CONTROL OK`. Anything else is STOP (status 0 means the configuration is blind to a history that holds
 secrets; 2 is a gate failure; `CONTROL FAILED` names the number of failing lines in the control file, which holds
 counts only). The awk applies three tests: for every path-only rule, files in the report equal files that git
@@ -899,7 +899,7 @@ equality with git's own count):
 | KotlinBottools | `bare-token-file:key.txt` `discord-bot-token:key.txt` `legacy-bot-data-file:BotData.xml` `legacy-bot-data-file:WebParseKeys.xml` | `legacy-bot-data-file:guildData/` `legacy-bot-data-file:src/test/guildData/` `legacy-state-directory:services/` | `guildData/` 30 paths, `src/test/guildData/` 30, `services/` 5 |
 | GKB2 | `bare-token-file:key.txt` `legacy-key-file:keys.txt` `discord-bot-token:key.txt` `discord-bot-token:keys.txt` `legacy-bot-data-file:BotData.xml` `legacy-bot-data-file:WebParseKeys.xml` | `legacy-bot-data-file:guildData/` `legacy-state-directory:logs/` `legacy-state-directory:services/` | `guildData/` 29, `logs/` 5, `services/` 2 |
 | GKB | `bare-token-file:key.txt` `discord-bot-token:key.txt` `legacy-bot-data-file:BotData.xml` `legacy-bot-data-file:WebParseKeys.xml` | `legacy-bot-data-file:guildData/` `legacy-state-directory:logs/` `legacy-state-directory:services/` | `guildData/` 29, `logs/` 5, `services/` 2 |
-| TrumpBot | `bare-token-file:key.txt` `discord-bot-token:key.txt` `legacy-key-file:key.pem` `private-key:key.pem` `legacy-bot-data-file:BotData.xml` `legacy-bot-data-file:WebParseKeys.xml` `legacy-state-directory:log.txt` | `legacy-bot-data-file:guildData/` `legacy-state-directory:services/` | `guildData/` 30, `services/` 1 |
+| The first private repository | `bare-token-file:key.txt` `discord-bot-token:key.txt` `legacy-key-file:key.pem` `private-key:key.pem` `legacy-bot-data-file:BotData.xml` `legacy-bot-data-file:WebParseKeys.xml` `legacy-state-directory:log.txt` | `legacy-bot-data-file:guildData/` `legacy-state-directory:services/` | `guildData/` 30, `services/` 1 |
 
 Notes on the expectations:
 
@@ -908,14 +908,14 @@ Notes on the expectations:
 - `discord-bot-token:<file>` > 0 is the first real test of MagicBot's token regex against the real tokens. If the
   path rule fires on a token file and the token rule does not, the token's shape is outside the regex (3.9): STOP
   and report which repository and which of the two probes; do not edit the rule during the run.
-- `private-key:key.pem` (TrumpBot) is the default rule, not a custom one; `legacy-key-file:key.pem` is the path rule.
+- `private-key:key.pem` (the first private repository) is the default rule, not a custom one; `legacy-key-file:key.pem` is the path rule.
 - Where a rule has no expected file (for example `legacy-key-file` in KotlinBottools) the awk still requires
   `report_files == git_files` (both 0 or equal).
 - Findings from default rules other than the ones above (for example `generic-api-key` in `BotData.xml`'s cookie
   section) are expected and appear as additional `rule` lines in `gitleaks-before.txt`; they are recorded, not
   tested.
 
-**BotTools and Support** hold no token and no data path (parent inventory). Their scan runs identically; the
+**BotTools and the second private repository** hold no token and no data path (parent inventory). Their scan runs identically; the
 pass condition is the absence of the six ids this configuration owns:
 
 ```bash
@@ -941,9 +941,9 @@ for v in branches all; do
 done
 BR="$OUT/$REPO/gitleaks-after-branches.txt"; AL="$OUT/$REPO/gitleaks-after-all.txt"
 test "$(tail -n 1 "$BR")" = "RESULT: CLEAN" || echo STOP
-if [ -f "$OUT/$REPO/gitleaks-control.txt" ]; then      # KotlinBottools, GKB2, GKB, TrumpBot
+if [ -f "$OUT/$REPO/gitleaks-control.txt" ]; then      # KotlinBottools, GKB2, GKB, …
   grep -q 'CONTROL OK' "$OUT/$REPO/gitleaks-control.txt" || echo STOP
-else                                                   # BotTools, Support: the six ids must be absent before the rewrite
+else                                                   # BotTools, …: the six ids must be absent before the rewrite
   test "$(grep -c -E '^rule (bare-token-file|discord-bot-token|legacy-bot-data-file|legacy-key-file|legacy-state-directory|private-key) ' "$OUT/$REPO/gitleaks-before.txt")" = 0 || echo STOP
 fi
 if [ "$PULL" -eq 0 ]; then
@@ -960,7 +960,7 @@ fi
   git reports as scannable. It does not mean: no secret of a shape the rules do not know, nothing in binary
   files or inside archives, nothing in objects no ref reaches, nothing that GitHub still serves from the old
   history (`refs/pull/*`, cached views).
-- **`all` is evidence about `refs/pull/*`.** For KotlinBottools, GKB, TrumpBot and Support there is no such ref and
+- **`all` is evidence about `refs/pull/*`.** For KotlinBottools, GKB and the private repositories there is no such ref and
   the `all` run must equal the `branches` run. For GKB2 (`refs/pull/6/head`) and BotTools (`refs/pull/2/head`,
   `refs/pull/3/head`), which keep pre-rewrite objects reachable, the `all` result is measured and recorded
   (`pull_refs`, `commits_scanned`, counts by rule id); status 0 or 1 are both reportable outcomes and are not
@@ -1235,13 +1235,13 @@ Outside-world claims the recommendation rests on. Versions: gitleaks v8.30.1; re
   with its own STOP: that MagicBot's token regex matches each real token (6.7 probes); that `report_files ==
   git_files` holds on real data (default-allowlisted file extensions under a data directory, or an exotic file name,
   would break the equality and stop the run for a decision); that `commits_scanned == expected_commits` holds
-  on 33-commit, 11-commit and 7 400-file histories; scan time and memory on TrumpBot (125 MB of blobs) and Support.
+  on 33-commit, 11-commit and 7 400-file histories; scan time and memory on the first private repository (125 MB of blobs) and the second.
 - **Default-rule findings in the kept source of the old repositories are unknown.** The documents were measured;
   the Kotlin and Java sources were not. A `generic-api-key` or similar hit in a kept path would make the
   "zero findings" exit criterion fail for a reason unrelated to the purge; the options at that point are a
   `targetRules` allowlist for the one rule and path (6.3) or a decision to accept and record it. This needs the
   owner's call if it occurs; nothing is pre-allowed.
-- **BotTools and Support** have no expected finding, so their control is a negative baseline only (6.7).
+- **BotTools and the second private repository** have no expected finding, so their control is a negative baseline only (6.7).
 - **Token shapes outside MagicBot's regex** (17-digit ids, `O`-prefixed ids, a 7-character middle part) are not
   matched; the path rules still flag the files, and the bots in these repositories date from 2022 onwards.
 - **MagicBot's `.gitleaks.toml` differs** from this configuration by two missing path rules and one global

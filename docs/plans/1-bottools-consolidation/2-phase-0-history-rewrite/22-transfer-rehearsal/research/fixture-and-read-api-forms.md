@@ -331,7 +331,7 @@ has no `orderBy`; `blockedBy` and `blocking` have `orderBy`; `Issue.stateReason`
   alongside `repository(...name:"WebTools"){ issue(number:55){...} }`, and by node id with `node(id: $id)` or
   `nodes(ids: $ids)` (all observed). A far end the token cannot see would not be readable; the administrator's token
   reads all the rehearsal's repositories.
-- **Private and archived (observed).** The same query shape read the private `SpartanLaboratories/TrumpBot`
+- **Private and archived (observed).** The same query shape read the private `SpartanLaboratories/…`
   (`isPrivate: true`) and the archived public `atom/atom` (`isArchived: true`, 25 nodes, cost 1). The archive documentation
   says archived repositories become "read-only", which is consistent with reads working; no archived repository of this
   organisation exists to test, so the rehearsal's own archived pair is the final proof.
