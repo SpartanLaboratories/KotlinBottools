@@ -1,5 +1,5 @@
 // KotlinBottools — C4 model as code (Structurizr DSL): the repository's systems and how they interact. Source of truth for docs/dashboards/index.html.
-// As-is at KotlinBottools docs/issue-42-replace-trumpbot-clone f11f7ab (2026-11-16): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture: Repository hygiene built, the other nine planned and drawn dashed. Code is authoritative on any conflict.
+// As-is at KotlinBottools docs/issue-28-residual-exposure-report-workspace-cleanup 57b4ffb (2026-11-17): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture: Repository hygiene built, the other nine planned and drawn dashed. Code is authoritative on any conflict.
 workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the planned systems that purge the bot repositories' histories." {
 
     !identifiers hierarchical

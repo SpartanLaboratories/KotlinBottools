@@ -770,6 +770,8 @@ and the installed package.
 
 > **Dated note, 2026-11-13.** The workspace's deletion does not reach the old TrumpBot clone, which lies beside the clone on its own volume and which the clone replacement deletes itself. The cleanup confirms the recorded path absent, and a leftover is deleted at that path. The tools copy takes both tool folders ([unit 7's design, §10.4 and §13.4](27-bottools-trumpbot-support-rewrite/architecture.md#104-the-fresh-clone-its-proofs-and-the-deletion)).
 
+> **Dated note, 2026-11-17.** The cleanup is unit 8's (#28), with two additions. The data folder's lists are completed by a list over the files that were under no list, so every file of `DATA` is under a list; the final list over the whole folder follows unit 8's landing. The landing's document checks, which read the backups and wrote their scratch in the workspace, run after the deletion from the tools copy, with the commit maps and the manifests as their id sources, proved equal to the backups' commit sets before the deletion ([unit 8's as-built record, §1](28-residual-report-and-cleanup/final-implementation.md#1-what-was-built)).
+
 ---
 
 ## 7. The KotlinBottools repository swap
@@ -1281,6 +1283,8 @@ carried onto the rewritten history by the realignment (§9.2).
 > **Dated note, 2026-11-11.** For unit 3 the topic branch carried the commits made before the mirror clone (its research and
 > plan) through the rewrite, and its later commits are made on the realigned topic branch, which tracks the fresh repository
 > ([unit 3's as-built record, §1](23-kotlinbottools-rewrite-and-swap/final-implementation.md#1-what-was-built)).
+
+> **Dated note, 2026-11-17.** Unit 8 posted the residual report on #2 before its landing. #2 is closed after that landing: by one guarded `close-issue` request under the section `phase-0-tracking-2-close` when the owner gives the section, or by the owner by hand ([unit 8's plan, After the landing: the closing of #2](28-residual-report-and-cleanup/plan.md#after-the-landing-the-closing-of-2)).
 
 ---
 
