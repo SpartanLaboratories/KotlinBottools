@@ -3279,7 +3279,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       {
         "issue": 27,
-        "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
+        "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
         "state": "OPEN"
       },
       {

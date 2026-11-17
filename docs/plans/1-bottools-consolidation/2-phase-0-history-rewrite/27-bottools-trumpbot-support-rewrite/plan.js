@@ -7,9 +7,9 @@ window.dashboardLive&&window.dashboardLive("plan",
   "slug": "27-bottools-trumpbot-support-rewrite",
   "folder": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite",
   "kind": "tracking",
-  "title": "Rewrite BotTools, TrumpBot and Support",
+  "title": "Rewrite BotTools and the private repositories",
   "issueTitle": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
-  "function": "BotTools, which is public, and TrumpBot and Support, which are private, still hold in their histories the files the phase purges: 39 purged blobs in BotTools, all of them also reachable through its pull-request refs, 199 in TrumpBot and 7,259 in Support. The local TrumpBot clone still holds TrumpBot's old history. The unit takes each repository through the rewrite pipeline as GKB2 and GKB were taken, BotTools first, then TrumpBot, then Support: the purge with its checks before and after, the force-push with its per-ref verification, the exit tests on a fresh mirror and the residual probes, with BotTools' pull-request residual counted. Once TrumpBot's push is proven, the clone is replaced by a fresh one at the same path, its four untracked files kept. The unit spans four systems, the toolchain, the rewrite pipeline, the residual-exposure measurement and the clone realignment, so this run designs it and splits it into units; nothing is rewritten, pushed or replaced in this run. Unit 7 of #2, with no version moved; the three repositories keep their visibility.",
+  "function": "BotTools, which is public, and the private repositories still hold in their histories the files the phase purges: 39 purged blobs in BotTools, all of them also reachable through its pull-request refs, 199 in the first private repository and 7,259 in the second. The local private repository clone still holds the first private repository's old history. The unit takes each repository through the rewrite pipeline as GKB2 and GKB were taken, BotTools first, then the first private repository, then the second: the purge with its checks before and after, the force-push with its per-ref verification, the exit tests on a fresh mirror and the residual probes, with BotTools' pull-request residual counted. Once the first private repository's push is proven, the clone is replaced by a fresh one at the same path, its four untracked files kept. The unit spans four systems, the toolchain, the rewrite pipeline, the residual-exposure measurement and the clone realignment, so this run designs it and splits it into units; nothing is rewritten, pushed or replaced in this run. Unit 7 of #2, with no version moved; the three repositories keep their visibility.",
   "status": "built",
   "sized": "2026-11-13T18:00:43Z",
   "parent": {
@@ -95,12 +95,12 @@ window.dashboardLive&&window.dashboardLive("plan",
           "Size them as the GKB2 and GKB unit was sized: each rewrite runs stages 1 to 9 for its repository and extends the tools it needs; only the clone replacement stands apart",
           "One registry system each: the tool work is its own part with no GitHub write, the rewrites stop at stage 8, one residual part probes all three repositories after the last push, and the clone replacement is its own part"
         ],
-        "answer": "Each part stays inside one system: the tools part extends the workspace tools before any push, with no write to GitHub; the rewrites run stages 1 to 8 for each repository, with BotTools' pull-request residual counted on its fresh mirror; one residual measurement runs stage 9 over all three repositories once the last push is verified; and the clone replacement is its own part, once TrumpBot's push is proven.",
+        "answer": "Each part stays inside one system: the tools part extends the workspace tools before any push, with no write to GitHub; the rewrites run stages 1 to 8 for each repository, with BotTools' pull-request residual counted on its fresh mirror; one residual measurement runs stage 9 over all three repositories once the last push is verified; and the clone replacement is its own part, once the first private repository's push is proven.",
         "asked": "2026-11-13T18:24:56Z",
         "answered": "2026-11-13T18:25:46Z"
       },
       {
-        "text": "What of the old TrumpBot clone's local state should the fresh clone keep? Besides the four files under .idea/ the clone now holds a knowledge graph built from the pre-rewrite tree, its exclude entry, two graph hooks and two local config keys.",
+        "text": "What of the old private repository clone's local state should the fresh clone keep? Besides the four files under .idea/ the clone now holds a knowledge graph built from the pre-rewrite tree, its exclude entry, two graph hooks and two local config keys.",
         "options": [
           "Keep everything: archive and restore the graph files, the exclude entry, the hooks and the two config keys",
           "Keep the four .idea/ files only; the clone ends with no graph and no graph hooks",
@@ -150,7 +150,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "name": "sized",
             "at": "2026-11-13T18:00:43Z"
           },
-          "detail": "Unit 7 of the history rewrite: BotTools, TrumpBot and Support are rewritten and force-pushed as GKB2 and GKB were, BotTools' pull-request residual is measured, and the local TrumpBot clone is replaced. The unit touches three systems, so this run designs it and splits it into units; nothing is built or pushed in this run. Next: the design, starting with the questions on intent.",
+          "detail": "Unit 7 of the history rewrite: BotTools and the private repositories are rewritten and force-pushed as GKB2 and GKB were, BotTools' pull-request residual is measured, and the local private repository clone is replaced. The unit touches three systems, so this run designs it and splits it into units; nothing is built or pushed in this run. Next: the design, starting with the questions on intent.",
           "held": true
         },
         {
@@ -162,7 +162,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "name": "researched",
             "at": "2026-11-13T19:20:34Z"
           },
-          "detail": "Research complete: 31 of the 32 claims hold at source and the one that fails was a wrong file citation for behaviour that holds. Each repository is pushed in one request as one atomic push with an explicit lease on every branch, after a dry run. The old TrumpBot clone is moved aside by a rename on its own volume and deleted last. The tools are rebuilt in a new folder, and the earlier folder stays as it ran. Next: the grand design and its units."
+          "detail": "Research complete: 31 of the 32 claims hold at source and the one that fails was a wrong file citation for behaviour that holds. Each repository is pushed in one request as one atomic push with an explicit lease on every branch, after a dry run. The old private repository clone is moved aside by a rename on its own volume and deleted last. The tools are rebuilt in a new folder, and the earlier folder stays as it ran. Next: the grand design and its units."
         }
       ],
       "research": [
@@ -368,7 +368,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "label": "Research verified",
       "date": "2026-11-13",
       "ref": "research/README.md",
-      "note": "three questions, each with its findings file; 31 of the 32 load-bearing claims hold at their sources, and the one that fails is a wrong file citation for behaviour that holds, so no recommendation changes. Each repository's branches go in one atomic push with an explicit lease on every branch, after a dry run of the same line, and a read-back of every branch names the server's state after any failure; the old TrumpBot clone is moved aside by one rename on its own volume, the fresh clone keeps the four `.idea/` files and the old clone is deleted last; the tools are rebuilt in a new folder, the earlier folder kept as it ran, with every recorded gap closed before the first push and four further gaps found that would stop a run. Where the sources disagreed, BotTools' webhook deliveries are counted once, right after its push, and the residual measurement follows the last push promptly"
+      "note": "three questions, each with its findings file; 31 of the 32 load-bearing claims hold at their sources, and the one that fails is a wrong file citation for behaviour that holds, so no recommendation changes. Each repository's branches go in one atomic push with an explicit lease on every branch, after a dry run of the same line, and a read-back of every branch names the server's state after any failure; the old private repository clone is moved aside by one rename on its own volume, the fresh clone keeps the four `.idea/` files and the old clone is deleted last; the tools are rebuilt in a new folder, the earlier folder kept as it ran, with every recorded gap closed before the first push and four further gaps found that would stop a run. Where the sources disagreed, BotTools' webhook deliveries are counted once, right after its push, and the residual measurement follows the last push promptly"
     },
     {
       "column": "considered",
@@ -583,7 +583,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "unit": {
         "n": 1,
         "slug": "workspace-tools",
-        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools and the private repositories",
         "blockedBy": [],
         "issue": 39,
         "board": "39-workspace-tools/dashboard.html",
@@ -850,13 +850,13 @@ window.dashboardLive&&window.dashboardLive("plan",
     {
       "id": "rewrites",
       "group": "Repositories",
-      "name": "Rewrite BotTools, TrumpBot and Support",
+      "name": "Rewrite BotTools and the private repositories",
       "system": "rewrite-pipeline",
-      "where": "BotTools, public · TrumpBot and Support, private",
+      "where": "BotTools, public · the private repositories",
       "unit": {
         "n": 2,
         "slug": "rewrites",
-        "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
         "blockedBy": [
           39
         ],
@@ -1004,9 +1004,9 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "gap": {
         "kind": "risk",
-        "summary": "BotTools, TrumpBot and Support still carry purged paths in their histories. They hold 39, 199 and 7,259 purged blobs; BotTools is public and has two branches, TrumpBot two and Support one, and every branch changes in the rewrite.",
+        "summary": "BotTools and the private repositories still carry purged paths in their histories. They hold 39, 199 and 7,259 purged blobs; BotTools is public and has two branches, the first private repository two and the second one, and every branch changes in the rewrite.",
         "evidence": [
-          "`architecture.md:101` — BotTools public, TrumpBot and Support private",
+          "`architecture.md:101` — BotTools public, and the private repositories",
           "`architecture.md:102` — the branches: two, two and one",
           "`architecture.md:106` — 39, 199 and 7,259 purged blobs",
           "`architecture.md:119` — every root commit changes, so every branch of every repository changes"
@@ -1017,7 +1017,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "options": [
         {
           "id": "one-unit-atomic-push",
-          "name": "Stages 1 to 8 for BotTools, then TrumpBot, then Support in one unit, each repository pushed in one atomic push with an explicit lease on every branch, after a dry run",
+          "name": "Stages 1 to 8 for BotTools, then the first private repository, then the second in one unit, each repository pushed in one atomic push with an explicit lease on every branch, after a dry run",
           "verdict": "accepted",
           "why": "Each repository stops on its own gates, the server is left with neither branch updated or both, and BotTools goes first with the only push that push protection applies to.",
           "source": "architecture.md §8.1, §8.2",
@@ -1066,29 +1066,29 @@ window.dashboardLive&&window.dashboardLive("plan",
       ],
       "asBuilt": {
         "state": "landed",
-        "summary": "#40 landed through PR #45 as 9170254. It rewrote BotTools, then TrumpBot and Support, each by one atomic push under a lease on every branch's recorded tip, five branches in all, 16 commits to 15, 11 to 9 and 2 to 1; BotTools' push ran on its second attempt, after the request service's own check refused the first before anything ran. Each push was classed as pushed and read back at every branch, and each fresh mirror is clean with every count equal to its expectation; BotTools' pull-request residual (39 purged blobs) and its two webhook deliveries are counted, no default-rule finding arose, and the unit's records carry their checksum lists. #41 and #42 start from its records and stage-8 markers."
+        "summary": "#40 landed through PR #45 as 9170254. It rewrote BotTools, then the private repositories, each by one atomic push under a lease on every branch's recorded tip, five branches in all, 16 commits to 15, 11 to 9 and 2 to 1; BotTools' push ran on its second attempt, after the request service's own check refused the first before anything ran. Each push was classed as pushed and read back at every branch, and each fresh mirror is clean with every count equal to its expectation; BotTools' pull-request residual (39 purged blobs) and its two webhook deliveries are counted, no default-rule finding arose, and the unit's records carry their checksum lists. #41 and #42 start from its records and stage-8 markers."
       },
       "verdict": {
         "kind": "build",
         "list": "bullets",
         "statements": [
           {
-            "text": "Run stages 1 to 8 for BotTools, then TrumpBot, then Support, each repository starting only when the one before it holds its stage-8 marker; BotTools goes first, with the only push that push protection for users applies to.",
+            "text": "Run stages 1 to 8 for BotTools, then the first private repository, then the second, each repository starting only when the one before it holds its stage-8 marker; BotTools goes first, with the only push that push protection for users applies to.",
             "ref": "architecture.md#81-shape",
             "excerpt": {
               "ref": "architecture.md#81-shape",
               "heading": "8.1 Shape",
-              "paragraph": "Order. BotTools, TrumpBot, Support, as the parent design orders them. A repository's stage 1 starts only when the previous repository holds its stage-8 marker. BotTools goes first with the only push that GitHub's push protection for users applies to and the first atomic push of two leases, so what GitHub's receive path does with either is known before a private repository is pushed. · Stages 1 to 5 are the parent's: the list proof and the pre-run checks, the positive control on the untouched backup, the one invocation, the post-run checks with the scan before the push, and the push …",
+              "paragraph": "Order. BotTools, the first private repository, the second, as the parent design orders them. A repository's stage 1 starts only when the previous repository holds its stage-8 marker. BotTools goes first with the only push that GitHub's push protection for users applies to and the first atomic push of two leases, so what GitHub's receive path does with either is known before a private repository is pushed. · Stages 1 to 5 are the parent's: the list proof and the pre-run checks, the positive control on the untouched backup, the one invocation, the post-run checks with the scan before the push, and the push …",
               "hash": "069dc87d2d5c"
             }
           },
           {
-            "text": "Push each repository once: every branch in one atomic push, each under an explicit lease on the tip the mirror clone recorded, after a dry run of the same line; two branches for BotTools, two for TrumpBot and one for Support.",
+            "text": "Push each repository once: every branch in one atomic push, each under an explicit lease on the tip the mirror clone recorded, after a dry run of the same line; two branches for BotTools, two for the first private repository and one for the second.",
             "ref": "architecture.md#81-shape",
             "excerpt": {
               "ref": "architecture.md#81-shape",
               "heading": "8.1 Shape",
-              "paragraph": "Order. BotTools, TrumpBot, Support, as the parent design orders them. A repository's stage 1 starts only when the previous repository holds its stage-8 marker. BotTools goes first with the only push that GitHub's push protection for users applies to and the first atomic push of two leases, so what GitHub's receive path does with either is known before a private repository is pushed. · Stages 1 to 5 are the parent's: the list proof and the pre-run checks, the positive control on the untouched backup, the one invocation, the post-run checks with the scan before the push, and the push …",
+              "paragraph": "Order. BotTools, the first private repository, the second, as the parent design orders them. A repository's stage 1 starts only when the previous repository holds its stage-8 marker. BotTools goes first with the only push that GitHub's push protection for users applies to and the first atomic push of two leases, so what GitHub's receive path does with either is known before a private repository is pushed. · Stages 1 to 5 are the parent's: the list proof and the pre-run checks, the positive control on the untouched backup, the one invocation, the post-run checks with the scan before the push, and the push …",
               "hash": "069dc87d2d5c"
             }
           },
@@ -1108,7 +1108,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "architecture.md#81-shape",
               "heading": "8.1 Shape",
-              "paragraph": "Order. BotTools, TrumpBot, Support, as the parent design orders them. A repository's stage 1 starts only when the previous repository holds its stage-8 marker. BotTools goes first with the only push that GitHub's push protection for users applies to and the first atomic push of two leases, so what GitHub's receive path does with either is known before a private repository is pushed. · Stages 1 to 5 are the parent's: the list proof and the pre-run checks, the positive control on the untouched backup, the one invocation, the post-run checks with the scan before the push, and the push …",
+              "paragraph": "Order. BotTools, the first private repository, the second, as the parent design orders them. A repository's stage 1 starts only when the previous repository holds its stage-8 marker. BotTools goes first with the only push that GitHub's push protection for users applies to and the first atomic push of two leases, so what GitHub's receive path does with either is known before a private repository is pushed. · Stages 1 to 5 are the parent's: the list proof and the pre-run checks, the positive control on the untouched backup, the one invocation, the post-run checks with the scan before the push, and the push …",
               "hash": "069dc87d2d5c"
             }
           },
@@ -1143,7 +1143,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           "Push protection refuses BotTools' push: the remote is unchanged, the two private repositories wait, and the unit never bypasses it",
           "A reply is misread: it is stored as delivered, the classifier stops on what it cannot read, and the server's state is read from GitHub whatever the reply says",
           "BotTools' deliveries leave GitHub's three-day list: they are counted at stage 7, right after the push",
-          "A long scan or rewrite on Support is interrupted: every step has its own marker, and a repository restarts from a reset mirror before its push"
+          "A long scan or rewrite on the second private repository is interrupted: every step has its own marker, and a repository restarts from a reset mirror before its push"
         ],
         "source": "architecture.md §8, §16",
         "link": "architecture.md#8-the-rewrites"
@@ -1158,7 +1158,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "unit": {
         "n": 3,
         "slug": "residual-measurement",
-        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
         "blockedBy": [
           40
         ],
@@ -1304,13 +1304,13 @@ window.dashboardLive&&window.dashboardLive("plan",
     {
       "id": "clone-replacement",
       "group": "After the pushes",
-      "name": "Replace the TrumpBot clone",
+      "name": "Replace the private repository clone",
       "system": "clone-realignment",
-      "where": "the local TrumpBot clone and its graph",
+      "where": "the local private repository clone and its graph",
       "unit": {
         "n": 4,
         "slug": "clone-replacement",
-        "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+        "title": "Phase 0 · 7.4 — Replace the private repository clone",
         "blockedBy": [
           40
         ],
@@ -1578,7 +1578,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "gap": {
         "kind": "risk",
-        "summary": "The local TrumpBot clone holds TrumpBot's old history. Of the 59 files git does not track in it, 55 are a graph built from the pre-rewrite tree; it sits on another volume than the workspace, so the earlier procedure's move is no rename, and the earlier clone scripts stop on its hooks and exclude entry and archive all 59 files.",
+        "summary": "The local private repository clone holds the first private repository's old history. Of the 59 files git does not track in it, 55 are a graph built from the pre-rewrite tree; it sits on another volume than the workspace, so the earlier procedure's move is no rename, and the earlier clone scripts stop on its hooks and exclude entry and archive all 59 files.",
         "evidence": [
           "`architecture.md:128` — 59 untracked or ignored files: 4 under `.idea/`, 55 under the graph's folder",
           "`architecture.md:135` — the clone and the workspace on different volumes",
@@ -1655,7 +1655,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       ],
       "asBuilt": {
         "state": "landed",
-        "summary": "#42 landed through PR #48 as 0532880. It replaced the TrumpBot clone with a fresh clone of the rewritten repository at the same path, by two requests under the unit's own grant, its four `.idea/` files restored and equal to their checksums; the old clone stood aside on its own volume for about ten minutes and was deleted at its recorded path, so no old-clone path remains and no pre-rewrite commit or purged blob is reachable from the fresh clone. The graph was rebuilt from the rewritten tree, code-only, and read back with its two hooks. One issue, #47, was filed against the tools' request builder and changed no outcome; #28 takes the record that no old-clone path remains."
+        "summary": "#42 landed through PR #48 as 0532880. It replaced the private repository clone with a fresh clone of the rewritten repository at the same path, by two requests under the unit's own grant, its four `.idea/` files restored and equal to their checksums; the old clone stood aside on its own volume for about ten minutes and was deleted at its recorded path, so no old-clone path remains and no pre-rewrite commit or purged blob is reachable from the fresh clone. The graph was rebuilt from the rewritten tree, code-only, and read back with its two hooks. One issue, #47, was filed against the tools' request builder and changed no outcome; #28 takes the record that no old-clone path remains."
       },
       "verdict": {
         "kind": "build",
@@ -1667,7 +1667,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "architecture.md#102-the-move",
               "heading": "10.2 The move",
-              "paragraph": "Where. The old clone is moved aside by one rename on its own volume: `%PROJECTS%\\TrumpBot` becomes `%PROJECTS%\\TrumpBot-old`. A rename refuses with no effect while anything inside is open, which makes it the lock probe, and it keeps the tree's access entries as they are. A move into the workspace would cross volumes, and that is a copy followed by a deletion: no lock probe, and the irreversible step first. · Guards before it: the target is absent; the clone and the target's parent are on the same volume, compared by `stat -c %d`, so that `mv` can never copy; the count of open files is 0; no …",
+              "paragraph": "Where. The old clone is moved aside by one rename on its own volume: `%PROJECTS%\\…` becomes `%PROJECTS%\\…-old`. A rename refuses with no effect while anything inside is open, which makes it the lock probe, and it keeps the tree's access entries as they are. A move into the workspace would cross volumes, and that is a copy followed by a deletion: no lock probe, and the irreversible step first. · Guards before it: the target is absent; the clone and the target's parent are on the same volume, compared by `stat -c %d`, so that `mv` can never copy; the count of open files is 0; no …",
               "hash": "c47d0978c63d"
             }
           },
@@ -1687,7 +1687,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "architecture.md#104-the-fresh-clone-its-proofs-and-the-deletion",
               "heading": "10.4 The fresh clone, its proofs and the deletion",
-              "paragraph": "The fresh clone is made at the same path from TrumpBot's URL, with `gh` as the only credential helper, since the repository is private. · The restore refuses to overwrite. The restored set must equal the four-file list byte for byte, with every checksum matching. · The proofs, made by the procedure and again by the unit before it requests the deletion: · the remote-tracking refs equal `ref-map`'s new column, and `main` equals its remote-tracking branch; · one pack, no loose object, a clean `fsck`; · every pre-rewrite commit of TrumpBot and every manifest blob is missing from the clone; · …",
+              "paragraph": "The fresh clone is made at the same path from the first private repository's URL, with `gh` as the only credential helper, since the repository is private. · The restore refuses to overwrite. The restored set must equal the four-file list byte for byte, with every checksum matching. · The proofs, made by the procedure and again by the unit before it requests the deletion: · the remote-tracking refs equal `ref-map`'s new column, and `main` equals its remote-tracking branch; · one pack, no loose object, a clean `fsck`; · every pre-rewrite commit of the first private repository and every manifest blob is missing from the clone; · …",
               "hash": "a381c5062c8a"
             }
           },
@@ -1712,12 +1712,12 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "Start once the rewrites have landed and TrumpBot's push is proven; the TrumpBot clone is the one checkout it changes, and this working tree is not touched.",
+            "text": "Start once the rewrites have landed and the first private repository's push is proven; the private repository clone is the one checkout it changes, and this working tree is not touched.",
             "ref": "architecture.md#10-the-clone-replacement",
             "excerpt": {
               "ref": "architecture.md#10-the-clone-replacement",
               "heading": "10. The clone replacement",
-              "paragraph": "Unit 4, `clone-replacement`. It runs once TrumpBot's push is proven: TrumpBot holds its stage-8 marker, and the server's heads equal `ref-map`'s new column.",
+              "paragraph": "Unit 4, `clone-replacement`. It runs once the first private repository's push is proven: the first private repository holds its stage-8 marker, and the server's heads equal `ref-map`'s new column.",
               "hash": "af6711cb9f24"
             }
           }
@@ -1727,7 +1727,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           "The self-test's quick gate, run again by the unit"
         ],
         "risks": [
-          "Between the move and the deletion the old clone holds every pre-rewrite object of TrumpBot beside the clone, no wider than today's clone; the deletion follows the read-back and does not wait for the graph",
+          "Between the move and the deletion the old clone holds every pre-rewrite object of the first private repository beside the clone, no wider than today's clone; the deletion follows the read-back and does not wait for the graph",
           "A process holds a file inside the clone: the rename refuses and changes nothing, and a bounded retry outlasts a scanner",
           "A cross-volume move by accident: the same-volume and absent-target guards come before the rename, and the outcome is read from the two paths",
           "The fresh clone carries more or less than intended: the closed-set guard over the 59 files, the restored set compared with the four-file list, and the exact-set proofs of keys, hooks and excludes",
@@ -1740,7 +1740,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   ],
   "impact": {
     "basis": "as-built",
-    "summary": "As built, no module is published and no version moves: every landing of #27 and its units carried documents and generated boards only. BotTools, which is public, and TrumpBot and Support, which are private, were force-pushed in place, one atomic push each: every commit id changed, the purged files left every commit, and each kept its visibility and default branch. BotTools' pull-request refs keep its 39 purged blobs fetchable, the events listed 1 of the 5 branch pushes, and the TrumpBot clone on this machine was replaced by a fresh clone, the old one deleted; #47 stays open against the tools.",
+    "summary": "As built, no module is published and no version moves: every landing of #27 and its units carried documents and generated boards only. BotTools, which is public, and the private repositories were force-pushed in place, one atomic push each: every commit id changed, the purged files left every commit, and each kept its visibility and default branch. BotTools' pull-request refs keep its 39 purged blobs fetchable, the events listed 1 of the 5 branch pushes, and the private repository clone on this machine was replaced by a fresh clone, the old one deleted; #47 stays open against the tools.",
     "none": null,
     "release": {
       "bump": "none",
@@ -1750,11 +1750,11 @@ window.dashboardLive&&window.dashboardLive("plan",
     },
     "downstream": [
       {
-        "who": "BotTools', TrumpBot's and Support's histories",
+        "who": "BotTools' and the private repositories' histories",
         "kind": "repository",
         "system": null,
         "effect": "breaking",
-        "summary": "Every commit id changes, as every root commit holds a purged path: BotTools' 16 commits become 15, TrumpBot's 11 become 9 and Support's 2 become 1. The files under the purged paths leave every commit, the tips' trees included, and every branch changes: BotTools' and TrumpBot's two and Support's one. No issue, pull request, comment, label, setting or webhook is changed, and nothing is deleted.",
+        "summary": "Every commit id changes, as every root commit holds a purged path: BotTools' 16 commits become 15, the first private repository's 11 become 9 and the second's 2 become 1. The files under the purged paths leave every commit, the tips' trees included, and every branch changes: BotTools' and the first private repository's two and the second's one. No issue, pull request, comment, label, setting or webhook is changed, and nothing is deleted.",
         "link": "consequences.md#21-github"
       },
       {
@@ -1762,7 +1762,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "repository",
         "system": null,
         "effect": "none",
-        "summary": "GitHub keeps serving every pre-rewrite object by id. BotTools' pull-request refs keep 13 old commits and all 39 purged blobs fetchable, and its two pull requests keep showing their pre-rewrite commits; BotTools was public before, so this exposure is not new. TrumpBot's and Support's old objects stay readable to signed-in readers with access, and to nobody anonymously.",
+        "summary": "GitHub keeps serving every pre-rewrite object by id. BotTools' pull-request refs keep 13 old commits and all 39 purged blobs fetchable, and its two pull requests keep showing their pre-rewrite commits; BotTools was public before, so this exposure is not new. The private repositories' old objects stay readable to signed-in readers with access, and to nobody anonymously.",
         "link": "consequences.md#21-github"
       },
       {
@@ -1770,7 +1770,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "repository",
         "system": null,
         "effect": "additive",
-        "summary": "Each rewritten branch added one force-push entry to its repository's activity feed, whose `before` is a pre-rewrite tip, and every activity feed lists them. The events, after 6 hours, listed the push of 1 of BotTools' 2 branches and none of TrumpBot's 2 or Support's 1; whether GitHub lists the others later is not established. BotTools' webhook, to a CircleCI host, received one push delivery per branch, 2 in all, recorded by count; it stays as it is.",
+        "summary": "Each rewritten branch added one force-push entry to its repository's activity feed, whose `before` is a pre-rewrite tip, and every activity feed lists them. The events, after 6 hours, listed the push of 1 of BotTools' 2 branches and none of the first private repository's 2 or the second's 1; whether GitHub lists the others later is not established. BotTools' webhook, to a CircleCI host, received one push delivery per branch, 2 in all, recorded by count; it stays as it is.",
         "link": "consequences.md#21-github"
       },
       {
@@ -1778,11 +1778,11 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "consumer",
         "system": null,
         "effect": "breaking",
-        "summary": "They keep the old histories, and their branches share no commit with the server's afterwards. None of the three repositories has a fork, and the one known clone on this machine, TrumpBot's, was replaced.",
+        "summary": "They keep the old histories, and their branches share no commit with the server's afterwards. None of the three repositories has a fork, and the one known clone on this machine, the first private repository's, was replaced.",
         "link": "consequences.md#21-github"
       },
       {
-        "who": "The TrumpBot clone",
+        "who": "The private repository clone",
         "kind": "operator",
         "system": "clone-realignment",
         "effect": "behaviour",
@@ -1872,7 +1872,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "unit": "rewrites",
         "basis": "as-built",
-        "summary": "As built, no module is published and no version moves; the landing carries documents and generated boards only. Three force-pushes, each one atomic push under a lease on every branch's recorded tip, rewrote BotTools (public), then TrumpBot and Support (private), five branches in all, 16 commits to 15, 11 to 9 and 2 to 1, each landing whole; nothing else on GitHub was written. BotTools' two pull-request refs keep its old history fetchable, counted and not removed, and its webhook took one push delivery per branch, counted once. The request service ran BotTools' refused first call again with no restart once its allow line was in place. #41 and #42 start from this unit's records and stage-8 markers, and #28 takes its records with their checksum lists.",
+        "summary": "As built, no module is published and no version moves; the landing carries documents and generated boards only. Three force-pushes, each one atomic push under a lease on every branch's recorded tip, rewrote BotTools (public), then the private repositories, five branches in all, 16 commits to 15, 11 to 9 and 2 to 1, each landing whole; nothing else on GitHub was written. BotTools' two pull-request refs keep its old history fetchable, counted and not removed, and its webhook took one push delivery per branch, counted once. The request service ran BotTools' refused first call again with no restart once its allow line was in place. #41 and #42 start from this unit's records and stage-8 markers, and #28 takes its records with their checksum lists.",
         "release": {
           "bump": "none",
           "version": null,
@@ -1896,7 +1896,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           },
           {
             "what": "No default-rule finding is handed on to the residual report and cleanup.",
-            "why": "None arose in BotTools, TrumpBot or Support, before a push or on a fresh mirror.",
+            "why": "None arose in BotTools or either private repository, before a push or on a fresh mirror.",
             "when": "#40 landing",
             "ref": "40-rewrites/consequences.md#6-follow-ups"
           },
@@ -1923,7 +1923,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "changes": [
           {
             "what": "The landing also carries a note in the verification results of this design's research, and this design takes no dated note.",
-            "why": "The push findings expected one push event per rewritten branch within the events' documented lag of up to 6 hours, and after the 6 hours the events listed 1 of BotTools' 2 pushes and none of TrumpBot's 2 or Support's 1; the measurement ran as this design's §9 describes.",
+            "why": "The push findings expected one push event per rewritten branch within the events' documented lag of up to 6 hours, and after the 6 hours the events listed 1 of BotTools' 2 pushes and none of the first private repository's 2 or the second's 1; the measurement ran as this design's §9 describes.",
             "when": "#41 landing",
             "ref": "41-residual-measurement/final-implementation.md#4-deviations-from-the-plan"
           }
@@ -1932,7 +1932,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "unit": "clone-replacement",
         "basis": "as-built",
-        "summary": "As built, no module is published and no version moves; the landing carries documents and generated boards only. On GitHub one issue, #47, was filed during the run against the tools' request builder, and #27 is closed after the landing. On this machine the TrumpBot clone was replaced by a fresh clone with its four `.idea/` files, by two requests under the unit's own grant, the old clone deleted at its recorded path after the unit's read of the fresh clone, and the graph rebuilt by the graph service, with the board files' ignore it places. #28 takes the record that no old-clone path remains.",
+        "summary": "As built, no module is published and no version moves; the landing carries documents and generated boards only. On GitHub one issue, #47, was filed during the run against the tools' request builder, and #27 is closed after the landing. On this machine the private repository clone was replaced by a fresh clone with its four `.idea/` files, by two requests under the unit's own grant, the old clone deleted at its recorded path after the unit's read of the fresh clone, and the graph rebuilt by the graph service, with the board files' ignore it places. #28 takes the record that no old-clone path remains.",
         "release": {
           "bump": "none",
           "version": null,
@@ -1982,7 +1982,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "unit": "residual-measurement",
         "when": "#41 landing",
         "entry": "downstream.2",
-        "what": "The events did not list every rewritten branch's push: after each push's 6 hours they listed the push of 1 of BotTools' 2 branches and none of TrumpBot's 2 or Support's 1, while every activity feed lists each force push.",
+        "what": "The events did not list every rewritten branch's push: after each push's 6 hours they listed the push of 1 of BotTools' 2 branches and none of the first private repository's 2 or the second's 1, while every activity feed lists each force push.",
         "why": "The initiative's impact took one event per rewritten branch; the residual measurement read the events until 6 hours had passed since each push and recorded what they listed. Whether GitHub lists the other pushes later is not established, a known gap of the unit.",
         "ref": "41-residual-measurement/consequences.md#5-known-gaps"
       },
