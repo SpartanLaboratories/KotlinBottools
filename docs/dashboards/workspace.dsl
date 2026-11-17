@@ -6,7 +6,7 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
 
     model {
         admin  = person "Organisation administrator" "Runs the phase's units from this machine; every write to GitHub or to a checkout is carried out on request and verified before the next step."
-        github = softwareSystem "GitHub" "Hosts KotlinBottools, a fresh public repository holding the rewritten history, with secret scanning and push protection on, its private, archived predecessor KotlinBottools-legacy, and the five other bot repositories: GKB2 and GKB public, each holding its rewritten history, BotTools public, TrumpBot and Support private. Serves an unreferenced object by id." "External"
+        github = softwareSystem "GitHub" "Hosts KotlinBottools, a fresh public repository holding the rewritten history, with secret scanning and push protection on, its private, archived predecessor KotlinBottools-legacy, and the five other bot repositories: GKB2 and GKB public, each holding its rewritten history, BotTools public, and the private repositories. Serves an unreferenced object by id." "External"
 
         kbt = softwareSystem "KotlinBottools" "A Kotlin Discord bot framework on JDA, built by one Gradle build; the phase's systems live outside the repository but for the hygiene files." {
             // ---- the Phase 0 history-rewrite systems (architecture section 6, 7, 9, 10): Repository hygiene built in the repository, the other nine planned ----
@@ -18,7 +18,7 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
             residual  = container "Residual-exposure measurement" "Status-only probes of the old ids and the fresh-mirror reachability counts, reported as tallies." "planned · DATA/rewrite" "Internal,Planned"
             cleanup   = container "Cleanup" "Re-verifies the data folder, copies the tools into it, deletes the workspace and confirms the deletion." "planned · WS, DATA" "Internal,Planned"
             swap      = container "Repository swap" "The rehearsal, the fresh repository, the number walk, link reconciliation, the renames and archive, the visibility and scanning settings." "planned · GitHub, DATA/run/swap" "Internal,Planned"
-            realign   = container "Clone realignment" "This working directory moved onto the rewritten history in place with its push-safety proof; the TrumpBot clone replaced at the same path." "planned · this working directory, DATA/run/realign" "Internal,Planned"
+            realign   = container "Clone realignment" "This working directory moved onto the rewritten history in place with its push-safety proof; the private repository clone replaced at the same path." "planned · this working directory, DATA/run/realign" "Internal,Planned"
             hygiene   = container "Repository hygiene" "The root-anchored .gitignore, .gitleaks.toml with one scoped allowlist table, the scan wrapper, the allowlist controls and the Secret scan workflow." ".gitleaks.toml, .github/ · in the repository" "Internal"
         }
 

@@ -2776,7 +2776,7 @@
           "id": "scrub-all-six",
           "name": "Scrub the other five repositories as well",
           "verdict": "declined",
-          "why": "GKB2, GKB and BotTools are public already, and TrumpBot and Support stay private; only KotlinBottools becomes newly public.",
+          "why": "GKB2, GKB and BotTools are public already, and the private repositories stay private; only KotlinBottools becomes newly public.",
           "source": "../architecture.md §14",
           "link": "../architecture.md#14-alternatives-considered"
         }
@@ -4512,7 +4512,7 @@
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "Restoring the moved issue texts' references to a bare form or to the final name, and any issue-text edit (the open follow-ups above). No `edit-issue-body` request and no comment edit is sent. · The hygiene files, the visibility change of the fresh repository, secret scanning, Gate 3 and the id-reference check: later units. · The rewrite of the other five repositories, and TrumpBot's clone. · Deleting the pre-rewrite repository, the fresh repository's old temporary name's redirect, or the throwaway repositories of the rehearsal (the token has no `delete_repo` scope). · Editing MagicBot's or …",
+              "paragraph": "Restoring the moved issue texts' references to a bare form or to the final name, and any issue-text edit (the open follow-ups above). No `edit-issue-body` request and no comment edit is sent. · The hygiene files, the visibility change of the fresh repository, secret scanning, Gate 3 and the id-reference check: later units. · The rewrite of the other five repositories, and the first private repository's clone. · Deleting the pre-rewrite repository, the fresh repository's old temporary name's redirect, or the throwaway repositories of the rehearsal (the token has no `delete_repo` scope). · Editing MagicBot's or …",
               "hash": "c4d2d8dbc2f7"
             }
           },

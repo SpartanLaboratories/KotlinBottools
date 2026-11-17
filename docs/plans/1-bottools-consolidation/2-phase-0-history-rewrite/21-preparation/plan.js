@@ -2145,7 +2145,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "build",
         "statements": [
           {
-            "text": "`BotData.xml` and `guildData/` are copied from three sources: KotlinBottools `main`, GKB2 at the parent of the commit that deletes `guildData/`, and TrumpBot `main`.",
+            "text": "`BotData.xml` and `guildData/` are copied from three sources: KotlinBottools `main`, GKB2 at the parent of the commit that deletes `guildData/`, and the first private repository's `main`.",
             "ref": "plan.md#s7--the-legacy-data-copy",
             "excerpt": {
               "ref": "plan.md#s7--the-legacy-data-copy",
@@ -2210,7 +2210,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "group": "Data and manifests",
       "name": "Manifests and expectation rows of the five static repositories",
       "system": "kotlinbottools",
-      "where": "`manifests/`, in the data folder · GKB2, GKB, BotTools, TrumpBot and Support",
+      "where": "`manifests/`, in the data folder · GKB2, GKB, BotTools and the private repositories",
       "gap": {
         "kind": "missing",
         "summary": "Nothing yet says what a rewrite of these repositories should leave. Every later gate needs a manifest of purged blob ids and an expectation row per repository, derived from the backup, and for the five static repositories that row must equal the research table.",
@@ -2398,24 +2398,24 @@ window.dashboardLive&&window.dashboardLive("plan",
         "state": "as-planned",
         "statements": [
           {
-            "text": "GKB2, GKB and TrumpBot flagged the guarded files, each passing its control status and verdict.",
+            "text": "GKB2, GKB and the first private repository flagged the guarded files, each passing its control status and verdict.",
             "state": "as-planned",
             "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
             "excerpt": {
               "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
               "heading": "3.6 Positive controls on the untouched backups",
-              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and TrumpBot. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
+              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and the first private repository. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
               "hash": "601c9df10c23"
             }
           },
           {
-            "text": "BotTools and Support passed on the absence of the six rule ids this configuration owns.",
+            "text": "BotTools and the second private repository passed on the absence of the six rule ids this configuration owns.",
             "state": "as-planned",
             "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
             "excerpt": {
               "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
               "heading": "3.6 Positive controls on the untouched backups",
-              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and TrumpBot. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
+              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and the first private repository. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
               "hash": "601c9df10c23"
             }
           },
@@ -2426,7 +2426,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
               "heading": "3.6 Positive controls on the untouched backups",
-              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and TrumpBot. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
+              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and the first private repository. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
               "hash": "601c9df10c23"
             }
           },
@@ -2437,7 +2437,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#36-positive-controls-on-the-untouched-backups",
               "heading": "3.6 Positive controls on the untouched backups",
-              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and TrumpBot. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
+              "paragraph": "Token rule: its probes fired on every real token file of GKB2, GKB and the first private repository. No coverage gap was recorded. · Findings in kept files: 0 in all five repositories (`total_kept=0`; the limit of that count is in the consequences).",
               "hash": "601c9df10c23"
             }
           }
@@ -2447,7 +2447,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "build",
         "statements": [
           {
-            "text": "GKB2, GKB and TrumpBot must flag the guarded files: every path rule's report count equal to git's own, every named probe above zero, ending `CONTROL OK`.",
+            "text": "GKB2, GKB and the first private repository must flag the guarded files: every path rule's report count equal to git's own, every named probe above zero, ending `CONTROL OK`.",
             "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
             "excerpt": {
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
@@ -2457,7 +2457,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "BotTools and Support pass on the absence of the six rule ids this configuration owns.",
+            "text": "BotTools and the second private repository pass on the absence of the six rule ids this configuration owns.",
             "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
             "excerpt": {
               "ref": "plan.md#s8--manifests-expectation-rows-and-positive-controls",
@@ -2726,7 +2726,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the TrumpBot clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 unless …",
+              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the private repository clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 unless …",
               "hash": "85755a919d0e"
             }
           },
@@ -2736,7 +2736,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the TrumpBot clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 unless …",
+              "paragraph": "No rewrite of any history and no push. · No repository creation, and no repository setting changed. · No change to either local clone: this unit only reads KotlinBottools' checkout, and the private repository clone is not touched. · No GitHub write beyond the landing §7.1 describes. · No scan or manifest of KotlinBottools beyond its data copy. Its real manifest, expectation row and positive control belong to the unit that rewrites it. · No committed helper script. Every tool stays in the workspace; only the three CI files are committed, by the later `repository-hygiene` unit. · No Python 3.13 unless …",
               "hash": "85755a919d0e"
             }
           },
@@ -2771,7 +2771,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     },
     "downstream": [
       {
-        "who": "KotlinBottools, GKB2, GKB, BotTools, TrumpBot and Support on GitHub",
+        "who": "KotlinBottools, GKB2, GKB, BotTools and the private repositories on GitHub",
         "kind": "repository",
         "system": null,
         "effect": "none",
@@ -2791,7 +2791,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "repository",
         "system": null,
         "effect": "none",
-        "summary": "Neither changes: the unit only reads KotlinBottools' checkout, and looks at the TrumpBot clone only to confirm that it sits beside it.",
+        "summary": "Neither changes: the unit only reads KotlinBottools' checkout, and looks at the private repository clone only to confirm that it sits beside it.",
         "link": "consequences.md#23-the-two-clones-on-this-machine"
       },
       {
@@ -2937,7 +2937,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       {
         "issue": 27,
-        "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
+        "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
         "state": "OPEN"
       },
       {

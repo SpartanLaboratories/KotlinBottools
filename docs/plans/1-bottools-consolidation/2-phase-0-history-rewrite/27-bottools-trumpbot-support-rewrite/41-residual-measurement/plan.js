@@ -8,8 +8,8 @@ window.dashboardLive&&window.dashboardLive("plan",
   "folder": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/41-residual-measurement",
   "kind": "issue",
   "title": "Measure what GitHub still serves",
-  "issueTitle": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
-  "function": "GitHub keeps serving every pre-rewrite object by id after the pushes of BotTools, TrumpBot and Support, and nothing has measured yet what it still serves of the three old histories. This unit measures it in counts, once all three repositories hold their stage-8 marker and every branch reads at its rewritten tip: authenticated probes of every old branch tip, every first-changed commit, their trees and a sample of purged blobs in all three, with controls around every batch; anonymous probes and feed reads of BotTools alone, the other two being private; the activity feed and the events read twice, at least 6 minutes apart, a read outside the events' window recorded as not valid, never as absent; and each repository's report row completed, in counts only, under a checksum list for #28's report and cleanup. Unit 3 of #27, with no version moved; it writes nothing to GitHub, removes nothing GitHub still serves, changes no checkout, and its landing carries documents only.",
+  "issueTitle": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
+  "function": "GitHub keeps serving every pre-rewrite object by id after the pushes of BotTools and the private repositories, and nothing has measured yet what it still serves of the three old histories. This unit measures it in counts, once all three repositories hold their stage-8 marker and every branch reads at its rewritten tip: authenticated probes of every old branch tip, every first-changed commit, their trees and a sample of purged blobs in all three, with controls around every batch; anonymous probes and feed reads of BotTools alone, the other two being private; the activity feed and the events read twice, at least 6 minutes apart, a read outside the events' window recorded as not valid, never as absent; and each repository's report row completed, in counts only, under a checksum list for #28's report and cleanup. Unit 3 of #27, with no version moved; it writes nothing to GitHub, removes nothing GitHub still serves, changes no checkout, and its landing carries documents only.",
   "status": "built",
   "sized": "2026-11-15T20:55:34Z",
   "parent": {
@@ -181,11 +181,11 @@ window.dashboardLive&&window.dashboardLive("plan",
         "ref": "plan.md#s1--bottools",
         "started": "2026-11-15T21:45:37Z",
         "finished": "2026-11-16T01:59:01Z",
-        "report": "BotTools is measured and recorded. Its gate opened on the 6 hours at the 27th check (01:47:00Z on 2026-11-16), after 26 checks that printed a wait; the events then listed the push of 1 of its 2 pushed branches. The anonymous budget read 60 calls left. Step 9 passed with 15 ok lines and 2 RECORD lines, no void batch, no stop and no wait: every probe answered served (authenticated: commits 3, trees 3, blobs 39, want 2; anonymous: web 3, want commits 3, trees 3, blobs 39, REST commits 3, trees 3, blobs 3), and answers other than the expected ones are 0. The first feed reads are all valid, anonymous 3 of 3: the activity feed and the web page list 2 old ids and 2 current ids, the events 1 and 1 where the plan's expected value is 2 and 2, because the events list one of the two pushes; the plan records the memberships as measured. The second reads, made 360 seconds or more after the first, read the same counts, anonymous 3 of 3 valid. The repository read again as recorded (6 ok lines). The report row is complete at 31 lines, with the pull-request residual line and the webhook deliveries; 11 record files and 5 run records are checksummed. No deviation. Next: TrumpBot, whose gate opened at the same check."
+        "report": "BotTools is measured and recorded. Its gate opened on the 6 hours at the 27th check (01:47:00Z on 2026-11-16), after 26 checks that printed a wait; the events then listed the push of 1 of its 2 pushed branches. The anonymous budget read 60 calls left. Step 9 passed with 15 ok lines and 2 RECORD lines, no void batch, no stop and no wait: every probe answered served (authenticated: commits 3, trees 3, blobs 39, want 2; anonymous: web 3, want commits 3, trees 3, blobs 39, REST commits 3, trees 3, blobs 3), and answers other than the expected ones are 0. The first feed reads are all valid, anonymous 3 of 3: the activity feed and the web page list 2 old ids and 2 current ids, the events 1 and 1 where the plan's expected value is 2 and 2, because the events list one of the two pushes; the plan records the memberships as measured. The second reads, made 360 seconds or more after the first, read the same counts, anonymous 3 of 3 valid. The repository read again as recorded (6 ok lines). The report row is complete at 31 lines, with the pull-request residual line and the webhook deliveries; 11 record files and 5 run records are checksummed. No deviation. Next: the first private repository, whose gate opened at the same check."
       },
       {
         "id": "S2",
-        "name": "TrumpBot",
+        "name": "First private repository",
         "state": "done",
         "rows": [
           "authenticated-probes",
@@ -193,7 +193,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           "report-rows",
           "unprovable"
         ],
-        "brief": "The same for TrumpBot once its gate opens, authenticated only.",
+        "brief": "The same for the first private repository once its gate opens, authenticated only.",
         "kind": "work",
         "steps": [
           {
@@ -230,11 +230,11 @@ window.dashboardLive&&window.dashboardLive("plan",
         "ref": "plan.md#s2--trumpbot",
         "started": "2026-11-16T01:59:01Z",
         "finished": "2026-11-16T02:08:17Z",
-        "report": "TrumpBot is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:46:29Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 2 pushed branches. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 3, trees 3, blobs 50 of the 199 in the manifest, want 2), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 2 old ids and 2 current ids. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 2 and 2: the events listed no push of the rewrite once the 6 hours had passed, the case the plan's assumption on the events' lag provides for. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines; 11 record files and 9 run records are checksummed. No deviation. Next: Support, whose gate is open on the 6 hours."
+        "report": "The first private repository is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:46:29Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 2 pushed branches. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 3, trees 3, blobs 50 of the 199 in the manifest, want 2), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 2 old ids and 2 current ids. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 2 and 2: the events listed no push of the rewrite once the 6 hours had passed, the case the plan's assumption on the events' lag provides for. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines; 11 record files and 9 run records are checksummed. No deviation. Next: the second private repository, whose gate is open on the 6 hours."
       },
       {
         "id": "S3",
-        "name": "Support",
+        "name": "Second private repository",
         "state": "done",
         "rows": [
           "authenticated-probes",
@@ -242,7 +242,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           "report-rows",
           "unprovable"
         ],
-        "brief": "The same for Support once its gate opens, authenticated only.",
+        "brief": "The same for the second private repository once its gate opens, authenticated only.",
         "kind": "work",
         "steps": [
           {
@@ -279,7 +279,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "ref": "plan.md#s3--support",
         "started": "2026-11-16T02:08:17Z",
         "finished": "2026-11-16T02:17:46Z",
-        "report": "Support is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:51:56Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 1 pushed branch. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 2, trees 2, blobs 60 of the 7259 in the manifest, want 1), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 1 old id and 1 current id. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 1 and 1: the events listed no push of the rewrite once the 6 hours had passed. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines and carries its line on what the probes cannot prove; 11 record files and 13 run records are checksummed. No deviation. All three repositories are recorded. Next: the close-out."
+        "report": "The second private repository is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:51:56Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 1 pushed branch. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 2, trees 2, blobs 60 of the 7259 in the manifest, want 1), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 1 old id and 1 current id. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 1 and 1: the events listed no push of the rewrite once the 6 hours had passed. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines and carries its line on what the probes cannot prove; 11 record files and 13 run records are checksummed. No deviation. All three repositories are recorded. Next: the close-out."
       },
       {
         "id": "S4",
@@ -319,7 +319,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "ref": "plan.md#s4--close-out",
         "started": "2026-11-16T02:17:46Z",
         "finished": "2026-11-16T02:20:14Z",
-        "report": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, TrumpBot, Support), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
+        "report": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, the first private repository, the second), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
         "result": "passed"
       }
     ],
@@ -371,7 +371,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "name": "sized",
             "at": "2026-11-15T20:55:34Z"
           },
-          "detail": "Unit 3 of the three-repository work: the residual measurement over BotTools, TrumpBot and Support. The unit's slice of the parent design (section 9) is validated against the workspace as the rewrites left it, then planned in detail.",
+          "detail": "Unit 3 of the three-repository work: the residual measurement over BotTools and the private repositories. The unit's slice of the parent design (section 9) is validated against the workspace as the rewrites left it, then planned in detail.",
           "plan": {
             "state": "re-pass",
             "from": "parent",
@@ -405,7 +405,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             {
               "text": "When should the measurement make its feed reads, given that the events can lag by up to 6 hours and a recorded read is never made again?",
               "options": [
-                "Now: the run starts once the plan is written; the events reads of TrumpBot and Support will most likely be recorded as not valid",
+                "Now: the run starts once the plan is written; the events reads of the private repositories will most likely be recorded as not valid",
                 "Per repository, once its events list a push event for every branch it pushed, or once 6 hours have passed since its push, whichever comes first",
                 "After the lag for all three: every repository's stage 9 starts from 01:51Z on 2026-11-16"
               ],
@@ -495,7 +495,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "at": "2026-11-16T02:20:14Z",
             "note": "S4 reported done; Quality Review next"
           },
-          "detail": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, TrumpBot, Support), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
+          "detail": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, the first private repository, the second), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
           "stages": [
             {
               "id": "S0",
@@ -612,11 +612,11 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s1--bottools",
               "started": "2026-11-15T21:45:37Z",
               "finished": "2026-11-16T01:59:01Z",
-              "report": "BotTools is measured and recorded. Its gate opened on the 6 hours at the 27th check (01:47:00Z on 2026-11-16), after 26 checks that printed a wait; the events then listed the push of 1 of its 2 pushed branches. The anonymous budget read 60 calls left. Step 9 passed with 15 ok lines and 2 RECORD lines, no void batch, no stop and no wait: every probe answered served (authenticated: commits 3, trees 3, blobs 39, want 2; anonymous: web 3, want commits 3, trees 3, blobs 39, REST commits 3, trees 3, blobs 3), and answers other than the expected ones are 0. The first feed reads are all valid, anonymous 3 of 3: the activity feed and the web page list 2 old ids and 2 current ids, the events 1 and 1 where the plan's expected value is 2 and 2, because the events list one of the two pushes; the plan records the memberships as measured. The second reads, made 360 seconds or more after the first, read the same counts, anonymous 3 of 3 valid. The repository read again as recorded (6 ok lines). The report row is complete at 31 lines, with the pull-request residual line and the webhook deliveries; 11 record files and 5 run records are checksummed. No deviation. Next: TrumpBot, whose gate opened at the same check."
+              "report": "BotTools is measured and recorded. Its gate opened on the 6 hours at the 27th check (01:47:00Z on 2026-11-16), after 26 checks that printed a wait; the events then listed the push of 1 of its 2 pushed branches. The anonymous budget read 60 calls left. Step 9 passed with 15 ok lines and 2 RECORD lines, no void batch, no stop and no wait: every probe answered served (authenticated: commits 3, trees 3, blobs 39, want 2; anonymous: web 3, want commits 3, trees 3, blobs 39, REST commits 3, trees 3, blobs 3), and answers other than the expected ones are 0. The first feed reads are all valid, anonymous 3 of 3: the activity feed and the web page list 2 old ids and 2 current ids, the events 1 and 1 where the plan's expected value is 2 and 2, because the events list one of the two pushes; the plan records the memberships as measured. The second reads, made 360 seconds or more after the first, read the same counts, anonymous 3 of 3 valid. The repository read again as recorded (6 ok lines). The report row is complete at 31 lines, with the pull-request residual line and the webhook deliveries; 11 record files and 5 run records are checksummed. No deviation. Next: the first private repository, whose gate opened at the same check."
             },
             {
               "id": "S2",
-              "name": "TrumpBot",
+              "name": "First private repository",
               "state": "done",
               "rows": [
                 "authenticated-probes",
@@ -624,7 +624,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "report-rows",
                 "unprovable"
               ],
-              "brief": "The same for TrumpBot once its gate opens, authenticated only.",
+              "brief": "The same for the first private repository once its gate opens, authenticated only.",
               "kind": "work",
               "steps": [
                 {
@@ -661,11 +661,11 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s2--trumpbot",
               "started": "2026-11-16T01:59:01Z",
               "finished": "2026-11-16T02:08:17Z",
-              "report": "TrumpBot is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:46:29Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 2 pushed branches. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 3, trees 3, blobs 50 of the 199 in the manifest, want 2), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 2 old ids and 2 current ids. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 2 and 2: the events listed no push of the rewrite once the 6 hours had passed, the case the plan's assumption on the events' lag provides for. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines; 11 record files and 9 run records are checksummed. No deviation. Next: Support, whose gate is open on the 6 hours."
+              "report": "The first private repository is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:46:29Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 2 pushed branches. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 3, trees 3, blobs 50 of the 199 in the manifest, want 2), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 2 old ids and 2 current ids. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 2 and 2: the events listed no push of the rewrite once the 6 hours had passed, the case the plan's assumption on the events' lag provides for. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines; 11 record files and 9 run records are checksummed. No deviation. Next: the second private repository, whose gate is open on the 6 hours."
             },
             {
               "id": "S3",
-              "name": "Support",
+              "name": "Second private repository",
               "state": "done",
               "rows": [
                 "authenticated-probes",
@@ -673,7 +673,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                 "report-rows",
                 "unprovable"
               ],
-              "brief": "The same for Support once its gate opens, authenticated only.",
+              "brief": "The same for the second private repository once its gate opens, authenticated only.",
               "kind": "work",
               "steps": [
                 {
@@ -710,7 +710,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s3--support",
               "started": "2026-11-16T02:08:17Z",
               "finished": "2026-11-16T02:17:46Z",
-              "report": "Support is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:51:56Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 1 pushed branch. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 2, trees 2, blobs 60 of the 7259 in the manifest, want 1), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 1 old id and 1 current id. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 1 and 1: the events listed no push of the rewrite once the 6 hours had passed. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines and carries its line on what the probes cannot prove; 11 record files and 13 run records are checksummed. No deviation. All three repositories are recorded. Next: the close-out."
+              "report": "The second private repository is measured and recorded, authenticated only. Its gate opened on the 6 hours (01:51:56Z on 2026-11-16); at the last check that read its events they listed the push of 0 of its 1 pushed branch. Step 9 passed with 7 ok lines and 1 RECORD line, no void batch, no stop and no wait: every authenticated probe answered served (commits 2, trees 2, blobs 60 of the 7259 in the manifest, want 1), and answers other than the expected ones are 0. The activity feed read is valid on both reads, 1 old id and 1 current id. The events read lists no current id on both reads and is recorded not valid, where the plan's expected value is 1 and 1: the events listed no push of the rewrite once the 6 hours had passed. The repository read again as recorded (6 ok lines). The report row is complete at 16 lines and carries its line on what the probes cannot prove; 11 record files and 13 run records are checksummed. No deviation. All three repositories are recorded. Next: the close-out."
             },
             {
               "id": "S4",
@@ -750,7 +750,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s4--close-out",
               "started": "2026-11-16T02:17:46Z",
               "finished": "2026-11-16T02:20:14Z",
-              "report": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, TrumpBot, Support), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
+              "report": "The close-out passed, every step as the plan expects. All eight checksum lists verify: the rewrites' four (49, 28, 29 and 28 files) and this unit's four (13, 11, 11 and 11 files). The tools are at their pins (96 ok lines). The earlier tool folder equals its pins (21 of 21 pinned files, 22 files in the folder), the 21 reused tools and the runner equal their list, and the runner is unchanged. The output rule holds: the unit's part of the run log is 555 lines with STOP 0, WAIT 0, NEXT 0 and RECORD 7, and neither it nor the 9 records checked hold a drive-letter path or a 40-digit id. The log part holds the lines of this unit's 19 runner steps, 18 of which print a stage line, and of no other unit. The second feed reads followed the first by 383, 368 and 366 seconds (BotTools, the first private repository, the second), each at least 360. No deviation from the plan in the whole run. The landing's document checks are not part of these stages and are still to run.",
               "result": "passed"
             }
           ]
@@ -958,7 +958,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "step": "plan",
         "text": "When should the measurement make its feed reads, given that the events can lag by up to 6 hours and a recorded read is never made again?",
         "options": [
-          "Now: the run starts once the plan is written; the events reads of TrumpBot and Support will most likely be recorded as not valid",
+          "Now: the run starts once the plan is written; the events reads of the private repositories will most likely be recorded as not valid",
           "Per repository, once its events list a push event for every branch it pushed, or once 6 hours have passed since its push, whichever comes first",
           "After the lag for all three: every repository's stage 9 starts from 01:51Z on 2026-11-16"
         ],
@@ -1029,7 +1029,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "label": "Plan accepted",
       "date": "2026-11-15",
       "ref": "plan.md",
-      "note": "five stages: readiness at once, then BotTools, TrumpBot and Support, each when its events gate opens (its events list the push of every branch it pushed, or 6 hours have passed since its push), probed, read twice and recorded in counts only, and a close-out; nothing is written to GitHub; the plan weighs no option beyond the parent design's"
+      "note": "five stages: readiness at once, then BotTools and the private repositories, each when its events gate opens (its events list the push of every branch it pushed, or 6 hours have passed since its push), probed, read twice and recorded in counts only, and a close-out; nothing is written to GitHub; the plan weighs no option beyond the parent design's"
     },
     {
       "column": "built",
@@ -1099,12 +1099,12 @@ window.dashboardLive&&window.dashboardLive("plan",
     {
       "date": "2026-11-16",
       "column": "built",
-      "label": "S1 done; S2 current: TrumpBot"
+      "label": "S1 done; S2 current: the first private repository"
     },
     {
       "date": "2026-11-16",
       "column": "built",
-      "label": "S2 done; S3 current: Support"
+      "label": "S2 done; S3 current: the second private repository"
     },
     {
       "date": "2026-11-16",
@@ -1318,7 +1318,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#steps-of-a-repository",
               "heading": "Steps of a repository",
-              "paragraph": "The steps are the same for the three repositories: `S1.gate` to `S1.record` for BotTools, `S2.gate` to `S2.record` for TrumpBot (with no `budget` step) and `S3.gate` to `S3.record` for Support, each stage starting when its gate opens. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g41\\status\\` and requires the marker of the one before it.",
+              "paragraph": "The steps are the same for the three repositories: `S1.gate` to `S1.record` for BotTools, `S2.gate` to `S2.record` for the first private repository (with no `budget` step) and `S3.gate` to `S3.record` for the second private repository, each stage starting when its gate opens. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g41\\status\\` and requires the marker of the one before it.",
               "hash": "d38e89fc8c2d"
             }
           }
@@ -1374,7 +1374,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "summary": "Nothing has measured what GitHub still serves of the three old histories to a signed-in reader. GitHub keeps serving every pre-rewrite object by id, with no documented expiry, so every old branch tip, every first-changed commit, their trees and the purged blobs of all three are expected still served to a reader with access; the rewrites counted only BotTools' pull-request residual, on its fresh mirror.",
         "evidence": [
           "`../consequences.md:57` — GitHub keeps serving every pre-rewrite object by id, with no documented expiry",
-          "`../architecture.md:553` — authenticated probes of every old branch tip, every first-changed commit, their trees, a sample of manifest blobs and a protocol-v2 `want` of each old tip: all 39 of BotTools' blobs, 50 of TrumpBot's 199, 60 of Support's 7,259",
+          "`../architecture.md:553` — authenticated probes of every old branch tip, every first-changed commit, their trees, a sample of manifest blobs and a protocol-v2 `want` of each old tip: all 39 of BotTools' blobs, 50 of the first private repository's 199, 60 of the second's 7,259",
           "`../architecture.md:562` — every old object of the three repositories is expected still served to an authenticated reader with access",
           "`../40-rewrites/consequences.md:159` — what GitHub still serves of the three old histories is not measured by the rewrites"
         ],
@@ -1396,7 +1396,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "summary": null,
         "statements": [
           {
-            "text": "All three repositories were probed authenticated in their four batches, every probe served: commits, trees, blobs and the `want` of each old tip 3, 3, 39 and 2 for BotTools, 3, 3, 50 and 2 for TrumpBot, and 2, 2, 60 and 1 for Support, at the tools' pinned pace of 0.4 seconds, read beside the procedure.",
+            "text": "All three repositories were probed authenticated in their four batches, every probe served: commits, trees, blobs and the `want` of each old tip 3, 3, 39 and 2 for BotTools, 3, 3, 50 and 2 for the first private repository, and 2, 2, 60 and 1 for the second, at the tools' pinned pace of 0.4 seconds, read beside the procedure.",
             "state": "amended",
             "ref": "final-implementation.md#3-measurements",
             "excerpt": {
@@ -1407,7 +1407,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "Every manifest blob of BotTools was probed, 39 of 39, and evenly spaced samples of the others: 50 of TrumpBot's 199 and 60 of Support's 7,259.",
+            "text": "Every manifest blob of BotTools was probed, 39 of 39, and evenly spaced samples of the others: 50 of the first private repository's 199 and 60 of the second's 7,259.",
             "state": "as-planned",
             "ref": "final-implementation.md#3-measurements",
             "excerpt": {
@@ -1476,7 +1476,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "Take every manifest blob of BotTools and an evenly spaced sample of at most 60 of each other repository's: 50 of TrumpBot's 199 and 60 of Support's 7,259.",
+            "text": "Take every manifest blob of BotTools and an evenly spaced sample of at most 60 of each other repository's: 50 of the first private repository's 199 and 60 of the second's 7,259.",
             "ref": "plan.md#step-9-and-its-close-out",
             "excerpt": {
               "ref": "plan.md#step-9-and-its-close-out",
@@ -1666,12 +1666,12 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "Make no anonymous probe or feed read of TrumpBot or Support.",
+            "text": "Make no anonymous probe or feed read of either private repository.",
             "ref": "plan.md#non-goals",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No write to GitHub and no removal: no ref, pull request, object or cached view is removed, and no GitHub Support ticket is filed. · No anonymous probe or feed read of TrumpBot or Support. They are private. · No tool change. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No count of BotTools' webhook deliveries (the rewrites counted them once) and no read of a delivery's payload. · No split of BotTools' pull-request residual by ref. The row carries the rewrites' record for the two refs together. · No report on #2, no …",
+              "paragraph": "No write to GitHub and no removal: no ref, pull request, object or cached view is removed, and no GitHub Support ticket is filed. · No anonymous probe or feed read of either private repository. They are private. · No tool change. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No count of BotTools' webhook deliveries (the rewrites counted them once) and no read of a delivery's payload. · No split of BotTools' pull-request residual by ref. The row carries the rewrites' record for the two refs together. · No report on #2, no …",
               "hash": "2eac8b7767f0"
             }
           }
@@ -1730,29 +1730,29 @@ window.dashboardLive&&window.dashboardLive("plan",
         "summary": null,
         "statements": [
           {
-            "text": "Each repository's step 9 waited behind its events gate, which opened on the 6 hours for all three, BotTools' and TrumpBot's at the check of 01:47:00Z on 2026-11-16 and Support's read open at 01:59:29Z; at the last checks that read their events, these listed the push of 1 of 2, 0 of 2 and 0 of 1 pushed branches.",
+            "text": "Each repository's step 9 waited behind its events gate, which opened on the 6 hours for all three, BotTools' and the first private repository's at the check of 01:47:00Z on 2026-11-16 and the second private repository's read open at 01:59:29Z; at the last checks that read their events, these listed the push of 1 of 2, 0 of 2 and 0 of 1 pushed branches.",
             "state": "as-planned",
             "ref": "final-implementation.md#32-the-events-gate",
             "excerpt": {
               "ref": "final-implementation.md#32-the-events-gate",
               "heading": "3.2 The events gate",
-              "paragraph": "No gate opened on the events: each repository's gate opened on its 6 hours. The gate writes no record of its own; each of its checks is a row here. A cell holds the first word of the repository's line and its count: `k of n` is the number of the repository's pushed branches whose push the events list. `WAIT` is a repository waiting while no gate is open, `note` one waiting while another is open, `ok` an open gate. A repository whose stage has started is not checked again. The 6 hours since each push end on 2026-11-16 at 01:40:49Z (BotTools), 01:46:29Z (TrumpBot) and 01:51:56Z (Support).",
+              "paragraph": "No gate opened on the events: each repository's gate opened on its 6 hours. The gate writes no record of its own; each of its checks is a row here. A cell holds the first word of the repository's line and its count: `k of n` is the number of the repository's pushed branches whose push the events list. `WAIT` is a repository waiting while no gate is open, `note` one waiting while another is open, `ok` an open gate. A repository whose stage has started is not checked again. The 6 hours since each push end on 2026-11-16 at 01:40:49Z (BotTools), 01:46:29Z (the first private repository) and 01:51:56Z (the second private repository).",
               "hash": "1e03f687db71"
             }
           },
           {
-            "text": "The stages ran one at a time, BotTools, TrumpBot, then Support, each starting once the one before was recorded, after 26 checks that waited about 9 minutes apart.",
+            "text": "The stages ran one at a time, BotTools, the first private repository, then the second, each starting once the one before was recorded, after 26 checks that waited about 9 minutes apart.",
             "state": "as-planned",
             "ref": "final-implementation.md#32-the-events-gate",
             "excerpt": {
               "ref": "final-implementation.md#32-the-events-gate",
               "heading": "3.2 The events gate",
-              "paragraph": "No gate opened on the events: each repository's gate opened on its 6 hours. The gate writes no record of its own; each of its checks is a row here. A cell holds the first word of the repository's line and its count: `k of n` is the number of the repository's pushed branches whose push the events list. `WAIT` is a repository waiting while no gate is open, `note` one waiting while another is open, `ok` an open gate. A repository whose stage has started is not checked again. The 6 hours since each push end on 2026-11-16 at 01:40:49Z (BotTools), 01:46:29Z (TrumpBot) and 01:51:56Z (Support).",
+              "paragraph": "No gate opened on the events: each repository's gate opened on its 6 hours. The gate writes no record of its own; each of its checks is a row here. A cell holds the first word of the repository's line and its count: `k of n` is the number of the repository's pushed branches whose push the events list. `WAIT` is a repository waiting while no gate is open, `note` one waiting while another is open, `ok` an open gate. A repository whose stage has started is not checked again. The 6 hours since each push end on 2026-11-16 at 01:40:49Z (BotTools), 01:46:29Z (the first private repository) and 01:51:56Z (the second private repository).",
               "hash": "1e03f687db71"
             }
           },
           {
-            "text": "The activity feed and the events of all three were read authenticated in step 9 and read again in each repository's second feed reads, 383, 368 and 366 seconds after the first for BotTools, TrumpBot and Support.",
+            "text": "The activity feed and the events of all three were read authenticated in step 9 and read again in each repository's second feed reads, 383, 368 and 366 seconds after the first for BotTools and the private repositories.",
             "state": "as-planned",
             "ref": "final-implementation.md#36-the-close-out-s4-and-the-run-log",
             "excerpt": {
@@ -1763,7 +1763,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "BotTools' reads were all valid, its events reads listing 1 old id and 1 current id where the plan expected 2 and 2; TrumpBot's and Support's activity feed reads were valid, and their events reads, which listed no current id, were recorded not valid on both reads, never absent.",
+            "text": "BotTools' reads were all valid, its events reads listing 1 old id and 1 current id where the plan expected 2 and 2; the private repositories' activity feed reads were valid, and their events reads, which listed no current id, were recorded not valid on both reads, never absent.",
             "state": "as-planned",
             "ref": "final-implementation.md#3-measurements",
             "excerpt": {
@@ -1801,12 +1801,12 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "Run each repository's stage whole as its gate opens, in the order BotTools, TrumpBot, Support when two open at one check, one stage at a time, with a 9-minute wait between checks while every gate waits.",
+            "text": "Run each repository's stage whole as its gate opens, in the order BotTools, the first private repository, the second when two open at one check, one stage at a time, with a 9-minute wait between checks while every gate waits.",
             "ref": "plan.md#shape-of-the-run",
             "excerpt": {
               "ref": "plan.md#shape-of-the-run",
               "heading": "Shape of the run",
-              "paragraph": "Five stages. `S0` reads and checks and runs at once, before any gate opens; its only writes are the unit's data file, its scratch folder and the run log's lines. `S1`, `S2` and `S3` measure BotTools, TrumpBot and Support, each in the steps of its own table; a repository's stage starts only when its events gate has opened. `S4` is the close-out, after the third repository's record. The landing's document checks follow, outside the table. Every stop leaves the state its row of \"Stops and the state each leaves\" names.",
+              "paragraph": "Five stages. `S0` reads and checks and runs at once, before any gate opens; its only writes are the unit's data file, its scratch folder and the run log's lines. `S1`, `S2` and `S3` measure BotTools and the private repositories, each in the steps of its own table; a repository's stage starts only when its events gate has opened. `S4` is the close-out, after the third repository's record. The landing's document checks follow, outside the table. Every stop leaves the state its row of \"Stops and the state each leaves\" names.",
               "hash": "cccb0b45ae39"
             }
           },
@@ -1903,7 +1903,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "summary": null,
         "statements": [
           {
-            "text": "Each repository's row was written once in step 9, in counts only: its fixed lines, its tallies, its first feed reads, 0 answers other than the expected ones and the line on what the probes cannot prove, 25 lines for BotTools and 13 for TrumpBot and Support.",
+            "text": "Each repository's row was written once in step 9, in counts only: its fixed lines, its tallies, its first feed reads, 0 answers other than the expected ones and the line on what the probes cannot prove, 25 lines for BotTools and 13 for the private repositories.",
             "state": "as-planned",
             "ref": "final-implementation.md#3-measurements",
             "excerpt": {
@@ -2101,7 +2101,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No write to GitHub and no removal: no ref, pull request, object or cached view is removed, and no GitHub Support ticket is filed. · No anonymous probe or feed read of TrumpBot or Support. They are private. · No tool change. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No count of BotTools' webhook deliveries (the rewrites counted them once) and no read of a delivery's payload. · No split of BotTools' pull-request residual by ref. The row carries the rewrites' record for the two refs together. · No report on #2, no …",
+              "paragraph": "No write to GitHub and no removal: no ref, pull request, object or cached view is removed, and no GitHub Support ticket is filed. · No anonymous probe or feed read of either private repository. They are private. · No tool change. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No count of BotTools' webhook deliveries (the rewrites counted them once) and no read of a delivery's payload. · No split of BotTools' pull-request residual by ref. The row carries the rewrites' record for the two refs together. · No report on #2, no …",
               "hash": "2eac8b7767f0"
             }
           },
@@ -2161,7 +2161,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "state": "as-planned",
         "statements": [
           {
-            "text": "Each repository's completed row carries the line on what the probes cannot prove, in the plan's words, as the last of the lines step 9 wrote: the 25th of BotTools' 31 lines and the 13th of TrumpBot's and Support's 16.",
+            "text": "Each repository's completed row carries the line on what the probes cannot prove, in the plan's words, as the last of the lines step 9 wrote: the 25th of BotTools' 31 lines and the 13th of the private repositories' 16.",
             "state": "as-planned",
             "ref": "final-implementation.md#3-measurements",
             "excerpt": {
@@ -2256,7 +2256,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No write to GitHub and no removal: no ref, pull request, object or cached view is removed, and no GitHub Support ticket is filed. · No anonymous probe or feed read of TrumpBot or Support. They are private. · No tool change. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No count of BotTools' webhook deliveries (the rewrites counted them once) and no read of a delivery's payload. · No split of BotTools' pull-request residual by ref. The row carries the rewrites' record for the two refs together. · No report on #2, no …",
+              "paragraph": "No write to GitHub and no removal: no ref, pull request, object or cached view is removed, and no GitHub Support ticket is filed. · No anonymous probe or feed read of either private repository. They are private. · No tool change. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No count of BotTools' webhook deliveries (the rewrites counted them once) and no read of a delivery's payload. · No split of BotTools' pull-request residual by ref. The row carries the rewrites' record for the two refs together. · No report on #2, no …",
               "hash": "2eac8b7767f0"
             }
           },
@@ -2297,7 +2297,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "consequences.md#21-github"
       },
       {
-        "who": "TrumpBot and Support on GitHub (private)",
+        "who": "The private repositories on GitHub",
         "kind": "repository",
         "system": null,
         "effect": "none",
@@ -2321,7 +2321,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "consequences.md#22-this-machine"
       },
       {
-        "who": "The TrumpBot clone, every other checkout and the request service",
+        "who": "The private repository clone, every other checkout and the request service",
         "kind": "operator",
         "system": null,
         "effect": "none",
@@ -2368,7 +2368,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "entry": "downstream.5",
         "what": "The landing also carries a note in the verification results of the parent research, and the parent design takes no dated note.",
-        "why": "The push findings expected one push event per rewritten branch within the events' documented lag of up to 6 hours, and after the 6 hours the events listed 1 of BotTools' 2 pushes and none of TrumpBot's 2 or Support's 1; the verification results are where the research keeps what a build found against its claims, and the measurement ran as the parent design's §9 describes (the as-built record, deviation 2).",
+        "why": "The push findings expected one push event per rewritten branch within the events' documented lag of up to 6 hours, and after the 6 hours the events listed 1 of BotTools' 2 pushes and none of the first private repository's 2 or the second's 1; the verification results are where the research keeps what a build found against its claims, and the measurement ran as the parent design's §9 describes (the as-built record, deviation 2).",
         "when": "Document",
         "ref": "final-implementation.md#4-deviations-from-the-plan"
       }
@@ -2403,24 +2403,24 @@ window.dashboardLive&&window.dashboardLive("plan",
     "items": [
       {
         "issue": 39,
-        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools and the private repositories",
         "state": "CLOSED",
         "stateReason": "COMPLETED"
       },
       {
         "issue": 40,
-        "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
         "state": "CLOSED",
         "stateReason": "COMPLETED"
       },
       {
         "issue": 41,
-        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
         "state": "OPEN"
       },
       {
         "issue": 42,
-        "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+        "title": "Phase 0 · 7.4 — Replace the private repository clone",
         "state": "OPEN"
       }
     ]
@@ -2495,7 +2495,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         }
       },
       {
-        "what": "The As built statements' references into final-implementation.md are brought to the sections that now hold what each rests on: the reconciled record numbers Readiness, the events gate, BotTools, Support and the close-out §3.1, §3.2, §3.3, §3.5 and §3.6 under §3 Measurements, after §1 What was built and §2 Acceptance, so the anchors the statements cited named no section; a statement on all three repositories now cites §3 or §2. The reference of residual-stays' third statement to consequences.md §6 stands, its excerpt copied again from the reconciled section.",
+        "what": "The As built statements' references into final-implementation.md are brought to the sections that now hold what each rests on: the reconciled record numbers Readiness, the events gate, BotTools, the second private repository and the close-out §3.1, §3.2, §3.3, §3.5 and §3.6 under §3 Measurements, after §1 What was built and §2 Acceptance, so the anchors the statements cited named no section; a statement on all three repositories now cites §3 or §2. The reference of residual-stays' third statement to consequences.md §6 stands, its excerpt copied again from the reconciled section.",
         "when": "2026-11-16"
       }
     ]

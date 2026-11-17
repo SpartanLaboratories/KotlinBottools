@@ -7,9 +7,9 @@ window.dashboardLive&&window.dashboardLive("plan",
   "slug": "42-clone-replacement",
   "folder": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/42-clone-replacement",
   "kind": "issue",
-  "title": "Replace the TrumpBot clone",
-  "issueTitle": "Phase 0 · 7.4 — Replace the TrumpBot clone",
-  "function": "The local TrumpBot clone still holds TrumpBot's history from before the rewrite, which the server's branches no longer share, and a code knowledge graph built from that old tree. This unit has it replaced once TrumpBot's push is proven: the old clone renamed aside on its own volume as the lock probe, behind guards and with a bounded retry; a fresh clone made at the same path, with the four `.idea/` files restored and nothing else git does not track carried; the fresh clone proven to reach no pre-rewrite commit or purged blob, and read back by the unit before the old clone is deleted at its recorded path; then the graph rebuilt from the rewritten tree by a code-only build, with its two hooks, and read back. Unit 4 of #27, the last, with no version moved: every change to the clone is a request carried out under the grant for this unit's job, nothing is written to GitHub, this working tree changes only by the landing, and the landing carries documents only.",
+  "title": "Replace the private repository clone",
+  "issueTitle": "Phase 0 · 7.4 — Replace the private repository clone",
+  "function": "The local private repository clone still holds the first private repository's history from before the rewrite, which the server's branches no longer share, and a code knowledge graph built from that old tree. This unit has it replaced once the first private repository's push is proven: the old clone renamed aside on its own volume as the lock probe, behind guards and with a bounded retry; a fresh clone made at the same path, with the four `.idea/` files restored and nothing else git does not track carried; the fresh clone proven to reach no pre-rewrite commit or purged blob, and read back by the unit before the old clone is deleted at its recorded path; then the graph rebuilt from the rewritten tree by a code-only build, with its two hooks, and read back. Unit 4 of #27, the last, with no version moved: every change to the clone is a request carried out under the grant for this unit's job, nothing is written to GitHub, this working tree changes only by the landing, and the landing carries documents only.",
   "status": "built",
   "sized": "2026-11-16T03:31:47Z",
   "parent": {
@@ -342,7 +342,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "ref": "plan.md#s4--close-out",
         "started": "2026-11-16T19:47:54Z",
         "finished": "2026-11-16T19:50:17Z",
-        "report": "The close-out passed: the rewrites' run records (49 files), TrumpBot's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
+        "report": "The close-out passed: the rewrites' run records (49 files), the first private repository's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
         "result": "passed"
       }
     ],
@@ -664,7 +664,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "answered": "2026-11-16T05:57:48Z"
             },
             {
-              "text": "Delete the board files' ignore at the root of the TrumpBot clone, leaving its exclude line, and run no graph job on that checkout until the replacement is complete?",
+              "text": "Delete the board files' ignore at the root of the private repository clone, leaving its exclude line, and run no graph job on that checkout until the replacement is complete?",
               "answer": null,
               "asked": "2026-11-16T04:35:59Z",
               "answered": "2026-11-16T05:57:48Z"
@@ -949,7 +949,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "at": "2026-11-16T19:50:17Z",
             "note": "S4 reported done; Quality Review next"
           },
-          "detail": "The close-out passed: the rewrites' run records (49 files), TrumpBot's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
+          "detail": "The close-out passed: the rewrites' run records (49 files), the first private repository's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
           "stages": [
             {
               "id": "S0",
@@ -1227,7 +1227,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s4--close-out",
               "started": "2026-11-16T19:47:54Z",
               "finished": "2026-11-16T19:50:17Z",
-              "report": "The close-out passed: the rewrites' run records (49 files), TrumpBot's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
+              "report": "The close-out passed: the rewrites' run records (49 files), the first private repository's rewrite records (29), the 6 earlier records and the untouched backup (22) still equal their lists, and this unit's 9 records are written under their checksum list and verify; the tools are at their pins (96 ok); the earlier tool folder holds 21 of 21 pinned files and the runner its recorded size and hash; the output rule holds over the unit's 370 lines of the run log (STOP 0, WAIT 0, NEXT 0, RECORD 4: the grant's wording, the two of the clone's guards and the graph's expected one), the 2 stored replies and the 2 request files. Only the unit's own 11 runner steps are in its part of the log.",
               "result": "passed"
             }
           ]
@@ -1432,7 +1432,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       {
         "step": "implementation",
-        "text": "Delete the board files' ignore at the root of the TrumpBot clone, leaving its exclude line, and run no graph job on that checkout until the replacement is complete?",
+        "text": "Delete the board files' ignore at the root of the private repository clone, leaving its exclude line, and run no graph job on that checkout until the replacement is complete?",
         "answer": null,
         "asked": "2026-11-16T04:35:59Z",
         "answered": "2026-11-16T05:57:48Z"
@@ -1515,7 +1515,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "label": "Research verified, in #27's run",
       "date": "2026-11-13",
       "ref": "../research/README.md",
-      "note": "written on this board when the run started, from #27's research question on moving the old clone aside and its summary, and its architecture's current state of the clone, the volumes, the tools and the request service (§2.2 to §2.5), this unit's design in §10 and its row in §16, with #27's consequences (§2.2, §5, §6); and from the state the earlier units left: the tools unit's clone set and the assumptions it left to this unit's run, and the rewrites' records for TrumpBot"
+      "note": "written on this board when the run started, from #27's research question on moving the old clone aside and its summary, and its architecture's current state of the clone, the volumes, the tools and the request service (§2.2 to §2.5), this unit's design in §10 and its row in §16, with #27's consequences (§2.2, §5, §6); and from the state the earlier units left: the tools unit's clone set and the assumptions it left to this unit's run, and the rewrites' records for the first private repository"
     },
     {
       "column": "considered",
@@ -1678,15 +1678,15 @@ window.dashboardLive&&window.dashboardLive("plan",
     {
       "id": "readiness",
       "group": "Readiness",
-      "name": "Readiness: TrumpBot proven, the clone set at its pins, the read-only checks and the census of the clone",
+      "name": "Readiness: the first private repository proven, the clone set at its pins, the read-only checks and the census of the clone",
       "system": "clone-realignment",
       "where": "the clone set's checks and census · the unit's data file, following the rewrites' records",
       "gap": {
         "kind": "missing",
-        "summary": "Nothing yet starts the replacement from what the rewrites left. It runs once TrumpBot holds its stage-8 marker and the server's heads equal `ref-map`'s new column, which the rewrites hand on with TrumpBot's maps, manifest and untouched backup; the clone set's checks and census ran only on made-up clones and the self-test's stand-ins, and the real clone was neither read nor touched.",
+        "summary": "Nothing yet starts the replacement from what the rewrites left. It runs once the first private repository holds its stage-8 marker and the server's heads equal `ref-map`'s new column, which the rewrites hand on with the first private repository's maps, manifest and untouched backup; the clone set's checks and census ran only on made-up clones and the self-test's stand-ins, and the real clone was neither read nor touched.",
         "evidence": [
-          "`../architecture.md:584` — the unit runs once TrumpBot's push is proven: its stage-8 marker, and the server's heads equal to `ref-map`'s new column",
-          "`../40-rewrites/consequences.md:126` — the clone replacement takes TrumpBot's stage-8 marker, its `ref-map` and `commit-map`, its manifest and its untouched backup",
+          "`../architecture.md:584` — the unit runs once the first private repository's push is proven: its stage-8 marker, and the server's heads equal to `ref-map`'s new column",
+          "`../40-rewrites/consequences.md:126` — the clone replacement takes the first private repository's stage-8 marker, its `ref-map` and `commit-map`, its manifest and its untouched backup",
           "`../39-workspace-tools/consequences.md:174` — the census ran on made-up clones only; the clone replacement's census of the real clone is the check",
           "`../39-workspace-tools/consequences.md:175` — the clone checks ran against stand-ins for `stat` and `tasklist`; the clone replacement's checks are the check",
           "`../architecture.md:156` — the preparation unit's clone scripts move the clone into the workspace, archive every file git does not track and stop on its hooks and exclude entry"
@@ -1725,13 +1725,13 @@ window.dashboardLive&&window.dashboardLive("plan",
         "summary": null,
         "statements": [
           {
-            "text": "The unit's data file named the rewrites' records, and those records, the preparation unit's earlier TrumpBot records, the untouched backup's 22 files, the manifest's 199 blobs and TrumpBot's stage-8 marker all equalled their lists and counts.",
+            "text": "The unit's data file named the rewrites' records, and those records, the preparation unit's earlier records of the first private repository, the untouched backup's 22 files, the manifest's 199 blobs and the first private repository's stage-8 marker all equalled their lists and counts.",
             "state": "as-planned",
             "ref": "final-implementation.md#31-readiness-s0",
             "excerpt": {
               "ref": "final-implementation.md#31-readiness-s0",
               "heading": "3.1 Readiness (`S0`)",
-              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and TrumpBot's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier TrumpBot records equal those recorded at …",
+              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and the first private repository's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier records of the first private repository equal those recorded at …",
               "hash": "d91ff889e5de"
             }
           },
@@ -1742,7 +1742,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#31-readiness-s0",
               "heading": "3.1 Readiness (`S0`)",
-              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and TrumpBot's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier TrumpBot records equal those recorded at …",
+              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and the first private repository's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier records of the first private repository equal those recorded at …",
               "hash": "d91ff889e5de"
             }
           },
@@ -1753,7 +1753,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#31-readiness-s0",
               "heading": "3.1 Readiness (`S0`)",
-              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and TrumpBot's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier TrumpBot records equal those recorded at …",
+              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and the first private repository's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier records of the first private repository equal those recorded at …",
               "hash": "d91ff889e5de"
             }
           },
@@ -1764,7 +1764,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#31-readiness-s0",
               "heading": "3.1 Readiness (`S0`)",
-              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and TrumpBot's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier TrumpBot records equal those recorded at …",
+              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and the first private repository's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier records of the first private repository equal those recorded at …",
               "hash": "d91ff889e5de"
             }
           }
@@ -1774,7 +1774,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "build",
         "statements": [
           {
-            "text": "The replacement starts from the rewrites' records through the unit's data file, `from=g40`: TrumpBot's stage-8 marker, its maps, its manifest and its untouched backup, each proved against its checksum list or its count.",
+            "text": "The replacement starts from the rewrites' records through the unit's data file, `from=g40`: the first private repository's stage-8 marker, its maps, its manifest and its untouched backup, each proved against its checksum list or its count.",
             "ref": "plan.md#s0--readiness",
             "excerpt": {
               "ref": "plan.md#s0--readiness",
@@ -1824,7 +1824,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           },
           {
             "id": "S0.records",
-            "what": "The rewrites' records, the preparation unit's TrumpBot records, the untouched backup and the manifest compared with their lists, read only.",
+            "what": "The rewrites' records, the preparation unit's records of the first private repository, the untouched backup and the manifest compared with their lists, read only.",
             "check": "lists of 49, 29, 6 and 22 files equal, 199 manifest blobs, 11 `commit-map` rows, the stage-8 marker, and `STAGE S0.records OK`",
             "link": "plan.md#s0--readiness"
           },
@@ -1859,7 +1859,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "group": "The replacement",
       "name": "The old clone moved aside by one rename on its own volume",
       "system": "clone-realignment",
-      "where": "the TrumpBot clone, renamed to the folder beside it · the replacement procedure's guards and rename",
+      "where": "the private repository clone, renamed to the folder beside it · the replacement procedure's guards and rename",
       "gap": {
         "kind": "risk",
         "summary": "The earlier procedure's move of the clone is no rename on this machine. The clone and the workspace sit on volumes with different device numbers, so a move into the workspace is a copy followed by a deletion, which with one file held open leaves a full copy and a mostly deleted source; and the open-file count alone misses a working directory or a directory handle inside the clone.",
@@ -1900,7 +1900,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#32-the-replacement-s1",
               "heading": "3.2 The replacement (`S1`)",
-              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-TrumpBot.json (key clone-replace-TrumpBot, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-TrumpBot`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-TrumpBot as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
+              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-….json (key clone-replace-…, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-…`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-… as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
               "hash": "2edb41a6fa8c"
             }
           },
@@ -1911,7 +1911,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#32-the-replacement-s1",
               "heading": "3.2 The replacement (`S1`)",
-              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-TrumpBot.json (key clone-replace-TrumpBot, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-TrumpBot`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-TrumpBot as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
+              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-….json (key clone-replace-…, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-…`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-… as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
               "hash": "2edb41a6fa8c"
             }
           },
@@ -1922,7 +1922,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#32-the-replacement-s1",
               "heading": "3.2 The replacement (`S1`)",
-              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-TrumpBot.json (key clone-replace-TrumpBot, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-TrumpBot`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-TrumpBot as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
+              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-….json (key clone-replace-…, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-…`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-… as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
               "hash": "2edb41a6fa8c"
             }
           },
@@ -1933,7 +1933,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#32-the-replacement-s1",
               "heading": "3.2 The replacement (`S1`)",
-              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-TrumpBot.json (key clone-replace-TrumpBot, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-TrumpBot`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-TrumpBot as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
+              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-….json (key clone-replace-…, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-…`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-… as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
               "hash": "2edb41a6fa8c"
             }
           }
@@ -1952,7 +1952,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "build",
         "statements": [
           {
-            "text": "The old clone is moved aside by one rename, on its own volume, to the folder `TrumpBot-old` beside the clone, as the lock probe.",
+            "text": "The old clone is moved aside by one rename, on its own volume, to the folder `…-old` beside the clone, as the lock probe.",
             "ref": "plan.md#risks-and-edge-cases",
             "excerpt": {
               "ref": "plan.md#risks-and-edge-cases",
@@ -2073,7 +2073,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#32-the-replacement-s1",
               "heading": "3.2 The replacement (`S1`)",
-              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-TrumpBot.json (key clone-replace-TrumpBot, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-TrumpBot`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-TrumpBot as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
+              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-….json (key clone-replace-…, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-…`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-… as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
               "hash": "2edb41a6fa8c"
             }
           },
@@ -2084,7 +2084,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#32-the-replacement-s1",
               "heading": "3.2 The replacement (`S1`)",
-              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-TrumpBot.json (key clone-replace-TrumpBot, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-TrumpBot`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-TrumpBot as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
+              "paragraph": "`S1.request` (typed), at 06:06:41Z: `ok request written: requests/replace-….json (key clone-replace-…, 8 commands)`, no reply stored before, 8 entries. · `S1.send`: one `replace-clone` request by file, id `SpartanLaboratories-KotlinBottools-42/42/clone-replace-…`, attempt · The request service carried it out on that attempt, at about 19:26Z; its own check refused no call. · `S1.reply`: delivered as a file of 4,835 bytes and stored at 19:29:17Z as `ok stored reply 1 for clone-replace-… as done (88 printed lines)`: the 84 lines the procedure printed and the 4 check …",
               "hash": "2edb41a6fa8c"
             }
           },
@@ -2130,7 +2130,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No write to GitHub but the closing of #27 after the landing. No commit to TrumpBot: no `.gitignore`, no README pointer, no archive (Phase 17). · No change to the tools. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No carrying of the old clone's graph, its exclude entries, its hooks, the board files' ignore or its two extra configuration keys (`lfs.repositoryformatversion`, `submodule.active`) into the fresh clone. · No narrowing of the old clone's access entries while it is aside; a rename widens access by nobody, …",
+              "paragraph": "No write to GitHub but the closing of #27 after the landing. No commit to the first private repository: no `.gitignore`, no README pointer, no archive (Phase 17). · No change to the tools. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No carrying of the old clone's graph, its exclude entries, its hooks, the board files' ignore or its two extra configuration keys (`lfs.repositoryformatversion`, `submodule.active`) into the fresh clone. · No narrowing of the old clone's access entries while it is aside; a rename widens access by nobody, …",
               "hash": "2195286dc37d"
             }
           }
@@ -2161,15 +2161,15 @@ window.dashboardLive&&window.dashboardLive("plan",
       "group": "Proofs",
       "name": "The fresh clone at the same path, and its proofs",
       "system": "clone-realignment",
-      "where": "the TrumpBot clone's path · the replacement procedure's fresh clone, restore and proofs, and the unit's read-back",
+      "where": "the private repository clone's path · the replacement procedure's fresh clone, restore and proofs, and the unit's read-back",
       "gap": {
         "kind": "missing",
-        "summary": "No clone on this machine is proven free of TrumpBot's old history. Since TrumpBot's push the clone shares no commit with the server's branches; what a fresh clone from GitHub writes into `.git` is known only from a clone of a stand-in repository here, and TrumpBot, being private, needs a credential for the clone.",
+        "summary": "No clone on this machine is proven free of the first private repository's old history. Since the first private repository's push the clone shares no commit with the server's branches; what a fresh clone from GitHub writes into `.git` is known only from a clone of a stand-in repository here, and the first private repository needs a credential for the clone.",
         "evidence": [
-          "`../40-rewrites/consequences.md:70` — since TrumpBot's push the clone shares no commit with the server's branches; the clone replacement replaces it",
+          "`../40-rewrites/consequences.md:70` — since the first private repository's push the clone shares no commit with the server's branches; the clone replacement replaces it",
           "`../architecture.md:202` — a plain clone here writes ten local keys, no hook beyond the samples, an exclude file of comment lines only, one pack and no `FETCH_HEAD`",
           "`../consequences.md:213` — what a fresh clone from GitHub writes into `.git` is taken from a stand-in repository's clone",
-          "`../architecture.md:632` — the fresh clone made from TrumpBot's URL with `gh` as the only credential helper, the repository being private"
+          "`../architecture.md:632` — the fresh clone made from the first private repository's URL with `gh` as the only credential helper, the repository being private"
         ],
         "source": "../architecture.md §2.5, §10.4; ../consequences.md §5; ../40-rewrites/consequences.md §2.1",
         "link": "../architecture.md#104-the-fresh-clone-its-proofs-and-the-deletion"
@@ -2177,7 +2177,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "options": [
         {
           "id": "proofs-twice",
-          "name": "A fresh clone from TrumpBot's URL with `gh` as the only credential helper, proven by the procedure and again by the unit: refs equal to `ref-map`'s new column, one pack and a clean `fsck`, every pre-rewrite commit and manifest blob missing, a plain clone's ten keys, no extra hook, no exclude entry, no `FETCH_HEAD`, and only the four carried files untracked",
+          "name": "A fresh clone from the first private repository's URL with `gh` as the only credential helper, proven by the procedure and again by the unit: refs equal to `ref-map`'s new column, one pack and a clean `fsck`, every pre-rewrite commit and manifest blob missing, a plain clone's ten keys, no extra hook, no exclude entry, no `FETCH_HEAD`, and only the four carried files untracked",
           "verdict": "accepted",
           "why": "Each proof is an exact set, so a difference from the stand-in's clone stops the proofs before the old clone is deleted, while the old clone is still whole and can be moved back.",
           "source": "../architecture.md §10.4",
@@ -2189,13 +2189,13 @@ window.dashboardLive&&window.dashboardLive("plan",
         "summary": null,
         "statements": [
           {
-            "text": "A fresh clone of TrumpBot was made at the clone's path by the replacement's clone entry, which completed.",
+            "text": "A fresh clone of the first private repository was made at the clone's path by the replacement's clone entry, which completed.",
             "state": "as-planned",
             "ref": "final-implementation.md#1-what-was-built",
             "excerpt": {
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
-              "paragraph": "The TrumpBot clone. `%PROJECTS%\\TrumpBot` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\TrumpBot-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
+              "paragraph": "The private repository clone. `%PROJECTS%\\…` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\…-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
               "hash": "bc927d422f90"
             }
           },
@@ -2216,12 +2216,12 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "build",
         "statements": [
           {
-            "text": "The fresh clone of TrumpBot is made at the same path with `gh` as the only credential helper.",
+            "text": "The fresh clone of the first private repository is made at the same path with `gh` as the only credential helper.",
             "ref": "plan.md#the-requests",
             "excerpt": {
               "ref": "plan.md#the-requests",
               "heading": "The requests",
-              "paragraph": "Each of the three procedures is one `replace-clone` request by file. `g27_clone.py build KIND TrumpBot [KEY]` writes `DATA\\run\\g42\\requests\\<kind>-TrumpBot.json` and prints one `ok` line; the request holds six fields:",
+              "paragraph": "Each of the three procedures is one `replace-clone` request by file. `g27_clone.py build KIND … [KEY]` writes `DATA\\run\\g42\\requests\\<kind>-….json` and prints one `ok` line; the request holds six fields:",
               "hash": "600c5361da67"
             }
           },
@@ -2251,8 +2251,8 @@ window.dashboardLive&&window.dashboardLive("plan",
         ],
         "risks": [
           "A fresh clone from GitHub writes something else into `.git` than the stand-in clone did, or starts git-lfs: the proofs stop after the rename and the move back is requested (assumptions A4, A5)",
-          "The account the request service runs as cannot read the private TrumpBot through `gh`: the clone step stops after the rename, and the move back follows (assumption A7)",
-          "TrumpBot's heads move after the fresh clone is made: the proofs stop and the move back is requested (assumption A10)"
+          "The account the request service runs as cannot read the first private repository through `gh`: the clone step stops after the rename, and the move back follows (assumption A7)",
+          "The first private repository's heads move after the fresh clone is made: the proofs stop and the move back is requested (assumption A10)"
         ],
         "source": "plan.md S1 — The replacement; Assumptions; Risks and edge cases",
         "link": "plan.md#s1--the-replacement"
@@ -2266,7 +2266,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "where": "the old clone's recorded path · the deletion procedure's guards, removal and check",
       "gap": {
         "kind": "risk",
-        "summary": "Once moved aside, the old clone holds every pre-rewrite object of TrumpBot outside the workspace. It keeps the clone's own access entries until it is deleted, and the workspace's deletion never reaches it.",
+        "summary": "Once moved aside, the old clone holds every pre-rewrite object of the first private repository outside the workspace. It keeps the clone's own access entries until it is deleted, and the workspace's deletion never reaches it.",
         "evidence": [
           "`../consequences.md:103` — the old clone sits beside the clone, outside the workspace, with the clone's own access entries and every pre-rewrite object until it is deleted",
           "`../architecture.md:643` — the deletion is requested only after the unit's read-back, at the recorded path, behind guards; its outcome is the path's absence",
@@ -2312,7 +2312,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#33-the-deletion-s2",
               "heading": "3.3 The deletion (`S2`)",
-              "paragraph": "`S2.request` (typed), at 19:31:12Z: `ok request written: requests/delete-TrumpBot.json (key clone-delete-TrumpBot, 3 commands)`. · `S2.send`: id `SpartanLaboratories-KotlinBottools-42/42/clone-delete-TrumpBot`, attempt 1, carried out on that attempt; its own check refused no call. · `S2.reply`: delivered as a file of 2,832 bytes and stored at 19:36:30Z as 16 printed lines: `DELETE-GUARDS-OK`, `rm` with 0 error lines, `OLD-CLONE-REMOVED` and `STAGE K1.gone OK`; no `STOP`. · `S2.outcome` (typed): `OUTCOME complete entries=3 of 3 stops=0 status=done`. · `S2.gone`, at 19:36:54Z: 2 `ok` lines and …",
+              "paragraph": "`S2.request` (typed), at 19:31:12Z: `ok request written: requests/delete-….json (key clone-delete-…, 3 commands)`. · `S2.send`: id `SpartanLaboratories-KotlinBottools-42/42/clone-delete-…`, attempt 1, carried out on that attempt; its own check refused no call. · `S2.reply`: delivered as a file of 2,832 bytes and stored at 19:36:30Z as 16 printed lines: `DELETE-GUARDS-OK`, `rm` with 0 error lines, `OLD-CLONE-REMOVED` and `STAGE K1.gone OK`; no `STOP`. · `S2.outcome` (typed): `OUTCOME complete entries=3 of 3 stops=0 status=done`. · `S2.gone`, at 19:36:54Z: 2 `ok` lines and …",
               "hash": "289f03d54ab8"
             }
           },
@@ -2323,7 +2323,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#33-the-deletion-s2",
               "heading": "3.3 The deletion (`S2`)",
-              "paragraph": "`S2.request` (typed), at 19:31:12Z: `ok request written: requests/delete-TrumpBot.json (key clone-delete-TrumpBot, 3 commands)`. · `S2.send`: id `SpartanLaboratories-KotlinBottools-42/42/clone-delete-TrumpBot`, attempt 1, carried out on that attempt; its own check refused no call. · `S2.reply`: delivered as a file of 2,832 bytes and stored at 19:36:30Z as 16 printed lines: `DELETE-GUARDS-OK`, `rm` with 0 error lines, `OLD-CLONE-REMOVED` and `STAGE K1.gone OK`; no `STOP`. · `S2.outcome` (typed): `OUTCOME complete entries=3 of 3 stops=0 status=done`. · `S2.gone`, at 19:36:54Z: 2 `ok` lines and …",
+              "paragraph": "`S2.request` (typed), at 19:31:12Z: `ok request written: requests/delete-….json (key clone-delete-…, 3 commands)`. · `S2.send`: id `SpartanLaboratories-KotlinBottools-42/42/clone-delete-…`, attempt 1, carried out on that attempt; its own check refused no call. · `S2.reply`: delivered as a file of 2,832 bytes and stored at 19:36:30Z as 16 printed lines: `DELETE-GUARDS-OK`, `rm` with 0 error lines, `OLD-CLONE-REMOVED` and `STAGE K1.gone OK`; no `STOP`. · `S2.outcome` (typed): `OUTCOME complete entries=3 of 3 stops=0 status=done`. · `S2.gone`, at 19:36:54Z: 2 `ok` lines and …",
               "hash": "289f03d54ab8"
             }
           },
@@ -2334,7 +2334,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#33-the-deletion-s2",
               "heading": "3.3 The deletion (`S2`)",
-              "paragraph": "`S2.request` (typed), at 19:31:12Z: `ok request written: requests/delete-TrumpBot.json (key clone-delete-TrumpBot, 3 commands)`. · `S2.send`: id `SpartanLaboratories-KotlinBottools-42/42/clone-delete-TrumpBot`, attempt 1, carried out on that attempt; its own check refused no call. · `S2.reply`: delivered as a file of 2,832 bytes and stored at 19:36:30Z as 16 printed lines: `DELETE-GUARDS-OK`, `rm` with 0 error lines, `OLD-CLONE-REMOVED` and `STAGE K1.gone OK`; no `STOP`. · `S2.outcome` (typed): `OUTCOME complete entries=3 of 3 stops=0 status=done`. · `S2.gone`, at 19:36:54Z: 2 `ok` lines and …",
+              "paragraph": "`S2.request` (typed), at 19:31:12Z: `ok request written: requests/delete-….json (key clone-delete-…, 3 commands)`. · `S2.send`: id `SpartanLaboratories-KotlinBottools-42/42/clone-delete-…`, attempt 1, carried out on that attempt; its own check refused no call. · `S2.reply`: delivered as a file of 2,832 bytes and stored at 19:36:30Z as 16 printed lines: `DELETE-GUARDS-OK`, `rm` with 0 error lines, `OLD-CLONE-REMOVED` and `STAGE K1.gone OK`; no `STOP`. · `S2.outcome` (typed): `OUTCOME complete entries=3 of 3 stops=0 status=done`. · `S2.gone`, at 19:36:54Z: 2 `ok` lines and …",
               "hash": "289f03d54ab8"
             }
           }
@@ -2631,7 +2631,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#33-the-deletion-s2",
               "heading": "3.3 The deletion (`S2`)",
-              "paragraph": "`S2.request` (typed), at 19:31:12Z: `ok request written: requests/delete-TrumpBot.json (key clone-delete-TrumpBot, 3 commands)`. · `S2.send`: id `SpartanLaboratories-KotlinBottools-42/42/clone-delete-TrumpBot`, attempt 1, carried out on that attempt; its own check refused no call. · `S2.reply`: delivered as a file of 2,832 bytes and stored at 19:36:30Z as 16 printed lines: `DELETE-GUARDS-OK`, `rm` with 0 error lines, `OLD-CLONE-REMOVED` and `STAGE K1.gone OK`; no `STOP`. · `S2.outcome` (typed): `OUTCOME complete entries=3 of 3 stops=0 status=done`. · `S2.gone`, at 19:36:54Z: 2 `ok` lines and …",
+              "paragraph": "`S2.request` (typed), at 19:31:12Z: `ok request written: requests/delete-….json (key clone-delete-…, 3 commands)`. · `S2.send`: id `SpartanLaboratories-KotlinBottools-42/42/clone-delete-…`, attempt 1, carried out on that attempt; its own check refused no call. · `S2.reply`: delivered as a file of 2,832 bytes and stored at 19:36:30Z as 16 printed lines: `DELETE-GUARDS-OK`, `rm` with 0 error lines, `OLD-CLONE-REMOVED` and `STAGE K1.gone OK`; no `STOP`. · `S2.outcome` (typed): `OUTCOME complete entries=3 of 3 stops=0 status=done`. · `S2.gone`, at 19:36:54Z: 2 `ok` lines and …",
               "hash": "289f03d54ab8"
             }
           },
@@ -2653,7 +2653,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#35-the-close-out-s4-and-the-run-log",
               "heading": "3.5 The close-out (`S4`) and the run log",
-              "paragraph": "`S4.records` (typed): 5 `ok` lines and `STAGE S4.records OK`: the rewrites' run records (49 files), TrumpBot's rewrites' records (29), the preparation unit's 6 earlier records and the untouched backup's 22 files still equal their lists, and `SHA256SUMS`, written at 19:48:21Z, verifies over this unit's 9 records: the 2 request files, the 2 stored replies, the census, the archive with its two lists, and the recorded path. · `S4.tools`, at 19:48:33Z: 96 `ok` lines and `STAGE S0.tools OK`. · `S4.g26` (typed): 3 `ok` lines: 21 of 21 pinned files equal their pins, 22 files in the folder; the 21 …",
+              "paragraph": "`S4.records` (typed): 5 `ok` lines and `STAGE S4.records OK`: the rewrites' run records (49 files), the first private repository's rewrites' records (29), the preparation unit's 6 earlier records and the untouched backup's 22 files still equal their lists, and `SHA256SUMS`, written at 19:48:21Z, verifies over this unit's 9 records: the 2 request files, the 2 stored replies, the census, the archive with its two lists, and the recorded path. · `S4.tools`, at 19:48:33Z: 96 `ok` lines and `STAGE S0.tools OK`. · `S4.g26` (typed): 3 `ok` lines: 21 of 21 pinned files equal their pins, 22 files in the folder; the 21 …",
               "hash": "4c54d82242a4"
             }
           }
@@ -2721,7 +2721,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "where": "the request service's grant file for KotlinBottools · the action `replace-clone`",
       "gap": {
         "kind": "missing",
-        "summary": "No job of this unit has a grant yet. Every change to the TrumpBot checkout is a request carried out under a grant section for the unit's job, and the grant file has no section for it; the request service's own check can refuse a call a section covers, and the graph build needs the owner's word, since the request protocol has no action for it.",
+        "summary": "No job of this unit has a grant yet. Every change to the first private repository's checkout is a request carried out under a grant section for the unit's job, and the grant file has no section for it; the request service's own check can refuse a call a section covers, and the graph build needs the owner's word, since the request protocol has no action for it.",
         "evidence": [
           "`../architecture.md:165` — the grant file for this repository is empty: no job has a section",
           "`../architecture.md:717` — the clone replacement's grant: `replace-clone`, its scope, the allow line, and the owner's word for the code-only graph build",
@@ -2734,7 +2734,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "options": [
         {
           "id": "one-job",
-          "name": "One job with its grant section for `replace-clone`, scoped to the sub-issue and branch, the checkout, the old clone's folder and TrumpBot as the source, for the three procedures; the allow lines and the owner's word for the graph build asked for once, up front",
+          "name": "One job with its grant section for `replace-clone`, scoped to the sub-issue and branch, the checkout, the old clone's folder and the first private repository as the source, for the three procedures; the allow lines and the owner's word for the graph build asked for once, up front",
           "verdict": "accepted",
           "why": "Each unit that writes has its own job and its own grant, and everything it needs from the owner is asked once, before it runs; no deny rule is lifted, since no procedure of the unit force-pushes or resets.",
           "source": "../architecture.md §12",
@@ -2755,13 +2755,13 @@ window.dashboardLive&&window.dashboardLive("plan",
         ],
         "statements": [
           {
-            "text": "The section `phase-0-trumpbot-clone-replacement` was given for `replace-clone` and holds the plan's wording but for its `Settings:` line: readiness read it with 11 checks and recorded the differing wording in place of the twelfth.",
+            "text": "The section `phase-0-…-clone-replacement` was given for `replace-clone` and holds the plan's wording but for its `Settings:` line: readiness read it with 11 checks and recorded the differing wording in place of the twelfth.",
             "state": "deviated",
             "ref": "final-implementation.md#31-readiness-s0",
             "excerpt": {
               "ref": "final-implementation.md#31-readiness-s0",
               "heading": "3.1 Readiness (`S0`)",
-              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and TrumpBot's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier TrumpBot records equal those recorded at …",
+              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and the first private repository's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier records of the first private repository equal those recorded at …",
               "hash": "d91ff889e5de"
             }
           },
@@ -2772,7 +2772,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#31-readiness-s0",
               "heading": "3.1 Readiness (`S0`)",
-              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and TrumpBot's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier TrumpBot records equal those recorded at …",
+              "paragraph": "`S0.unit` (typed): one `ok` line; the run log held 16,157 lines before the unit's steps. · `S0.tools`: 96 `ok` lines and `STAGE S0.tools OK`. · `S0.quick`, the quick gate (the deterministic tests of the self-test): 63 case lines and `ok gselftest deterministic: 63 checks passed`, status 0, in about 15 seconds. · `S0.pins`: 7 `ok` lines and `STAGE S0.pins OK`. · `S0.records` (typed): 7 `ok` lines and `STAGE S0.records OK`: the rewrites' run records (49 files) and the first private repository's rewrites' records (29 files) equal their lists, the preparation unit's 6 earlier records of the first private repository equal those recorded at …",
               "hash": "d91ff889e5de"
             }
           },
@@ -2783,7 +2783,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
-              "paragraph": "The TrumpBot clone. `%PROJECTS%\\TrumpBot` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\TrumpBot-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
+              "paragraph": "The private repository clone. `%PROJECTS%\\…` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\…-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
               "hash": "bc927d422f90"
             }
           },
@@ -2794,7 +2794,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
-              "paragraph": "The TrumpBot clone. `%PROJECTS%\\TrumpBot` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\TrumpBot-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
+              "paragraph": "The private repository clone. `%PROJECTS%\\…` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\…-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
               "hash": "bc927d422f90"
             }
           },
@@ -2805,7 +2805,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
-              "paragraph": "The TrumpBot clone. `%PROJECTS%\\TrumpBot` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\TrumpBot-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
+              "paragraph": "The private repository clone. `%PROJECTS%\\…` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\…-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
               "hash": "bc927d422f90"
             }
           },
@@ -2816,7 +2816,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
-              "paragraph": "The TrumpBot clone. `%PROJECTS%\\TrumpBot` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\TrumpBot-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
+              "paragraph": "The private repository clone. `%PROJECTS%\\…` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\…-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
               "hash": "bc927d422f90"
             }
           },
@@ -2827,7 +2827,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
-              "paragraph": "The TrumpBot clone. `%PROJECTS%\\TrumpBot` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\TrumpBot-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
+              "paragraph": "The private repository clone. `%PROJECTS%\\…` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\…-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
               "hash": "bc927d422f90"
             }
           }
@@ -2837,7 +2837,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "build",
         "statements": [
           {
-            "text": "One job, `phase-0-trumpbot-clone-replacement`, holds a grant section for `replace-clone`.",
+            "text": "One job, `phase-0-…-clone-replacement`, holds a grant section for `replace-clone`.",
             "ref": "plan.md#the-grant",
             "excerpt": {
               "ref": "plan.md#the-grant",
@@ -2847,7 +2847,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "The section's scope names #42 and its branch, the checkout, the old clone's folder and TrumpBot as the clone's source, for the three procedures, and the section ends when #42 lands.",
+            "text": "The section's scope names #42 and its branch, the checkout, the old clone's folder and the first private repository as the clone's source, for the three procedures, and the section ends when #42 lands.",
             "ref": "plan.md#the-grant",
             "excerpt": {
               "ref": "plan.md#the-grant",
@@ -2987,7 +2987,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
-              "paragraph": "The TrumpBot clone. `%PROJECTS%\\TrumpBot` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\TrumpBot-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
+              "paragraph": "The private repository clone. `%PROJECTS%\\…` is a fresh clone of the rewritten repository, made by the request service on the replacement request's first attempt, at about 19:26Z, with its four `.idea/` files restored. The old clone was renamed to `%PROJECTS%\\…-old` on its own volume at 19:26:32Z, read whole there by the unit, and deleted at that path by the second request, whose reply was stored at 19:36:30Z; at 19:36:54Z no old-clone path remained. While it stood aside, the old clone's access entries were left as they were: the rename on its own volume kept them, and nothing changed …",
               "hash": "bc927d422f90"
             }
           },
@@ -3013,7 +3013,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No write to GitHub but the closing of #27 after the landing. No commit to TrumpBot: no `.gitignore`, no README pointer, no archive (Phase 17). · No change to the tools. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No carrying of the old clone's graph, its exclude entries, its hooks, the board files' ignore or its two extra configuration keys (`lfs.repositoryformatversion`, `submodule.active`) into the fresh clone. · No narrowing of the old clone's access entries while it is aside; a rename widens access by nobody, …",
+              "paragraph": "No write to GitHub but the closing of #27 after the landing. No commit to the first private repository: no `.gitignore`, no README pointer, no archive (Phase 17). · No change to the tools. `tools\\g27` stays at its pins; `tools\\g26`, `k0-ready.sh`, `save-tools.sh` and the runner are never edited, saved or run. · No carrying of the old clone's graph, its exclude entries, its hooks, the board files' ignore or its two extra configuration keys (`lfs.repositoryformatversion`, `submodule.active`) into the fresh clone. · No narrowing of the old clone's access entries while it is aside; a rename widens access by nobody, …",
               "hash": "2195286dc37d"
             }
           },
@@ -3030,7 +3030,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         ],
         "defense": "A rename on the clone's own volume keeps the tree's access entries, so the old clone aside is no more readable than the clone was, and the deletion follows as soon as the unit has read the fresh clone back.",
         "risks": [
-          "Between the rename and the deletion the old clone keeps every pre-rewrite object of TrumpBot outside the workspace, readable by every local user, as the clone is today"
+          "Between the rename and the deletion the old clone keeps every pre-rewrite object of the first private repository outside the workspace, readable by every local user, as the clone is today"
         ],
         "source": "plan.md Non-goals; Risks and edge cases",
         "link": "plan.md#non-goals"
@@ -3039,7 +3039,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   ],
   "impact": {
     "basis": "as-built",
-    "summary": "No module is published and no version moves: the landing carries documents and generated boards only. On GitHub one issue, #47, was filed during the run for the workspace tools, and #27 is closed after the landing. On this machine the TrumpBot clone was replaced by a fresh clone with its four `.idea/` files, the old clone deleted at its recorded path and the graph rebuilt by the graph service; the request service holds a grant section and four allow lines, each undone when its section ends (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
+    "summary": "No module is published and no version moves: the landing carries documents and generated boards only. On GitHub one issue, #47, was filed during the run for the workspace tools, and #27 is closed after the landing. On this machine the private repository clone was replaced by a fresh clone with its four `.idea/` files, the old clone deleted at its recorded path and the graph rebuilt by the graph service; the request service holds a grant section and four allow lines, each undone when its section ends (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
     "none": null,
     "release": {
       "bump": "none",
@@ -3049,7 +3049,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     },
     "downstream": [
       {
-        "who": "TrumpBot on GitHub (private)",
+        "who": "The first private repository on GitHub",
         "kind": "repository",
         "system": null,
         "effect": "none",
@@ -3065,7 +3065,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "consequences.md#21-github"
       },
       {
-        "who": "The TrumpBot clone on this machine",
+        "who": "The private repository clone on this machine",
         "kind": "operator",
         "system": "clone-realignment",
         "effect": "behaviour",
@@ -3093,7 +3093,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "operator",
         "system": null,
         "effect": "behaviour",
-        "summary": "It ran no graph job on the TrumpBot checkout from the owner's word until the run's notice, then built the new graph, code-only with no model spent; the checkout stays one of its checkouts with a graph.",
+        "summary": "It ran no graph job on the first private repository's checkout from the owner's word until the run's notice, then built the new graph, code-only with no model spent; the checkout stays one of its checkouts with a graph.",
         "link": "consequences.md#22-this-machine"
       },
       {
@@ -3432,25 +3432,25 @@ window.dashboardLive&&window.dashboardLive("plan",
     "items": [
       {
         "issue": 39,
-        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools and the private repositories",
         "state": "CLOSED",
         "stateReason": "COMPLETED"
       },
       {
         "issue": 40,
-        "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
         "state": "CLOSED",
         "stateReason": "COMPLETED"
       },
       {
         "issue": 41,
-        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
         "state": "CLOSED",
         "stateReason": "COMPLETED"
       },
       {
         "issue": 42,
-        "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+        "title": "Phase 0 · 7.4 — Replace the private repository clone",
         "state": "OPEN"
       }
     ]
@@ -3518,7 +3518,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     {
       "label": "The rewrites' consequences",
       "path": "../40-rewrites/consequences.md",
-      "note": "what this unit takes from the rewrites: TrumpBot's stage-8 marker, its maps, manifest and untouched backup"
+      "note": "what this unit takes from the rewrites: the first private repository's stage-8 marker, its maps, manifest and untouched backup"
     }
   ],
   "notes": {

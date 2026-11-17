@@ -9,7 +9,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   "kind": "tracking",
   "title": "Phase 0 history rewrite",
   "issueTitle": "Phase 0 — History rewrite: purge secrets and data from the six bot repositories",
-  "function": "Phase 0 of the BotTools consolidation purges secrets and legacy data from the histories of the six bot repositories: KotlinBottools, GKB2, GKB, BotTools, TrumpBot and Support. The legacy data is first copied out byte-exactly, with a manifest of the blobs to purge; then each repository is rewritten with `git filter-repo` in a mirror clone, in a fixed order, and must pass its exit tests on a fresh mirror. KotlinBottools gains a root-anchored `.gitignore` and a gitleaks CI job and becomes public with secret scanning and push protection; what GitHub still serves of the old histories is measured and reported. The phase moves no version.",
+  "function": "Phase 0 of the BotTools consolidation purges secrets and legacy data from the histories of the six bot repositories: KotlinBottools, GKB2, GKB, BotTools and the private repositories. The legacy data is first copied out byte-exactly, with a manifest of the blobs to purge; then each repository is rewritten with `git filter-repo` in a mirror clone, in a fixed order, and must pass its exit tests on a fresh mirror. KotlinBottools gains a root-anchored `.gitignore` and a gitleaks CI job and becomes public with secret scanning and push protection; what GitHub still serves of the old histories is measured and reported. The phase moves no version.",
   "status": "building",
   "sized": "2026-11-07T07:05:00Z",
   "parent": {
@@ -1009,7 +1009,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           "id": "scrub-all-six",
           "name": "Scrub the other five repositories as well",
           "verdict": "declined",
-          "why": "GKB2, GKB and BotTools are public already, and TrumpBot and Support stay private; only KotlinBottools becomes newly public.",
+          "why": "GKB2, GKB and BotTools are public already, and the private repositories stay private; only KotlinBottools becomes newly public.",
           "source": "architecture.md §14",
           "link": "architecture.md#14-alternatives-considered"
         }
@@ -2019,13 +2019,13 @@ window.dashboardLive&&window.dashboardLive("plan",
     {
       "id": "bottools-trumpbot-support-rewrite",
       "group": "Legacy repositories",
-      "name": "Rewrite BotTools, TrumpBot and Support",
+      "name": "Rewrite BotTools and the private repositories",
       "system": "kotlinbottools",
-      "where": "BotTools, public · TrumpBot and Support, private · the TrumpBot clone",
+      "where": "BotTools, public · the private repositories · the private repository clone",
       "unit": {
         "n": 7,
         "slug": "bottools-trumpbot-support-rewrite",
-        "title": "Phase 0 · 7 — Rewrite BotTools, TrumpBot and Support, and replace the TrumpBot clone",
+        "title": "Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone",
         "blockedBy": [
           26
         ],
@@ -2039,12 +2039,12 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "gap": {
         "kind": "risk",
-        "summary": "BotTools, TrumpBot and Support still carry purged paths in their histories. BotTools holds 39 purged blobs, all reachable through its pull-request refs; TrumpBot 199 and Support 7,259. The local TrumpBot clone holds the old history.",
+        "summary": "BotTools and the private repositories still carry purged paths in their histories. BotTools holds 39 purged blobs, all reachable through its pull-request refs; the first private repository 199 and the second 7,259. The local private repository clone holds the old history.",
         "evidence": [
           "`architecture.md:175` — BotTools: public, 39 purged blobs, all reachable through its pull-request refs",
-          "`architecture.md:176` — TrumpBot: private, 199 purged blobs",
-          "`architecture.md:177` — Support: private, 7,259 purged blobs",
-          "`architecture.md:224` — the local TrumpBot clone"
+          "`architecture.md:176` — the first private repository: private, 199 purged blobs",
+          "`architecture.md:177` — the second private repository: private, 7,259 purged blobs",
+          "`architecture.md:224` — the local private repository clone"
         ],
         "source": "architecture.md §2.1, §2.2",
         "link": "architecture.md#21-the-six-repositories"
@@ -2052,9 +2052,9 @@ window.dashboardLive&&window.dashboardLive("plan",
       "options": [
         {
           "id": "pipeline-then-clone",
-          "name": "The same pipeline for BotTools, TrumpBot and Support, then the TrumpBot clone replaced at the same path",
+          "name": "The same pipeline for BotTools and the private repositories, then the private repository clone replaced at the same path",
           "verdict": "accepted",
-          "why": "Each repository stops on its own gate, and the TrumpBot clone is replaced only once TrumpBot's push is proven, its untracked files kept.",
+          "why": "Each repository stops on its own gate, and the private repository clone is replaced only once the first private repository's push is proven, its untracked files kept.",
           "source": "architecture.md §6.4, §9.5",
           "link": "architecture.md#95-the-trumpbot-clone"
         },
@@ -2072,7 +2072,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "defense": "An operational unit on three repositories and one clone: histories rewritten and force-pushed, visibility unchanged.",
         "statements": [
           {
-            "text": "Run the full pipeline for BotTools, TrumpBot and Support, in that order.",
+            "text": "Run the full pipeline for BotTools and the private repositories, in that order.",
             "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
             "excerpt": {
               "ref": "architecture.md#64-the-rewrite-pipeline-per-repository",
@@ -2092,12 +2092,12 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "Replace the TrumpBot clone with a fresh one at the same path, restoring its untracked files, the old clone deleted last.",
+            "text": "Replace the private repository clone with a fresh one at the same path, restoring its untracked files, the old clone deleted last.",
             "ref": "architecture.md#95-the-trumpbot-clone",
             "excerpt": {
               "ref": "architecture.md#95-the-trumpbot-clone",
-              "heading": "9.5 The TrumpBot clone",
-              "paragraph": "The TrumpBot clone is replaced once TrumpBot's push is proven, as the last step of unit 7. It is carried out on request (§11), with the procedure from the unit's plan (findings 4 §6.5):",
+              "heading": "9.5 The private repository clone",
+              "paragraph": "The private repository clone is replaced once the first private repository's push is proven, as the last step of unit 7. It is carried out on request (§11), with the procedure from the unit's plan (findings 4 §6.5):",
               "hash": "d7e1113822a3"
             }
           },
@@ -2116,17 +2116,17 @@ window.dashboardLive&&window.dashboardLive("plan",
           "Each repository's exit tests on a fresh mirror; the clone's untracked set, refs, pack count, `fsck` and the \"all missing\" proofs"
         ],
         "risks": [
-          "A scan or rewrite of TrumpBot or Support outgrows one run; the unit's plan splits it across stages"
+          "A scan or rewrite of either private repository outgrows one run; the unit's plan splits it across stages"
         ],
         "source": "architecture.md §15 unit 7",
         "link": "architecture.md#15-decomposition"
       },
       "asBuilt": {
         "state": "landed",
-        "summary": "#27 landed with its last unit, #42, through PR #48 as `0532880`; its plan landed through PR #38 as `9f22646`, its four units through PRs #44, #45, #46 and #48, and #27 is closed. BotTools (public), then TrumpBot and Support (private), were force-pushed in place, one atomic push each under a lease on every branch's recorded tip, five branches in all, 16 commits to 15, 11 to 9 and 2 to 1; each kept its visibility, each fresh mirror is clean, and no default-rule finding arose. GitHub still serves every old object probed, BotTools' pull-request refs keep its 39 purged blobs fetchable, as predicted, and the events listed the push of 1 of the 5 branches. The TrumpBot clone was replaced by a fresh clone with its four `.idea/` files, the old clone deleted at its recorded path outside the workspace, and its graph rebuilt from the rewritten tree. #47, filed against the tools' request builder, stays open. #28 takes the three report rows, every unit's records with their checksum lists, both tool folders and the stage runner, and the record that no old-clone path remains, and may start now that the unit has landed.",
+        "summary": "#27 landed with its last unit, #42, through PR #48 as `0532880`; its plan landed through PR #38 as `9f22646`, its four units through PRs #44, #45, #46 and #48, and #27 is closed. BotTools (public), then the private repositories, were force-pushed in place, one atomic push each under a lease on every branch's recorded tip, five branches in all, 16 commits to 15, 11 to 9 and 2 to 1; each kept its visibility, each fresh mirror is clean, and no default-rule finding arose. GitHub still serves every old object probed, BotTools' pull-request refs keep its 39 purged blobs fetchable, as predicted, and the events listed the push of 1 of the 5 branches. The private repository clone was replaced by a fresh clone with its four `.idea/` files, the old clone deleted at its recorded path outside the workspace, and its graph rebuilt from the rewritten tree. #47, filed against the tools' request builder, stays open. #28 takes the three report rows, every unit's records with their checksum lists, both tool folders and the stage runner, and the record that no old-clone path remains, and may start now that the unit has landed.",
         "changes": [
           {
-            "what": "The TrumpBot clone is replaced by a unit of its own, the clone replacement, after the rewrites: of the 59 files git does not track in it, only the four under `.idea/` are carried and restored; the graph's 55 files, its exclude entry, its two hooks and the two extra configuration keys are not. The old clone is renamed aside on its own volume and deleted once the fresh clone has been read back, and a code-only graph build from the rewritten tree follows the deletion.",
+            "what": "The private repository clone is replaced by a unit of its own, the clone replacement, after the rewrites: of the 59 files git does not track in it, only the four under `.idea/` are carried and restored; the graph's 55 files, its exclude entry, its two hooks and the two extra configuration keys are not. The old clone is renamed aside on its own volume and deleted once the fresh clone has been read back, and a code-only graph build from the rewritten tree follows the deletion.",
             "why": "The graph was built from the pre-rewrite tree and names files the rewrite removes, so the fresh clone gets a graph built from the rewritten tree instead; and the workspace sits on another volume than the clone, so a move into it would be a copy followed by a deletion, with no lock probe and the irreversible step first.",
             "when": "#27's design, its clone replacement",
             "ref": "27-bottools-trumpbot-support-rewrite/architecture.md#103-what-is-carried-and-what-is-not",
@@ -2317,7 +2317,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s0--readiness",
               "started": "2026-11-16T22:37:16Z",
               "finished": "2026-11-16T23:25:19Z",
-              "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+              "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old private repository clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
               "result": "passed"
             },
             {
@@ -2614,7 +2614,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s7--close-out",
               "started": "2026-11-16T23:50:06Z",
               "finished": "2026-11-16T23:50:59Z",
-              "report": "Close-out passed. The old TrumpBot clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
+              "report": "Close-out passed. The old private repository clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
               "result": "passed"
             }
           ],
@@ -3134,7 +3134,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                     "ref": "plan.md#s0--readiness",
                     "started": "2026-11-16T22:37:16Z",
                     "finished": "2026-11-16T23:25:19Z",
-                    "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+                    "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old private repository clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
                     "result": "passed"
                   },
                   {
@@ -3483,7 +3483,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                     "ref": "plan.md#s0--readiness",
                     "started": "2026-11-16T22:37:16Z",
                     "finished": "2026-11-16T23:25:19Z",
-                    "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+                    "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old private repository clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
                     "result": "passed"
                   },
                   {
@@ -3767,7 +3767,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                   "at": "2026-11-16T23:50:59Z",
                   "note": "S7 reported done; Quality Review next"
                 },
-                "detail": "Close-out passed. The old TrumpBot clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
+                "detail": "Close-out passed. The old private repository clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
                 "stages": [
                   {
                     "id": "S0",
@@ -3843,7 +3843,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                     "ref": "plan.md#s0--readiness",
                     "started": "2026-11-16T22:37:16Z",
                     "finished": "2026-11-16T23:25:19Z",
-                    "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+                    "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old private repository clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
                     "result": "passed"
                   },
                   {
@@ -4140,7 +4140,7 @@ window.dashboardLive&&window.dashboardLive("plan",
                     "ref": "plan.md#s7--close-out",
                     "started": "2026-11-16T23:50:06Z",
                     "finished": "2026-11-16T23:50:59Z",
-                    "report": "Close-out passed. The old TrumpBot clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
+                    "report": "Close-out passed. The old private repository clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
                     "result": "passed"
                   }
                 ]
@@ -4270,7 +4270,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "data-reverify": "The data folder re-verified against its checksum lists",
             "tools-copy": "Both tool folders and the stage runner copied into the data folder",
             "workspace-deletion": "The workspace deleted, and its deletion confirmed",
-            "old-clone-path": "The old TrumpBot clone's recorded path confirmed absent"
+            "old-clone-path": "The old private repository clone's recorded path confirmed absent"
           },
           "recon": {
             "interview": {
@@ -4596,7 +4596,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   ],
   "impact": {
     "basis": "plan",
-    "summary": "No module is published and no version moves. Every commit id changes in all six repositories: GKB2, GKB, BotTools, TrumpBot and Support are force-pushed in place, and KotlinBottools becomes public as a fresh repository with every number reproduced, the pre-rewrite repository kept private and archived as `KotlinBottools-legacy`. On `main`, the path scrub replaces the machine-local paths in two KotlinBottools source files, and the rest is repository infrastructure.",
+    "summary": "No module is published and no version moves. Every commit id changes in all six repositories: GKB2, GKB, BotTools and the private repositories are force-pushed in place, and KotlinBottools becomes public as a fresh repository with every number reproduced, the pre-rewrite repository kept private and archived as `KotlinBottools-legacy`. On `main`, the path scrub replaces the machine-local paths in two KotlinBottools source files, and the rest is repository infrastructure.",
     "release": {
       "bump": "none",
       "version": null,
@@ -4638,7 +4638,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "consequences.md#23-issue-numbers-and-links"
       },
       {
-        "who": "GKB2, GKB, BotTools, TrumpBot and Support",
+        "who": "GKB2, GKB, BotTools and the private repositories",
         "kind": "repository",
         "system": null,
         "effect": "behaviour",
@@ -4666,7 +4666,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "operator",
         "system": null,
         "effect": "behaviour",
-        "summary": "The data folder remains with the legacy data and records; the workspace is deleted. This working directory is realigned in place, 41 tracked files leaving its tree. The TrumpBot clone was replaced by a fresh clone that keeps only its four `.idea/` files, its code knowledge graph rebuilt from the rewritten tree, and the old clone, set aside on its own volume outside the workspace, was deleted there; git-filter-repo stays installed.",
+        "summary": "The data folder remains with the legacy data and records; the workspace is deleted. This working directory is realigned in place, 41 tracked files leaving its tree. The private repository clone was replaced by a fresh clone that keeps only its four `.idea/` files, its code knowledge graph rebuilt from the rewritten tree, and the old clone, set aside on its own volume outside the workspace, was deleted there; git-filter-repo stays installed.",
         "link": "consequences.md#25-this-machine"
       }
     ],
@@ -4887,7 +4887,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "unit": "bottools-trumpbot-support-rewrite",
         "basis": "as-built",
-        "summary": "No module was published and no version moved; every landing of #27 and its four units carried documents and generated boards only. BotTools (public), then TrumpBot and Support (private), were force-pushed in place, one atomic push each under a lease on every branch's recorded tip, five branches in all: every commit id changed, the purged files left every commit, and each kept its visibility and default branch. GitHub keeps serving every old object probed, BotTools' pull-request refs keep its 39 purged blobs fetchable, and the events listed the push of 1 of the 5 branches. The TrumpBot clone was replaced by a fresh clone with its four `.idea/` files, the old clone deleted at its recorded path outside the workspace, and its graph rebuilt from the rewritten tree. #47 stays open against the tools; #28 takes the three report rows, every unit's records with their checksum lists, both tool folders and the stage runner, and the record that no old-clone path remains.",
+        "summary": "No module was published and no version moved; every landing of #27 and its four units carried documents and generated boards only. BotTools (public), then the private repositories, were force-pushed in place, one atomic push each under a lease on every branch's recorded tip, five branches in all: every commit id changed, the purged files left every commit, and each kept its visibility and default branch. GitHub keeps serving every old object probed, BotTools' pull-request refs keep its 39 purged blobs fetchable, and the events listed the push of 1 of the 5 branches. The private repository clone was replaced by a fresh clone with its four `.idea/` files, the old clone deleted at its recorded path outside the workspace, and its graph rebuilt from the rewritten tree. #47 stays open against the tools; #28 takes the three report rows, every unit's records with their checksum lists, both tool folders and the stage runner, and the record that no old-clone path remains.",
         "release": {
           "bump": "none",
           "version": null,
@@ -4898,7 +4898,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "27-bottools-trumpbot-support-rewrite/consequences.md#2-blast-radius",
         "changes": [
           {
-            "what": "The events did not list every rewritten branch's push: after each push's 6 hours they listed the push of 1 of BotTools' 2 branches and none of TrumpBot's 2 or Support's 1, while every activity feed lists each force push.",
+            "what": "The events did not list every rewritten branch's push: after each push's 6 hours they listed the push of 1 of BotTools' 2 branches and none of the first private repository's 2 or the second's 1, while every activity feed lists each force push.",
             "why": "The unit's impact took one event per rewritten branch; the residual measurement read the events until 6 hours had passed since each push and recorded what they listed. Whether GitHub lists the other pushes later is not established.",
             "when": "#41 landing",
             "ref": "27-bottools-trumpbot-support-rewrite/41-residual-measurement/consequences.md#5-known-gaps"
@@ -4920,7 +4920,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "unit": "residual-report-and-cleanup",
         "basis": "plan",
-        "summary": "No module is published and no version moves: the landing carries documents and generated boards only. The residual-exposure report is posted on #2 as one comment, and #2 is closed as completed after the landing. On this machine the data folder is re-verified and gains the tools copy and a list over every file, the workspace is deleted, and the old TrumpBot clone's recorded path is confirmed absent; every follow-up of the phase is recorded with who carries it out.",
+        "summary": "No module is published and no version moves: the landing carries documents and generated boards only. The residual-exposure report is posted on #2 as one comment, and #2 is closed as completed after the landing. On this machine the data folder is re-verified and gains the tools copy and a list over every file, the workspace is deleted, and the old private repository clone's recorded path is confirmed absent; every follow-up of the phase is recorded with who carries it out.",
         "release": {
           "bump": "none",
           "version": null,
@@ -5022,7 +5022,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "unit": "bottools-trumpbot-support-rewrite",
         "entry": "downstream.7",
         "when": "#27 landing",
-        "what": "The TrumpBot clone was replaced by a fresh clone that keeps only its four `.idea/` files: its code knowledge graph, built from the pre-rewrite tree, was not carried and was rebuilt from the rewritten tree, and the old clone was set aside on its own volume, outside the workspace, and deleted there, so the workspace's deletion does not reach it and no old-clone path remains.",
+        "what": "The private repository clone was replaced by a fresh clone that keeps only its four `.idea/` files: its code knowledge graph, built from the pre-rewrite tree, was not carried and was rebuilt from the rewritten tree, and the old clone was set aside on its own volume, outside the workspace, and deleted there, so the workspace's deletion does not reach it and no old-clone path remains.",
         "why": "The old graph named files the rewrite removes, and the clone and the workspace are on different volumes, so a move into the workspace would have been a copy followed by a deletion; #27's design said so in dated notes on this phase's design and consequences, and its clone replacement carried it out.",
         "ref": "27-bottools-trumpbot-support-rewrite/42-clone-replacement/consequences.md#22-this-machine"
       }
@@ -5151,7 +5151,7 @@ window.dashboardLive&&window.dashboardLive("plan",
     },
     {
       "name": "Credentials",
-      "note": "Rotate the 2023 session cookie and TrumpBot's private key if either could still be live."
+      "note": "Rotate the 2023 session cookie and the first private repository's private key if either could still be live."
     },
     {
       "name": "Token rule",

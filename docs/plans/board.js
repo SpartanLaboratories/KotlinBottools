@@ -197,7 +197,7 @@ window.dashboardLive&&window.dashboardLive("board",
           {
             "n": 7,
             "issue": 27,
-            "name": "Rewrite BotTools, TrumpBot and Support",
+            "name": "Rewrite BotTools and the private repositories",
             "state": "done"
           },
           {
@@ -816,7 +816,7 @@ window.dashboardLive&&window.dashboardLive("board",
           {
             "n": 2,
             "issue": 40,
-            "name": "Rewrite BotTools, TrumpBot and Support",
+            "name": "Rewrite BotTools and the private repositories",
             "state": "done"
           },
           {
@@ -828,7 +828,7 @@ window.dashboardLive&&window.dashboardLive("board",
           {
             "n": 4,
             "issue": 42,
-            "name": "Replace the TrumpBot clone",
+            "name": "Replace the private repository clone",
             "state": "done"
           }
         ]
@@ -921,7 +921,7 @@ window.dashboardLive&&window.dashboardLive("board",
     },
     {
       "issue": 39,
-      "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
+      "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools and the private repositories",
       "state": "CLOSED",
       "stateReason": "COMPLETED",
       "created": "2026-11-13",
@@ -1040,7 +1040,7 @@ window.dashboardLive&&window.dashboardLive("board",
     },
     {
       "issue": 40,
-      "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+      "title": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
       "state": "CLOSED",
       "stateReason": "COMPLETED",
       "created": "2026-11-13",
@@ -1122,7 +1122,7 @@ window.dashboardLive&&window.dashboardLive("board",
     },
     {
       "issue": 41,
-      "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+      "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
       "state": "CLOSED",
       "stateReason": "COMPLETED",
       "created": "2026-11-13",
@@ -1188,7 +1188,7 @@ window.dashboardLive&&window.dashboardLive("board",
     },
     {
       "issue": 42,
-      "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+      "title": "Phase 0 · 7.4 — Replace the private repository clone",
       "state": "CLOSED",
       "stateReason": "COMPLETED",
       "created": "2026-11-13",

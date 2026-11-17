@@ -5,9 +5,9 @@
   "slug": "40-rewrites",
   "folder": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/40-rewrites",
   "kind": "issue",
-  "title": "Rewrite BotTools, TrumpBot and Support",
-  "issueTitle": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
-  "function": "BotTools, TrumpBot and Support still carry purged paths in their histories, 39, 199 and 7,259 purged blobs, and every root commit holds one, so every commit and every branch of the three changes in the rewrite. This unit rewrites them in that order, each from its mirror checked unchanged since the preparation unit, and each starting only once the one before it has passed its exit tests: the rewrite with its post-run checks and the scan before the push; one atomic push per repository, on request, with an explicit lease on every branch's recorded tip after a dry run of the same line, two branches for BotTools and TrumpBot and one for Support; the outcome classed from counted markers and read back at every branch, with a push never repeated blindly; per-ref verification, with BotTools' webhook deliveries counted right after its push; and a fresh mirror with its exit tests, with BotTools' pull-request residual counted. Unit 2 of #27, with no version moved; it changes no checkout, and its landing carries documents only.",
+  "title": "Rewrite BotTools and the private repositories",
+  "issueTitle": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
+  "function": "BotTools and the private repositories still carry purged paths in their histories, 39, 199 and 7,259 purged blobs, and every root commit holds one, so every commit and every branch of the three changes in the rewrite. This unit rewrites them in that order, each from its mirror checked unchanged since the preparation unit, and each starting only once the one before it has passed its exit tests: the rewrite with its post-run checks and the scan before the push; one atomic push per repository, on request, with an explicit lease on every branch's recorded tip after a dry run of the same line, two branches for BotTools and the first private repository and one for the second; the outcome classed from counted markers and read back at every branch, with a push never repeated blindly; per-ref verification, with BotTools' webhook deliveries counted right after its push; and a fresh mirror with its exit tests, with BotTools' pull-request residual counted. Unit 2 of #27, with no version moved; it changes no checkout, and its landing carries documents only.",
   "status": "built",
   "sized": "2026-11-15T12:10:29Z",
   "parent": {
@@ -126,7 +126,7 @@
         "ref": "plan.md#s0--readiness",
         "started": "2026-11-15T18:57:24Z",
         "finished": "2026-11-15T19:00:42Z",
-        "report": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for TrumpBot, 12 for Support), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
+        "report": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
         "result": "passed"
       },
       {
@@ -227,7 +227,7 @@
       },
       {
         "id": "S2",
-        "name": "TrumpBot",
+        "name": "First private repository",
         "state": "done",
         "rows": [
           "order",
@@ -238,7 +238,7 @@
           "exit-tests",
           "records"
         ],
-        "brief": "The same for TrumpBot, once BotTools holds its stage-8 marker.",
+        "brief": "The same for the first private repository, once BotTools holds its stage-8 marker.",
         "kind": "work",
         "steps": [
           {
@@ -319,11 +319,11 @@
         "ref": "plan.md#s2--trumpbot",
         "started": "2026-11-15T19:41:35Z",
         "finished": "2026-11-15T19:47:08Z",
-        "report": "TrumpBot is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (11 commits and 2 refs before). Positive control on the untouched backup: 10 of 10, scan status 1 with 3518 findings, the control verdict passed, 0 kept findings, the scan summary, the control file and the kept-findings file each equal to the earlier record. The rewrite: 6 of 6, 11 of 11 commits rewritten. Post-run checks: 9 commits after, 56 paths, 106 blobs, largest blob 25952 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=2 and done=1 in the dry run and the push, the state read back as both, each of the 2 branches at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 2 heads, all rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=199 missing=199 distinct_all=106 every_ref_commits=9; the expectation check passed (9 commits on branches and on every ref, 56 paths, 106 blobs); the scan of branches and tags is clean (9 commits, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
+        "report": "The first private repository is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (11 commits and 2 refs before). Positive control on the untouched backup: 10 of 10, scan status 1 with 3518 findings, the control verdict passed, 0 kept findings, the scan summary, the control file and the kept-findings file each equal to the earlier record. The rewrite: 6 of 6, 11 of 11 commits rewritten. Post-run checks: 9 commits after, 56 paths, 106 blobs, largest blob 25952 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=2 and done=1 in the dry run and the push, the state read back as both, each of the 2 branches at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 2 heads, all rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=199 missing=199 distinct_all=106 every_ref_commits=9; the expectation check passed (9 commits on branches and on every ref, 56 paths, 106 blobs); the scan of branches and tags is clean (9 commits, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
       },
       {
         "id": "S3",
-        "name": "Support",
+        "name": "Second private repository",
         "state": "done",
         "rows": [
           "order",
@@ -334,7 +334,7 @@
           "exit-tests",
           "records"
         ],
-        "brief": "The same for Support, once TrumpBot holds its stage-8 marker.",
+        "brief": "The same for the second private repository, once the first private repository holds its stage-8 marker.",
         "kind": "work",
         "steps": [
           {
@@ -415,7 +415,7 @@
         "ref": "plan.md#s3--support",
         "started": "2026-11-15T19:47:08Z",
         "finished": "2026-11-15T19:52:35Z",
-        "report": "Support is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (2 commits and 1 ref before). Positive control on the untouched backup: 8 of 8, clean, 0 findings, 0 kept findings, equal to the earlier record. The rewrite: 6 of 6, 2 of 2 commits rewritten. Post-run checks: 1 commit after, 29 paths, 29 blobs, largest blob 14302 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=1 and done=1 in the dry run and the push, the state read back as both, the 1 branch at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 1 head, rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=7259 missing=7259 distinct_all=29 every_ref_commits=1; the expectation check passed (1 commit on branches and on every ref, 29 paths, 29 blobs); the scan of branches and tags is clean (1 commit, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
+        "report": "The second private repository is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (2 commits and 1 ref before). Positive control on the untouched backup: 8 of 8, clean, 0 findings, 0 kept findings, equal to the earlier record. The rewrite: 6 of 6, 2 of 2 commits rewritten. Post-run checks: 1 commit after, 29 paths, 29 blobs, largest blob 14302 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=1 and done=1 in the dry run and the push, the state read back as both, the 1 branch at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 1 head, rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=7259 missing=7259 distinct_all=29 every_ref_commits=1; the expectation check passed (1 commit on branches and on every ref, 29 paths, 29 blobs); the scan of branches and tags is clean (1 commit, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
       },
       {
         "id": "S4",
@@ -462,7 +462,7 @@
         "ref": "plan.md#s4--close-out",
         "started": "2026-11-15T19:52:35Z",
         "finished": "2026-11-15T19:54:07Z",
-        "report": "Close-out passed: all five steps completed with no stop. Final reads of the three repositories: 20 of 20 checks (8 for BotTools, 6 for TrumpBot, 6 for Support): every branch at its rewritten tip, the pull-request refs as recorded, the default branch, visibility and archive state as recorded, the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged. The checksum lists: 28, 29 and 28 record files checksummed for BotTools, TrumpBot and Support, and 49 run records. The tools are at their pins (96 of 96 checks). The earlier tool folder is at its pins (21 of 21 pinned files, 22 files in the folder; the 21 reused tools equal their list). The output rule over the unit's outputs passed (4 of 4 checks): the unit's part of the log holds 1025 lines with 0 stops, 0 waits, 0 next lines and 10 recorded readings, no drive-letter path and no 40-digit id; the 3 stored replies hold neither; the 3 request files hold no 40-digit id. No deviation from the plan's steps.",
+        "report": "Close-out passed: all five steps completed with no stop. Final reads of the three repositories: 20 of 20 checks (8 for BotTools, 6 for the first private repository, 6 for the second): every branch at its rewritten tip, the pull-request refs as recorded, the default branch, visibility and archive state as recorded, the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged. The checksum lists: 28, 29 and 28 record files checksummed for BotTools and the private repositories, and 49 run records. The tools are at their pins (96 of 96 checks). The earlier tool folder is at its pins (21 of 21 pinned files, 22 files in the folder; the 21 reused tools equal their list). The output rule over the unit's outputs passed (4 of 4 checks): the unit's part of the log holds 1025 lines with 0 stops, 0 waits, 0 next lines and 10 recorded readings, no drive-letter path and no 40-digit id; the 3 stored replies hold neither; the 3 request files hold no 40-digit id. No deviation from the plan's steps.",
         "result": "passed"
       }
     ],
@@ -542,7 +542,7 @@
             "name": "plan-accepted",
             "at": "2026-11-15T18:55:27Z"
           },
-          "detail": "The plan is in the unit's folder. Every command, expected line and count of its procedure was checked against the workspace tools' source and measurements, and the workspace, the records and the three repositories were read as the plan describes them. Five stages: readiness, BotTools, TrumpBot, Support, close-out; three pushes, each on request.",
+          "detail": "The plan is in the unit's folder. Every command, expected line and count of its procedure was checked against the workspace tools' source and measurements, and the workspace, the records and the three repositories were read as the plan describes them. Five stages: readiness, BotTools, the first private repository, the second, close-out; three pushes, each on request.",
           "branch": "docs/issue-40-rewrite-bottools-trumpbot-support"
         }
       ],
@@ -556,7 +556,7 @@
             "name": "step-complete",
             "at": "2026-11-15T19:03:10Z"
           },
-          "detail": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for TrumpBot, 12 for Support), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
+          "detail": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
           "stages": [
             {
               "id": "S0",
@@ -620,7 +620,7 @@
               "ref": "plan.md#s0--readiness",
               "started": "2026-11-15T18:57:24Z",
               "finished": "2026-11-15T19:00:42Z",
-              "report": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for TrumpBot, 12 for Support), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
+              "report": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
               "result": "passed"
             },
             {
@@ -709,7 +709,7 @@
             },
             {
               "id": "S2",
-              "name": "TrumpBot",
+              "name": "First private repository",
               "state": "todo",
               "rows": [
                 "order",
@@ -720,7 +720,7 @@
                 "exit-tests",
                 "records"
               ],
-              "brief": "The same for TrumpBot, once BotTools holds its stage-8 marker.",
+              "brief": "The same for the first private repository, once BotTools holds its stage-8 marker.",
               "kind": "work",
               "steps": [
                 {
@@ -778,7 +778,7 @@
             },
             {
               "id": "S3",
-              "name": "Support",
+              "name": "Second private repository",
               "state": "todo",
               "rows": [
                 "order",
@@ -789,7 +789,7 @@
                 "exit-tests",
                 "records"
               ],
-              "brief": "The same for Support, once TrumpBot holds its stage-8 marker.",
+              "brief": "The same for the second private repository, once the first private repository holds its stage-8 marker.",
               "kind": "work",
               "steps": [
                 {
@@ -900,7 +900,7 @@
             "at": "2026-11-15T19:54:07Z",
             "note": "S4 reported done; Quality Review next"
           },
-          "detail": "Close-out passed: all five steps completed with no stop. Final reads of the three repositories: 20 of 20 checks (8 for BotTools, 6 for TrumpBot, 6 for Support): every branch at its rewritten tip, the pull-request refs as recorded, the default branch, visibility and archive state as recorded, the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged. The checksum lists: 28, 29 and 28 record files checksummed for BotTools, TrumpBot and Support, and 49 run records. The tools are at their pins (96 of 96 checks). The earlier tool folder is at its pins (21 of 21 pinned files, 22 files in the folder; the 21 reused tools equal their list). The output rule over the unit's outputs passed (4 of 4 checks): the unit's part of the log holds 1025 lines with 0 stops, 0 waits, 0 next lines and 10 recorded readings, no drive-letter path and no 40-digit id; the 3 stored replies hold neither; the 3 request files hold no 40-digit id. No deviation from the plan's steps.",
+          "detail": "Close-out passed: all five steps completed with no stop. Final reads of the three repositories: 20 of 20 checks (8 for BotTools, 6 for the first private repository, 6 for the second): every branch at its rewritten tip, the pull-request refs as recorded, the default branch, visibility and archive state as recorded, the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged. The checksum lists: 28, 29 and 28 record files checksummed for BotTools and the private repositories, and 49 run records. The tools are at their pins (96 of 96 checks). The earlier tool folder is at its pins (21 of 21 pinned files, 22 files in the folder; the 21 reused tools equal their list). The output rule over the unit's outputs passed (4 of 4 checks): the unit's part of the log holds 1025 lines with 0 stops, 0 waits, 0 next lines and 10 recorded readings, no drive-letter path and no 40-digit id; the 3 stored replies hold neither; the 3 request files hold no 40-digit id. No deviation from the plan's steps.",
           "stages": [
             {
               "id": "S0",
@@ -964,7 +964,7 @@
               "ref": "plan.md#s0--readiness",
               "started": "2026-11-15T18:57:24Z",
               "finished": "2026-11-15T19:00:42Z",
-              "report": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for TrumpBot, 12 for Support), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
+              "report": "Readiness passed: all eight steps completed with no stop and nothing was written to GitHub. The unit's data file and grant wording were written (the log held 14447 lines before the unit's steps). The tools are at their pins (96 of 96 checks). The deterministic tests passed (63 of 63 checks). The tool versions are as recorded (7 of 7 checks). The rows equal the data for the three repositories (62 of 62 checks; the checksums of the 5, 6 and 5 earlier records were recorded). The earlier records equal those the tools unit recorded (3 of 3). The three repositories read as recorded (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with 5 recorded readings: activity feed entries 0, 0 and 0; events 0, 3 and 0; and the rulesets read of each of the two private repositories refused with HTTP 403, as expected. The grant section is in place and equals the unit's wording apart from its date (12 of 12 checks). No deviation from the plan.",
               "result": "passed"
             },
             {
@@ -1065,7 +1065,7 @@
             },
             {
               "id": "S2",
-              "name": "TrumpBot",
+              "name": "First private repository",
               "state": "done",
               "rows": [
                 "order",
@@ -1076,7 +1076,7 @@
                 "exit-tests",
                 "records"
               ],
-              "brief": "The same for TrumpBot, once BotTools holds its stage-8 marker.",
+              "brief": "The same for the first private repository, once BotTools holds its stage-8 marker.",
               "kind": "work",
               "steps": [
                 {
@@ -1157,11 +1157,11 @@
               "ref": "plan.md#s2--trumpbot",
               "started": "2026-11-15T19:41:35Z",
               "finished": "2026-11-15T19:47:08Z",
-              "report": "TrumpBot is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (11 commits and 2 refs before). Positive control on the untouched backup: 10 of 10, scan status 1 with 3518 findings, the control verdict passed, 0 kept findings, the scan summary, the control file and the kept-findings file each equal to the earlier record. The rewrite: 6 of 6, 11 of 11 commits rewritten. Post-run checks: 9 commits after, 56 paths, 106 blobs, largest blob 25952 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=2 and done=1 in the dry run and the push, the state read back as both, each of the 2 branches at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 2 heads, all rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=199 missing=199 distinct_all=106 every_ref_commits=9; the expectation check passed (9 commits on branches and on every ref, 56 paths, 106 blobs); the scan of branches and tags is clean (9 commits, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
+              "report": "The first private repository is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (11 commits and 2 refs before). Positive control on the untouched backup: 10 of 10, scan status 1 with 3518 findings, the control verdict passed, 0 kept findings, the scan summary, the control file and the kept-findings file each equal to the earlier record. The rewrite: 6 of 6, 11 of 11 commits rewritten. Post-run checks: 9 commits after, 56 paths, 106 blobs, largest blob 25952 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=2 and done=1 in the dry run and the push, the state read back as both, each of the 2 branches at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 2 heads, all rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=199 missing=199 distinct_all=106 every_ref_commits=9; the expectation check passed (9 commits on branches and on every ref, 56 paths, 106 blobs); the scan of branches and tags is clean (9 commits, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
             },
             {
               "id": "S3",
-              "name": "Support",
+              "name": "Second private repository",
               "state": "done",
               "rows": [
                 "order",
@@ -1172,7 +1172,7 @@
                 "exit-tests",
                 "records"
               ],
-              "brief": "The same for Support, once TrumpBot holds its stage-8 marker.",
+              "brief": "The same for the second private repository, once the first private repository holds its stage-8 marker.",
               "kind": "work",
               "steps": [
                 {
@@ -1253,7 +1253,7 @@
               "ref": "plan.md#s3--support",
               "started": "2026-11-15T19:47:08Z",
               "finished": "2026-11-15T19:52:35Z",
-              "report": "Support is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (2 commits and 1 ref before). Positive control on the untouched backup: 8 of 8, clean, 0 findings, 0 kept findings, equal to the earlier record. The rewrite: 6 of 6, 2 of 2 commits rewritten. Post-run checks: 1 commit after, 29 paths, 29 blobs, largest blob 14302 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=1 and done=1 in the dry run and the push, the state read back as both, the 1 branch at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 1 head, rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=7259 missing=7259 distinct_all=29 every_ref_commits=1; the expectation check passed (1 commit on branches and on every ref, 29 paths, 29 blobs); the scan of branches and tags is clean (1 commit, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
+              "report": "The second private repository is rewritten, pushed and proven clean on a fresh mirror; all eight steps passed with no stop. Pre-run checks: 27 of 27 (2 commits and 1 ref before). Positive control on the untouched backup: 8 of 8, clean, 0 findings, 0 kept findings, equal to the earlier record. The rewrite: 6 of 6, 2 of 2 commits rewritten. Post-run checks: 1 commit after, 29 paths, 29 blobs, largest blob 14302 bytes, every manifest blob missing, the scan before the push clean with 0 findings, 13 output files checksummed. Push preparation: 17 of 17, 0 pull-request refs recorded. The push: one request, one attempt, its reply holds 11 printed lines; class pushed, tally forced=1 and done=1 in the dry run and the push, the state read back as both, the 1 branch at its new tip, the pull-request refs unchanged. Per-ref verification: 10 of 10; 1 head, rewritten, and 0 pull-request refs as recorded. Fresh mirror and exit tests: 17 checks passed; residual_blobs=0 manifest=7259 missing=7259 distinct_all=29 every_ref_commits=1; the expectation check passed (1 commit on branches and on every ref, 29 paths, 29 blobs); the scan of branches and tags is clean (1 commit, 0 findings) and the scan of every ref equals it. No default-rule finding. No deviation from the plan's steps."
             },
             {
               "id": "S4",
@@ -1300,7 +1300,7 @@
               "ref": "plan.md#s4--close-out",
               "started": "2026-11-15T19:52:35Z",
               "finished": "2026-11-15T19:54:07Z",
-              "report": "Close-out passed: all five steps completed with no stop. Final reads of the three repositories: 20 of 20 checks (8 for BotTools, 6 for TrumpBot, 6 for Support): every branch at its rewritten tip, the pull-request refs as recorded, the default branch, visibility and archive state as recorded, the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged. The checksum lists: 28, 29 and 28 record files checksummed for BotTools, TrumpBot and Support, and 49 run records. The tools are at their pins (96 of 96 checks). The earlier tool folder is at its pins (21 of 21 pinned files, 22 files in the folder; the 21 reused tools equal their list). The output rule over the unit's outputs passed (4 of 4 checks): the unit's part of the log holds 1025 lines with 0 stops, 0 waits, 0 next lines and 10 recorded readings, no drive-letter path and no 40-digit id; the 3 stored replies hold neither; the 3 request files hold no 40-digit id. No deviation from the plan's steps.",
+              "report": "Close-out passed: all five steps completed with no stop. Final reads of the three repositories: 20 of 20 checks (8 for BotTools, 6 for the first private repository, 6 for the second): every branch at its rewritten tip, the pull-request refs as recorded, the default branch, visibility and archive state as recorded, the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged. The checksum lists: 28, 29 and 28 record files checksummed for BotTools and the private repositories, and 49 run records. The tools are at their pins (96 of 96 checks). The earlier tool folder is at its pins (21 of 21 pinned files, 22 files in the folder; the 21 reused tools equal their list). The output rule over the unit's outputs passed (4 of 4 checks): the unit's part of the log holds 1025 lines with 0 stops, 0 waits, 0 next lines and 10 recorded readings, no drive-letter path and no 40-digit id; the 3 stored replies hold neither; the 3 request files hold no 40-digit id. No deviation from the plan's steps.",
               "result": "passed"
             }
           ]
@@ -1575,7 +1575,7 @@
       "label": "Plan accepted",
       "date": "2026-11-15",
       "ref": "plan.md",
-      "note": "five stages: a readiness stage that only reads and writes the unit's own data file, then BotTools, TrumpBot and Support, each rewritten, pushed on request by one atomic lease push, verified ref by ref and proven on a fresh mirror, each starting once the one before holds its stage-8 marker, and a close-out; three writes to GitHub; the plan weighs no option beyond the parent design's, and nothing needed research beyond it"
+      "note": "five stages: a readiness stage that only reads and writes the unit's own data file, then BotTools and the private repositories, each rewritten, pushed on request by one atomic lease push, verified ref by ref and proven on a fresh mirror, each starting once the one before holds its stage-8 marker, and a close-out; three writes to GitHub; the plan weighs no option beyond the parent design's, and nothing needed research beyond it"
     },
     {
       "column": "built",
@@ -1635,12 +1635,12 @@
     {
       "date": "2026-11-15",
       "column": "built",
-      "label": "S1 done; S2 current: TrumpBot"
+      "label": "S1 done; S2 current: the first private repository"
     },
     {
       "date": "2026-11-15",
       "column": "built",
-      "label": "S2 done; S3 current: Support"
+      "label": "S2 done; S3 current: the second private repository"
     },
     {
       "date": "2026-11-15",
@@ -1747,7 +1747,7 @@
           },
           {
             "state": "as-planned",
-            "text": "The three repositories read from GitHub as their rows record them (39 of 39 checks: 14 for BotTools, 13 for TrumpBot, 12 for Support), with five readings recorded, the rulesets read of each of the two private repositories refused with HTTP 403 among them, as expected."
+            "text": "The three repositories read from GitHub as their rows record them (39 of 39 checks: 14 for BotTools, 13 for the first private repository, 12 for the second), with five readings recorded, the rulesets read of each of the two private repositories refused with HTTP 403 among them, as expected."
           },
           {
             "state": "as-planned",
@@ -1846,7 +1846,7 @@
     {
       "id": "order",
       "group": "The rewrites",
-      "name": "The order: BotTools, then TrumpBot, then Support",
+      "name": "The order: BotTools, then the first private repository, then the second",
       "where": "the stage-8 marker each repository waits for",
       "system": "rewrite-pipeline",
       "gap": {
@@ -1863,7 +1863,7 @@
       "options": [
         {
           "id": "bottools-first-gated",
-          "name": "BotTools, TrumpBot, Support, each repository's stage 1 starting only once the one before it holds its stage-8 marker",
+          "name": "BotTools, the first private repository, the second, each repository's stage 1 starting only once the one before it holds its stage-8 marker",
           "verdict": "accepted",
           "why": "What GitHub's receive path does with push protection and with an atomic push of two leases is known before a private repository is pushed, and a stop leaves the repositories after it waiting.",
           "source": "../architecture.md §8.1, §11",
@@ -1884,15 +1884,15 @@
         "statements": [
           {
             "state": "as-planned",
-            "text": "BotTools was rewritten first, then TrumpBot, then Support, each through all eight of its steps with no stop."
+            "text": "BotTools was rewritten first, then the first private repository, then the second, each through all eight of its steps with no stop."
           },
           {
             "state": "as-planned",
-            "text": "TrumpBot and Support each started only once the repository before it held its stage-8 marker: their pre-run checks, the order gate among them, passed 27 of 27."
+            "text": "The private repositories each started only once the repository before it held its stage-8 marker: their pre-run checks, the order gate among them, passed 27 of 27."
           },
           {
             "state": "as-planned",
-            "text": "BotTools' push, the only one push protection for users applies to and the first atomic push of two leases, was classed pushed with both branches at their new tips and nothing refused by GitHub, before TrumpBot, the first private repository, was pushed."
+            "text": "BotTools' push, the only one push protection for users applies to and the first atomic push of two leases, was classed pushed with both branches at their new tips and nothing refused by GitHub, before the first private repository was pushed."
           }
         ]
       },
@@ -1901,12 +1901,12 @@
         "list": "numbered",
         "statements": [
           {
-            "text": "Rewrite BotTools first, then TrumpBot, then Support.",
+            "text": "Rewrite BotTools first, then the first private repository, then the second.",
             "ref": "plan.md#shape-of-the-run",
             "excerpt": {
               "ref": "plan.md#shape-of-the-run",
               "heading": "Shape of the run",
-              "paragraph": "Five stages. `S0` reads and checks; its only writes are the unit's data file and wording, its scratch folder, its record folder with the three `records-at-s0.<repo>.sums`, and the run log's lines. `S1`, `S2` and `S3` rewrite, push and prove BotTools, TrumpBot and Support in eight steps each, one per stage of the pipeline; `S2` starts only once BotTools holds its stage-8 marker and `S3` once TrumpBot holds its. `S4` is the close-out. The landing's document checks follow, outside the table. Every stop leaves the state its row of \"Stops and the state each leaves\" names.",
+              "paragraph": "Five stages. `S0` reads and checks; its only writes are the unit's data file and wording, its scratch folder, its record folder with the three `records-at-s0.<repo>.sums`, and the run log's lines. `S1`, `S2` and `S3` rewrite, push and prove BotTools and the private repositories in eight steps each, one per stage of the pipeline; `S2` starts only once BotTools holds its stage-8 marker and `S3` once the first private repository holds its. `S4` is the close-out. The landing's document checks follow, outside the table. Every stop leaves the state its row of \"Stops and the state each leaves\" names.",
               "hash": "f4ad0011c4be"
             }
           },
@@ -1916,7 +1916,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -1926,7 +1926,7 @@
             "excerpt": {
               "ref": "plan.md#shape-of-the-run",
               "heading": "Shape of the run",
-              "paragraph": "Five stages. `S0` reads and checks; its only writes are the unit's data file and wording, its scratch folder, its record folder with the three `records-at-s0.<repo>.sums`, and the run log's lines. `S1`, `S2` and `S3` rewrite, push and prove BotTools, TrumpBot and Support in eight steps each, one per stage of the pipeline; `S2` starts only once BotTools holds its stage-8 marker and `S3` once TrumpBot holds its. `S4` is the close-out. The landing's document checks follow, outside the table. Every stop leaves the state its row of \"Stops and the state each leaves\" names.",
+              "paragraph": "Five stages. `S0` reads and checks; its only writes are the unit's data file and wording, its scratch folder, its record folder with the three `records-at-s0.<repo>.sums`, and the run log's lines. `S1`, `S2` and `S3` rewrite, push and prove BotTools and the private repositories in eight steps each, one per stage of the pipeline; `S2` starts only once BotTools holds its stage-8 marker and `S3` once the first private repository holds its. `S4` is the close-out. The landing's document checks follow, outside the table. Every stop leaves the state its row of \"Stops and the state each leaves\" names.",
               "hash": "f4ad0011c4be"
             }
           }
@@ -1935,7 +1935,7 @@
         "steps": [
           {
             "id": "Sn.1",
-            "what": "Step 1 of TrumpBot and of Support requires the stage-8 marker of the repository before it.",
+            "what": "Step 1 of the first private repository and of the second requires the stage-8 marker of the repository before it.",
             "check": "`STAGE <repo>.p1 OK`, else a stop naming the missing marker",
             "link": "plan.md#steps-1-to-8-of-a-repository"
           }
@@ -1958,7 +1958,7 @@
       "system": "rewrite-pipeline",
       "gap": {
         "kind": "missing",
-        "summary": "Every commit of the three histories is still to be rewritten. Every root commit holds a purged path, so BotTools' 16 commits are to become 15, TrumpBot's 11 become 9 and Support's 2 become 1, removing 39, 199 and 7,259 purged blobs; the positive control on each untouched backup and step 4's handling of its error streams have not yet run on a real repository.",
+        "summary": "Every commit of the three histories is still to be rewritten. Every root commit holds a purged path, so BotTools' 16 commits are to become 15, the first private repository's 11 become 9 and the second's 2 become 1, removing 39, 199 and 7,259 purged blobs; the positive control on each untouched backup and step 4's handling of its error streams have not yet run on a real repository.",
         "evidence": [
           "`../architecture.md:104` — commits before and after: 16 → 15, 11 → 9, 2 → 1",
           "`../architecture.md:106` — purged blobs: 39, 199 and 7,259",
@@ -1985,23 +1985,23 @@
         "statements": [
           {
             "state": "as-planned",
-            "text": "Before each rewrite the list proof and the pre-run checks passed, 27 of 27 for each repository, with 16 commits and 4 refs before for BotTools, 11 and 2 for TrumpBot, 2 and 1 for Support."
+            "text": "Before each rewrite the list proof and the pre-run checks passed, 27 of 27 for each repository, with 16 commits and 4 refs before for BotTools, 11 and 2 for the first private repository, 2 and 1 for the second."
           },
           {
             "state": "as-planned",
-            "text": "The positive control on each untouched backup equalled the earlier record: BotTools 8 of 8 and Support 8 of 8, clean with 0 findings; TrumpBot 10 of 10, scan status 1 with 3518 findings, the control verdict passed, its scan summary, control file and kept-findings file each equal; 0 kept findings in all three."
+            "text": "The positive control on each untouched backup equalled the earlier record: BotTools 8 of 8 and the second private repository 8 of 8, clean with 0 findings; the first private repository 10 of 10, scan status 1 with 3518 findings, the control verdict passed, its scan summary, control file and kept-findings file each equal; 0 kept findings in all three."
           },
           {
             "state": "as-planned",
-            "text": "Each mirror was rewritten by one run that passed its 6 checks: 16 of 16 commits rewritten for BotTools, 11 of 11 for TrumpBot, 2 of 2 for Support."
+            "text": "Each mirror was rewritten by one run that passed its 6 checks: 16 of 16 commits rewritten for BotTools, 11 of 11 for the first private repository, 2 of 2 for the second."
           },
           {
             "state": "as-planned",
-            "text": "After the rewrite the counts equalled the expectation row: 15 commits, 82 paths, 145 blobs and a largest blob of 27168 bytes for BotTools; 9, 56, 106 and 25952 for TrumpBot; 1, 29, 29 and 14302 for Support. Every manifest blob was missing, the scan of branches and tags before the push was clean with 0 findings, and 13 output files were checksummed for each."
+            "text": "After the rewrite the counts equalled the expectation row: 15 commits, 82 paths, 145 blobs and a largest blob of 27168 bytes for BotTools; 9, 56, 106 and 25952 for the first private repository; 1, 29, 29 and 14302 for the second private repository. Every manifest blob was missing, the scan of branches and tags before the push was clean with 0 findings, and 13 output files were checksummed for each."
           },
           {
             "state": "as-planned",
-            "text": "The push preparation passed, 22 of 22 for BotTools with 2 pull-request refs recorded and its webhook's snapshot and baseline taken (0 deliveries listed before the push), and 17 of 17 for TrumpBot and for Support with 0 pull-request refs recorded; each built its request file."
+            "text": "The push preparation passed, 22 of 22 for BotTools with 2 pull-request refs recorded and its webhook's snapshot and baseline taken (0 deliveries listed before the push), and 17 of 17 for the first private repository and for the second with 0 pull-request refs recorded; each built its request file."
           },
           {
             "state": "as-planned",
@@ -2019,7 +2019,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2029,7 +2029,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2039,7 +2039,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2049,7 +2049,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2059,7 +2059,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2069,7 +2069,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           }
@@ -2100,7 +2100,7 @@
         ],
         "risks": [
           "The positive control differs from the preparation unit's record: the scan configuration's change is not inert for that repository, and the unit hands back before anything is rewritten",
-          "A scan runs past the scan wrapper's 30-minute cap, most likely on Support: the step stops before the push and runs again after a reset (assumption A9)"
+          "A scan runs past the scan wrapper's 30-minute cap, most likely on the second private repository: the step stops before the push and runs again after a reset (assumption A9)"
         ],
         "source": "plan.md Steps 1 to 8 of a repository, steps 1 to 5",
         "link": "plan.md#steps-1-to-8-of-a-repository"
@@ -2114,11 +2114,11 @@
       "system": "rewrite-pipeline",
       "gap": {
         "kind": "missing",
-        "summary": "BotTools and TrumpBot each have two branches, and the established push carries one. The earlier findings settle a refspec push of one branch under an explicit lease after a dry run; how several leases behave in one push, with or without `--atomic`, and which states each form can leave on the server, they did not establish.",
+        "summary": "BotTools and the first private repository each have two branches, and the established push carries one. The earlier findings settle a refspec push of one branch under an explicit lease after a dry run; how several leases behave in one push, with or without `--atomic`, and which states each form can leave on the server, they did not establish.",
         "evidence": [
           "`../architecture.md:102` — the branches: `main` and `Working-Branch`, `main` and `feature/pokercommand`, `main`",
           "`../research/README.md:31` — the push of one branch under an explicit lease, after a dry run, is established",
-          "`../research/README.md:73` — two branches each for BotTools and TrumpBot; several leases in one push are not established",
+          "`../research/README.md:73` — two branches each for BotTools and the first private repository; several leases in one push are not established",
           "`../research/README.md:222` — with `--atomic` a stale lease sends nothing; without it one branch is updated"
         ],
         "source": "../architecture.md §2.1; ../research/README.md, question 1 and Summary §1",
@@ -2129,7 +2129,7 @@
           "id": "one-atomic-lease-push",
           "name": "One request per repository, by file with the file's sha256, its procedure run as one shell: the guards, then one `git push --porcelain --atomic` with one explicit lease on the tip the mirror clone recorded and one refspec per branch, run first as a dry run of the same line, the push requiring the dry run's clean tally",
           "verdict": "accepted",
-          "why": "A stale lease or a refusal on one branch sends nothing, so each repository ends wholly rewritten or unchanged and a branch moved since the clone is never overwritten; Support takes the same path with one lease.",
+          "why": "A stale lease or a refusal on one branch sends nothing, so each repository ends wholly rewritten or unchanged and a branch moved since the clone is never overwritten; the second private repository takes the same path with one lease.",
           "source": "../architecture.md §8.2",
           "link": "../architecture.md#82-the-push"
         },
@@ -2172,7 +2172,7 @@
           },
           {
             "state": "as-planned",
-            "text": "Each push ran as one atomic push after a dry run of the same line, both tallying the expected forced count: forced=2 for BotTools and TrumpBot, forced=1 for Support, each with done=1."
+            "text": "Each push ran as one atomic push after a dry run of the same line, both tallying the expected forced count: forced=2 for BotTools and the first private repository, forced=1 for the second, each with done=1."
           },
           {
             "state": "as-planned",
@@ -2234,7 +2234,7 @@
             "excerpt": {
               "ref": "plan.md#what-the-unit-writes-to-github",
               "heading": "What the unit writes to GitHub",
-              "paragraph": "Exactly three pushes: the branches of `SpartanLaboratories/BotTools`, of `SpartanLaboratories/TrumpBot` and of `SpartanLaboratories/Support`, each a `push-mirror` request under the job `phase-0-bottools-trumpbot-support-rewrite`, in that order. It sends no issue, comment, label, setting, visibility or security change and deletes no ref. The unit's landing on KotlinBottools is the run's ordinary landing and is not made under the job.",
+              "paragraph": "Exactly three pushes: the branches of `SpartanLaboratories/BotTools`, of `SpartanLaboratories/…` and of `SpartanLaboratories/…`, each a `push-mirror` request under the job `phase-0-bottools-…-rewrite`, in that order. It sends no issue, comment, label, setting, visibility or security change and deletes no ref. The unit's landing on KotlinBottools is the run's ordinary landing and is not made under the job.",
               "hash": "0a6d9f63b030"
             }
           }
@@ -2313,7 +2313,7 @@
           },
           {
             "state": "as-planned",
-            "text": "The service's own check refused BotTools' first call before any entry ran; once the allow lines were placed, the service ran the same request again itself, under the same id as its second attempt, and that reply was stored and classed. TrumpBot's and Support's requests each ran once, on their first attempt."
+            "text": "The service's own check refused BotTools' first call before any entry ran; once the allow lines were placed, the service ran the same request again itself, under the same id as its second attempt, and that reply was stored and classed. The private repositories' requests each ran once, on their first attempt."
           },
           {
             "state": "as-planned",
@@ -2436,7 +2436,7 @@
         "statements": [
           {
             "state": "as-planned",
-            "text": "Each repository passed its per-ref verification right after its push, on both channels, 14 of 14 checks for BotTools and 10 of 10 for TrumpBot and for Support: BotTools' 2 heads, TrumpBot's 2 and Support's 1 all rewritten, with no tag."
+            "text": "Each repository passed its per-ref verification right after its push, on both channels, 14 of 14 checks for BotTools and 10 of 10 for the first private repository and for the second: BotTools' 2 heads, the first private repository's 2 and the second's 1 all rewritten, with no tag."
           },
           {
             "state": "as-planned",
@@ -2448,7 +2448,7 @@
           },
           {
             "state": "as-planned",
-            "text": "The close-out read the three repositories once more and passed, 20 of 20 checks (8 for BotTools, 6 for TrumpBot, 6 for Support): every branch at its rewritten tip, the pull-request refs, the default branch, the visibility, the archive state and the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged."
+            "text": "The close-out read the three repositories once more and passed, 20 of 20 checks (8 for BotTools, 6 for the first private repository, 6 for the second): every branch at its rewritten tip, the pull-request refs, the default branch, the visibility, the archive state and the webhook count as recorded, BotTools' webhook equal to its snapshot, and the earlier records unchanged."
           }
         ]
       },
@@ -2462,7 +2462,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2472,7 +2472,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2555,7 +2555,7 @@
           },
           {
             "state": "as-planned",
-            "text": "The expectation check on the heads passed for each: 15 commits on branches and 28 on every ref, 82 paths and 145 blobs for BotTools; 9 commits on branches and on every ref, 56 paths and 106 blobs for TrumpBot; 1 commit, 29 paths and 29 blobs for Support. No manifest blob is reachable from branches and tags."
+            "text": "The expectation check on the heads passed for each: 15 commits on branches and 28 on every ref, 82 paths and 145 blobs for BotTools; 9 commits on branches and on every ref, 56 paths and 106 blobs for the first private repository; 1 commit, 29 paths and 29 blobs for the second private repository. No manifest blob is reachable from branches and tags."
           },
           {
             "state": "as-planned",
@@ -2581,7 +2581,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2591,7 +2591,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2601,7 +2601,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           },
@@ -2621,7 +2621,7 @@
             "excerpt": {
               "ref": "plan.md#steps-1-to-8-of-a-repository",
               "heading": "Steps 1 to 8 of a repository",
-              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for TrumpBot, then `S3.1` to `S3.8` for Support once TrumpBot holds `STAGE TrumpBot.p8 OK`. `<repo>` is `BotTools`, `TrumpBot` or `Support`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of TrumpBot and Support also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
+              "paragraph": "The eight steps are the same for the three repositories: `S1.1` to `S1.8` for BotTools, then, when BotTools holds `STAGE BotTools.p8 OK`, `S2.1` to `S2.8` for the first private repository, then `S3.1` to `S3.8` for the second private repository once the first private repository holds `STAGE ….p8 OK`. `<repo>` is `BotTools`, `…` or `…`. A step marks its success in `DATA\\run\\g40\\status\\` and requires the marker of the one before it; step 1 of the private repositories also requires the previous repository's stage-8 marker (`STOP the repository this one waits for has not passed stage 8 (its marker is missing)` otherwise). A stop before …",
               "hash": "0e9d746b1c95"
             }
           }
@@ -2685,7 +2685,7 @@
         "statements": [
           {
             "state": "as-planned",
-            "text": "The unit's records were added as new files: 28, 29 and 28 record files for BotTools, TrumpBot and Support beside the earlier records, which read unchanged at the close-out, and 49 run records, the requests, replies, step markers and classes among them, in the unit's own record folder."
+            "text": "The unit's records were added as new files: 28, 29 and 28 record files for BotTools and the private repositories beside the earlier records, which read unchanged at the close-out, and 49 run records, the requests, replies, step markers and classes among them, in the unit's own record folder."
           },
           {
             "state": "as-planned",
@@ -2711,7 +2711,7 @@
             "excerpt": {
               "ref": "plan.md#records-and-where-they-live",
               "heading": "Records and where they live",
-              "paragraph": "`DATA\\rewrite\\<repo>\\` keeps the preparation unit's records, never written. This unit adds new files beside them (named in the steps' headers): `filter-repo.log`, `commit-map`, `ref-map`, `changed-refs`, `first-changed-commits`, `suboptimal-issues`, `next-steps.txt`, `purge-list.txt`, `g27-prerun.env`, `entries-before.txt`, `entries-after.txt`, `g27-control-scan.txt`, `g27-control-kept.txt` (and `g27-control.txt` for TrumpBot), `expect-check.txt`, `gitleaks-prepush.txt`, `default-rule-findings-prepush.txt` (when the scan finds), `push-expect.txt`, `server-pull-refs.txt`, `push-dry.txt`, …",
+              "paragraph": "`DATA\\rewrite\\<repo>\\` keeps the preparation unit's records, never written. This unit adds new files beside them (named in the steps' headers): `filter-repo.log`, `commit-map`, `ref-map`, `changed-refs`, `first-changed-commits`, `suboptimal-issues`, `next-steps.txt`, `purge-list.txt`, `g27-prerun.env`, `entries-before.txt`, `entries-after.txt`, `g27-control-scan.txt`, `g27-control-kept.txt` (and `g27-control.txt` for the first private repository), `expect-check.txt`, `gitleaks-prepush.txt`, `default-rule-findings-prepush.txt` (when the scan finds), `push-expect.txt`, `server-pull-refs.txt`, `push-dry.txt`, …",
               "hash": "174c0258a0e5"
             }
           },
@@ -2780,11 +2780,11 @@
       "system": "rewrite-pipeline",
       "gap": {
         "kind": "missing",
-        "summary": "This unit measures nothing GitHub still serves beyond BotTools' residual count, and changes no checkout. Stage 9's probes and feed reads, and the replacement of the TrumpBot clone, which keeps the old history, follow the pushes.",
+        "summary": "This unit measures nothing GitHub still serves beyond BotTools' residual count, and changes no checkout. Stage 9's probes and feed reads, and the replacement of the private repository clone, which keeps the old history, follow the pushes.",
         "evidence": [
           "`../architecture.md:673` — units 3 and 4 both wait for unit 2 and for nothing of each other",
           "`../architecture.md:858` — the rewrites change no checkout on this machine",
-          "`../consequences.md:79` — clones taken before the pushes keep the old histories; the one known clone, TrumpBot's, is replaced"
+          "`../consequences.md:79` — clones taken before the pushes keep the old histories; the one known clone, the first private repository's, is replaced"
         ],
         "source": "../architecture.md §11, §16; ../consequences.md §2.1",
         "link": "../architecture.md#16-decomposition"
@@ -2792,7 +2792,7 @@
       "options": [
         {
           "id": "left-to-41-and-42",
-          "name": "Left to the residual measurement (#41), over the three repositories once the last push is verified, and the clone replacement (#42), once TrumpBot is proven",
+          "name": "Left to the residual measurement (#41), over the three repositories once the last push is verified, and the clone replacement (#42), once the first private repository is proven",
           "verdict": "accepted",
           "why": "The measurement waits for the last push and reads within the events' window; the clone replacement writes to a checkout, not to GitHub, under another grant.",
           "source": "../architecture.md §15, §16",
@@ -2824,7 +2824,7 @@
           },
           {
             "state": "as-planned",
-            "text": "No clone was replaced and no graph built: the unit ran only its readiness, the eight steps of each repository and the close-out, and TrumpBot's clone replacement is left to #42."
+            "text": "No clone was replaced and no graph built: the unit ran only its readiness, the eight steps of each repository and the close-out, and the first private repository's clone replacement is left to #42."
           },
           {
             "state": "as-planned",
@@ -2842,17 +2842,17 @@
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). TrumpBot's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
               "hash": "64f530f7ef11"
             }
           },
           {
-            "text": "Replace no clone and build no graph: TrumpBot's local clone is neither read nor touched; its replacement is #42's.",
+            "text": "Replace no clone and build no graph: the first private repository's local clone is neither read nor touched; its replacement is #42's.",
             "ref": "plan.md#non-goals",
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). TrumpBot's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
               "hash": "64f530f7ef11"
             }
           },
@@ -2862,7 +2862,7 @@
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). TrumpBot's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
               "hash": "64f530f7ef11"
             }
           }
@@ -2928,7 +2928,7 @@
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). TrumpBot's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
               "hash": "64f530f7ef11"
             }
           },
@@ -3008,7 +3008,7 @@
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). TrumpBot's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
+              "paragraph": "No stage 9. The residual probes, the feed reads and the report rows are the residual measurement's (#41), which runs promptly after this unit because the events of BotTools' push cover 30 days and can lag by up to 6 hours. · No clone replacement and no graph build (#42). The first private repository's local clone is neither read nor touched. · No report row, no report on #2, no cleanup (#28). · No removal of anything GitHub still serves. BotTools' pull-request refs and old objects stay; no GitHub Support ticket is filed. · No change to BotTools' webhook and no read of a delivery's payload. · No commit to …",
               "hash": "64f530f7ef11"
             }
           },
@@ -3041,7 +3041,7 @@
   ],
   "impact": {
     "basis": "as-built",
-    "summary": "As built, no module is published and no version moves: the landing carries documents and generated boards only. Three force-pushes rewrote the histories of BotTools (public), TrumpBot and Support (private), five branches in all, each repository by one atomic push under a lease on every branch's recorded tip, and each landed whole; every commit id of the three changed, and nothing else on GitHub was written. On this machine the mirrors were rewritten beside their untouched backups, and fresh mirrors and the unit's records were added (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
+    "summary": "As built, no module is published and no version moves: the landing carries documents and generated boards only. Three force-pushes rewrote the histories of BotTools (public), the private repositories, five branches in all, each repository by one atomic push under a lease on every branch's recorded tip, and each landed whole; every commit id of the three changed, and nothing else on GitHub was written. On this machine the mirrors were rewritten beside their untouched backups, and fresh mirrors and the unit's records were added (`consequences.md` §1 to §4; the known gaps in §5, the follow-ups in §6).",
     "none": null,
     "release": {
       "bump": "none",
@@ -3059,7 +3059,7 @@
         "link": "consequences.md#21-github"
       },
       {
-        "who": "TrumpBot on GitHub (private)",
+        "who": "The first private repository on GitHub",
         "kind": "repository",
         "system": null,
         "effect": "behaviour",
@@ -3067,7 +3067,7 @@
         "link": "consequences.md#21-github"
       },
       {
-        "who": "Support on GitHub (private)",
+        "who": "The second private repository on GitHub",
         "kind": "repository",
         "system": null,
         "effect": "behaviour",
@@ -3075,11 +3075,11 @@
         "link": "consequences.md#21-github"
       },
       {
-        "who": "The TrumpBot clone on this machine",
+        "who": "The private repository clone on this machine",
         "kind": "operator",
         "system": null,
         "effect": "behaviour",
-        "summary": "Since TrumpBot's push it shares no commit with the server's branches. This unit did not touch it; the clone replacement (#42) replaces it. No fork of the three repositories exists.",
+        "summary": "Since the first private repository's push it shares no commit with the server's branches. This unit did not touch it; the clone replacement (#42) replaces it. No fork of the three repositories exists.",
         "link": "consequences.md#21-github"
       },
       {
@@ -3134,7 +3134,7 @@
         "who": "The clone replacement, #42",
         "system": null,
         "need": "required",
-        "summary": "Its data file names this unit in `from`: TrumpBot's stage-8 marker, with its maps, its manifest and its untouched backup. For its own requests, it takes what the parent design's §2.4 now says of allow lines and restarts, in its dated note.",
+        "summary": "Its data file names this unit in `from`: the first private repository's stage-8 marker, with its maps, its manifest and its untouched backup. For its own requests, it takes what the parent design's §2.4 now says of allow lines and restarts, in its dated note.",
         "link": "consequences.md#4-sibling-units-and-neighbouring-issues"
       },
       {
@@ -3181,7 +3181,7 @@
       {
         "entry": "adaptation.3",
         "what": "No default-rule finding is handed on to the residual report and cleanup.",
-        "why": "None arose in BotTools, TrumpBot or Support, before a push or on a fresh mirror.",
+        "why": "None arose in BotTools or either private repository, before a push or on a fresh mirror.",
         "when": "Implementation, steps 4 and 8",
         "ref": "consequences.md#6-follow-ups"
       },
@@ -3335,23 +3335,23 @@
     "items": [
       {
         "issue": 39,
-        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools and the private repositories",
         "state": "CLOSED",
         "stateReason": "COMPLETED"
       },
       {
         "issue": 40,
-        "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
         "state": "OPEN"
       },
       {
         "issue": 41,
-        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
         "state": "OPEN"
       },
       {
         "issue": 42,
-        "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+        "title": "Phase 0 · 7.4 — Replace the private repository clone",
         "state": "OPEN"
       }
     ]
@@ -3359,13 +3359,13 @@
   "followUps": [
     {
       "issue": 41,
-      "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+      "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
       "note": "runs promptly after this unit: stage 9's probes and feed reads, from this unit's records"
     },
     {
       "issue": 42,
-      "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
-      "note": "replaces the TrumpBot clone, which shares no commit with the server's branches after TrumpBot's push"
+      "title": "Phase 0 · 7.4 — Replace the private repository clone",
+      "note": "replaces the private repository clone, which shares no commit with the server's branches after the first private repository's push"
     },
     {
       "issue": 28,

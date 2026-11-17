@@ -1058,8 +1058,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   "folder": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-bottools-trumpbot-support-rewrite/39-workspace-tools",
   "kind": "issue",
   "title": "Extend the workspace tools",
-  "issueTitle": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
-  "function": "The workspace tools were written for GKB2 and GKB, two public repositories with one branch each, and cannot yet run BotTools, which is public with two branches and a webhook, or TrumpBot and Support, which are private: they push one branch, assume a public repository with no webhook and a positive control with probe arguments, run stage 9 right after each push, and two of them name GKB2 and GKB outside the parameter table. This unit builds a new, self-contained tool folder from the earlier one, which stays as it ran: four tool sets on one library, for the rewrites, the residual measurement and the clone replacement, and a self-test run by test kind; the three repositories' parameter rows, proven against what the repositories report; and every gap and follow-up the GKB2 and GKB unit recorded for this work, closed before the first push. Unit 1 of #27, with no version moved; it writes nothing to GitHub and changes no repository and no checkout.",
+  "issueTitle": "Phase 0 · 7.1 — Extend the workspace tools for BotTools and the private repositories",
+  "function": "The workspace tools were written for GKB2 and GKB, two public repositories with one branch each, and cannot yet run BotTools, which is public with two branches and a webhook, or the private repositories: they push one branch, assume a public repository with no webhook and a positive control with probe arguments, run stage 9 right after each push, and two of them name GKB2 and GKB outside the parameter table. This unit builds a new, self-contained tool folder from the earlier one, which stays as it ran: four tool sets on one library, for the rewrites, the residual measurement and the clone replacement, and a self-test run by test kind; the three repositories' parameter rows, proven against what the repositories report; and every gap and follow-up the GKB2 and GKB unit recorded for this work, closed before the first push. Unit 1 of #27, with no version moved; it writes nothing to GitHub and changes no repository and no checkout.",
   "status": "built",
   "sized": "2026-11-13T21:05:13Z",
   "parent": {
@@ -1277,7 +1277,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "ref": "plan.md#s3--the-three-repositories-read",
         "started": "2026-11-14T07:33:37Z",
         "finished": "2026-11-14T07:34:50Z",
-        "report": "The three repositories were read once and each parameter row equals the data; both steps' output equals the plan's expected output line for line (the rate-limit reading aside, which is never compared). The rows against the data: 62 checks passed, 0 failed (BotTools 11 row checks, TrumpBot 10, Support 10, each after its list's proofs); the checksums of the earlier records were recorded at this first run (5, 6 and 5 records). The repositories read from GitHub: 39 checks passed, 0 failed (BotTools 14, TrumpBot 13, Support 12) and 5 recorded readings: activity feed entries 0, 0 and 0 and events 0, 3 and 0 in the order BotTools, TrumpBot, Support, and for each of the two private repositories the rulesets read refused with HTTP 403, recorded as a repository no ruleset can apply to. Nothing was written to GitHub. No deviation from the plan.",
+        "report": "The three repositories were read once and each parameter row equals the data; both steps' output equals the plan's expected output line for line (the rate-limit reading aside, which is never compared). The rows against the data: 62 checks passed, 0 failed (BotTools 11 row checks, the first private repository 10, the second 10, each after its list's proofs); the checksums of the earlier records were recorded at this first run (5, 6 and 5 records). The repositories read from GitHub: 39 checks passed, 0 failed (BotTools 14, the first private repository 13, the second 12) and 5 recorded readings: activity feed entries 0, 0 and 0 and events 0, 3 and 0 in the order BotTools, the first private repository, the second, and for each of the two private repositories the rulesets read refused with HTTP 403, recorded as a repository no ruleset can apply to. Nothing was written to GitHub. No deviation from the plan.",
         "result": "passed"
       },
       {
@@ -1560,7 +1560,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
               "ref": "plan.md#s3--the-three-repositories-read",
               "started": "2026-11-14T07:33:37Z",
               "finished": "2026-11-14T07:34:50Z",
-              "report": "The three repositories were read once and each parameter row equals the data; both steps' output equals the plan's expected output line for line (the rate-limit reading aside, which is never compared). The rows against the data: 62 checks passed, 0 failed (BotTools 11 row checks, TrumpBot 10, Support 10, each after its list's proofs); the checksums of the earlier records were recorded at this first run (5, 6 and 5 records). The repositories read from GitHub: 39 checks passed, 0 failed (BotTools 14, TrumpBot 13, Support 12) and 5 recorded readings: activity feed entries 0, 0 and 0 and events 0, 3 and 0 in the order BotTools, TrumpBot, Support, and for each of the two private repositories the rulesets read refused with HTTP 403, recorded as a repository no ruleset can apply to. Nothing was written to GitHub. No deviation from the plan.",
+              "report": "The three repositories were read once and each parameter row equals the data; both steps' output equals the plan's expected output line for line (the rate-limit reading aside, which is never compared). The rows against the data: 62 checks passed, 0 failed (BotTools 11 row checks, the first private repository 10, the second 10, each after its list's proofs); the checksums of the earlier records were recorded at this first run (5, 6 and 5 records). The repositories read from GitHub: 39 checks passed, 0 failed (BotTools 14, the first private repository 13, the second 12) and 5 recorded readings: activity feed entries 0, 0 and 0 and events 0, 3 and 0 in the order BotTools, the first private repository, the second, and for each of the two private repositories the rulesets read refused with HTTP 403, recorded as a repository no ruleset can apply to. Nothing was written to GitHub. No deviation from the plan.",
               "result": "passed"
             },
             {
@@ -2542,7 +2542,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "where": "`WS/tools/g27/`, new · `WS/tools/g26/`, read only",
       "gap": {
         "kind": "missing",
-        "summary": "No tool folder serves BotTools, TrumpBot and Support. The earlier folder holds the GKB2 and GKB unit's 22 tools, each equal to its pin, and nearly every one of them changes for these repositories; an edit in place would make that unit's pins false, and its save step begins by removing the folder it saves into.",
+        "summary": "No tool folder serves BotTools and the private repositories. The earlier folder holds the GKB2 and GKB unit's 22 tools, each equal to its pin, and nearly every one of them changes for these repositories; an edit in place would make that unit's pins false, and its save step begins by removing the folder it saves into.",
         "evidence": [
           "`../architecture.md:144` — the earlier folder: the GKB2 and GKB unit's 22 tools, each equal to its pin, its parameter table with rows for GKB2 and GKB only",
           "`../research/tool-changes-for-three-repositories.md:19` — nearly every file changes, so a folder of changed files is the whole folder; an edit in place breaks the earlier pins, and the earlier save step removes its folder first",
@@ -2676,7 +2676,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No run of any rewrite, push, probe or replacement. Units 2, 3 and 4 run the sets this unit delivers; unit 1 proves them on made-up repositories and reads the three real ones. · No write to GitHub, no change to any repository, no read or touch of the TrumpBot clone, and no grant, allow line or request. · No change to `tools\\g26\\` or to the earlier units' records, no run of its tools or of its self-test, and no run of `k0-ready.sh` or `save-tools.sh` (the two workspace scripts that pin the earlier scan configuration). · No save of the stage runner. `tools\\run-stage.sh` is read at its existing …",
+              "paragraph": "No run of any rewrite, push, probe or replacement. Units 2, 3 and 4 run the sets this unit delivers; unit 1 proves them on made-up repositories and reads the three real ones. · No write to GitHub, no change to any repository, no read or touch of the private repository clone, and no grant, allow line or request. · No change to `tools\\g26\\` or to the earlier units' records, no run of its tools or of its self-test, and no run of `k0-ready.sh` or `save-tools.sh` (the two workspace scripts that pin the earlier scan configuration). · No save of the stage runner. `tools\\run-stage.sh` is read at its existing …",
               "hash": "9bd82f2b98b4"
             }
           }
@@ -2717,7 +2717,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "group": "The folder",
       "name": "A repository's policy in data: the parameter rows and the grant's data",
       "system": "toolchain",
-      "where": "the folder's parameter table and grant data · BotTools, TrumpBot, Support",
+      "where": "the folder's parameter table and grant data · BotTools, the first private repository, the second",
       "gap": {
         "kind": "debt",
         "summary": "The tools hold part of a repository's policy in their text. The parameter table has rows for GKB2 and GKB only, one branch each, read by position; the readiness, verification and close-out steps assume a public repository with no webhook; and the grant check and the self-test name GKB2, GKB, their issue or its branch outside the table.",
@@ -2862,11 +2862,11 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "where": "the rewrite set · run by #40",
       "gap": {
         "kind": "missing",
-        "summary": "The rewrite steps push one branch and assume a repository like GKB2. BotTools and TrumpBot each have two branches, and the push holds one branch in a dozen places across the request builder, the push step, the library and the reset; the positive control expects probe arguments and a control record that BotTools and Support do not have; the verification expects a public repository; and nothing counts BotTools' webhook deliveries.",
+        "summary": "The rewrite steps push one branch and assume a repository like GKB2. BotTools and the first private repository each have two branches, and the push holds one branch in a dozen places across the request builder, the push step, the library and the reset; the positive control expects probe arguments and a control record that BotTools and the second private repository do not have; the verification expects a public repository; and nothing counts BotTools' webhook deliveries.",
         "evidence": [
-          "`../research/tool-changes-for-three-repositories.md:66` — heads per repository: 2 for BotTools, 2 for TrumpBot, 1 for Support",
+          "`../research/tool-changes-for-three-repositories.md:66` — heads per repository: 2 for BotTools, 2 for the first private repository, 1 for the second",
           "`../research/tool-changes-for-three-repositories.md:37` — the two-branch push touches the request builder, the push step, the library and the reset",
-          "`../research/tool-changes-for-three-repositories.md:104` — the positive control expects a non-empty probe list and a control record; BotTools and Support have neither",
+          "`../research/tool-changes-for-three-repositories.md:104` — the positive control expects a non-empty probe list and a control record; BotTools and the second private repository have neither",
           "`../research/tool-changes-for-three-repositories.md:109` — the per-ref verification requires a public repository",
           "`../research/tool-changes-for-three-repositories.md:107` — no baseline of webhook deliveries at the push preparation"
         ],
@@ -2878,7 +2878,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
           "id": "atomic-lease-push",
           "name": "One request per repository carrying one atomic lease push of every changed branch: one lease and one refspec per branch, exactly one `--atomic`, the tally derived from the branch count, and a read-back after any non-zero status that names neither, both or partial",
           "verdict": "accepted",
-          "why": "A stale lease or a refusal on one branch sends nothing, Support takes the same path with one lease, and a partial state hands back rather than being repaired by another push.",
+          "why": "A stale lease or a refusal on one branch sends nothing, the second private repository takes the same path with one lease, and a partial state hands back rather than being repaired by another push.",
           "source": "../architecture.md §7.3, §8.2, §8.3",
           "link": "../architecture.md#73-what-changes-against-the-earlier-tools"
         },
@@ -3016,7 +3016,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             }
           }
         ],
-        "defense": "A stale lease or a refusal on one branch then sends nothing, Support takes the same path with one lease, a lost answer is settled by reading the server, and a push is never repeated blindly.",
+        "defense": "A stale lease or a refusal on one branch then sends nothing, the second private repository takes the same path with one lease, a lost answer is settled by reading the server, and a push is never repeated blindly.",
         "steps": [
           {
             "id": "S1.save",
@@ -3052,10 +3052,10 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "where": "the residual set · run by #41",
       "gap": {
         "kind": "missing",
-        "summary": "Stage 9 runs right after each push, and the order gate waits for it. The gate between repositories tests the previous repository's stage 9, which would hold TrumpBot's push until BotTools' probes and feed reads have run; and stage 9 runs its anonymous probes whatever the repository's visibility.",
+        "summary": "Stage 9 runs right after each push, and the order gate waits for it. The gate between repositories tests the previous repository's stage 9, which would hold the first private repository's push until BotTools' probes and feed reads have run; and stage 9 runs its anonymous probes whatever the repository's visibility.",
         "evidence": [
           "`../architecture.md:148` — the order gate between repositories tests the other repository's stage 9",
-          "`../research/tool-changes-for-three-repositories.md:361` — the gate requires the other repository's stage 9, which would hold TrumpBot's push until BotTools' probes and feeds have run",
+          "`../research/tool-changes-for-three-repositories.md:361` — the gate requires the other repository's stage 9, which would hold the first private repository's push until BotTools' probes and feeds have run",
           "`../research/tool-changes-for-three-repositories.md:111` — stage 9 runs the anonymous budget, batches and feeds whatever the visibility"
         ],
         "source": "../architecture.md §2.3, §7.3; ../research/tool-changes-for-three-repositories.md §8",
@@ -3203,7 +3203,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "where": "the clone set · run by #42 · the preparation unit's clone scripts, replaced",
       "gap": {
         "kind": "missing",
-        "summary": "The preparation unit's clone scripts would stop on the TrumpBot clone as it is today. They reach the private repository through the system's credential helper rather than `gh`, stop on the clone's two hooks and its exclude entry, archive all 59 untracked or ignored files where only the four `.idea/` files are to be carried, and are plain scripts where the replacement runs as a request procedure in one shell.",
+        "summary": "The preparation unit's clone scripts would stop on the private repository clone as it is today. They reach the private repository through the system's credential helper rather than `gh`, stop on the clone's two hooks and its exclude entry, archive all 59 untracked or ignored files where only the four `.idea/` files are to be carried, and are plain scripts where the replacement runs as a request procedure in one shell.",
         "evidence": [
           "`../architecture.md:156` — the clone scripts move the clone, archive every file git does not track, stop on the two hooks and the exclude entry, and use the system's credential helper",
           "`../research/tool-changes-for-three-repositories.md:393` — the no-hooks and no-excludes checks stop on today's clone",
@@ -3259,7 +3259,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "plan.md#the-clone-set",
               "heading": "The clone set",
-              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`TrumpBot-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
+              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`…-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
               "hash": "9d37d4073db8"
             }
           },
@@ -3269,7 +3269,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "plan.md#the-clone-set",
               "heading": "The clone set",
-              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`TrumpBot-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
+              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`…-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
               "hash": "9d37d4073db8"
             }
           },
@@ -3279,7 +3279,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "plan.md#the-clone-set",
               "heading": "The clone set",
-              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`TrumpBot-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
+              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`…-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
               "hash": "9d37d4073db8"
             }
           },
@@ -3289,7 +3289,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "plan.md#the-clone-set",
               "heading": "The clone set",
-              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`TrumpBot-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
+              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`…-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
               "hash": "9d37d4073db8"
             }
           },
@@ -3299,7 +3299,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "plan.md#the-clone-set",
               "heading": "The clone set",
-              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`TrumpBot-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
+              "paragraph": "Policy values come from the unit's data file: `carried_dir` (`.idea`), `other_dir` (`graphify-out`), `expect_carried` (4), `expect_other` (55), `move_to` (`…-old`, a folder beside the clone), `rename_tries` (5) and `rename_gap` (2 s: the retry's bound and spacing), `graph_hooks` (`post-checkout,post-commit`). · The census (`k1-clone.sh census`). It records every file git does not track, by folder (counted with no `--exclude-standard`, so the graph's ignored files count), the hooks beyond the samples (name, size, sha256), the exclude file's non-comment lines (count and sha256) and the …",
               "hash": "9d37d4073db8"
             }
           }
@@ -3770,7 +3770,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
       "group": "Proofs",
       "name": "The three repositories read once, the parameter rows proven against the data",
       "system": "toolchain",
-      "where": "BotTools, TrumpBot and Support on GitHub, read only · the preparation unit's records",
+      "where": "BotTools and the private repositories on GitHub, read only · the preparation unit's records",
       "gap": {
         "kind": "risk",
         "summary": "The three parameter rows are derived from records, not yet proven against the repositories. Their values come from the clone listings, the purge lists' checksums, the preparation unit's probe script and a derivation from the untouched backup; the repository ids and settings were read once during the design, and whether the pushing token can read BotTools' webhook deliveries is untried.",
@@ -3976,7 +3976,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
             "excerpt": {
               "ref": "plan.md#non-goals",
               "heading": "Non-goals",
-              "paragraph": "No run of any rewrite, push, probe or replacement. Units 2, 3 and 4 run the sets this unit delivers; unit 1 proves them on made-up repositories and reads the three real ones. · No write to GitHub, no change to any repository, no read or touch of the TrumpBot clone, and no grant, allow line or request. · No change to `tools\\g26\\` or to the earlier units' records, no run of its tools or of its self-test, and no run of `k0-ready.sh` or `save-tools.sh` (the two workspace scripts that pin the earlier scan configuration). · No save of the stage runner. `tools\\run-stage.sh` is read at its existing …",
+              "paragraph": "No run of any rewrite, push, probe or replacement. Units 2, 3 and 4 run the sets this unit delivers; unit 1 proves them on made-up repositories and reads the three real ones. · No write to GitHub, no change to any repository, no read or touch of the private repository clone, and no grant, allow line or request. · No change to `tools\\g26\\` or to the earlier units' records, no run of its tools or of its self-test, and no run of `k0-ready.sh` or `save-tools.sh` (the two workspace scripts that pin the earlier scan configuration). · No save of the stage runner. `tools\\run-stage.sh` is read at its existing …",
               "hash": "9bd82f2b98b4"
             }
           },
@@ -4093,7 +4093,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     },
     "downstream": [
       {
-        "who": "BotTools, TrumpBot and Support on GitHub",
+        "who": "BotTools and the private repositories on GitHub",
         "kind": "repository",
         "system": null,
         "effect": "none",
@@ -4117,7 +4117,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
         "link": "consequences.md#22-this-machine"
       },
       {
-        "who": "The TrumpBot clone, the other checkouts and the request service",
+        "who": "The private repository clone, the other checkouts and the request service",
         "kind": "operator",
         "system": null,
         "effect": "none",
@@ -4302,22 +4302,22 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
     "items": [
       {
         "issue": 39,
-        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.1 — Extend the workspace tools for BotTools and the private repositories",
         "state": "OPEN"
       },
       {
         "issue": 40,
-        "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
         "state": "OPEN"
       },
       {
         "issue": 41,
-        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+        "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
         "state": "OPEN"
       },
       {
         "issue": 42,
-        "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+        "title": "Phase 0 · 7.4 — Replace the private repository clone",
         "state": "OPEN"
       }
     ]
@@ -4325,17 +4325,17 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   "followUps": [
     {
       "issue": 40,
-      "title": "Phase 0 · 7.2 — Rewrite BotTools, TrumpBot and Support",
+      "title": "Phase 0 · 7.2 — Rewrite BotTools and the private repositories",
       "note": "runs the rewrite set, the parameter rows, the grant check and the push request builder with its reply store and classifier, after proving the folder at its pins and the quick gate; step 4's discarded error streams, which no case provokes, are first reached there"
     },
     {
       "issue": 41,
-      "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools, TrumpBot and Support",
+      "title": "Phase 0 · 7.3 — Measure what GitHub still serves of BotTools and the private repositories",
       "note": "runs the residual set; the residual close-out's literal strip of the record folder's path, which no case tells from a pattern match, is first reached there"
     },
     {
       "issue": 42,
-      "title": "Phase 0 · 7.4 — Replace the TrumpBot clone",
+      "title": "Phase 0 · 7.4 — Replace the private repository clone",
       "note": "runs the clone set and the grant check; the preparation unit's clone scripts are superseded and never run"
     },
     {

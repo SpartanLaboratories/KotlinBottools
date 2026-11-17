@@ -9,7 +9,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   "kind": "issue",
   "title": "Residual report and cleanup",
   "issueTitle": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
-  "function": "No single record yet says what GitHub still serves of the six old histories: each rewrite unit left its repositories' report rows, in counts, in the data folder, and the phase's follow-ups are spread across the units' consequences. The workspace still holds the backup mirrors, which contain everything the rewrite removed. This unit compiles the report rows into one table and posts it on #2, with what the exit tests proved and what they cannot prove; confirms each follow-up and records it in the consequences; re-verifies the data folder against its checksum lists and copies both tool folders and the stage runner into it; then deletes the workspace, confirming its deletion, and confirms the old TrumpBot clone's recorded path absent. Unit 8 of #2, the last, with no version moved: its one write to GitHub is the report comment, and its landing closes #2.",
+  "function": "No single record yet says what GitHub still serves of the six old histories: each rewrite unit left its repositories' report rows, in counts, in the data folder, and the phase's follow-ups are spread across the units' consequences. The workspace still holds the backup mirrors, which contain everything the rewrite removed. This unit compiles the report rows into one table and posts it on #2, with what the exit tests proved and what they cannot prove; confirms each follow-up and records it in the consequences; re-verifies the data folder against its checksum lists and copies both tool folders and the stage runner into it; then deletes the workspace, confirming its deletion, and confirms the old private repository clone's recorded path absent. Unit 8 of #2, the last, with no version moved: its one write to GitHub is the report comment, and its landing closes #2.",
   "status": "building",
   "sized": "2026-11-16T20:48:25Z",
   "parent": {
@@ -145,7 +145,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "ref": "plan.md#s0--readiness",
         "started": "2026-11-16T22:37:16Z",
         "finished": "2026-11-16T23:25:19Z",
-        "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+        "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old private repository clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
         "result": "passed"
       },
       {
@@ -442,7 +442,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "ref": "plan.md#s7--close-out",
         "started": "2026-11-16T23:50:06Z",
         "finished": "2026-11-16T23:50:59Z",
-        "report": "Close-out passed. The old TrumpBot clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
+        "report": "Close-out passed. The old private repository clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
         "result": "passed"
       }
     ],
@@ -935,7 +935,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s0--readiness",
               "started": "2026-11-16T22:37:16Z",
               "finished": "2026-11-16T23:25:19Z",
-              "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+              "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old private repository clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
               "result": "passed"
             },
             {
@@ -1284,7 +1284,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s0--readiness",
               "started": "2026-11-16T22:37:16Z",
               "finished": "2026-11-16T23:25:19Z",
-              "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+              "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old private repository clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
               "result": "passed"
             },
             {
@@ -1568,7 +1568,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "at": "2026-11-16T23:50:59Z",
             "note": "S7 reported done; Quality Review next"
           },
-          "detail": "Close-out passed. The old TrumpBot clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
+          "detail": "Close-out passed. The old private repository clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
           "stages": [
             {
               "id": "S0",
@@ -1644,7 +1644,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s0--readiness",
               "started": "2026-11-16T22:37:16Z",
               "finished": "2026-11-16T23:25:19Z",
-              "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old TrumpBot clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
+              "report": "Readiness passed. The unit's 26 scripts and data files were saved again at their corrected pins, and the four sandbox scripts passed all their cases (17, 24, 22 and 16). Every reused tool holds its pin (96 checks), the quick gate passed its 63 deterministic checks, and the tool versions, the inputs, the GitHub reads and the old private repository clone's recorded path (absent) are as expected. The section for the closing of #2 is not given yet, so as things stand #2 is closed by hand after the landing.",
               "result": "passed"
             },
             {
@@ -1941,7 +1941,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "plan.md#s7--close-out",
               "started": "2026-11-16T23:50:06Z",
               "finished": "2026-11-16T23:50:59Z",
-              "report": "Close-out passed. The old TrumpBot clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
+              "report": "Close-out passed. The old private repository clone's recorded path is still absent and the fresh clone stands; git-filter-repo prints its recorded version and its module holds its recorded sha256. 40 of the 47 checksum lists verify again, the 7 backup lists skipped because their subject is deleted, and the list over the 344 formerly unlisted files verifies. The step outputs, the body, the stored reply, the request file and the records hold no drive-letter path and no 40-digit id (0 STOP lines, 1 RECORD line). The unit's own records are under a checksum list of 141 files, which verifies.",
               "result": "passed"
             }
           ]
@@ -2402,7 +2402,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           "`../23-kotlinbottools-rewrite-and-swap/consequences.md:38` — KotlinBottools' public window ran from 2026-11-08 until the swap made it private on 2026-11-11",
           "`../25-kotlinbottools-publish/consequences.md:112` — KotlinBottools' row: the anonymous tallies, the activity-feed membership, the public window and the time of the change to public",
           "`../26-gkb2-gkb-rewrite/consequences.md:146` — GKB2's and GKB's report rows, with GKB2's pull-request residual",
-          "`../27-bottools-trumpbot-support-rewrite/41-residual-measurement/consequences.md:124` — the report rows of BotTools, TrumpBot and Support, of 31, 16 and 16 lines"
+          "`../27-bottools-trumpbot-support-rewrite/41-residual-measurement/consequences.md:124` — the report rows of BotTools and the private repositories, of 31, 16 and 16 lines"
         ],
         "source": "../architecture.md §1.1, §6.6, §12.4; the units' consequences §4",
         "link": "../architecture.md#124-the-report"
@@ -2640,7 +2640,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "where": "the phase's `consequences.md` §6 · the units' consequences",
       "gap": {
         "kind": "missing",
-        "summary": "The phase's follow-ups are recorded unit by unit, and none is yet confirmed for the phase as a whole. The units' consequences leave the two rehearsal repositories private and archived, their deletion needing a scope the phase does not use; no deferred object deletion; the one default-rule finding, in a kept KotlinBottools document, settled by the scoped allowlist table, and none recorded for GKB2, GKB, BotTools, TrumpBot or Support; no machine-local path in an issue text; and the token rule's record still to be confirmed absent.",
+        "summary": "The phase's follow-ups are recorded unit by unit, and none is yet confirmed for the phase as a whole. The units' consequences leave the two rehearsal repositories private and archived, their deletion needing a scope the phase does not use; no deferred object deletion; the one default-rule finding, in a kept KotlinBottools document, settled by the scoped allowlist table, and none recorded for GKB2, GKB, BotTools or either private repository; no machine-local path in an issue text; and the token rule's record still to be confirmed absent.",
         "evidence": [
           "`../architecture.md:1435` — unit 8 confirms the follow-ups: the rehearsal repositories, the deferred step if any, any token-rule gap and any default-rule findings",
           "`../consequences.md:323` — the rehearsal repositories: deleting them needs the `delete_repo` scope, which the phase neither has nor uses",
@@ -2648,7 +2648,7 @@ window.dashboardLive&&window.dashboardLive("plan",
           "`../21-preparation/consequences.md:164` — this unit confirms that no token-rule gap record appeared and that each kept-findings count still reads zero",
           "`../consequences.md:192` — the one allowlist table, scoped to one default rule, one research document of KotlinBottools and one exact text",
           "`../26-gkb2-gkb-rewrite/consequences.md:148` — no default-rule finding was recorded in GKB2 or GKB",
-          "`../27-bottools-trumpbot-support-rewrite/40-rewrites/consequences.md:197` — no default-rule finding arose for BotTools, TrumpBot or Support",
+          "`../27-bottools-trumpbot-support-rewrite/40-rewrites/consequences.md:197` — no default-rule finding arose for BotTools or either private repository",
           "`../consequences.md:344` — the publication unit's gate counted no machine-local path in an issue text"
         ],
         "source": "../architecture.md §15; ../consequences.md §6; the units' consequences §4 to §6",
@@ -3023,7 +3023,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "where": "`BotWS/tools` to `BotLegacyData/run/tools`",
       "gap": {
         "kind": "missing",
-        "summary": "The workspace tools live in the workspace, which the cleanup deletes. Only the three files CI needs are also committed; since #27's tools unit there are two tool folders, the GKB2 and GKB unit's and the one for BotTools, TrumpBot and Support, beside the stage runner, and the data folder is to receive both.",
+        "summary": "The workspace tools live in the workspace, which the cleanup deletes. Only the three files CI needs are also committed; since #27's tools unit there are two tool folders, the GKB2 and GKB unit's and the one for BotTools and the private repositories, beside the stage runner, and the data folder is to receive both.",
         "evidence": [
           "`../architecture.md:433` — the tools are saved in the workspace, and only the three files that CI needs are also committed",
           "`../architecture.md:761` — the workspace tools are copied to the data folder: the copy holds no secrets, and the deferred step needs it",
@@ -3092,7 +3092,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "final-implementation.md#34-the-checks-moved-s4",
               "heading": "3.4 The checks moved (`S4`)",
-              "paragraph": "`S4.sources`: 12 `ok` lines and `STAGE D.sources OK`: the commit maps' old columns hold 87, 32, 11, 16, 11 and 2 ids and the manifests 346, 81, 58, 39, 199 and 7,259 blobs (KotlinBottools, GKB2, GKB, BotTools, TrumpBot, Support); each old column equals its backup's commit set, with 0 differing lines (deviation 8). · `S4.routes`: 13 `ok` lines and `STAGE S4.routes OK`: the original route's four arms pass, the moved route's four arms pass, the two routes read the same 19 pending documents, and their two id outputs, their paths output and their gate output are equal byte for byte. · `S4.mark`: …",
+              "paragraph": "`S4.sources`: 12 `ok` lines and `STAGE D.sources OK`: the commit maps' old columns hold 87, 32, 11, 16, 11 and 2 ids and the manifests 346, 81, 58, 39, 199 and 7,259 blobs (KotlinBottools, GKB2, GKB, BotTools, the first private repository, the second); each old column equals its backup's commit set, with 0 differing lines (deviation 8). · `S4.routes`: 13 `ok` lines and `STAGE S4.routes OK`: the original route's four arms pass, the moved route's four arms pass, the two routes read the same 19 pending documents, and their two id outputs, their paths output and their gate output are equal byte for byte. · `S4.mark`: …",
               "hash": "90218af26df8"
             }
           }
@@ -3397,16 +3397,16 @@ window.dashboardLive&&window.dashboardLive("plan",
     {
       "id": "old-clone-path",
       "group": "Cleanup",
-      "name": "The old TrumpBot clone's recorded path confirmed absent",
+      "name": "The old private repository clone's recorded path confirmed absent",
       "system": "cleanup",
-      "where": "`%PROJECTS%/TrumpBot-old`, the path the clone replacement recorded",
+      "where": "`%PROJECTS%/…-old`, the path the clone replacement recorded",
       "gap": {
         "kind": "risk",
-        "summary": "The old TrumpBot clone lay outside the workspace, so the workspace's deletion does not reach it. Between its move and its deletion it held every pre-rewrite object of TrumpBot; the clone replacement deleted it at its recorded path and left that path for the cleanup to confirm absent, a leftover to be deleted there.",
+        "summary": "The old private repository clone lay outside the workspace, so the workspace's deletion does not reach it. Between its move and its deletion it held every pre-rewrite object of the first private repository; the clone replacement deleted it at its recorded path and left that path for the cleanup to confirm absent, a leftover to be deleted there.",
         "evidence": [
           "`../architecture.md:439` — the old clone is moved aside by a rename on its own volume, not into the workspace",
           "`../architecture.md:771` — the workspace's deletion does not reach the old clone; the cleanup confirms the recorded path absent, and a leftover is deleted at that path",
-          "`../architecture.md:1476` — between its move and its deletion the old clone holds every pre-rewrite object of TrumpBot",
+          "`../architecture.md:1476` — between its move and its deletion the old clone holds every pre-rewrite object of the first private repository",
           "`../27-bottools-trumpbot-support-rewrite/42-clone-replacement/consequences.md:225` — the deletion left nothing at the recorded path, which this unit's cleanup confirms absent"
         ],
         "source": "../architecture.md §5.2, §6.7, §16; ../27-bottools-trumpbot-support-rewrite/42-clone-replacement/consequences.md §4, §6",
@@ -3443,7 +3443,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "summary": null,
         "statements": [
           {
-            "text": "The old TrumpBot clone's recorded path read absent at readiness (S0) and again at the close-out (S7), where the fresh clone still stood and git-filter-repo printed its recorded version, its module holding its recorded sha256.",
+            "text": "The old private repository clone's recorded path read absent at readiness (S0) and again at the close-out (S7), where the fresh clone still stood and git-filter-repo printed its recorded version, its module holding its recorded sha256.",
             "state": "as-planned"
           },
           {
@@ -3456,12 +3456,12 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "build",
         "statements": [
           {
-            "text": "The old TrumpBot clone's recorded path is confirmed absent at readiness and again at close-out.",
+            "text": "The old private repository clone's recorded path is confirmed absent at readiness and again at close-out.",
             "ref": "plan.md#the-old-clones-recorded-path",
             "excerpt": {
               "ref": "plan.md#the-old-clones-recorded-path",
               "heading": "The old clone's recorded path",
-              "paragraph": "`DATA\\run\\g42\\clone-moved.txt` holds `moved_to=TrumpBot-old`, the folder beside the TrumpBot clone the old clone was renamed to and deleted at. The unit reads the recorded value and confirms `%PROJECTS%\\TrumpBot-old` absent at readiness (`S0.clone`) and again at close-out (`S7.clone`). If the path is present at either, the unit stops and hands back with the path named: its deletion would be a request under a section the owner gives then, and the workspace's deletion never reaches it. `git-filter-repo` stays installed: `S7.package` reads that `git filter-repo --version` prints the recorded …",
+              "paragraph": "`DATA\\run\\g42\\clone-moved.txt` holds `moved_to=…-old`, the folder beside the private repository clone the old clone was renamed to and deleted at. The unit reads the recorded value and confirms `%PROJECTS%\\…-old` absent at readiness (`S0.clone`) and again at close-out (`S7.clone`). If the path is present at either, the unit stops and hands back with the path named: its deletion would be a request under a section the owner gives then, and the workspace's deletion never reaches it. `git-filter-repo` stays installed: `S7.package` reads that `git filter-repo --version` prints the recorded …",
               "hash": "8e5239cf9143"
             }
           },
@@ -3471,7 +3471,7 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "plan.md#the-old-clones-recorded-path",
               "heading": "The old clone's recorded path",
-              "paragraph": "`DATA\\run\\g42\\clone-moved.txt` holds `moved_to=TrumpBot-old`, the folder beside the TrumpBot clone the old clone was renamed to and deleted at. The unit reads the recorded value and confirms `%PROJECTS%\\TrumpBot-old` absent at readiness (`S0.clone`) and again at close-out (`S7.clone`). If the path is present at either, the unit stops and hands back with the path named: its deletion would be a request under a section the owner gives then, and the workspace's deletion never reaches it. `git-filter-repo` stays installed: `S7.package` reads that `git filter-repo --version` prints the recorded …",
+              "paragraph": "`DATA\\run\\g42\\clone-moved.txt` holds `moved_to=…-old`, the folder beside the private repository clone the old clone was renamed to and deleted at. The unit reads the recorded value and confirms `%PROJECTS%\\…-old` absent at readiness (`S0.clone`) and again at close-out (`S7.clone`). If the path is present at either, the unit stops and hands back with the path named: its deletion would be a request under a section the owner gives then, and the workspace's deletion never reaches it. `git-filter-repo` stays installed: `S7.package` reads that `git filter-repo --version` prints the recorded …",
               "hash": "8e5239cf9143"
             }
           }
@@ -3666,11 +3666,11 @@ window.dashboardLive&&window.dashboardLive("plan",
         "link": "consequences.md#22-this-machine"
       },
       {
-        "who": "git-filter-repo and the TrumpBot clone",
+        "who": "git-filter-repo and the private repository clone",
         "kind": "operator",
         "system": "cleanup",
         "effect": "none",
-        "summary": "Unchanged: git-filter-repo 2.47.0 stays installed, and the TrumpBot clone's four carried files are read against their list; gitleaks then lives only in the tools copy.",
+        "summary": "Unchanged: git-filter-repo 2.47.0 stays installed, and the private repository clone's four carried files are read against their list; gitleaks then lives only in the tools copy.",
         "link": "consequences.md#22-this-machine"
       },
       {
