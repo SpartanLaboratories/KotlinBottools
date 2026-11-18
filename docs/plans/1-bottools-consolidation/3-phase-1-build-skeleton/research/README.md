@@ -238,3 +238,193 @@ Gradle 9.7.1, not from a citable source, and are on no claims list:
   ([gates findings, F5 and F6](documentation-abi-and-publishing-gates.md#3-findings)).
 
 The build's own checks repeat each of them on the real modules.
+
+---
+
+## Summary
+
+### 1. Static analysis with detekt
+
+- **What was found.**
+  - `SuspendFunSwallowedCancellation` needs type resolution in both detekt lines. Without a classpath the rule is skipped, with a
+    debug message only. The Gradle plugin joins only the plain `detekt` task to `check`, and that task has no classpath, so a
+    build that applies detekt and runs `check` passes with the rule never run
+    ([detekt findings, F1 to F3](detekt-on-the-toolchain.md#3-findings)).
+  - detekt 1.23.8, the last 1.x release, is built on Kotlin 2.0.21. Its compiler reads Kotlin metadata only up to 2.1.0, while the
+    standard library of Kotlin 2.2 carries 2.2.0, so on this build its type-resolved rules cannot see `kotlin.runCatching`, and the
+    maintainers plan no further 1.x release (F4).
+  - detekt 2.0.0-alpha.6 (2026-08-04) is the newest 2.x release, with no stable 2.0.0. It runs on JDK 17 or newer, accepts
+    Kotlin language versions 2.0 to 2.5 and declares configuration-cache compatibility. Public builds run it on Kotlin 2.2.21 and
+    Gradle 9.5 to 9.9 (F5 to F7).
+- **The approach.**
+  - **Pin and apply.** Pin `dev.detekt` 2.0.0-alpha.6 exactly in `build-logic`, and apply it in `bottools.kotlin-library` with
+    `buildUponDefaultConfig = true`. `config/detekt/detekt.yml` holds only the rule's activation. A new code base needs no
+    baseline, and `parallel` stays off. A module with no main source passes, its task skipped as `NO-SOURCE` (F8, F9).
+  - **Wire the type-resolving tasks.** `check` depends on the type-resolving task of every Kotlin compilation: `detektMain`, and
+    `detektTest`. The seven test sets are packages inside the one `test` source set, as in the organisation's builds, so
+    `detektTest` covers them all.
+  - **Prove the wiring.** A convention-plugin test with a seeded `runCatching { suspendCall() }` must fail `check`, while the plain
+    `detekt` task passes.
+  - **The stricter rule.** The 2.x rule also flags a `catch` of `CancellationException`, or of a supertype, around a suspend
+    call, unless the clause rethrows `CancellationException` first or starts with `ensureActive()`. The internal
+    `suspendCatching` is written in a shape the rule accepts (F10).
+- **Where sources disagree.** detekt's migration guide lists Kotlin 2.4 as the 2.x minimum. The accepted language versions (2.0
+  to 2.5) and the public builds on Kotlin 2.2.21 contradict it, so the guide's row reads as detekt's own build version.
+- **What does not fit.**
+  - 1.23.8 is silent on the one rule it is adopted for.
+  - The command-line tool duplicates the classpath, toolchain and friend-path wiring the plugin already derives.
+  - The plain task cannot run the rule.
+- **The cost.** The build's detekt is a pre-release. It adds nothing to a published artifact, so a bump can break only `check`.
+  Three open issues touch this build: #9793 (a stale jar view in a warm local daemon; a clean CI build is unaffected), #9121
+  (`parallel`) and #9297 (the ktlint wrapper with `ignoreAnnotated`) (F11).
+
+### 2. The umbrella's strict pins and the release-metadata check
+
+- **The declaration.** Each of the five edges is `api(project(":<module>"))` plus an `api` dependency constraint by coordinates with
+  `version { strictly(<the shared version>) }`, generated from one module list.
+  - **What is published.** Gradle 9.7.1 publishes the constraint in `dependencyConstraints[]` of the `apiElements` and
+    `runtimeElements` variants, with `strictly` and `requires`. The edge itself in `dependencies[]` stays a plain `requires`.
+  - **How it resolves.** Inside the build the edge resolves to the sibling project. A composite that includes the build still
+    substitutes it, and ignores the requested version.
+  - **The POM** shows plain versions and a `dependencyManagement` block, with no `strictly`. vanniktech changes none of this
+    ([umbrella findings, F1, F5](umbrella-strict-pins.md#3-findings)).
+- **What does not work.** A constraint on the project dependency itself cannot carry a version: Gradle throws. Declaring the edge
+  by coordinates with a substitution rule breaks every other project of the build that consumes the umbrella (F2, F3).
+- **What a consumer meets** (F6):
+  - a plain request for another version of a pinned module fails resolution, naming the strict constraint;
+  - a request for a lower version is no conflict;
+  - the consumer's own `strictly` or `force` overrides the pin.
+- **`verifyReleasableMetadata`** is a typed task in `build-logic`, shaped like WebTools' `VerifyJavaFloor` (F7).
+  - **Inputs:**
+    - the outputs of every `GenerateModuleMetadata` task, collected lazily, so they carry the task dependency;
+    - the published version;
+    - a map of `group:module` to the version each must be pinned to: five entries on the umbrella, none on a feature module, one
+      more later for the WebTools edge.
+  - **Checks:**
+    - it reads only the library variants (category `library`; the sources variant also carries the runtime usage);
+    - it finds each edge in `dependencies[]` and its `strictly` in `dependencyConstraints[]`;
+    - for a version that is not a snapshot, it refuses any `-SNAPSHOT` in either array;
+    - it fails on a missing file or on nothing to check, and writes its report only on success.
+  - **Wiring.** It hangs on every `AbstractPublishToMaven` task, so Maven Local, any repository and Central's staging all wait for
+    it. vanniktech's upload to Central is an end-of-build action that does not run after a failure.
+- **The umbrella's jars.** MyGameTools' fold of the modules' sources and Dokka output works on vanniktech 0.37.0 and Dokka 2.2.0.
+  Its guards do not fit, because they use a fixed page count and hard-coded package names. Each guard instead derives its
+  expectation from the modules' real source files, from the same module list:
+  - presence is required for each module that has source;
+  - a module with no source contributes nothing, and is not required to;
+  - when no module has source at all, the guard fails (F8).
+- **Where sources disagree.** Gradle advises a library to prefer a range with a preferred version over a bare strict version.
+  Common practice aligns a library's own modules with a BOM, and no public library was found that publishes strict constraints
+  between its own modules (F9). The organisation's versioning rule decides here: a bug fix may take a letter, Gradle orders a
+  lettered version below the plain one, and only a strict pin keeps such a fix effective in a consumer's graph.
+
+### 3. Versions, the documentation and ABI gates, and modules with no source yet
+
+- **Versions** ([gates findings, F1 to F3](documentation-abi-and-publishing-gates.md#3-findings)). The published `kotlin-stdlib`
+  requirement follows the Kotlin plugin's patch, 2.2.21.
+
+  | Tool | Pin | Why |
+  |---|---|---|
+  | Kotlin Gradle plugin | 2.2.21 | the newest 2.2.x |
+  | Dokka | 2.2.0 | 2.3.0 works on this stack but has an open regression, issue 4620: under `failOnWarning` it fails a documented subclass whose superclass holds private members typed from an `implementation` dependency, a shape the library's modules will have. 2.3.0's gains reach no published artifact and no gate. |
+  | vanniktech | 0.37.0 | its changes since 0.36.0 touch only Central checksum files and logging. `SourcesJar.Sources()` replaces the deprecated boolean option. |
+  | binary-compatibility validator | 0.18.2 | the newest release; it is in maintenance mode |
+
+- **Dokka.**
+  - V2 is already the default mode. `org.jetbrains.dokka.experimental.gradle.pluginMode=V2Enabled` in the root `gradle.properties`
+    sets the finished state and keeps V1 unselectable (F4).
+  - `dokkaGeneratePublicationHtml` joins `check` in the published-library convention and on the root. An undocumented public
+    declaration then fails `./gradlew build` (F6).
+  - The root needs the Kotlin plugin with `apply false`. Without it the aggregate renders empty and the build still passes, so
+    the site check asserts that the aggregate holds a module page (F4, F5).
+- **Modules with no main source** pass every gate with no placeholder declaration (F5):
+  - Dokka warns nothing and writes no pages;
+  - the validator writes a zero-byte dump, and `apiCheck` fails until that dump is committed;
+  - vanniktech builds valid jars holding only a manifest;
+  - signing is skipped for the snapshot version.
+
+  So every module commits its `api/<module>.api` dump. It is zero bytes for the four feature modules that have no source yet and
+  for the umbrella.
+- **`nonPublicMarkers`.** Declarations marked `@ExperimentalBotToolsApi` leave the dump. The marker class itself and
+  `@SupportedExtension` stay in it (F7).
+- **Gradle 9 and test sources.** Gradle 9 fails `test` when a module has test sources but discovers no test, so a module's test
+  source set holds a discoverable test or nothing (F5).
+- **Where sources disagree.** The organisation's builds pin Dokka 2.3.0 (WebTools) and 2.2.0 (MyGameTools), and both pin vanniktech
+  0.36.0. Dokka 2.2.0 and vanniktech 0.37.0 hold here for the reasons above.
+
+### 4. The workflows and the repository's settings
+
+- **Required checks** ([GitHub findings, F1 to F3](github-workflows-and-settings.md#3-findings)).
+  - **What a check is named.** A check run carries its job's name.
+  - **What satisfies one.** A workflow skipped by a filter leaves its required checks pending. A job skipped by `if:` reports
+    success. A run started on demand never satisfies a required check. So the required jobs have fixed names, and carry no path
+    filter and no `if:`.
+  - **What it binds.** A ruleset's required checks apply before a ref is updated. With the pull-request rule, direct pushes to
+    `main` are refused. Tag pushes are not touched.
+- **The ruleset** targets `~DEFAULT_BRANCH`, with enforcement active and no bypass actor (F4, F5). Its rules:
+  - `deletion` and `non_fast_forward`;
+  - `pull_request`, with no required approval and merge commits as the only merge method;
+  - `required_status_checks`, with the strict, up-to-date policy, each check pinned to GitHub Actions' integration id, 15368.
+
+  Rulesets apply on public repositories of free-plan organisations.
+- **Merge settings and Pages** (F6 to F8).
+  - **Merge settings.** One repository update turns off squash and rebase merging and keeps merge commits.
+  - **Pages.** The site is created with GitHub Actions as its source (`build_type: workflow`) before the first `pages.yml` run on
+    `main`, and read back. The `github-pages` environment allows deployments from the default branch.
+- **Actions, pinned by commit** (F9 to F11):
+
+  | Action | Release | Note |
+  |---|---|---|
+  | `actions/checkout` | v7.0.1 | |
+  | `actions/setup-java` | v6.3.0 | |
+  | `gradle/actions/setup-gradle` | v5.0.2 | v5 is MIT-licensed. v6 moves its caching into a separately licensed component whose terms must be accepted, which is why WebTools stays on v5. Wrapper validation is on by default. |
+  | `actions/upload-pages-artifact` | v5.0.0 | it drops dot files unless `include-hidden-files: true` is set, which `.nojekyll` needs |
+  | `actions/deploy-pages` | v5.0.1 | |
+  | `actions/upload-artifact` | v7.0.2 | |
+
+- **Permissions** (F12). Each workflow defaults to `contents: read`. Only the Pages deploy job holds `pages: write` and
+  `id-token: write`, and a job-level block sets every scope it does not list to none.
+- **`release.yml`** (F13, F14).
+  - **Trigger.** It matches a version tag with or without the leading `v`. The organisation's version scheme lets a bug fix carry a
+    trailing letter, so the lettered forms are matched as well.
+  - **The job.** A shell guard re-checks the tag. The job holds `contents: read`, builds the tagged commit from a clean checkout
+    with `./gradlew build verifyReleasableMetadata`, and creates nothing.
+- **Concurrency** (F15). CI cancels runs in progress on pull requests only. Pages deploys in one fixed group that never cancels a
+  deployment in progress.
+- **What does not fit:**
+  - floating action tags;
+  - an aggregate gate job;
+  - required checks without the integration id, which a plain commit status could satisfy;
+  - workflow-level Pages permissions, as the organisation's two earlier sites have them.
+
+### 5. Logging
+
+- **kotlin-logging 8.0.7** ([logging findings](logging-backend-check.md#3-findings)).
+  - **Its dependencies.** The artifact is `io.github.oshai:kotlin-logging-jvm`, and it depends on `kotlin-stdlib` 2.1.21 alone.
+    slf4j-api is compile-only in its build, so it does not bring slf4j-api with it.
+  - **Compatibility.** Its class files are Java 8 with Kotlin metadata 2.0.0, so a Kotlin 2.2.x compiler reads them and Java 21
+    runs them.
+  - **On the JVM.** slf4j is its default backend.
+    - With no slf4j provider present, slf4j prints one warning and discards every event.
+    - With no slf4j-api at all, kotlin-logging cannot load.
+    - Its first use prints a start-up line, which only the application switches off.
+- **What a logging module declares.** Each module that logs declares `kotlin-logging-jvm` 8.0.7 and `org.slf4j:slf4j-api` 2.0.19,
+  both `implementation`; 2.0.19 is the version JDA 6.7.0 and logback 1.6.7 ask for. Tests get `ch.qos.logback:logback-classic`
+  1.6.7 as `testRuntimeOnly`.
+- **Telling a backend apart.**
+  - **Providers and bindings.** slf4j 2 loads its provider through `META-INF/services/org.slf4j.spi.SLF4JServiceProvider`, and an
+    slf4j 1 binding carries `org/slf4j/impl/StaticLoggerBinder.class`. Of the 21 jars read, every provider and binding carries one
+    of the two, and every API and bridge carries neither.
+  - **Backends outside slf4j.** `log4j-core` is a backend without being an slf4j provider, and so are `logback-core`, `reload4j`
+    and `tinylog-impl`. A list of barred coordinates covers them.
+- **The check, `verifyNoLoggingBackend`.**
+  - **Where it runs.** It runs per published module over the module's resolved runtime classpath, and is configuration-cache safe.
+  - **What it fails on.** It fails on a provider or binding file, or on a barred coordinate. Its message names the module, the jar,
+    its coordinates and the rule that matched.
+  - **What it passes.** It passes on an empty classpath, since modules hold no source yet, and it never bars slf4j-api, the
+    bridges or kotlin-logging.
+- **What does not fit.**
+  - Gradle capabilities: the `logging-capabilities` approach fails on only two backends, and its repository is archived.
+  - A coordinate-only check goes stale and misses a shaded provider.
+  - A check of logging configuration files packed into a module's own jar reaches past the check's subject, a module's runtime
+    dependencies, and is not part of it.
