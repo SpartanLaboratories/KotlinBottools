@@ -200,3 +200,41 @@ dependencies carry a logging backend.
   POM, module metadata and class files at 8.0.7; the slf4j providers of logback, log4j and slf4j's own simple and JUL bindings;
   builds that run such a check.
 - **Findings file:** [`logging-backend-check.md`](logging-backend-check.md).
+
+---
+
+## Verification results
+
+Every load-bearing claim of the five findings files was re-opened at its source on 2026-11-18: sources quoted at a tag or a
+commit were read there, release lists and Maven Central metadata were read on that day, and the jar and metadata claims were
+checked by reading the published artifacts themselves. All 97 hold; none fails and none is unclear.
+
+| Findings file | Claims | Result |
+|---|---|---|
+| [`detekt-on-the-toolchain.md`](detekt-on-the-toolchain.md#7-load-bearing-claims) | 24 | Hold. The rule's type-resolution requirement in both lines, the plugin joining only the plain task to `check`, 1.23.8's Kotlin 2.0.21 build and its metadata reader limit, 2.0.0-alpha.6 as the newest 2.x release with no stable 2.0.0, its Kotlin 2.4.10 build, JDK 17 floor and language-version range, the public builds on Kotlin 2.2.21, and the cited issues' states (#9793, #9121 and #9297 open; #8865 and #9742 closed; #9311 merged). |
+| [`umbrella-strict-pins.md`](umbrella-strict-pins.md#7-load-bearing-claims) | 15 | Hold, each quote verbatim at Gradle v9.7.1, vanniktech 0.37.0, and the cited MyGameTools, WebTools and OkHttp commits. vanniktech 0.37.0 states Gradle 9.6.0 and 9.7.0-milestone-1 as tested, so 9.7.1 sits just above its tested range. |
+| [`documentation-abi-and-publishing-gates.md`](documentation-abi-and-publishing-gates.md#7-load-bearing-claims) | 21 | Hold. Dokka 2.3.0 is the newest release (2026-11-05) and its issue 4620 is open; the Kotlin Gradle plugin 2.2.21 is the newest 2.2.x; the validator 0.18.2 is the newest (2026-09-02) and in maintenance mode; the validator reads binary-retention annotations for `nonPublicMarkers`. |
+| [`github-workflows-and-settings.md`](github-workflows-and-settings.md#7-load-bearing-claims) | 23 | Hold. All seven action commits match their tags, and each named release is the newest of its line. This repository's secret-scan check reports `Secret scan (gitleaks)` from GitHub Actions (app id 15368). |
+| [`logging-backend-check.md`](logging-backend-check.md#7-load-bearing-claims) | 14 | Hold. kotlin-logging-jvm 8.0.7's POM and module metadata depend on `kotlin-stdlib` 2.1.21 only; its class files are Java 8 with Kotlin metadata 2.0.0. Every provider, binding and bridge in the file's table is classified as the jars themselves show. |
+
+Four details differ from the files' wording and change no conclusion:
+
+- **Logging, claim 13.** The cited WebTools links named a `main` branch; WebTools' default branch is `master`. The links now point
+  at commit `d68ec81e`, the head of `master` on 2026-11-18, which holds both quoted passages.
+- **GitHub, claim 2.** `actions/checkout`'s test workflow declares six jobs, not two; the naming rule it illustrates holds.
+- **GitHub, claim 22.** The quoted concurrency sentence comes from one of two variants of GitHub's documentation source; the
+  other variant says the same in other words.
+- **detekt, claim 11.** The sentence on alpha.6's build versions is in the release notes, which the file cites first, not in the
+  changelog page at the tag.
+
+**Observed, not quoted.** Several behaviours in the findings come from reproduction builds run outside this repository on
+Gradle 9.7.1, not from a citable source, and are on no claims list:
+
+- the published shape of the umbrella's strict constraints, their resolution inside the build and under a composite, the
+  conflict matrix a consumer meets, and the release-metadata check passing, failing and reusing the configuration cache
+  ([umbrella findings, F1 and F5 to F8](umbrella-strict-pins.md#3-findings));
+- Dokka, the validator and vanniktech on modules with no main source, Dokka failing `build` on an undocumented declaration once
+  joined to `check`, and the empty aggregate a root without the Kotlin plugin renders
+  ([gates findings, F5 and F6](documentation-abi-and-publishing-gates.md#3-findings)).
+
+The build's own checks repeat each of them on the real modules.

@@ -277,8 +277,8 @@ artifacts above.
     https://repo1.maven.org/maven2/org/slf4j/slf4j-api/maven-metadata.xml; read 2026-11-18.
 13. The organisation's own precedent for the task shape. Quote (WebTools `VerifyJavaFloor`): "The module's resolved runtime classpath: the jars and class directories a consumer loads." on `@get:Classpath abstract val runtimeClasspath: ConfigurableFileCollection`;
     and in `webtools.kotlin-jvm-library.gradle.kts`: "logback is a logging *implementation*, so it is test-only - it must never leak onto a module's runtime classpath."
-    https://github.com/SpartanLaboratories/WebTools/blob/main/build-logic/src/main/kotlin/VerifyJavaFloor.kt and
-    https://github.com/SpartanLaboratories/WebTools/blob/main/build-logic/src/main/kotlin/webtools.kotlin-jvm-library.gradle.kts; `main` as read 2026-11-18.
+    https://github.com/SpartanLaboratories/WebTools/blob/d68ec81e82828911f373bc4940da34580786aaee/build-logic/src/main/kotlin/VerifyJavaFloor.kt and
+    https://github.com/SpartanLaboratories/WebTools/blob/d68ec81e82828911f373bc4940da34580786aaee/build-logic/src/main/kotlin/webtools.kotlin-jvm-library.gradle.kts; WebTools' default branch, `master`, at commit `d68ec81e`, as read 2026-11-18.
 14. The organisation's logging policy. Quote: "A library publishes no logging backend among its dependencies. logback is the backend for tests." and "The organization uses one kotlin-logging version, 8.0.7. It is an internal dependency and never appears in a library's public API."
     https://github.com/SpartanLaboratories/.github/blob/main/policy/logging/README.md; `main` as read 2026-11-18.
 
