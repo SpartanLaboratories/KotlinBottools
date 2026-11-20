@@ -32,10 +32,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--sans);p
 a{color:inherit}
 code{font-family:var(--mono);font-size:.92em;overflow-wrap:anywhere;background:var(--surface-2);border:1px solid var(--hair);padding:1px 4px;border-radius:3px}
 /* the code label (GUIDANCE.md §12, "Code"; dashboards-skill/42): every inline code drawn as a label of its own,
-   in both themes, at normal weight inside bold text; inside a chip, a pill or a tile (a label or a figure already: each class carries
-   its type word) it stays plain mono text */
+   in both themes, at normal weight inside bold text; inside a chip, a pill, a tile, a badge or a tag (a label or a figure already: each
+   class carries its type word, a tag's a whole part of the class, so .stage, .outage and .tags are not taken) it stays plain mono text */
 :is(b,strong,.name,.nm,dt,th) code{font-weight:400}
-:is([class*="chip"],[class*="pill"],[class*="tile"]) code{background:none;border:0;padding:0;border-radius:0}
+:is([class*="chip"],[class*="pill"],[class*="tile"],[class*="badge"],[class*="tag-"],[class$="tag"],[class*="tag "]) code{background:none;border:0;padding:0;border-radius:0}
 h1,h2,h3{text-wrap:balance}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 
@@ -513,7 +513,7 @@ footer code{color:var(--ink-2)}
 <header>
   <div class="crumbs">KotlinBottools</div>
   <h1>KotlinBottools</h1>
-  <p class="function">A Kotlin Discord bot framework on JDA — text and slash commands, XML-backed guild and member data, event responders and polling services — and its Internal Tooling, ten systems in four groups that purge the six bot repositories' histories of secrets and data. Its one core group, Repository hygiene, is built in the repository: the ignore list, the secret scan's configuration and the Secret scan workflow; its three optional groups are planned. KotlinBottools' history is rewritten: the repository is a fresh one holding that history, every issue on its own number, public with secret scanning and push protection on, and its predecessor is private and archived under its legacy name. GKB2's, GKB's, BotTools' and the private repositories' histories are rewritten in place. The phase's workspace is deleted, its data folder is kept, verified and listed in full, and what GitHub still serves of the old histories is reported in counts.</p>
+  <p class="function">A Kotlin Discord bot framework on JDA — text and slash commands, XML-backed guild and member data, event responders and polling services — and its Internal Tooling, ten systems in four groups that purge the six bot repositories' histories of secrets and data. Its one core group, Repository hygiene, is built in the repository: the ignore list, the secret scan's configuration and the Secret scan workflow; its three optional groups are planned. KotlinBottools' history is rewritten: the repository is a fresh one holding that history, every issue on its own number, public with secret scanning and push protection on, and its predecessor is private and archived under its legacy name. GKB2's, GKB's, BotTools' and the private repositories' histories are rewritten in place. The phase's workspace is deleted, its data folder is kept, verified and listed in full, and what GitHub still serves of the old histories is reported in counts. The BotTools library's seven systems — the command model, the bot runtime, storage, outbound HTTP, the stats framework, the plugins and the build and CI skeleton — are planned, with nothing of them built yet.</p>
   <div class="chips">
     <span class="chip"><span class="ck">systems</span> <b id="sys-count">…</b></span>
     <span class="chip"><span class="ck">platform</span> <b>Kotlin 2.1.10 · JDA 5.6.1 · build 7.5-SNAPSHOT</b></span>
@@ -680,6 +680,13 @@ footer code{color:var(--ink-2)}
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>The workflow fails its run on a finding (status 1) or a scan it cannot verify (status 2), with an error annotation; the canary fails it when the rules stop finding planted secrets, the allowlist controls when the one table exempts more than its match. The log shows only counts, rule ids, exit statuses and fixed markers, never a path, a match or a secret; nothing is retried. It has run four times on GitHub, the pull-request and push runs of two pull requests, each completed with success.</td></tr>
+        <tr data-part="sys:command-model"><th><span class="sw" data-sys="command-model"></span>command-model</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:bot-runtime"><th><span class="sw" data-sys="bot-runtime"></span>bot-runtime</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:storage"><th><span class="sw" data-sys="storage"></span>storage</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:outbound-http"><th><span class="sw" data-sys="outbound-http"></span>outbound-http</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:stats-framework"><th><span class="sw" data-sys="stats-framework"></span>stats-framework</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:plugins"><th><span class="sw" data-sys="plugins"></span>plugins</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:build-and-ci-skeleton"><th><span class="sw" data-sys="build-and-ci-skeleton"></span>build-and-ci-skeleton</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>Extension points</h3>
       <table class="gtbl"><tbody>
@@ -697,6 +704,13 @@ footer code{color:var(--ink-2)}
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>No consumer seam: a further suppression is one more <code>[[allowlists]]</code> table scoped to one rule and one path, with its reason in <code>description</code> and its own fixtures in the allowlist controls.</td></tr>
+        <tr data-part="sys:command-model"><th><span class="sw" data-sys="command-model"></span>command-model</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:bot-runtime"><th><span class="sw" data-sys="bot-runtime"></span>bot-runtime</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:storage"><th><span class="sw" data-sys="storage"></span>storage</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:outbound-http"><th><span class="sw" data-sys="outbound-http"></span>outbound-http</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:stats-framework"><th><span class="sw" data-sys="stats-framework"></span>stats-framework</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:plugins"><th><span class="sw" data-sys="plugins"></span>plugins</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:build-and-ci-skeleton"><th><span class="sw" data-sys="build-and-ci-skeleton"></span>build-and-ci-skeleton</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>Test sets <small>none yet</small></h3>
       <div class="scroll"><table class="gtbl"><thead><tr><th>System</th><th class="n">gating</th><th class="n">component</th><th class="n">integration</th><th class="n">deterministic</th><th class="n">e2e</th><th class="n">nonfunctional</th><th class="n">uat</th></tr></thead><tbody>
@@ -714,6 +728,13 @@ footer code{color:var(--ink-2)}
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td colspan="7">planned — no tests in the repository</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td colspan="7">planned — no tests in the repository</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td colspan="7">No test classes: the canary and the allowlist controls check the configuration inside each workflow run.</td></tr>
+        <tr data-part="sys:command-model"><th><span class="sw" data-sys="command-model"></span>command-model</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:bot-runtime"><th><span class="sw" data-sys="bot-runtime"></span>bot-runtime</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:storage"><th><span class="sw" data-sys="storage"></span>storage</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:outbound-http"><th><span class="sw" data-sys="outbound-http"></span>outbound-http</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:stats-framework"><th><span class="sw" data-sys="stats-framework"></span>stats-framework</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:plugins"><th><span class="sw" data-sys="plugins"></span>plugins</th><td colspan="7">planned — no tests yet</td></tr>
+        <tr data-part="sys:build-and-ci-skeleton"><th><span class="sw" data-sys="build-and-ci-skeleton"></span>build-and-ci-skeleton</th><td colspan="7">planned — no tests yet</td></tr>
       </tbody></table></div></div>
     <div class="guarantee-card"><h3>Compatibility &amp; versioning</h3>
       <table class="gtbl"><tbody>
@@ -731,6 +752,13 @@ footer code{color:var(--ink-2)}
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>No version and nothing published. gitleaks is pinned to 8.30.1 by its release archive's sha256, and the checkout action to a commit.</td></tr>
+        <tr data-part="sys:command-model"><th><span class="sw" data-sys="command-model"></span>command-model</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:bot-runtime"><th><span class="sw" data-sys="bot-runtime"></span>bot-runtime</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:storage"><th><span class="sw" data-sys="storage"></span>storage</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:outbound-http"><th><span class="sw" data-sys="outbound-http"></span>outbound-http</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:stats-framework"><th><span class="sw" data-sys="stats-framework"></span>stats-framework</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:plugins"><th><span class="sw" data-sys="plugins"></span>plugins</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:build-and-ci-skeleton"><th><span class="sw" data-sys="build-and-ci-skeleton"></span>build-and-ci-skeleton</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>Thread safety</h3>
       <table class="gtbl"><tbody>
@@ -748,6 +776,13 @@ footer code{color:var(--ink-2)}
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>One job, <code>Secret scan (gitleaks)</code>, on one runner, 15 minutes at most; a newer run on the same pull request cancels the one in progress.</td></tr>
+        <tr data-part="sys:command-model"><th><span class="sw" data-sys="command-model"></span>command-model</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:bot-runtime"><th><span class="sw" data-sys="bot-runtime"></span>bot-runtime</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:storage"><th><span class="sw" data-sys="storage"></span>storage</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:outbound-http"><th><span class="sw" data-sys="outbound-http"></span>outbound-http</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:stats-framework"><th><span class="sw" data-sys="stats-framework"></span>stats-framework</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:plugins"><th><span class="sw" data-sys="plugins"></span>plugins</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:build-and-ci-skeleton"><th><span class="sw" data-sys="build-and-ci-skeleton"></span>build-and-ci-skeleton</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>Resources to close</h3>
       <table class="gtbl"><tbody>
@@ -765,6 +800,13 @@ footer code{color:var(--ink-2)}
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>Nothing to close: the job reads the repository only (<code>contents: read</code>, no credentials kept by the checkout), needs no secret and writes only under the runner's temporary folder.</td></tr>
+        <tr data-part="sys:command-model"><th><span class="sw" data-sys="command-model"></span>command-model</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:bot-runtime"><th><span class="sw" data-sys="bot-runtime"></span>bot-runtime</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:storage"><th><span class="sw" data-sys="storage"></span>storage</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:outbound-http"><th><span class="sw" data-sys="outbound-http"></span>outbound-http</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:stats-framework"><th><span class="sw" data-sys="stats-framework"></span>stats-framework</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:plugins"><th><span class="sw" data-sys="plugins"></span>plugins</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:build-and-ci-skeleton"><th><span class="sw" data-sys="build-and-ci-skeleton"></span>build-and-ci-skeleton</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
     <div class="guarantee-card"><h3>On your classpath</h3>
       <table class="gtbl"><tbody>
@@ -782,6 +824,13 @@ footer code{color:var(--ink-2)}
         <tr data-part="sys:privacy-gate"><th><span class="sw" data-sys="privacy-gate"></span>privacy-gate</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:residual-exposure"><th><span class="sw" data-sys="residual-exposure"></span>residual-exposure</th><td>planned — nothing built in the repository</td></tr>
         <tr data-part="sys:repository-hygiene"><th><span class="sw" data-sys="repository-hygiene"></span>repository-hygiene</th><td>Nothing: the files are repository tooling, outside every build artifact.</td></tr>
+        <tr data-part="sys:command-model"><th><span class="sw" data-sys="command-model"></span>command-model</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:bot-runtime"><th><span class="sw" data-sys="bot-runtime"></span>bot-runtime</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:storage"><th><span class="sw" data-sys="storage"></span>storage</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:outbound-http"><th><span class="sw" data-sys="outbound-http"></span>outbound-http</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:stats-framework"><th><span class="sw" data-sys="stats-framework"></span>stats-framework</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:plugins"><th><span class="sw" data-sys="plugins"></span>plugins</th><td>planned — nothing built yet</td></tr>
+        <tr data-part="sys:build-and-ci-skeleton"><th><span class="sw" data-sys="build-and-ci-skeleton"></span>build-and-ci-skeleton</th><td>planned — nothing built yet</td></tr>
       </tbody></table></div>
   </div>
 </section>
@@ -789,11 +838,11 @@ footer code{color:var(--ink-2)}
 <section class="context">
   <h2>Context</h2>
   <div class="cards">
-    <div class="card"><h3>Roadmap <small>3 items · 30 issues · 2026-11-17</small></h3>
+    <div class="card"><h3>Roadmap <small>3 items · 30 issues · 2026-11-20</small></h3>
       <ol class="roadmap">
-        <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/1" target="_blank" rel="noopener">#1</a><span><a data-board="1">BotTools consolidation &amp; MagicBot (tracking)</a> <small>tracking issue · its phases in the <a href="../plans/1-bottools-consolidation/roadmap.md">roadmap</a></small> <span class="chainprog" data-landed="0" data-total="18"><span data-unit="current">Phase 0</span><span data-unit="todo">Phase 1</span><span data-unit="todo">Phase 2</span><span data-unit="todo">Phase 3</span><span data-unit="todo">Phase 4</span><span data-unit="todo">Phase 5</span><span data-unit="todo">Phase 6a</span><span data-unit="todo">Phase 6b</span><span data-unit="todo">Phase 7</span><span data-unit="todo">Phase 8</span><span data-unit="todo">Phase 9</span><span data-unit="todo">Phase 10</span><span data-unit="todo">Phase 11</span><span data-unit="todo">Phase 12</span><span data-unit="todo">Phase 17</span><span data-unit="todo">Phase 18</span><span data-unit="todo">Phase 19</span><span data-unit="todo">Phase 23</span></span></span><span class="tags"><span class="badge">open</span></span></div>
+        <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/1" target="_blank" rel="noopener">#1</a><span><a data-board="1">BotTools consolidation &amp; MagicBot (tracking)</a> <small>tracking issue · its phases in the <a href="../plans/1-bottools-consolidation/roadmap.md">roadmap</a></small> <span class="chainprog" data-landed="1" data-total="18"><span data-unit="done">History rewrite</span><span data-unit="current">Build skeleton</span><span data-unit="todo">Core foundation</span><span data-unit="todo">Command model</span><span data-unit="todo">SQLite storage</span><span data-unit="todo">Bot runtime</span><span data-unit="todo">HTTP call surface</span><span data-unit="todo">WebTools adapter</span><span data-unit="todo">Stats provider framework</span><span data-unit="todo">Reaction-roles plugin</span><span data-unit="todo">Math plugin</span><span data-unit="todo">Admin plugin</span><span data-unit="todo">Weather plugin</span><span data-unit="todo">Feeds plugin</span><span data-unit="todo">Release 1.0.0 and archive the predecessors</span><span data-unit="todo">Published test fixtures</span><span data-unit="todo">Poker plugin</span><span data-unit="todo">Desktop manager</span></span></span><span class="tags"><span class="badge">open</span></span></div>
           <ul class="issues">
-            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/2" target="_blank" rel="noopener">#2</a><span><a data-board="2">Phase 0 — History rewrite: purge secrets and data from the six bot repositories</a> <small>tracking issue · its eight units are the next roadmap item</small></span><span class="tags"><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/2" target="_blank" rel="noopener">#2</a><span><a data-board="2">Phase 0 — History rewrite: purge secrets and data from the six bot repositories</a> <small>tracking issue · its eight units are the next roadmap item</small></span><span class="tags"><span class="badge">closed</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/3" target="_blank" rel="noopener">#3</a><span><a data-board="3">Phase 1 — Build skeleton: multi-module build, conventions, CI and repository scaffolding</a></span><span class="tags"><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/4" target="_blank" rel="noopener">#4</a><span><a data-board="4">Phase 2 — Core foundation: ids, failures, settings, storage ports and configuration</a></span><span class="tags"><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/5" target="_blank" rel="noopener">#5</a><span><a data-board="5">Phase 3 — Command model: definitions, validation, typed invocation, dispatch and help</a></span><span class="tags"><span class="badge">open</span></span></li>
@@ -812,7 +861,7 @@ footer code{color:var(--ink-2)}
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/18" target="_blank" rel="noopener">#18</a><span><a data-board="18">Phase 19 — Poker plugin: playable Texas hold 'em (Experimental)</a></span><span class="tags"><span class="badge">open</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/19" target="_blank" rel="noopener">#19</a><span><a data-board="19">Phase 23 — Desktop manager on SpartanUI and SpartanGraphics (unscheduled)</a></span><span class="tags"><span class="badge">open</span></span></li>
           </ul></li>
-        <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/2" target="_blank" rel="noopener">#2</a><span><a data-board="2">Phase 0 — History rewrite: purge secrets and data from the six bot repositories</a> <small>tracking issue · its units in landing order</small> <span class="chainprog" data-landed="7" data-total="8"><span data-unit="done">Preparation</span><span data-unit="done">Transfer rehearsal</span><span data-unit="done">KotlinBottools rewrite and swap</span><span data-unit="done">Repository hygiene</span><span data-unit="done">Make KotlinBottools public</span><span data-unit="done">Rewrite GKB2 and GKB</span><span data-unit="done">Rewrite BotTools and the private repositories</span><span data-unit="current">Residual report and cleanup</span></span></span><span class="tags"><span class="badge">open</span></span></div>
+        <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/2" target="_blank" rel="noopener">#2</a><span><a data-board="2">Phase 0 — History rewrite: purge secrets and data from the six bot repositories</a> <small>tracking issue · its units in landing order</small> <span class="chainprog" data-landed="8" data-total="8"><span data-unit="done">Preparation</span><span data-unit="done">Transfer rehearsal</span><span data-unit="done">KotlinBottools rewrite and swap</span><span data-unit="done">Repository hygiene</span><span data-unit="done">Make KotlinBottools public</span><span data-unit="done">Rewrite GKB2 and GKB</span><span data-unit="done">Rewrite BotTools and the private repositories</span><span data-unit="done">Residual report and cleanup</span></span></span><span class="tags"><span class="badge">closed</span></span></div>
           <ul class="issues">
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/21" target="_blank" rel="noopener">#21</a><span><a data-board="21">Phase 0 · 1 — Preparation: pinned tools, workspace, backup mirrors, legacy data copy and manifests</a></span><span class="tags"><span class="badge" data-sys="toolchain">toolchain</span><span class="badge" data-sys="backups-and-manifests">backups-and-manifests</span><span class="badge" data-sys="legacy-data-copy">legacy-data-copy</span><span class="badge">closed</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/22" target="_blank" rel="noopener">#22</a><span><a data-board="22">Phase 0 · 2 — Transfer rehearsal on two throwaway repositories</a></span><span class="tags"><span class="badge" data-sys="repository-swap">repository-swap</span><span class="badge">closed</span></span></li>
@@ -821,7 +870,7 @@ footer code{color:var(--ink-2)}
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/25" target="_blank" rel="noopener">#25</a><span><a data-board="25">Phase 0 · 5 — Make KotlinBottools public with secret scanning and push protection</a></span><span class="tags"><span class="badge" data-sys="privacy-gate">privacy-gate</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="repository-swap">repository-swap</span><span class="badge">closed</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/26" target="_blank" rel="noopener">#26</a><span><a data-board="26">Phase 0 · 6 — Rewrite GKB2 and GKB</a></span><span class="tags"><span class="badge" data-sys="rewrite-pipeline">rewrite-pipeline</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge">closed</span></span></li>
             <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/27" target="_blank" rel="noopener">#27</a><span><a data-board="27">Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone</a> <small>tracking issue · its four units are the next roadmap item</small></span><span class="tags"><span class="badge" data-sys="toolchain">toolchain</span><span class="badge" data-sys="rewrite-pipeline">rewrite-pipeline</span><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="clone-realignment">clone-realignment</span><span class="badge">closed</span></span></li>
-            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/28" target="_blank" rel="noopener">#28</a><span><a data-board="28">Phase 0 · 8 — Residual-exposure report and workspace cleanup</a></span><span class="tags"><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="cleanup">cleanup</span><span class="badge">open</span></span></li>
+            <li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/28" target="_blank" rel="noopener">#28</a><span><a data-board="28">Phase 0 · 8 — Residual-exposure report and workspace cleanup</a></span><span class="tags"><span class="badge" data-sys="residual-exposure">residual-exposure</span><span class="badge" data-sys="cleanup">cleanup</span><span class="badge">closed</span></span></li>
           </ul>
           <p class="more">Units 3 to 5 follow unit 2 in that order; units 6 and 7 follow unit 3, in that order, and unit 8 follows units 5 and 7 (<a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md">architecture</a> §15). The ten systems on the Systems tab sit in the four groups of Internal Tooling. <a data-issue="24">#24</a> built Repository hygiene in the repository: the ignore list, the scan's configuration, the scan wrapper, the allowlist controls and the Secret scan workflow, whose runs on GitHub have each passed. The other nine stay planned: <a data-issue="21">#21</a> set up the toolchain, the backups and manifests and the legacy data copy on the working machine, <a data-issue="22">#22</a> rehearsed the repository swap's number walk and rename order on two throwaway repositories with a tool kept there, <a data-issue="23">#23</a> rewrote KotlinBottools, swapped it for a fresh private repository on the same numbers and realigned this working directory, <a data-issue="25">#25</a> made that repository public with secret scanning and push protection on, after Gate 3 and the id-reference check and followed by the anonymous measurements, and <a data-issue="26">#26</a> ran the rewrite pipeline and the residual-exposure measurement for GKB2 and GKB, each force-pushed in place under a lease on its recorded tip, all outside every repository, so the repository holds no code of them and they stay drawn dashed. BotTools' and the private repositories' rewrites, the measurement for them and the private repository clone's replacement ran under <a data-issue="27">#27</a>, the next roadmap item, whose four units have all landed. <a data-issue="28">#28</a>, the last unit, posted the residual-exposure report on <a data-issue="2">#2</a>, one table of the six repositories' counts; it verified the data folder's 47 checksum lists and listed the 344 files that were under none, copied the 139 files of the workspace tools into the data folder, and deleted the workspace, 10,234 files in 5,966 folders, with both of its paths confirmed absent. It too ran outside every repository, so Residual-exposure measurement and Cleanup stay drawn dashed. <a data-issue="2">#2</a> is closed after that unit's landing (<a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md">architecture</a> §11).</p></li>
         <li><div class="ri"><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/27" target="_blank" rel="noopener">#27</a><span><a data-board="27">Phase 0 · 7 — Rewrite BotTools and the private repositories, and replace the private repository clone</a> <small>tracking issue · its units in landing order</small> <span class="chainprog" data-landed="4" data-total="4"><span data-unit="done">Extend the workspace tools</span><span data-unit="done">Rewrite BotTools and the private repositories</span><span data-unit="done">Measure what GitHub still serves</span><span data-unit="done">Replace the private repository clone</span></span></span><span class="tags"><span class="badge">closed</span></span></div>
@@ -833,7 +882,7 @@ footer code{color:var(--ink-2)}
           </ul>
           <p class="more">The four units are filed as sub-issues: the workspace tools first, then the rewrites, then the residual measurement and the private repository clone's replacement, each of those two waiting on the rewrites alone (<a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/architecture.md">design</a> §16). Each sits in a system already planned: Toolchain, Rewrite pipeline, Residual-exposure measurement and Clone realignment, all four drawn dashed. <a data-issue="39">#39</a> saved and proved a second tool folder for the three repositories on the working machine, beside the earlier one, which stays at its pins; it lies outside every repository, so the repository holds no code of it and Toolchain stays drawn dashed. <a data-issue="40">#40</a> ran the rewrite pipeline for BotTools and the private repositories: each history rewritten and force-pushed in place under a lease on every branch's recorded tip, every branch and tag clean on a fresh mirror, BotTools public and the other two private as before; it too ran outside every repository, so Rewrite pipeline stays drawn dashed. <a data-issue="41">#41</a> ran the residual-exposure measurement for the three: every old object probed is still served, in all three to an authenticated reader and in BotTools to anyone, the feeds were read twice, and each repository's report row is recorded in counts for the report; it only read GitHub, outside every repository, so Residual-exposure measurement stays drawn dashed. <a data-issue="42">#42</a> replaced the private repository clone on the working machine: the old clone renamed aside on its own volume, a fresh clone of the rewritten repository made at the same path with its four carried files restored and proven to reach no pre-rewrite commit, the old clone deleted at its recorded path and the graph rebuilt from the rewritten tree; it changed one checkout outside every repository, so Clone realignment stays drawn dashed. All four units have landed and <a data-issue="27">#27</a> is closed.</p></li>
       </ol></div>
-    <div class="card"><h3>Unscheduled issues <small>3 open · 2026-11-17</small></h3>
+    <div class="card"><h3>Unscheduled issues <small>3 open · 2026-11-20</small></h3>
       <ul class="issues"><li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/47" target="_blank" rel="noopener">#47</a><span><a data-board="47">Workspace clone tools: the deletion and move-back requests carry the replacement's check sentences</a></span><span class="tags"><span class="badge" data-sys="toolchain">toolchain</span><span class="badge bug">bug</span><span class="badge">open</span></span></li><li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/29" target="_blank" rel="noopener">#29</a><span><a data-board="29">Adopt the organization's Dokka and project site standard</a></span><span class="tags"><span class="badge" data-sys="kotlinbottools">kotlinbottools</span><span class="badge">open</span></span></li><li><a href="https://github.com/SpartanLaboratories/KotlinBottools/issues/33" target="_blank" rel="noopener">#33</a><span><a data-board="33">Library ships a logging backend: logback-classic is an implementation dependency</a></span><span class="tags"><span class="badge" data-sys="kotlinbottools">kotlinbottools</span><span class="badge">open</span></span></li></ul></div>
     <div class="card"><h3>Plans and documents</h3>
       <ul class="docs">
@@ -850,7 +899,7 @@ footer code{color:var(--ink-2)}
         <li><a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/41-residual-measurement/final-implementation.md">#41 as built</a> · <a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/41-residual-measurement/consequences.md">consequences</a> — what GitHub still serves of BotTools' and the private repositories' old histories, in counts: the events gate, the probes, the two feed reads and the report rows, the acceptance, the two deviations, the outcome of each assumption, the known gaps and the follow-ups</li>
         <li><a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/final-implementation.md">#42 as built</a> · <a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/consequences.md">consequences</a> — the private repository clone replaced at the same path: the old clone moved aside and deleted, the four carried files restored, the fresh clone's proofs, the graph rebuilt and read back, the acceptance, the three deviations, the outcome of each assumption, the known gaps and the follow-ups</li>
         <li><a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/28-residual-report-and-cleanup/final-implementation.md">#28 as built</a> · <a href="../plans/1-bottools-consolidation/2-phase-0-history-rewrite/28-residual-report-and-cleanup/consequences.md">consequences</a> — the residual-exposure report as posted, the data folder verified and listed in full, the tools copy, the document checks moved off the workspace, the workspace's deletion, the acceptance, the nine deviations, the known gaps and the follow-ups</li>
-        <li><a data-workboard>Repository work board</a> — every planning and development run · <a data-issue="2">#2</a> tracking board — the eight units of the history rewrite · <a data-issue="21">#21</a> issue board — the preparation unit · <a data-issue="22">#22</a> issue board — the transfer rehearsal · <a data-issue="23">#23</a> issue board — the rewrite and swap · <a data-issue="24">#24</a> issue board — the repository hygiene · <a data-issue="25">#25</a> issue board — the change to public · <a data-issue="26">#26</a> issue board — GKB2's and GKB's rewrites · <a data-issue="27">#27</a> tracking board — the four units of BotTools' and the private repositories' rewrites and the clone replacement · <a data-issue="39">#39</a> issue board — the workspace tools · <a data-issue="40">#40</a> issue board — the rewrites · <a data-issue="41">#41</a> issue board — the residual measurement · <a data-issue="42">#42</a> issue board — the clone replacement · <a data-issue="28">#28</a> issue board — the residual report and cleanup, which last amended this board</li>
+        <li><a data-workboard>Repository work board</a> — every planning and development run · <a data-issue="1">#1</a> tracking board — the eighteen units of the consolidation · <a data-issue="2">#2</a> tracking board — the eight units of the history rewrite · <a data-issue="21">#21</a> issue board — the preparation unit · <a data-issue="22">#22</a> issue board — the transfer rehearsal · <a data-issue="23">#23</a> issue board — the rewrite and swap · <a data-issue="24">#24</a> issue board — the repository hygiene · <a data-issue="25">#25</a> issue board — the change to public · <a data-issue="26">#26</a> issue board — GKB2's and GKB's rewrites · <a data-issue="27">#27</a> tracking board — the four units of BotTools' and the private repositories' rewrites and the clone replacement · <a data-issue="39">#39</a> issue board — the workspace tools · <a data-issue="40">#40</a> issue board — the rewrites · <a data-issue="41">#41</a> issue board — the residual measurement · <a data-issue="42">#42</a> issue board — the clone replacement · <a data-issue="28">#28</a> issue board — the residual report and cleanup, which last amended this board</li>
         <li><a href="../../README.md">README</a> — features, setup, the command system and the data access</li>
         <li><a href="systems.json"><code>systems.json</code></a> — the registry this board is built from · <a href="workspace.dsl"><code>workspace.dsl</code></a> — the C4 model in the C4 tab</li>
       </ul></div>
@@ -864,12 +913,12 @@ footer code{color:var(--ink-2)}
 <script type="application/json" id="systems">
 {
   "repo": "SpartanLaboratories/KotlinBottools",
-  "updated": "2026-11-17",
+  "updated": "2026-11-20",
   "systems": [
     {"slug": "kotlinbottools", "name": "KotlinBottools", "kind": "repo", "parent": null, "status": "built",
      "function": "A Kotlin Discord bot framework on JDA: hierarchical text and slash commands, XML-backed guild and member data, event responders and polling services, built by one Gradle build at 7.5-SNAPSHOT.",
      "paths": ["."], "version": null,
-     "asIs": {"ref": "main", "sha": "3625163", "date": "2026-11-17T01:13:11Z"},
+     "asIs": {"ref": "main", "sha": "2e9ce98", "date": "2026-11-20T02:42:22Z"},
      "lastAmended": {"issue": 28, "sha": "57b4ffb"},
      "board": "index.html", "dsl": "workspace.dsl"},
 
@@ -948,7 +997,50 @@ footer code{color:var(--ink-2)}
     {"slug": "exposure-proof", "name": "Exposure proof", "kind": "supersystem", "parent": "internal-tooling", "core": false, "status": "planned", "visibility": "internal-repo",
      "function": "Say by count what is exposed: that what becomes public names nothing it should not, and what GitHub still serves of each old history.",
      "paths": [],
-     "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md"}}
+     "plannedBy": {"issue": 2, "architecture": "docs/plans/1-bottools-consolidation/2-phase-0-history-rewrite/architecture.md"}},
+
+    {"slug": "command-model", "name": "Command model", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+     "function": "Turn an immutable command definition into a slash registration, a typed parser and generated help, and run one handler per invocation through one context.",
+     "paths": [],
+     "plannedBy": {"issue": 1, "architecture": "docs/plans/1-bottools-consolidation/architecture.md", "section": "7.1", "placement": "bottools-core, com.spartanlabs.bottools.command",
+                   "units": [{"unit": 3, "slug": "command-model", "subIssue": 5}, {"unit": 18, "slug": "test-fixtures-artifact", "subIssue": 17}]},
+     "c4": {"workspace.dsl": "kbt.commandModel"}},
+    {"slug": "bot-runtime", "name": "Bot runtime", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+     "function": "Own start-up and shutdown, the coroutine scope, the gateway, event routing, plugin installation, jobs and configuration.",
+     "paths": [],
+     "plannedBy": {"issue": 1, "architecture": "docs/plans/1-bottools-consolidation/architecture.md", "section": "7.2", "placement": "bottools-core, com.spartanlabs.bottools.{runtime,event,plugin,job,config}",
+                   "units": [{"unit": 2, "slug": "core-foundation", "subIssue": 4}, {"unit": 5, "slug": "bot-runtime", "subIssue": 7}, {"unit": 18, "slug": "test-fixtures-artifact", "subIssue": 17}]},
+     "c4": {"workspace.dsl": "kbt.runtime"}},
+    {"slug": "storage", "name": "Storage", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+     "function": "Define the snowflake-keyed ports every stored thing goes through, ship an in-memory implementation, and the durable SQLite one with migrations, backups and atomic erasure.",
+     "paths": [],
+     "plannedBy": {"issue": 1, "architecture": "docs/plans/1-bottools-consolidation/architecture.md", "section": "7.3", "placement": "bottools-core (the ports and the in-memory implementation) and bottools-data-sqlite",
+                   "units": [{"unit": 2, "slug": "core-foundation", "subIssue": 4}, {"unit": 4, "slug": "storage-sqlite", "subIssue": 6}]},
+     "c4": {"workspace.dsl": "kbt.storage"}},
+    {"slug": "outbound-http", "name": "Outbound HTTP", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+     "function": "Own the call surface every provider and plugin programs against, and adapt it, internally, onto WebTools' HTTP stack.",
+     "paths": [],
+     "plannedBy": {"issue": 1, "architecture": "docs/plans/1-bottools-consolidation/architecture.md", "section": "7.4", "placement": "bottools-http, com.spartanlabs.bottools.http",
+                   "units": [{"unit": "6a", "slug": "http-call-surface", "subIssue": 8}, {"unit": "6b", "slug": "webtools-adapter", "subIssue": 9}, {"unit": 18, "slug": "test-fixtures-artifact", "subIssue": 17}]},
+     "c4": {"workspace.dsl": "kbt.http"}},
+    {"slug": "stats-framework", "name": "Stats framework", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+     "function": "Give every game provider a capability-based SPI, account links, a match tracker and a news feed over an ApiClient, and build the standard game commands from a provider's capabilities.",
+     "paths": [],
+     "plannedBy": {"issue": 1, "architecture": "docs/plans/1-bottools-consolidation/architecture.md", "section": "7.5", "placement": "bottools-stats, com.spartanlabs.bottools.stats",
+                   "units": [{"unit": 7, "slug": "stats-provider-framework", "subIssue": 10}, {"unit": 18, "slug": "test-fixtures-artifact", "subIssue": 17}]},
+     "c4": {"workspace.dsl": "kbt.stats"}},
+    {"slug": "plugins", "name": "Plugins", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+     "function": "Deliver the five 1.0.0 features as plugins over the runtime's contracts: reaction roles, math, admin, weather and feeds.",
+     "paths": [],
+     "plannedBy": {"issue": 1, "architecture": "docs/plans/1-bottools-consolidation/architecture.md", "section": "7.6", "placement": "bottools-plugins, com.spartanlabs.bottools.plugins",
+                   "units": [{"unit": 8, "slug": "plugin-reaction-roles", "subIssue": 11}, {"unit": 9, "slug": "plugin-math", "subIssue": 12}, {"unit": 10, "slug": "plugin-admin", "subIssue": 13}, {"unit": 11, "slug": "plugin-weather", "subIssue": 14}, {"unit": 12, "slug": "plugin-feeds", "subIssue": 15}, {"unit": 19, "slug": "poker", "subIssue": 18}]},
+     "c4": {"workspace.dsl": "kbt.plugins"}},
+    {"slug": "build-and-ci-skeleton", "name": "Build and CI skeleton", "kind": "system", "parent": "kotlinbottools", "status": "planned",
+     "function": "The multi-module build, convention plugins, test-set tasks, the documentation, ABI, classpath-alignment, release-metadata and secret-scanning gates, the WebTools composite with its published lane, and the release path.",
+     "paths": ["build-logic"],
+     "plannedBy": {"issue": 1, "architecture": "docs/plans/1-bottools-consolidation/architecture.md", "section": "6", "placement": "build-logic and .github",
+                   "units": [{"unit": 1, "slug": "build-skeleton", "subIssue": 3}, {"unit": "6b", "slug": "webtools-adapter", "subIssue": 9}, {"unit": 17, "slug": "release-1.0.0-and-archive", "subIssue": 16}]},
+     "c4": {"workspace.dsl": "kbt.buildCi"}}
   ]
 }
 </script>
@@ -959,7 +1051,7 @@ footer code{color:var(--ink-2)}
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "main", "sha": "3625163", "date": "2026-11-17T01:13:11Z"},
+  "asIs": {"ref": "main", "sha": "2e9ce98", "date": "2026-11-20T02:42:22Z"},
   "lastAmended": {"issue": 28, "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup", "sha": "57b4ffb"},
   "written": {"sha": "57b4ffb"}
 }
@@ -968,14 +1060,15 @@ footer code{color:var(--ink-2)}
 <!-- A verbatim copy of workspace.dsl (scripts/embed.js … dsl). -->
 <script type="text/plain" id="dsl">
 // KotlinBottools — C4 model as code (Structurizr DSL): the repository's systems and how they interact. Source of truth for docs/dashboards/index.html.
-// As-is at KotlinBottools main 3625163 (2026-11-17): the Kotlin Discord bot framework at 7.5-SNAPSHOT, and the ten systems of the Phase 0 history-rewrite architecture: Repository hygiene built, the other nine planned and drawn dashed. Code is authoritative on any conflict.
-workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the planned systems that purge the bot repositories' histories." {
+// As-is at KotlinBottools main 2e9ce98 (2026-11-20): the Kotlin Discord bot framework at 7.5-SNAPSHOT, the ten systems of the Phase 0 history-rewrite architecture (Repository hygiene built, the other nine planned and drawn dashed), and the seven planned systems of the BotTools library's architecture, drawn dashed. Code is authoritative on any conflict.
+workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, the planned systems that purge the bot repositories' histories, and the planned BotTools library." {
 
     !identifiers hierarchical
 
     model {
         admin  = person "Organisation administrator" "Runs the phase's units from this machine; every write to GitHub or to a checkout is carried out on request and verified before the next step."
         github = softwareSystem "GitHub" "Hosts KotlinBottools, a fresh public repository holding the rewritten history, with secret scanning and push protection on, its private, archived predecessor under its legacy name, and the five other bot repositories: GKB2 and GKB public, each holding its rewritten history, BotTools public, and the private repositories. Serves an unreferenced object by id." "External"
+        webtools = softwareSystem "WebTools HTTP stack" "The suspend transport with its outbound-URL policy, the response cache, the call budget with lanes, the call facade, the typed failure model and the test fakes, owned and released by WebTools; reached by the adapter in bottools-http and by nothing else." "External"
 
         kbt = softwareSystem "KotlinBottools" "A Kotlin Discord bot framework on JDA, built by one Gradle build; the phase's systems live outside the repository but for the hygiene files." {
             // ---- the Phase 0 history-rewrite systems (architecture section 6, 7, 9, 10): Repository hygiene built in the repository, the other nine planned ----
@@ -988,6 +1081,15 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
             cleanup   = container "Cleanup" "Re-verifies the data folder, copies the tools into it, deletes the workspace and confirms the deletion." "planned · WS, DATA" "Internal,Planned"
             swap      = container "Repository swap" "The rehearsal, the fresh repository, the number walk, link reconciliation, the renames and archive, the visibility and scanning settings." "planned · GitHub, DATA/run/swap" "Internal,Planned"
             realign   = container "Clone realignment" "This working directory moved onto the rewritten history in place with its push-safety proof; the private repository clone replaced at the same path." "planned · this working directory, DATA/run/realign" "Internal,Planned"
+            // ---- the BotTools library's systems (architecture section 6, 7): all seven planned ----
+            commandModel = container "Command model" "The command tree and DSL, the validator and slash projection, the alias table, the typed parser, the context, the dispatcher with automatic deferral, preconditions, messages, help and components." "planned · bottools-core" "Public,Planned"
+            runtime      = container "Bot runtime" "Start-up and shutdown, the coroutine scope, the gateway and shard manager, the event registry and router, the plugin host, jobs, configuration and the built-in help and privacy commands." "planned · bottools-core" "Public,Planned"
+            storage      = container "Storage" "The snowflake-keyed storage ports with the in-memory implementation in core, and SqliteStorage with migrations, backups and atomic erasure in bottools-data-sqlite." "planned · bottools-core, bottools-data-sqlite" "Public,Planned"
+            http         = container "Outbound HTTP" "The library-owned call surface: ApiClient and its factory, endpoint descriptors, lanes, decode functions, typed failures, the Trusted and Untrusted choice and the RateSignals reader, and the internal adapter onto WebTools' stack." "planned · bottools-http" "Public,Planned"
+            stats        = container "Stats framework" "The provider SPI and capabilities, account links, the match tracker, game news sources and the GameCommands factory, every call through an ApiClient." "planned · bottools-stats" "Public,Planned"
+            plugins      = container "Plugins" "Reaction roles, math, admin, weather and feeds, each a plugin over the runtime's contracts." "planned · bottools-plugins" "Public,Planned"
+            buildCi      = container "Build and CI skeleton" "The multi-module build with its convention plugins, the test-set tasks, the documentation, ABI, classpath-alignment, release-metadata and secret-scanning gates, the WebTools composite with its published lane, and the release path." "planned · build-logic, .github" "Internal,Planned"
+            // ---- the Phase 0 repository hygiene, built ----
             hygiene   = container "Repository hygiene" "The root-anchored .gitignore, .gitleaks.toml with one scoped allowlist table, the scan wrapper, the allowlist controls and the Secret scan workflow." ".gitleaks.toml, .github/ · in the repository" "Internal"
         }
 
@@ -1007,6 +1109,17 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
         kbt.realign -> github "Fetches the fresh repository, checked by id"
         kbt.hygiene -> github "Runs the Secret scan workflow on pushes and pull requests to main"
         kbt.cleanup -> kbt.dataCopy "Re-verifies the data folder before deleting the workspace"
+        // ---- the BotTools library's relationships (architecture section 6), every one planned ----
+        kbt.runtime -> kbt.commandModel "Calls the dispatcher per event"
+        kbt.commandModel -> kbt.storage "Reads settings, key-value data and subscriptions"
+        kbt.runtime -> kbt.storage "Runs jobs and the erasure fan-out"
+        kbt.http -> webtools "Adapts the call surface onto the cache, the budget and the transport, internally"
+        kbt.stats -> kbt.http "Steam news through a Trusted ApiClient"
+        kbt.stats -> kbt.runtime "Installs commands, jobs and handlers"
+        kbt.stats -> kbt.storage "Account links and subscriptions"
+        kbt.plugins -> kbt.runtime "Installs its plugins"
+        kbt.plugins -> kbt.http "Weather through a Trusted ApiClient, feeds through an Untrusted one"
+        kbt.buildCi -> github "Runs ci.yml, pages.yml and release.yml"
     }
 
     views {
@@ -1014,7 +1127,7 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
             include *
             autoLayout lr
         }
-        container kbt "Containers" "The history-rewrite systems, the planned ones dashed, and how they depend on each other." {
+        container kbt "Containers" "The history-rewrite systems and the BotTools library's systems, the planned ones dashed, and how they depend on each other." {
             include *
             autoLayout lr
         }
@@ -1072,7 +1185,7 @@ const REPO="https://github.com/"+REG.repo;
    and the title opens the board, written <a data-board="N">title</a> by hand, plain text while the issue has none. A lone #n opens
    the board when one exists and the GitHub issue otherwise: ilink(n), or <a data-issue="N">#N</a> by hand. linkIssues() resolves
    the hand-written ones at load. */
-const BOARDS={"2":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html","21":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation/dashboard.html","22":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/22-transfer-rehearsal/dashboard.html","23":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/dashboard.html","24":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/dashboard.html","25":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/dashboard.html","26":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/dashboard.html","27":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/dashboard.html","28":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/28-residual-report-and-cleanup/dashboard.html","39":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/dashboard.html","40":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/40-rewrites/dashboard.html","41":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/41-residual-measurement/dashboard.html","42":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/dashboard.html"}; // fill: issue number → its issue board relative to this board, on this one line, e.g. {"38":"../../plans/38-slug/dashboard.html"}
+const BOARDS={"1":"../plans/1-bottools-consolidation/dashboard.html","2":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/dashboard.html","21":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/21-preparation/dashboard.html","22":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/22-transfer-rehearsal/dashboard.html","23":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/23-kotlinbottools-rewrite-and-swap/dashboard.html","24":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/24-repository-hygiene/dashboard.html","25":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/25-kotlinbottools-publish/dashboard.html","26":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/26-gkb2-gkb-rewrite/dashboard.html","27":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/dashboard.html","28":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/28-residual-report-and-cleanup/dashboard.html","39":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/dashboard.html","40":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/40-rewrites/dashboard.html","41":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/41-residual-measurement/dashboard.html","42":"../plans/1-bottools-consolidation/2-phase-0-history-rewrite/27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/dashboard.html"}; // fill: issue number → its issue board relative to this board, on this one line, e.g. {"38":"../../plans/38-slug/dashboard.html"}
 /* the newest board of each issue on this machine (plan/RULES.md §1, "The newest board on this machine"): docs/plans/.live/boards.js, beside the
    live marker, which board.js --live writes in every checkout; opened from disk, an issue's link opens it (a run in flight in a worktree,
    a landed issue's live view copy) before BOARDS, the boards as committed; a published copy has no marker */
@@ -1222,13 +1335,14 @@ const MODEL = {
   // Names for lifeline owners that are not systems; a lifeline with sys:"slug" takes that system's colour instead.
   sides:{consumer:"the consumer's code",external:"outside the repository"},
   // Structure box id → DSL element id.
-  c4:{toolchain:"kbt.toolchain",backups:"kbt.backups",dataCopy:"kbt.dataCopy",pipeline:"kbt.pipeline",gate:"kbt.gate",residual:"kbt.residual",cleanup:"kbt.cleanup",swap:"kbt.swap",realign:"kbt.realign",hygiene:"kbt.hygiene"},
+  c4:{toolchain:"kbt.toolchain",backups:"kbt.backups",dataCopy:"kbt.dataCopy",pipeline:"kbt.pipeline",gate:"kbt.gate",residual:"kbt.residual",cleanup:"kbt.cleanup",swap:"kbt.swap",realign:"kbt.realign",hygiene:"kbt.hygiene",commandModel:"kbt.commandModel",runtime:"kbt.runtime",storage:"kbt.storage",http:"kbt.http",stats:"kbt.stats",plugins:"kbt.plugins",buildCi:"kbt.buildCi"},
   structure:{
     // Every box is a planned system of the Phase 0 history-rewrite architecture (§6, §7, §9, §10), drawn dashed from the registry; the outer box is
-    // Internal Tooling, holding the three groups and Repository hygiene (systems.json), placed so that no arrow crosses a box.
-    height:540,
-    lanes:[],
-    notes:[{x:24,y:500,lines:["Repository hygiene is built, in the repository; every other system is planned, with nothing of it here: they live in the workspace and the data folder.","The transfer rehearsal ran there too, and so did KotlinBottools' rewrite, swap and this working directory's realignment, and GKB2's and GKB's rewrites."]}],
+    // Internal Tooling, holding the three groups and Repository hygiene (systems.json), placed so that no arrow crosses a box. Below it, the seven
+    // planned systems of the BotTools library's architecture (§6, §7), drawn dashed from the registry, with the dependencies its §6 draws.
+    height:812,
+    lanes:[["THE BOTTOOLS LIBRARY · PLANNED",24,548]],
+    notes:[{x:24,y:500,lines:["Repository hygiene is built, in the repository; every other Internal Tooling system is planned, with nothing of it here: they live in the workspace and the data folder.","The transfer rehearsal ran there too, and so did KotlinBottools' rewrite, swap and this working directory's realignment, and GKB2's and GKB's rewrites."]}],
     nodes:[
       {id:"tooling",sys:"internal-tooling",container:true,x:12,y:44,w:976,h:428,t:"Internal Tooling",s:"one core group built · three optional planned",d:{role:"The tooling that runs the Phase 0 history rewrite from this repository, in four groups: the workspace's lifecycle, the rewrite and cut-over, the exposure proofs, and the repository's hygiene files."}},
       {id:"lifecycle",sys:"workspace-lifecycle",container:true,x:24,y:96,w:210,h:362,t:"Workspace lifecycle",s:"planned · four systems",d:{role:"Prepare the ground before anything is rewritten and clear it afterwards: pinned tools, untouched backups and the preserved data in, the workspace out."}},
@@ -1243,6 +1357,13 @@ const MODEL = {
       {id:"realign",sys:"clone-realignment",x:462,y:390,w:190,h:56,t:"Clone realignment",s:"planned · units 3, 7",d:{role:"This working directory moved onto the rewritten history in place, with the push-safety proof before any push; the private repository clone replaced at the same path (§9). This working directory is realigned, its old objects deleted and its push-safety proof passed, with nothing deferred. The private repository clone's replacement is planned as a unit of its own after the rewrites: the clone renamed aside on its own volume, a fresh clone at the same path carrying only its four .idea/ files of what git does not track, the old clone deleted once the fresh one is read back, then a code-only graph build from the rewritten tree (unit 7's design §10)."}},
       {id:"residual",sys:"residual-exposure",x:676,y:150,w:190,h:56,t:"Residual exposure",s:"planned · units 3, 5–8",d:{role:"Status-only probes of every old tip, first-changed commit and a sample of manifest blobs, and the fresh mirror's reachability counts, reported as tallies (§6.6). For KotlinBottools the fresh repository serves no old tip, first-changed commit or sampled blob; the legacy repository serves them only to someone with access. Once KotlinBottools was public, all 87 pre-rewrite commits, the old trees and a sample of the purged blobs read absent anonymously, and its activity feeds listed no old id. For GKB2 and GKB, rewritten in place, GitHub still serves every old id probed, authenticated and anonymously, and their activity feeds list 18 and 9 pre-rewrite ids; through GKB2's refs/pull/6/head 70 of its 81 purged blobs stay reachable, as predicted. For BotTools and the private repositories, measured once after the last of the three pushes, every old object probed is still served, in all three to an authenticated reader and in BotTools to anyone, and the feeds were read twice. The six repositories' report rows are joined in one report of counts, posted on the phase's tracking issue."}},
       {id:"gate",sys:"privacy-gate",x:676,y:230,w:190,h:56,t:"Privacy gate",s:"planned · units 3, 4, 5",d:{role:"Three gate runs that count guild, member and id hits over what becomes public with KotlinBottools, and the id-reference check with Gate 3 (§6.5). Gates 1, 2 and 3 ran for KotlinBottools, each with 0 blocking hits, and the id-reference check found only the expected ids."}},
+      {id:"plugins",sys:"plugins",x:60,y:566,w:190,h:56,t:"Plugins",s:"planned · bottools-plugins",d:{role:"Reaction roles with its join features, math, admin, weather over Trusted ApiClients and feeds over an Untrusted one, each a plugin installed into the runtime (architecture §7.6). Nothing of it is built yet."}},
+      {id:"http",sys:"outbound-http",x:405,y:566,w:190,h:56,t:"Outbound HTTP",s:"planned · bottools-http",d:{role:"The call surface every provider and plugin programs against — ApiClient and its factory, endpoint descriptors, lanes, decode functions, typed failures, the Trusted and Untrusted choice, the RateSignals reader — and the internal adapter onto WebTools' stack, the only module with WebTools on its classpath (architecture §7.4). Nothing of it is built yet."}},
+      {id:"stats",sys:"stats-framework",x:750,y:566,w:190,h:56,t:"Stats framework",s:"planned · bottools-stats",d:{role:"The provider SPI and its capabilities, account links, the match tracker, game news sources and the GameCommands factory; every call goes through an ApiClient (architecture §7.5). Nothing of it is built yet."}},
+      {id:"buildCi",sys:"build-and-ci-skeleton",x:60,y:656,w:190,h:56,t:"Build and CI skeleton",s:"planned · build-logic, .github",d:{role:"The multi-module build with its convention plugins, the test-set tasks, the documentation, ABI, classpath-alignment, release-metadata and secret-scanning gates, the WebTools composite with its published lane, and the release path (architecture §6, §14). Nothing of it is built yet."}},
+      {id:"runtime",sys:"bot-runtime",x:405,y:656,w:190,h:56,t:"Bot runtime",s:"planned · bottools-core",d:{role:"Start-up and shutdown, the coroutine scope, the gateway and shard manager, the event registry and router, the plugin host, jobs, configuration and the built-in help and privacy commands (architecture §7.2). Nothing of it is built yet."}},
+      {id:"commandModel",sys:"command-model",x:60,y:746,w:190,h:56,t:"Command model",s:"planned · bottools-core",d:{role:"One immutable command definition turned into a slash registration, a typed parser and generated help, with one handler per invocation run through one context (architecture §7.1). Nothing of it is built yet."}},
+      {id:"storage",sys:"storage",x:750,y:746,w:190,h:56,t:"Storage",s:"planned · core, data-sqlite",d:{role:"The snowflake-keyed ports every stored thing goes through, the in-memory implementation in core, and SqliteStorage with migrations, backups and atomic erasure in bottools-data-sqlite (architecture §7.3). Nothing of it is built yet."}},
       {id:"hygiene",sys:"repository-hygiene",x:676,y:350,w:190,h:56,t:"Repository hygiene",s:"built · .gitleaks.toml, .github/",d:{role:"The root-anchored .gitignore, .gitleaks.toml with one allowlist table scoped to one rule, one research document and its exact text, the scan wrapper, the allowlist controls that show the table exempts that one match and nothing else, and the Secret scan workflow that runs them (§10). The workflow has run four times on GitHub, the pull-request and push runs of two pull requests, each completed with success; the workspace's copy of the configuration took these bytes after the merge."}}
     ],
     deps:[
@@ -1260,7 +1381,15 @@ const MODEL = {
       ["realign","pipeline","commit-map, ref-map"],
       ["hygiene","swap","lands on main"],
       ["hygiene","gate","gate over the branch"],
-      ["cleanup","dataCopy","re-verifies"]
+      ["cleanup","dataCopy","re-verifies"],
+      ["plugins","http","weather, feeds"],
+      ["stats","http","Steam news"],
+      ["plugins","runtime","installs"],
+      ["stats","runtime","installs"],
+      ["stats","storage","links, subscriptions"],
+      ["runtime","commandModel","dispatch per event"],
+      ["runtime","storage","jobs, erasure"],
+      ["commandModel","storage","settings, KV"]
     ]
   },
   // Processes, keyed by name: sys (owning system's slug), kind ("thread" | "process"), created, runs, note.
