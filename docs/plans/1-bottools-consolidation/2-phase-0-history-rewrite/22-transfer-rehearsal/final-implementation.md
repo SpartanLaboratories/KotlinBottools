@@ -35,8 +35,8 @@
 
   | Role | Id | Created as | Left as |
   |---|---|---|---|
-  | Source | 1450917603 | `phase0-rehearsal-a`, public, with an initial commit | `phase0-rehearsal-a-legacy`, private, archived |
-  | Target | 1450918337 | `phase0-rehearsal-b`, private, empty | `phase0-rehearsal-a`, private, archived |
+  | Source | 1450917603 | its original name, public, with an initial commit | its legacy name, private, archived |
+  | Target | 1450918337 | its temporary name, private, empty | the source's original name, private, archived |
 
 - **The fixture** of the plan's Requirement 3, in the source: nine issues and the merged pull request #4, four
   comments, seven sub-issue links and four "blocked by" links, all of it made-up text.
@@ -92,9 +92,8 @@ Each of the 30 requests was answered `done` at its first attempt. The close-out'
 - **#1, #2, #3, #5, #6, #7, #8 and #9** each landed on its source number in one transfer, the target's highest
   number being one below it beforehand.
 - **The placeholder** was created at #4 once #3 had landed: *"Placeholder for pull request 4"*, with the body
-  "This number belonged to a pull request. It is at
-  https://github.com/SpartanLaboratories/phase0-rehearsal-a-legacy/pull/4", closed with reason
-  `not_planned`. The next transfer, #5, landed on 5.
+  "This number belonged to a pull request. It is at" followed by the pull request's URL under the source's
+  legacy name, closed with reason `not_planned`. The next transfer, #5, landed on 5.
 - **#10 and the merged pull request #4** stay in the source.
 
 ### 3.3 Closed issues
@@ -144,10 +143,10 @@ Per step, as references naming the target / naming the source:
 
 | Write, in order | Checked at |
 |---|---|
-| Rename the source to `phase0-rehearsal-a-legacy` | 06:50:42 |
+| Rename the source to its legacy name | 06:50:42 |
 | Make the source private | 06:52:44 |
 | Archive the source | 06:54:35 |
-| Rename the target to `phase0-rehearsal-a` | 06:56:28 |
+| Rename the target to the source's original name | 06:56:28 |
 | Archive the target | 06:59:01 |
 
 - **The rename onto the freed name was accepted,** about six minutes after the source released it (the reads
@@ -156,9 +155,9 @@ Per step, as references naming the target / naming the source:
   carried its expected name and flags, and each name it held answered its id. From the source's privacy step on,
   unauthenticated requests to it by name, by id and on the web answered 404; the target answered 404
   throughout.
-- **The released names.** Before the swap `phase0-rehearsal-a-legacy` did not exist. After the source's
-  rename, `phase0-rehearsal-a` answered the source's id through the rename's redirect, until the target took
-  the name and answered it directly. After the target's rename, `phase0-rehearsal-b` answered the target's id
+- **The released names.** Before the swap the legacy name did not exist. After the source's
+  rename, its original name answered the source's id through the rename's redirect, until the target took
+  the name and answered it directly. After the target's rename, its temporary name answered the target's id
   through the redirect.
 
 ### 3.7 Old URLs
@@ -166,11 +165,11 @@ Per step, as references naming the target / naming the source:
 A transferred issue's old REST URL, followed for the open #1 and the closed #5 alike. Every answer's number
 and repository were the issue's new home:
 
-| Read | By the original name, `phase0-rehearsal-a` | By `phase0-rehearsal-a-legacy` |
+| Read | By the original name | By the legacy name |
 |---|---|---|
-| Before the renames | `301` to the issue in `phase0-rehearsal-b`, then `200` | not read |
-| After the source's rename, privacy step and archive | `301` to `repositories/1450917603/issues/N`, `301` to the issue in `phase0-rehearsal-b`, then `200` | `301` to the issue in `phase0-rehearsal-b`, then `200` |
-| After the target's rename, and at the end | `200`: the name is now the target's, and the issue is on its number there | `301` to the issue in `phase0-rehearsal-a`, then `200` |
+| Before the renames | `301` to the issue in the target under its temporary name, then `200` | not read |
+| After the source's rename, privacy step and archive | `301` to `repositories/1450917603/issues/N`, `301` to the issue in the target under its temporary name, then `200` | `301` to the issue in the target under its temporary name, then `200` |
+| After the target's rename, and at the end | `200`: the name is now the target's, and the issue is on its number there | `301` to the issue in the target under the original name, then `200` |
 
 The source's privacy step and archive left these answers unchanged for an authenticated reader.
 
@@ -179,7 +178,7 @@ The source's privacy step and archive left these answers unchanged for an authen
 **The judged read:** each distinct `owner/name#N` in the fixture's texts, resolved by the API and compared by
 issue id with the item its number names.
 
-| Read | Naming the target, `phase0-rehearsal-b` | Naming the source, `phase0-rehearsal-a` |
+| Read | Naming the target, by its temporary name | Naming the source, by its original name |
 |---|---|---|
 | Before the renames | 8 of 8 reach their item | 2 of 2 |
 | After the source's rename | 8 of 8 | 2 of 2, through the rename's redirect |
@@ -187,8 +186,8 @@ issue id with the item its number names.
 
 **The rendered read:** all 136 references in the texts render as links whose item id is the item they name,
 at every read. A link's URL keeps the name it was rendered with: the 105 references naming the target link to
-`phase0-rehearsal-b` at every read; of the 31 naming the source, 24 link to `phase0-rehearsal-a-legacy` from
-the source's rename on, and 7 still link to `phase0-rehearsal-a`, the target's name after the swap.
+its temporary name at every read; of the 31 naming the source, 24 link to its legacy name from
+the source's rename on, and 7 still link to its original name, the target's name after the swap.
 
 ### 3.9 Anonymous reads of the public source
 

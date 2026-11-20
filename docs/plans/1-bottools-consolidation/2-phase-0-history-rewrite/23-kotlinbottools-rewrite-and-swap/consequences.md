@@ -32,7 +32,7 @@ another machine changed.
 
 ### 2.1 GitHub
 
-- **The pre-rewrite repository** (id 562658298) is `KotlinBottools-legacy`: renamed, made private, then archived. Its
+- **The pre-rewrite repository** (id 562658298) is kept under its legacy name: renamed, made private, then archived. Its
   refs are exactly those listed at the mirror clone (`main`, the topic branch, and the pull-request refs of #20, #30 and
   #31), with its three merged pull requests, its milestone and labels, and its activity feed; no issue is left in it. Its
   public window ran from 2026-11-08 to 2026-11-11T06:11:18Z, when it was made private
@@ -68,7 +68,7 @@ another machine changed.
   every one kept by the transfers: 26 sub-issue links, 44 "blocked by" links inside the repository, 19 with MagicBot and 2
   with WebTools #55. No relationship was written again, in KotlinBottools or in the other repositories.
 - **The old URLs.** `KotlinBottools/issues/N` resolves to the same number in the fresh repository, which holds the name;
-  `KotlinBottools-legacy/issues/N` and `KotlinBottools-next/issues/N` reach the issue's new home, for anyone with access.
+  `issues/N` under the legacy name and `KotlinBottools-next/issues/N` reach the issue's new home, for anyone with access.
 - **No repository was deleted.** The token has no scope to delete one, and none was needed.
 
 ### 2.2 This machine
@@ -248,7 +248,7 @@ link. A7 is answered in §2.1.
 - **The rehearsal's two repositories,** private and archived, for the organisation's administrator to delete (`delete_repo`
   is out of the token's scope).
 - **The project's working notes on this machine:** the public repository is a fresh one, and the pre-rewrite repository is
-  `KotlinBottools-legacy`, private and archived. There is no deferred step: the realignment's object deletion was proven
+  kept under its legacy name, private and archived. There is no deferred step: the realignment's object deletion was proven
   at the run, so the plan's deferred-step commands (plan S15) are not needed.
 
 A match of the scrub's expressions in an issue text would have been an issue edit on request; Gate 2 counted none over the

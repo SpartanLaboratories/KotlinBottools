@@ -6,7 +6,7 @@ workspace "KotlinBottools" "A Kotlin Discord bot framework on JDA, and the plann
 
     model {
         admin  = person "Organisation administrator" "Runs the phase's units from this machine; every write to GitHub or to a checkout is carried out on request and verified before the next step."
-        github = softwareSystem "GitHub" "Hosts KotlinBottools, a fresh public repository holding the rewritten history, with secret scanning and push protection on, its private, archived predecessor KotlinBottools-legacy, and the five other bot repositories: GKB2 and GKB public, each holding its rewritten history, BotTools public, and the private repositories. Serves an unreferenced object by id." "External"
+        github = softwareSystem "GitHub" "Hosts KotlinBottools, a fresh public repository holding the rewritten history, with secret scanning and push protection on, its private, archived predecessor under its legacy name, and the five other bot repositories: GKB2 and GKB public, each holding its rewritten history, BotTools public, and the private repositories. Serves an unreferenced object by id." "External"
 
         kbt = softwareSystem "KotlinBottools" "A Kotlin Discord bot framework on JDA, built by one Gradle build; the phase's systems live outside the repository but for the hygiene files." {
             // ---- the Phase 0 history-rewrite systems (architecture section 6, 7, 9, 10): Repository hygiene built in the repository, the other nine planned ----

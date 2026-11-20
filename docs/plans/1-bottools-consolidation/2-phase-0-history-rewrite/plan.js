@@ -690,7 +690,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "0ed0c8d738df"
+              "hash": "4690d3998690"
             }
           }
         ],
@@ -770,8 +770,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "architecture.md#72-the-rehearsal",
               "heading": "7.2 The rehearsal",
-              "paragraph": "Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b` (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
-              "hash": "07fbdf11fac6"
+              "paragraph": "Two throwaway repositories, A (the source, public) and B (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
+              "hash": "b237a818cb8a"
             }
           },
           {
@@ -780,8 +780,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "architecture.md#72-the-rehearsal",
               "heading": "7.2 The rehearsal",
-              "paragraph": "Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b` (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
-              "hash": "07fbdf11fac6"
+              "paragraph": "Two throwaway repositories, A (the source, public) and B (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
+              "hash": "b237a818cb8a"
             }
           },
           {
@@ -790,8 +790,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "architecture.md#72-the-rehearsal",
               "heading": "7.2 The rehearsal",
-              "paragraph": "Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b` (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
-              "hash": "07fbdf11fac6"
+              "paragraph": "Two throwaway repositories, A (the source, public) and B (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
+              "hash": "b237a818cb8a"
             }
           },
           {
@@ -800,8 +800,8 @@ window.dashboardLive&&window.dashboardLive("plan",
             "excerpt": {
               "ref": "architecture.md#72-the-rehearsal",
               "heading": "7.2 The rehearsal",
-              "paragraph": "Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b` (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
-              "hash": "07fbdf11fac6"
+              "paragraph": "Two throwaway repositories, A (the source, public) and B (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.",
+              "hash": "b237a818cb8a"
             }
           },
           {
@@ -811,7 +811,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "0ed0c8d738df"
+              "hash": "4690d3998690"
             }
           }
         ],
@@ -834,7 +834,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "group": "KotlinBottools",
       "name": "KotlinBottools rewrite and swap",
       "system": "internal-tooling",
-      "where": "KotlinBottools, a fresh repository and `KotlinBottools-legacy` · this working directory",
+      "where": "KotlinBottools, a fresh repository and the legacy repository · this working directory",
       "unit": {
         "n": 3,
         "slug": "kotlinbottools-rewrite-and-swap",
@@ -927,7 +927,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       "options": [
         {
           "id": "fresh-repo-swap",
-          "name": "Rewrite in a mirror, push to a fresh repository, reproduce every number, rename the old one to `KotlinBottools-legacy` and realign this clone in place",
+          "name": "Rewrite in a mirror, push to a fresh repository, reproduce every number, rename the old one to its legacy name and realign this clone in place",
           "verdict": "accepted",
           "why": "The fresh repository's object store starts empty, the name and every number survive, and the pre-rewrite repository stays private and archived as the resolver of the dated citations.",
           "source": "architecture.md §7.1, §9.1",
@@ -1059,13 +1059,13 @@ window.dashboardLive&&window.dashboardLive("plan",
             }
           },
           {
-            "text": "Rename the old repository to `KotlinBottools-legacy` and archive it, then give the fresh one the name, verified by id.",
+            "text": "Rename the old repository to its legacy name and archive it, then give the fresh one the name, verified by id.",
             "ref": "architecture.md#75-renames-archive-visibility-scanning",
             "excerpt": {
               "ref": "architecture.md#75-renames-archive-visibility-scanning",
               "heading": "7.5 Renames, archive, visibility, scanning",
               "paragraph": "The renames:",
-              "hash": "765b48b8c136"
+              "hash": "056d243c4614"
             }
           },
           {
@@ -1085,7 +1085,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "0ed0c8d738df"
+              "hash": "4690d3998690"
             }
           }
         ],
@@ -1105,7 +1105,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       },
       "asBuilt": {
         "state": "landed",
-        "summary": "Built and landed: the history purged and scrubbed in one rewrite, 87 commits to 85; KotlinBottools is now a fresh private repository holding the rewritten history and every number, 1 to 31, with all 91 links kept by the transfers; the pre-rewrite repository is `KotlinBottools-legacy`, private and archived, which ended its public window on 2026-11-11; and this working directory is realigned, its old objects deleted with nothing deferred. Thirteen tools were corrected during the run, the accepted pre-rewrite ids are 26 occurrences of 3 distinct ids, and a default-rule finding of gitleaks in one kept file holds the publication unit's change to public."
+        "summary": "Built and landed: the history purged and scrubbed in one rewrite, 87 commits to 85; KotlinBottools is now a fresh private repository holding the rewritten history and every number, 1 to 31, with all 91 links kept by the transfers; the pre-rewrite repository is kept under its legacy name, private and archived, which ended its public window on 2026-11-11; and this working directory is realigned, its old objects deleted with nothing deferred. Thirteen tools were corrected during the run, the accepted pre-rewrite ids are 26 occurrences of 3 distinct ids, and a default-rule finding of gitleaks in one kept file holds the publication unit's change to public."
       }
     },
     {
@@ -1534,7 +1534,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "0ed0c8d738df"
+              "hash": "4690d3998690"
             }
           }
         ],
@@ -1729,7 +1729,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#75-renames-archive-visibility-scanning",
               "heading": "7.5 Renames, archive, visibility, scanning",
               "paragraph": "The renames:",
-              "hash": "765b48b8c136"
+              "hash": "056d243c4614"
             }
           },
           {
@@ -1739,7 +1739,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "23c8309ed6bd"
+              "hash": "f8e15bff6f3f"
             }
           },
           {
@@ -1749,7 +1749,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "0ed0c8d738df"
+              "hash": "4690d3998690"
             }
           }
         ],
@@ -1956,7 +1956,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "23c8309ed6bd"
+              "hash": "f8e15bff6f3f"
             }
           },
           {
@@ -1966,7 +1966,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "0ed0c8d738df"
+              "hash": "4690d3998690"
             }
           }
         ],
@@ -2088,7 +2088,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#66-residual-exposure-measurement",
               "heading": "6.6 Residual-exposure measurement",
               "paragraph": "Each repository is measured after its push, with inputs from `DATA/rewrite/<repo>/` and the backup (findings 3 §6.3). Every result is a tally; no id or body is printed.",
-              "hash": "23c8309ed6bd"
+              "hash": "f8e15bff6f3f"
             }
           },
           {
@@ -2108,7 +2108,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "0ed0c8d738df"
+              "hash": "4690d3998690"
             }
           }
         ],
@@ -4557,7 +4557,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "0ed0c8d738df"
+              "hash": "4690d3998690"
             }
           },
           {
@@ -4577,7 +4577,7 @@ window.dashboardLive&&window.dashboardLive("plan",
               "ref": "architecture.md#15-decomposition",
               "heading": "15. Decomposition",
               "paragraph": "Each unit is a sub-issue of #2, planned and carried out by its own run in this working tree, and landing through its own pull request. Each unit's GitHub writes are requested (§11). The columns:",
-              "hash": "0ed0c8d738df"
+              "hash": "4690d3998690"
             }
           }
         ],
@@ -4596,7 +4596,7 @@ window.dashboardLive&&window.dashboardLive("plan",
   ],
   "impact": {
     "basis": "plan",
-    "summary": "No module is published and no version moves. Every commit id changes in all six repositories: GKB2, GKB, BotTools and the private repositories are force-pushed in place, and KotlinBottools becomes public as a fresh repository with every number reproduced, the pre-rewrite repository kept private and archived as `KotlinBottools-legacy`. On `main`, the path scrub replaces the machine-local paths in two KotlinBottools source files, and the rest is repository infrastructure.",
+    "summary": "No module is published and no version moves. Every commit id changes in all six repositories: GKB2, GKB, BotTools and the private repositories are force-pushed in place, and KotlinBottools becomes public as a fresh repository with every number reproduced, the pre-rewrite repository kept private and archived under its legacy name. On `main`, the path scrub replaces the machine-local paths in two KotlinBottools source files, and the rest is repository infrastructure.",
     "release": {
       "bump": "none",
       "version": null,
@@ -4626,7 +4626,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "repository",
         "system": null,
         "effect": "behaviour",
-        "summary": "The public `KotlinBottools` is a new repository with a new id and the old settings and access; stars and watchers start empty. Until the swap the pre-rewrite repository stays public under its current name; the swap makes it private between its rename and its archiving, and `KotlinBottools-legacy` keeps the pre-rewrite history, its pull requests, milestone and labels, private and archived.",
+        "summary": "The public `KotlinBottools` is a new repository with a new id and the old settings and access; stars and watchers start empty. Until the swap the pre-rewrite repository stays public under its current name; the swap makes it private between its rename and its archiving, and the legacy repository keeps the pre-rewrite history, its pull requests, milestone and labels, private and archived.",
         "link": "consequences.md#22-kotlinbottools-the-public-repository-and-the-legacy-repository"
       },
       {
@@ -4658,7 +4658,7 @@ window.dashboardLive&&window.dashboardLive("plan",
         "kind": "repository",
         "system": null,
         "effect": "additive",
-        "summary": "`phase0-rehearsal-a-legacy` and `phase0-rehearsal-a` remain, private and archived.",
+        "summary": "Both remain, private and archived: the source under its legacy name, the target under the source's original name.",
         "link": "consequences.md#24-other-repositories-in-the-organisation"
       },
       {
@@ -4773,7 +4773,7 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "unit": "kotlinbottools-rewrite-and-swap",
         "basis": "as-built",
-        "summary": "No module was published and no version moved; the landing changed documents and generated boards only. KotlinBottools is a fresh private repository holding the rewritten history and every number, the pre-rewrite repository is `KotlinBottools-legacy`, private and archived, which ended its public window, and this working directory is realigned with its old objects deleted. The moved issue texts, and MagicBot's and WebTools' issue texts the transfers rewrote, name `KotlinBottools-next`, so that name stays reserved; public links to KotlinBottools issues answer \"not found\" until the publication unit, whose change to public also waits on a default-rule finding in one kept file.",
+        "summary": "No module was published and no version moved; the landing changed documents and generated boards only. KotlinBottools is a fresh private repository holding the rewritten history and every number, the pre-rewrite repository is kept under its legacy name, private and archived, which ended its public window, and this working directory is realigned with its old objects deleted. The moved issue texts, and MagicBot's and WebTools' issue texts the transfers rewrote, name `KotlinBottools-next`, so that name stays reserved; public links to KotlinBottools issues answer \"not found\" until the publication unit, whose change to public also waits on a default-rule finding in one kept file.",
         "release": {
           "bump": "none",
           "version": null,
@@ -5225,6 +5225,10 @@ window.dashboardLive&&window.dashboardLive("plan",
       {
         "what": "The Row for #28 cited the design at lines 106, 680 and 1330, which no longer hold what it cites. It cites lines 119, 742 and 1469, where the residual exposure's measurement and report, the expected pull-request residual and the workspace's holding of the old objects stand.",
         "when": "2026-11-16"
+      },
+      {
+        "what": "The pre-rewrite repository and the rehearsal repositories were named by their names on GitHub in the rewrite-and-swap Row, an excerpt and the impact. They are named by what they are, the legacy repository and the rehearsal's source and target, as the documents now name them; no fact changes. Rows: transfer-rehearsal, kotlinbottools-rewrite-and-swap.",
+        "when": "2026-11-20"
       }
     ]
   },

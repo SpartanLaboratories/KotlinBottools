@@ -186,7 +186,7 @@
 > - KotlinBottools is not force-pushed in place. Its rewritten history goes to a fresh repository
 >   that takes the name `KotlinBottools` and becomes public. Every issue and pull-request number
 >   of the pre-rewrite repository is reproduced in it, and the pre-rewrite repository is renamed
->   `KotlinBottools-legacy`, kept private and archived.
+>   to its legacy name, kept private and archived.
 > - The planning documents reach `main` before the rewrite, through #2's own pull request on the
 >   pre-rewrite repository, so no planning pull request follows the rewrite.
 > - KotlinBottools' rewrite also replaces machine-local paths with neutral forms in every file and
@@ -1543,7 +1543,7 @@ report has been checked.
 > - **Step 1.** The legacy data is copied to an ordinary local folder under the user profile, not
 >   to an access-restricted location.
 > - **Step 2.** KotlinBottools becomes public as a fresh repository: every number is reproduced,
->   and the pre-rewrite repository stays private and archived as `KotlinBottools-legacy`. Its
+>   and the pre-rewrite repository stays private and archived under its legacy name. Its
 >   publication therefore does not depend on a Support ticket. The planning pull request lands
 >   before the rewrite, on the pre-rewrite repository, whose pull-request refs never become public.
 > - **Step 4.** No Support ticket is filed. What GitHub still serves of each old history is

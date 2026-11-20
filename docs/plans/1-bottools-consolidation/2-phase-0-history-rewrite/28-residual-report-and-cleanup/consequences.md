@@ -65,7 +65,7 @@ landing, #2's closing as completed (§2.1).
   id, and GKB2's and BotTools' pull-request refs keep their old history fetchable. No GitHub Support ticket is filed and no repository
   is deleted.
 - **What the unit reads,** authenticated, spending calls of the core rate limit only: #2 and #28; the two rehearsal repositories and
-  `KotlinBottools-legacy`; the reserved name `KotlinBottools-next`; MagicBot #1 to #8 and MagicBot#2's comments; WebTools #55; the
+  the legacy repository; the reserved name `KotlinBottools-next`; MagicBot #1 to #8 and MagicBot#2's comments; WebTools #55; the
   comments on #1; #47; the pull-request refs of the five legacy repositories.
 
 ### 2.2 This machine
@@ -83,7 +83,7 @@ landing, #2's closing as completed (§2.1).
   - the pinned tool folders, whose copy now stands in the data folder.
 
   Afterwards no copy of the old objects remains on this machine. GitHub still serves those of GKB2, GKB, BotTools and the private repositories
-  by id, and `KotlinBottools-legacy` holds KotlinBottools' privately. The ids that address them stay in `DATA`, in the commit maps and
+  by id, and the legacy repository holds KotlinBottools' privately. The ids that address them stay in `DATA`, in the commit maps and
   the manifests.
 - **`DATA` gains:**
   - `run/tools/`: the workspace tools, 139 files, byte for byte: both pinned tool folders, the stage runner, the earlier units'
@@ -104,7 +104,7 @@ landing, #2's closing as completed (§2.1).
   - this working tree, but for the landing;
   - git-filter-repo 2.47.0, which stays installed in the user scheme. gitleaks now lives only in the tools copy.
 - **The project's planning-state note** on this machine is updated after the landing, at the plan's `A.note`, with the four facts
-  the phase consequences name: the public repository is a fresh one; the pre-rewrite repository is `KotlinBottools-legacy`, private
+  the phase consequences name: the public repository is a fresh one; the pre-rewrite repository is kept under its legacy name, private
   and archived; the legacy data is in `%USERPROFILE%\BotLegacyData`; and the deferred step is not due. The note is local and never
   committed.
 - **The request service's local state:** no allow line was placed for the deletion; the owner permitted each of its commands as it
@@ -290,7 +290,7 @@ Each follow-up of the phase, as this unit confirms it ([plan, The follow-ups](pl
 
 **Open, with who carries each out:**
 
-- **The rehearsal repositories,** `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a`, are private and archived. The owner deletes
+- **The rehearsal repositories,** the source and the target, are private and archived. The owner deletes
   them if they are unwanted; that needs the `delete_repo` scope, which the signed-in token lacks.
 - **The credentials:** the owner rotates the 2023 session cookie and the first private repository's private key if either could still be live.
 - **The deleted planning branch's traces outside KotlinBottools' bodies:** 16 links in MagicBot #1 to #8, 1 link in WebTools #55, and a
@@ -308,7 +308,7 @@ Each follow-up of the phase, as this unit confirms it ([plan, The follow-ups](pl
 
 **Standing:**
 
-- **`KotlinBottools-legacy` stays private and archived.** It is the only private copy of KotlinBottools' old objects and the resolver
+- **The legacy repository stays private and archived.** It is the only private copy of KotlinBottools' old objects and the resolver
   of the dated citations; deleting it would remove both.
 - **The name `KotlinBottools-next` stays reserved.** The references the transfers wrote resolve through it
   ([the rewrite and swap unit's consequences, §6](../23-kotlinbottools-rewrite-and-swap/consequences.md#6-follow-ups)).
