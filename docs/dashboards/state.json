@@ -1,7 +1,7 @@
 {
   "slug": "kotlinbottools",
   "version": null,
-  "asIs": {"ref": "main", "sha": "3625163", "date": "2026-11-17T01:13:11Z"},
+  "asIs": {"ref": "main", "sha": "2e9ce98", "date": "2026-11-20T02:42:22Z"},
   "lastAmended": {"issue": 28, "title": "Phase 0 · 8 — Residual-exposure report and workspace cleanup", "sha": "57b4ffb"},
   "written": {"sha": "57b4ffb"}
 }

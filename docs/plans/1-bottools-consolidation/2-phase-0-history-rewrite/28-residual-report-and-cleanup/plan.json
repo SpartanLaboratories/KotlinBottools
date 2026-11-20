@@ -8,7 +8,7 @@
   "title": "Residual report and cleanup",
   "issueTitle": "Phase 0 · 8 — Residual-exposure report and workspace cleanup",
   "function": "No single record yet says what GitHub still serves of the six old histories: each rewrite unit left its repositories' report rows, in counts, in the data folder, and the phase's follow-ups are spread across the units' consequences. The workspace still holds the backup mirrors, which contain everything the rewrite removed. This unit compiles the report rows into one table and posts it on #2, with what the exit tests proved and what they cannot prove; confirms each follow-up and records it in the consequences; re-verifies the data folder against its checksum lists and copies both tool folders and the stage runner into it; then deletes the workspace, confirming its deletion, and confirms the old private repository clone's recorded path absent. Unit 8 of #2, the last, with no version moved: its one write to GitHub is the report comment, and its landing closes #2.",
-  "status": "building",
+  "status": "built",
   "sized": "2026-11-16T20:48:25Z",
   "parent": {
     "issue": 2,
@@ -21,7 +21,13 @@
     "sha": "053288047b6410bf22fca990cafc17d55051bf6d",
     "date": "2026-11-16"
   },
-  "asBuilt": null,
+  "asBuilt": {
+    "sha": "3625163c1a1177afca20488e421a5f44778724e0",
+    "merge": "3625163c1a1177afca20488e421a5f44778724e0",
+    "pr": 49,
+    "date": "2026-11-17",
+    "at": "2026-11-17T01:13:11Z"
+  },
   "systems": [
     {
       "slug": "residual-exposure",
@@ -43,10 +49,10 @@
     }
   ],
   "wip": {
-    "step": "document",
-    "since": "2026-11-17T00:50:00Z",
-    "updated": "2026-11-17T01:09:56Z",
-    "detail": "Document: 4 of 4 tasks done; every task done.",
+    "step": "landed",
+    "since": "2026-11-17T01:13:11Z",
+    "updated": "2026-11-17T01:13:11Z",
+    "detail": "Landed in PR #49.",
     "steps": [
       "sizing",
       "interview",
@@ -61,9 +67,7 @@
       "merge",
       "landed"
     ],
-    "current": [
-      "built"
-    ],
+    "current": [],
     "questions": [],
     "research": null,
     "interview": [],
@@ -477,9 +481,8 @@
       }
     ],
     "event": {
-      "name": "document",
-      "at": "2026-11-17T01:09:56Z",
-      "note": "4 of 4 tasks done"
+      "name": "landed",
+      "at": "2026-11-17T01:13:11Z"
     },
     "history": {
       "sizing": [
@@ -2061,6 +2064,80 @@
             }
           ]
         }
+      ],
+      "document": [
+        {
+          "since": "2026-11-17T00:50:00Z",
+          "ended": "2026-11-17T01:12:18Z",
+          "endedBy": "landing",
+          "to": "landing",
+          "event": {
+            "name": "document",
+            "at": "2026-11-17T01:09:56Z",
+            "note": "4 of 4 tasks done"
+          },
+          "detail": "Document: 4 of 4 tasks done; every task done.",
+          "document": {
+            "tasks": [
+              {
+                "id": "reconcile-plan",
+                "name": "Reconcile plan",
+                "state": "done",
+                "finished": "2026-11-17T00:50:00Z",
+                "report": "The plan, the as-built record and the consequences are reconciled with the build; README and CHANGELOG stay as they are."
+              },
+              {
+                "id": "readme-changelog",
+                "name": "README and CHANGELOG",
+                "state": "done",
+                "finished": "2026-11-17T00:50:00Z",
+                "report": "The plan, the as-built record and the consequences are reconciled with the build; README and CHANGELOG stay as they are."
+              },
+              {
+                "id": "state-boards",
+                "name": "State boards",
+                "state": "done",
+                "started": "2026-11-17T01:00:49Z",
+                "finished": "2026-11-17T01:05:56Z"
+              },
+              {
+                "id": "document-landing",
+                "name": "Document commit",
+                "state": "done",
+                "started": "2026-11-17T01:05:56Z",
+                "finished": "2026-11-17T01:09:56Z"
+              }
+            ]
+          }
+        }
+      ],
+      "landing": [
+        {
+          "since": "2026-11-17T01:12:18Z",
+          "ended": "2026-11-17T01:13:03Z",
+          "endedBy": "merge",
+          "to": "merge",
+          "event": {
+            "name": "landing",
+            "at": "2026-11-17T01:12:18Z",
+            "note": "land accepted"
+          },
+          "detail": "Landing: the land accepted; the branch carries the code, the version bump, the reconciled documents and the state boards."
+        }
+      ],
+      "merge": [
+        {
+          "since": "2026-11-17T01:13:03Z",
+          "ended": "2026-11-17T01:13:11Z",
+          "endedBy": "landed",
+          "to": "landed",
+          "event": {
+            "name": "merge",
+            "at": "2026-11-17T01:13:03Z",
+            "note": "merging PR #49"
+          },
+          "detail": "Merge: merging it in PR #49."
+        }
       ]
     },
     "next": null,
@@ -2213,6 +2290,13 @@
       "date": "2026-11-16",
       "ref": "plan.md",
       "note": "eight stages: readiness at once; the data folder re-verified, the follow-ups read, the tools copied and the landing's document checks moved onto the copy, all before the workspace's deletion behind its guards; then the report built from the plan's text, checked five ways, posted on #2 by one request and read back; and a close-out. The owner's three asks are given up front, the landing's checks run from the tools copy, and #2 is closed after the landing under its own section. The plan adds to the phase design's options the alternatives it rules out itself"
+    },
+    {
+      "column": "built",
+      "label": "Merged",
+      "date": "2026-11-17",
+      "ref": "PR #49",
+      "note": "merged as 3625163"
     }
   ],
   "trail": [
@@ -2381,6 +2465,23 @@
       "date": "2026-11-17",
       "column": "built",
       "label": "Document: every task done"
+    },
+    {
+      "date": "2026-11-17",
+      "column": "built",
+      "label": "Landing: the land accepted"
+    },
+    {
+      "date": "2026-11-17",
+      "column": "built",
+      "label": "Merge: merging it in PR #49",
+      "ref": "PR #49"
+    },
+    {
+      "date": "2026-11-17",
+      "column": "built",
+      "label": "Landed in PR #49, merge 3625163",
+      "ref": "PR #49"
     }
   ],
   "rows": [
@@ -2431,86 +2532,6 @@
           "link": "plan.md#non-goals"
         }
       ],
-      "asBuilt": {
-        "state": "amended",
-        "summary": null,
-        "statements": [
-          {
-            "text": "The report was posted on #2 as one comment, 17,602 bytes in 148 lines: the five parts of the plan's text joined, with every count the earlier units recorded fixed in it and its 12 placeholders filled from the unit's own records.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#1-what-was-built",
-            "excerpt": {
-              "ref": "final-implementation.md#1-what-was-built",
-              "heading": "1. What was built",
-              "paragraph": "The report on #2. One comment, #issuecomment-6932942675, created at 23:49:00Z by the comment request's first attempt. Its text is the body `S6.fill` built: the five parts of plan, Appendix A joined, 17,602 bytes in 148 lines, with its 12 placeholders filled from the unit's own records. `S6.readback` found it the one comment on #2 that begins with the title line, the newest, and equal to the body (§3.6). Its first table and its filled section are in §4. · The data folder, verified and listed in full. Its 47 checksum lists verified from their bases, the 91 files of the three data copies equal …",
-              "hash": "f5d151d770b3"
-            }
-          },
-          {
-            "text": "Every row line the report draws on was found in its source file, each file at its recorded line count, before the body was built, and the fill left no placeholder and no value unused.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#36-the-report-s6",
-            "excerpt": {
-              "ref": "final-implementation.md#36-the-report-s6",
-              "heading": "3.6 The report (`S6`)",
-              "paragraph": "`S6.sources`: 14 `ok` lines and `STAGE S6.sources OK`: per source file, the row lines present and the file's line count as recorded: 13 of 24, 18 of 24, 1 of 1, 5 of 9, 3 of 4, 3 of 4, 4 of 4, 4 of 4, 4 of 4, 26 of 34, 19 of 28, 24 of 31, 11 of 16 and 11 of 16. · `S6.fill`: `ok body built: 17602 bytes, 148 lines, sha256 7fa2b9478e3e4e04acda44e99d799976242fd5ac849d67d1653bb3a17c4217f5`, `ok 12 placeholders filled, none left, no value unused` and `STAGE S6.fill OK`. The values filled:",
-              "hash": "d605e7475d62"
-            }
-          },
-          {
-            "text": "The posted text states what the exit tests proved and the four things they cannot prove, each feed read's validity, each acceptance criterion's outcome and the departures from #2's body; the body's checks found the six repositories in its first table and the four statements, and #2's body was not edited.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#36-the-report-s6",
-            "excerpt": {
-              "ref": "final-implementation.md#36-the-report-s6",
-              "heading": "3.6 The report (`S6`)",
-              "paragraph": "`S6.sources`: 14 `ok` lines and `STAGE S6.sources OK`: per source file, the row lines present and the file's line count as recorded: 13 of 24, 18 of 24, 1 of 1, 5 of 9, 3 of 4, 3 of 4, 4 of 4, 4 of 4, 4 of 4, 26 of 34, 19 of 28, 24 of 31, 11 of 16 and 11 of 16. · `S6.fill`: `ok body built: 17602 bytes, 148 lines, sha256 7fa2b9478e3e4e04acda44e99d799976242fd5ac849d67d1653bb3a17c4217f5`, `ok 12 placeholders filled, none left, no value unused` and `STAGE S6.fill OK`. The values filled:",
-              "hash": "d605e7475d62"
-            }
-          },
-          {
-            "text": "After the workspace's deletion and before it was posted, the body passed the four document checks from the tools copy, the finding tool, the checks for a hexadecimal run and a drive-letter path, and its shape checks; the finding tool's output line is worded otherwise than the plan's expected text.",
-            "state": "amended",
-            "ref": "final-implementation.md#5-deviations-from-the-plan",
-            "excerpt": {
-              "ref": "final-implementation.md#5-deviations-from-the-plan",
-              "heading": "5. Deviations from the plan",
-              "paragraph": "Each deviation names the section of `plan.md` it departs from, why, and what that part of the plan rested on.",
-              "hash": "c2e96b5938d0"
-            }
-          },
-          {
-            "text": "One comment request was sent, on its first attempt, and posted the body once; read back, the comment is the one on #2 that begins with the title line, the newest, and equal to the body by sha256.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#36-the-report-s6",
-            "excerpt": {
-              "ref": "final-implementation.md#36-the-report-s6",
-              "heading": "3.6 The report (`S6`)",
-              "paragraph": "`S6.sources`: 14 `ok` lines and `STAGE S6.sources OK`: per source file, the row lines present and the file's line count as recorded: 13 of 24, 18 of 24, 1 of 1, 5 of 9, 3 of 4, 3 of 4, 4 of 4, 4 of 4, 4 of 4, 26 of 34, 19 of 28, 24 of 31, 11 of 16 and 11 of 16. · `S6.fill`: `ok body built: 17602 bytes, 148 lines, sha256 7fa2b9478e3e4e04acda44e99d799976242fd5ac849d67d1653bb3a17c4217f5`, `ok 12 placeholders filled, none left, no value unused` and `STAGE S6.fill OK`. The values filled:",
-              "hash": "d605e7475d62"
-            }
-          },
-          {
-            "text": "#2's closing follows the landing. Readiness recorded the closing's section as not given, and its allow line is not known to be placed, so the owner closes #2 as completed by hand, as the plan's grant provides, unless both are given first and one guarded request closes it.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#2-acceptance",
-            "excerpt": {
-              "ref": "final-implementation.md#2-acceptance",
-              "heading": "2. Acceptance",
-              "paragraph": "The plan's goals are met as §1 shows, with two that follow the landing: #2's closing (goal 8) and, of goal 9, the data folder's final list. Goal 11 holds: no version moves and the landing carries documents and generated boards only.",
-              "hash": "03ab1809d382"
-            }
-          }
-        ],
-        "changes": [
-          {
-            "what": "The finding tool's output line in the body's checks adds what it read",
-            "why": "The pinned `report.sh` prints `ok    the finding tool finds nothing in the body (exit status; find lines 0)` where the plan's expected text ends at \"in the body\". The check compared the tool's exit status with 0 and passed; only the label's wording differs.",
-            "when": "S6 · S6.checks",
-            "ref": "final-implementation.md#5-deviations-from-the-plan"
-          }
-        ]
-      },
       "verdict": {
         "kind": "build",
         "statements": [
@@ -2541,7 +2562,7 @@
               "ref": "plan.md#appendix-a--the-report",
               "heading": "Appendix A — The report",
               "paragraph": "The report's text, whole. The run saves it as five files (`report-1.md` to `report-5.md`, concatenated in order, each block's lines LF-ended with the last line's newline kept), proves the lines of `report-sources-1.tsv` and `report-sources-2.tsv` against their source files, fills the twelve `{{NAME}}` placeholders from `records.env` and posts the result. Every other figure is fixed text taken from the six report rows, KotlinBottools' other records and the earlier units' as-built records; the links are reference links defined at the end of part 5. The body's first line is the fixed title line.",
-              "hash": "2c4dd03ab615"
+              "hash": "daf2711589d7"
             }
           },
           {
@@ -2628,6 +2649,86 @@
         ],
         "source": "plan.md The report; S6 — The report posted; After the landing: the closing of #2; Appendix A",
         "link": "plan.md#the-report"
+      },
+      "asBuilt": {
+        "state": "amended",
+        "summary": null,
+        "statements": [
+          {
+            "text": "The report was posted on #2 as one comment, 17,602 bytes in 148 lines: the five parts of the plan's text joined, with every count the earlier units recorded fixed in it and its 12 placeholders filled from the unit's own records.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#1-what-was-built",
+            "excerpt": {
+              "ref": "final-implementation.md#1-what-was-built",
+              "heading": "1. What was built",
+              "paragraph": "The report on #2. One comment, #issuecomment-6932942675, created at 23:49:00Z by the comment request's first attempt. Its text is the body `S6.fill` built: the five parts of plan, Appendix A joined, 17,602 bytes in 148 lines, with its 12 placeholders filled from the unit's own records. `S6.readback` found it the one comment on #2 that begins with the title line, the newest, and equal to the body (§3.6). Its first table and its filled section are in §4. · The data folder, verified and listed in full. Its 47 checksum lists verified from their bases, the 91 files of the three data copies equal …",
+              "hash": "f5d151d770b3"
+            }
+          },
+          {
+            "text": "Every row line the report draws on was found in its source file, each file at its recorded line count, before the body was built, and the fill left no placeholder and no value unused.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#36-the-report-s6",
+            "excerpt": {
+              "ref": "final-implementation.md#36-the-report-s6",
+              "heading": "3.6 The report (`S6`)",
+              "paragraph": "`S6.sources`: 14 `ok` lines and `STAGE S6.sources OK`: per source file, the row lines present and the file's line count as recorded: 13 of 24, 18 of 24, 1 of 1, 5 of 9, 3 of 4, 3 of 4, 4 of 4, 4 of 4, 4 of 4, 26 of 34, 19 of 28, 24 of 31, 11 of 16 and 11 of 16. · `S6.fill`: `ok body built: 17602 bytes, 148 lines, sha256 7fa2b9478e3e4e04acda44e99d799976242fd5ac849d67d1653bb3a17c4217f5`, `ok 12 placeholders filled, none left, no value unused` and `STAGE S6.fill OK`. The values filled:",
+              "hash": "d605e7475d62"
+            }
+          },
+          {
+            "text": "The posted text states what the exit tests proved and the four things they cannot prove, each feed read's validity, each acceptance criterion's outcome and the departures from #2's body; the body's checks found the six repositories in its first table and the four statements, and #2's body was not edited.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#36-the-report-s6",
+            "excerpt": {
+              "ref": "final-implementation.md#36-the-report-s6",
+              "heading": "3.6 The report (`S6`)",
+              "paragraph": "`S6.sources`: 14 `ok` lines and `STAGE S6.sources OK`: per source file, the row lines present and the file's line count as recorded: 13 of 24, 18 of 24, 1 of 1, 5 of 9, 3 of 4, 3 of 4, 4 of 4, 4 of 4, 4 of 4, 26 of 34, 19 of 28, 24 of 31, 11 of 16 and 11 of 16. · `S6.fill`: `ok body built: 17602 bytes, 148 lines, sha256 7fa2b9478e3e4e04acda44e99d799976242fd5ac849d67d1653bb3a17c4217f5`, `ok 12 placeholders filled, none left, no value unused` and `STAGE S6.fill OK`. The values filled:",
+              "hash": "d605e7475d62"
+            }
+          },
+          {
+            "text": "After the workspace's deletion and before it was posted, the body passed the four document checks from the tools copy, the finding tool, the checks for a hexadecimal run and a drive-letter path, and its shape checks; the finding tool's output line is worded otherwise than the plan's expected text.",
+            "state": "amended",
+            "ref": "final-implementation.md#5-deviations-from-the-plan",
+            "excerpt": {
+              "ref": "final-implementation.md#5-deviations-from-the-plan",
+              "heading": "5. Deviations from the plan",
+              "paragraph": "Each deviation names the section of `plan.md` it departs from, why, and what that part of the plan rested on.",
+              "hash": "c2e96b5938d0"
+            }
+          },
+          {
+            "text": "One comment request was sent, on its first attempt, and posted the body once; read back, the comment is the one on #2 that begins with the title line, the newest, and equal to the body by sha256.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#36-the-report-s6",
+            "excerpt": {
+              "ref": "final-implementation.md#36-the-report-s6",
+              "heading": "3.6 The report (`S6`)",
+              "paragraph": "`S6.sources`: 14 `ok` lines and `STAGE S6.sources OK`: per source file, the row lines present and the file's line count as recorded: 13 of 24, 18 of 24, 1 of 1, 5 of 9, 3 of 4, 3 of 4, 4 of 4, 4 of 4, 4 of 4, 26 of 34, 19 of 28, 24 of 31, 11 of 16 and 11 of 16. · `S6.fill`: `ok body built: 17602 bytes, 148 lines, sha256 7fa2b9478e3e4e04acda44e99d799976242fd5ac849d67d1653bb3a17c4217f5`, `ok 12 placeholders filled, none left, no value unused` and `STAGE S6.fill OK`. The values filled:",
+              "hash": "d605e7475d62"
+            }
+          },
+          {
+            "text": "#2's closing follows the landing. Readiness recorded the closing's section as not given, and its allow line is not known to be placed, so the owner closes #2 as completed by hand, as the plan's grant provides, unless both are given first and one guarded request closes it.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#2-acceptance",
+            "excerpt": {
+              "ref": "final-implementation.md#2-acceptance",
+              "heading": "2. Acceptance",
+              "paragraph": "The plan's goals are met as §1 shows, with two that follow the landing: #2's closing (goal 8) and, of goal 9, the data folder's final list. Goal 11 holds: no version moves and the landing carries documents and generated boards only.",
+              "hash": "03ab1809d382"
+            }
+          }
+        ],
+        "changes": [
+          {
+            "what": "The finding tool's output line in the body's checks adds what it read",
+            "why": "The pinned `report.sh` prints `ok    the finding tool finds nothing in the body (exit status; find lines 0)` where the plan's expected text ends at \"in the body\". The check compared the tool's exit status with 0 and passed; only the label's wording differs.",
+            "when": "S6 · S6.checks",
+            "ref": "final-implementation.md#5-deviations-from-the-plan"
+          }
+        ]
       }
     },
     {
@@ -2678,6 +2779,81 @@
           "link": "plan.md#non-goals"
         }
       ],
+      "verdict": {
+        "kind": "build",
+        "statements": [
+          {
+            "text": "Each follow-up of the phase is read on GitHub and in the records, and recorded in this unit's consequences with who carries it out.",
+            "ref": "plan.md#the-follow-ups",
+            "excerpt": {
+              "ref": "plan.md#the-follow-ups",
+              "heading": "The follow-ups",
+              "paragraph": "`S2.read` (`follow-ups.sh`) reads each follow-up of the phase from GitHub or from the data folder's records, prints one `ok` or `RECORD` line for it, and writes nothing but its console output (kept in `out\\S2.txt`). This unit's `consequences.md` is then written from that record. The follow-ups, their expected state and the one who carries each out:",
+              "hash": "7e29b8072348"
+            }
+          },
+          {
+            "text": "The project's planning-state note on this machine is updated with the phase's four facts at the run's close, and is never committed.",
+            "ref": "plan.md#the-follow-ups",
+            "excerpt": {
+              "ref": "plan.md#the-follow-ups",
+              "heading": "The follow-ups",
+              "paragraph": "`S2.read` (`follow-ups.sh`) reads each follow-up of the phase from GitHub or from the data folder's records, prints one `ok` or `RECORD` line for it, and writes nothing but its console output (kept in `out\\S2.txt`). This unit's `consequences.md` is then written from that record. The follow-ups, their expected state and the one who carries each out:",
+              "hash": "7e29b8072348"
+            }
+          },
+          {
+            "text": "The committed CI files' text follow-ups and the missing compiled-cache ignore pattern stay open, now unblocked, for a later change.",
+            "ref": "plan.md#the-follow-ups",
+            "excerpt": {
+              "ref": "plan.md#the-follow-ups",
+              "heading": "The follow-ups",
+              "paragraph": "`S2.read` (`follow-ups.sh`) reads each follow-up of the phase from GitHub or from the data folder's records, prints one `ok` or `RECORD` line for it, and writes nothing but its console output (kept in `out\\S2.txt`). This unit's `consequences.md` is then written from that record. The follow-ups, their expected state and the one who carries each out:",
+              "hash": "7e29b8072348"
+            }
+          },
+          {
+            "text": "No issue is filed and no issue body is edited.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No removal of what GitHub still serves of the old histories. It stays in place, measured, reported and never claimed removed: BotTools' and GKB2's pull-request refs (`refs/pull/2/head` and `refs/pull/3/head`; `refs/pull/6/head`) and every old object served by id in the five force-pushed repositories. No GitHub Support ticket is filed, and no repository is deleted: not the legacy repository, not the two rehearsal repositories (their deletion needs the `delete_repo` scope the token lacks, and is the owner's if they are unwanted). · No issue is filed. Every follow-up is recorded in this unit's …",
+              "hash": "2d4c863e92e8"
+            }
+          }
+        ],
+        "defense": "The phase's design leaves each follow-up to its last unit to confirm. The read writes nothing but its console output, a value that differs from the plan's reading is recorded rather than a stop, and the consequences are written from that record, each follow-up with who carries it out.",
+        "steps": [
+          {
+            "id": "S2.read",
+            "what": "Each follow-up read on GitHub and in the data folder's records by `follow-ups.sh`, read only.",
+            "check": "35 `ok` lines, a differing value as a `RECORD` line, and `STAGE S2.read OK`",
+            "link": "plan.md#s2--the-follow-ups-read"
+          },
+          {
+            "id": "consequences",
+            "what": "This unit's `consequences.md` written from that record, each follow-up with who carries it out.",
+            "check": "the landing's document checks pass over it before it is committed",
+            "link": "plan.md#the-follow-ups"
+          },
+          {
+            "id": "A.note",
+            "what": "The project's planning-state note on this machine updated with the phase's four facts, after the closing of #2.",
+            "check": "given in the run's own report; never committed",
+            "link": "plan.md#after-the-landing-the-closing-of-2"
+          }
+        ],
+        "tests": [
+          "integration — `S2.read` against the real GitHub and the data folder's records"
+        ],
+        "risks": [
+          "GitHub's answers at the read differ from those read for the plan: the value read is recorded as a `RECORD` line and carried into the consequences as read; none stops a step (A14)",
+          "A read that cannot be made stops the step; it runs again once, and a second failure hands back"
+        ],
+        "source": "plan.md The follow-ups; S2 — The follow-ups read",
+        "link": "plan.md#the-follow-ups"
+      },
       "asBuilt": {
         "state": "amended",
         "summary": null,
@@ -2742,81 +2918,6 @@
             }
           }
         ]
-      },
-      "verdict": {
-        "kind": "build",
-        "statements": [
-          {
-            "text": "Each follow-up of the phase is read on GitHub and in the records, and recorded in this unit's consequences with who carries it out.",
-            "ref": "plan.md#the-follow-ups",
-            "excerpt": {
-              "ref": "plan.md#the-follow-ups",
-              "heading": "The follow-ups",
-              "paragraph": "`S2.read` (`follow-ups.sh`) reads each follow-up of the phase from GitHub or from the data folder's records, prints one `ok` or `RECORD` line for it, and writes nothing but its console output (kept in `out\\S2.txt`). This unit's `consequences.md` is then written from that record. The follow-ups, their expected state and the one who carries each out:",
-              "hash": "4bb76e287b1b"
-            }
-          },
-          {
-            "text": "The project's planning-state note on this machine is updated with the phase's four facts at the run's close, and is never committed.",
-            "ref": "plan.md#the-follow-ups",
-            "excerpt": {
-              "ref": "plan.md#the-follow-ups",
-              "heading": "The follow-ups",
-              "paragraph": "`S2.read` (`follow-ups.sh`) reads each follow-up of the phase from GitHub or from the data folder's records, prints one `ok` or `RECORD` line for it, and writes nothing but its console output (kept in `out\\S2.txt`). This unit's `consequences.md` is then written from that record. The follow-ups, their expected state and the one who carries each out:",
-              "hash": "4bb76e287b1b"
-            }
-          },
-          {
-            "text": "The committed CI files' text follow-ups and the missing compiled-cache ignore pattern stay open, now unblocked, for a later change.",
-            "ref": "plan.md#the-follow-ups",
-            "excerpt": {
-              "ref": "plan.md#the-follow-ups",
-              "heading": "The follow-ups",
-              "paragraph": "`S2.read` (`follow-ups.sh`) reads each follow-up of the phase from GitHub or from the data folder's records, prints one `ok` or `RECORD` line for it, and writes nothing but its console output (kept in `out\\S2.txt`). This unit's `consequences.md` is then written from that record. The follow-ups, their expected state and the one who carries each out:",
-              "hash": "4bb76e287b1b"
-            }
-          },
-          {
-            "text": "No issue is filed and no issue body is edited.",
-            "ref": "plan.md#non-goals",
-            "excerpt": {
-              "ref": "plan.md#non-goals",
-              "heading": "Non-goals",
-              "paragraph": "No removal of what GitHub still serves of the old histories. It stays in place, measured, reported and never claimed removed: BotTools' and GKB2's pull-request refs (`refs/pull/2/head` and `refs/pull/3/head`; `refs/pull/6/head`) and every old object served by id in the five force-pushed repositories. No GitHub Support ticket is filed, and no repository is deleted: not `…`, not the two rehearsal repositories (their deletion needs the `delete_repo` scope the token lacks, and is the owner's if they are unwanted). · No issue is filed. Every follow-up is recorded in this unit's `consequences.md`, …",
-              "hash": "e5c56922f68a"
-            }
-          }
-        ],
-        "defense": "The phase's design leaves each follow-up to its last unit to confirm. The read writes nothing but its console output, a value that differs from the plan's reading is recorded rather than a stop, and the consequences are written from that record, each follow-up with who carries it out.",
-        "steps": [
-          {
-            "id": "S2.read",
-            "what": "Each follow-up read on GitHub and in the data folder's records by `follow-ups.sh`, read only.",
-            "check": "35 `ok` lines, a differing value as a `RECORD` line, and `STAGE S2.read OK`",
-            "link": "plan.md#s2--the-follow-ups-read"
-          },
-          {
-            "id": "consequences",
-            "what": "This unit's `consequences.md` written from that record, each follow-up with who carries it out.",
-            "check": "the landing's document checks pass over it before it is committed",
-            "link": "plan.md#the-follow-ups"
-          },
-          {
-            "id": "A.note",
-            "what": "The project's planning-state note on this machine updated with the phase's four facts, after the closing of #2.",
-            "check": "given in the run's own report; never committed",
-            "link": "plan.md#after-the-landing-the-closing-of-2"
-          }
-        ],
-        "tests": [
-          "integration — `S2.read` against the real GitHub and the data folder's records"
-        ],
-        "risks": [
-          "GitHub's answers at the read differ from those read for the plan: the value read is recorded as a `RECORD` line and carried into the consequences as read; none stops a step (A14)",
-          "A read that cannot be made stops the step; it runs again once, and a second failure hands back"
-        ],
-        "source": "plan.md The follow-ups; S2 — The follow-ups read",
-        "link": "plan.md#the-follow-ups"
       }
     },
     {
@@ -2863,64 +2964,6 @@
           "link": "plan.md#current-state"
         }
       ],
-      "asBuilt": {
-        "state": "amended",
-        "summary": null,
-        "statements": [
-          {
-            "text": "All 47 checksum lists verified from their bases with 0 differences before anything was deleted, so no mismatch stopped the cleanup; after the deletion 40 verified again, the 7 backup lists skipped as their subject is deleted.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
-            "excerpt": {
-              "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
-              "heading": "3.2 The data folder (`S1`) and the follow-ups (`S2`)",
-              "paragraph": "`S1.lists`: 3 `ok` lines, `ok 47 of 47 lists equal their line counts and verify from their bases (0 backup lists skipped: their subject is deleted)` among them, and `STAGE S1.lists OK`. · `S1.copy`: 5 `ok` lines and `STAGE S1.copy OK`: `COPY-VERIFIED` present and empty; each of the three copies equal to its recorded blob ids with no other file; 91 files. · `S1.census`: 2 `ok` lines, `ok the census equals the table: 964 files, 620 under a list, 344 under none` and the list over the 344 files (deviation 5), and `STAGE S1.census OK`. `uncovered.sha256` holds 344 lines. · `S1.mark`: `ok marker S1 …",
-              "hash": "6656ba0c8c91"
-            }
-          },
-          {
-            "text": "The swap list verified by its rule: its log's first 209 of 210 lines hash to the recorded value, one record having been appended after it, and the list stays as written.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#4-the-report-as-posted",
-            "excerpt": {
-              "ref": "final-implementation.md#4-the-report-as-posted",
-              "heading": "4. The report as posted",
-              "paragraph": "Every section of the comment is the text of plan, Appendix A, its 12 placeholders filled as §3.6 gives them, and `S6.readback` found the comment equal to that body. Its first table, as posted:",
-              "hash": "947145bfa26d"
-            }
-          },
-          {
-            "text": "The 91 files of the three data copies equal the blob ids their records name, with 0 mismatches and the copies' verified marker present and empty.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
-            "excerpt": {
-              "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
-              "heading": "3.2 The data folder (`S1`) and the follow-ups (`S2`)",
-              "paragraph": "`S1.lists`: 3 `ok` lines, `ok 47 of 47 lists equal their line counts and verify from their bases (0 backup lists skipped: their subject is deleted)` among them, and `STAGE S1.lists OK`. · `S1.copy`: 5 `ok` lines and `STAGE S1.copy OK`: `COPY-VERIFIED` present and empty; each of the three copies equal to its recorded blob ids with no other file; 91 files. · `S1.census`: 2 `ok` lines, `ok the census equals the table: 964 files, 620 under a list, 344 under none` and the list over the 344 files (deviation 5), and `STAGE S1.census OK`. `uncovered.sha256` holds 344 lines. · `S1.mark`: `ok marker S1 …",
-              "hash": "6656ba0c8c91"
-            }
-          },
-          {
-            "text": "The census equalled the plan's table, 964 files with 620 under a list and 344 under none, and the 344 got a list of their own, which verified then and again after the deletion; the census's output line is worded otherwise than the plan's expected text. The final list over every file of the data folder follows the landing: the run writes it last, and its count and digest are in the run's own report, in no committed document.",
-            "state": "amended",
-            "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
-            "excerpt": {
-              "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
-              "heading": "3.2 The data folder (`S1`) and the follow-ups (`S2`)",
-              "paragraph": "`S1.lists`: 3 `ok` lines, `ok 47 of 47 lists equal their line counts and verify from their bases (0 backup lists skipped: their subject is deleted)` among them, and `STAGE S1.lists OK`. · `S1.copy`: 5 `ok` lines and `STAGE S1.copy OK`: `COPY-VERIFIED` present and empty; each of the three copies equal to its recorded blob ids with no other file; 91 files. · `S1.census`: 2 `ok` lines, `ok the census equals the table: 964 files, 620 under a list, 344 under none` and the list over the 344 files (deviation 5), and `STAGE S1.census OK`. `uncovered.sha256` holds 344 lines. · `S1.mark`: `ok marker S1 …",
-              "hash": "6656ba0c8c91"
-            }
-          }
-        ],
-        "changes": [
-          {
-            "what": "The census's second output line is labelled otherwise than the plan's expected text",
-            "why": "The pinned `verify-data.sh` labels the check of the new list `… holds that many lines and verifies` where the expected text names 344 lines. The check compared the list's 344 lines and its verification status with the expected 344 and 0 and passed; only the label's wording differs.",
-            "when": "S1 · S1.census",
-            "ref": "final-implementation.md#5-deviations-from-the-plan"
-          }
-        ]
-      },
       "verdict": {
         "kind": "build",
         "statements": [
@@ -3011,6 +3054,64 @@
         ],
         "source": "plan.md The data folder's re-verification; S1 — The data folder re-verified; S7 — Close-out",
         "link": "plan.md#the-data-folders-re-verification"
+      },
+      "asBuilt": {
+        "state": "amended",
+        "summary": null,
+        "statements": [
+          {
+            "text": "All 47 checksum lists verified from their bases with 0 differences before anything was deleted, so no mismatch stopped the cleanup; after the deletion 40 verified again, the 7 backup lists skipped as their subject is deleted.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
+            "excerpt": {
+              "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
+              "heading": "3.2 The data folder (`S1`) and the follow-ups (`S2`)",
+              "paragraph": "`S1.lists`: 3 `ok` lines, `ok 47 of 47 lists equal their line counts and verify from their bases (0 backup lists skipped: their subject is deleted)` among them, and `STAGE S1.lists OK`. · `S1.copy`: 5 `ok` lines and `STAGE S1.copy OK`: `COPY-VERIFIED` present and empty; each of the three copies equal to its recorded blob ids with no other file; 91 files. · `S1.census`: 2 `ok` lines, `ok the census equals the table: 964 files, 620 under a list, 344 under none` and the list over the 344 files (deviation 5), and `STAGE S1.census OK`. `uncovered.sha256` holds 344 lines. · `S1.mark`: `ok marker S1 …",
+              "hash": "6656ba0c8c91"
+            }
+          },
+          {
+            "text": "The swap list verified by its rule: its log's first 209 of 210 lines hash to the recorded value, one record having been appended after it, and the list stays as written.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#4-the-report-as-posted",
+            "excerpt": {
+              "ref": "final-implementation.md#4-the-report-as-posted",
+              "heading": "4. The report as posted",
+              "paragraph": "Every section of the comment is the text of plan, Appendix A, its 12 placeholders filled as §3.6 gives them, and `S6.readback` found the comment equal to that body. Its first table, as posted:",
+              "hash": "947145bfa26d"
+            }
+          },
+          {
+            "text": "The 91 files of the three data copies equal the blob ids their records name, with 0 mismatches and the copies' verified marker present and empty.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
+            "excerpt": {
+              "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
+              "heading": "3.2 The data folder (`S1`) and the follow-ups (`S2`)",
+              "paragraph": "`S1.lists`: 3 `ok` lines, `ok 47 of 47 lists equal their line counts and verify from their bases (0 backup lists skipped: their subject is deleted)` among them, and `STAGE S1.lists OK`. · `S1.copy`: 5 `ok` lines and `STAGE S1.copy OK`: `COPY-VERIFIED` present and empty; each of the three copies equal to its recorded blob ids with no other file; 91 files. · `S1.census`: 2 `ok` lines, `ok the census equals the table: 964 files, 620 under a list, 344 under none` and the list over the 344 files (deviation 5), and `STAGE S1.census OK`. `uncovered.sha256` holds 344 lines. · `S1.mark`: `ok marker S1 …",
+              "hash": "6656ba0c8c91"
+            }
+          },
+          {
+            "text": "The census equalled the plan's table, 964 files with 620 under a list and 344 under none, and the 344 got a list of their own, which verified then and again after the deletion; the census's output line is worded otherwise than the plan's expected text. The final list over every file of the data folder follows the landing: the run writes it last, and its count and digest are in the run's own report, in no committed document.",
+            "state": "amended",
+            "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
+            "excerpt": {
+              "ref": "final-implementation.md#32-the-data-folder-s1-and-the-follow-ups-s2",
+              "heading": "3.2 The data folder (`S1`) and the follow-ups (`S2`)",
+              "paragraph": "`S1.lists`: 3 `ok` lines, `ok 47 of 47 lists equal their line counts and verify from their bases (0 backup lists skipped: their subject is deleted)` among them, and `STAGE S1.lists OK`. · `S1.copy`: 5 `ok` lines and `STAGE S1.copy OK`: `COPY-VERIFIED` present and empty; each of the three copies equal to its recorded blob ids with no other file; 91 files. · `S1.census`: 2 `ok` lines, `ok the census equals the table: 964 files, 620 under a list, 344 under none` and the list over the 344 files (deviation 5), and `STAGE S1.census OK`. `uncovered.sha256` holds 344 lines. · `S1.mark`: `ok marker S1 …",
+              "hash": "6656ba0c8c91"
+            }
+          }
+        ],
+        "changes": [
+          {
+            "what": "The census's second output line is labelled otherwise than the plan's expected text",
+            "why": "The pinned `verify-data.sh` labels the check of the new list `… holds that many lines and verifies` where the expected text names 344 lines. The check compared the list's 344 lines and its verification status with the expected 344 and 0 and passed; only the label's wording differs.",
+            "when": "S1 · S1.census",
+            "ref": "final-implementation.md#5-deviations-from-the-plan"
+          }
+        ]
       }
     },
     {
@@ -3057,54 +3158,6 @@
           "link": "plan.md#the-checks-moved-off-the-workspace"
         }
       ],
-      "asBuilt": {
-        "state": "amended",
-        "summary": null,
-        "statements": [
-          {
-            "text": "The workspace tools folder, 139 files in 11 folders counting the root, was copied whole into the data folder, byte for byte, with no file missing or extra.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#33-the-tools-copy-s3",
-            "excerpt": {
-              "ref": "final-implementation.md#33-the-tools-copy-s3",
-              "heading": "3.3 The tools copy (`S3`)",
-              "paragraph": "`S3.list`: `ok the source holds 139 files and 11 folders (the root counted)`; the list `tools-before.sha256` holds 139 lines and `tools-before.dirs` 11. · `S3.copy`: the copy's place free, the folder copied, `STAGE S3.copy OK`. · `S3.verify`: 9 `ok` lines and `STAGE S3.verify OK`: the list taken before the copy verifies over the copy; the same files and folders; the four pin lists' 24, 22, 21 and 21 rows equal the copied files' sizes and sha256s; `g27tools.sums` at its pinned sha256; the stage runner at its pin in the copy's root and in `g26`. · `S3.census`: 10 `ok` lines and `STAGE S3.census …",
-              "hash": "70bb41affca0"
-            }
-          },
-          {
-            "text": "The copy verified against the list taken before it, every row of the four pin lists (24, 22, 21 and 21, 88 in all) equals the copied file, the stage runner holds its pin in the copy's root and in `g26`, and the copy's census is recorded by name and kind.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#33-the-tools-copy-s3",
-            "excerpt": {
-              "ref": "final-implementation.md#33-the-tools-copy-s3",
-              "heading": "3.3 The tools copy (`S3`)",
-              "paragraph": "`S3.list`: `ok the source holds 139 files and 11 folders (the root counted)`; the list `tools-before.sha256` holds 139 lines and `tools-before.dirs` 11. · `S3.copy`: the copy's place free, the folder copied, `STAGE S3.copy OK`. · `S3.verify`: 9 `ok` lines and `STAGE S3.verify OK`: the list taken before the copy verifies over the copy; the same files and folders; the four pin lists' 24, 22, 21 and 21 rows equal the copied files' sizes and sha256s; `g27tools.sums` at its pinned sha256; the stage runner at its pin in the copy's root and in `g26`. · `S3.census`: 10 `ok` lines and `STAGE S3.census …",
-              "hash": "70bb41affca0"
-            }
-          },
-          {
-            "text": "Before the deletion, each repository's commit-map old column equalled its untouched backup's commit set with no differing line (87, 32, 11, 16, 11 and 2 ids), the manifests held their recorded sizes, and both routes passed their four arms over the same 19 pending documents with byte-equal outputs; the proof's outputs are kept in a folder the plan does not name. The landing's document checks run from the copy.",
-            "state": "amended",
-            "ref": "final-implementation.md#34-the-checks-moved-s4",
-            "excerpt": {
-              "ref": "final-implementation.md#34-the-checks-moved-s4",
-              "heading": "3.4 The checks moved (`S4`)",
-              "paragraph": "`S4.sources`: 12 `ok` lines and `STAGE D.sources OK`: the commit maps' old columns hold 87, 32, 11, 16, 11 and 2 ids and the manifests 346, 81, 58, 39, 199 and 7,259 blobs (KotlinBottools, GKB2, GKB, BotTools, the first private repository, the second); each old column equals its backup's commit set, with 0 differing lines (deviation 8). · `S4.routes`: 13 `ok` lines and `STAGE S4.routes OK`: the original route's four arms pass, the moved route's four arms pass, the two routes read the same 19 pending documents, and their two id outputs, their paths output and their gate output are equal byte …",
-              "hash": "3c42362b9212"
-            }
-          }
-        ],
-        "changes": [
-          {
-            "what": "The id-source proof keeps its outputs in `run\\g28\\docs\\`",
-            "why": "`S4.sources` runs the document checks' sources arm without an output folder of its own, so the script wrote its 12 files to its default folder, which the plan's list of records does not name. They hold pre-rewrite ids, so like every record of the folder they are never committed, printed or quoted, and the unit's checksum list covers them.",
-            "when": "S4 · S4.sources",
-            "ref": "final-implementation.md#5-deviations-from-the-plan",
-            "link": "../architecture.md#51-userprofilebotlegacydata--the-data-folder-data-outlives-the-phase"
-          }
-        ]
-      },
       "verdict": {
         "kind": "build",
         "statements": [
@@ -3190,6 +3243,54 @@
         ],
         "source": "plan.md The tools copy; The checks moved off the workspace; S3; S4; The landing's document checks",
         "link": "plan.md#the-tools-copy"
+      },
+      "asBuilt": {
+        "state": "amended",
+        "summary": null,
+        "statements": [
+          {
+            "text": "The workspace tools folder, 139 files in 11 folders counting the root, was copied whole into the data folder, byte for byte, with no file missing or extra.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#33-the-tools-copy-s3",
+            "excerpt": {
+              "ref": "final-implementation.md#33-the-tools-copy-s3",
+              "heading": "3.3 The tools copy (`S3`)",
+              "paragraph": "`S3.list`: `ok the source holds 139 files and 11 folders (the root counted)`; the list `tools-before.sha256` holds 139 lines and `tools-before.dirs` 11. · `S3.copy`: the copy's place free, the folder copied, `STAGE S3.copy OK`. · `S3.verify`: 9 `ok` lines and `STAGE S3.verify OK`: the list taken before the copy verifies over the copy; the same files and folders; the four pin lists' 24, 22, 21 and 21 rows equal the copied files' sizes and sha256s; `g27tools.sums` at its pinned sha256; the stage runner at its pin in the copy's root and in `g26`. · `S3.census`: 10 `ok` lines and `STAGE S3.census …",
+              "hash": "70bb41affca0"
+            }
+          },
+          {
+            "text": "The copy verified against the list taken before it, every row of the four pin lists (24, 22, 21 and 21, 88 in all) equals the copied file, the stage runner holds its pin in the copy's root and in `g26`, and the copy's census is recorded by name and kind.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#33-the-tools-copy-s3",
+            "excerpt": {
+              "ref": "final-implementation.md#33-the-tools-copy-s3",
+              "heading": "3.3 The tools copy (`S3`)",
+              "paragraph": "`S3.list`: `ok the source holds 139 files and 11 folders (the root counted)`; the list `tools-before.sha256` holds 139 lines and `tools-before.dirs` 11. · `S3.copy`: the copy's place free, the folder copied, `STAGE S3.copy OK`. · `S3.verify`: 9 `ok` lines and `STAGE S3.verify OK`: the list taken before the copy verifies over the copy; the same files and folders; the four pin lists' 24, 22, 21 and 21 rows equal the copied files' sizes and sha256s; `g27tools.sums` at its pinned sha256; the stage runner at its pin in the copy's root and in `g26`. · `S3.census`: 10 `ok` lines and `STAGE S3.census …",
+              "hash": "70bb41affca0"
+            }
+          },
+          {
+            "text": "Before the deletion, each repository's commit-map old column equalled its untouched backup's commit set with no differing line (87, 32, 11, 16, 11 and 2 ids), the manifests held their recorded sizes, and both routes passed their four arms over the same 19 pending documents with byte-equal outputs; the proof's outputs are kept in a folder the plan does not name. The landing's document checks run from the copy.",
+            "state": "amended",
+            "ref": "final-implementation.md#34-the-checks-moved-s4",
+            "excerpt": {
+              "ref": "final-implementation.md#34-the-checks-moved-s4",
+              "heading": "3.4 The checks moved (`S4`)",
+              "paragraph": "`S4.sources`: 12 `ok` lines and `STAGE D.sources OK`: the commit maps' old columns hold 87, 32, 11, 16, 11 and 2 ids and the manifests 346, 81, 58, 39, 199 and 7,259 blobs (KotlinBottools, GKB2, GKB, BotTools, the first private repository, the second); each old column equals its backup's commit set, with 0 differing lines (deviation 8). · `S4.routes`: 13 `ok` lines and `STAGE S4.routes OK`: the original route's four arms pass, the moved route's four arms pass, the two routes read the same 19 pending documents, and their two id outputs, their paths output and their gate output are equal byte …",
+              "hash": "3c42362b9212"
+            }
+          }
+        ],
+        "changes": [
+          {
+            "what": "The id-source proof keeps its outputs in `run\\g28\\docs\\`",
+            "why": "`S4.sources` runs the document checks' sources arm without an output folder of its own, so the script wrote its 12 files to its default folder, which the plan's list of records does not name. They hold pre-rewrite ids, so like every record of the folder they are never committed, printed or quoted, and the unit's checksum list covers them.",
+            "when": "S4 · S4.sources",
+            "ref": "final-implementation.md#5-deviations-from-the-plan",
+            "link": "../architecture.md#51-userprofilebotlegacydata--the-data-folder-data-outlives-the-phase"
+          }
+        ]
       }
     },
     {
@@ -3228,77 +3329,6 @@
           "link": "../architecture.md#4-non-goals"
         }
       ],
-      "asBuilt": {
-        "state": "deviated",
-        "summary": null,
-        "statements": [
-          {
-            "text": "The workspace was deleted only after the data folder (S1), the tools copy (S3) and the moved checks (S4) had each passed in the same run, and its guards passed on its 10,234 files, 5,966 folders and 791 MB, every source file of the tools equal to its copy.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
-            "excerpt": {
-              "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
-              "heading": "3.5 The workspace's deletion (`S5`)",
-              "paragraph": "`guards` (typed, its output kept at 23:37:37Z): 12 `ok` lines and `STAGE S5.guards OK`: the three markers this run's; the recorded path; a folder and not a link; one volume with the data folder and the profile folder; 0 links, hard links and reparse points; the 12 recorded top-level folders; the census, 10,234 files and 5,966 folders, the root counted, 791 MB; every file of the source but its compiled caches equal to the copy's, and no other file in the copy; the compiled caches the same files, with no `RECORD`; the copy verifies against its list; the workspace standing and its rename target …",
-              "hash": "13a31b675c43"
-            }
-          },
-          {
-            "text": "The workspace was renamed beside itself on its own volume on the first try, the outcome read from the two paths, and the renamed folder then removed with nothing left over; the rename's output also carries the guards' stage line, and the removal's error file exists, empty.",
-            "state": "amended",
-            "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
-            "excerpt": {
-              "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
-              "heading": "3.5 The workspace's deletion (`S5`)",
-              "paragraph": "`guards` (typed, its output kept at 23:37:37Z): 12 `ok` lines and `STAGE S5.guards OK`: the three markers this run's; the recorded path; a folder and not a link; one volume with the data folder and the profile folder; 0 links, hard links and reparse points; the 12 recorded top-level folders; the census, 10,234 files and 5,966 folders, the root counted, 791 MB; every file of the source but its compiled caches equal to the copy's, and no other file in the copy; the compiled caches the same files, with no `RECORD`; the copy verifies against its list; the workspace standing and its rename target …",
-              "hash": "13a31b675c43"
-            }
-          },
-          {
-            "text": "Both paths read absent, with the data folder and the checkout as before, so no leftover was removed again or handed back.",
-            "state": "as-planned",
-            "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
-            "excerpt": {
-              "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
-              "heading": "3.5 The workspace's deletion (`S5`)",
-              "paragraph": "`guards` (typed, its output kept at 23:37:37Z): 12 `ok` lines and `STAGE S5.guards OK`: the three markers this run's; the recorded path; a folder and not a link; one volume with the data folder and the profile folder; 0 links, hard links and reparse points; the 12 recorded top-level folders; the census, 10,234 files and 5,966 folders, the root counted, 791 MB; every file of the source but its compiled caches equal to the copy's, and no other file in the copy; the compiled caches the same files, with no `RECORD`; the copy verifies against its list; the workspace standing and its rename target …",
-              "hash": "13a31b675c43"
-            }
-          },
-          {
-            "text": "The deletion ran without the standing allow line: each of its commands was permitted at the moment it ran instead, with the pinned script, the commands, their order and their outputs as the plan gives them. The first removal was refused before it ran and left the moved-aside folder whole; the second ran once permitted. With no line placed, none is left to remove when the unit lands.",
-            "state": "deviated",
-            "ref": "final-implementation.md#5-deviations-from-the-plan",
-            "excerpt": {
-              "ref": "final-implementation.md#5-deviations-from-the-plan",
-              "heading": "5. Deviations from the plan",
-              "paragraph": "Each deviation names the section of `plan.md` it departs from, why, and what that part of the plan rested on.",
-              "hash": "c2e96b5938d0"
-            }
-          }
-        ],
-        "changes": [
-          {
-            "what": "The workspace's deletion ran without the standing allow line",
-            "why": "The owner permitted each of the deletion's commands at the moment it ran instead of placing the line ahead of the stage. The commands, the pinned script, their order and their outputs are as the plan gives them, and with no line placed none is left to remove at the landing.",
-            "when": "S5",
-            "ref": "final-implementation.md#5-deviations-from-the-plan",
-            "link": "../architecture.md#11-version-control"
-          },
-          {
-            "what": "The rename's output carries the guards' stage line",
-            "why": "`rename` runs the guards first, and the guards end with their own stage line, so the output holds `STAGE S5.guards OK` between the guards' lines and the rename's. The step's last line is `STAGE S5.rename OK` with status 0, its pass.",
-            "when": "S5 · rename",
-            "ref": "final-implementation.md#5-deviations-from-the-plan"
-          },
-          {
-            "what": "The removal's error file exists, empty",
-            "why": "The pinned `delete-ws.sh` sends the removal's error stream to `ws-rm-errors.txt` on every `remove`, so the file exists after a removal that met nothing, 0 bytes long, where the plan names it among the files written only when a removal met something; `ws-leftover.txt` was not written.",
-            "when": "S5 · remove",
-            "ref": "final-implementation.md#5-deviations-from-the-plan"
-          }
-        ]
-      },
       "verdict": {
         "kind": "build",
         "list": "numbered",
@@ -3390,6 +3420,77 @@
         ],
         "source": "plan.md The workspace's deletion; S5 — The workspace deleted; The grant; Risks and edge cases",
         "link": "plan.md#the-workspaces-deletion"
+      },
+      "asBuilt": {
+        "state": "deviated",
+        "summary": null,
+        "statements": [
+          {
+            "text": "The workspace was deleted only after the data folder (S1), the tools copy (S3) and the moved checks (S4) had each passed in the same run, and its guards passed on its 10,234 files, 5,966 folders and 791 MB, every source file of the tools equal to its copy.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
+            "excerpt": {
+              "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
+              "heading": "3.5 The workspace's deletion (`S5`)",
+              "paragraph": "`guards` (typed, its output kept at 23:37:37Z): 12 `ok` lines and `STAGE S5.guards OK`: the three markers this run's; the recorded path; a folder and not a link; one volume with the data folder and the profile folder; 0 links, hard links and reparse points; the 12 recorded top-level folders; the census, 10,234 files and 5,966 folders, the root counted, 791 MB; every file of the source but its compiled caches equal to the copy's, and no other file in the copy; the compiled caches the same files, with no `RECORD`; the copy verifies against its list; the workspace standing and its rename target …",
+              "hash": "13a31b675c43"
+            }
+          },
+          {
+            "text": "The workspace was renamed beside itself on its own volume on the first try, the outcome read from the two paths, and the renamed folder then removed with nothing left over; the rename's output also carries the guards' stage line, and the removal's error file exists, empty.",
+            "state": "amended",
+            "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
+            "excerpt": {
+              "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
+              "heading": "3.5 The workspace's deletion (`S5`)",
+              "paragraph": "`guards` (typed, its output kept at 23:37:37Z): 12 `ok` lines and `STAGE S5.guards OK`: the three markers this run's; the recorded path; a folder and not a link; one volume with the data folder and the profile folder; 0 links, hard links and reparse points; the 12 recorded top-level folders; the census, 10,234 files and 5,966 folders, the root counted, 791 MB; every file of the source but its compiled caches equal to the copy's, and no other file in the copy; the compiled caches the same files, with no `RECORD`; the copy verifies against its list; the workspace standing and its rename target …",
+              "hash": "13a31b675c43"
+            }
+          },
+          {
+            "text": "Both paths read absent, with the data folder and the checkout as before, so no leftover was removed again or handed back.",
+            "state": "as-planned",
+            "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
+            "excerpt": {
+              "ref": "final-implementation.md#35-the-workspaces-deletion-s5",
+              "heading": "3.5 The workspace's deletion (`S5`)",
+              "paragraph": "`guards` (typed, its output kept at 23:37:37Z): 12 `ok` lines and `STAGE S5.guards OK`: the three markers this run's; the recorded path; a folder and not a link; one volume with the data folder and the profile folder; 0 links, hard links and reparse points; the 12 recorded top-level folders; the census, 10,234 files and 5,966 folders, the root counted, 791 MB; every file of the source but its compiled caches equal to the copy's, and no other file in the copy; the compiled caches the same files, with no `RECORD`; the copy verifies against its list; the workspace standing and its rename target …",
+              "hash": "13a31b675c43"
+            }
+          },
+          {
+            "text": "The deletion ran without the standing allow line: each of its commands was permitted at the moment it ran instead, with the pinned script, the commands, their order and their outputs as the plan gives them. The first removal was refused before it ran and left the moved-aside folder whole; the second ran once permitted. With no line placed, none is left to remove when the unit lands.",
+            "state": "deviated",
+            "ref": "final-implementation.md#5-deviations-from-the-plan",
+            "excerpt": {
+              "ref": "final-implementation.md#5-deviations-from-the-plan",
+              "heading": "5. Deviations from the plan",
+              "paragraph": "Each deviation names the section of `plan.md` it departs from, why, and what that part of the plan rested on.",
+              "hash": "c2e96b5938d0"
+            }
+          }
+        ],
+        "changes": [
+          {
+            "what": "The workspace's deletion ran without the standing allow line",
+            "why": "The owner permitted each of the deletion's commands at the moment it ran instead of placing the line ahead of the stage. The commands, the pinned script, their order and their outputs are as the plan gives them, and with no line placed none is left to remove at the landing.",
+            "when": "S5",
+            "ref": "final-implementation.md#5-deviations-from-the-plan",
+            "link": "../architecture.md#11-version-control"
+          },
+          {
+            "what": "The rename's output carries the guards' stage line",
+            "why": "`rename` runs the guards first, and the guards end with their own stage line, so the output holds `STAGE S5.guards OK` between the guards' lines and the rename's. The step's last line is `STAGE S5.rename OK` with status 0, its pass.",
+            "when": "S5 · rename",
+            "ref": "final-implementation.md#5-deviations-from-the-plan"
+          },
+          {
+            "what": "The removal's error file exists, empty",
+            "why": "The pinned `delete-ws.sh` sends the removal's error stream to `ws-rm-errors.txt` on every `remove`, so the file exists after a removal that met nothing, 0 bytes long, where the plan names it among the files written only when a removal met something; `ws-leftover.txt` was not written.",
+            "when": "S5 · remove",
+            "ref": "final-implementation.md#5-deviations-from-the-plan"
+          }
+        ]
       }
     },
     {
@@ -3436,20 +3537,6 @@
           "link": "plan.md#the-old-clones-recorded-path"
         }
       ],
-      "asBuilt": {
-        "state": "as-planned",
-        "summary": null,
-        "statements": [
-          {
-            "text": "The old private repository clone's recorded path read absent at readiness (S0) and again at the close-out (S7), where the fresh clone still stood and git-filter-repo printed its recorded version, its module holding its recorded sha256.",
-            "state": "as-planned"
-          },
-          {
-            "text": "No path was found present, so the unit was never stopped on it and nothing was handed back.",
-            "state": "as-planned"
-          }
-        ]
-      },
       "verdict": {
         "kind": "build",
         "statements": [
@@ -3505,6 +3592,20 @@
         ],
         "source": "plan.md The old clone's recorded path; S0 — Readiness; S7 — Close-out",
         "link": "plan.md#the-old-clones-recorded-path"
+      },
+      "asBuilt": {
+        "state": "as-planned",
+        "summary": null,
+        "statements": [
+          {
+            "text": "The old private repository clone's recorded path read absent at readiness (S0) and again at the close-out (S7), where the fresh clone still stood and git-filter-repo printed its recorded version, its module holding its recorded sha256.",
+            "state": "as-planned"
+          },
+          {
+            "text": "No path was found present, so the unit was never stopped on it and nothing was handed back.",
+            "state": "as-planned"
+          }
+        ]
       }
     },
     {
@@ -3543,6 +3644,37 @@
           "link": "../architecture.md#4-non-goals"
         }
       ],
+      "verdict": {
+        "kind": "leave",
+        "statements": [
+          {
+            "text": "What GitHub still serves of the old histories stays in place: measured, reported and never claimed removed.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No removal of what GitHub still serves of the old histories. It stays in place, measured, reported and never claimed removed: BotTools' and GKB2's pull-request refs (`refs/pull/2/head` and `refs/pull/3/head`; `refs/pull/6/head`) and every old object served by id in the five force-pushed repositories. No GitHub Support ticket is filed, and no repository is deleted: not the legacy repository, not the two rehearsal repositories (their deletion needs the `delete_repo` scope the token lacks, and is the owner's if they are unwanted). · No issue is filed. Every follow-up is recorded in this unit's …",
+              "hash": "2d4c863e92e8"
+            }
+          },
+          {
+            "text": "No GitHub Support ticket is filed and no repository is deleted.",
+            "ref": "plan.md#non-goals",
+            "excerpt": {
+              "ref": "plan.md#non-goals",
+              "heading": "Non-goals",
+              "paragraph": "No removal of what GitHub still serves of the old histories. It stays in place, measured, reported and never claimed removed: BotTools' and GKB2's pull-request refs (`refs/pull/2/head` and `refs/pull/3/head`; `refs/pull/6/head`) and every old object served by id in the five force-pushed repositories. No GitHub Support ticket is filed, and no repository is deleted: not the legacy repository, not the two rehearsal repositories (their deletion needs the `delete_repo` scope the token lacks, and is the owner's if they are unwanted). · No issue is filed. Every follow-up is recorded in this unit's …",
+              "hash": "2d4c863e92e8"
+            }
+          }
+        ],
+        "defense": "For the three public repositories the old history was public before, so the exposure is not new; the phase removes nothing GitHub serves and files no Support ticket, and the report states the residual in counts with what the probes cannot prove.",
+        "risks": [
+          "What the probes cannot prove stays unproved: that GitHub has dropped the old objects, that cached views are gone, that no third-party copy exists, or that secret scanning examined the old objects; the report says so"
+        ],
+        "source": "plan.md Non-goals; consequences.md §5",
+        "link": "plan.md#non-goals"
+      },
       "asBuilt": {
         "state": "as-planned",
         "summary": null,
@@ -3570,43 +3702,12 @@
             }
           }
         ]
-      },
-      "verdict": {
-        "kind": "leave",
-        "statements": [
-          {
-            "text": "What GitHub still serves of the old histories stays in place: measured, reported and never claimed removed.",
-            "ref": "plan.md#non-goals",
-            "excerpt": {
-              "ref": "plan.md#non-goals",
-              "heading": "Non-goals",
-              "paragraph": "No removal of what GitHub still serves of the old histories. It stays in place, measured, reported and never claimed removed: BotTools' and GKB2's pull-request refs (`refs/pull/2/head` and `refs/pull/3/head`; `refs/pull/6/head`) and every old object served by id in the five force-pushed repositories. No GitHub Support ticket is filed, and no repository is deleted: not `…`, not the two rehearsal repositories (their deletion needs the `delete_repo` scope the token lacks, and is the owner's if they are unwanted). · No issue is filed. Every follow-up is recorded in this unit's `consequences.md`, …",
-              "hash": "e5c56922f68a"
-            }
-          },
-          {
-            "text": "No GitHub Support ticket is filed and no repository is deleted.",
-            "ref": "plan.md#non-goals",
-            "excerpt": {
-              "ref": "plan.md#non-goals",
-              "heading": "Non-goals",
-              "paragraph": "No removal of what GitHub still serves of the old histories. It stays in place, measured, reported and never claimed removed: BotTools' and GKB2's pull-request refs (`refs/pull/2/head` and `refs/pull/3/head`; `refs/pull/6/head`) and every old object served by id in the five force-pushed repositories. No GitHub Support ticket is filed, and no repository is deleted: not `…`, not the two rehearsal repositories (their deletion needs the `delete_repo` scope the token lacks, and is the owner's if they are unwanted). · No issue is filed. Every follow-up is recorded in this unit's `consequences.md`, …",
-              "hash": "e5c56922f68a"
-            }
-          }
-        ],
-        "defense": "For the three public repositories the old history was public before, so the exposure is not new; the phase removes nothing GitHub serves and files no Support ticket, and the report states the residual in counts with what the probes cannot prove.",
-        "risks": [
-          "What the probes cannot prove stays unproved: that GitHub has dropped the old objects, that cached views are gone, that no third-party copy exists, or that secret scanning examined the old objects; the report says so"
-        ],
-        "source": "plan.md Non-goals; consequences.md §5",
-        "link": "plan.md#non-goals"
       }
     }
   ],
   "impact": {
-    "basis": "plan",
-    "summary": "No module is published and no version moves: the landing carries documents and generated boards only. On GitHub the residual-exposure report is posted on #2 as one comment, and #2 is closed as completed after the landing, by the owner by hand unless its section and allow line are given first. On this machine the workspace is deleted, and the data folder gains the tools copy, the unit's records and a list over every file of it; no allow line was placed for the deletion (`consequences.md` §1 to §3; the known gaps in §5, the follow-ups in §6).",
+    "basis": "as-built",
+    "summary": "As built, no module is published and no version moves: the landing carries documents and generated boards only. On GitHub the residual-exposure report was posted on #2 as one comment, and #2 is closed as completed after the landing, by the owner by hand unless its section and allow line are given first. On this machine the workspace was deleted, and the data folder gained the tools copy, the unit's records and a list over the files that were under no list, with the final list over every file written after the landing; no allow line was placed for the deletion (`consequences.md` §1 to §3; the known gaps in §5, the follow-ups in §6).",
     "none": null,
     "release": {
       "bump": "none",
@@ -3652,7 +3753,7 @@
         "kind": "operator",
         "system": "cleanup",
         "effect": "behaviour",
-        "summary": "Deleted entirely after a rename beside itself on its own volume, the lock probe. At the plan's reading it held 10,195 files in 5,954 folders, 787 MB: the untouched backup mirrors, the rewrite and fresh mirrors, the scan reports, the canary, the fixtures, every unit's scratch and the pinned tool folders. Afterwards no copy of the old objects remains on this machine.",
+        "summary": "Deleted entirely after a rename beside itself on its own volume, the lock probe, which went through on its first try. Its census just before the deletion: 10,234 files in 5,966 folders, the root counted, 791 MB: the untouched backup mirrors, the rewrite and fresh mirrors, the scan reports, the canary, the fixtures, every unit's scratch and the pinned tool folders. Both paths read absent afterwards, with no entry left over, and no copy of the old objects remains on this machine.",
         "link": "consequences.md#22-this-machine"
       },
       {
@@ -3728,7 +3829,7 @@
     ],
     "api": [],
     "conversion": [],
-    "source": "consequences.md §1 to §6",
+    "source": "consequences.md §1 to §6, reconciled with the build; final-implementation.md",
     "link": "consequences.md",
     "changes": [
       {
@@ -3751,6 +3852,13 @@
         "why": "No allow line was placed for the deletion, whose commands the owner permitted as they ran, and the closing's section was recorded as not given; what is left to the owner is #2's closing, by hand unless the section and its line are given first, and their removal once #2 is closed when they are.",
         "when": "S0 · S5",
         "ref": "final-implementation.md#5-deviations-from-the-plan"
+      },
+      {
+        "entry": "downstream.4",
+        "what": "The workspace held 10,234 files in 5,966 folders, the root counted, 791 MB, at its deletion, where the plan read 10,195 files in 5,955 folders, 787 MB",
+        "why": "The plan's figures are its reading of the workspace when it was written; the deletion's guards recorded the census just before the rename, and the posted report states that census.",
+        "when": "S5",
+        "ref": "final-implementation.md#35-the-workspaces-deletion-s5"
       }
     ]
   },
@@ -4030,6 +4138,7 @@
     ]
   },
   "issueBoards": {
+    "1": "../../dashboard.html",
     "21": "../21-preparation/dashboard.html",
     "22": "../22-transfer-rehearsal/dashboard.html",
     "23": "../23-kotlinbottools-rewrite-and-swap/dashboard.html",
