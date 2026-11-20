@@ -103,7 +103,7 @@ archived GKB2, keep it for reference.
 >
 > - KotlinBottools is not force-pushed in place. Its rewritten history becomes a fresh public
 >   repository under the same name, with every number reproduced, and the pre-rewrite repository
->   stays private and archived as `KotlinBottools-legacy`.
+>   stays private and archived under its legacy name.
 > - No Support ticket is filed. GKB2's and BotTools' pull-request refs and every cached view stay,
 >   and the residual is measured and reported.
 > - KotlinBottools' main working copy is realigned in place rather than cloned again; the private repository

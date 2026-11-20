@@ -18,7 +18,7 @@
   > **Dated note, 2026-11-07.** The planning documents land on `main` before Phase 0's
   > rewrite, through #2's own pull request. The rewrite then gives every commit a new id, replaces
   > machine-local paths with neutral forms, and makes the result public as a fresh repository
-  > under the same name. The pre-rewrite repository stays private as `KotlinBottools-legacy`.
+  > under the same name. The pre-rewrite repository stays private under its legacy name.
 - **Related:**
   - [`consequences.md`](consequences.md): adoption, blast radius and follow-ups;
   - [`research/README.md`](research/README.md) Part 3: the evidence.
@@ -277,7 +277,7 @@ graph TD
 >   - no GitHub Support ticket;
 >   - the legacy data in an ordinary local folder;
 >   - KotlinBottools made public as a fresh repository, with every number reproduced and the
->     pre-rewrite repository kept private and archived as `KotlinBottools-legacy`;
+>     pre-rewrite repository kept private and archived under its legacy name;
 >   - machine-local paths replaced in KotlinBottools' history;
 >   - the planning pull request lands before the rewrite, as #2's own landing.
 > - **Units,** sub-issues of #2: preparation; transfer rehearsal; KotlinBottools rewrite and swap;

@@ -1492,7 +1492,7 @@
               "ref": "plan.md#the-tool",
               "heading": "The tool",
               "paragraph": "One Python 3 file, `rehearsal.py`, standard library only, run as `python -X utf8 -I` by `rehearsal-step.sh` (Appendix A). Subcommands (a key carries its number: `transfer-5`, `comment-1-2`):",
-              "hash": "de6168799672"
+              "hash": "365309270977"
             }
           },
           {
@@ -1563,7 +1563,7 @@
       "group": "Repositories and fixture",
       "name": "The two throwaway repositories",
       "system": "repository-swap",
-      "where": "`phase0-rehearsal-a` · `phase0-rehearsal-b`",
+      "where": "the source · the target",
       "gap": {
         "kind": "missing",
         "summary": "No repository exists to try a transfer on. The research could not exercise one, being allowed no mutation, and the swap needs its behaviour proved before anything touches KotlinBottools.",
@@ -1618,14 +1618,14 @@
         "summary": null,
         "statements": [
           {
-            "text": "`phase0-rehearsal-a`, id 1450917603, was created public with an initial commit and `phase0-rehearsal-b`, id 1450918337, private and empty, and each was read back.",
+            "text": "The source, id 1450917603, was created public with an initial commit and the target, id 1450918337, private and empty, and each was read back.",
             "state": "as-planned",
             "ref": "final-implementation.md#1-what-was-built",
             "excerpt": {
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
               "paragraph": "The tool and its runner, the text of the plan's Appendix A, each equal to the size and sha256 the plan's bootstrap checks:",
-              "hash": "c6eb1398146a"
+              "hash": "f7f9b610412f"
             }
           },
           {
@@ -1640,14 +1640,14 @@
             }
           },
           {
-            "text": "Both repositories ended private and archived, as `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a`, read back by id; unauthenticated requests to each answer 404, and neither was deleted.",
+            "text": "Both repositories ended private and archived, the source under its legacy name and the target under the source's original name, read back by id; unauthenticated requests to each answer 404, and neither was deleted.",
             "state": "as-planned",
             "ref": "final-implementation.md#36-the-rename-swap",
             "excerpt": {
               "ref": "final-implementation.md#36-the-rename-swap",
               "heading": "3.6 The rename swap",
-              "paragraph": "The rename onto the freed name was accepted, about six minutes after the source released it (the reads after the two renames were taken at 06:50:45 and 06:56:32). · Identity. Each read-back by id matched at its first read: at each step each repository read by id carried its expected name and flags, and each name it held answered its id. From the source's privacy step on, unauthenticated requests to it by name, by id and on the web answered 404; the target answered 404 throughout. · The released names. Before the swap `phase0-rehearsal-a-legacy` did not exist. After the source's rename, …",
-              "hash": "5a267921590f"
+              "paragraph": "The rename onto the freed name was accepted, about six minutes after the source released it (the reads after the two renames were taken at 06:50:45 and 06:56:32). · Identity. Each read-back by id matched at its first read: at each step each repository read by id carried its expected name and flags, and each name it held answered its id. From the source's privacy step on, unauthenticated requests to it by name, by id and on the web answered 404; the target answered 404 throughout. · The released names. Before the swap the legacy name did not exist. After the source's rename, its original name …",
+              "hash": "e5e9d80e2af8"
             }
           }
         ]
@@ -1656,7 +1656,7 @@
         "kind": "build",
         "statements": [
           {
-            "text": "`phase0-rehearsal-a` is created public with an initial commit and `phase0-rehearsal-b` private and truly empty, each read back.",
+            "text": "The source is created public with an initial commit and the target private and truly empty, each read back.",
             "ref": "plan.md#s1--repositories-labels-and-milestone",
             "excerpt": {
               "ref": "plan.md#s1--repositories-labels-and-milestone",
@@ -1672,7 +1672,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "0057c623b76c"
+              "hash": "dffdf0b54ce7"
             }
           },
           {
@@ -1716,7 +1716,7 @@
       "group": "Repositories and fixture",
       "name": "The fixture in the source",
       "system": "repository-swap",
-      "where": "`phase0-rehearsal-a`",
+      "where": "the source",
       "gap": {
         "kind": "missing",
         "summary": "A rehearsal proves only the shapes it is given. The real walk meets a pull request numbered between issues, a closed issue, comments, sub-issue and \"blocked by\" links, and links that turn cross-repository, and no repository holds that set to try.",
@@ -1797,7 +1797,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "0057c623b76c"
+              "hash": "dffdf0b54ce7"
             }
           },
           {
@@ -1807,7 +1807,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "0057c623b76c"
+              "hash": "dffdf0b54ce7"
             }
           },
           {
@@ -1845,7 +1845,7 @@
       "group": "The walk",
       "name": "Issues transferred in numeric order, each on its own number",
       "system": "repository-swap",
-      "where": "`phase0-rehearsal-a` to `phase0-rehearsal-b`",
+      "where": "the source to the target",
       "gap": {
         "kind": "risk",
         "summary": "Nothing says a transfer keeps an issue's number. GitHub documents nothing about numbers, the only evidence is three public reports of a transfer taking the next number of the target's sequence, 25 into an empty private repository among them, and about 180 text citations stay correct only if the numbers survive.",
@@ -1925,7 +1925,7 @@
               "ref": "plan.md#the-requests",
               "heading": "The requests",
               "paragraph": "Every write is one request to the request protocol, sent under a job. A job is a named, scoped grant recorded under `SpartanLaboratories/KotlinBottools`: its scope lists the repositories its requests may touch and the actions they may use; each request names it in `permissionReason`, and the job is open while the grant is in force. An action is a named kind of write that the request protocol carries out (`create-repo`, `transfer-issue`, `rename-repo` and the rest of the table below); an action is defined when the protocol has it. A request is a JSON document that the tool generates into …",
-              "hash": "15a802f7607f"
+              "hash": "2451a0dba2bd"
             }
           }
         ],
@@ -1955,7 +1955,7 @@
       "group": "The walk",
       "name": "A closed placeholder at the pull request's number",
       "system": "repository-swap",
-      "where": "`phase0-rehearsal-b`",
+      "where": "the target",
       "gap": {
         "kind": "risk",
         "summary": "A pull request cannot be transferred, yet it holds a number in the sequence issues share. That a placeholder issue created at that number keeps the sequence aligned is an assumption the rehearsal has to show.",
@@ -2010,7 +2010,7 @@
               "ref": "plan.md#the-requests",
               "heading": "The requests",
               "paragraph": "Every write is one request to the request protocol, sent under a job. A job is a named, scoped grant recorded under `SpartanLaboratories/KotlinBottools`: its scope lists the repositories its requests may touch and the actions they may use; each request names it in `permissionReason`, and the job is open while the grant is in force. An action is a named kind of write that the request protocol carries out (`create-repo`, `transfer-issue`, `rename-repo` and the rest of the table below); an action is defined when the protocol has it. A request is a JSON document that the tool generates into …",
-              "hash": "15a802f7607f"
+              "hash": "2451a0dba2bd"
             }
           },
           {
@@ -2115,7 +2115,7 @@
               "ref": "plan.md#the-tool",
               "heading": "The tool",
               "paragraph": "One Python 3 file, `rehearsal.py`, standard library only, run as `python -X utf8 -I` by `rehearsal-step.sh` (Appendix A). Subcommands (a key carries its number: `transfer-5`, `comment-1-2`):",
-              "hash": "de6168799672"
+              "hash": "365309270977"
             }
           },
           {
@@ -2125,7 +2125,7 @@
               "ref": "plan.md#the-tool",
               "heading": "The tool",
               "paragraph": "One Python 3 file, `rehearsal.py`, standard library only, run as `python -X utf8 -I` by `rehearsal-step.sh` (Appendix A). Subcommands (a key carries its number: `transfer-5`, `comment-1-2`):",
-              "hash": "de6168799672"
+              "hash": "365309270977"
             }
           },
           {
@@ -2135,7 +2135,7 @@
               "ref": "plan.md#the-requests",
               "heading": "The requests",
               "paragraph": "Every write is one request to the request protocol, sent under a job. A job is a named, scoped grant recorded under `SpartanLaboratories/KotlinBottools`: its scope lists the repositories its requests may touch and the actions they may use; each request names it in `permissionReason`, and the job is open while the grant is in force. An action is a named kind of write that the request protocol carries out (`create-repo`, `transfer-issue`, `rename-repo` and the rest of the table below); an action is defined when the protocol has it. A request is a JSON document that the tool generates into …",
-              "hash": "15a802f7607f"
+              "hash": "2451a0dba2bd"
             }
           }
         ],
@@ -2164,7 +2164,7 @@
       "group": "The walk",
       "name": "Body, state, comments, labels and milestone on every item",
       "system": "repository-swap",
-      "where": "`phase0-rehearsal-b`",
+      "where": "the target",
       "gap": {
         "kind": "risk",
         "summary": "A transfer keeps labels and milestones only when the target already holds them. Labels match by name and a milestone by name and due date, so an item could arrive having lost either.",
@@ -2282,7 +2282,7 @@
       "group": "The walk",
       "name": "Sub-issue and \"blocked by\" links, kept or re-created",
       "system": "repository-swap",
-      "where": "`phase0-rehearsal-a` and `phase0-rehearsal-b`",
+      "where": "the source and the target",
       "gap": {
         "kind": "risk",
         "summary": "Nothing says a transfer keeps an issue's links. GitHub documents nothing about sub-issue or \"blocked by\" links; reports agree a moved child keeps its parent as a cross-repository link that settles asynchronously, one report disagrees, and nothing covers a parent moving while its children stay, \"blocked by\" links, or a link across a public and a private repository.",
@@ -2354,7 +2354,7 @@
               "ref": "plan.md#the-tool",
               "heading": "The tool",
               "paragraph": "One Python 3 file, `rehearsal.py`, standard library only, run as `python -X utf8 -I` by `rehearsal-step.sh` (Appendix A). Subcommands (a key carries its number: `transfer-5`, `comment-1-2`):",
-              "hash": "de6168799672"
+              "hash": "365309270977"
             }
           },
           {
@@ -2384,7 +2384,7 @@
               "ref": "plan.md#the-requests",
               "heading": "The requests",
               "paragraph": "Every write is one request to the request protocol, sent under a job. A job is a named, scoped grant recorded under `SpartanLaboratories/KotlinBottools`: its scope lists the repositories its requests may touch and the actions they may use; each request names it in `permissionReason`, and the job is open while the grant is in force. An action is a named kind of write that the request protocol carries out (`create-repo`, `transfer-issue`, `rename-repo` and the rest of the table below); an action is defined when the protocol has it. A request is a JSON document that the tool generates into …",
-              "hash": "15a802f7607f"
+              "hash": "2451a0dba2bd"
             }
           }
         ],
@@ -2420,7 +2420,7 @@
       "group": "The rename swap",
       "name": "The rename swap, its ids read back at each name",
       "system": "repository-swap",
-      "where": "`phase0-rehearsal-a-legacy` · `phase0-rehearsal-a`",
+      "where": "the source under its legacy name · the target under the original name",
       "gap": {
         "kind": "risk",
         "summary": "Whether a repository can be renamed onto a name freed moments earlier is unproved. GitHub documents the redirect ending only when a repository is created under the old name, one step short of what the swap does, and a refusal has no remedy but a request to GitHub Support.",
@@ -2481,14 +2481,14 @@
         "summary": null,
         "statements": [
           {
-            "text": "The five writes ran in the planned order: the source renamed `phase0-rehearsal-a-legacy`, made private and archived, then the target renamed onto the old name and archived.",
+            "text": "The five writes ran in the planned order: the source renamed to its legacy name, made private and archived, then the target renamed onto the old name and archived.",
             "state": "as-planned",
             "ref": "final-implementation.md#36-the-rename-swap",
             "excerpt": {
               "ref": "final-implementation.md#36-the-rename-swap",
               "heading": "3.6 The rename swap",
-              "paragraph": "The rename onto the freed name was accepted, about six minutes after the source released it (the reads after the two renames were taken at 06:50:45 and 06:56:32). · Identity. Each read-back by id matched at its first read: at each step each repository read by id carried its expected name and flags, and each name it held answered its id. From the source's privacy step on, unauthenticated requests to it by name, by id and on the web answered 404; the target answered 404 throughout. · The released names. Before the swap `phase0-rehearsal-a-legacy` did not exist. After the source's rename, …",
-              "hash": "5a267921590f"
+              "paragraph": "The rename onto the freed name was accepted, about six minutes after the source released it (the reads after the two renames were taken at 06:50:45 and 06:56:32). · Identity. Each read-back by id matched at its first read: at each step each repository read by id carried its expected name and flags, and each name it held answered its id. From the source's privacy step on, unauthenticated requests to it by name, by id and on the web answered 404; the target answered 404 throughout. · The released names. Before the swap the legacy name did not exist. After the source's rename, its original name …",
+              "hash": "e5e9d80e2af8"
             }
           },
           {
@@ -2498,8 +2498,8 @@
             "excerpt": {
               "ref": "final-implementation.md#36-the-rename-swap",
               "heading": "3.6 The rename swap",
-              "paragraph": "The rename onto the freed name was accepted, about six minutes after the source released it (the reads after the two renames were taken at 06:50:45 and 06:56:32). · Identity. Each read-back by id matched at its first read: at each step each repository read by id carried its expected name and flags, and each name it held answered its id. From the source's privacy step on, unauthenticated requests to it by name, by id and on the web answered 404; the target answered 404 throughout. · The released names. Before the swap `phase0-rehearsal-a-legacy` did not exist. After the source's rename, …",
-              "hash": "5a267921590f"
+              "paragraph": "The rename onto the freed name was accepted, about six minutes after the source released it (the reads after the two renames were taken at 06:50:45 and 06:56:32). · Identity. Each read-back by id matched at its first read: at each step each repository read by id carried its expected name and flags, and each name it held answered its id. From the source's privacy step on, unauthenticated requests to it by name, by id and on the web answered 404; the target answered 404 throughout. · The released names. Before the swap the legacy name did not exist. After the source's rename, its original name …",
+              "hash": "e5e9d80e2af8"
             }
           },
           {
@@ -2510,7 +2510,7 @@
               "ref": "final-implementation.md#37-old-urls",
               "heading": "3.7 Old URLs",
               "paragraph": "A transferred issue's old REST URL, followed for the open #1 and the closed #5 alike. Every answer's number and repository were the issue's new home:",
-              "hash": "74be85ec59a3"
+              "hash": "0b6c72b652b0"
             }
           },
           {
@@ -2520,8 +2520,8 @@
             "excerpt": {
               "ref": "final-implementation.md#36-the-rename-swap",
               "heading": "3.6 The rename swap",
-              "paragraph": "The rename onto the freed name was accepted, about six minutes after the source released it (the reads after the two renames were taken at 06:50:45 and 06:56:32). · Identity. Each read-back by id matched at its first read: at each step each repository read by id carried its expected name and flags, and each name it held answered its id. From the source's privacy step on, unauthenticated requests to it by name, by id and on the web answered 404; the target answered 404 throughout. · The released names. Before the swap `phase0-rehearsal-a-legacy` did not exist. After the source's rename, …",
-              "hash": "5a267921590f"
+              "paragraph": "The rename onto the freed name was accepted, about six minutes after the source released it (the reads after the two renames were taken at 06:50:45 and 06:56:32). · Identity. Each read-back by id matched at its first read: at each step each repository read by id carried its expected name and flags, and each name it held answered its id. From the source's privacy step on, unauthenticated requests to it by name, by id and on the web answered 404; the target answered 404 throughout. · The released names. Before the swap the legacy name did not exist. After the source's rename, its original name …",
+              "hash": "e5e9d80e2af8"
             }
           }
         ]
@@ -2531,13 +2531,13 @@
         "list": "numbered",
         "statements": [
           {
-            "text": "The source is renamed `phase0-rehearsal-a-legacy`, made private and archived, then the target is renamed onto the old name and archived.",
+            "text": "The source is renamed to its legacy name, made private and archived, then the target is renamed onto the old name and archived.",
             "ref": "plan.md#the-rename-swap",
             "excerpt": {
               "ref": "plan.md#the-rename-swap",
               "heading": "The rename swap",
               "paragraph": "Order: rename the source, make it private, archive it, rename the target onto the old name, archive the target (research `rename-visibility-archive-sequence.md` §6). An archive comes after every other change to a repository, because an archived repository refuses them; the target's rename comes after the source's rename frees the name. After each write, `check post` reads the repository by id and records its name; then `ids LABEL` reads:",
-              "hash": "baa9c79a96ef"
+              "hash": "e86a759f8853"
             }
           },
           {
@@ -2547,7 +2547,7 @@
               "ref": "plan.md#the-rename-swap",
               "heading": "The rename swap",
               "paragraph": "Order: rename the source, make it private, archive it, rename the target onto the old name, archive the target (research `rename-visibility-archive-sequence.md` §6). An archive comes after every other change to a repository, because an archived repository refuses them; the target's rename comes after the source's rename frees the name. After each write, `check post` reads the repository by id and records its name; then `ids LABEL` reads:",
-              "hash": "baa9c79a96ef"
+              "hash": "e86a759f8853"
             }
           },
           {
@@ -2557,7 +2557,7 @@
               "ref": "plan.md#the-rename-swap",
               "heading": "The rename swap",
               "paragraph": "Order: rename the source, make it private, archive it, rename the target onto the old name, archive the target (research `rename-visibility-archive-sequence.md` §6). An archive comes after every other change to a repository, because an archived repository refuses them; the target's rename comes after the source's rename frees the name. After each write, `check post` reads the repository by id and records its name; then `ids LABEL` reads:",
-              "hash": "baa9c79a96ef"
+              "hash": "e86a759f8853"
             }
           },
           {
@@ -2667,7 +2667,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "0057c623b76c"
+              "hash": "dffdf0b54ce7"
             }
           },
           {
@@ -2687,7 +2687,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "0057c623b76c"
+              "hash": "dffdf0b54ce7"
             }
           }
         ],
@@ -2812,7 +2812,7 @@
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
               "paragraph": "The tool and its runner, the text of the plan's Appendix A, each equal to the size and sha256 the plan's bootstrap checks:",
-              "hash": "c6eb1398146a"
+              "hash": "f7f9b610412f"
             }
           },
           {
@@ -2834,7 +2834,7 @@
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
               "paragraph": "The tool and its runner, the text of the plan's Appendix A, each equal to the size and sha256 the plan's bootstrap checks:",
-              "hash": "c6eb1398146a"
+              "hash": "f7f9b610412f"
             }
           }
         ],
@@ -2924,7 +2924,7 @@
               "ref": "plan.md#the-requests",
               "heading": "The requests",
               "paragraph": "Every write is one request to the request protocol, sent under a job. A job is a named, scoped grant recorded under `SpartanLaboratories/KotlinBottools`: its scope lists the repositories its requests may touch and the actions they may use; each request names it in `permissionReason`, and the job is open while the grant is in force. An action is a named kind of write that the request protocol carries out (`create-repo`, `transfer-issue`, `rename-repo` and the rest of the table below); an action is defined when the protocol has it. A request is a JSON document that the tool generates into …",
-              "hash": "15a802f7607f"
+              "hash": "2451a0dba2bd"
             }
           },
           {
@@ -3016,7 +3016,7 @@
               "ref": "final-implementation.md#3-measurements",
               "heading": "3. Measurements",
               "paragraph": "",
-              "hash": "1e898ccb58d1"
+              "hash": "0f9070e64d5c"
             }
           }
         ]
@@ -3041,7 +3041,7 @@
               "ref": "plan.md#interfaces-with-sibling-units",
               "heading": "Interfaces with sibling units",
               "paragraph": "Expects from `preparation` (unit 1): · `%USERPROFILE%\\BotWS\\tools` holding `env.sh` (exports `WS`, `DATA`, `TOOLS`, `KBT` and the rest; defines `gitnet`), `lib.sh` (`expect LABEL WANT GOT`), `plib.sh` and `run-stage.sh`; · `bash \"$TOOLS/run-stage.sh\" <name> [args]` running `$TOOLS/<name>.sh` and appending its output to `DATA/run/as-run.log`; · `DATA/run/` as unit 1 left it. This unit creates `DATA/run/rehearsal/`; · `gh` signed in with the `repo` scope. This unit does not use `lib.sh`, `plib.sh` or `gitnet`: it does no git network read. · Provides to `kotlinbottools-rewrite-and-swap` (#23): · …",
-              "hash": "db0b592ed8da"
+              "hash": "1269ee708d40"
             }
           }
         ],
@@ -3089,7 +3089,7 @@
               "ref": "final-implementation.md#1-what-was-built",
               "heading": "1. What was built",
               "paragraph": "The tool and its runner, the text of the plan's Appendix A, each equal to the size and sha256 the plan's bootstrap checks:",
-              "hash": "c6eb1398146a"
+              "hash": "f7f9b610412f"
             }
           },
           {
@@ -3146,11 +3146,11 @@
     },
     "downstream": [
       {
-        "who": "`phase0-rehearsal-a` and `phase0-rehearsal-b`",
+        "who": "The two rehearsal repositories",
         "kind": "repository",
         "system": "repository-swap",
         "effect": "additive",
-        "summary": "Two new throwaway repositories of the organisation, the source created public and the target private and empty, holding made-up text only. They end as `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a`, both private and archived, and neither is deleted.",
+        "summary": "Two new throwaway repositories of the organisation, the source created public and the target private and empty, holding made-up text only. They end private and archived, the source under its legacy name and the target under the source's original name, and neither is deleted.",
         "link": "consequences.md#21-github"
       },
       {
@@ -3363,12 +3363,21 @@
       {
         "what": "Two accepted options cited the design's §7.2 dated note as of 2026-11-08; the note is dated 2026-11-09, and both citations are corrected in place. Rows: rehearsal-repositories, failure-behaviour.",
         "when": "2026-11-09"
+      },
+      {
+        "what": "The rehearsal repositories were named by their names on GitHub in the Rows, their statements and excerpts, and the impact. They are named by their roles, the source and the target, and their names by what they are (the original name, the legacy name), as the documents now name them; no fact changes. Rows: rehearsal-repositories, fixture, number-walk, pull-request-placeholder, item-content, links, rename-swap.",
+        "when": "2026-11-20"
       }
     ]
   },
   "issueBoards": {
     "21": "../21-preparation/dashboard.html",
-    "23": "../23-kotlinbottools-rewrite-and-swap/dashboard.html"
+    "23": "../23-kotlinbottools-rewrite-and-swap/dashboard.html",
+    "24": "../24-repository-hygiene/dashboard.html",
+    "25": "../25-kotlinbottools-publish/dashboard.html",
+    "26": "../26-gkb2-gkb-rewrite/dashboard.html",
+    "27": "../27-rewrite-bottools-and-the-private-repositories/dashboard.html",
+    "28": "../28-residual-report-and-cleanup/dashboard.html"
   },
   "links": {
     "workBoard": "../../../index.html",

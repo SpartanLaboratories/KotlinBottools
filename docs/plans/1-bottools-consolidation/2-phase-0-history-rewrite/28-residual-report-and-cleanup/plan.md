@@ -155,7 +155,7 @@ their own folder, `tools.sums` relative to `WS` (so a `tools/` prefix). `DATA\ru
 - the 91 files of the three copies, each hashed with `git hash-object --no-filters` (any git dir, for the hash only; the checkout's `.git` works)
   equal to the blob id its `records\<label>.ls-tree.z` record names (NUL-separated `git ls-tree -r -z` records): 91 of 91, 0 mismatches;
 - **344 of the 964 files under no list**, counted by folder: `COPY-VERIFIED` 1; `manifests` 22; `records` 6; `rewrite\BotTools` 2, `GKB` 1, `GKB2` 1,
-  `KotlinBottools` 5, `KotlinBottools-legacy` 5, `KotlinBottools-next` 5, `…` 2, `…` 2; `run` 3; `run\canary` 4, `g26` 1, `g27` 3,
+  `KotlinBottools` 5, the legacy repository's 5, `KotlinBottools-next` 5, `…` 2, `…` 2; `run` 3; `run\canary` 4, `g26` 1, `g27` 3,
   `g40` 1, `g41` 1, `g42` 1, `gate` 45, `lists` 1, `publish` 137, `realign` 6, `realign-files` 2, `rehearsal` 80, `scrub` 7 (the lists themselves, the 22
   manifests, the gate's dumps and the probe-code files among them).
 
@@ -185,7 +185,7 @@ branches' pushes (1 old id, 1 current id: valid); KotlinBottools' feeds, read af
 
 **Follow-up facts read on 2026-11-16.**
 
-- `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a`, and `KotlinBottools-legacy`, are private and archived; `KotlinBottools-next` redirects to the
+- The two rehearsal repositories, and the legacy repository, are private and archived; `KotlinBottools-next` redirects to the
   public repository (id 1453296798); the token's scopes are `gist`, `project`, `read:org`, `repo` and `workflow` (no `delete_repo`).
 - No file whose name says "defer" and no line of `steps.jsonl` that says it exists (the object deletion was proved at the rewrite and swap
   unit's run). No `token-rule-gap` record exists. The positive-control kept-findings file of each of GKB2, GKB, BotTools and the private repositories
@@ -244,7 +244,7 @@ unit's `comment` request is sent by file with its sha256, the form the units #25
 
 - **No removal of what GitHub still serves of the old histories.** It stays in place, measured, reported and never claimed removed: BotTools'
   and GKB2's pull-request refs (`refs/pull/2/head` and `refs/pull/3/head`; `refs/pull/6/head`) and every old object served by id in the five
-  force-pushed repositories. No GitHub Support ticket is filed, and no repository is deleted: not `KotlinBottools-legacy`, not the two
+  force-pushed repositories. No GitHub Support ticket is filed, and no repository is deleted: not the legacy repository, not the two
   rehearsal repositories (their deletion needs the `delete_repo` scope the token lacks, and is the owner's if they are unwanted).
 - **No issue is filed.** Every follow-up is recorded in this unit's `consequences.md`, each with who carries it out. #2's body is not
   edited, and #1 needs nothing (its text tracks no per-phase state).
@@ -496,12 +496,12 @@ follow-ups, their expected state and the one who carries each out:
 | #47 (the clone tools' request builder) | open | open | the owner, as a change to a tool this phase no longer runs: after the cleanup the tool exists only in the copy and no later run of the phase uses it |
 | The committed CI files' comment and message-text follow-ups, and the `__pycache__/` ignore pattern | the three files exist; `.gitignore` has no such pattern | present; absent | a later change to those files (held back while the workspace copy of the wrapper had to stay byte-identical; now unblocked): no unit of this phase carries it |
 | The retired tools' documentation follow-ups | the copy exists | — | whoever reuses the copy: they apply only to a later reuse |
-| Standing: `KotlinBottools-legacy` private and archived; the name `KotlinBottools-next` reserved; BotTools' pull-request residual and webhook (Phase 17, #16) | both repositories as read; `KotlinBottools-next` redirecting to the public repository; the pull-request refs of GKB2 (1) and BotTools (2) | as read | Phase 17 archives the five legacy repositories; the name stays reserved |
+| Standing: the legacy repository private and archived; the name `KotlinBottools-next` reserved; BotTools' pull-request residual and webhook (Phase 17, #16) | both repositories as read; `KotlinBottools-next` redirecting to the public repository; the pull-request refs of GKB2 (1) and BotTools (2) | as read | Phase 17 archives the five legacy repositories; the name stays reserved |
 | The older data copies | not readable here | open | the owner: deleted once MagicBot's legacy import report has been checked |
 | The two allow lines and the section | the settings and the permissions file are not readable by the unit | placed | the owner: the deletion's line is removed when #28 lands, the closing's line and section when #2 is closed |
 
 The four facts of the planning-state note (the phase consequences §6) are: the public repository is a fresh one; the pre-rewrite repository
-is `KotlinBottools-legacy`, private and archived; the legacy data is in `%USERPROFILE%\BotLegacyData`; and the deferred step is not due (there was none).
+is kept under its legacy name, private and archived; the legacy data is in `%USERPROFILE%\BotLegacyData`; and the deferred step is not due (there was none).
 
 ### The data folder's re-verification
 
@@ -1263,7 +1263,7 @@ that section was not given.
 
 - the deletion's allow line comes out of the global settings file when #28 lands, and the closing's line comes out and its section moves to history once #2 is closed;
 - the rehearsal repositories (the owner, if unwanted), the credentials' rotation (the owner), the planning branch's traces in MagicBot and WebTools (the owner, needing grants), #47 (the owner), the CI files' text follow-ups and the `__pycache__/` ignore (a later change), the older data copies' deletion
-  (the owner, once MagicBot's legacy import report has been checked), and the standing items (`KotlinBottools-legacy` private and archived, the name `KotlinBottools-next` reserved, BotTools' pull-request residual and webhook with Phase 17);
+  (the owner, once MagicBot's legacy import report has been checked), and the standing items (the legacy repository private and archived, the name `KotlinBottools-next` reserved, BotTools' pull-request residual and webhook with Phase 17);
 - a leftover at `%USERPROFILE%\BotWS-deleting` or at `%PROJECTS%\…-old`, should one be handed back, is deleted at its path and confirmed absent;
 - any tool defect a run meets is corrected under the rule in Requirements, with a dated note in the tools unit's consequences.
 
@@ -1410,7 +1410,7 @@ Each acceptance criterion of the phase design, with its counted outcome and the 
 | 1 | Every branch and tag of the six repositories is clean on a fresh mirror | All six expectation checks pass on their fresh mirrors, and 0 manifest blobs are reachable from a branch or tag in any. The scans of branches and tags are clean for GKB2, GKB, BotTools and the private repositories; KotlinBottools' one default-rule finding (`curl-auth-user`, 2 in 1 file) is settled by the scoped allowlist table and its scans afterwards read 0 findings. The pull-request refs of GKB2 (70 of 81) and BotTools (39 of 39) are counted and reported. | [#23][r23-33], [#24][r24-2], [#25][r25-33], [#26][r26-34], [#40][r40-34], [#41][r41-33] |
 | 2 | KotlinBottools is public as a fresh repository with secret scanning and push protection enabled; old ids answer not found; its feed holds no old id | Public at 2026-11-12T23:17:54Z, scanning read back enabled 74 seconds later; 2 tips, 1 first-changed commit and 58 blobs not found authenticated; anonymously, every old id probed absent: 87 commits on the web route, 87 commits, 3 trees and 58 blobs on the `want` route, and 3 commits, 3 trees and 6 blobs on the REST routes; 0 old ids in every feed read; 0 alerts. | [#23][r23-310], [#25][r25-34], [#25][r25-35] |
 | 3 | Every number of the pre-rewrite repository is reproduced | The numbers 1 to 31 (28 transferred issues, closed placeholders at 20, 30 and 31), each issue equal to its text before the walk, and all 91 relationships present. | [#23][r23-36] |
-| 4 | `KotlinBottools-legacy` exists, private and archived | Private and archived, its refs equal to the listing taken at the mirror clone, no issue left in it. | [#23][r23-39], [#23][r23-311] |
+| 4 | The legacy repository exists, private and archived | Private and archived, its refs equal to the listing taken at the mirror clone, no issue left in it. | [#23][r23-39], [#23][r23-311] |
 | 5 | The repository-hygiene change is merged and the secret-scan workflow has run green on `main` | Merged; the latest push run on `main` passed at its head and its logs read the fixed shapes. | [#24][r24-2], [#25][r25-2] |
 | 6 | This clone and the private repository clone reach no pre-rewrite commit, and `origin` is the fresh repository by id | Both clones proved: 0 pre-rewrite commits reachable from any ref, reflog, stash or pseudo-ref; the old objects deleted from this clone with nothing deferred; the private repository clone replaced and its old clone deleted. | [#23][r23-34], [#42][r42-2] |
 | 7 | The data copy is verified against its blob ids and the workspace is deleted | The 3 copies' {{BLOB_FILES}} files equal their blob ids ({{BLOB_MISMATCH}} mismatches) and {{LISTS_VERIFIED}} of {{LISTS_TOTAL}} lists verify (section 8); the workspace is deleted and its deletion confirmed. | this unit, #28 (and [#21][r21-34] for the copy's first verification) |
@@ -1683,7 +1683,7 @@ unlisted rewrite/BotTools 2
 unlisted rewrite/GKB 1
 unlisted rewrite/GKB2 1
 unlisted rewrite/KotlinBottools 5
-unlisted rewrite/KotlinBottools-legacy 5
+unlisted rewrite/… 5
 unlisted rewrite/KotlinBottools-next 5
 unlisted rewrite/… 2
 unlisted rewrite/… 2
@@ -1943,7 +1943,7 @@ esac
 O=SpartanLaboratories; K=$O/KotlinBottools; BR=blob/docs/issue-1-bottools-consolidation
 gq()   { gh api "$@" 2> /dev/null | tr -d '\r'; }
 want() { if [ "$2" = "$3" ]; then ok "$1: $3"; else rec "$1: expected '$2', read '$3'"; fi; }
-for r in phase0-rehearsal-a-legacy phase0-rehearsal-a KotlinBottools-legacy; do want "$r is private and archived" "true true" "$(gq repos/$O/$r --jq '"\(.private) \(.archived)"')"; done
+for r in …-legacy … …; do want "$r is private and archived" "true true" "$(gq repos/$O/$r --jq '"\(.private) \(.archived)"')"; done
 want "the token's scopes hold no delete_repo (lines naming it)" 0 "$(gh auth status 2>&1 | grep -c delete_repo)"
 want "KotlinBottools-next redirects to the public repository (its id)" 1453296798 "$(gq repos/$O/KotlinBottools-next --jq .id)"
 want "no deferred object deletion is recorded (files, log lines)" "0 0" "$(find "$DATA" -iname '*defer*' | wc -l | tr -d ' ') $(grep -c -i defer "$DATA/run/swap/steps.jsonl" || true)"

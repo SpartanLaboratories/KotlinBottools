@@ -7,7 +7,7 @@
   "kind": "issue",
   "title": "KotlinBottools rewrite and swap",
   "issueTitle": "Phase 0 · 3 — KotlinBottools: rewrite with path scrub, fresh repository, number-preserving swap and clone realignment",
-  "function": "KotlinBottools' history holds the data the phase purges, and the repository has been public since 2026-11-08, so its purge-listed files and old objects are readable by anyone until they leave it; a force-push would not take them out of reach, since GitHub keeps serving old objects by id. This run rewrites KotlinBottools in a fresh mirror, purging the listed paths and replacing machine-local paths in every file and commit message, and pushes the result to a fresh private repository. It reproduces every issue and pull-request number there with its links, renames the old repository to `KotlinBottools-legacy`, private and archived, gives the fresh one the name, and realigns this working directory onto the rewritten history before its own landing, the first on the fresh repository. Unit 3 of #2, with no version moved; nothing becomes public through it, and Phase 1 may start once it has landed.",
+  "function": "KotlinBottools' history holds the data the phase purges, and the repository has been public since 2026-11-08, so its purge-listed files and old objects are readable by anyone until they leave it; a force-push would not take them out of reach, since GitHub keeps serving old objects by id. This run rewrites KotlinBottools in a fresh mirror, purging the listed paths and replacing machine-local paths in every file and commit message, and pushes the result to a fresh private repository. It reproduces every issue and pull-request number there with its links, renames the old repository to its legacy name, private and archived, gives the fresh one the name, and realigns this working directory onto the rewritten history before its own landing, the first on the fresh repository. Unit 3 of #2, with no version moved; nothing becomes public through it, and Phase 1 may start once it has landed.",
   "status": "built",
   "sized": "2026-11-10T01:12:41Z",
   "parent": {
@@ -558,7 +558,7 @@
         "ref": "plan.md#s13--the-renames-and-the-archive",
         "started": "2026-11-11T06:04:19Z",
         "finished": "2026-11-11T06:24:54Z",
-        "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed KotlinBottools-legacy, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files."
+        "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed to its legacy name, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files."
       },
       {
         "id": "s14",
@@ -577,7 +577,7 @@
         ],
         "ref": "plan.md#s14--residual-measurements",
         "finished": "2026-11-11T06:24:54Z",
-        "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed KotlinBottools-legacy, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files.",
+        "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed to its legacy name, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files.",
         "result": "passed"
       },
       {
@@ -1428,7 +1428,7 @@
               "ref": "plan.md#s13--the-renames-and-the-archive",
               "started": "2026-11-11T06:04:19Z",
               "finished": "2026-11-11T06:24:54Z",
-              "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed KotlinBottools-legacy, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files."
+              "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed to its legacy name, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files."
             },
             {
               "id": "s14",
@@ -1447,7 +1447,7 @@
               ],
               "ref": "plan.md#s14--residual-measurements",
               "finished": "2026-11-11T06:24:54Z",
-              "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed KotlinBottools-legacy, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files.",
+              "report": "After the walk the names in all 28 moved texts resolve to the same items. The swap: the old repository was renamed to its legacy name, made private at 06:11:18Z (ending its public window, open since 2026-11-08) and archived; the fresh repository then took the name KotlinBottools and resolves to it by id. Both repositories answer 404 to anonymous reads. Old issue links by any of the three names land on each issue's new home; the settings read back as designed; the pushed branches verify again under the final names. The stage passed at 06:19:28Z. Residual measurements passed at 06:23:37Z: the fresh repository serves no old commit or file id; the legacy repository still serves them to its owner only. This checkout's realignment begins with a safety copy of its untracked and ignored files.",
               "result": "passed"
             },
             {
@@ -2391,7 +2391,7 @@
               "ref": "plan.md#current-state",
               "heading": "Current state",
               "paragraph": "GitHub, as read on 2026-11-09 and 2026-11-10 (counts only; the run reads every one of them again at its stage):",
-              "hash": "312dce24fc23"
+              "hash": "36913a3063b6"
             }
           },
           {
@@ -3156,7 +3156,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "8d2cec866fe4"
+              "hash": "23d947667ee8"
             }
           },
           {
@@ -3277,8 +3277,8 @@
             "excerpt": {
               "ref": "plan.md#s14--residual-measurements",
               "heading": "S14 — Residual measurements",
-              "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against `…`, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is `RECORD`ed; a …",
-              "hash": "8e8b63a54f45"
+              "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against the legacy repository, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is …",
+              "hash": "278fe25e4c3e"
             }
           },
           {
@@ -3287,8 +3287,8 @@
             "excerpt": {
               "ref": "plan.md#s14--residual-measurements",
               "heading": "S14 — Residual measurements",
-              "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against `…`, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is `RECORD`ed; a …",
-              "hash": "8e8b63a54f45"
+              "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against the legacy repository, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is …",
+              "hash": "278fe25e4c3e"
             }
           },
           {
@@ -3297,8 +3297,8 @@
             "excerpt": {
               "ref": "plan.md#s14--residual-measurements",
               "heading": "S14 — Residual measurements",
-              "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against `…`, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is `RECORD`ed; a …",
-              "hash": "8e8b63a54f45"
+              "paragraph": "Status-only probes, authenticated, of every pre-rewrite tip, every first-changed commit and a sample of at most 60 manifest blobs, and a protocol-v2 `want` of each old tip: against the fresh repository every id is expected not found (404 or 422) and every `want` NOT-SERVED; against the legacy repository, authenticated, every id served (200, SERVED); anonymously against the legacy repository, 404. The fresh repository's activity feed: no `before` or `after` id in the old-id set (`before_in_old=0`). The public window: from 2026-11-08 to the time in `legacy-private-at`. An unexpected answer is …",
+              "hash": "278fe25e4c3e"
             }
           }
         ],
@@ -3672,7 +3672,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "8d2cec866fe4"
+              "hash": "23d947667ee8"
             }
           },
           {
@@ -3682,7 +3682,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "8d2cec866fe4"
+              "hash": "23d947667ee8"
             }
           },
           {
@@ -3692,7 +3692,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "8d2cec866fe4"
+              "hash": "23d947667ee8"
             }
           },
           {
@@ -3735,9 +3735,9 @@
     {
       "id": "renames",
       "group": "The swap",
-      "name": "The renames: the old repository to `KotlinBottools-legacy`, the fresh one to `KotlinBottools`",
+      "name": "The renames: the old repository to its legacy name, the fresh one to `KotlinBottools`",
       "system": "repository-swap",
-      "where": "`KotlinBottools-legacy`, private and archived · `KotlinBottools`",
+      "where": "the legacy repository, private and archived · `KotlinBottools`",
       "gap": {
         "kind": "risk",
         "summary": "Between the two renames the name resolves to the wrong repository. Until the fresh repository takes `KotlinBottools`, the name reaches the legacy one through the rename's redirect, and the old repository is public until it is made private in the swap.",
@@ -3787,7 +3787,7 @@
         ],
         "statements": [
           {
-            "text": "The old repository was renamed `KotlinBottools-legacy`, made private and archived, then the fresh repository took the name `KotlinBottools` and resolves to it by id; the stage passed at 06:19:28Z (S13).",
+            "text": "The old repository was renamed to its legacy name, made private and archived, then the fresh repository took the name `KotlinBottools` and resolves to it by id; the stage passed at 06:19:28Z (S13).",
             "state": "as-planned"
           },
           {
@@ -3808,13 +3808,13 @@
         "kind": "build",
         "statements": [
           {
-            "text": "The old repository is renamed `KotlinBottools-legacy`, made private and archived, then the fresh one is renamed `KotlinBottools`, each step read back by repository id.",
+            "text": "The old repository is renamed to its legacy name, made private and archived, then the fresh one is renamed `KotlinBottools`, each step read back by repository id.",
             "ref": "plan.md#s13--the-renames-and-the-archive",
             "excerpt": {
               "ref": "plan.md#s13--the-renames-and-the-archive",
               "heading": "S13 — The renames and the archive",
               "paragraph": "STEPs in this order, each followed by the identity read named after it (a rename and a visibility change take a moment to read back; the read polls):",
-              "hash": "e021a6400c34"
+              "hash": "9251b58b38e1"
             }
           },
           {
@@ -3824,7 +3824,7 @@
               "ref": "plan.md#s13--the-renames-and-the-archive",
               "heading": "S13 — The renames and the archive",
               "paragraph": "STEPs in this order, each followed by the identity read named after it (a rename and a visibility change take a moment to read back; the read polls):",
-              "hash": "e021a6400c34"
+              "hash": "9251b58b38e1"
             }
           },
           {
@@ -3834,7 +3834,7 @@
               "ref": "plan.md#s13--the-renames-and-the-archive",
               "heading": "S13 — The renames and the archive",
               "paragraph": "STEPs in this order, each followed by the identity read named after it (a rename and a visibility change take a moment to read back; the read polls):",
-              "hash": "e021a6400c34"
+              "hash": "9251b58b38e1"
             }
           },
           {
@@ -3988,7 +3988,7 @@
               "ref": "plan.md#current-state",
               "heading": "Current state",
               "paragraph": "GitHub, as read on 2026-11-09 and 2026-11-10 (counts only; the run reads every one of them again at its stage):",
-              "hash": "312dce24fc23"
+              "hash": "36913a3063b6"
             }
           },
           {
@@ -4397,7 +4397,7 @@
               "ref": "plan.md#the-requests",
               "heading": "The requests",
               "paragraph": "A request is a JSON document that `swap.py` generates into `DATA/run/swap/requests/<key>.json` immediately before it is sent. The run sends the file's contents as one request and waits for the reply; on `done` the check of §7.4 runs.",
-              "hash": "4efa12ba65c6"
+              "hash": "f08cdf41d207"
             }
           },
           {
@@ -4407,7 +4407,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "8d2cec866fe4"
+              "hash": "23d947667ee8"
             }
           },
           {
@@ -4417,7 +4417,7 @@
               "ref": "plan.md#the-requests",
               "heading": "The requests",
               "paragraph": "A request is a JSON document that `swap.py` generates into `DATA/run/swap/requests/<key>.json` immediately before it is sent. The run sends the file's contents as one request and waits for the reply; on `done` the check of §7.4 runs.",
-              "hash": "4efa12ba65c6"
+              "hash": "f08cdf41d207"
             }
           },
           {
@@ -4427,7 +4427,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "8d2cec866fe4"
+              "hash": "23d947667ee8"
             }
           }
         ],
@@ -4606,7 +4606,7 @@
               "ref": "plan.md#requirements",
               "heading": "Requirements",
               "paragraph": "Goals",
-              "hash": "8d2cec866fe4"
+              "hash": "23d947667ee8"
             }
           },
           {
@@ -4628,7 +4628,7 @@
   ],
   "impact": {
     "basis": "as-built",
-    "summary": "No module is published and no version moves; the landing changes documents and generated boards only. On GitHub, KotlinBottools is a fresh private repository holding the rewritten history and every number, and the pre-rewrite repository is `KotlinBottools-legacy`, private and archived, which ended its public window. The moved issue texts, and MagicBot’s and WebTools’ issue texts the transfers rewrote, rely on the temporary name, which stays reserved. This checkout is realigned onto the rewritten history with its old objects deleted, and the later units take the fresh repository, the allow-list, the pipeline as it ran and the default-rule finding that holds the change to public (`consequences.md` §2 to §6).",
+    "summary": "No module is published and no version moves; the landing changes documents and generated boards only. On GitHub, KotlinBottools is a fresh private repository holding the rewritten history and every number, and the pre-rewrite repository is kept under its legacy name, private and archived, which ended its public window. The moved issue texts, and MagicBot’s and WebTools’ issue texts the transfers rewrote, rely on the temporary name, which stays reserved. This checkout is realigned onto the rewritten history with its old objects deleted, and the later units take the fresh repository, the allow-list, the pipeline as it ran and the default-rule finding that holds the change to public (`consequences.md` §2 to §6).",
     "none": null,
     "release": {
       "bump": "none",
@@ -4642,7 +4642,7 @@
         "kind": "repository",
         "system": "repository-swap",
         "effect": "behaviour",
-        "summary": "Renamed `KotlinBottools-legacy`, made private, then archived. It keeps its refs as they were at the mirror clone, its three merged pull requests, its milestone, labels and activity feed, and no issue is left in it. Its public window, open since 2026-11-08, ends when it is made private.",
+        "summary": "Renamed to its legacy name, made private, then archived. It keeps its refs as they were at the mirror clone, its three merged pull requests, its milestone, labels and activity feed, and no issue is left in it. Its public window, open since 2026-11-08, ends when it is made private.",
         "link": "consequences.md#21-github"
       },
       {
@@ -4990,13 +4990,21 @@
       {
         "what": "The change recording that the transfers rewrote other repositories’ issue texts read that MagicBot holds 76 such references, 74 by the temporary name, and WebTools 6. All 76 in MagicBot’s name it, 74 by name and 2 by URL, and 4 of the 6 in WebTools’ do, as the as-built record measures; the change reads so.",
         "when": "2026-11-11"
+      },
+      {
+        "what": "The pre-rewrite repository was named by its name on GitHub in the function, the renames Row, a stage report and the impact. It is named the legacy repository, and its name its legacy name, as the documents now name it; no fact changes. Rows: renames.",
+        "when": "2026-11-20"
       }
     ]
   },
   "issueBoards": {
     "21": "../21-preparation/dashboard.html",
     "22": "../22-transfer-rehearsal/dashboard.html",
-    "24": "../24-repository-hygiene/dashboard.html"
+    "24": "../24-repository-hygiene/dashboard.html",
+    "25": "../25-kotlinbottools-publish/dashboard.html",
+    "26": "../26-gkb2-gkb-rewrite/dashboard.html",
+    "27": "../27-rewrite-bottools-and-the-private-repositories/dashboard.html",
+    "28": "../28-residual-report-and-cleanup/dashboard.html"
   },
   "links": {
     "workBoard": "../../../index.html",

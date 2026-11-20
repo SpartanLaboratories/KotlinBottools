@@ -77,10 +77,10 @@ listed only under `affiliation=all`: the administrator's access is the organisat
 
 ### 3.2 What a new private repository of this organisation has (observed)
 
-Source: the repository created on 2026-11-09 as `phase0-rehearsal-b` by `POST orgs/SpartanLaboratories/repos` with
+Source: the repository created on 2026-11-09 as the rehearsal's target by `POST orgs/SpartanLaboratories/repos` with
 `name`, `private=true`, `auto_init=false`, `has_issues=true` (see
 [fixture-and-read-api-forms §3.1.1](../../22-transfer-rehearsal/research/fixture-and-read-api-forms.md)), later renamed
-`phase0-rehearsal-a` and archived: id **1450918337**, node id `R_kgDOVntBwQ`. Read by id on 2026-11-09:
+to the rehearsal source's original name and archived: id **1450918337**, node id `R_kgDOVntBwQ`. Read by id on 2026-11-09:
 
 | Setting | Value read | Read from |
 |---|---|---|
@@ -233,7 +233,7 @@ research records).
 - **Rename.** Documented: "When you rename a repository, all existing information, with the exception of project site URLs, is
   automatically redirected to the new name"; the repository keeps its id and node id (earlier research,
   [rename-visibility-archive-sequence](../../22-transfer-rehearsal/research/rename-visibility-archive-sequence.md) §3.4),
-  and the rehearsal target 1450918337 was created as `phase0-rehearsal-b`, renamed, and reads the values of 3.2 by id.
+  and the rehearsal target 1450918337 was created under its temporary name, renamed, and reads the values of 3.2 by id.
   The settings are properties of the repository, not of its name, but no snapshot before the rename exists for that
   repository. The procedure takes one (3.10 B2) so the swap can diff it by id.
 - **Change to public.** Documented consequences (private to public): "The code will be visible to everyone who can visit

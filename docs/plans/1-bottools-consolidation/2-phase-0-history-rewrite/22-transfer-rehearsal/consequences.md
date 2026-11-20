@@ -30,11 +30,11 @@ only; §2.4 gives the account.
 
 Two throwaway repositories of the `SpartanLaboratories` organisation, and nothing else:
 
-- **`phase0-rehearsal-a`,** the source, created public with an initial commit. It holds made-up text
+- **The source,** created public with an initial commit. It holds made-up text
   only: the fixture's nine issues and one merged pull request, with their comments and links.
-- **`phase0-rehearsal-b`,** the target, created private and empty. It receives the transferred issues
+- **The target,** created private and empty. It receives the transferred issues
   and a closed placeholder at the pull request's number.
-- **After the swap** the source is `phase0-rehearsal-a-legacy` and the target is `phase0-rehearsal-a`,
+- **After the swap** the source holds its legacy name and the target holds the source's original name,
   and both are private and archived. Neither is deleted. They stay as a follow-up (§6), since deleting
   them needs a scope the phase does not have.
 
@@ -227,6 +227,6 @@ plan's Appendix A; `plan.md:N` is a line of [`plan.md`](plan.md).
 
 **Open, for `residual-report-and-cleanup` (#28):**
 
-- **The two rehearsal repositories,** `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a`, private and
+- **The two rehearsal repositories,** the source and the target, private and
   archived. Deleting them, if they are not wanted, needs the `delete_repo` scope
   ([parent consequences §6](../consequences.md#6-follow-ups)).

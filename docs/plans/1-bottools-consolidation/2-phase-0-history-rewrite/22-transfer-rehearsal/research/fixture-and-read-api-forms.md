@@ -64,18 +64,18 @@ Tiers: **consensus** = official documentation or schema, **practice** = what mat
 
 ```bash
 # A: public, with an initial commit
-gh api orgs/SpartanLaboratories/repos -f name=phase0-rehearsal-a -F private=false -F auto_init=true \
+gh api orgs/SpartanLaboratories/repos -f name=… -F private=false -F auto_init=true \
   -F has_issues=true --jq '[.id,.node_id,.full_name,.visibility,.private,.default_branch,.has_issues,.archived]|@tsv'
 # B: private, no README, no commits
-gh api orgs/SpartanLaboratories/repos -f name=phase0-rehearsal-b -F private=true -F auto_init=false \
+gh api orgs/SpartanLaboratories/repos -f name=…-b -F private=true -F auto_init=false \
   -F has_issues=true --jq '[.id,.node_id,.full_name,.visibility,.private,.default_branch,.has_issues,.archived]|@tsv'
 ```
 
 The 201 response carries `id` (integer), `node_id` (the id GraphQL takes), `full_name`, `visibility`, `private`,
 `default_branch`, `has_issues`, `archived`, `size`. `default_branch` names a branch even when none exists. "Empty
 repositories are repositories without branches" (REST description of `git/create-ref`), so B's emptiness is confirmed
-with `gh api repos/SpartanLaboratories/phase0-rehearsal-b/branches --jq length` returning `0`, and A's initial commit
-with `gh api repos/SpartanLaboratories/phase0-rehearsal-a/git/ref/heads/main --jq .object.sha`. The 403 and 422
+with `gh api repos/SpartanLaboratories/…-b/branches --jq length` returning `0`, and A's initial commit
+with `gh api repos/SpartanLaboratories/…/git/ref/heads/main --jq .object.sha`. The 403 and 422
 responses are the documented failures (a name already taken is a 422). `gh repo create` exists; `gh api` is chosen for
 the explicit fields and the structured response.
 
@@ -86,7 +86,7 @@ the explicit fields and the structured response.
 (`open` default), `description` (string), `due_on` (ISO 8601 string; omit it for no due date).
 
 ```bash
-for R in phase0-rehearsal-a phase0-rehearsal-b; do
+for R in … …-b; do
   gh api repos/SpartanLaboratories/$R/labels -f name='type: tracking' -f color=ededed \
     -f description='Multi-issue initiative' --jq '[.id,.name,.color,.description]|@tsv'
   gh api repos/SpartanLaboratories/$R/labels -f name='type: feature' -f color=0e8a16 \
@@ -109,7 +109,7 @@ plus `assignees`, `type`. There is no `state` field: an issue cannot be created 
 "silently dropped" without push access, so the response is read back and compared.
 
 ```bash
-gh api repos/SpartanLaboratories/phase0-rehearsal-a/issues -f title='Tracking issue' -F body=@body-1.md \
+gh api repos/SpartanLaboratories/…/issues -f title='Tracking issue' -F body=@body-1.md \
   -f 'labels[]=type: tracking' -F milestone=1 \
   --jq '[.number,.id,.node_id,.state,([.labels[].name]|join(",")),.milestone.title]|@tsv'
 ```
@@ -125,13 +125,13 @@ name; the REST form returns all three ids in one call and is preferred.
 
 ```bash
 # comment: body (string, required); response has id, node_id, created_at, user.login
-gh api repos/SpartanLaboratories/phase0-rehearsal-a/issues/1/comments -F body=@comment-1.md \
+gh api repos/SpartanLaboratories/…/issues/1/comments -F body=@comment-1.md \
   --jq '[.id,.node_id,.created_at,.user.login]|@tsv'
 # close as completed
-gh api --method PATCH repos/SpartanLaboratories/phase0-rehearsal-a/issues/5 -f state=closed -f state_reason=completed \
+gh api --method PATCH repos/SpartanLaboratories/…/issues/5 -f state=closed -f state_reason=completed \
   --jq '[.number,.state,.state_reason,.closed_at]|@tsv'
 # reopen
-gh api --method PATCH repos/SpartanLaboratories/phase0-rehearsal-a/issues/5 -f state=open \
+gh api --method PATCH repos/SpartanLaboratories/…/issues/5 -f state=open \
   --jq '[.number,.state,.state_reason]|@tsv'
 ```
 
@@ -151,7 +151,7 @@ Order: read the base head, create the branch ref (the contents endpoint's `branc
 file on it, open the pull request, wait for mergeability, merge.
 
 ```bash
-R=SpartanLaboratories/phase0-rehearsal-a
+R=SpartanLaboratories/…
 SHA=$(gh api repos/$R/git/ref/heads/main --jq .object.sha)
 gh api repos/$R/git/refs -f ref=refs/heads/rehearsal-pr -f sha="$SHA" --jq '[.ref,.object.sha]|@tsv'
 gh api --method PUT repos/$R/contents/rehearsal/fixture.txt -f message='Add rehearsal fixture file' \
@@ -205,7 +205,7 @@ GraphQL input types by introspection (2026-11-09):
 ```bash
 # node ids: from the create response (.node_id), or by query
 gh api graphql -f query='query($o:String!,$n:String!,$num:Int!){repository(owner:$o,name:$n){id issue(number:$num){id}}}' \
-  -f o=SpartanLaboratories -f n=phase0-rehearsal-a -F num=7 --jq '.data.repository|[.id,.issue.id]|@tsv'
+  -f o=SpartanLaboratories -f n=… -F num=7 --jq '.data.repository|[.id,.issue.id]|@tsv'
 
 gh api graphql -f query='mutation($i:ID!,$r:ID!){transferIssue(input:{issueId:$i,repositoryId:$r}){issue{id number url repository{id nameWithOwner}}}}' \
   -f i="$ISSUE_NODE_ID" -f r="$TARGET_REPO_NODE_ID" --jq '.data.transferIssue.issue|[.id,.number,.url,.repository.nameWithOwner]|@tsv'
@@ -224,7 +224,7 @@ the repository id the procedure already holds (so the target is pinned by id, no
 `id`, `number` and repository id in structured form. The pre-transfer node id must not be reused after the transfer; the
 payload's `issue.id` is what the next step reads. Omitting `createLabelsIfMissing` keeps a label that is missing in the
 target from being created silently with a default colour. The `gh` form is acceptable as a manual cross-check
-(`gh issue transfer 7 SpartanLaboratories/phase0-rehearsal-b -R SpartanLaboratories/phase0-rehearsal-a`).
+(`gh issue transfer 7 SpartanLaboratories/…-b -R SpartanLaboratories/…`).
 
 **Links: GraphQL `addSubIssue` and `addBlockedBy`; `gh issue edit` is not used.** `gh` 2.100.0 has `gh issue edit N
 --add-sub-issue`, `--parent`, `--add-blocked-by`, `--add-blocking` and the matching `--remove-*` flags, and
@@ -303,7 +303,7 @@ query($owner: String!, $name: String!, $cursor: String) {
 }
 ```
 
-Run: `gh api graphql -f owner=SpartanLaboratories -f name=phase0-rehearsal-a -f cursor=<endCursor> -f query="$(cat read-repo.graphql)"`
+Run: `gh api graphql -f owner=SpartanLaboratories -f name=… -f cursor=<endCursor> -f query="$(cat read-repo.graphql)"`
 (omit `cursor` on the first page; `-f`, not `-F`, so a repository named `123` or `true` stays a string). Schema facts
 checked by introspection: `Issue.comments` has `first/last/after/before/orderBy` and its only order field is
 `UPDATED_AT`, so the query leaves the default (creation) order and the script verifies `createdAt` ascends; `subIssues`
@@ -366,7 +366,7 @@ GraphQL `Repository.issues` excludes pull requests. The list of numbers with the
 both and marks pull requests with a `pull_request` key:
 
 ```bash
-gh api --paginate 'repos/SpartanLaboratories/phase0-rehearsal-a/issues?state=all&per_page=100&sort=created&direction=asc' \
+gh api --paginate 'repos/SpartanLaboratories/…/issues?state=all&per_page=100&sort=created&direction=asc' \
   --jq '.[]|[.number,(.pull_request!=null),.state,.state_reason]|@tsv'
 ```
 

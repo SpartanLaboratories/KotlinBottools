@@ -189,7 +189,7 @@ observation on 2026-11-09 with the commands in section 3.8.
   and the `legacy-homebrew` URL list the same `HEAD` (`c092d647…`); `curl` of
   `…/Homebrew/homebrew.git/info/refs?service=git-upload-pack` is `200` with no `Location`. A name that
   never existed answers `remote: Repository not found.` (observed for the unused
-  `phase0-rehearsal-a`). A private repository needs credentials: anonymous `git ls-remote` of
+  name of the rehearsal's source). A private repository needs credentials: anonymous `git ls-remote` of
   `…` prompts (and fails without a terminal), while the configured credential manager and the
   one-off `-c "credential.helper=!gh auth git-credential"` both succeed. What it lists after another
   repository takes the name was not observable read-only; it lists that repository's heads (the staff
@@ -242,7 +242,7 @@ them. It is not a correctness risk, and the rehearsal should record its length i
 | Transferred issue, web | `curl -sI https://github.com/dotnet/command-line-api/issues/2794` | `302`, `Location: https://github.com/dotnet/sdk/issues/53825` |
 | Hops through `gh` | `gh api --verbose repos/dotnet/cli/issues/6020 \| grep -E '^< (HTTP\|Location)'` | `301`, `Location`, then `200` |
 | Private, anonymous | `curl -s -o /dev/null -w '%{http_code}' https://api.github.com/repos/SpartanLaboratories/…` | `404` (by id and on the web too) |
-| Unused rehearsal names | `gh api repos/SpartanLaboratories/phase0-rehearsal-a`, `…-b` | `404` for both on 2026-11-09 |
+| Unused rehearsal names | `gh api repos/SpartanLaboratories/…`, `…-b` | `404` for both on 2026-11-09 |
 
 ## 4. How comparable projects do it
 
@@ -272,7 +272,7 @@ them. It is not a correctness risk, and the rehearsal should record its length i
 - **A redirect makes a read look like a hit.** `gh api repos/O/old-name` succeeds with the renamed
   repository's data. Always compare `id`.
 - **Name-addressed commands act on the current holder of the name.** After the target takes
-  `phase0-rehearsal-a`, `gh repo archive O/phase0-rehearsal-a` archives the target. Address each write
+  the source's original name, `gh repo archive O/…` archives the target. Address each write
   by the name the repository holds right then, after reading its id.
 - **A rename can fail with the repository half-swapped.** The design's hand-back state covers it; the
   script should print the ids at both names before and after each write, so a re-run can resume from
@@ -294,35 +294,35 @@ them. It is not a correctness risk, and the rehearsal should record its length i
 Run the stage in this order, each write followed by its read-back before the next, and carry the
 source id `S` and the target id `T` (read once at the start by name):
 
-1. **Pre-checks (reads):** `GET repos/O/phase0-rehearsal-a` gives `id` = `S`, `private` false,
-   `archived` false, `permissions.admin` true; `GET repos/O/phase0-rehearsal-b` gives `id` = `T`,
-   `private` true; `GET repos/O/phase0-rehearsal-a-legacy` is `404`; the org's
+1. **Pre-checks (reads):** `GET repos/O/…` gives `id` = `S`, `private` false,
+   `archived` false, `permissions.admin` true; `GET repos/O/…-b` gives `id` = `T`,
+   `private` true; `GET repos/O/…-legacy` is `404`; the org's
    `members_can_change_repo_visibility` is read; `git ls-remote` of the source lists its head and the
    target's lists nothing.
-2. **Rename source:** `gh api -X PATCH repos/O/phase0-rehearsal-a -f name=phase0-rehearsal-a-legacy`.
-   Read back: `GET repositories/S` has `full_name` `O/phase0-rehearsal-a-legacy`; `GET
-   repos/O/phase0-rehearsal-a-legacy` has `id` S; the old name answers `301` with `Location
+2. **Rename source:** `gh api -X PATCH repos/O/… -f name=…-legacy`.
+   Read back: `GET repositories/S` has `full_name` `O/…-legacy`; `GET
+   repos/O/…-legacy` has `id` S; the old name answers `301` with `Location
    https://api.github.com/repositories/S` (no-follow `curl`), and `gh api` by the old name returns `id`
    S. Follow the transferred issue's old URL (point (b), 3.6). Record the time.
-3. **Private:** `gh api -X PATCH repos/O/phase0-rehearsal-a-legacy -f visibility=private`. Read back:
+3. **Private:** `gh api -X PATCH repos/O/…-legacy -f visibility=private`. Read back:
    `GET repositories/S` has `private` true, `visibility` `private`, `archived` false; an
    unauthenticated `GET` by id, by name and on the web answers `404`.
-4. **Archive:** `gh api -X PATCH repos/O/phase0-rehearsal-a-legacy -F archived=true`. Read back:
+4. **Archive:** `gh api -X PATCH repos/O/…-legacy -F archived=true`. Read back:
    `GET repositories/S` has `archived` true and `private` true, name unchanged. Follow the transferred
    issue's old URL again.
-5. **Rename target:** `gh api -X PATCH repos/O/phase0-rehearsal-b -f name=phase0-rehearsal-a`. Expect
-   `200` (U1 below). Read back: `GET repos/O/phase0-rehearsal-a` has `id` T (and not S) and `private`
-   true; `GET repositories/T` has `full_name` `O/phase0-rehearsal-a`; `GET repositories/S` still has
-   `full_name` `O/phase0-rehearsal-a-legacy`; `GET repos/O/phase0-rehearsal-a-legacy` has `id` S;
+5. **Rename target:** `gh api -X PATCH repos/O/…-b -f name=…`. Expect
+   `200` (U1 below). Read back: `GET repos/O/…` has `id` T (and not S) and `private`
+   true; `GET repositories/T` has `full_name` `O/…`; `GET repositories/S` still has
+   `full_name` `O/…-legacy`; `GET repos/O/…-legacy` has `id` S;
    `git ls-remote` of the old name no longer lists the source's head (it lists the target's, here none)
-   and of the `-legacy` name still lists it; `GET repos/O/phase0-rehearsal-b` answers `301` to
+   and of the `-legacy` name still lists it; `GET repos/O/…-b` answers `301` to
    `/repositories/T`. Record the time; the difference from step 2 is the window.
 6. **Follow the transferred issue's old URL** (point (c)): no-follow `curl` of
-   `https://api.github.com/repos/O/phase0-rehearsal-a-legacy/issues/N` for the transferred issue's
+   `https://api.github.com/repos/O/…-legacy/issues/N` for the transferred issue's
    source number N, expecting `301` and a `Location` of the form `…/repos/O/<name>/issues/N` and
-   record the exact `Location`; then `gh api repos/O/phase0-rehearsal-a/issues/N` must return the
-   target's issue with `number` N and `repository_url` ending `/repos/O/phase0-rehearsal-a`.
-7. **Archive target:** `gh api -X PATCH repos/O/phase0-rehearsal-a -F archived=true`, after all
+   record the exact `Location`; then `gh api repos/O/…/issues/N` must return the
+   target's issue with `number` N and `repository_url` ending `/repos/O/…`.
+7. **Archive target:** `gh api -X PATCH repos/O/… -F archived=true`, after all
    link and issue writes on the target are finished. Read back by id.
 8. **Final read:** for `S` and `T`: `GET repositories/{id}` shows `private` true and `archived` true,
    and the names are `…-legacy` and `…-a`.
@@ -345,13 +345,13 @@ The `curl` form exposes the token to the process list for a moment and suits an 
 Reasons: archived repositories refuse every change, so each repository's archive goes last; the target
 rename waits for the source rename, which frees the name; and an id comparison is the one read-back that
 a redirect cannot fake. The real swap follows the same eight steps with `KotlinBottools`,
-`KotlinBottools-legacy` and the fresh repository's recorded id; the extra checks there are `git ls-remote`
+its legacy name and the fresh repository's recorded id; the extra checks there are `git ls-remote`
 heads against the new `ref-map` column (which the empty rehearsal target cannot test) and the recorded
 `562658298` as `S`.
 
 **Unknowns the rehearsal measures:**
 
-- U1. Does the rename of `phase0-rehearsal-b` onto `phase0-rehearsal-a` succeed? Expect `200`; a `422`
+- U1. Does the rename of the target onto the source's original name succeed? Expect `200`; a `422`
   ("name already exists") would mean the freed name is still reserved, and the only documented
   remedy is a request to GitHub Support to remove the redirect (the 2024-12-09 Support reply). Record
   the full response.

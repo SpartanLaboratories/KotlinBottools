@@ -72,7 +72,7 @@ The rewrite itself changes two source files on `main` through the path scrub
   - Stars and watchers start empty.
   - No webhook, deploy key, secret, project item or Actions history exists to carry over.
   - Its activity feed starts with the rewritten history's push.
-- **`KotlinBottools-legacy`** is the pre-rewrite repository, renamed, private and archived. It
+- **The legacy repository** is the pre-rewrite repository, renamed, private and archived. It
   holds:
   - the pre-rewrite history and its activity feed;
   - the pull requests merged before the swap, with their `refs/pull/*`: #2's own landing and the
@@ -131,7 +131,7 @@ The rewrite itself changes two source files on `main` through the path scrub
   document changes.
 - **No other repository** in either organisation tracks a purged file name on its default branch
   (findings 5 §3.G).
-- **Two new repositories,** `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a`, both private
+- **Two new repositories,** the rehearsal's source and target, both private
   and archived, remain from the rehearsal (§6).
 
 ### 2.5 This machine
@@ -351,7 +351,7 @@ The rewrite itself changes two source files on `main` through the path scrub
 
 **When the units have landed:**
 
-- **The rehearsal repositories.** Delete `phase0-rehearsal-a-legacy` and `phase0-rehearsal-a` if
+- **The rehearsal repositories.** Delete the source and the target if
   they are not wanted. That needs the `delete_repo` scope, which the phase neither has nor uses.
 
   > **Dated note, 2026-11-17.** Final state: open, the owner's ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
@@ -365,7 +365,7 @@ The rewrite itself changes two source files on `main` through the path scrub
 
   > **Dated note, 2026-11-17.** Final state: open, the owner's ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
 - **The project's working notes on this machine.** Update the planning-state note with four facts:
-  the public repository is a fresh one; the pre-rewrite repository is `KotlinBottools-legacy`,
+  the public repository is a fresh one; the pre-rewrite repository is kept under its legacy name,
   private and archived; the legacy data is in `%USERPROFILE%\BotLegacyData`; and whether the
   deferred step is still due.
 
@@ -387,7 +387,7 @@ The rewrite itself changes two source files on `main` through the path scrub
   > **Dated note, 2026-11-13.** Gate 3 counted 0 matches over the 3019 issue, pull-request, comment and revision texts and run logs of the public repository ([the publication unit's as-built record, §3.3](25-kotlinbottools-publish/final-implementation.md#33-the-corpus-gate-3-the-id-check-and-the-runs)); there is nothing to edit.
 
   > **Dated note, 2026-11-17.** Final state: closed ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).
-- **`KotlinBottools-legacy`** stays private and archived. Deleting it later would also remove the
+- **The legacy repository** stays private and archived. Deleting it later would also remove the
   only private copy of the old objects and the resolver of the dated citations.
 
   > **Dated note, 2026-11-17.** Final state: it stands ([unit 8's consequences, §6](28-residual-report-and-cleanup/consequences.md#6-follow-ups)).

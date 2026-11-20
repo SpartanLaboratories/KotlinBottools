@@ -910,7 +910,7 @@ pre-rewrite repository stays private.
   Nothing else is created in the new repository before the last number is reproduced, because
   issues and pull requests share one number sequence.
 - **The swap.**
-  - The pre-rewrite repository is renamed `KotlinBottools-legacy`. It stays private and is archived,
+  - The pre-rewrite repository is renamed to its legacy name. It stays private and is archived,
     which makes it read-only.
   - The new repository takes the name `KotlinBottools`.
   - It is made public, with secret scanning and push protection.
@@ -972,7 +972,7 @@ Matching edits are made to issues #1 and #2. The conditions recorded are:
 - the exit criterion is that branches and tags are clean, with the pull-request residual of GKB2 and
   BotTools counted and reported;
 - KotlinBottools is made public as a fresh repository, and the pre-rewrite repository is kept private
-  and archived as `KotlinBottools-legacy`;
+  and archived under its legacy name;
 - the planning documents reach `main` before the rewrite, through a pull request on the pre-rewrite
   repository, so there is no planning pull request after it.
 

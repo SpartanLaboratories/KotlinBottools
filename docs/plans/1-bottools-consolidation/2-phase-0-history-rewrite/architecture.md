@@ -76,7 +76,7 @@
    and GitHub keeps serving every pre-rewrite object of a repository by id (findings 3 §3.1,
    §3.3). The rewritten history therefore reaches the public through a new repository whose
    object store starts empty:
-   - the pre-rewrite repository is renamed `KotlinBottools-legacy`, made private and archived
+   - the pre-rewrite repository is renamed to its legacy name, made private and archived
      (§7.5);
    - the new repository takes the name `KotlinBottools`, becomes public, and gets GitHub secret
      scanning and push protection;
@@ -85,7 +85,7 @@
      reproduced by a placeholder issue at the same number;
    - no repository is deleted.
 
-   > **Dated note, 2026-11-09.** The pre-rewrite repository has been public since 2026-11-08 and stays public until the swap (§2.1). Its purge-listed files and old objects are readable by anyone until then. The swap makes it private as it becomes `KotlinBottools-legacy` (§7.5), and the residual report states the window (§12.4). The rewritten history still reaches the public only through the new repository.
+   > **Dated note, 2026-11-09.** The pre-rewrite repository has been public since 2026-11-08 and stays public until the swap (§2.1). Its purge-listed files and old objects are readable by anyone until then. The swap makes it private as it takes its legacy name (§7.5), and the residual report states the window (§12.4). The rewritten history still reaches the public only through the new repository.
 
 3. **Machine-local paths replaced in KotlinBottools.** KotlinBottools' rewrite also replaces two
    kinds of machine-local path with neutral forms. It does so in every file of every commit, the
@@ -164,7 +164,7 @@
    - Each pull request is reproduced by a closed placeholder issue at its number.
    - Every sub-issue and "blocked by" relationship recorded before the first transfer is
      present.
-4. **`KotlinBottools-legacy` exists**, private and archived. Its refs are exactly as they were at
+4. **The legacy repository exists**, private and archived. Its refs are exactly as they were at
    the mirror clone, and no issue is left in it.
 5. **The repository-hygiene change is merged into `main`,** and the secret-scan workflow has run
    green on `main` of the public repository.
@@ -744,7 +744,7 @@ backup (findings 3 §6.3). Every result is a tally; no id or body is printed.
   - against the **fresh** repository, every old id is expected to answer 404 / `NOT-SERVED`:
     authenticated before the visibility change and anonymously after it. The activity feed's
     `before_in_old` is expected to be 0;
-  - against `KotlinBottools-legacy`, authenticated only, every old id is expected to answer 200,
+  - against the legacy repository, authenticated only, every old id is expected to answer 200,
     as it is private.
 
   > **Dated note, 2026-11-09.** The pre-rewrite repository is public until the swap (§2.1), so until then its old ids answer anonymously as well. Once it is renamed and made private at the swap (§7.5), the authenticated expectation above holds and the anonymous answer becomes 404. The report (§12.4) states the window during which the old objects were anonymously readable, and that no measurement can exclude a copy taken during it.
@@ -803,14 +803,14 @@ stateDiagram-v2
     Walking --> LinksReconciled: all N reproduced; every recorded relationship present, kept or re-created
     LinksReconciled --> Handback: a link cannot be re-created
     LinksReconciled --> Gated: Gate 2 over the reproduced issues, placeholders and comments
-    Gated --> Renamed: old → KotlinBottools-legacy (id 562658298 verified at the new name); archived; new → KotlinBottools (id verified ≠ 562658298; heads == ref-map new column)
+    Gated --> Renamed: old → its legacy name (id 562658298 verified at the new name); archived; new → KotlinBottools (id verified ≠ 562658298; heads == ref-map new column)
     Renamed --> Realigned: this clone realigned; push-safety proof
     Realigned --> [*]: the unit's own landing, the first on the fresh repository
 ```
 
 ### 7.2 The rehearsal
 
-Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase0-rehearsal-b`
+Two throwaway repositories, A (the source, public) and B
 (the target, private and empty), prove the transfer mechanics on the shapes the real walk meets.
 
 - **The fixture in A:**
@@ -838,8 +838,8 @@ Two throwaway repositories, `phase0-rehearsal-a` (the source, public) and `phase
     links are removed and recorded, and the links are re-created afterwards. Both paths are
     acceptable, because the real walk re-creates dropped links anyway.
 - **The rename swap,** rehearsed on the same pair:
-  - A is renamed to `phase0-rehearsal-a-legacy`, made private and archived, each step read back;
-  - B is renamed to `phase0-rehearsal-a`;
+  - A is renamed to its legacy name, made private and archived, each step read back;
+  - B is renamed to A's original name;
   - the ids are read back at each name, and the old URL of a transferred issue must redirect to
     its new home.
 - **The pass condition:**
@@ -926,7 +926,7 @@ Every mutation is checked before it is made, so a re-run after an interruption i
 
 **The renames:**
 
-1. The old repository is renamed `KotlinBottools-legacy`, its id is verified at the new name, it
+1. The old repository is renamed to its legacy name, its id is verified at the new name, it
    is made private and read back, and it is archived. `archived` true makes it read-only; its pull
    requests, milestone and labels stay, and no issue remains in it.
 2. The new repository is renamed `KotlinBottools`. Its id at that name must be the recorded fresh
@@ -1241,7 +1241,7 @@ branch into `main` of the pre-rewrite repository.
   than after it.
 - **Its `refs/pull/<n>/*`** pin pre-rewrite history in the pre-rewrite repository only. That
   repository is public until the swap, so until then the pinned objects are public, as all its
-  objects are. It then becomes `KotlinBottools-legacy`, private and archived, and the pinned
+  objects are. It then becomes the legacy repository, private and archived, and the pinned
   objects leave public reach.
 
   > **Dated note, 2026-11-09.** The statement that the pinned objects never become public no longer holds: the repository has been public since 2026-11-08 (§2.1), and the pull-request refs of the landings before the swap are public until the swap.
@@ -1300,7 +1300,7 @@ recorded as a dated callout in the parent documents, which lands with #2's own l
 | No GitHub Support ticket. | `architecture.md` §1.3, §11 steps 2 and 4, §14 unit 0, §15 (two rows), §16 "GitHub Support"; `roadmap.md` header and Phase 0; `consequences.md` §2.1, §3.1 item 4 |
 | The legacy data in an ordinary local folder, rather than an access-restricted location. | `architecture.md` §11 step 1, §15; `roadmap.md` Phase 0; `consequences.md` §2.4, §3.1 item 4 |
 | The exit criterion as §1.2 criterion 1 states it, branches and tags clean with the pull-request residual counted, rather than "no pull-request ref reaches a purged blob". | `architecture.md` §1.4 criterion 6, §11; `roadmap.md` Phase 0 "Done when" |
-| KotlinBottools made public as a fresh repository, every number reproduced, and the pre-rewrite repository made private and archived as `KotlinBottools-legacy` at the swap. | `architecture.md` §1.3, §11, §14 unit 0, §15 |
+| KotlinBottools made public as a fresh repository, every number reproduced, and the pre-rewrite repository made private and archived under its legacy name at the swap. | `architecture.md` §1.3, §11, §14 unit 0, §15 |
 | The planning pull request landing before the rewrite rather than after it. | `architecture.md` §1.3, §11 step 2; `roadmap.md` header and Phase 0 |
 | Phase 0 carried out as sub-issues of #2, Phase 1 unblocked once the rewrite-and-swap unit lands. | `roadmap.md` Phase 0 "Unblocks" |
 | The pruned-commit count of ten rather than six. | parent research §3.3, §6.3 |
@@ -1399,7 +1399,7 @@ command.
 | A new public repository under another name, KotlinBottools kept private | breaks the name and every `KotlinBottools#N` citation and URL in MagicBot, WebTools, the `.github` mirror and the documents |
 | Delete and recreate under the same name | needs the `delete_repo` scope, and keeps nothing the rename does not keep; the rename keeps the old repository as the private resolver of the dated citations |
 | Transfer only issues #1 to #19 and renumber everything after them | changes the numbers of #2's sub-issues and with them their plan-folder names and every citation of them; the placeholders keep every number at the cost of one closed issue per pull request |
-| The planning pull request after the rewrite, from the rewritten branch | the pre-rewrite repository is made private as `KotlinBottools-legacy` at the swap, so its pull-request refs stop being public then; landing the planning documents first lets every unit plan inside the folder on `main` |
+| The planning pull request after the rewrite, from the rewritten branch | the pre-rewrite repository is made private under its legacy name at the swap, so its pull-request refs stop being public then; landing the planning documents first lets every unit plan inside the folder on `main` |
 | Keep the planning branch after its merge, so that the 56 links naming it keep resolving | the links would show a frozen copy of the documents while `main` moves on; pointing them at `main` keeps them current before and after the swap |
 | Twelve units: the toolchain, the backups and the data copy apart; the KotlinBottools rewrite, the rehearsal, the swap and the realignment apart; the private repository clone and the report apart | every landing adds commits to KotlinBottools, so a landing between its mirror clone and its push would be lost from the rewritten history, and the swap unit's own landing cannot precede the realignment; the KotlinBottools rewrite, swap and realignment are therefore one unit. Grouping the preparation and keeping the private repository clone with the first private repository's rewrite also means fewer pull-request numbers to reproduce |
 | Rehearse with three repositories (a stand-alone "foreign" one) | the fourth issue that stays in the source repository gives the cross-repository shape after the transfer, and the real walk reads and re-creates every link regardless |
@@ -1431,7 +1431,7 @@ landing through its own pull request. Each unit's GitHub writes are requested (�
 |---|---|---|---|---|---|---|
 | 1 | `preparation` | git pinned and recorded; `DATA` and `WS` created with ACL checks; filter-repo and gitleaks installed and verified; the path-scrub expression file written; the canary and the filter-repo fixture rehearsal, the scrub's cases included; every tool file saved and hash-checked; the six lists written and proved; non-interactive authentication proved against the six repositories; mirrors and untouched backups of the six with `ls-remote` recorded; the three data copies verified and `COPY-VERIFIED`; the manifests and expectation rows of the five static repositories; their positive-control scans | — | none | pre-rewrite repository | no |
 | 2 | `transfer-rehearsal` | §7.2: the two throwaway repositories, the fixture with a pull request and a closed issue, the walk, the link checks and re-creations, the rename swap, both archived; the pass condition | 1 | two new repositories (private, archived) with their fixture | pre-rewrite repository | no |
-| 3 | `kotlinbottools-rewrite-and-swap` | at its start, with nothing landing meanwhile: KotlinBottools' fresh mirror and backup, its manifest, expectation and positive control; the scrub's before-counts; the pipeline's stages 1–5, with the path scrub in the same rewrite and its fidelity and zero-match checks; Gate 1. Then §7.3–§7.5 up to the archive: the fresh repository and its settings; the mirror push and per-ref verification; the fresh mirror and exit tests; F0; milestone and labels; the link table and number list; the walk; link reconciliation; Gate 2; the renames; id verification. Then §9.2: this clone's realignment, the push-safety proof, and the deferred step recorded if the gc is blocked | 2 | the fresh repository (becomes `KotlinBottools`); the mirror push; transferred issues and placeholders; relationships, including on MagicBot and WebTools issues where dropped; the old repository renamed `KotlinBottools-legacy` and archived; the realignment | fresh repository (its first landing) | **yes**: 41 tracked files leave; refs moved; reflogs expired; objects repacked, or deferred |
+| 3 | `kotlinbottools-rewrite-and-swap` | at its start, with nothing landing meanwhile: KotlinBottools' fresh mirror and backup, its manifest, expectation and positive control; the scrub's before-counts; the pipeline's stages 1–5, with the path scrub in the same rewrite and its fidelity and zero-match checks; Gate 1. Then §7.3–§7.5 up to the archive: the fresh repository and its settings; the mirror push and per-ref verification; the fresh mirror and exit tests; F0; milestone and labels; the link table and number list; the walk; link reconciliation; Gate 2; the renames; id verification. Then §9.2: this clone's realignment, the push-safety proof, and the deferred step recorded if the gc is blocked | 2 | the fresh repository (becomes `KotlinBottools`); the mirror push; transferred issues and placeholders; relationships, including on MagicBot and WebTools issues where dropped; the old repository renamed to its legacy name and archived; the realignment | fresh repository (its first landing) | **yes**: 41 tracked files leave; refs moved; reflogs expired; objects repacked, or deferred |
 | 4 | `repository-hygiene` | §10: the four files, the README edit and the new `CHANGELOG.md`; the pre-landing scans and byte checks; merged once the secret-scan check passes | 3 | none beyond its landing | fresh repository | no |
 | 5 | `kotlinbottools-publish` | Gate 3 and the id-reference check over the closed corpus; the pre-flip gate; the visibility change; the scanning `PATCH` and its verification; the anonymous measurements; the access check; the secret-scan run on `main` confirmed green | 4 | KotlinBottools' visibility and security settings | fresh repository | no |
 | 6 | `gkb2-gkb-rewrite` | the full pipeline (§6.4 stages 1–9) for GKB2, then GKB, from their mirrors (checked unchanged); the pull-request residual of GKB2 measured | 3 | GKB2 and GKB force-pushed | fresh repository | no |

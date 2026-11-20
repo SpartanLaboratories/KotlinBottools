@@ -54,7 +54,7 @@ opened at 2026-11-10T22:58:05Z and closed when this checkout's push-safety proof
   - the fresh repository, id 1453296798, now `SpartanLaboratories/KotlinBottools`: private, default branch `main`, wiki
     off, the rewritten history's two heads and nothing else, the three custom labels and GitHub's nine defaults, the
     `1.0.0` milestone, and the numbers 1 to 31: 28 transferred issues and the closed placeholders at 20, 30 and 31;
-  - the pre-rewrite repository, id 562658298, now `SpartanLaboratories/KotlinBottools-legacy`: private and archived,
+  - the pre-rewrite repository, id 562658298, now under its legacy name: private and archived,
     with its refs as listed at the mirror clone, its three merged pull requests, and no issue.
 - **This checkout,** realigned in place onto the rewritten history, its push-safety proof passed and its old objects
   deleted, with nothing deferred (§3.4).
@@ -179,9 +179,9 @@ By id at every step, with unauthenticated reads by name, by id and on the web:
 
 | After | Pre-rewrite repository (562658298) | Fresh repository (1453296798) |
 |---|---|---|
-| `rename-old` | `KotlinBottools-legacy`, public, not archived; all 200 | `KotlinBottools-next`, private; all 404 |
-| `private-old` | `KotlinBottools-legacy`, private; all 404 | unchanged |
-| `archive-old` | `KotlinBottools-legacy`, private, archived; all 404 | unchanged |
+| `rename-old` | its legacy name, public, not archived; all 200 | `KotlinBottools-next`, private; all 404 |
+| `private-old` | its legacy name, private; all 404 | unchanged |
+| `archive-old` | its legacy name, private, archived; all 404 | unchanged |
 | `rename-fresh` | unchanged | `KotlinBottools`, private; all 404 |
 
 The public window of the pre-rewrite repository ran from 2026-11-08 to 2026-11-11T06:11:18Z, the time written at

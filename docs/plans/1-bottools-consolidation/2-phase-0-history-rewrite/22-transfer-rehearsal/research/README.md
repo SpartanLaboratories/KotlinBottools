@@ -136,11 +136,11 @@ on a 2020 thread and a 2026 project log, read accurately. The fixture's first tr
 ([`../plan.md`](../plan.md#the-tool), Design, "The tool", "What a transfer does to references"):
 
 - **In the moved issue,** each bare `#N` in the body and in the comments became the source
-  repository's full name: `#4` became `SpartanLaboratories/phase0-rehearsal-a#4`. The body grew from
+  repository's full name: `#4` became `SpartanLaboratories/…#4`. The body grew from
   134 to 248 bytes; five references changed, three in the body and two in the comments. Titles,
   labels, milestone and comment count are unchanged.
 - **In the source issues that cite the moved issue,** the reference to it became the target's full
-  name (`SpartanLaboratories/phase0-rehearsal-b#1`) and every other bare reference in the same text
+  name (`SpartanLaboratories/…-b#1`) and every other bare reference in the same text
   became the source's full name: #6's body grew from 9,072 to 13,366 bytes (13 references naming the
   target, 100 naming the source, none left bare) and #10's has one of each. The issues that do not
   cite the moved issue are byte-identical. A rewritten source issue's comments are rewritten with
@@ -150,8 +150,8 @@ on a 2020 thread and a 2026 project log, read accurately. The fixture's first tr
   "llvm-project#A => #A"
   ([LLVM mailing list, 2021-12-03](https://lists.llvm.org/pipermail/cfe-dev/2021-December/069518.html)).
   The first half holds and the second does not: #3, the third to move, cites #2, which had already
-  moved, and its body in the target reads `SpartanLaboratories/phase0-rehearsal-b#2`
-  (`SpartanLaboratories/phase0-rehearsal-a#8` and `#10` for the numbers still in the source).
+  moved, and its body in the target reads `SpartanLaboratories/…-b#2`
+  (`SpartanLaboratories/…#8` and `#10` for the numbers still in the source).
 - **Issues already in the target are rewritten as well.** #1's first comment, citing #3, read the
   source's full name after the first transfer and the target's after the third.
 
