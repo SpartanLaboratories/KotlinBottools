@@ -2165,6 +2165,27 @@
             "when": "#27's design, its clone replacement",
             "ref": "27-rewrite-bottools-and-the-private-repositories/architecture.md#103-what-is-carried-and-what-is-not",
             "link": "architecture.md#95-the-private-repository-clone"
+          },
+          {
+            "what": "BotTools and the private repositories were not pushed with `--force --mirror`: each was pushed once, every branch in one `git push --porcelain --atomic` with an explicit lease per branch on the tip the clone recorded, to the repository's URL, after the same line run as a dry run; 2, 2 and 1 branches.",
+            "why": "Under `--mirror`, `--force` or a refspec with a leading `+`, git ignores a lease, and `--mirror` would delete a server branch created after the clone; without `--atomic`, a failure that concerns one branch would leave a half-rewritten repository, whose only repair is a second force-push.",
+            "when": "#27's design, its push",
+            "ref": "27-rewrite-bottools-and-the-private-repositories/architecture.md#82-the-push",
+            "link": "architecture.md#11-what-the-phase-must-achieve"
+          },
+          {
+            "what": "The tools that run BotTools' and the private repositories' rewrites, their residual measurement and the private repository clone's replacement are a new, self-contained folder derived from the GKB2 and GKB unit's, beside it, saved and pinned by #27's tools unit; the clone scripts are rebuilt there as request procedures with a builder.",
+            "why": "Nearly every file changes for these three repositories, and the earlier folder stays as it ran: its pins are the GKB2 and GKB unit's record, which an edit in place would make false.",
+            "when": "#27's design, its tools",
+            "ref": "27-rewrite-bottools-and-the-private-repositories/architecture.md#71-the-folder",
+            "link": "architecture.md#61-toolchain"
+          },
+          {
+            "what": "#27 was carried out as four units, its sub-issues, in this order: the tools (#39), the rewrites (#40), then the residual measurement of all three repositories (#41), a unit of its own, and the clone replacement (#42), each of those two blocked by the rewrites alone.",
+            "why": "The work spans four systems with different gates and different writes: the tools must be proven before any push, with no write at all; the residual measurement waits for the last push and has a time window; the clone replacement writes to a checkout, not to GitHub. One unit would hold one landing hostage to four kinds of stop.",
+            "when": "#27's design, its decomposition",
+            "ref": "27-rewrite-bottools-and-the-private-repositories/architecture.md#16-decomposition",
+            "link": "architecture.md#15-decomposition"
           }
         ]
       }
@@ -3147,6 +3168,10 @@
       {
         "what": "The pre-rewrite repository and the rehearsal repositories were named by their names on GitHub in the rewrite-and-swap Row, an excerpt and the impact. They are named by what they are, the legacy repository and the rehearsal's source and target, as the documents now name them; no fact changes. Rows: transfer-rehearsal, kotlinbottools-rewrite-and-swap.",
         "when": "2026-11-20"
+      },
+      {
+        "what": "#27's Row listed one of its departures from this design, the clone replacement. It lists the three others too, each from its dated note on this design: the one atomic lease push of each repository (§1.1), the new tool folder beside the GKB2 and GKB unit's (§6.1), and the four units, the residual measurement one of its own (§15). No other fact changes. Rows: rewrite-bottools-and-the-private-repositories.",
+        "when": "2026-11-22"
       }
     ]
   },
@@ -3155,6 +3180,9 @@
     "repoBoard": "../../../dashboards/index.html"
   },
   "issueBoards": {
+    "39": "27-rewrite-bottools-and-the-private-repositories/39-workspace-tools/dashboard.html",
+    "40": "27-rewrite-bottools-and-the-private-repositories/40-rewrites/dashboard.html",
+    "41": "27-rewrite-bottools-and-the-private-repositories/41-residual-measurement/dashboard.html",
     "42": "27-rewrite-bottools-and-the-private-repositories/42-clone-replacement/dashboard.html"
   }
 }
