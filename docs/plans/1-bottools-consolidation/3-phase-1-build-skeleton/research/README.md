@@ -107,9 +107,8 @@ on its own modules included. The design pins every edge the library controls tha
     MyGameTools' umbrella does it, on modules that hold little or no source yet.
   - The build compiles with the Kotlin Gradle plugin 2.5.0-RC. The answer says whether that plugin, against the 2.2 line, changes
     anything in the published variants, edges or constraints the check reads, and what the published metadata carries for
-    `kotlin-stdlib` while the plugin is a release candidate. It says how a check would tell a pre-release requirement of that
-    kind (`-RC`, `-Beta`) apart from one of the organisation's lettered versions (`1.0.0a`), so that a version which is not a
-    snapshot can refuse it the way it refuses a `-SNAPSHOT`.
+    `kotlin-stdlib` while the plugin is a release candidate, and how a check would tell a pre-release requirement of that kind
+    (`-RC`, `-Beta`) apart from one of the organisation's lettered versions (`1.0.0a`).
 - **Evidence that would settle it.** Gradle 9.7.1's user guide on dependency constraints, rich versions and publishing Gradle
   Module Metadata; Gradle's source for how project dependencies and constraints are mapped into published metadata; the Gradle
   Module Metadata specification; vanniktech's publication setup; the Kotlin Gradle plugin's release notes and source for what it
@@ -389,11 +388,15 @@ build's own checks repeat each of them on the real modules.
   - **Wire the type-resolving tasks.** `check` depends on the type-resolving task of every Kotlin compilation: `detektMain`, and
     `detektTest`. The seven test sets are packages inside the one `test` source set, so `detektTest` covers them all.
   - **Prove the rule on the real toolchain.** The convention plugin's tests compile their fixtures at language version 2.5 against
-    `kotlin-stdlib` 2.5.0-RC: a seeded `runCatching { suspendCall() }` fails `check` while the plain `detekt` task passes; a
-    second fixture whose suspend callee lives in another module fails `check` too; and the fixtures' analysis prints no "compiler
-    errors found during analysis" line.
-  - **Language features while detekt's compiler is 2.4.10.** The code detekt analyses uses no language feature that exists only
-    from Kotlin 2.5, and no experimental compiler flag. The pin moves to the first detekt release built on Kotlin 2.5.0
+    `kotlin-stdlib` 2.5.0-RC, with no language feature that exists only from Kotlin 2.5: a seeded `runCatching { suspendCall() }`
+    fails `check` while the plain `detekt` task passes; a second fixture whose suspend callee lives in another module fails `check`
+    too; and the fixtures' analysis prints no "compiler errors found during analysis" line, which shows that detekt reads the
+    standard library and the modules' own classes.
+  - **Language features that exist only from Kotlin 2.5.** Library code may use them. In a file that uses one, detekt's
+    type-resolved analysis is less accurate: each use is counted into the line "There were N compiler errors found during
+    analysis. This affects accuracy of reporting.", the rules run on with reduced accuracy in that file, and the build does not
+    fail. That is an accepted consequence of the version skew, and nothing in the build bars the features. No experimental
+    compiler flag is enabled. The pin moves to the first detekt release built on Kotlin 2.5.0
     ([#9786](https://github.com/detekt/detekt/issues/9786), [#9888](https://github.com/detekt/detekt/pull/9888)).
   - **The stricter rule.** The 2.x rule also flags a `catch` of `CancellationException`, or of a supertype, around a suspend
     call, unless the clause rethrows `CancellationException` first or starts with `ensureActive()`. The internal
@@ -407,7 +410,8 @@ build's own checks repeat each of them on the real modules.
     regardless, and the features of 2.5 would then be off in the sources too.
   - The command-line tool duplicates the classpath, toolchain and friend-path wiring the plugin already derives, and the plain
     task cannot run the rule.
-- **The cost.** The build's detekt is a pre-release on a compiler one minor version older than the build's. It adds nothing to a
+- **The cost.** The build's detekt is a pre-release on a compiler one minor version older than the build's, so a file that uses a
+  language feature of Kotlin 2.5 is analysed with reduced accuracy until detekt moves to Kotlin 2.5.0. It adds nothing to a
   published artifact, so a bump can break only `check`. Three open issues touch this build: #9793 (a stale jar view in a warm
   local daemon; a clean CI build is unaffected), #9121 (`parallel`) and #9297 (the ktlint wrapper with `ignoreAnnotated`) (F11).
 
@@ -432,12 +436,10 @@ build's own checks repeat each of them on the real modules.
   included, carries a plain `requires 2.5.0-RC` edge to `kotlin-stdlib`, a `compile`-scope dependency in the POM. vanniktech 0.37.0
   publishes a JVM module through Gradle's `java` component alone (F10, F11, F13).
 - **A pre-release requirement in a release.** `kotlin-stdlib` 2.5.0-RC is published with `org.gradle.status: release`, so no status
-  attribute marks it, and Gradle's ordering cannot tell `2.5.0-RC` from a lettered `1.0.0a`: each sorts below its plain version. The
-  version string is the only signal. Classified lexically, in this order: a `-SNAPSHOT`; a lettered fix, exactly three numbers and
-  one letter (`1.5.2a`); plain numbers; a pre-release token at a boundary (`dev`, `alpha`, `beta`, `rc`, `cr`, `m`, `milestone`,
-  `ea`, `eap`, `preview`, `pre`, `snapshot`, as in `2.5.0-RC`, `2.5.0-Beta2`, `1.0.0-M1`); anything else is another qualifier
-  (`33.0.0-jre`), reported but not refused. For a version that is not a snapshot, the check refuses a pre-release requirement as it
-  refuses a `-SNAPSHOT`, so no release is cut while the build is on the release candidate (F12).
+  attribute marks it, and Gradle's ordering cannot tell `2.5.0-RC` from a lettered `1.0.0a`: each sorts below its plain version.
+  Only a lexical reading of the version string would tell them apart (F12). The check refuses a `-SNAPSHOT` only, and reads no
+  pre-release token, so a version that is not a snapshot passes it with `kotlin-stdlib` 2.5.0-RC in its metadata. The Kotlin pin
+  moving to 2.5.0 before the first release is a step of the release, checked by hand.
 - **`verifyReleasableMetadata`** is a typed task in `build-logic`, shaped like WebTools' `VerifyJavaFloor` (F7).
   - **Inputs:**
     - the outputs of every `GenerateModuleMetadata` task, collected lazily, so they carry the task dependency;
@@ -447,7 +449,7 @@ build's own checks repeat each of them on the real modules.
   - **Checks:**
     - it reads only the library variants (category `library`; the sources variant also carries the runtime usage);
     - it finds each edge in `dependencies[]` and its `strictly` in `dependencyConstraints[]`;
-    - for a version that is not a snapshot, it refuses any `-SNAPSHOT` or pre-release requirement in either array;
+    - for a version that is not a snapshot, it refuses any `-SNAPSHOT` in either array;
     - it fails on a missing file or on nothing to check, and writes its report only on success.
   - **Wiring.** It hangs on every `AbstractPublishToMaven` task, so Maven Local, any repository and Central's staging all wait for
     it. vanniktech's upload to Central is an end-of-build action that does not run after a failure.
@@ -480,7 +482,9 @@ build's own checks repeat each of them on the real modules.
   - Issue 4620 is fixed on Dokka's `master` (pull request 4628, merged 2026-11-20) and in no release. Under `failOnWarning` it fails
     a documented class in one module that inherits a private member, from a class in another module, typed from that module's
     `implementation` dependency. In this unit only `bottools-core` has source, so nothing can trigger it; the first such subclass
-    in a later unit would. The pin moves to the first Dokka release that carries pull request 4628 (F3).
+    in a later unit would. Until the pin moves to the first Dokka release that carries pull request 4628, a later unit avoids
+    that shape: no documented class inherits, from a class in another module, a private member whose type comes from that
+    module's `implementation` dependency, such as a class-level logger (F3).
   - V2 is already the default mode. `org.jetbrains.dokka.experimental.gradle.pluginMode=V2Enabled` in the root `gradle.properties`
     sets the finished state and keeps V1 unselectable (F5).
   - `dokkaGeneratePublicationHtml` joins `check` in the published-library convention and on the root. An undocumented public
