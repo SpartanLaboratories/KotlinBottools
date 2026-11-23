@@ -306,39 +306,54 @@ WebTools, a later dependency of `bottools-http`, brings kotlinx-coroutines 1.10.
 
 ## Verification results
 
-Every load-bearing claim of the five findings files was re-opened at its source on 2026-11-18: sources quoted at a tag or a
-commit were read there, release lists and Maven Central metadata were read on that day, and the jar and metadata claims were
-checked by reading the published artifacts themselves. All 97 hold; none fails and none is unclear.
+Every load-bearing claim of the seven findings files that bear on the move to Kotlin 2.5 was re-opened at its source on
+2026-11-23: sources quoted at a tag or a commit were read there, and release lists, issue states and the metadata of Maven Central
+and the Gradle Plugin Portal were read on that day. Of their 203 claims, 199 hold and none fails. Three rest on the contents of
+published jars, which were read from the jars on 2026-11-18 and not again; the text sources read now agree with each of them. One
+is withdrawn by its own file in favour of another. The findings on the workflows and the repository's settings do not depend on
+the Kotlin version; their 23 claims were re-opened on 2026-11-18 and all hold.
 
 | Findings file | Claims | Result |
 |---|---|---|
-| [`detekt-on-the-toolchain.md`](detekt-on-the-toolchain.md#7-load-bearing-claims) | 24 | Hold. The rule's type-resolution requirement in both lines, the plugin joining only the plain task to `check`, 1.23.8's Kotlin 2.0.21 build and its metadata reader limit, 2.0.0-alpha.6 as the newest 2.x release with no stable 2.0.0, its Kotlin 2.4.10 build, JDK 17 floor and language-version range, the public builds on Kotlin 2.2.21, and the cited issues' states (#9793, #9121 and #9297 open; #8865 and #9742 closed; #9311 merged). |
-| [`umbrella-strict-pins.md`](umbrella-strict-pins.md#7-load-bearing-claims) | 15 | Hold, each quote verbatim at Gradle v9.7.1, vanniktech 0.37.0, and the cited MyGameTools, WebTools and OkHttp commits. vanniktech 0.37.0 states Gradle 9.6.0 and 9.7.0-milestone-1 as tested, so 9.7.1 sits just above its tested range. |
-| [`documentation-abi-and-publishing-gates.md`](documentation-abi-and-publishing-gates.md#7-load-bearing-claims) | 21 | Hold. Dokka 2.3.0 is the newest release (2026-11-05) and its issue 4620 is open; the Kotlin Gradle plugin 2.2.21 is the newest 2.2.x; the validator 0.18.2 is the newest (2026-09-02) and in maintenance mode; the validator reads binary-retention annotations for `nonPublicMarkers`. |
-| [`github-workflows-and-settings.md`](github-workflows-and-settings.md#7-load-bearing-claims) | 23 | Hold. All seven action commits match their tags, and each named release is the newest of its line. This repository's secret-scan check reports `Secret scan (gitleaks)` from GitHub Actions (app id 15368). |
-| [`logging-backend-check.md`](logging-backend-check.md#7-load-bearing-claims) | 14 | Hold. kotlin-logging-jvm 8.0.7's POM and module metadata depend on `kotlin-stdlib` 2.1.21 only; its class files are Java 8 with Kotlin metadata 2.0.0. Every provider, binding and bridge in the file's table is classified as the jars themselves show. |
+| [`kotlin-2-5-toolchain.md`](kotlin-2-5-toolchain.md#7-load-bearing-claims) | 20 | Hold. The Kotlin Gradle plugin 2.5.0-RC enforces Gradle 8.14 as its minimum and checks no maximum, and its tests run Gradle 8.14.5 to 9.8.1 with 9.7.0 named; `-Xjdk-release` is present and not deprecated; language version 2.5 is the release candidate's default; Kotlin 2.5.0 is planned for December 2026. |
+| [`kotlin-2-5-consumers.md`](kotlin-2-5-consumers.md#7-load-bearing-claims) | 24 | Hold. At `v2.5.0-RC` the compiler is not a pre-release (`IS_PRE_RELEASE = false`) and language version 2.5 is its newest stable one; a compiler reads Kotlin metadata up to its own minor version plus one; context parameters are stable from 2.4.0 except context arguments and callable references, unchanged in 2.5.0-RC. |
+| [`kotlin-2-5-library-set.md`](kotlin-2-5-library-set.md#7-load-bearing-claims) | 20 | Hold. jda-ktx 0.15.0, kotlinx-coroutines 1.11.0 and kotlinx-serialization-json 1.13.0 are each their library's newest release, with the requirements the file gives; JDA 6.7.0 is JDA's newest release. |
+| [`detekt-on-the-toolchain.md`](detekt-on-the-toolchain.md#7-load-bearing-claims) | 46 | 45 hold, among them: alpha.6 is detekt's newest release and embeds Kotlin 2.4.10, which knows language version 2.5 as experimental and reads metadata up to 2.5.0; detekt's move to Kotlin 2.5.0 is open and blocked (#9786, draft #9888); a public Kotlin 2.5.0-RC build running alpha.6's type-resolving task passes while printing "There were 9 compiler errors found during analysis". Claim 10, the metadata version inside the `kotlin-stdlib` 2.2.21 jar, rests on the jar; the compiler's source at `v2.2.21` agrees. |
+| [`documentation-abi-and-publishing-gates.md`](documentation-abi-and-publishing-gates.md#7-load-bearing-claims) | 41 | 40 hold; claim 20 is withdrawn by the file in favour of claim 22. Dokka 2.2.0 embeds compiler 2.3.20-dev-7064 and Dokka 2.3.0 embeds 2.5.0-dev-3229; issue 4620 is closed by pull request 4628, merged on 2026-11-20 and in no release; the validator resolves `kotlin-metadata-jvm` at the project's Kotlin plugin version and reads it leniently; the Kotlin Gradle plugin's own ABI validation is still experimental at 2.5.0-RC. |
+| [`umbrella-strict-pins.md`](umbrella-strict-pins.md#7-load-bearing-claims) | 29 | Hold. The plugin's standard-library dependency handling and its JVM target class are byte-identical at `v2.2.0` and `v2.5.0-RC`; `kotlin-stdlib` 2.5.0-RC is published with `org.gradle.status: release`; the organisation's version rule and Gradle's version ordering read as quoted. |
+| [`logging-backend-check.md`](logging-backend-check.md#7-load-bearing-claims) | 23 | 21 hold. Claims 3 and 10, kotlin-logging 8.0.7's class-file version and metadata and the provider files inside the backend jars, rest on the jars; kotlin-logging's build file and the backends' sources agree. |
+| [`github-workflows-and-settings.md`](github-workflows-and-settings.md#7-load-bearing-claims) | 23 | Hold, as re-opened on 2026-11-18. All seven action commits match their tags, and each named release was the newest of its line. This repository's secret-scan check reports `Secret scan (gitleaks)` from GitHub Actions (app id 15368). |
 
-Four details differ from the files' wording and change no conclusion:
+Details that differ from the files' wording and change no conclusion:
 
-- **Logging, claim 13.** The cited WebTools links named a `main` branch; WebTools' default branch is `master`. The links now point
-  at commit `d68ec81e`, the head of `master` on 2026-11-18, which holds both quoted passages.
+- **detekt, claim 38.** KT-91146 is marked obsolete rather than fixed; its fix is KT-89902, merged on 2026-11-05 and contained in
+  `v2.5.0-RC`.
+- **Library set, claim 7.** JDA's `JDAInfo` source moved out of `src/main` into a build resource and is generated at build time;
+  the public class still exists.
+- **Gates, claim 37.** vanniktech's test matrix runs Kotlin 2.5.0-RC on its main branch after 0.37.0, whose own tag tested 2.4.0;
+  no plugin source changed after 0.37.0.
+- **Gates, claim 32.** The documentation page of the plugin's ABI validation last changed on 2026-06-03.
+- **Umbrella, claim 19.** `AbstractKotlinPlugin` differs between `v2.2.0` and `v2.5.0-RC` in more than the renamed call, none of
+  it in the quoted logic.
+- **Toolchain, claim 7.** Gradle's compile-time check of the Kotlin version was confirmed at Gradle 9.9.2, not at 9.8.
+- **detekt, claim 7, and consumers, claim 12.** A release note's heading and its publication date, and a commit's author and
+  committer dates, are a day apart; the claims hold on either date.
 - **GitHub, claim 2.** `actions/checkout`'s test workflow declares six jobs, not two; the naming rule it illustrates holds.
-- **GitHub, claim 22.** The quoted concurrency sentence comes from one of two variants of GitHub's documentation source; the
-  other variant says the same in other words.
-- **detekt, claim 11.** The sentence on alpha.6's build versions is in the release notes, which the file cites first, not in the
-  changelog page at the tag.
+- **GitHub, claim 22.** The quoted concurrency sentence comes from one of two variants of GitHub's documentation source; the other
+  variant says the same in other words.
 
-**Observed, not quoted.** Several behaviours in the findings come from reproduction builds run outside this repository on
-Gradle 9.7.1, not from a citable source, and are on no claims list:
+**Observed, not quoted.** Several behaviours in the findings come from reproduction builds run outside this repository on Gradle
+9.7.1 with the Kotlin Gradle plugin 2.2.x, not from a citable source, and are on no claims list:
 
 - the published shape of the umbrella's strict constraints, their resolution inside the build and under a composite, the
   conflict matrix a consumer meets, and the release-metadata check passing, failing and reusing the configuration cache
   ([umbrella findings, F1 and F5 to F8](umbrella-strict-pins.md#3-findings));
 - Dokka, the validator and vanniktech on modules with no main source, Dokka failing `build` on an undocumented declaration once
   joined to `check`, and the empty aggregate a root without the Kotlin plugin renders
-  ([gates findings, F5 and F6](documentation-abi-and-publishing-gates.md#3-findings)).
+  ([gates findings, F6 and F7](documentation-abi-and-publishing-gates.md#3-findings)).
 
-The build's own checks repeat each of them on the real modules.
+None of these paths reads Kotlin metadata, so none is expected to change on Kotlin 2.5 (an inference from the sources). The
+build's own checks repeat each of them on the real modules.
 
 ---
 
@@ -351,33 +366,50 @@ The build's own checks repeat each of them on the real modules.
     debug message only. The Gradle plugin joins only the plain `detekt` task to `check`, and that task has no classpath, so a
     build that applies detekt and runs `check` passes with the rule never run
     ([detekt findings, F1 to F3](detekt-on-the-toolchain.md#3-findings)).
-  - detekt 1.23.8, the last 1.x release, is built on Kotlin 2.0.21. Its compiler reads Kotlin metadata only up to 2.1.0, while the
-    standard library of Kotlin 2.2 carries 2.2.0, so on this build its type-resolved rules cannot see `kotlin.runCatching`, and the
-    maintainers plan no further 1.x release (F4).
-  - detekt 2.0.0-alpha.6 (2026-08-04) is the newest 2.x release, with no stable 2.0.0. It runs on JDK 17 or newer, accepts
-    Kotlin language versions 2.0 to 2.5 and declares configuration-cache compatibility. Public builds run it on Kotlin 2.2.21 and
-    Gradle 9.5 to 9.9 (F5 to F7).
+  - detekt 1.23.8, the last 1.x release, is built on Kotlin 2.0.21 and reads Kotlin metadata only up to 2.1.0, so it cannot read
+    this build's classpath (F4).
+  - detekt 2.0.0-alpha.6 (2026-08-04) is the newest release, with no stable 2.0.0. It embeds the Kotlin 2.4.10 compiler. No
+    release or snapshot is built on Kotlin 2.5: detekt's move to Kotlin 2.5.0 is an open draft change, blocked on other work, with
+    no date (F5).
+  - Its Gradle plugin copies the compile task's language and API version, 2.5, into each `detekt<Compilation>` task. Kotlin 2.4.10
+    knows 2.5 as an experimental language version and accepts it, and it reads metadata up to 2.5.0, so `kotlin-stdlib` 2.5.0-RC
+    and the modules' own classes are readable to it; the release candidate marks nothing it compiles as pre-release (F12 to F14).
+  - What goes wrong in that analysis does not fail the build. Every compiler error detekt meets, an unresolved class or a
+    language feature its compiler does not know, is counted into one line, "There were N compiler errors found during analysis.
+    This affects accuracy of reporting.", and the rules run on regardless. A public Kotlin 2.5.0-RC build running alpha.6's
+    type-resolving task prints that line and passes (F15, F16).
+  - A language feature that exists only from Kotlin 2.5, such as name-based destructuring written `(val x, val y)`, is unknown to
+    detekt's compiler: each use is such an error, and the file is analysed with reduced accuracy (F13, F17).
 - **The approach.**
   - **Pin and apply.** Pin `dev.detekt` 2.0.0-alpha.6 exactly in `build-logic`, and apply it in `bottools.kotlin-library` with
     `buildUponDefaultConfig = true`. `config/detekt/detekt.yml` holds only the rule's activation. A new code base needs no
     baseline, and `parallel` stays off. A module with no main source passes, its task skipped as `NO-SOURCE` (F8, F9).
+  - **One language version.** The language and API version are set once, on `kotlin { compilerOptions { … } }`, and detekt
+    follows them; the detekt tasks get no version of their own (F12).
   - **Wire the type-resolving tasks.** `check` depends on the type-resolving task of every Kotlin compilation: `detektMain`, and
-    `detektTest`. The seven test sets are packages inside the one `test` source set, as in the organisation's builds, so
-    `detektTest` covers them all.
-  - **Prove the wiring.** A convention-plugin test with a seeded `runCatching { suspendCall() }` must fail `check`, while the plain
-    `detekt` task passes.
+    `detektTest`. The seven test sets are packages inside the one `test` source set, so `detektTest` covers them all.
+  - **Prove the rule on the real toolchain.** The convention plugin's tests compile their fixtures at language version 2.5 against
+    `kotlin-stdlib` 2.5.0-RC: a seeded `runCatching { suspendCall() }` fails `check` while the plain `detekt` task passes; a
+    second fixture whose suspend callee lives in another module fails `check` too; and the fixtures' analysis prints no "compiler
+    errors found during analysis" line.
+  - **Language features while detekt's compiler is 2.4.10.** The code detekt analyses uses no language feature that exists only
+    from Kotlin 2.5, and no experimental compiler flag. The pin moves to the first detekt release built on Kotlin 2.5.0
+    ([#9786](https://github.com/detekt/detekt/issues/9786), [#9888](https://github.com/detekt/detekt/pull/9888)).
   - **The stricter rule.** The 2.x rule also flags a `catch` of `CancellationException`, or of a supertype, around a suspend
     call, unless the clause rethrows `CancellationException` first or starts with `ensureActive()`. The internal
     `suspendCatching` is written in a shape the rule accepts (F10).
 - **Where sources disagree.** detekt's migration guide lists Kotlin 2.4 as the 2.x minimum. The accepted language versions (2.0
   to 2.5) and the public builds on Kotlin 2.2.21 contradict it, so the guide's row reads as detekt's own build version.
 - **What does not fit.**
-  - 1.23.8 is silent on the one rule it is adopted for.
-  - The command-line tool duplicates the classpath, toolchain and friend-path wiring the plugin already derives.
-  - The plain task cannot run the rule.
-- **The cost.** The build's detekt is a pre-release. It adds nothing to a published artifact, so a bump can break only `check`.
-  Three open issues touch this build: #9793 (a stale jar view in a warm local daemon; a clean CI build is unaffected), #9121
-  (`parallel`) and #9297 (the ktlint wrapper with `ignoreAnnotated`) (F11).
+  - 1.23.8 cannot read the classpath of the one rule it would be adopted for.
+  - `main-SNAPSHOT` is on Kotlin 2.4.10 as well, floats, and needs a snapshot repository.
+  - A lower language version on the detekt tasks gains nothing: detekt reads libraries at its own compiler's stable version
+    regardless, and the features of 2.5 would then be off in the sources too.
+  - The command-line tool duplicates the classpath, toolchain and friend-path wiring the plugin already derives, and the plain
+    task cannot run the rule.
+- **The cost.** The build's detekt is a pre-release on a compiler one minor version older than the build's. It adds nothing to a
+  published artifact, so a bump can break only `check`. Three open issues touch this build: #9793 (a stale jar view in a warm
+  local daemon; a clean CI build is unaffected), #9121 (`parallel`) and #9297 (the ktlint wrapper with `ignoreAnnotated`) (F11).
 
 ### 2. The umbrella's strict pins and the release-metadata check
 
@@ -395,6 +427,17 @@ The build's own checks repeat each of them on the real modules.
   - a plain request for another version of a pinned module fails resolution, naming the strict constraint;
   - a request for a lower version is no conflict;
   - the consumer's own `strictly` or `force` overrides the pin.
+- **On the Kotlin Gradle plugin 2.5.0-RC** nothing the check reads changes. A JVM module still publishes through Gradle's `java`
+  component, and the plugin's standard-library handling is byte-identical to 2.2.0's. Every published module, the umbrella
+  included, carries a plain `requires 2.5.0-RC` edge to `kotlin-stdlib`, a `compile`-scope dependency in the POM. vanniktech 0.37.0
+  publishes a JVM module through Gradle's `java` component alone (F10, F11, F13).
+- **A pre-release requirement in a release.** `kotlin-stdlib` 2.5.0-RC is published with `org.gradle.status: release`, so no status
+  attribute marks it, and Gradle's ordering cannot tell `2.5.0-RC` from a lettered `1.0.0a`: each sorts below its plain version. The
+  version string is the only signal. Classified lexically, in this order: a `-SNAPSHOT`; a lettered fix, exactly three numbers and
+  one letter (`1.5.2a`); plain numbers; a pre-release token at a boundary (`dev`, `alpha`, `beta`, `rc`, `cr`, `m`, `milestone`,
+  `ea`, `eap`, `preview`, `pre`, `snapshot`, as in `2.5.0-RC`, `2.5.0-Beta2`, `1.0.0-M1`); anything else is another qualifier
+  (`33.0.0-jre`), reported but not refused. For a version that is not a snapshot, the check refuses a pre-release requirement as it
+  refuses a `-SNAPSHOT`, so no release is cut while the build is on the release candidate (F12).
 - **`verifyReleasableMetadata`** is a typed task in `build-logic`, shaped like WebTools' `VerifyJavaFloor` (F7).
   - **Inputs:**
     - the outputs of every `GenerateModuleMetadata` task, collected lazily, so they carry the task dependency;
@@ -404,13 +447,13 @@ The build's own checks repeat each of them on the real modules.
   - **Checks:**
     - it reads only the library variants (category `library`; the sources variant also carries the runtime usage);
     - it finds each edge in `dependencies[]` and its `strictly` in `dependencyConstraints[]`;
-    - for a version that is not a snapshot, it refuses any `-SNAPSHOT` in either array;
+    - for a version that is not a snapshot, it refuses any `-SNAPSHOT` or pre-release requirement in either array;
     - it fails on a missing file or on nothing to check, and writes its report only on success.
   - **Wiring.** It hangs on every `AbstractPublishToMaven` task, so Maven Local, any repository and Central's staging all wait for
     it. vanniktech's upload to Central is an end-of-build action that does not run after a failure.
-- **The umbrella's jars.** MyGameTools' fold of the modules' sources and Dokka output works on vanniktech 0.37.0 and Dokka 2.2.0.
-  Its guards do not fit, because they use a fixed page count and hard-coded package names. Each guard instead derives its
-  expectation from the modules' real source files, from the same module list:
+- **The umbrella's jars.** MyGameTools' fold of the modules' sources and Dokka output works on vanniktech 0.37.0. Its guards do not
+  fit, because they use a fixed page count and hard-coded package names. Each guard instead derives its expectation from the
+  modules' real source files, from the same module list:
   - presence is required for each module that has source;
   - a module with no source contributes nothing, and is not required to;
   - when no module has source at all, the guard fails (F8).
@@ -421,24 +464,34 @@ The build's own checks repeat each of them on the real modules.
 
 ### 3. Versions, the documentation and ABI gates, and modules with no source yet
 
-- **Versions** ([gates findings, F1 to F3](documentation-abi-and-publishing-gates.md#3-findings)). The published `kotlin-stdlib`
-  requirement follows the Kotlin plugin's patch, 2.2.21.
+- **Versions** ([gates findings, F1 to F4, F9, F10](documentation-abi-and-publishing-gates.md#3-findings)). Each published module
+  requires `kotlin-stdlib` at the Kotlin plugin's version: 2.5.0-RC, then 2.5.0.
 
   | Tool | Pin | Why |
   |---|---|---|
-  | Kotlin Gradle plugin | 2.2.21 | the newest 2.2.x |
-  | Dokka | 2.2.0 | 2.3.0 works on this stack but has an open regression, issue 4620: under `failOnWarning` it fails a documented subclass whose superclass holds private members typed from an `implementation` dependency, a shape the library's modules will have. 2.3.0's gains reach no published artifact and no gate. |
-  | vanniktech | 0.37.0 | its changes since 0.36.0 touch only Central checksum files and logging. `SourcesJar.Sources()` replaces the deprecated boolean option. |
-  | binary-compatibility validator | 0.18.2 | the newest release; it is in maintenance mode |
+  | Kotlin Gradle plugin | 2.5.0-RC, then 2.5.0 | the newest Kotlin line; 2.5.0 is planned for December 2026 |
+  | Dokka | 2.3.0 | Dokka analyses with the compiler it embeds and ignores the project's language version. 2.3.0 embeds 2.5.0-dev-3229, whose default language version is 2.5 and which reads metadata 2.5.0. 2.2.0 embeds 2.3.20-dev-7064: it falls back to language version 2.3 and reads metadata only up to 2.4.0, so the 2.5.0-RC standard library on its analysis classpath is unreadable to it. |
+  | vanniktech | 0.37.0 | on the `KotlinJvm` path it uses only the plugin's version and `KotlinToolingVersion`, both present at 2.5.0-RC; its test matrix runs the 2.5.0-RC plugin, and no plugin source changed after 0.37.0 |
+  | binary-compatibility validator | 0.18.2 | it resolves `kotlin-metadata-jvm` at the project's Kotlin plugin version and reads class files leniently; `nonPublicMarkers` reads annotations from the class file, apart from Kotlin metadata |
 
 - **Dokka.**
+  - Every Dokka source set sets `languageVersion` and `apiVersion` to `"2.5"`, so a later Dokka embedding a newer compiler
+    analyses at the build's version (F2).
+  - Issue 4620 is fixed on Dokka's `master` (pull request 4628, merged 2026-11-20) and in no release. Under `failOnWarning` it fails
+    a documented class in one module that inherits a private member, from a class in another module, typed from that module's
+    `implementation` dependency. In this unit only `bottools-core` has source, so nothing can trigger it; the first such subclass
+    in a later unit would. The pin moves to the first Dokka release that carries pull request 4628 (F3).
   - V2 is already the default mode. `org.jetbrains.dokka.experimental.gradle.pluginMode=V2Enabled` in the root `gradle.properties`
-    sets the finished state and keeps V1 unselectable (F4).
+    sets the finished state and keeps V1 unselectable (F5).
   - `dokkaGeneratePublicationHtml` joins `check` in the published-library convention and on the root. An undocumented public
-    declaration then fails `./gradlew build` (F6).
+    declaration then fails `./gradlew build` (F7).
   - The root needs the Kotlin plugin with `apply false`. Without it the aggregate renders empty and the build still passes, so
-    the site check asserts that the aggregate holds a module page (F4, F5).
-- **Modules with no main source** pass every gate with no placeholder declaration (F5):
+    the site check asserts that the aggregate holds a module page (F5, F6).
+- **The validator** is proved by the build's own `apiCheck` on `bottools-core`'s markers; no public build on 2.5.0-RC was found
+  that runs it. Beside it stands the Kotlin Gradle plugin's own ABI validation, `kotlin { abiValidation() }`, with the same
+  `api/<module>.api` location: still experimental at 2.5.0-RC, behind `@OptIn(ExperimentalAbiValidation::class)` (F9).
+- **Modules with no main source** pass every gate with no placeholder declaration (F6), and none of these paths reads Kotlin
+  metadata (F8):
   - Dokka warns nothing and writes no pages;
   - the validator writes a zero-byte dump, and `apiCheck` fails until that dump is committed;
   - vanniktech builds valid jars holding only a manifest;
@@ -447,11 +500,13 @@ The build's own checks repeat each of them on the real modules.
   So every module commits its `api/<module>.api` dump. It is zero bytes for the four feature modules that have no source yet and
   for the umbrella.
 - **`nonPublicMarkers`.** Declarations marked `@ExperimentalBotToolsApi` leave the dump. The marker class itself and
-  `@SupportedExtension` stay in it (F7).
+  `@SupportedExtension` stay in it.
 - **Gradle 9 and test sources.** Gradle 9 fails `test` when a module has test sources but discovers no test, so a module's test
-  source set holds a discoverable test or nothing (F5).
-- **Where sources disagree.** The organisation's builds pin Dokka 2.3.0 (WebTools) and 2.2.0 (MyGameTools), and both pin vanniktech
-  0.36.0. Dokka 2.2.0 and vanniktech 0.37.0 hold here for the reasons above.
+  source set holds a discoverable test or nothing (F6).
+- **Where sources disagree.** The organisation's builds, both on the Kotlin Gradle plugin 2.2.0, pin Dokka 2.3.0 (WebTools) and
+  2.2.0 (MyGameTools). On Kotlin 2.5 only 2.3.0 reads the build's classes.
+- **What does not fit.** Dokka 2.2.0, for the reason in the table. A Dokka build from `master`, which carries the fix for 4620 and
+  the 2.5.0-RC compiler: it is no release, floats, and needs a repository beyond Maven Central and the Gradle Plugin Portal.
 
 ### 4. The workflows and the repository's settings
 
@@ -470,8 +525,8 @@ The build's own checks repeat each of them on the real modules.
   Rulesets apply on public repositories of free-plan organisations.
 - **Merge settings and GitHub Pages** (F6 to F8).
   - **Merge settings.** One repository update turns off squash and rebase merging and keeps merge commits.
-  - **GitHub Pages.** The site is created with GitHub Actions as its source (`build_type: workflow`) before the first `pages.yml` run on
-    `main`, and read back. The `github-pages` environment allows deployments from the default branch.
+  - **GitHub Pages.** The site is created with GitHub Actions as its source (`build_type: workflow`) before the first `pages.yml`
+    run on `main`, and read back. The `github-pages` environment allows deployments from the default branch.
 - **Actions, pinned by commit** (F9 to F11):
 
   | Action | Release | Note |
@@ -490,8 +545,8 @@ The build's own checks repeat each of them on the real modules.
     trailing letter, so the lettered forms are matched as well.
   - **The job.** A shell guard re-checks the tag. The job holds `contents: read`, builds the tagged commit from a clean checkout
     with `./gradlew build verifyReleasableMetadata`, and creates nothing.
-- **Concurrency** (F15). CI cancels runs in progress on pull requests only. The GitHub Pages deployment runs in one fixed group that never cancels a
-  deployment in progress.
+- **Concurrency** (F15). CI cancels runs in progress on pull requests only. The GitHub Pages deployment runs in one fixed group
+  that never cancels a deployment in progress.
 - **What does not fit:**
   - floating action tags;
   - an aggregate gate job;
@@ -502,16 +557,19 @@ The build's own checks repeat each of them on the real modules.
 
 - **kotlin-logging 8.0.7** ([logging findings](logging-backend-check.md#3-findings)).
   - **Its dependencies.** The artifact is `io.github.oshai:kotlin-logging-jvm`, and it depends on `kotlin-stdlib` 2.1.21 alone.
-    slf4j-api is compile-only in its build, so it does not bring slf4j-api with it.
-  - **Compatibility.** Its class files are Java 8 with Kotlin metadata 2.0.0, so a Kotlin 2.2.x compiler reads them and Java 21
-    runs them.
+    slf4j-api is compile-only in its build, so it does not bring slf4j-api with it. Its `kotlin-stdlib` 2.1.21 is a lower bound:
+    resolution takes the module's own `kotlin-stdlib` at the Kotlin plugin's version.
+  - **Compatibility.** Its class files are Java 8 with Kotlin metadata 2.0.0. A newer compiler reads older binaries, so the Kotlin
+    2.5 compiler reads them at language and API version 2.5, and Java 21 runs them.
+  - **Its releases.** 8.0.7 is the newest release. Its next major, 9.0.0, will raise its own Kotlin baseline, with no date; no
+    issue reports a problem with Kotlin 2.4 or 2.5 on the JVM.
   - **On the JVM.** slf4j is its default backend.
     - With no slf4j provider present, slf4j prints one warning and discards every event.
     - With no slf4j-api at all, kotlin-logging cannot load.
     - Its first use prints a start-up line, which only the application switches off.
 - **What a logging module declares.** Each module that logs declares `kotlin-logging-jvm` 8.0.7 and `org.slf4j:slf4j-api` 2.0.19,
   both `implementation`; 2.0.19 is the version JDA 6.7.0 and logback 1.6.7 ask for. Tests get `ch.qos.logback:logback-classic`
-  1.6.7 as `testRuntimeOnly`.
+  1.6.7 as `testRuntimeOnly`. logback 1.6.8 (2026-11-19) asks for the same slf4j-api.
 - **Telling a backend apart.**
   - **Providers and bindings.** slf4j 2 loads its provider through `META-INF/services/org.slf4j.spi.SLF4JServiceProvider`, and an
     slf4j 1 binding carries `org/slf4j/impl/StaticLoggerBinder.class`. Of the 21 jars read, every provider and binding carries one
@@ -529,3 +587,73 @@ The build's own checks repeat each of them on the real modules.
   - A coordinate-only check goes stale and misses a shaded provider.
   - A check of logging configuration files packed into a module's own jar reaches past the check's subject, a module's runtime
     dependencies, and is not part of it.
+
+### 6. The Kotlin 2.5.0-RC toolchain
+
+- **Gradle** ([toolchain findings, F1, F2](kotlin-2-5-toolchain.md#3-findings)). The Kotlin Gradle plugin 2.5.0-RC enforces only a
+  minimum, Gradle 8.14, and checks no maximum. Its tests run Gradle 8.14.5 through 9.8.1, 9.7.0 among them, and on Gradle 9.6 and
+  newer it loads its `gradle96` variant. The build stays on its Gradle 9.7.1 wrapper. No Gradle release embeds Kotlin 2.5 (9.8
+  embeds 2.4.10, 9.9 embeds 2.4.21), so a newer wrapper would not close the gap between Gradle's own Kotlin and the build's.
+- **`build-logic` under `kotlin-dsl`** (F3). Gradle's "Unsupported Kotlin plugin version" warning compares the Kotlin plugin Gradle
+  itself applies with the version Gradle embeds; the 2.5.0-RC plugin on `build-logic`'s `implementation` classpath is not what it
+  checks. `build-logic`'s own sources compile at language and API version 2.2 with Gradle's Kotlin 2.4.0, which reads metadata up to
+  2.5.0, and the plugin's own classes are compiled at language and API version 2.1 so that an older compiler reads them. WebTools
+  and MyGameTools run this layout on Gradle 9.7.1 with a Kotlin plugin other than Gradle's own.
+- **The compiler configuration is unchanged** (F4, F5). `-Xjdk-release` is present in 2.5.0-RC and not deprecated, and the plugin's
+  compiler options have no property in its place, so it stays a free compiler argument. `JvmTarget.fromTarget("21")`,
+  `explicitApi()` and the `compilerOptions` DSL are unchanged. Language and API version 2.5 are the release candidate's default;
+  `bottools.kotlin-library` sets both to 2.5 explicitly, so the build stays at 2.5 when a later compiler changes its default.
+- **Three changes of Kotlin 2.5 reach the build** (F6).
+  - The unused return value checker is on by default at language version 2.5, in its checking mode: it prints warnings, and the
+    build does not turn warnings into errors.
+  - A Kotlin plugin loaded by more than one class loader in one build is an error, where it was a warning; the property
+    `kotlin.pluginLoadedInMultipleProjects.ignore=true` silences it. The plugin requested at the root with `apply false` is shared
+    by the subprojects, and the clean-clone build and the convention plugin's builds prove that layout.
+  - The compiler's JDK 17 minimum is an error; the JDK 21 toolchain and a JDK 21 Gradle daemon meet it.
+- **Resolution and timing** (F7, F8). The plugin markers and `kotlin-gradle-plugin` 2.5.0-RC resolve from Maven Central and the
+  Gradle Plugin Portal, and the compiler artifacts from Maven Central. Kotlin 2.5.0 is planned for December 2026, on a schedule the
+  release page calls approximate. The move from the release candidate to 2.5.0 changes version strings only, in each place the
+  build names the Kotlin version.
+- **What does not fit.** A newer Gradle wrapper, for the reason above; it would also change the Kotlin `build-logic` compiles
+  and tests with.
+
+### 7. What the move asks of consumers
+
+- **The oldest Kotlin a consumer compiles with: 2.4.0, while the build is on the release candidate and after 2.5.0**
+  ([consumer findings, F1, F2](kotlin-2-5-consumers.md#3-findings)). A class compiled at language version 2.5 carries Kotlin metadata
+  2.5.0, and a compiler reads metadata up to its own minor version plus one, so Kotlin 2.4 reads it and Kotlin 2.3 does not. Kotlin's
+  guidance for libraries says the same: consumers can use any compiler from the previous language version onwards. Kotlin states the
+  one-version-ahead reading as preferred, not guaranteed. An older compiler fails with "compiled with an incompatible version of
+  Kotlin", naming the highest metadata version it reads.
+- **The standard library** (F3). Each published module asks for `kotlin-stdlib` at the plugin's version, 2.5.0-RC now and 2.5.0
+  after the move, and Gradle puts the highest requested version on the consumer's compile and runtime classpaths. API version 2.5
+  needs a standard library of at least 2.5 at run time, so a consumer on Kotlin 2.4 has its standard library raised to 2.5.
+- **Nothing is marked pre-release** (F4 to F6). At `v2.5.0-RC` the compiler is not a pre-release and language version 2.5 is
+  stable, so the classes it compiles carry no pre-release flag, and Kotlin 2.4 and 2.5.0 load them. The flag would appear if the
+  build enabled an experimental language feature that forces it; the build enables none. Kotlin promises no compatibility between a
+  pre-release build and the release, so what the release candidate built is rebuilt on 2.5.0, never reused.
+- **Composite builds** read the same classes as a published artifact, so the same floor and the same standard library apply (F7).
+- **Language features** (F9). Context parameters are stable from Kotlin 2.4.0, except context arguments and callable references,
+  and 2.5.0-RC leaves them so. A public signature that uses them asks a consumer for Kotlin 2.4 at language version 2.4 or newer,
+  and a consumer cannot take a callable reference to such a function. The other features stabilised since 2.2 ask nothing more of a
+  consumer's compiler.
+- **How the floor is proved.** The consumer-side build compiles against the modules published to Maven Local with the Kotlin
+  Gradle plugin 2.4.21, the newest release of the floor's line, and reads Kotlin metadata as 2.4.0 does.
+
+### 8. The library set on Kotlin 2.5
+
+- **The set** ([library-set findings, F1 to F7](kotlin-2-5-library-set.md#3-findings)):
+
+  | Library | Version | Why |
+  |---|---|---|
+  | JDA | 6.7.0 | still JDA's newest release |
+  | jda-ktx | 0.15.0 | its only release after 0.14.2. It asks for JDA 6.5.0 as a plain runtime requirement, which resolution raises to 6.7.0, and for kotlinx-coroutines 1.11.0 and `kotlin-stdlib` 2.4.0; `RestAction.await()`, `JDABuilder.injectKTX()` and `CoroutineEventManager` are in its source |
+  | kotlinx-coroutines-core and kotlinx-coroutines-test | 1.11.0 | the newest stable release, built on Kotlin 2.2.20; WebTools' 1.10.2 is a plain requirement, so the graph resolves to 1.11.0 |
+  | kotlinx-serialization-json | 1.13.0 | the newest release, built on Kotlin 2.4.10; 1.12.0's own notes say to skip it for an exception-wrapping change 1.13.0 reverts |
+
+- **Requirements.** The highest `kotlin-stdlib` any of them asks for is 2.4.10, below the plugin's 2.5.0-RC, which resolution takes.
+  The 2.5 compiler reads all of their metadata. All four compile to JVM target 1.8. kotlinx-coroutines and kotlinx-serialization
+  publish no `org.gradle.jvm.version`, so `verifyJavaFloor` reads their class files.
+- **What the build proves.** The serialization compiler plugin at 2.5.0-RC with the 1.13.0 runtime is the usual pairing, not one
+  documented as supported; the `@Serializable` probe proves it. jda-ktx 0.15.0 against JDA 6.7.0 rests on JDA's diff from 6.5.0 to
+  6.7.0, which removes no public source file; the linkage test proves it (F3, F5).
